@@ -1,6 +1,6 @@
 {
     "servers": {
-        "my-mcp-server-d188f00c": {
+        "astro-mcp": {
             "url": "https://mcp.docs.astro.build/mcp",
             "type": "http"
         }
