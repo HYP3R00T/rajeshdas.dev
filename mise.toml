@@ -1,8 +1,8 @@
 [tools]
-pre-commit = "latest"
 node = "lts"
 pnpm = "latest"
 python = "latest"
+pre-commit = "latest"
 
 [hooks]
 enter = "bash ./scripts/setup_project.sh"
@@ -16,4 +16,4 @@ lockfile = true
 
 [tasks.dev]
 description = "Dev Mode"
-run = "astro dev"
+run = "pnpm run dev"
