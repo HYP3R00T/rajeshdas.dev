@@ -16,4 +16,4 @@ lockfile = true
 
 [tasks.dev]
 description = "Dev Mode"
-run = "pnpm run dev"
+run = "astro dev --host 0.0.0.0"
