@@ -1,8 +1,6 @@
 {
     "css.lint.unknownAtRules": "ignore",
     "debug.javascript.defaultRuntimeExecutable": {
-        "pwa-node": "/home/hyperoot/.local/share/mise/shims/node"
+        "pwa-node": "/home/vscode/.local/share/mise/shims/node"
     },
-    "python.defaultInterpreterPath": "/home/hyperoot/.local/share/mise/installs/python/3.13.5/bin/python",
-    "shellcheck.executablePath": "/home/hyperoot/.local/share/mise/shims/shellcheck",
 }
