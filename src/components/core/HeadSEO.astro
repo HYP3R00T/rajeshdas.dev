@@ -1,0 +1,66 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { getImage } from "astro:assets";
+
+import "@/styles/global.css";
+
+import type { HeadSEOProps } from "@/lib/types";
+
+const canonicalURL = new URL(Astro.url);
+
+import { SITE } from "config";
+
+const {
+  title,
+  description = SITE.description,
+  image = SITE.image,
+  imageAlt = SITE.imageAlt,
+  contentType = SITE.contentType,
+} = Astro.props as HeadSEOProps;
+
+// Generate OG image URL
+let ogImageUrl = image;
+if (typeof image === "string" && image.startsWith("../../assets/")) {
+  const { src } = await getImage({
+    src: image.replace("../../", "/src/"),
+    width: 1200,
+    height: 630,
+  });
+  ogImageUrl = new URL(src, Astro.site).toString();
+}
+---
+
+<!-- Global Metadata -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<meta charset="UTF-8" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- <link rel="manifest" href="/site.webmanifest" /> -->
+<link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- OpenGraph Meta Tags -->
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:type" content={contentType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:alt" content={imageAlt} />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />
+<meta name="twitter:creator" content={SITE.twitterHandle} />
+
+<ClientRouter />
