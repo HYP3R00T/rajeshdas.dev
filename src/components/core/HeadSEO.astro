@@ -5,47 +5,65 @@ import { getImage } from "astro:assets";
 import "@/styles/global.css";
 
 import type { HeadSEOProps } from "@/lib/types";
-
-const canonicalURL = new URL(Astro.url);
-
 import { SITE } from "config";
 
+// Props with fallbacks from SITE config
 const {
-  title,
+  title = SITE.title,
   description = SITE.description,
-  image = SITE.image,
+  image = SITE.image, // string | imported asset | content collection image()
   imageAlt = SITE.imageAlt,
   contentType = SITE.contentType,
+  noIndex = false,
 } = Astro.props as HeadSEOProps;
 
-// Generate OG image URL
-let ogImageUrl = image;
-if (typeof image === "string" && image.startsWith("../../assets/")) {
-  const { src } = await getImage({
-    src: image.replace("../../", "/src/"),
-    width: 1200,
-    height: 630,
-  });
-  ogImageUrl = new URL(src, Astro.site).toString();
+const canonicalURL = new URL(Astro.url);
+const siteUrl = Astro.site ?? "http://127.0.0.1:4321";
+
+// Generate a fully qualified OG image URL
+let ogImageUrl: string;
+
+if (typeof image === "object" && "src" in image) {
+  // Case 1: Imported asset or content collection image()
+  ogImageUrl = new URL(image.src, siteUrl).toString();
+} else if (typeof image === "string" && !image.startsWith("http")) {
+  // Case 2: Local relative path (blogs/assets or similar)
+  try {
+    const { src } = await getImage({
+      src: image,
+      width: 1200,
+      height: 630,
+      format: "webp",
+    });
+    ogImageUrl = new URL(src, siteUrl).toString();
+  } catch {
+    // Fallback: just prefix with siteUrl if optimization fails
+    ogImageUrl = new URL(image, siteUrl).toString();
+  }
+} else {
+  // Case 3: External full URL
+  ogImageUrl = image;
 }
 ---
 
 <!-- Global Metadata -->
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 <meta charset="UTF-8" />
+<meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
+<meta
+  name="googlebot"
+  content={noIndex ? "noindex, nofollow" : "index, follow"}
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" type="image/svg+xml" href="/favicon.svg" />
-<!-- <link rel="manifest" href="/site.webmanifest" /> -->
-<link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 <!-- OpenGraph Meta Tags -->
 <meta property="og:url" content={canonicalURL} />
