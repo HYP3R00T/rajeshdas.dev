@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface ButtonProps extends HTMLAttributes<"button"> {
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
+  size?: "default" | "sm" | "lg" | "icon";
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size = "default",
+  type = "button",
+  disabled = false,
+  class: className,
+  ...rest
+} = Astro.props as ButtonProps;
+---
+
+<button
+  class={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-radius font-medium transition-colors cursor-pointer border border-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-80
+  ${
+    {
+      default: "bg-accent text-background hover:bg-accent/80",
+      destructive: "bg-error text-background hover:bg-error/80",
+      outline: "border-blue! border text-blue hover:bg-elevated/50",
+      secondary: "bg-elevated text-text-primary hover:bg-elevated/50",
+      ghost: "hover:bg-elevated/50",
+      link: "text-text-primary underline-offset-4 hover:underline",
+    }[variant]
+  }
+  ${
+    {
+      default: "h-9 px-4 py-2 text-base",
+      sm: "h-8 px-3 text-sm",
+      lg: "h-10 px-8 text-lg",
+      icon: "h-9 w-9",
+    }[size]
+  }
+  ${className}
+  `}
+  type={type}
+  disabled={disabled}
+  {...rest}
+>
+  <slot />
+</button>

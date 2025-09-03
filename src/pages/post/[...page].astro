@@ -1,0 +1,61 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import type { PaginateFunction } from "astro";
+import { getCollection } from "astro:content";
+import type { PostsPageProps } from "@/lib/types";
+
+import Pagination from "@/components/post/Pagination.astro";
+import PostCard from "@/components/post/PostCard.astro";
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const posts = await getCollection("posts").then((entries) =>
+    entries.filter((entry) => !entry.data.draft)
+  );
+
+  posts.sort((a, b) => {
+    const aDate = new Date(a.data.modDatetime ?? a.data.pubDatetime).valueOf();
+    const bDate = new Date(b.data.modDatetime ?? b.data.pubDatetime).valueOf();
+    return bDate - aDate;
+  });
+
+  // Paginate function returns an array of pages
+  const pagination = paginate(posts, { pageSize: 6 });
+
+  return pagination.map((page) => ({
+    ...page,
+    props: {
+      ...page.props,
+      totalPages: pagination.length,
+    },
+  }));
+}
+const { page, totalPages } = Astro.props as PostsPageProps;
+---
+
+<BaseLayout>
+  <div
+    class="grid grid-cols-1 gap-4 px-2 py-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 lg:px-4 lg:py-8"
+  >
+    {
+      page.data.map((post) => (
+        <div class="">
+          <PostCard post={post} />
+        </div>
+      ))
+    }
+  </div>
+
+  <Pagination
+    currentPage={page.currentPage}
+    prevUrl={page.url.prev}
+    nextUrl={page.url.next}
+    first={page.url.first}
+    last={page.url.last}
+    totalPages={totalPages}
+  />
+</BaseLayout>

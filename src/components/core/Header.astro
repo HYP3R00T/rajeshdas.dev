@@ -1,0 +1,46 @@
+---
+type NavLink = { href: string; label: string };
+
+const { title = "Rajesh Das", links = [] as NavLink[] } = Astro.props;
+
+const nav: NavLink[] = links.length
+  ? links
+  : [
+      { href: "/", label: "Home" },
+      { href: "/post", label: "Post" },
+    ];
+---
+
+<header
+  class="border-border sticky top-0 z-50 h-14 w-full border-b bg-white/80 backdrop-blur"
+>
+  <div
+    class="mx-auto flex h-full w-full max-w-6xl items-center justify-between px-4"
+  >
+    <a
+      href="/"
+      class="text-sm font-semibold tracking-tight hover:opacity-90"
+      aria-label={title}
+    >
+      {title}
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-6 text-sm">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="text-text-default transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <slot name="actions" />
+    </div>
+  </div>
+</header>

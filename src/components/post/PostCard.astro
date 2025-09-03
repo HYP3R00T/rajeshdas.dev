@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import Button from "@/components/ui/Button.astro";
+
+const { post } = Astro.props;
+---
+
+<div class="bg-content rounded-radius h-full">
+  <div class="p-2">
+    <div class="">
+      <Image
+        src={post.data.cover}
+        alt={post.data.coverAlt}
+        class="rounded-radius w-full object-cover lg:aspect-[2/1]"
+        transition:name=`${post.data.title}image`
+      />
+    </div>
+    <div class="">
+      <a href={`/post/${post.id}/`} class="">
+        <h4 class="" transition:name={post.data.title}>
+          {post.data.title}
+        </h4>
+        <p class="">{post.data.description}</p>
+      </a>
+      <div class="">
+        {
+          post.data.tags.map((tag: any) => (
+            <div class="">
+              <a href={`/tag/${tag}/`} class="">
+                <Button variant="secondary" size="sm">
+                  {tag}
+                </Button>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>

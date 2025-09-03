@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Neutrals*/
+    --background: hsl(240deg, 21%, 12%);
+    --content: hsl(240deg, 21%, 15%);
+    --elevated: hsl(237deg, 16%, 23%);
+    --border: hsl(234deg, 13%, 31%);
+    --text-default: hsl(226deg, 64%, 88%);
+    --text-subtle: hsl(227deg, 35%, 80%);
+    --text-faint: hsl(228deg, 24%, 72%);
+
+    /* Accents & Statuses */
+    --red: hsl(343deg, 81%, 75%);
+    --orange: hsl(23deg, 92%, 75%);
+    --yellow: hsl(41deg, 86%, 83%);
+    --green: hsl(115deg, 54%, 76%);
+    --teal: hsl(170deg, 57%, 73%);
+    --blue: hsl(217deg, 92%, 76%);
+    --purple: hsl(267deg, 84%, 81%);
+    --pink: hsl(316deg, 72%, 86%);
+
+    --radius: 0.5rem;
+  }
+}
+
+@theme {
+  --color-*: initial;
+
+  --color-background: var(--background);
+  --color-content: var(--content);
+  --color-elevated: var(--elevated);
+  --color-border: var(--border);
+  --color-text-default: var(--text-default);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-faint: var(--text-faint);
+  --color-red: var(--red);
+  --color-orange: var(--orange);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+  --color-teal: var(--teal);
+  --color-blue: var(--blue);
+  --color-purple: var(--purple);
+  --color-pink: var(--pink);
+
+  --radius-radius: var(--radius);
+  --radius-lg: calc(var(--radius) + 3px);
+  --radius-sm: calc(var(--radius) - 3px);
+
+  --font-display: "Nunito Variable", sans-serif;
+  --font-mono: "Source Code Pro Variable", monospace;
+  --font-montserrat: "Montserrat Variable", sans-serif;
+}
+
+@layer base {
+  * {
+    @apply box-border scroll-smooth transition-transform;
+  }
+
+  body {
+    @apply bg-background text-text-default leading-relaxed antialiased;
+  }
+}
+
+/* ===== selection ===== */
+
+::selection {
+  @apply bg-blue text-background;
+}
+
+/* ===== scrollbar ===== */
+
+/* width */
+::-webkit-scrollbar {
+  @apply h-[6px] w-[6px];
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply rounded bg-transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-elevated rounded;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue;
+}
+
+/* ===== codeblock ===== */
+
+.astro-code {
+  @apply hover:text-text-default rounded-radius p-4;
+}
+
+/* ===== others ===== */
+
+/* @layer components {
+  code {
+    counter-reset: step;
+  }
+
+  code > .line::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 1rem;
+    margin-right: 1.5rem;
+    display: inline-block;
+    text-align: right;
+    color: var(--color-text-faint);
+  }
+} */

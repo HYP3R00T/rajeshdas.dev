@@ -1,0 +1,30 @@
+---
+import HeadSEO from "@/components/core/HeadSEO.astro";
+import Header from "@/components/core/Header.astro";
+import { LOCALE } from "config";
+import type { BaseLayoutProps } from "@/lib/types";
+
+const { title, description, image, imageAlt, contentType } =
+  Astro.props as BaseLayoutProps;
+---
+
+<html lang=`${LOCALE.lang ?? "en"}`>
+  <head>
+    <HeadSEO
+      title={title}
+      description={description}
+      image={image}
+      imageAlt={imageAlt}
+      contentType={contentType}
+    />
+  </head>
+
+  <body>
+    <Header title="Rajesh Das" />
+    <main class="flex flex-col items-center">
+      <div class="w-full max-w-full md:max-w-3xl lg:max-w-5xl">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

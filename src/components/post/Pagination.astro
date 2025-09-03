@@ -1,0 +1,64 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
+  Astro.props;
+---
+
+<div class="flex flex-row items-center justify-center gap-2">
+  {
+    prevUrl ? (
+      <div class="flex aspect-square cursor-pointer items-center justify-center">
+        <a href={prevUrl}>
+          <Button variant="ghost" size="icon">
+            <Icon
+              name="arrow-up"
+              class="h-[1.2rem] w-[1.2rem] -rotate-90 transition-transform duration-300 ease-in-out"
+            />
+          </Button>
+        </a>
+      </div>
+    ) : (
+      <div class="flex aspect-square items-center justify-center">
+        <a>
+          <Button variant="ghost" size="icon">
+            <Icon
+              name="arrow-up"
+              class="text-text-subtle h-[1.2rem] w-[1.2rem] -rotate-90 transition-transform duration-300 ease-in-out"
+            />
+          </Button>
+        </a>
+      </div>
+    )
+  }
+  <div class="flex items-center justify-center">
+    <Button variant="link" disabled class="text-blue disabled:opacity-100!">
+      {currentPage} / {totalPages}
+    </Button>
+  </div>
+  {
+    nextUrl ? (
+      <div class="flex aspect-square cursor-pointer items-center justify-center">
+        <a href={nextUrl}>
+          <Button variant="ghost" size="icon">
+            <Icon
+              name="arrow-up"
+              class="h-[1.2rem] w-[1.2rem] rotate-90 transition-transform duration-300 ease-in-out"
+            />
+          </Button>
+        </a>
+      </div>
+    ) : (
+      <div class="flex aspect-square items-center justify-center">
+        <a>
+          <Button variant="ghost" size="icon">
+            <Icon
+              name="arrow-up"
+              class="text-text-subtle h-[1.2rem] w-[1.2rem] rotate-90 transition-transform duration-300 ease-in-out"
+            />
+          </Button>
+        </a>
+      </div>
+    )
+  }
+</div>
