@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "config";
+import type { Posts } from "@/lib/types";
 
 // Helper function to capitalize the first letter of a string
 export const capitalizeFirstLetter = (str: string) => {
@@ -14,7 +15,7 @@ export const postFilter = ({ data }: CollectionEntry<"posts">) => {
   return !data.draft && (import.meta.env.DEV || isPublishTimePassed);
 };
 
-export const getSortedPosts = (posts: CollectionEntry<"posts">[]) => {
+export const getSortedPosts = (posts: Posts) => {
   return posts
     .filter(postFilter)
     .sort(
