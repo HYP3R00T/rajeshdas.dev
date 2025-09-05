@@ -1,6 +1,8 @@
 ---
 import HeadSEO from "@/components/core/HeadSEO.astro";
 import Header from "@/components/core/Header.astro";
+import Sidebar from "@/components/core/Sidebar.astro";
+
 import { LOCALE } from "config";
 import type { BaseLayoutProps } from "@/lib/types";
 
@@ -19,12 +21,30 @@ const { title, description, image, imageAlt, contentType } =
     />
   </head>
 
-  <body>
+  <!-- Lock the viewport height -->
+  <body class="flex h-screen flex-col overflow-hidden">
+    <!-- Fixed header -->
     <Header title="Rajesh Das" />
-    <main class="flex flex-col items-center">
-      <div class="w-full max-w-full md:max-w-3xl lg:max-w-5xl">
-        <slot />
+
+    <!-- Below header: sidebar + content -->
+    <div class="flex flex-1">
+      <!-- Sidebar stays pinned -->
+      <div
+        class="border-border sticky top-24 h-[calc(100vh-6rem)] w-32 border-r"
+      >
+        <Sidebar />
       </div>
-    </main>
+
+      <!-- Main content scrolls independently -->
+      <main class="h-[calc(100vh-6rem)] flex-1 overflow-y-auto p-8">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
+
+<!-- <main class="flex flex-col items-center">
+  <div class="w-full max-w-full md:max-w-3xl lg:max-w-5xl">
+    <slot />
+  </div>
+</main> -->
