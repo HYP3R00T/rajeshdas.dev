@@ -8,39 +8,37 @@ const nav: NavLink[] = links.length
   : [
       { href: "/", label: "Home" },
       { href: "/post", label: "Post" },
+      { href: "/post", label: "Post" },
+      { href: "/post", label: "Post" },
     ];
 ---
 
 <header
-  class="border-border sticky top-0 z-50 h-14 w-full border-b bg-white/80 backdrop-blur"
+  class="border-border bg-background sticky top-0 z-50 h-24 w-full border-b"
 >
-  <div
-    class="mx-auto flex h-full w-full max-w-6xl items-center justify-between px-4"
-  >
-    <a
-      href="/"
-      class="text-sm font-semibold tracking-tight hover:opacity-90"
-      aria-label={title}
-    >
-      {title}
-    </a>
-
-    <nav aria-label="Main" class="hidden md:block">
-      <ul class="flex items-center gap-6 text-sm">
+  <div class="flex h-full w-full flex-row">
+    <div class="border-border flex w-2/5 flex-row border-r">
+      <div class="border-border flex w-32 items-center justify-center border-r">
+        <a href="/" class="" aria-label={title}>
+          {title}
+        </a>
+      </div>
+    </div>
+    <div class="flex w-3/5 items-center">
+      <div class="flex h-full w-full flex-row">
         {
           nav.map((item) => (
-            <li>
-              <a href={item.href} class="text-text-default transition-colors">
+            <div class="border-border flex w-full border-r last:border-none">
+              <a
+                href={item.href}
+                class="text-text-faint hover:bg-content flex h-full w-full items-center justify-center"
+              >
                 {item.label}
               </a>
-            </li>
+            </div>
           ))
         }
-      </ul>
-    </nav>
-
-    <div class="flex items-center gap-2">
-      <slot name="actions" />
+      </div>
     </div>
   </div>
 </header>
