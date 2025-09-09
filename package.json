@@ -16,7 +16,9 @@
     "astro": "^5.13.2",
     "astro-auto-import": "^0.4.4",
     "astro-icon": "^1.1.5",
+    "rehype-pretty-code": "^0.14.1",
     "sharp": "^0.34.3",
+    "shiki": "^3.12.2",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
   },
