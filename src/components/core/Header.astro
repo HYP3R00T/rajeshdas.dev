@@ -1,44 +1,58 @@
 ---
-type NavLink = { href: string; label: string };
+interface NavItem {
+  href: string;
+  label: string;
+  special?: boolean;
+}
 
-const { title = "Rajesh Das", links = [] as NavLink[] } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
 
-const nav: NavLink[] = links.length
-  ? links
-  : [
-      { href: "/", label: "Home" },
-      { href: "/post", label: "Post" },
-      { href: "/post", label: "Post" },
-      { href: "/post", label: "Post" },
-    ];
+const navItems: NavItem[] = [
+  { href: "/about", label: "About" },
+  { href: "/post", label: "Posts" },
+  { href: "/project", label: "Projects" },
+  { href: "/contact", label: "Ping Me", special: true },
+];
 ---
 
 <header
-  class="border-border bg-background sticky top-0 z-50 h-24 w-full border-b"
+  class="sticky top-0 z-50 mx-auto flex h-24 w-full max-w-7xl flex-row items-center"
 >
-  <div class="flex h-full w-full flex-row">
-    <div class="border-border flex w-2/5 flex-row border-r">
-      <div class="border-border flex w-32 items-center justify-center border-r">
-        <a href="/" class="" aria-label={title}>
-          {title}
-        </a>
-      </div>
-    </div>
-    <div class="flex w-3/5 items-center">
-      <div class="flex h-full w-full flex-row">
-        {
-          nav.map((item) => (
-            <div class="border-border flex w-full border-r last:border-none">
-              <a
-                href={item.href}
-                class="text-text-faint hover:bg-content flex h-full w-full items-center justify-center"
-              >
-                {item.label}
-              </a>
-            </div>
-          ))
-        }
-      </div>
-    </div>
+  <!-- Logo -->
+  <div class="flex w-3/5">
+    <a href="/" class="flex h-12 w-32 items-center justify-center">
+      <h1 class="text-2xl">Logo</h1>
+    </a>
   </div>
+
+  <!-- Navigation -->
+  <nav class="gator bg-content flex w-2/5 flex-row justify-center">
+    {
+      navItems.map((item) => (
+        <div
+          class={`group flex h-full w-full items-center justify-center ${
+            item.special
+              ? ""
+              : "border-border border-r nth-last-[2]:border-none"
+          }`}
+        >
+          <a
+            href={item.href}
+            class={`flex h-full w-full items-center justify-center px-6 py-3 font-bold ${
+              item.special
+                ? "bg-orange text-background group-hover:bg-orange/90"
+                : `${
+                    currentPath.startsWith(item.href.slice(1))
+                      ? "bg-elevated"
+                      : "bg-content"
+                  } text-text-default group-hover:bg-elevated`
+            } `}
+          >
+            {item.label}
+          </a>
+        </div>
+      ))
+    }
+  </nav>
 </header>
