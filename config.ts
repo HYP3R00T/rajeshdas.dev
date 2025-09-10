@@ -12,6 +12,7 @@ export const SITE = {
   imageAlt: "Check out rajeshdas.dev",
   contentType: "Portfolio",
   twitterHandle: "@HYP3R00T",
+  pageSize: 10,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
 

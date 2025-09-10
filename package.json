@@ -12,6 +12,8 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.3.4",
     "@astrojs/rss": "^4.0.12",
+    "@fontsource-variable/karla": "^5.2.6",
+    "@fontsource-variable/source-code-pro": "^5.2.6",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.2",
     "astro-auto-import": "^0.4.4",
