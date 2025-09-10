@@ -1,39 +1,56 @@
 ---
 import { Image } from "astro:assets";
-import Button from "@/components/ui/Button.astro";
 
 const { post } = Astro.props;
 ---
 
-<div class="bg-content rounded-radius h-full">
-  <div class="p-2">
-    <div class="">
+<div class="group relative h-full bg-transparent p-4 text-white">
+  <!-- Featured ribbon -->
+  {
+    post.data.featured && (
+      <span class="bg-background text-text-faint absolute top-1 left-15 z-10 px-2 py-1 text-xs font-medium uppercase">
+        Featured
+      </span>
+    )
+  }
+  <div class="postcard bg-content">
+    <!-- Cover image with dark overlay -->
+    <a href={`/post/${post.id}/`} class="relative block">
       <Image
         src={post.data.cover}
         alt={post.data.coverAlt}
-        class="rounded-radius w-full object-cover lg:aspect-[2/1]"
-        transition:name=`${post.data.title}image`
+        class="h-64 w-full object-cover"
+        transition:name={`${post.data.title}image`}
       />
-    </div>
-    <div class="">
-      <a href={`/post/${post.id}/`} class="">
-        <h4 class="" transition:name={post.data.title}>
+    </a>
+
+    <!-- Content -->
+    <div class="relative z-10 mt-6 space-y-4 p-4">
+      <!-- Date -->
+      <p class="text-cyan flex items-center gap-2 text-sm">
+        <span class="bg-cyan h-1 w-4"></span>
+        {post.data.pubDate}
+      </p>
+
+      <!-- Title -->
+      <a href={`/post/${post.id}/`}>
+        <h1
+          class="group-hover:text-cyan text-2xl leading-tight font-bold"
+          transition:name={post.data.title}
+        >
           {post.data.title}
-        </h4>
-        <p class="">{post.data.description}</p>
+        </h1>
       </a>
-      <div class="">
-        {
-          post.data.tags.map((tag: any) => (
-            <div class="">
-              <a href={`/tag/${tag}/`} class="">
-                <Button variant="secondary" size="sm">
-                  {tag}
-                </Button>
-              </a>
-            </div>
-          ))
-        }
+
+      <!-- Description -->
+      <p class="text-text-subtle">{post.data.description}</p>
+
+      <!-- Footer (Read link + duration) -->
+      <div class="flex items-center justify-between pt-4 text-sm">
+        <a href={`/post/${post.id}/`} class="text-cyan flex items-center gap-1">
+          Read article
+        </a>
+        <span class="text-text-subtle">{post.data.duration ?? ""}</span>
       </div>
     </div>
   </div>
