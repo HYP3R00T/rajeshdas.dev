@@ -5,6 +5,8 @@ import Sidebar from "@/components/core/Sidebar.astro";
 
 import { LOCALE } from "config";
 import type { BaseLayoutProps } from "@/lib/types";
+import { Image } from "astro:assets";
+import so from "@/assets/setup.png";
 
 const { title, description, image, imageAlt, contentType } =
   Astro.props as BaseLayoutProps;
@@ -21,30 +23,25 @@ const { title, description, image, imageAlt, contentType } =
     />
   </head>
 
-  <!-- Lock the viewport height -->
-  <body class="flex h-screen flex-col overflow-hidden">
-    <!-- Fixed header -->
+  <body class="flex flex-col">
+    <!-- <Image
+      src={so}
+      width={so.width}
+      height={so.height}
+      alt="Alt"
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+    /> -->
+    <!-- <div
+      class="from-blue/10 to-blue/20 absolute inset-0 -z-10 h-full w-full bg-linear-0 object-cover"
+    >
+    </div> -->
     <Header title="Rajesh Das" />
-
-    <!-- Below header: sidebar + content -->
     <div class="flex flex-1">
-      <!-- Sidebar stays pinned -->
-      <div
-        class="border-border sticky top-24 h-[calc(100vh-6rem)] w-32 border-r"
-      >
-        <Sidebar />
-      </div>
-
-      <!-- Main content scrolls independently -->
-      <main class="h-[calc(100vh-6rem)] flex-1 overflow-y-auto p-8">
-        <slot />
+      <main class="flex h-full flex-1 justify-center">
+        <div class="w-full max-w-7xl">
+          <slot />
+        </div>
       </main>
     </div>
   </body>
 </html>
-
-<!-- <main class="flex flex-col items-center">
-  <div class="w-full max-w-full md:max-w-3xl lg:max-w-5xl">
-    <slot />
-  </div>
-</main> -->

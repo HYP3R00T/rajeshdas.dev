@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+
+const { post } = Astro.props;
+---
+
+<div class="group relative pt-4 text-white">
+  <!-- Featured ribbon -->
+  <div
+    class="bg-background text-text-faint absolute z-20 flex h-8 translate-x-16 -translate-y-1/2 items-center justify-center px-2 py-1 font-medium uppercase"
+  >
+    <h1>Featured</h1>
+  </div>
+
+  <!-- Featured card -->
+  <div class="featuredcard bg-content relative h-full overflow-hidden">
+    <!-- Cover image as background -->
+    <Image
+      src={post.data.cover}
+      alt={post.data.coverAlt}
+      class="absolute inset-0 z-0 h-full w-full object-cover"
+      transition:name={`${post.data.title}image`}
+    />
+
+    <!-- Optional dark overlay for readability -->
+    <div class="absolute inset-0 z-0 bg-black/40"></div>
+
+    <!-- Content on top -->
+    <div class="relative z-10 mt-6 space-y-4 p-4">
+      <!-- Date -->
+      <p class="text-blue flex items-center gap-2 text-sm">
+        <span class="bg-blue h-1 w-4"></span>
+        {post.data.pubDate}
+      </p>
+
+      <!-- Title -->
+      <a href={`/post/${post.id}/`}>
+        <h1
+          class="group-hover:text-blue text-2xl leading-tight font-bold"
+          transition:name={post.data.title}
+        >
+          {post.data.title}
+        </h1>
+      </a>
+
+      <!-- Description -->
+      <p class="text-text-subtle">{post.data.description}</p>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between pt-4 text-sm">
+        <a href={`/post/${post.id}/`} class="text-cyan flex items-center gap-1">
+          Read article
+        </a>
+        <span class="text-text-subtle">{post.data.duration ?? ""}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const {
+  title,
+  description,
+  pubDatetime,
+  featured,
+  draft,
+  tags,
+  cover,
+  modDatetime,
+  category,
+  coverAlt,
+  headings,
+} = Astro.props;
+---
+
+<BaseLayout>
+  <div class="flex flex-1">
+    <div class="flex w-full flex-1 justify-center p-8">
+      <div class="max-w-3xl">
+        <h1 class="my-16 text-6xl tracking-tighter">{title}</h1>
+        <div class="prose pt-16">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
