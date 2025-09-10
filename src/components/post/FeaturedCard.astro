@@ -1,58 +1,92 @@
 ---
 import { Image } from "astro:assets";
-
+import Button from "@/components/ui/Button.astro";
+import CardBg from "@/assets/card-bg.jpg";
+import { formatDate } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
 const { post } = Astro.props;
 ---
 
-<div class="group relative pt-4 text-white">
+<div class="group relative px-4 pt-4 text-white">
   <!-- Featured ribbon -->
   <div
     class="bg-background text-text-faint absolute z-20 flex h-8 translate-x-16 -translate-y-1/2 items-center justify-center px-2 py-1 font-medium uppercase"
   >
     <h1>Featured</h1>
   </div>
+  <div
+    class="text-text-faint bg-background absolute top-48 right-8 z-20 flex w-max origin-top-right -rotate-90 items-center justify-center px-2 py-1 font-medium uppercase"
+  >
+    007
+  </div>
 
   <!-- Featured card -->
-  <div class="featuredcard bg-content relative h-full overflow-hidden">
-    <!-- Cover image as background -->
-    <Image
-      src={post.data.cover}
-      alt={post.data.coverAlt}
-      class="absolute inset-0 z-0 h-full w-full object-cover"
-      transition:name={`${post.data.title}image`}
-    />
+  <div
+    class="featuredcard bg-content relative flex h-full flex-col justify-end overflow-hidden"
+  >
+    <a href={`/post/${post.id}/`}>
+      <!-- Cover image as background -->
+      <Image
+        src={CardBg}
+        alt="A cool abstract background"
+        class="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+      />
 
-    <!-- Optional dark overlay for readability -->
-    <div class="absolute inset-0 z-0 bg-black/40"></div>
+      <!-- Optional dark overlay for readability -->
+      <div class="bg-background/70 absolute inset-0 z-0"></div>
 
-    <!-- Content on top -->
-    <div class="relative z-10 mt-6 space-y-4 p-4">
-      <!-- Date -->
-      <p class="text-blue flex items-center gap-2 text-sm">
-        <span class="bg-blue h-1 w-4"></span>
-        {post.data.pubDate}
-      </p>
+      <!-- Content on top -->
+      <div class="relative z-10 mt-6 space-y-4 p-8">
+        <!-- Date -->
+        <div
+          class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
+        >
+          <div class="relative h-2 w-48">
+            <div
+              class="bg-cyan absolute left-0 h-0.5 w-32 translate-y-full"
+              data-collapsed="false"
+            >
+            </div>
 
-      <!-- Title -->
-      <a href={`/post/${post.id}/`}>
+            <div
+              class="bg-cyan absolute h-2 w-16 translate-y-1/2"
+              style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);"
+              data-collapsed="false"
+            >
+            </div>
+          </div>
+          <div class="text-cyan w-full font-bold">
+            {formatDate(post.data.pubDatetime)}
+          </div>
+        </div>
+
+        <!-- Title -->
+
         <h1
-          class="group-hover:text-blue text-2xl leading-tight font-bold"
+          class="text-5xl leading-tight font-bold"
           transition:name={post.data.title}
         >
           {post.data.title}
         </h1>
-      </a>
 
-      <!-- Description -->
-      <p class="text-text-subtle">{post.data.description}</p>
+        <!-- Description -->
+        <p class="text-text-subtle pt-4 text-xl">{post.data.description}</p>
 
-      <!-- Footer -->
-      <div class="flex items-center justify-between pt-4 text-sm">
-        <a href={`/post/${post.id}/`} class="text-cyan flex items-center gap-1">
-          Read article
-        </a>
-        <span class="text-text-subtle">{post.data.duration ?? ""}</span>
+        <!-- Footer -->
+        <div class="flex items-center justify-between pt-4">
+          <Button
+            variant="ghost"
+            class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+          >
+            <div class="flex flex-row items-center gap-4">
+              <Icon name="arrow-right-up" />
+              Read article
+            </div>
+          </Button>
+
+          <span class="text-text-subtle">{post.data.duration ?? ""}</span>
+        </div>
       </div>
-    </div>
+    </a>
   </div>
 </div>

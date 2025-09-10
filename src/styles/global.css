@@ -2,26 +2,39 @@
 
 @layer base {
   :root {
-    /* Neutrals*/
-    --background: hsl(240deg, 21%, 12%);
-    --content: hsl(240deg, 21%, 15%);
-    --elevated: hsl(237deg, 16%, 23%);
-    --border: hsl(234deg, 13%, 31%);
-    --text-default: hsl(226deg, 64%, 88%);
-    --text-subtle: hsl(227deg, 35%, 80%);
-    --text-faint: hsl(228deg, 24%, 72%);
+    /* Neutrals */
+    --background: hsl(0, 0%, 7%);
+    --content: hsl(240, 6%, 10%);
+    --elevated: hsl(240, 5%, 18%);
+    --border: hsl(240, 5%, 20%);
+    --text-default: hsl(240, 5%, 100%);
+    --text-subtle: hsl(240, 5%, 85%);
+    --text-faint: hsl(240, 5%, 70%);
 
     /* Accents & Statuses */
-    --red: hsl(343deg, 81%, 75%);
-    --orange: hsl(23deg, 92%, 75%);
-    --yellow: hsl(41deg, 86%, 83%);
-    --green: hsl(115deg, 54%, 76%);
-    --teal: hsl(170deg, 57%, 73%);
-    --blue: hsl(217deg, 92%, 76%);
-    --purple: hsl(267deg, 84%, 81%);
-    --pink: hsl(316deg, 72%, 86%);
+    --red: hsl(0, 100%, 50%);
+    --orange: hsl(25, 100%, 50%);
+    --yellow: hsl(45, 100%, 50%);
+    --green: hsl(145, 100%, 50%);
+    --teal: hsl(170, 100%, 50%);
+    --cyan: hsl(180, 100%, 50%);
+    --blue: hsl(209, 100%, 50%);
+    --purple: hsl(270, 100%, 50%);
+    --pink: hsl(320, 100%, 50%);
 
     --radius: 0.5rem;
+
+    --astro-code-background: var(--content);
+    --astro-code-foreground: var(--text-default);
+    --astro-code-token-constant: var(--pink);
+    --astro-code-token-string: var(--green);
+    --astro-code-token-comment: var(--text-faint);
+    --astro-code-token-keyword: var(--pink);
+    --astro-code-token-parameter: var(--red);
+    --astro-code-token-function: var(--blue);
+    --astro-code-token-string-expression: var(--green);
+    --astro-code-token-punctuation: var(--red);
+    --astro-code-token-link: var(--green);
   }
 }
 
@@ -39,7 +52,7 @@
   --color-orange: var(--orange);
   --color-yellow: var(--yellow);
   --color-green: var(--green);
-  --color-teal: var(--teal);
+  --color-cyan: var(--cyan);
   --color-blue: var(--blue);
   --color-purple: var(--purple);
   --color-pink: var(--pink);
@@ -48,18 +61,18 @@
   --radius-lg: calc(var(--radius) + 3px);
   --radius-sm: calc(var(--radius) - 3px);
 
-  --font-display: "Nunito Variable", sans-serif;
+  --font-display: "Karla Variable", sans-serif;
   --font-mono: "Source Code Pro Variable", monospace;
-  --font-montserrat: "Montserrat Variable", sans-serif;
+  --font-body: "Karla Variable", sans-serif;
 }
 
 @layer base {
   * {
-    @apply box-border scroll-smooth transition-transform;
+    @apply font-body box-border scroll-smooth transition-transform;
   }
 
   body {
-    @apply bg-background text-text-default leading-relaxed antialiased;
+    @apply bg-background text-text-default antialiased;
   }
 }
 
@@ -73,17 +86,17 @@
 
 /* width */
 ::-webkit-scrollbar {
-  @apply h-[6px] w-[6px];
+  @apply h-2 w-2;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply rounded bg-transparent;
+  @apply bg-transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-elevated rounded;
+  @apply bg-elevated;
 }
 
 /* Handle on hover */
@@ -94,11 +107,26 @@
 /* ===== codeblock ===== */
 
 .astro-code {
-  @apply hover:text-text-default rounded-radius p-4;
+  @apply hover:text-text-default my-4 p-12! font-mono text-base;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 1.5rem) 0,
+    100% 1.5rem,
+    100% 100%,
+    0 100%
+  );
 }
 
-/* ===== others ===== */
+pre[data-language] {
+  @apply relative;
+}
 
+pre[data-language]::before {
+  content: attr(data-language);
+  @apply bg-background text-text-faint absolute -top-2 left-12 z-10 px-3 py-1 font-mono text-xs font-medium uppercase;
+}
+
+/* Add line number */
 /* @layer components {
   code {
     counter-reset: step;
@@ -114,3 +142,57 @@
     color: var(--color-text-faint);
   }
 } */
+
+/* ===== prose ===== */
+.prose {
+  @apply text-text-subtle text-lg;
+}
+
+.prose a {
+  @apply text-blue hover:text-text-default underline decoration-dotted decoration-2 underline-offset-4 transition-colors;
+}
+
+.prose h1 {
+  @apply text-text-subtle mb-5 pb-3 text-4xl font-extrabold;
+}
+
+.prose h2 {
+  @apply text-text-subtle mt-8 mb-3 text-2xl font-bold;
+}
+
+.prose h3 {
+  @apply text-text-subtle mt-6 mb-2 text-xl font-semibold;
+}
+
+.prose h4 {
+  @apply text-text-faint mt-5 mb-2 text-lg font-medium;
+}
+
+.prose h5,
+.prose h6 {
+  @apply text-text-faint mt-4 mb-1 text-base font-semibold tracking-wide uppercase;
+}
+
+.prose p {
+  @apply text-text-subtle my-4 first:mt-0;
+}
+
+/* ===== special ===== */
+.gator {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 1rem) 0,
+    100% 1rem,
+    100% 100%,
+    1rem 100%,
+    0 calc(100% - 1rem)
+  );
+}
+
+.postcard {
+  clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
+}
+
+.featuredcard {
+  clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%);
+}

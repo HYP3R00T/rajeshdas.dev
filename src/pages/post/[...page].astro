@@ -7,6 +7,10 @@ import type { PostsPageProps } from "@/lib/types";
 
 import Pagination from "@/components/post/Pagination.astro";
 import PostCard from "@/components/post/PostCard.astro";
+import { SITE } from "config";
+import FeaturedCard from "@/components/post/FeaturedCard.astro";
+
+import Bar from "@/assets/barcode.svg";
 
 export async function getStaticPaths({
   paginate,
@@ -17,45 +21,69 @@ export async function getStaticPaths({
     entries.filter((entry) => !entry.data.draft)
   );
 
+  // Sort by pub/mod date
   posts.sort((a, b) => {
     const aDate = new Date(a.data.modDatetime ?? a.data.pubDatetime).valueOf();
     const bDate = new Date(b.data.modDatetime ?? b.data.pubDatetime).valueOf();
     return bDate - aDate;
   });
 
-  // Paginate function returns an array of pages
-  const pagination = paginate(posts, { pageSize: 6 });
+  // Pull out featured
+  const featured = posts.find((p) => p.data.featured);
+
+  // Remove featured from the pagination list
+  const rest = featured ? posts.filter((p) => p.id !== featured.id) : posts;
+
+  const pagination = paginate(rest, { pageSize: SITE.pageSize });
 
   return pagination.map((page) => ({
     ...page,
     props: {
       ...page.props,
       totalPages: pagination.length,
+      featured, // explicitly pass the featured post
     },
   }));
 }
-const { page, totalPages } = Astro.props as PostsPageProps;
+
+const { page, totalPages, featured } = Astro.props as PostsPageProps & {
+  featured?: any;
+};
 ---
 
 <BaseLayout>
-  <div
-    class="grid grid-cols-1 gap-4 px-2 py-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 lg:px-4 lg:py-8"
-  >
-    {
-      page.data.map((post) => (
-        <div class="">
-          <PostCard post={post} />
+  <div class="flex w-full flex-1 flex-col">
+    <div class="flex w-full flex-row gap-8">
+      <!-- Left side (scrolls) -->
+      <div class="flex w-full flex-col gap-8 pt-12">
+        <div class="flex flex-row justify-between">
+          <h1 class="text-text-default text-3xl">Latest articles</h1>
+          <div class="flex items-center justify-center">
+            <Bar />
+          </div>
         </div>
-      ))
-    }
-  </div>
+        <h4 class="text-text-faint font-normal">
+          My personal collection of code snippets, starter guides, tutorials,
+          and interesting things I found online. I hope you find something
+          useful here.
+        </h4>
+        {page.data.map((post) => <PostCard post={post} />)}
+        <Pagination
+          currentPage={page.currentPage}
+          prevUrl={page.url.prev}
+          nextUrl={page.url.next}
+          first={page.url.first}
+          last={page.url.last}
+          totalPages={totalPages}
+        />
+      </div>
 
-  <Pagination
-    currentPage={page.currentPage}
-    prevUrl={page.url.prev}
-    nextUrl={page.url.next}
-    first={page.url.first}
-    last={page.url.last}
-    totalPages={totalPages}
-  />
+      <!-- Right side (featured sticky) -->
+      <div
+        class="sticky top-28 flex h-[calc(100dvh-7rem)] w-full grow self-start pt-8 pb-12"
+      >
+        {featured && <FeaturedCard post={featured} />}
+      </div>
+    </div>
+  </div>
 </BaseLayout>
