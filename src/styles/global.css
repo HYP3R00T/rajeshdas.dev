@@ -181,11 +181,11 @@ pre[data-language]::before {
 .gator {
   clip-path: polygon(
     0 0,
-    calc(100% - 1rem) 0,
-    100% 1rem,
+    calc(100% - 0.75rem) 0,
+    100% 0.75rem,
     100% 100%,
-    1rem 100%,
-    0 calc(100% - 1rem)
+    0.75rem 100%,
+    0 calc(100% - 0.75rem)
   );
 }
 
@@ -195,4 +195,8 @@ pre[data-language]::before {
 
 .featuredcard {
   clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%);
+}
+
+.projectcard {
+  clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
 }

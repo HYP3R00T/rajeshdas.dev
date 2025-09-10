@@ -55,19 +55,20 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
   <div class="flex w-full flex-1 flex-col">
     <div class="flex w-full flex-row gap-8">
       <!-- Left side (scrolls) -->
-      <div class="flex w-full flex-col gap-8 pt-12">
-        <div class="flex flex-row justify-between">
+      <div class="flex w-full flex-col pt-12">
+        <!-- Title and barcode -->
+        <div
+          class="border-border flex flex-row justify-between border-b px-4 pb-12"
+        >
           <h1 class="text-text-default text-3xl">Latest articles</h1>
           <div class="flex items-center justify-center">
             <Bar />
           </div>
         </div>
-        <h4 class="text-text-faint font-normal">
-          My personal collection of code snippets, starter guides, tutorials,
-          and interesting things I found online. I hope you find something
-          useful here.
-        </h4>
-        {page.data.map((post) => <PostCard post={post} />)}
+        <!-- Posts -->
+        <div class="flex flex-col gap-8 py-4">
+          {page.data.map((post) => <PostCard post={post} />)}
+        </div>
         <Pagination
           currentPage={page.currentPage}
           prevUrl={page.url.prev}

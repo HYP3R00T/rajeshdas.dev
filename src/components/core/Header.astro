@@ -27,9 +27,9 @@ const navItems: NavItem[] = [
   </div>
 
   <!-- Navigation -->
-  <nav class="gator bg-content flex w-auto flex-row justify-center">
+  <nav class="gator bg-content flex w-auto flex-row justify-center uppercase">
     {
-      navItems.map((item) => (
+      navItems.map((item, index) => (
         <div
           class={`group flex h-full w-auto items-center justify-center ${
             item.special
@@ -39,15 +39,15 @@ const navItems: NavItem[] = [
         >
           <a
             href={item.href}
-            class={`flex h-full w-full items-center justify-center px-6 py-3 font-medium ${
+            class={`relative flex h-full w-full items-center justify-center overflow-hidden px-6 py-2 uppercase ${
               item.special
-                ? "bg-cyan text-background group-hover:bg-cyan/90"
+                ? "bg-cyan text-background hover:bg-cyan/90 font-bold transition-colors duration-300"
                 : `${
                     currentPath.startsWith(item.href.slice(1))
                       ? "bg-elevated"
-                      : "bg-content"
-                  } text-text-default group-hover:bg-elevated`
-            } `}
+                      : ""
+                  } text-text-default font-medium`
+            } before:bg-elevated before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:origin-left hover:before:scale-x-100`}
           >
             {item.label}
           </a>
