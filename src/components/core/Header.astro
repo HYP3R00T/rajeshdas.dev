@@ -17,21 +17,21 @@ const navItems: NavItem[] = [
 ---
 
 <header
-  class="sticky top-0 z-50 mx-auto flex h-24 w-full max-w-7xl flex-row items-center"
+  class="bg-background sticky top-0 z-50 mx-auto flex w-full flex-row items-center justify-between px-8 py-8"
 >
   <!-- Logo -->
-  <div class="flex w-3/5">
+  <div class="flex">
     <a href="/" class="flex h-12 w-32 items-center justify-center">
       <h1 class="text-2xl">Logo</h1>
     </a>
   </div>
 
   <!-- Navigation -->
-  <nav class="gator bg-content flex w-2/5 flex-row justify-center">
+  <nav class="gator bg-content flex w-auto flex-row justify-center">
     {
       navItems.map((item) => (
         <div
-          class={`group flex h-full w-full items-center justify-center ${
+          class={`group flex h-full w-auto items-center justify-center ${
             item.special
               ? ""
               : "border-border border-r nth-last-[2]:border-none"
@@ -39,9 +39,9 @@ const navItems: NavItem[] = [
         >
           <a
             href={item.href}
-            class={`flex h-full w-full items-center justify-center px-6 py-3 font-bold ${
+            class={`flex h-full w-full items-center justify-center px-6 py-3 font-medium ${
               item.special
-                ? "bg-orange text-background group-hover:bg-orange/90"
+                ? "bg-red text-background group-hover:bg-red/90"
                 : `${
                     currentPath.startsWith(item.href.slice(1))
                       ? "bg-elevated"
