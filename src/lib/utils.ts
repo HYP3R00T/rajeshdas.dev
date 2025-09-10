@@ -28,3 +28,19 @@ export const getSortedPosts = (posts: Posts) => {
         ),
     );
 };
+
+export function formatDate(
+  dateString: string | Date,
+  locale = "en-US",
+  options?: Intl.DateTimeFormatOptions,
+) {
+  const date =
+    typeof dateString === "string" ? new Date(dateString) : dateString;
+
+  return date.toLocaleDateString(locale, {
+    year: "numeric",
+    month: "short", // "May"
+    day: "numeric", // 21
+    ...options,
+  });
+}
