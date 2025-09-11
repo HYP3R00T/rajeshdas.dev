@@ -10,7 +10,7 @@ const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
     prevUrl ? (
       <div class="flex aspect-square cursor-pointer items-center justify-center">
         <a href={prevUrl}>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" class="p-4">
             <Icon
               name="arrow-up"
               class="h-[1.2rem] w-[1.2rem] -rotate-90 transition-transform duration-300 ease-in-out"
@@ -21,7 +21,7 @@ const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
     ) : (
       <div class="flex aspect-square items-center justify-center">
         <a>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" class="p-4">
             <Icon
               name="arrow-up"
               class="text-text-subtle h-[1.2rem] w-[1.2rem] -rotate-90 transition-transform duration-300 ease-in-out"
@@ -44,7 +44,7 @@ const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
     nextUrl ? (
       <div class="flex aspect-square cursor-pointer items-center justify-center">
         <a href={nextUrl}>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" class="p-4">
             <Icon
               name="arrow-up"
               class="h-[1.2rem] w-[1.2rem] rotate-90 transition-transform duration-300 ease-in-out"
@@ -55,7 +55,7 @@ const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
     ) : (
       <div class="flex aspect-square items-center justify-center">
         <a>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" class="p-4">
             <Icon
               name="arrow-up"
               class="text-text-subtle h-[1.2rem] w-[1.2rem] rotate-90 transition-transform duration-300 ease-in-out"
