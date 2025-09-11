@@ -1,7 +1,6 @@
 ---
 import HeadSEO from "@/components/core/HeadSEO.astro";
 import Header from "@/components/core/Header.astro";
-import Sidebar from "@/components/core/Sidebar.astro";
 
 import { LOCALE } from "config";
 import type { BaseLayoutProps } from "@/lib/types";
@@ -24,17 +23,6 @@ const { title, description, image, imageAlt, contentType, transparent_header } =
   </head>
 
   <body class="flex flex-col">
-    <!-- <Image
-      src={so}
-      width={so.width}
-      height={so.height}
-      alt="Alt"
-      class="absolute inset-0 -z-10 h-full w-full object-cover"
-    /> -->
-    <!-- <div
-      class="from-blue/10 to-blue/20 absolute inset-0 -z-10 h-full w-full bg-linear-0 object-cover"
-    >
-    </div> -->
     <Header title="Rajesh Das" transparent_header={transparent_header} />
     <div class="flex flex-1">
       <main class="flex h-full flex-1 justify-center">
