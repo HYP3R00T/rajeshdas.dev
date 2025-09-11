@@ -149,7 +149,16 @@ pre[data-language]::before {
 }
 
 .prose a {
-  @apply text-blue hover:text-text-default underline decoration-dotted decoration-2 underline-offset-4 transition-colors;
+  @apply text-cyan decoration-cyan/30 relative overflow-hidden underline decoration-2 underline-offset-4;
+}
+
+.prose a::before {
+  @apply bg-cyan absolute -bottom-[1px] left-0 h-[2px] w-full origin-right scale-x-0 transition-transform duration-300 ease-in-out;
+  content: "";
+}
+
+.prose a:hover::before {
+  @apply origin-left scale-x-100;
 }
 
 .prose h1 {
