@@ -8,7 +8,7 @@ import type { BaseLayoutProps } from "@/lib/types";
 import { Image } from "astro:assets";
 import so from "@/assets/setup.png";
 
-const { title, description, image, imageAlt, contentType } =
+const { title, description, image, imageAlt, contentType, transparent_header } =
   Astro.props as BaseLayoutProps;
 ---
 
@@ -35,7 +35,7 @@ const { title, description, image, imageAlt, contentType } =
       class="from-blue/10 to-blue/20 absolute inset-0 -z-10 h-full w-full bg-linear-0 object-cover"
     >
     </div> -->
-    <Header title="Rajesh Das" />
+    <Header title="Rajesh Das" transparent_header={transparent_header} />
     <div class="flex flex-1">
       <main class="flex h-full flex-1 justify-center">
         <div class="w-full max-w-7xl">

@@ -1,7 +1,7 @@
 ---
 import { formatDate } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
-import Button from "../ui/Button.astro";
+import Button from "@/components/ui/Button.astro";
 
 const { post } = Astro.props;
 ---
@@ -16,6 +16,7 @@ const { post } = Astro.props;
         <!-- Date -->
         <div
           class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
+          transition:name={`${post.data.title}-date`}
         >
           <div class="relative h-2 w-48">
             <div

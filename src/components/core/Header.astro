@@ -14,10 +14,12 @@ const navItems: NavItem[] = [
   { href: "/project", label: "Projects" },
   { href: "/contact", label: "Ping Me", special: true },
 ];
+
+const { transparent_header = false } = Astro.props;
 ---
 
 <header
-  class="bg-background sticky top-0 z-50 mx-auto flex w-full flex-row items-center justify-between px-8 py-8"
+  class={`sticky top-0 z-50 mx-auto flex w-full flex-row items-center justify-between px-8 py-8 ${transparent_header ? "bg-transparent" : "bg-background"}`}
 >
   <!-- Logo -->
   <div class="flex">

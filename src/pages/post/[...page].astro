@@ -69,14 +69,17 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
         <div class="flex flex-col gap-8 py-4">
           {page.data.map((post) => <PostCard post={post} />)}
         </div>
-        <Pagination
-          currentPage={page.currentPage}
-          prevUrl={page.url.prev}
-          nextUrl={page.url.next}
-          first={page.url.first}
-          last={page.url.last}
-          totalPages={totalPages}
-        />
+        <!-- Pagination -->
+        <div class="py-8">
+          <Pagination
+            currentPage={page.currentPage}
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+            first={page.url.first}
+            last={page.url.last}
+            totalPages={totalPages}
+          />
+        </div>
       </div>
 
       <!-- Right side (featured sticky) -->

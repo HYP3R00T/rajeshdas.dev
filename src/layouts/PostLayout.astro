@@ -1,5 +1,7 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatDate } from "@/lib/utils";
 
 const {
   title,
@@ -16,11 +18,45 @@ const {
 } = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout transparent_header="true">
   <div class="flex flex-1">
-    <div class="flex w-full flex-1 justify-center p-8">
+    <Image
+      src={cover}
+      alt={coverAlt}
+      width={cover.width}
+      height={cover.height}
+      class="absolute inset-0 -z-10 h-1/2 w-full mask-b-from-20% mask-b-to-80% object-cover opacity-30"
+    />
+    <!-- Optional dark overlay for readability -->
+    <!-- <div class="bg-background/70 absolute inset-0 z-0"></div> -->
+    <div class="z-10 flex w-full flex-1 justify-center p-8">
       <div class="max-w-3xl">
-        <h1 class="my-16 text-6xl tracking-tighter">{title}</h1>
+        <!-- Date -->
+        <div
+          class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
+          transition:name={`${title}-date`}
+        >
+          <div class="relative h-2 w-48">
+            <div
+              class="bg-cyan absolute left-0 h-0.5 w-32 translate-y-full"
+              data-collapsed="false"
+            >
+            </div>
+
+            <div
+              class="bg-cyan absolute h-2 w-16 translate-y-1/2"
+              style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);"
+              data-collapsed="false"
+            >
+            </div>
+          </div>
+          <div class="text-cyan w-full font-bold">
+            {formatDate(pubDatetime)}
+          </div>
+        </div>
+        <h1 class="my-16 text-6xl tracking-tighter" transition:name={title}>
+          {title}
+        </h1>
         <div class="prose pt-16">
           <slot />
         </div>

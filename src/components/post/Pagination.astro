@@ -32,7 +32,11 @@ const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
     )
   }
   <div class="flex items-center justify-center">
-    <Button variant="link" disabled class="text-blue disabled:opacity-100!">
+    <Button
+      variant="link"
+      disabled
+      class="text-text-subtle text-xl disabled:opacity-100!"
+    >
       {currentPage} / {totalPages}
     </Button>
   </div>
