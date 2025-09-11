@@ -2,11 +2,14 @@
 import { formatDate } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
+import Line from "../ui/Line.astro";
 
 const { post } = Astro.props;
 ---
 
-<div class="group text-text-default relative h-full bg-transparent">
+<div
+  class="group text-text-default bg-content relative h-full lg:bg-transparent"
+>
   <a href={`/post/${post.id}/`} class="relative block">
     <div
       class="before:bg-content relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
@@ -18,20 +21,7 @@ const { post } = Astro.props;
           class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
           transition:name={`${post.data.title}-date`}
         >
-          <div class="relative h-2 w-48">
-            <div
-              class="bg-cyan absolute left-0 h-0.5 w-32 translate-y-full"
-              data-collapsed="false"
-            >
-            </div>
-
-            <div
-              class="bg-cyan absolute h-2 w-16 translate-y-1/2"
-              style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);"
-              data-collapsed="false"
-            >
-            </div>
-          </div>
+          <Line />
           <div class="text-cyan w-full font-bold">
             {formatDate(post.data.pubDatetime)}
           </div>

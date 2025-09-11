@@ -52,10 +52,10 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
 ---
 
 <BaseLayout>
-  <div class="flex w-full flex-1 flex-col">
-    <div class="flex w-full flex-row gap-8">
+  <div class="flex w-full flex-1 flex-col md:max-w-4xl lg:max-w-6xl">
+    <div class="flex w-full flex-col-reverse gap-8 px-6 lg:flex-row">
       <!-- Left side (scrolls) -->
-      <div class="flex w-full flex-col pt-12">
+      <div class="flex w-full flex-col lg:pt-12">
         <!-- Title and barcode -->
         <div
           class="border-border flex flex-row justify-between border-b px-4 pb-12"
@@ -84,7 +84,7 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
 
       <!-- Right side (featured sticky) -->
       <div
-        class="sticky top-28 flex h-[calc(100dvh-7rem)] w-full grow self-start pt-8 pb-12"
+        class="flex w-full grow self-start pt-8 pb-12 lg:sticky lg:top-28 lg:h-[calc(100dvh-7rem)]"
       >
         {featured && <FeaturedCard post={featured} />}
       </div>
