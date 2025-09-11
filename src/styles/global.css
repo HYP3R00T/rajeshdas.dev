@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "plyr/dist/plyr.css";
 
 @layer base {
   :root {
@@ -79,7 +80,7 @@
 /* ===== selection ===== */
 
 ::selection {
-  @apply bg-blue text-background;
+  @apply bg-cyan text-background;
 }
 
 /* ===== scrollbar ===== */
@@ -101,7 +102,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-blue;
+  @apply bg-cyan;
 }
 
 /* ===== codeblock ===== */
@@ -149,7 +150,7 @@ pre[data-language]::before {
 }
 
 .prose a {
-  @apply text-cyan decoration-cyan/30 relative overflow-hidden underline decoration-2 underline-offset-4;
+  @apply text-cyan decoration-cyan/30 relative overflow-hidden wrap-anywhere underline decoration-2 underline-offset-4;
 }
 
 .prose a::before {
@@ -162,28 +163,109 @@ pre[data-language]::before {
 }
 
 .prose h1 {
-  @apply text-text-subtle mb-5 pb-3 text-4xl font-extrabold;
+  @apply text-text-default mb-5 pb-3 text-5xl font-extrabold;
 }
 
 .prose h2 {
-  @apply text-text-subtle mt-8 mb-3 text-2xl font-bold;
+  @apply text-text-default mt-8 mb-3 text-4xl font-bold;
 }
 
 .prose h3 {
-  @apply text-text-subtle mt-6 mb-2 text-xl font-semibold;
+  @apply text-text-default mt-12 mb-2 text-2xl font-semibold;
 }
 
 .prose h4 {
-  @apply text-text-faint mt-5 mb-2 text-lg font-medium;
+  @apply text-text-default mt-5 mb-2 text-lg font-medium;
 }
 
 .prose h5,
 .prose h6 {
-  @apply text-text-faint mt-4 mb-1 text-base font-semibold tracking-wide uppercase;
+  @apply text-text-default mt-4 mb-1 text-base font-semibold tracking-wide;
 }
 
 .prose p {
-  @apply text-text-subtle my-4 first:mt-0;
+  @apply text-text-subtle my-6 first:mt-0;
+}
+
+.prose ul {
+  @apply my-4 list-none;
+}
+
+.prose ul > li {
+  @apply text-text-default relative pl-8;
+}
+
+.prose ul > li::before {
+  content: ">";
+  @apply text-cyan absolute left-0 font-mono font-medium;
+}
+
+.prose ol {
+  @apply my-4 list-none;
+  counter-reset: ol-counter;
+}
+
+.prose ol > li {
+  @apply text-text-default relative pl-12;
+  counter-increment: ol-counter;
+}
+
+.prose ol > li::before {
+  content: counter(ol-counter, decimal-leading-zero) ". ";
+  @apply text-cyan absolute left-0 font-mono font-medium;
+}
+
+.prose blockquote {
+  @apply border-cyan text-text-subtle bg-content my-3 border-l-4 px-6 py-4;
+}
+
+.prose pre {
+  @apply bg-elevated text-text-default overflow-x-auto p-4;
+}
+
+.prose code {
+  @apply bg-elevated text-text-subtle rounded px-1.5 py-0.5 font-mono;
+}
+
+.prose pre code {
+  @apply block border-0 bg-transparent p-0;
+}
+
+.prose table {
+  @apply mt-6 w-full border-collapse overflow-x-scroll;
+}
+
+.prose th,
+.prose td {
+  @apply text-text-subtle px-4 py-2;
+}
+
+.prose th {
+  @apply bg-content text-text-subtle font-bold tracking-wide;
+}
+
+.prose tr:nth-child(even) {
+  @apply bg-content/50;
+}
+
+.prose img {
+  @apply mx-auto;
+}
+
+.prose hr {
+  @apply border-border my-8 opacity-50;
+}
+
+.prose iframe {
+  @apply aspect-video h-auto w-full;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 2rem) 0,
+    100% 2rem,
+    100% 100%,
+    2rem 100%,
+    0 calc(100% - 2rem)
+  );
 }
 
 /* ===== special ===== */
