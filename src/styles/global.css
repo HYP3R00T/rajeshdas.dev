@@ -253,6 +253,14 @@ pre[data-language]::before {
 
 .prose img {
   @apply mx-auto;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 1.5rem) 0,
+    100% 1.5rem,
+    100% 100%,
+    1.5rem 100%,
+    0 calc(100% - 1.5rem)
+  );
 }
 
 .prose hr {
