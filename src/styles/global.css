@@ -283,14 +283,10 @@ pre[data-language]::before {
   );
 }
 
-.postcard {
-  clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
-}
-
-.featuredcard {
+.box-tr-lg {
   clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%);
 }
 
-.projectcard {
+.box-tr-md {
   clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
 }
