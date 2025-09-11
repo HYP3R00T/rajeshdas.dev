@@ -1,4 +1,7 @@
 ---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+
 interface NavItem {
   href: string;
   label: string;
@@ -19,19 +22,19 @@ const { transparent_header = false } = Astro.props;
 ---
 
 <header
-  class={`sticky top-0 z-50 mx-auto flex w-full flex-row items-center justify-between px-8 py-8 ${transparent_header ? "bg-transparent" : "bg-background"}`}
+  class={`sticky top-0 z-50 mx-auto flex w-full flex-row lg:items-center justify-between px-8 py-8 ${transparent_header ? "bg-transparent" : "bg-background"}`}
 >
   <!-- Logo -->
-  <div class="flex">
-    <a href="/" class="flex h-12 w-32 items-center justify-center">
+  <div class="z-30 flex">
+    <a href="/" class="flex items-center justify-center lg:h-12 lg:w-32">
       <h1 class="text-2xl">Logo</h1>
     </a>
   </div>
 
-  <!-- Navigation -->
+  <!-- Desktop Navigation -->
   <nav class="gator bg-content hidden w-auto flex-row justify-center lg:flex">
     {
-      navItems.map((item, index) => (
+      navItems.map((item) => (
         <div
           class={`group flex h-full w-auto items-center justify-center ${
             item.special
@@ -57,4 +60,147 @@ const { transparent_header = false } = Astro.props;
       ))
     }
   </nav>
+
+  <!-- Mobile Hamburger -->
+  <div class="relative flex items-center justify-end lg:hidden">
+    <!-- Menu Button -->
+    <Button
+      class="text-text-default z-30 flex p-4"
+      aria-label="Open menu"
+      size="icon"
+      id="menu"
+    >
+      <Icon name="menu" class="h-[1.2rem] w-[1.2rem]" />
+    </Button>
+
+    <!-- Close Button -->
+    <Button
+      class="text-text-default z-30 hidden! p-4"
+      aria-label="Close menu"
+      size="icon"
+      id="close"
+    >
+      <Icon name="close" class="h-[1.2rem] w-[1.2rem]" />
+    </Button>
+
+    <!-- Mobile Menu -->
+    <nav
+      id="menuPopup"
+      class="bg-background fixed inset-0 z-20 mt-28 hidden flex-col items-center justify-between gap-4 px-8"
+    >
+      <!-- Nav Items -->
+      <div class="flex w-full flex-col items-center">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class={`text-xl ${
+                item.special
+                  ? "bg-cyan text-background font-bold"
+                  : `${currentPath.startsWith(item.href.slice(1)) ? "bg-elevated" : ""} text-text-default font-medium`
+              } gator w-full px-6 py-4`}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+      <!-- Social -->
+      <div class="flex w-full flex-row py-8">
+        <h1>Social</h1>
+      </div>
+    </nav>
+  </div>
 </header>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const menuButton = document.getElementById("menu");
+    const closeButton = document.getElementById("close");
+    const menuPopup = document.getElementById("menuPopup");
+
+    function toggleMenu() {
+      const isOpen = !menuPopup.classList.contains("hidden");
+
+      if (isOpen) {
+        // Close menu
+        menuButton.classList.remove("hidden!");
+        closeButton.classList.add("hidden!");
+        menuPopup.classList.add("hidden");
+      } else {
+        // Open menu
+        menuButton.classList.add("hidden!");
+        closeButton.classList.remove("hidden!");
+        menuPopup.classList.remove("hidden");
+        menuPopup.classList.add("flex");
+      }
+    }
+
+    menuButton?.addEventListener("click", toggleMenu);
+    closeButton?.addEventListener("click", toggleMenu);
+  });
+</script>
+
+<!-- <script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const menuPopup = document.getElementById("menuPopup");
+    const plusIcon = menuToggle?.querySelector("svg");
+    let lastScrollPosition = 0;
+
+    function toggleMenu() {
+      if (menuPopup && menuToggle && plusIcon) {
+        const isOpen = menuPopup.classList.contains("opacity-100");
+
+        if (isOpen) {
+          // Close menu
+          menuPopup.classList.remove("opacity-100", "pointer-events-auto");
+          menuPopup.classList.add("opacity-0", "pointer-events-none");
+          plusIcon.style.transform = "rotate(0deg)";
+        } else {
+          // Open menu
+          menuPopup.classList.add("opacity-100", "pointer-events-auto");
+          menuPopup.classList.remove("opacity-0", "pointer-events-none");
+          plusIcon.style.transform = "rotate(45deg)";
+        }
+      }
+    }
+
+    function hideMenuOnScroll() {
+      const currentScrollPosition = window.scrollY;
+
+      if (
+        currentScrollPosition > 50 &&
+        menuPopup?.classList.contains("opacity-100")
+      ) {
+        menuPopup.classList.remove("opacity-100", "pointer-events-auto");
+        menuPopup.classList.add("opacity-0", "pointer-events-none");
+        if (plusIcon) {
+          plusIcon.style.transform = "rotate(0deg)";
+        }
+      }
+
+      lastScrollPosition = currentScrollPosition;
+    }
+
+    // Show the menu
+    menuToggle?.addEventListener("click", toggleMenu);
+
+    // Hide the menu on scroll
+    window.addEventListener("scroll", hideMenuOnScroll);
+  });
+</script> -->
+
+<!-- <script is:inline>
+  let menuOpen = false;
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    const menu = document.getElementById("mobile-menu");
+    if (menu) menu.style.display = menuOpen ? "flex" : "none";
+  }
+  function closeMenu() {
+    menuOpen = false;
+    const menu = document.getElementById("mobile-menu");
+    if (menu) menu.style.display = "none";
+  }
+</script> -->

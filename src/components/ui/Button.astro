@@ -31,7 +31,7 @@ const {
     }[variant],
     {
       default: "h-8 px-4",
-      icon: "h-8 aspect-square",
+      icon: "aspect-square special",
     }[size],
     className,
   ]
@@ -43,3 +43,15 @@ const {
 >
   <slot />
 </button>
+
+<style>
+  .special {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 0.5rem) 0,
+      100% 0.5rem,
+      100% 100%,
+      0 100%
+    );
+  }
+</style>
