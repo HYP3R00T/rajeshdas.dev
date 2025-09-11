@@ -1,12 +1,15 @@
 ---
 import "plyr/dist/plyr.css";
+
+const { id } = Astro.props;
 ---
 
-<div class="m-4 w-auto">
+<div class="featuredcard w-full">
   <div
     id="player"
+    class="w-full"
     data-plyr-provider="youtube"
-    data-plyr-embed-id="bTqVqk7FSmY"
+    data-plyr-embed-id={id}
   >
   </div>
 </div>

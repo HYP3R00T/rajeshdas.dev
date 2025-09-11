@@ -30,9 +30,9 @@ export default defineConfig({
     },
   },
   integrations: [
-    // AutoImport({
-    //   imports: ["./src/components/core/Card.astro"],
-    // }),
+    AutoImport({
+      imports: ["./src/components/core/Video.astro"],
+    }),
     mdx(),
     icon({
       iconDir: "src/assets/icons",

@@ -36,6 +36,9 @@
     --astro-code-token-string-expression: var(--green);
     --astro-code-token-punctuation: var(--red);
     --astro-code-token-link: var(--green);
+
+    /* plyr */
+    --plyr-color-main: var(--cyan);
   }
 }
 
