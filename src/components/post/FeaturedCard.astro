@@ -5,10 +5,13 @@ import CardBg from "@/assets/card-bg.jpg";
 import { formatDate } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 import Line from "../ui/Line.astro";
-const { post } = Astro.props;
+const { post, class: className, ...attrs } = Astro.props;
 ---
 
-<div class="group relative px-4 pt-4 text-white">
+<div
+  class={`group relative px-4 pt-4 text-white ${className ?? ""}`}
+  {...attrs}
+>
   <!-- Featured ribbon -->
   <div
     class="bg-background text-text-faint absolute z-20 flex h-8 translate-x-16 -translate-y-1/2 items-center justify-center px-2 py-1 font-medium uppercase"

@@ -60,7 +60,12 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
         <div
           class="border-border flex flex-row justify-between border-b px-4 pb-12"
         >
-          <h1 class="text-text-default text-3xl">Latest articles</h1>
+          <h1
+            class="text-text-default text-3xl"
+            transition:name="latest-articles"
+          >
+            Latest articles
+          </h1>
           <div class="flex items-center justify-center">
             <Bar />
           </div>
@@ -85,6 +90,7 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
       <!-- Right side (featured sticky) -->
       <div
         class="flex w-full grow self-start pt-8 pb-12 lg:sticky lg:top-28 lg:h-[calc(100dvh-7rem)]"
+        transition:name="right-post"
       >
         {featured && <FeaturedCard post={featured} />}
       </div>
