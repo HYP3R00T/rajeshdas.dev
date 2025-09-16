@@ -18,4 +18,35 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { posts };
+// Projects: richer metadata for project cards and case studies
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/projects" }),
+  schema: ({ image }) =>
+    z.object({
+      // Core
+      title: z.string(),
+      summary: z.string(),
+      description: z.string().optional(),
+      pubDatetime: z.date(),
+      modDatetime: z.date().optional().nullable(),
+      featured: z.boolean().optional().default(false),
+      draft: z.boolean().optional().default(false),
+      readMore: z.boolean().optional().default(false),
+      cover: image(),
+      coverAlt: z.string().optional(),
+      logo: image().optional(),
+      gallery: z.array(image()).optional(),
+      links: z
+        .object({
+          homepage: z.string().url().optional(),
+          repo: z.string().url().optional(),
+          docs: z.string().url().optional(),
+          demo: z.string().url().optional(),
+          video: z.string().url().optional(),
+          package: z.string().url().optional(),
+        })
+        .optional(),
+    }),
+});
+
+export const collections = { posts, projects };

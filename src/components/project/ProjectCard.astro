@@ -1,0 +1,62 @@
+---
+import { formatDate } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import Line from "../ui/Line.astro";
+
+const { project } = Astro.props;
+---
+
+<div
+  class="group text-text-default bg-content relative h-full lg:bg-transparent"
+>
+  <a href={`/project/${project.id}/`} class="relative block">
+    <div
+      class="before:bg-content relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+    >
+      <!-- Content -->
+      <div class="relative z-10 space-y-4 p-4">
+        <!-- Date -->
+        <div
+          class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
+          transition:name={`${project.data.title}-date`}
+        >
+          <Line />
+          <div class="text-cyan w-full font-bold">
+            {formatDate(project.data.pubDatetime)}
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div>
+          <h1
+            class="text-2xl leading-tight font-bold"
+            transition:name={project.data.title}
+          >
+            {project.data.title}
+          </h1>
+        </div>
+
+        <!-- Description -->
+        <div class="">
+          <p class="text-text-subtle text-lg leading-tight">
+            {project.data.description}
+          </p>
+        </div>
+
+        <!-- Footer (Read link + duration) -->
+        <div class="flex items-center justify-between text-sm">
+          <Button
+            variant="ghost"
+            class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+          >
+            <div class="flex flex-row items-center gap-4">
+              <Icon name="arrow-up" class="rotate-90" } />
+              Read article
+            </div>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

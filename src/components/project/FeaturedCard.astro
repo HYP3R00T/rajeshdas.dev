@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import Button from "@/components/ui/Button.astro";
+import CardBg from "@/assets/card-bg.jpg";
+import { formatDate } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import Line from "../ui/Line.astro";
+const { project, class: className, ...attrs } = Astro.props;
+---
+
+<div
+  class={`group relative px-4 pt-4 text-white ${className ?? ""}`}
+  {...attrs}
+>
+  <!-- Featured ribbon -->
+  <div
+    class="bg-background text-text-faint absolute z-20 flex h-8 translate-x-16 -translate-y-1/2 items-center justify-center px-2 py-1 font-medium uppercase"
+  >
+    <h1>Featured</h1>
+  </div>
+  <div
+    class="text-text-faint bg-background absolute top-48 right-8 z-20 flex w-max origin-top-right -rotate-90 items-center justify-center px-2 py-1 font-medium uppercase"
+  >
+    262
+  </div>
+
+  <!-- Featured card -->
+  <div
+    class="box-tr-lg bg-content relative flex h-full flex-col justify-end overflow-hidden"
+  >
+    <a href={`/project/${project.id}/`}>
+      <!-- Cover image as background -->
+      <Image
+        src={CardBg}
+        alt="A cool abstract background"
+        class="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+      />
+
+      <!-- Optional dark overlay for readability -->
+      <div class="bg-background/70 absolute inset-0 z-0"></div>
+
+      <!-- Content on top -->
+      <div class="relative z-10 mt-6 space-y-4 p-8">
+        <!-- Date -->
+        <div
+          class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
+          transition:name={`${project.data.title}-date`}
+        >
+          <Line />
+          <div class="text-cyan w-full font-bold">
+            {formatDate(project.data.pubDatetime)}
+          </div>
+        </div>
+
+        <!-- Title -->
+
+        <h1
+          class="text-5xl leading-tight font-bold"
+          transition:name={project.data.title}
+        >
+          {project.data.title}
+        </h1>
+
+        <!-- Description -->
+        <p class="text-text-subtle pt-4 text-xl">
+          {project.data.description}
+        </p>
+
+        <!-- Footer -->
+        <div class="flex items-center justify-between pt-4">
+          <Button
+            variant="ghost"
+            class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-base before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100 lg:text-xl"
+          >
+            <div class="flex flex-row items-center gap-4">
+              <Icon name="arrow-right-up" />
+              Read article
+            </div>
+          </Button>
+
+          <span class="text-text-subtle">{project.data.duration ?? ""}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

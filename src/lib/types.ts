@@ -37,6 +37,23 @@ export interface PostPath {
   props: PostDetailPageProps;
 }
 
+// Reusable types for projects collections
+export type ProjectEntry = CollectionEntry<"projects">;
+export type Projects = ProjectEntry[];
+export type ProjectData = ProjectEntry["data"];
+export type ProjectHeadings = MarkdownHeading[];
+
+// For src/pages/project/[...slug].astro
+export interface ProjectDetailPageProps {
+  entry: ProjectEntry;
+  headings: ProjectHeadings;
+}
+
+export interface ProjectPath {
+  params: { slug: string };
+  props: ProjectDetailPageProps;
+}
+
 // For src/layouts/BaseLayout.astro
 // Accepts any subset of SEO props; HeadSEO provides sensible defaults.
 export interface BaseLayoutProps extends Partial<HeadSEOProps> {
