@@ -291,6 +291,18 @@ pre[data-language]::before {
   );
 }
 
+/* Larger hero panel variant with 2rem notch */
+.box-tr-bl-lg {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 2rem) 0,
+    100% 2rem,
+    100% 100%,
+    2rem 100%,
+    0 calc(100% - 2rem)
+  );
+}
+
 .box-tr-lg {
   clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%);
 }
