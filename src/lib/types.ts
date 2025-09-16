@@ -48,3 +48,18 @@ export interface TagPageProps {
   tag: string;
   posts: Posts;
 }
+
+// For social links (config.ts)
+export interface SocialObjects {
+  name: string;
+  href: string;
+  active: boolean;
+  linkTitle: string;
+}
+
+// For navigation items (config.ts)
+export interface NavItem {
+  href: string;
+  label: string;
+  special?: boolean;
+}
