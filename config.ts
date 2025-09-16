@@ -117,7 +117,7 @@ export const Socials: SocialObjects[] = [
     name: "resume",
     href: "/resume.pdf",
     linkTitle: "Looking for my Resume?",
-    active: true,
+    active: false,
   },
 ];
 
