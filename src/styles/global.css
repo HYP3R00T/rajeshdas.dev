@@ -298,3 +298,33 @@ pre[data-language]::before {
 .box-tr-md {
   clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
 }
+
+.box-tr-sm {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 0.75rem) 0,
+    100% 0.75rem,
+    100% 100%,
+    0 100%
+  );
+}
+
+.box-bl-sm {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    0.75rem 100%,
+    0% calc(100% - 0.75rem)
+  );
+}
+
+.box-tr-xs {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 0.5rem) 0,
+    100% 0.5rem,
+    100% 100%,
+    0 100%
+  );
+}
