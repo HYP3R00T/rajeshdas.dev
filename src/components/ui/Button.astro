@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface ButtonProps extends HTMLAttributes<"button"> {
-  variant?: "default" | "accent" | "ghost";
+  variant?: "default" | "accent" | "ghost" | "outline";
   size?: "default" | "icon";
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
@@ -26,8 +26,9 @@ const {
     "disabled:pointer-events-none disabled:opacity-80",
     {
       default: "bg-content text-text-default hover:bg-elevated",
-      accent: "bg-blue text-background hover:bg-blue/10",
+      accent: "bg-cyan text-background hover:bg-cyan/90",
       ghost: "bg-transparent text-text-default hover:bg-elevated",
+      outline: "",
     }[variant],
     {
       default: "h-8 px-4",
