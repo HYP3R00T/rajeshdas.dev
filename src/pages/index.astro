@@ -1,13 +1,41 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Video from "@/components/core/Video.astro";
+import Social from "@/components/core/Social.astro";
+import { Icon } from "astro-icon/components";
+import Articles from "@/components/home/Articles.astro";
 ---
 
 <BaseLayout>
-  <div class="flex w-full flex-col gap-8">
-    <section class="w-full">
-      <h1>First</h1>
-      <Video id="bTqVqk7FSmY" />
+  <div class="flex w-full flex-col gap-8 px-6 md:max-w-4xl lg:max-w-6xl">
+    <section class="flex w-full flex-col items-center">
+      <h1 class="text-6xl font-bold">Rajesh Das</h1>
+      <h2 class="mt-4 font-mono text-4xl">DevOps & Automation Engineer</h2>
+      <div class="my-8 flex gap-8">
+        <a href="/project">
+          <div
+            class="text-cyan! before:bg-cyan/30 relative overflow-hidden px-4 py-2 text-lg font-bold before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+          >
+            Projects
+          </div>
+        </a>
+        <a href="/contact">
+          <div
+            class="box-tr-sm text-background bg-cyan flex h-full flex-row items-center gap-2 py-2 pr-3 pl-4 text-lg font-bold"
+          >
+            <h1>Hire Me</h1>
+            <Icon name="arrow-right-up" class="h-[1.4rem] w-[1.4rem]" />
+          </div>
+        </a>
+      </div>
+    </section>
+    <section class="w-full items-center justify-center">
+      <Social />
+    </section>
+    <section class="w-full items-center justify-center">
+      <Articles />
+    </section>
+    <section class="w-full items-center justify-center">
+      <Social />
     </section>
   </div>
 </BaseLayout>
