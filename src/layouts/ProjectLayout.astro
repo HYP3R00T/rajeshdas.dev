@@ -6,16 +6,18 @@ import Line from "@/components/ui/Line.astro";
 
 const {
   title,
+  summary,
   description,
   pubDatetime,
   modDatetime,
   featured,
   draft,
-  tags,
+  readMore,
   cover,
-  category,
   coverAlt,
-  headings,
+  logo,
+  gallery,
+  links,
 } = Astro.props;
 ---
 
@@ -40,7 +42,7 @@ const {
   >
     <!-- Date -->
     <div
-      class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
+      class="text-cyan flex w-full flex-row items-center gap-2 text-lg"
       transition:name={`${title}-date`}
     >
       <Line />
