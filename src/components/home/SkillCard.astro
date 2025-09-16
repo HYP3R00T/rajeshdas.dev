@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import Line from "../ui/Line.astro";
+
+const { skill } = Astro.props;
+---
+
+<div
+  class="group text-text-default bg-content relative h-full lg:bg-transparent"
+>
+  <!-- Featured ribbon -->
+  <!-- <div
+    class="bg-background text-text-faint absolute z-20 flex h-8 translate-x-16 -translate-y-1/2 items-center justify-center px-2 py-1 font-medium uppercase"
+  >
+    <h1 class="text-sm">Featured</h1>
+  </div> -->
+
+  <div
+    class="before:bg-content relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+  >
+    <!-- Content -->
+    <div class="relative z-10 space-y-4 p-4">
+      <div class="flex flex-row items-center justify-between gap-4">
+        <div class="border-border border px-2 py-1 text-xs">
+          {skill.category}
+        </div>
+        <Button
+          variant="outline"
+          size="icon"
+          class="bg-elevated cursor-default! p-2"
+        >
+          <Icon
+            name={skill.icon}
+            class={`${skill.icon_class} h-[1.2rem] w-[1.2rem]`}
+          />
+        </Button>
+      </div>
+      <div class="">
+        <h1 class="font-mono text-xl leading-tight font-semibold">
+          {skill.title}
+        </h1>
+      </div>
+      <!-- Description -->
+      <p class="text-text-subtle pt-6 pb-2 text-base">{skill.description}</p>
+    </div>
+  </div>
+</div>
