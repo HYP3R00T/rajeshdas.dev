@@ -2,9 +2,10 @@
 import { formatDate } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
-import Line from "../ui/Line.astro";
+import Line from "@/components/ui/Line.astro";
+import type { PostCardProps } from "@/lib/types";
 
-const { post } = Astro.props;
+const { post } = Astro.props as PostCardProps;
 ---
 
 <div
@@ -51,8 +52,8 @@ const { post } = Astro.props;
             class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
           >
             <div class="flex flex-row items-center gap-4">
-              <Icon name="arrow-up" class="rotate-90" } />
               Read article
+              <Icon name="arrow-right-up" />
             </div>
           </Button>
         </div>
