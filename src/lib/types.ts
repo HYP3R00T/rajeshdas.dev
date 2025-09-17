@@ -37,6 +37,10 @@ export interface PostPath {
   props: PostDetailPageProps;
 }
 
+export interface PostCardProps {
+  post: PostEntry;
+}
+
 // Reusable types for projects collections
 export type ProjectEntry = CollectionEntry<"projects">;
 export type Projects = ProjectEntry[];
@@ -52,6 +56,10 @@ export interface ProjectDetailPageProps {
 export interface ProjectPath {
   params: { slug: string };
   props: ProjectDetailPageProps;
+}
+
+export interface ProjectCardProps {
+  project: ProjectEntry;
 }
 
 // For src/layouts/BaseLayout.astro

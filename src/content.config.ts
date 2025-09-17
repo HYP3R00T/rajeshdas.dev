@@ -18,12 +18,10 @@ const posts = defineCollection({
     }),
 });
 
-// Projects: richer metadata for project cards and case studies
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/projects" }),
   schema: ({ image }) =>
     z.object({
-      // Core
       title: z.string(),
       summary: z.string(),
       description: z.string().optional(),
