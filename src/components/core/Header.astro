@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
-import { navItems } from "config";
+import { navItems, Socials } from "config";
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
@@ -94,8 +94,16 @@ const { transparent_header = false } = Astro.props;
         }
       </div>
       <!-- Social -->
-      <div class="flex w-full flex-row py-8">
-        <h1>Social</h1>
+      <div class="mb-16 flex flex-row gap-4">
+        {
+          Socials.filter((social) => social.active).map((social) => (
+            <a href={social.href} target="_blank" class="">
+              <Button variant="default" size="icon" class="h-12! w-12!">
+                <Icon name={social.name} class="h-[1.4rem] w-[1.4rem]" />
+              </Button>
+            </a>
+          ))
+        }
       </div>
     </nav>
   </div>
