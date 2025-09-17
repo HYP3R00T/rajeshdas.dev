@@ -9,7 +9,7 @@ import Tooltip from "@/components/core/Tooltip.astro";
 <div class="mb-4 hidden flex-wrap items-center justify-center gap-4 lg:flex">
   {
     Socials.filter((social) => social.active).map((social) => (
-      <a href={social.href} target="_blank" class="text-text-blue">
+      <a href={social.href} target="_blank" class="">
         <Button variant="ghost" size="icon" class="h-12! w-12!">
           <Icon name={social.name} class="h-[1.4rem] w-[1.4rem]" />
         </Button>
