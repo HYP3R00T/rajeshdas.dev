@@ -4,9 +4,10 @@ import { getCollection } from "astro:content";
 import ProjectCard from "@/components/project/ProjectCard.astro";
 import FeaturedCard from "@/components/project/FeaturedCard.astro";
 import Bar from "@/assets/barcode.svg";
+import type { ProjectEntry } from "@/lib/types";
 
-const project_collection = await getCollection("projects").then((entries) =>
-  entries.filter((entry) => !entry.data.draft)
+const project_collection: ProjectEntry[] = await getCollection("projects").then(
+  (entries) => entries.filter((entry) => !entry.data.draft)
 );
 
 // Featured project
@@ -25,8 +26,16 @@ projects.sort((a, b) => {
 
 <BaseLayout>
   <div class="flex w-full flex-1 flex-col md:max-w-4xl lg:max-w-6xl">
-    <div class="flex w-full flex-col-reverse gap-8 px-6 lg:flex-row">
-      <!-- Left side (scrolls) -->
+    <div class="flex w-full flex-col gap-8 px-6 lg:flex-row">
+      <!-- Left side (featured sticky) -->
+      <div
+        class="flex w-full grow self-start pt-8 pb-12 lg:sticky lg:top-28 lg:h-[calc(100dvh-7rem)]"
+        transition:name="left-project"
+      >
+        {featured && <FeaturedCard project={featured} />}
+      </div>
+
+      <!-- Right side (scrolls) -->
       <div class="flex w-full flex-col lg:pt-12">
         <!-- Title and barcode -->
         <div
@@ -34,7 +43,7 @@ projects.sort((a, b) => {
         >
           <h1
             class="text-text-default text-3xl"
-            transition:name="projects-title"
+            transition:name="latest-projects"
           >
             Projects
           </h1>
@@ -43,17 +52,13 @@ projects.sort((a, b) => {
           </div>
         </div>
         <!-- Projects -->
-        <div class="flex flex-col gap-8 py-4">
-          {projects.map((project) => <ProjectCard project={project} />)}
+        <div class="grid grid-cols-1 gap-8 px-4 py-4">
+          {
+            projects.map((project: ProjectEntry) => (
+              <ProjectCard project={project} />
+            ))
+          }
         </div>
-      </div>
-
-      <!-- Right side (featured sticky) -->
-      <div
-        class="flex w-full grow self-start pt-8 pb-12 lg:sticky lg:top-28 lg:h-[calc(100dvh-7rem)]"
-        transition:name="right-project"
-      >
-        {featured && <FeaturedCard project={featured} />}
       </div>
     </div>
   </div>

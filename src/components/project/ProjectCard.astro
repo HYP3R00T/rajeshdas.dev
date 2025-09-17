@@ -1,34 +1,62 @@
 ---
-import { formatDate } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
-import Button from "@/components/ui/Button.astro";
-import Line from "../ui/Line.astro";
+import { Image } from "astro:assets";
+import type { ProjectCardProps } from "@/lib/types";
+import Line from "@/components/ui/Line.astro";
+import Button from "../ui/Button.astro";
 
-const { project } = Astro.props;
+const { project } = Astro.props as ProjectCardProps;
 ---
 
 <div
-  class="group text-text-default bg-content relative h-full lg:bg-transparent"
+  class="box-tr-lg group text-text-default bg-content relative h-full lg:bg-transparent"
 >
-  <a href={`/project/${project.id}/`} class="relative block">
-    <div
-      class="before:bg-content relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
-    >
-      <!-- Content -->
-      <div class="relative z-10 space-y-4 p-4">
-        <!-- Date -->
-        <div
-          class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
-          transition:name={`${project.data.title}-date`}
-        >
+  <div
+    class="before:bg-content relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+  >
+    <div class="flex flex-col">
+      {
+        project.data.readMore ? (
+          <a href={`/project/${project.id}/`} class="relative block">
+            <Image
+              src={project.data.cover}
+              alt="A cool abstract background"
+              class="aspect-video h-full w-full object-cover transition-transform duration-500 ease-in-out"
+            />
+          </a>
+        ) : (
+          <Image
+            src={project.data.cover}
+            alt="A cool abstract background"
+            class="aspect-video h-full w-full object-cover transition-transform duration-500 ease-in-out"
+          />
+        )
+      }
+
+      <div class="flex flex-col gap-4 p-4">
+        <div class="flex flex-row items-center justify-between">
           <Line />
-          <div class="text-cyan w-full font-bold">
-            {formatDate(project.data.pubDatetime)}
+          <div class="flex flex-row">
+            <a href={project.data.links?.repo} target="_blank" class="">
+              <div
+                class="text-text-subtle hover:text-text-default flex h-full flex-row items-center justify-center gap-1 bg-transparent text-sm"
+              >
+                <span>GitHub</span>
+                <Icon name="github" class="h-[1rem] w-[1rem]" />
+              </div>
+            </a>
+            <a href={project.data.links?.homepage} target="_blank" class="ml-4">
+              <div
+                class="text-text-subtle hover:text-text-default flex h-full flex-row items-center justify-center gap-1 bg-transparent text-sm"
+              >
+                <span>Website</span>
+                <Icon name="file-text" class="h-[1rem] w-[1rem]" />
+              </div>
+            </a>
           </div>
         </div>
 
-        <!-- Title -->
-        <div>
+        <div class="">
           <h1
             class="text-2xl leading-tight font-bold"
             transition:name={project.data.title}
@@ -36,27 +64,33 @@ const { project } = Astro.props;
             {project.data.title}
           </h1>
         </div>
-
-        <!-- Description -->
         <div class="">
-          <p class="text-text-subtle text-lg leading-tight">
+          <p
+            class="text-text-subtle text-lg leading-tight"
+            transition:name={project.data.description}
+          >
             {project.data.description}
           </p>
         </div>
 
-        <!-- Footer (Read link + duration) -->
-        <div class="flex items-center justify-between text-sm">
-          <Button
-            variant="ghost"
-            class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
-          >
-            <div class="flex flex-row items-center gap-4">
-              <Icon name="arrow-up" class="rotate-90" } />
-              Read article
-            </div>
-          </Button>
-        </div>
+        {
+          project.data.readMore && (
+            <a href={`/project/${project.id}/`} class="relative block">
+              <div class="flex items-center justify-between text-sm">
+                <Button
+                  variant="ghost"
+                  class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+                >
+                  <div class="flex flex-row items-center gap-4">
+                    Read More
+                    <Icon name="arrow-right-up" />
+                  </div>
+                </Button>
+              </div>
+            </a>
+          )
+        }
       </div>
     </div>
-  </a>
+  </div>
 </div>

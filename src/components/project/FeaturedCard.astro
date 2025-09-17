@@ -8,10 +8,7 @@ import Line from "../ui/Line.astro";
 const { project, class: className, ...attrs } = Astro.props;
 ---
 
-<div
-  class={`group relative px-4 pt-4 text-white ${className ?? ""}`}
-  {...attrs}
->
+<div class={`group relative px-4 pt-4  ${className ?? ""}`} {...attrs}>
   <!-- Featured ribbon -->
   <div
     class="bg-background text-text-faint absolute z-20 flex h-8 translate-x-16 -translate-y-1/2 items-center justify-center px-2 py-1 font-medium uppercase"
@@ -25,10 +22,10 @@ const { project, class: className, ...attrs } = Astro.props;
   </div>
 
   <!-- Featured card -->
-  <div
-    class="box-tr-lg bg-content relative flex h-full flex-col justify-end overflow-hidden"
-  >
-    <a href={`/project/${project.id}/`}>
+  <a href={`/project/${project.id}/`}>
+    <div
+      class="box-tr-lg bg-content relative flex h-full flex-col justify-end overflow-hidden"
+    >
       <!-- Cover image as background -->
       <Image
         src={CardBg}
@@ -39,48 +36,64 @@ const { project, class: className, ...attrs } = Astro.props;
       <!-- Optional dark overlay for readability -->
       <div class="bg-background/70 absolute inset-0 z-0"></div>
 
-      <!-- Content on top -->
-      <div class="relative z-10 mt-6 space-y-4 p-8">
+      <!-- Content -->
+      <div class="relative z-10 mt-6 space-y-4 p-4 lg:p-8">
         <!-- Date -->
-        <div
-          class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
-          transition:name={`${project.data.title}-date`}
-        >
+        <div class="flex flex-row items-center justify-between">
           <Line />
-          <div class="text-cyan w-full font-bold">
-            {formatDate(project.data.pubDatetime)}
+          <div class="flex flex-row">
+            <a href={project.data.links?.repo} target="_blank" class="">
+              <div
+                class="text-text-default hover:text-cyan flex h-full flex-row items-center justify-center gap-1 bg-transparent"
+              >
+                <span>GitHub</span>
+                <Icon name="github" class="h-[1.2rem] w-[1.2rem]" />
+              </div>
+            </a>
+            <a href={project.data.links?.homepage} target="_blank" class="ml-4">
+              <div
+                class="text-text-default hover:text-cyan flex h-full flex-row items-center justify-center gap-1 bg-transparent"
+              >
+                <span>Website</span>
+                <Icon name="file-text" class="h-[1.2rem] w-[1.2rem]" />
+              </div>
+            </a>
           </div>
         </div>
 
         <!-- Title -->
-
-        <h1
-          class="text-5xl leading-tight font-bold"
-          transition:name={project.data.title}
+        <a
+          href={`/project/${project.id}/`}
+          class="relative z-10 mt-6 space-y-4 p-4 lg:p-8"
         >
-          {project.data.title}
-        </h1>
-
-        <!-- Description -->
-        <p class="text-text-subtle pt-4 text-xl">
-          {project.data.description}
-        </p>
-
-        <!-- Footer -->
-        <div class="flex items-center justify-between pt-4">
-          <Button
-            variant="ghost"
-            class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-base before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100 lg:text-xl"
+          <h1
+            class="text-5xl leading-tight font-bold"
+            transition:name={project.data.title}
           >
-            <div class="flex flex-row items-center gap-4">
-              <Icon name="arrow-right-up" />
-              Read article
-            </div>
-          </Button>
+            {project.data.title}
+          </h1>
 
-          <span class="text-text-subtle">{project.data.duration ?? ""}</span>
-        </div>
+          <!-- Description -->
+          <p class="text-text-subtle pt-4 text-xl">
+            {project.data.description}
+          </p>
+
+          <!-- Footer -->
+          <div class="flex items-center justify-between pt-4">
+            <Button
+              variant="ghost"
+              class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-base before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100 lg:text-xl"
+            >
+              <div class="flex flex-row items-center gap-4">
+                Read article
+                <Icon name="arrow-right-up" />
+              </div>
+            </Button>
+
+            <span class="text-text-subtle">{project.data.duration ?? ""}</span>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
+    </div>
+  </a>
 </div>
