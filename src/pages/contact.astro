@@ -1,0 +1,178 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Social from "@/components/core/Social.astro";
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import { Socials } from "config";
+import Bar from "@/assets/barcode.svg";
+
+// Derive primary contact and the socials we want to show here
+const email =
+  Socials.find((s) => s.name === "mail" && s.active)?.href ??
+  "mailto:rajesh@hyperoot.dev";
+const linkedin =
+  Socials.find((s) => s.name === "linkedin" && s.active)?.href ??
+  "https://www.linkedin.com/in/rajesh-kumar-das/";
+const github =
+  Socials.find((s) => s.name === "github" && s.active)?.href ??
+  "https://github.com/HYP3R00T/";
+---
+
+<BaseLayout>
+  <div class="flex w-full flex-col gap-12 px-6 md:max-w-4xl lg:max-w-6xl">
+    <!-- Hero -->
+    <section
+      class="box-tr-bl-lg bg-content relative isolate w-full overflow-hidden p-6 md:p-10"
+    >
+      <!-- Glow accents -->
+      <div
+        class="bg-cyan/25 pointer-events-none absolute -top-16 -left-16 h-56 w-56 rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="bg-cyan/15 pointer-events-none absolute -right-16 -bottom-16 h-64 w-64 rounded-full blur-3xl"
+      >
+      </div>
+      <!-- Barcode deco -->
+      <div class="pointer-events-none absolute -top-6 -right-6 opacity-10">
+        <Bar />
+      </div>
+
+      <div class="relative z-10 mx-auto max-w-3xl text-center">
+        <span
+          class="text-cyan/90 bg-cyan/10 px-3 py-1 text-xs font-semibold tracking-wide"
+        >
+          Let’s talk
+        </span>
+        <h1 class="text-text-default mt-4 text-4xl font-extrabold md:text-5xl">
+          Contact Me
+        </h1>
+        <p
+          class="text-text-subtle mt-4 text-base leading-relaxed text-pretty md:text-lg"
+        >
+          Have a role, project, or idea? I’m open to full‑time, contract, and
+          collaboration. Expect pragmatic solutions, clean automation, and
+          proactive comms.
+        </p>
+
+        <!-- Quick facts -->
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
+          <span class="bg-cyan/10 text-cyan px-3 py-1 text-xs font-semibold">
+            Response: 24-48h
+          </span>
+          <span class="bg-cyan/10 text-cyan px-3 py-1 text-xs font-semibold">
+            Timezone: IST (UTC+5:30)
+          </span>
+          <span class="bg-cyan/10 text-cyan px-3 py-1 text-xs font-semibold">
+            Remote‑friendly
+          </span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a href={email} aria-label="Email Rajesh">
+            <div
+              class="box-tr-sm text-background bg-cyan flex h-full flex-row items-center gap-2 py-2 pr-3 pl-4 text-lg font-bold"
+            >
+              <span>Email Me</span>
+              <Icon name="arrow-right-up" class="h-[1.3rem] w-[1.3rem]" />
+            </div>
+          </a>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <div
+              class="text-cyan! before:bg-cyan/30 relative overflow-hidden px-4 py-2 text-lg font-bold before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
+            >
+              <span class="inline-flex items-center gap-2">
+                <Icon name="linkedin" class="h-5 w-5 opacity-90" />
+                Connect on LinkedIn
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Social inline -->
+        <div class="mt-8 w-full">
+          <Social />
+        </div>
+      </div>
+    </section>
+
+    <!-- Channels grid -->
+    <section class="w-full">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <a href={email} aria-label="Email" class="group">
+          <div
+            class="box-tr-sm bg-elevated hover:bg-content p-5 transition-colors"
+          >
+            <div class="flex items-start gap-3">
+              <Icon name="mail" class="text-cyan h-6 w-6 opacity-90" />
+              <div>
+                <h3 class="text-text-default text-lg font-semibold">Email</h3>
+                <p class="text-text-subtle mt-1 text-sm">
+                  Fastest way to reach me. I usually reply within 24 hours.
+                </p>
+                <div
+                  class="text-text-subtle group-hover:text-text-default mt-4 inline-flex items-center gap-2 text-sm"
+                >
+                  <span>Start an email</span>
+                  <Icon name="arrow-right-up" class="h-4 w-4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href={linkedin} target="_blank" rel="noopener" class="group">
+          <div
+            class="box-tr-sm bg-elevated hover:bg-content p-5 transition-colors"
+          >
+            <div class="flex items-start gap-3">
+              <Icon name="linkedin" class="text-cyan h-6 w-6 opacity-90" />
+              <div>
+                <h3 class="text-text-default text-lg font-semibold">
+                  LinkedIn
+                </h3>
+                <p class="text-text-subtle mt-1 text-sm">
+                  Let’s connect. I occasionally share updates and new work here.
+                </p>
+                <div
+                  class="text-text-subtle group-hover:text-text-default mt-4 inline-flex items-center gap-2 text-sm"
+                >
+                  <span>Visit profile</span>
+                  <Icon name="arrow-right-up" class="h-4 w-4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <a href={github} target="_blank" rel="noopener" class="group">
+          <div
+            class="box-tr-sm bg-elevated hover:bg-content p-5 transition-colors"
+          >
+            <div class="flex items-start gap-3">
+              <Icon name="github" class="text-cyan h-6 w-6 opacity-90" />
+              <div>
+                <h3 class="text-text-default text-lg font-semibold">GitHub</h3>
+                <p class="text-text-subtle mt-1 text-sm">
+                  Explore what I’m building tools, infra, and automation.
+                </p>
+                <div
+                  class="text-text-subtle group-hover:text-text-default mt-4 inline-flex items-center gap-2 text-sm"
+                >
+                  <span>View repositories</span>
+                  <Icon name="arrow-right-up" class="h-4 w-4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
