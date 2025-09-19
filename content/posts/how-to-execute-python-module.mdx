@@ -1,0 +1,70 @@
+---
+author: Rajesh
+pubDatetime: 2024-03-20
+title: How to execute python module?
+featured: false
+draft: false
+tags:
+  - python
+  - python-module
+description: "Use this simple trick to execute a module instead of a single python script"
+category: Technology
+cover: "./images/python.png"
+coverAlt: Default image
+---
+
+## Watch as a video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sXtd6Ec_osw?si=wAB1PtbsHFoCS9A3" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+
+## Execute python script in terminal
+
+A basic python looks something like the following.
+
+```python
+# file: sample.py
+print("Hello World!!!")
+```
+
+`python sample.py` is a command that tells the Python interpreter to execute a Python script named `sample.py`.
+
+Here's what each part means:
+
+- `python`: This is the command used to run the Python interpreter.
+- `sample.py`: This is the name of the Python script file you want to execute. In this case, it's named `sample.py`.
+- When you run `python sample.py` in your command-line interface (CLI), the Python interpreter will execute the code contained within the `sample.py` file. This allows you to run Python scripts from the command line or terminal.
+
+## Execute python project in terminal
+
+A sample project will look something like the following.
+
+```text
+pwd
+/path/to/project/
+
+tree
+.
+├── README.md
+├── sample_project
+│   ├── __init__.py
+│   ├── __main__.py
+```
+
+To trigger this `sample_project`, we can simply pass it as a parameter to python command.
+
+```sh
+# path: /path/to/project/
+python sample_project
+```
+
+When the above command is triggered, python interpreter will look inside the `sample_project` folder and search for `__main__.py` file. the Python interpreter will execute the code contained within the `__main__.py` file.
+
+This is called as **Python package with an executable module**
+
+### Advantages
+
+- **Modularity**: By organizing your code into a package with a `__main__.py` file, you can break down your project into smaller, more manageable modules. Each module can focus on specific functionality, making your codebase easier to understand, maintain, and reuse.
+- **Reusability**: Packages can be reused across different projects or within the same project. You can import modules from your package into other scripts or projects, enabling code reuse without duplicating functionality.
+- **Testability**: Modular code is typically easier to test than monolithic scripts. With a package structure, you can write unit tests for individual modules or subpackages, allowing for more comprehensive testing of your codebase.
+- **Scalability**: As your project grows in complexity, a package-based structure provides scalability. You can easily add new modules or subpackages without cluttering a single script, making it easier to manage larger projects over time.
+- **Entry Points**: Using a `__main__.py` file allows your package to define entry points for execution. This can be useful for command-line tools or applications where you want users to interact with your package as a standalone program.

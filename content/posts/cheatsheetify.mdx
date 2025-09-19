@@ -1,0 +1,44 @@
+---
+author: Rajesh
+pubDatetime: 2024-05-10
+title: Cheatsheetify
+featured: true
+draft: false
+tags:
+  - python
+  - python-module
+description: A python tool to generate cheatsheet of command line tools as a PDF.
+category: Technology
+cover: "./images/setup.png"
+coverAlt: Default image
+---
+
+Sometimes, diving deep into documentation and manual pages to understand a tool inside out can be overwhelming. Sometimes, we just need a quick reference for common usages of popular tools. Enter `cheatsheetify`, a Python tool that generates PDF cheatsheets for popular command-line tools on demand.
+
+GitHub Repo: [HYP3R00T/Cheatsheetify](https://github.com/HYP3R00T/Cheatsheetify)
+
+## A Bit of Story
+
+Creating cheatsheets manually using word processors like Microsoft Word or Google Docs can be tedious. I realized it would be more efficient to fetch information from already available sources. Nearly every popular tool has a manual or help page accessible with the Linux tool called `man`. While `man` is useful, it often provides more information than necessary for a cheatsheet. After some searching, I came across a tool called `tldr`, which I had used previously when Linux was my daily driver.
+
+Once I found the source of information, the next challenge was finding a tool to generate PDFs. After seeking guidance from ChatGPT, I tried the `reportlab` library, but it didn't quite meet my needs. So, I went back to the traditional method of searching the internet and discovered `fpdf2`, a library capable of creating beautifully formatted PDFs.
+
+With these pieces in hand, I merged them together and added a few features, and after two days of work, `cheatsheetify` was born.
+
+## Setup and Usage
+
+Cheatsheetify is now available on the Python Package Index (PyPI), making installation a breeze:
+
+```bash
+pip install cheatsheetify
+```
+
+To use the tool, simply type the following command in your terminal:
+
+```bash
+python cheatsheetify [# list of commands]
+# example
+python cheatsheetify ls
+```
+
+For more information, check out the documentation at [cheatsheetify.hyperoot.dev](https://cheatsheetify.hyperoot.dev/).

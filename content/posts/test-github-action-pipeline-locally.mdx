@@ -1,0 +1,66 @@
+---
+author: Rajesh
+pubDatetime: 2025-01-03
+title: Test GitHub Action Pipeline Locally
+featured: true
+draft: false
+tags:
+  - github-action
+  - act
+description: Learn how to test and develop GitHub Action workflow locally using `act`.
+category: Technology
+cover: "./images/github_action.png"
+coverAlt: GitHub Action workflow illustration
+---
+import { Image } from 'astro:assets';
+import Cycle from '@posts/images/github_action_development_cycle.png';
+
+## A genuine problem
+
+Recently, I was assigned to develop a workflow that will deploy the documentation whenever we push some changed to the `main` branch. The traditional way to develop GitHub Action pipeline is as following.
+
+<div class="flex justify-center">
+    <Image src={Cycle} alt="Viscious cycle" class="w-1/2" />
+</div>
+
+The problem is that we won't know what's wrong with our pipeline, unless we push it to GitHub and trigger the pipeline. This is not at all the best way to develop the pipeline.
+
+## It's time to act locally
+
+To test the pipeline, we can use an awesome tool called [`act`](https://github.com/nektos/act). `act` allow us to execute the pipeline locally. It leverages the power of Docker and build or pull necessary images, as defined in the workflow file. What we get is a fast feedback. And we can fix it instantly and test it again.
+
+### How to Install it Locally?
+
+While `act` is available for [some platforms](https://nektosact.com/installation/index.html), the easiest way is to use the `curl` command.
+
+```bash
+cd ~
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+```
+
+When we install it, it will create a `bin` folder in the current working directory. So, it's recommended to change directory to home first and then run the `curl` command piped with `sudo bash`. Also, dont' forget to add the `bin` directory to the `$PATH`.
+
+Before we use `act` to run the workflow locally, we also need Docker. As `act` will build and run everything in a docker container, it needs the docker engine. Make sure you have it installed.
+
+But it's not enough to test a workflow. The project need to be synced to GitHub as well. You can checkout a sample repo that I have created [here](https://github.com/HYP3R00T/act_with_mkdocs). You can create something similar or fork it and then you can test the workflow using `act` in your local machine.
+
+#### Execution
+
+Create a workflow in `.github/workflows` directory. Then you can run `act` as following.
+
+```shell
+# act -W <path-to-workflow>
+act -W .github/workflows/mkdocs_test.yml
+```
+If everything is fine, you will see job completed message at the end. Otherwise, fix the issues and rerun the tool.
+
+### The Problem
+
+But still, there is one problem. While `act` is working, it's still very limited. There are no other tools or methods to test the pipeline before committing the changes to GitHub. To know more check out the [Unsupported functionality](https://nektosact.com/not_supported.html).
+
+## References
+
+https://github.com/HYP3R00T/act_with_mkdocs
+https://nektosact.com/
+https://github.com/nektos/act
+https://www.docker.com/

@@ -1,0 +1,124 @@
+---
+author: Rajesh
+pubDatetime:  2024-12-08
+title: Dockerfile Best Practices
+featured: true
+draft: false
+tags:
+  - docker
+description: Learn what you can do to improve your dockerfiles.
+category: Technology
+cover: "./images/docker.png"
+coverAlt: Default image
+---
+
+Wheather you have developed a new feature or fixed a bug, once you push your changes to your remote repo a series of events will take place. An image will be built using a Dockerfile and then it will be deployed using Kubernetes. The image will be store in the registry and that will cost you. The processing power will be consumed to build the docker image from the Dockerfile and that will cost. And if you have truly adapted to DevOps culture, then you will be doing triggering this multiple times a day.This is why it's important to optimize your Dockerfile.
+
+## Pick a better base image
+
+You don't need a commercial ship just to send a mail. It would be a colossal waste of resources. There is no one tool to solve all problems. So why do you use the same base image for everything? Just pick something simpler and lightweight.
+
+The compressed size for [python:3.9.21-bullseye](https://hub.docker.com/layers/library/python/3.9.21-bullseye/images/sha256-faf9bc93db16ae366835d6920ea5169bef2dcca35ba95eaecbeaba486c850ddf?context=explore) is 331.28 MB whereas [python:3.9.21-alpine3.20](https://hub.docker.com/layers/library/python/3.9.21-alpine3.20/images/sha256-099739f412ae28449d99cedb5ea25645686c91928a88a765630663843aeb587e?context=explore) is merely 20.27 MB. And unless you can't build your app using the alpine version, there is no reason not to use it. Eventually you will be saving a lot of resources and money.
+
+You can find lightweight versions for almost all popular base images.
+
+## Layer caching
+
+When docker builds an image from a Dockerfile, it creates immutable layers based on the instructions. Consider the following Dockerfile.
+
+```dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.9.21-alpine3.20
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file into the container
+COPY . .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the desired port (e.g., Flask default port)
+EXPOSE 5000
+
+# Define the command to run the application
+CMD ["python", "app.py"]
+```
+
+In this Dockerfile, there is a minor issue. The dependencies will be installed every time there will be any code change. We don't necessarily need that. We only need to reinstall dependencies when there is some changes to the `requirements.txt` file. So, a better way to take advantage of the layer caching would the following Dockerfile.
+
+```dockerfile
+# Use an official Python runtime as a parent image
+FROM python:3.9.21-alpine3.20
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose the desired port (e.g., Flask default port)
+EXPOSE 5000
+
+# Define the command to run the application
+CMD ["python", "app.py"]
+```
+
+### What causes cache invalidation?
+
+- Changes to the files you're copying
+- Changes to the Dockerfile instruction
+- Changes to any previous layer
+
+## Use `.dockerignore`
+
+The purpose of any docker image is to run the app. Any other files which are not a requirement to run an app is pretty useless. To exclude such files it's wiser to use a `.dockerignore` file. It is particularly helpful if you are building packages in which you don't need the source code any longer. All you need is the complied code.
+
+## Multi-stage build
+
+Sometimes, we might need a more feature rich base image to build an app but not necessary to run the app. In such cases, we can use multi-stage build feature. To our previous Dockerfile example, we can make some changes as following.
+
+```dockerfile
+# Stage 1: Build environment
+FROM python:3.9.21-bullseye AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --target=/app/dependencies -r requirements.txt
+
+# Stage 2: Runtime environment
+FROM python:3.9.21-alpine3.20
+
+# Set working directory
+WORKDIR /app
+
+# Copy dependencies from the builder stage
+COPY --from=builder /app/dependencies /usr/local/lib/python3.10/site-packages
+
+# Copy application code
+COPY . .
+
+# Expose the desired port
+EXPOSE 5000
+
+# Define the command to run the application
+CMD ["python", "app.py"]
+```
+
+Using the bullseye version, we can build and install dependencies into a specific folder and then use a lightweight version to run the app.
+
+---
+
+## Reference
+
+https://docs.docker.com/build/building/best-practices/

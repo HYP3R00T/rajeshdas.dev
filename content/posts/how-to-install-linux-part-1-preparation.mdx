@@ -1,0 +1,67 @@
+---
+author: Rajesh
+pubDatetime:  2024-12-18
+title: "How to Install Linux? - Part 1: Preparation"
+featured: true
+draft: false
+tags:
+  - linux
+  - bootable
+  - ubuntu server
+description: How to prepare your system before installing any Operating System
+category: Technology
+cover: "./images/linux.png"
+coverAlt: Groot saying I am root
+---
+
+Let's start with the very beginning where I assume that you have never installed Linux. We will need the following things without which it won't work at all.
+
+- Laptop (where you want to install Linux)
+- USB Drive (To make it bootable with Linux)
+- Internet (Mostly to download the Linux image and once installed, to update the system)
+
+*Proceed further only when you have the above things ready*
+
+## Step 1: Download the `.iso` File
+
+There is a lot of debate if you go to any Linux community about which Linux distribution to pick, so let me simplify it for you. Start with Ubuntu. Go to the following link and download the latest version of **Ubuntu Server**
+
+https://ubuntu.com/download/server
+
+## Step 2: Prepare the USB Drive
+
+You can do this step while your `.iso` file is being downloaded. You need to prepare your USB drive. Download the following tool call Ventoy. It allows you to easily create bootable USB drives.
+
+https://www.ventoy.net/en/download.html
+
+The next step is slightly different based on your current operating system.
+
+### For Windows Machine
+
+- Extract the installation package with the name similar to `ventoy-x.x.xx-windows.zip`.
+- Plug in your USB drive.
+- Run `Ventoy2Disk.exe` and select your USB drive in the device list and click on Install.
+
+Reference for Windows: [Documentation (Windows)](https://www.ventoy.net/en/doc_start.html)
+
+### For Unix Based (MacOS or Linux) Machine
+
+- Extract the installation package with the name similar to `ventoy-x.x.xx-linux.tar.gz`.
+- Plug in your USB drive.
+- Run `sudo bash VentoyWeb.sh` in the terminal.
+- Open browser and visit http://127.0.0.1:24680
+- Select your USB drive in the device list and click on Install.
+
+Reference for Windows: [Documentation (Unix)](https://www.ventoy.net/en/doc_linux_webui.html)
+
+## Step 3: Move the Image
+
+Now, there should be two partitions within your USB drive. Move your `.iso` file to the partition with larger space. You can keep it inside any folder or in the root directory of the USB drive (it really doesn't matter as Ventoy will scan for the entire drive). You just need to copy paste the file to the USB drive.
+
+## Step 4: Start Your Device to Boot Menu
+
+This step is different in each brand and model of your system.
+
+Search Keyword: [\<device name> boot menu](https://www.google.com/search?q=%3Cdevice+name%3E+boot+menu)
+
+All you need to do is to go to the boot menu and select your USB drive from there. If you have done everything till now successfully, then you will see the screen with Ventoy logo at top with your `.iso` file in the list.

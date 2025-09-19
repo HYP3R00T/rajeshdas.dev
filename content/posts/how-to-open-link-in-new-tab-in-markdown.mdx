@@ -1,0 +1,77 @@
+---
+author: Rajesh
+pubDatetime: 2024-03-30 #2024-03-25
+title: How to open link in new tab in markdown?
+featured: false
+draft: false
+tags:
+  - astro
+  - markdown
+description: "Use rehype-external-links to open links in new tab"
+category: Technology
+cover: "./images/open_in_new_tab.png"
+coverAlt: Default image
+---
+
+Markdown is a great lightweight markup language. The Markdown can be used for everything. People use it to create websites, documents, notes, books, presentations, email messages, and technical documentation.
+
+To create a link in Markdown, enclose the link text in brackets and follow it immediately with the URL in parentheses.
+
+```md
+[example.com](https://example.com/)
+```
+
+The above will give us this -> <a href="https://example.com/" target="_self">example.com</a>
+
+But if you click on the link, you will notice that it opens the link in the same tab as this article. It’s great if I want to refer to other articles within this website, but when I am referring to another website, I want it to open the link in another tab.
+
+I want this -> [example.com](https://example.com/)
+
+So, there are a couple of solutions to achieve this.
+
+### Solution 1: Using anchor tags
+
+```html
+<a href="https://example.com/" target="_self">example.com</a>
+```
+
+The only downside is that your markdown document is no longer purely Markdown as it contains HTML.
+
+### Solution 2: Using a base element
+
+```html
+<base target="_blank" />
+```
+
+You can place this at the top of the markdown page. This will add `target=“_blank”` to every link on your page.
+
+### Solution 3: Using `rehype-external-links`
+
+Install the `rehype-external-links` plugin.
+
+```shell
+npm install rehype-external-links
+```
+
+Import the plugin into your `astro.config.mjs` file.
+
+```js
+// ...
+import rehypeExternalLinks from "rehype-external-links";
+
+export default defineConfig({
+  // ...
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+        },
+      ],
+    ],
+  },
+});
+```
+
+This will add `target="_blank"` to all links that are linked to external sources.

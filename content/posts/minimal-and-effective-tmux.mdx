@@ -1,0 +1,297 @@
+---
+author: Rajesh
+pubDatetime: 2024-08-25
+title: Minimal and Effective Tmux
+featured: false
+draft: false
+category: Technology
+tags:
+  - tmux
+  - linux
+description: "Improve your experience of tmux with .tmux.conf and some simple bash function"
+cover: "./images/setup.png"
+coverAlt: Default image
+---
+
+## Configuring Tmux and Using `.tmux.conf`
+
+**Tmux** is a terminal multiplexer that allows you to manage multiple terminal sessions from a single window. You can create, navigate, split, and close panes and windows easily. Configuring Tmux with a `.tmux.conf` file enhances its usability by customizing key bindings, appearance, and behavior.
+
+### Installing Tmux
+
+To install Tmux, use the following command:
+
+- On Ubuntu/Debian:
+
+  ```bash
+  sudo apt-get install tmux
+  ```
+
+- On macOS (using Homebrew):
+
+  ```bash
+  brew install tmux
+  ```
+
+### Creating and Editing `.tmux.conf`
+
+The `.tmux.conf` file is where you configure Tmux. This file should be located in your home directory:
+
+```bash
+nano ~/.tmux.conf
+```
+
+You can add custom settings, key bindings, and design tweaks to this file. Once you've made changes, reload the configuration using the command:
+
+```bash
+tmux source-file ~/.tmux.conf
+```
+
+### Basic Configuration Example
+
+Here’s a minimal `.tmux.conf` file:
+
+```bash
+# Set the prefix key to Ctrl + a
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+# Enable mouse support
+set -g mouse on
+
+# Split panes vertically and horizontally using | and -
+bind | split-window -h
+bind - split-window -v
+
+# Switch panes with Alt + arrow keys
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+```
+
+### Starting and Using Tmux
+
+To start Tmux, simply type:
+
+```bash
+tmux
+```
+
+Once inside a Tmux session, you can split panes, create new windows, and navigate between them using your configured key bindings.
+
+### Explanation of the Given `.tmux.conf`
+
+This configuration file provides several customizations. Let’s break it down:
+
+1. **Remap Prefix Key:**
+
+   ```bash
+   unbind C-b
+   set-option -g prefix C-a
+   bind-key C-a send-prefix
+   ```
+
+   - The default prefix key in Tmux is `Ctrl + b`. This remaps it to `Ctrl + a`, making it easier to access.
+
+2. **Split Panes:**
+
+   ```bash
+   unbind '"'
+   bind | split-window -h -c "#{pane_current_path}"
+   unbind %
+   bind - split-window -v -c "#{pane_current_path}"
+   ```
+
+   - The key bindings are remapped so that `|` splits the pane horizontally and `-` splits it vertically. The `-c "#{pane_current_path}"` ensures that the new pane starts in the same directory as the current one.
+
+3. **Mouse Control:**
+
+   ```bash
+   set -g mouse on
+   ```
+
+   - This enables mouse support, allowing you to click and drag to resize panes or switch windows.
+
+4. **Reload Configuration:**
+
+   ```bash
+   bind r source-file ~/.tmux.conf
+   ```
+
+   - Press `Prefix + r` to reload the `.tmux.conf` file without restarting Tmux.
+
+5. **Switch Panes with Alt + Arrow Keys:**
+
+   ```bash
+   bind -n M-Left select-pane -L
+   bind -n M-Right select-pane -R
+   bind -n M-Up select-pane -U
+   bind -n M-Down select-pane -D
+   ```
+
+   - These bindings allow you to move between panes using the Alt key combined with arrow keys, without needing the prefix key.
+
+6. **Move Between Windows with Ctrl + Alt + Arrow Keys:**
+
+   ```bash
+   bind -n C-M-Left previous-window
+   bind -n C-M-Right next-window
+   ```
+
+   - You can switch between windows using `Ctrl + Alt + Left/Right Arrow`.
+
+7. **Window Management:**
+
+   ```bash
+   set-option -g allow-rename off
+   bind c new-window -c "#{pane_current_path}"
+   ```
+
+   - The configuration disables automatic window renaming and allows you to create new windows in the current pane's directory.
+
+8. **Design Tweaks:**
+   - **Bell Configuration:**
+
+     ```bash
+     set -g visual-activity off
+     set -g bell-action none
+     ```
+
+     - Disables visual or auditory notifications when a "bell" event occurs.
+   - **Clock Mode:**
+
+     ```bash
+     setw -g clock-mode-colour colour1
+     ```
+
+     - Sets the clock mode color to a specific value (`colour1`).
+   - **Pane Borders and Status Bar:**
+
+     ```bash
+     set -g pane-border-style 'fg=colour0'
+     set -g pane-active-border-style 'fg=colour12'
+     set -g status-position bottom
+     set -g status-style 'fg=colour12'
+     setw -g window-status-current-style 'fg=colour12 bold'
+     ```
+
+     - These settings customize the appearance of pane borders, the status bar, and window status. For example, the active pane border color is set to `colour12`.
+
+## Streamlining Tmux Sessions
+
+Managing multiple Tmux sessions and windows can be cumbersome, especially if you frequently switch between directories. By adding a custom function to your `.zshrc` file, you can simplify this process and enhance your workflow. In this post, we'll show you how to create a powerful Tmux session manager using Zsh.
+
+### Introduction
+
+Tmux is a versatile terminal multiplexer that allows you to manage multiple terminal sessions within a single window. However, if you often find yourself creating and switching between Tmux sessions and windows, a bit of automation can go a long way. This is where customizing your `.zshrc` file with a function for handling Tmux sessions can be incredibly useful.
+
+### The Script
+
+Here's a Zsh function that automates the process of creating or attaching to a Tmux session. This script checks if a Tmux session already exists; if it does, it will either switch to an existing window or create a new one based on your current directory. If no session exists, it creates a new one.
+
+```zsh
+# A better way to handle tmux sessions
+function tnew() {
+    local parent_name="$(basename "$(dirname "$(pwd)")" | tr -d "[:space:]-")"
+    local current_name="$(basename "$(pwd)" | tr -d "[:space:]-")"
+    local session_name="Hyperspace"
+    local window_name="${current_name}"
+
+    # Check if any tmux session exists
+    if tmux list-sessions 2>/dev/null | grep -q "^"; then
+        # Check if a window for the current directory already exists
+        if tmux list-windows -t "$(tmux display-message -p '#S')" | grep -q "${window_name}"; then
+            # If the window exists, switch to it
+            tmux select-window -t "$window_name"
+        else
+            # If the window doesn't exist, create a new one
+            tmux new-window -n "$window_name" -c "$(pwd)"
+            tmux select-window -t "$window_name"
+        fi
+        tmux attach-session -t "$(tmux display-message -p '#S')"
+    else
+        # No existing session, create a new one and attach to it
+        tmux new-session -s "$session_name" -n "$window_name" -c "$(pwd)"
+    fi
+}
+
+# Aliases
+alias tm='tnew'
+```
+
+### How It Works
+
+1. **Function Definition:**
+
+   ```zsh
+   function tnew() {
+       # Code here
+   }
+   ```
+
+   - The `tnew` function is defined to manage Tmux sessions.
+
+2. **Session and Window Naming:**
+
+   ```zsh
+   local parent_name="$(basename "$(dirname "$(pwd)")" | tr -d "[:space:]-")"
+   local current_name="$(basename "$(pwd)" | tr -d "[:space:]-")"
+   local session_name="Hyperspace"
+   local window_name="${current_name}"
+   ```
+
+   - `parent_name` and `current_name` are derived from the current working directory. The function uses these names to keep your Tmux sessions and windows organized.
+
+3. **Session Handling:**
+
+   ```zsh
+   if tmux list-sessions 2>/dev/null | grep -q "^"; then
+       # Existing session handling
+   else
+       # No session, create a new one
+   fi
+   ```
+
+   - If Tmux sessions exist, the script checks for a window corresponding to the current directory. It switches to the window if it exists or creates a new one if it doesn’t. If no session is found, a new session is created and attached.
+
+4. **Alias Definition:**
+
+   ```zsh
+   alias tm='tnew'
+   ```
+
+   - The `tm` alias is created to call the `tnew` function easily. Instead of typing out the entire function name, you can simply use `tm` to manage your Tmux sessions.
+
+### Setting Up
+
+1. **Add the Function to `.zshrc`:**
+   - Open your `.zshrc` file:
+
+     ```zsh
+     nano ~/.zshrc
+     ```
+
+   - Add the `tnew` function and alias to the file.
+
+2. **Apply Changes:**
+   - After editing `.zshrc`, reload it to apply the changes:
+
+     ```zsh
+     source ~/.zshrc
+     ```
+
+3. **Use the Alias:**
+   - In your terminal, type `tm` to create or attach to a Tmux session based on your current directory.
+
+### Conclusion
+
+By integrating this script into your `.zshrc` file, you can greatly simplify the process of managing Tmux sessions and windows. It provides a seamless way to handle your terminal environments, allowing you to focus more on your work and less on session management. Give it a try and see how it enhances your productivity!
+
+---
+
+## References
+
+https://github.com/tmux/tmux/wiki
+https://github.com/HYP3R00T/.dotfiles/blob/main/configurations/.tmux.conf

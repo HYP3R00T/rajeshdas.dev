@@ -1,0 +1,642 @@
+---
+author: Rajesh
+pubDatetime: 2025-05-21
+title: Minimal Arch Linux Installation
+featured: true
+draft: false
+tags:
+  - linux
+description: A step-by-step guide to my personal Arch Linux installation process using LUKS encryption, Logical Volume Management (LVM), and systemd-boot. This guide also includes WiFi setup using iwd and aims for a minimal, secure, and functional base system.
+category: Technology
+cover: "./images/arch_linux.png"
+coverAlt: Neofetch output of Arch Linux
+---
+
+
+> Everything one needs to know to install Arch Linux in their machine successfully is given in the official guide.
+>
+> [Installation guide](https://wiki.archlinux.org/title/Installation_guide)
+
+## Initial Setup
+
+Boot into the Live Arch Linux environment. The very first thing is to connect to a network. If wired connection is available, then skip the next step.
+
+
+### Connect to WiFi
+
+```bash
+# Check the status
+ip link
+
+# Start the `iwctl` session
+iwctl
+```
+
+Do the following within the `iwctl` console.
+
+```shell
+# List all the sessions
+station list
+
+# scan the interface
+station wlan0 scan
+
+# check the interface status
+station wlan0 show
+
+# list all available networks
+station wlan0 get-networks
+
+# connect to the network
+station wlan0 connect <network_name>
+
+# check the interface status to confirm if connected
+station wlan0 show
+```
+
+### Create temporary root password
+
+Create a temporary password so that it can be accessed from another workstation using SSH.
+
+```bash
+passwd
+```
+
+> The following steps can be done through a workstation using SSH
+> `ssh root@192.168.x.x`
+
+## Partitioning the Disk
+
+Before we partition the disk, we need to figure out the name of the targeted disk.
+
+```bash
+lsblk
+```
+
+For SSD, these are normally formatted as `nvme0nX`.
+
+### Partition the Disk
+
+Our target is to create two partitions. One will be the `/boot` partition and the rest will be used as LVM.
+
+"https://wiki.archlinux.org/title/Fdisk
+
+```bash
+fdisk /dev/the_disk_to_be_partitioned
+
+# example
+fdisk /dev/nvme0n1
+```
+
+It will open it's own interface where we can create new partitions.
+
+```text
+Welcome to fdisk (util-linux 2.40.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help):
+```
+
+### Delete older partitions, if any
+
+Within `fdisk` instance, use `d` to delete all the partitions of a disk. To apply the changes use `w`.
+
+### Create new partitions
+
+Again, within `fdisk` instance, use `n` to create new partition. It will ask for the following
+
+- partition number
+- first sector
+- last sector
+
+```text
+# for boot partition
+Command (m for help): n
+Partition number (1-128, default 1):
+First sector (34-1000215182, default 2048):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-1000215182, default 1000214527): +1G
+
+Created a new partition 1 of type 'Linux filesystem' and of size 1 GiB.
+
+# for LVM
+Command (m for help): n
+Partition number (2-128, default 2):
+First sector (2099200-1000215182, default 2099200):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2099200-1000215182, default 1000214527):
+
+Created a new partition 2 of type 'Linux filesystem' and of size 475.9 GiB.
+```
+
+### Change partition type
+
+Use `t` to set the partition. Use `L` within that to list all partition type.
+
+- For boot partition use `EFI System` (Normally it's 1)
+- For LVM partition use `Linux LVM`
+
+Once all the partitions are created, verify it before applying these changes using `p`. Save changes using `w`.
+
+```text
+Command (m for help): p
+Disk /dev/nvme0n1: 476.94 GiB, 512110190592 bytes, 1000215216 sectors
+Disk model: INTEL SSDPEKNU512GZ
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 9E41E094-1BA2-4A15-B416-24677046D121
+
+Device           Start        End   Sectors   Size Type
+/dev/nvme0n1p1    2048    2099199   2097152     1G EFI System
+/dev/nvme0n1p2 2099200 1000214527 998115328 475.9G Linux LVM
+
+Filesystem/RAID signature on partition 1 will be wiped.
+Filesystem/RAID signature on partition 2 will be wiped.
+```
+
+List the blocks
+
+```bash
+root@archiso ~ # lsblk
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0         7:0    0 836.7M  1 loop /run/archiso/airootfs
+sda           8:0    1  57.3G  0 disk
+├─sda1        8:1    1  57.3G  0 part
+│ └─ventoy  254:0    0   1.2G  1 dm
+└─sda2        8:2    1    32M  0 part
+nvme0n1     259:0    0 476.9G  0 disk
+├─nvme0n1p1 259:3    0     1G  0 part
+└─nvme0n1p2 259:4    0 475.9G  0 part
+```
+
+"https://www.man7.org/linux/man-pages/man8/lsblk.8.html
+
+
+The next step, normally, is to format the partition. But it's highly recommended to encrypt the partitions first. But we can't encrypt the boot partition, otherwise the Arch Linux won't boot up. This is why we create two separate partitions. We can encrypt our LVM partition.
+
+## Encrypt the Partition
+
+"https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system
+
+
+There are different scenarios of encrypting partitions. For our use case, we will stick with LVM on LUKS (Linux Unified Key Setup).
+
+```text
+cryptsetup luksFormat <partition>
+
+# example
+cryptsetup luksFormat /dev/nvme0n1p2
+
+WARNING!
+========
+This will overwrite data on /dev/nvme0n1p2 irrevocably.
+
+Are you sure? (Type 'yes' in capital letters): YES
+Enter passphrase for /dev/nvme0n1p2:
+Verify passphrase:
+cryptsetup luksFormat /dev/nvme0n1p2  25.53s user 0.31s system 143% cpu 18.009 total
+```
+
+Open the container, and prepare the logical volumes.
+
+```bash
+# Open the container
+cryptsetup open /dev/nvme0n1p2 cryptlvm
+
+#Create a physical volume on top of the opened LUKS container
+pvcreate /dev/mapper/cryptlvm
+```
+
+```text
+# The decrypted container is now available at `/dev/mapper/cryptlvm`
+lsblk
+NAME         MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0          7:0    0 836.7M  1 loop  /run/archiso/airootfs
+sda            8:0    1  57.3G  0 disk
+├─sda1         8:1    1  57.3G  0 part
+│ └─ventoy   254:0    0   1.2G  1 dm
+└─sda2         8:2    1    32M  0 part
+nvme0n1      259:0    0 476.9G  0 disk
+├─nvme0n1p1  259:5    0     1G  0 part
+└─nvme0n1p2  259:6    0 475.9G  0 part
+  └─cryptlvm 254:1    0 475.9G  0 crypt
+```
+
+Create logical volume groups and logical volumes.
+
+```bash
+# Create a volume group
+vgcreate quasar /dev/mapper/cryptlvm
+
+# Rename volumne group (if needed)
+vgrename /dev/quasar1 quasar
+
+# Check free space in volume group
+vgdisplay
+
+# Create all your logical volumes
+lvcreate -L 16G quasar -n swap
+lvcreate -L 32G quasar -n root
+lvcreate -L 200G quasar -n home
+lvcreate -L 200G quasar -n data
+```
+
+```text
+lsblk
+NAME              MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0               7:0    0 836.7M  1 loop  /run/archiso/airootfs
+sda                 8:0    1  57.3G  0 disk
+├─sda1              8:1    1  57.3G  0 part
+│ └─ventoy        254:0    0   1.2G  1 dm
+└─sda2              8:2    1    32M  0 part
+nvme0n1           259:0    0 476.9G  0 disk
+├─nvme0n1p1       259:5    0     1G  0 part
+└─nvme0n1p2       259:6    0 475.9G  0 part
+  └─cryptlvm      254:1    0 475.9G  0 crypt
+    ├─quasar-swap 254:2    0    16G  0 lvm
+    ├─quasar-root 254:3    0    32G  0 lvm
+    ├─quasar-home 254:4    0   200G  0 lvm
+    └─quasar-data 254:5    0   200G  0 lvm
+```
+
+## Format the Partitions and Logical Volumes
+
+```bash
+# format boot partition
+mkfs.fat -F32 /dev/nvme0n1p1
+
+# format file system on each logical volume
+mkfs.ext4 /dev/quasar/root
+mkfs.ext4 /dev/quasar/home
+mkfs.ext4 /dev/quasar/data
+mkswap /dev/quasar/swap
+```
+
+Verify the format of each volume
+
+```text
+lsblk -f
+NAME              FSTYPE      FSVER            LABEL       UUID                                   FSAVAIL FSUSE% MOUNTPOINTS
+loop0             squashfs    4.0                                                                       0   100% /run/archiso/airootfs
+sda
+├─sda1            exfat       1.0              Ventoy      4E21-0000
+│ └─ventoy        iso9660     Joliet Extension ARCH_202503 2025-03-01-17-40-22-00
+└─sda2            vfat        FAT16            VTOYEFI     223C-F3F8
+nvme0n1
+├─nvme0n1p1       vfat        FAT32                        BBC7-2267
+└─nvme0n1p2       crypto_LUKS 2                            22833027-be4e-495d-b1e3-80b026c5a01e
+  └─cryptlvm      LVM2_member LVM2 001                     CFrGAZ-Rs72-x3lV-uqkP-lkXh-eBJE-LnGDfy
+    ├─quasar-swap swap        1                            ad29c156-86f9-47c4-a768-993192855600
+    ├─quasar-root ext4        1.0                          80669c34-6213-4cc2-8ed1-13cd48373fb6
+    ├─quasar-home ext4        1.0                          f466bffe-cdd8-4bf0-ac63-71152ac53ebf
+    └─quasar-data ext4        1.0                          0c59092d-2d1c-4cf5-9004-f35457b5ec0c
+```
+
+```bash
+# prepare boot partition
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+mount --mkdir /dev/quasar/root /mnt
+mount --mkdir /dev/quasar/home /mnt/home
+mount --mkdir /dev/quasar/data /mnt/data
+
+# enable swap
+swapon /dev/quasar/swap
+```
+
+```text
+lsblk
+NAME              MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0               7:0    0 836.7M  1 loop  /run/archiso/airootfs
+sda                 8:0    1  57.3G  0 disk
+├─sda1              8:1    1  57.3G  0 part
+│ └─ventoy        254:0    0   1.2G  1 dm
+└─sda2              8:2    1    32M  0 part
+nvme0n1           259:0    0 476.9G  0 disk
+├─nvme0n1p1       259:5    0     1G  0 part  /mnt/boot
+└─nvme0n1p2       259:6    0 475.9G  0 part
+  └─cryptlvm      254:1    0 475.9G  0 crypt
+    ├─quasar-swap 254:2    0    16G  0 lvm   [SWAP]
+    ├─quasar-root 254:3    0    32G  0 lvm   /mnt
+    ├─quasar-home 254:4    0   200G  0 lvm   /mnt/home
+    └─quasar-data 254:5    0   200G  0 lvm   /mnt/data
+```
+
+## Install Essential Packages
+
+```bash
+pacstrap -K /mnt base linux linux-firmware
+```
+
+## Configure the System
+
+### Fstab
+
+"https://wiki.archlinux.org/title/Fstab
+
+Generate `fstab`
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+### Chroot
+
+"https://wiki.archlinux.org/title/Chroot
+
+Change root into the new system
+
+```bash
+arch-chroot /mnt
+```
+
+### Install necessary package
+
+Install the following while chrooted into the new system
+
+```bash
+# install CPU microcode
+pacman -Syu intel-ucode
+
+# install lvm2 (Very important)
+pacman -Syu lvm2
+
+# install text editor
+pacman -Syu vim
+pacman -Syu nano
+```
+
+### Time
+
+"https://wiki.archlinux.org/title/System_time
+
+```bash
+# set the time zone
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+
+# generate /etc/adjtime
+hwclock --systohc
+```
+
+### Localization
+
+```bash
+# edit /etc/locale.gen and uncomment `en_US.UTF-8 UTF-8`
+locale-gen
+cat /etc/locale.gen
+
+# create locale.conf and add `LANG=en_US.UTF-8`
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
+# create vconsole.confg and add `Nothing`
+echo "KEYMAP=us" > /etc/vconsole.conf
+```
+
+### Network configuration
+
+```bash
+# create the hostname file and add a name e.g. `quasar`
+vim /etc/hostname
+echo "quasar" > /etc/hostname
+```
+
+"https://wiki.archlinux.org/title/Network_configuration
+"https://wiki.archlinux.org/title/Systemd-networkd
+"https://wiki.archlinux.org/title/Systemd-resolved
+
+```bash
+# enable systemd-networkd
+systemctl enable systemd-networkd.service
+
+# enable systemd-resolved
+systemctl enable systemd-resolved.service
+```
+
+First figure out the name of the wireless interface using `ip link`.
+
+Configure wireless adapter
+
+```shell
+vim /etc/systemd/network/25-wireless.network
+```
+
+Add the following to `25-wireless.network`. The name is the interface name for the desired WiFi adapter.
+
+```ini
+[Match]
+Name=wlan1
+
+[Link]
+RequiredForOnline=routable
+
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+```
+
+Use `iwd` to connect to the internet
+
+"https://wiki.archlinux.org/title/Iwd
+
+```shell
+# install iwd
+pacman -Syu iwd
+
+# enable iwd service
+systemctl enable iwd.service
+```
+
+### Initramfs
+
+"https://en.wikipedia.org/wiki/Initial_ramdisk
+"https://wiki.archlinux.org/title/Mkinitcpio
+
+For LVM, system encryption or RAID, modify `mkinitcpio.conf` and recreate the `initramfs` image
+
+"https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#Configuring_mkinitcpio
+
+Modify the `/etc/mkinitcpio.conf` and use the following hook.
+
+```ini
+HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-encrypt lvm2 filesystems fsck)
+```
+
+Regenerate `initramfs`
+
+```bash
+# Create a new initramfs
+mkinitcpio -P
+```
+
+### Root password
+
+```bash
+# Create new user
+useradd hyperoot
+
+# Add sudo privilages for new user
+usermod -aG wheel hyperoot
+
+# enable wheel by uncommenting the group
+pacman -Syu sudo vim
+visudo
+
+# Setup sudo password
+passwd
+
+# Setup new user password
+passwd hyperoot
+```
+
+## Configure the Boot Loader
+
+"https://wiki.archlinux.org/title/Arch_boot_process
+"https://wiki.archlinux.org/title/Systemd-boot
+"https://man.archlinux.org/man/bootctl.1
+
+When we change into the root directory, the mount doesn't carry over, even though we mounted the boot partition.
+
+```text
+lsblk
+NAME              MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0               7:0    0 836.7M  1 loop
+sda                 8:0    1  57.3G  0 disk
+├─sda1              8:1    1  57.3G  0 part
+│ └─ventoy        254:0    0   1.2G  1 dm
+└─sda2              8:2    1    32M  0 part
+nvme0n1           259:0    0 476.9G  0 disk
+├─nvme0n1p1       259:5    0     1G  0 part
+└─nvme0n1p2       259:6    0 475.9G  0 part
+  └─cryptlvm      254:1    0 475.9G  0 crypt
+    ├─quasar-swap 254:2    0    16G  0 lvm   [SWAP]
+    ├─quasar-root 254:3    0    32G  0 lvm   /
+    ├─quasar-home 254:4    0   200G  0 lvm   /home
+    └─quasar-data 254:5    0   200G  0 lvm   /data
+```
+
+To address this, we need to mount it once more.
+
+```bash
+mount /dev/nvme0n1p1 /boot
+```
+
+```text
+lsblk
+NAME              MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0               7:0    0 836.7M  1 loop
+sda                 8:0    1  57.3G  0 disk
+├─sda1              8:1    1  57.3G  0 part
+│ └─ventoy        254:0    0   1.2G  1 dm
+└─sda2              8:2    1    32M  0 part
+nvme0n1           259:0    0 476.9G  0 disk
+├─nvme0n1p1       259:5    0     1G  0 part  /boot
+└─nvme0n1p2       259:6    0 475.9G  0 part
+  └─cryptlvm      254:1    0 475.9G  0 crypt
+    ├─quasar-swap 254:2    0    16G  0 lvm   [SWAP]
+    ├─quasar-root 254:3    0    32G  0 lvm   /
+    ├─quasar-home 254:4    0   200G  0 lvm   /home
+    └─quasar-data 254:5    0   200G  0 lvm   /data
+```
+
+We need to install `systemd-boot`.
+
+```bash
+bootctl --esp-path=/boot install
+```
+
+```text
+bootctl install
+Created "/boot/EFI".
+Created "/boot/EFI/systemd".
+Created "/boot/EFI/BOOT".
+Created "/boot/loader".
+Created "/boot/loader/keys".
+Created "/boot/loader/entries".
+Created "/boot/EFI/Linux".
+Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/EFI/systemd/systemd-bootx64.efi".
+Copied "/usr/lib/systemd/boot/efi/systemd-bootx64.efi" to "/boot/EFI/BOOT/BOOTX64.EFI".
+⚠️ Mount point '/boot' which backs the random seed file is world accessible, which is a security hole! ⚠️
+⚠️ Random seed file '/boot/loader/.#bootctlrandom-seed6070994f7e4158c0' is world accessible, which is a security hole! ⚠️
+Random seed file /boot/loader/random-seed successfully written (32 bytes).
+```
+
+List the contents of `/boot`
+
+```text
+ls -l /boot
+drwxr-xr-x  5 root root      4096 Apr 20 14:22 EFI
+drwxr-xr-x  4 root root      4096 Apr 20 14:22 loader
+```
+
+### Install the linux kernel
+
+```bash
+pacman -Syu linux
+```
+
+### Generate the `initramfs`
+
+```bash
+mkinitcpio -P
+```
+
+Now there should a few more files in `/boot`.
+
+```text
+ls -l /boot
+drwxr-xr-x 5 root root      4096 Apr 20 14:22 EFI
+-rwxr-xr-x 1 root root 135858147 Apr 20 14:28 initramfs-linux-fallback.img
+-rwxr-xr-x 1 root root  66963429 Apr 20 14:28 initramfs-linux.img
+drwxr-xr-x 4 root root      4096 Apr 20 14:22 loader
+-rwxr-xr-x 1 root root  15368704 Apr 20 14:27 vmlinuz-linux
+```
+
+### Loader configure
+
+Each entry within `/boot/loader/entries` represents an option for the boot menu. If there is a dual boot, we will have two conf files.
+
+```shell
+vim /boot/loader/entries/arch.conf
+```
+
+```ini
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options cryptdevice=UUID=device-UUID:cryptlvm root=/dev/MyVolGroup/root
+```
+
+The `UUID` is the ID of the entire LVM partition.
+
+```shell
+blkid
+# look for the uuid for /dev/nvme0n1p2
+```
+
+```
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+
+options rd.luks.name=22833027-be4e-495d-b1e3-80b026c5a01e=quasar root=/dev/quasar/root rw
+```
+
+Modify the `/etc/loader/loader.conf`
+
+```shell
+vim /boot/loader/loader.conf
+```
+
+```ini
+timeout 3
+default arch.conf
+console-mode max
+editor no
+```
+
+Verify if the bootloader is properly configured.
+
+```bash
+bootctl --path=/boot status
+```
