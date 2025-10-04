@@ -45,6 +45,7 @@ const { transparent_header = false } = Astro.props;
         >
           <a
             href={item.href}
+            target={item.blank ? "_blank" : "_self"}
             class={`relative flex h-full w-full items-center justify-center overflow-hidden px-6 py-2 ${
               item.special
                 ? "bg-cyan text-background hover:bg-cyan/90 font-bold transition-colors duration-300"

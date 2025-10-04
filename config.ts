@@ -24,7 +24,8 @@ export const LOCALE = {
 export const navItems: NavItem[] = [
   //   { href: "/about", label: "About" },
   { href: "/post", label: "Posts" },
-  { href: "https://hyperoot.dev/", label: "Projects" },
+  { href: "https://hyperoot.dev/", label: "Projects", blank: true },
+  { href: "/resume.pdf", label: "Resume", blank: true },
   { href: "/contact", label: "Ping Me", special: true },
 ];
 

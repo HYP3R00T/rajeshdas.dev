@@ -87,4 +87,5 @@ export interface NavItem {
   href: string;
   label: string;
   special?: boolean;
+  blank?: boolean;
 }
