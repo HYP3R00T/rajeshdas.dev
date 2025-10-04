@@ -22,7 +22,8 @@ const {
 } = Astro.props as HeadSEOProps;
 
 const canonicalURL = new URL(Astro.url);
-const siteUrl = Astro.site ?? "http://127.0.0.1:4321";
+// Prefer configured site URL when Astro.site isn't available (e.g., in dev)
+const siteUrl = Astro.site ?? SITE.website ?? "http://127.0.0.1:4321";
 
 // Generate a fully qualified OG image URL
 let ogImageUrl: string;

@@ -6,6 +6,8 @@ import AutoImport from "astro-auto-import";
 import rehypePrettyCode from "rehype-pretty-code";
 
 export default defineConfig({
+  // Define the production site URL so Astro.site is available during build
+  site: "https://rajeshdas.dev",
   prefetch: true,
   vite: {
     plugins: [tailwindcss()],
