@@ -157,7 +157,7 @@ pre[data-language]::before {
 }
 
 .prose a::before {
-  @apply bg-cyan absolute -bottom-[1px] left-0 h-[2px] w-full origin-right scale-x-0 transition-transform duration-300 ease-in-out;
+  @apply bg-cyan absolute -bottom-px left-0 h-0.5 w-full origin-right scale-x-0 transition-transform duration-300 ease-in-out;
   content: "";
 }
 
