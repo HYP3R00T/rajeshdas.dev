@@ -1,0 +1,92 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div class="overflow-hidden rounded-md">
+  <slot />
+</div>
+
+<div class="accordion-item">
+  <button
+    class="accordion-header bg-background hover:bg-muted text-text-default flex w-full cursor-pointer items-center justify-between border-none px-4 py-4 text-base font-medium transition-colors duration-200"
+    type="button"
+  >
+    <span class="accordion-title text-left">
+      <slot name="header" />
+    </span>
+    <span class="relative h-5 w-5 shrink-0">
+      <Icon
+        name="arrow-up"
+        class="icon-closed text-text-default absolute inset-0 h-5 w-5 opacity-100 transition-opacity duration-200"
+      />
+      <Icon
+        name="arrow-right-up"
+        class="icon-open text-text-default absolute inset-0 h-5 w-5 opacity-0 transition-opacity duration-200"
+      />
+    </span>
+  </button>
+  <div
+    class="accordion-content bg-card max-h-0 overflow-hidden transition-all duration-300"
+  >
+    <div class="accordion-body text-text-default px-4 py-4 leading-relaxed">
+      <slot name="content" />
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const accordionItems =
+      document.querySelectorAll<HTMLDivElement>(".accordion-item");
+
+    accordionItems.forEach((item) => {
+      // Prevent double-initialization on SPA navigations
+      if (item.dataset.initialized === "true") return;
+
+      const header = item.querySelector<HTMLButtonElement>(".accordion-header");
+      const content = item.querySelector<HTMLElement>(".accordion-content");
+      const openIcon = item.querySelector<SVGSVGElement>(".icon-open");
+      const closedIcon = item.querySelector<SVGSVGElement>(".icon-closed");
+
+      // Mark this item as initialized so we don't bind duplicate listeners
+      item.dataset.initialized = "true";
+
+      header?.addEventListener("click", () => {
+        // Close all other accordion items
+        accordionItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove("open");
+            const otherContent =
+              otherItem.querySelector<HTMLElement>(".accordion-content");
+            const otherOpenIcon =
+              otherItem.querySelector<SVGSVGElement>(".icon-open");
+            const otherClosedIcon =
+              otherItem.querySelector<SVGSVGElement>(".icon-closed");
+            if (otherContent) {
+              otherContent.style.maxHeight = "0px";
+            }
+            if (otherOpenIcon) otherOpenIcon.style.opacity = "0";
+            if (otherClosedIcon) otherClosedIcon.style.opacity = "1";
+          }
+        });
+
+        // Toggle current item
+        item.classList.toggle("open");
+
+        if (item.classList.contains("open")) {
+          if (content) {
+            content.style.maxHeight = `${content.scrollHeight}px`;
+          }
+          if (openIcon) openIcon.style.opacity = "1";
+          if (closedIcon) closedIcon.style.opacity = "0";
+        } else {
+          if (content) {
+            content.style.maxHeight = "0px";
+          }
+          if (openIcon) openIcon.style.opacity = "0";
+          if (closedIcon) closedIcon.style.opacity = "1";
+        }
+      });
+    });
+  });
+</script>

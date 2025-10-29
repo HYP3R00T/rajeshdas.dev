@@ -1,0 +1,58 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SkillCard from "@/components/home/SkillCard.astro";
+import { Skills } from "config";
+import Accordion from "@/components/ui/Accordion.astro";
+---
+
+<BaseLayout>
+  <div class="flex w-full flex-col gap-8 px-6 md:max-w-4xl lg:max-w-6xl">
+    <section class="w-full">
+      <div class="col flex w-full flex-col">
+        <Accordion>
+          <span slot="header">What is Astro?</span>
+          <span slot="content">
+            Astro is a modern static site builder that lets you build faster
+            websites with less client-side JavaScript. It supports multiple
+            frameworks and is perfect for content-driven sites.
+          </span>
+        </Accordion>
+
+        <Accordion>
+          <span slot="header">How does the accordion work?</span>
+          <span slot="content">
+            This accordion component uses vanilla JavaScript to manage state.
+            When you click a header, it opens that item and closes all others.
+            The animation is handled with CSS transitions.
+          </span>
+        </Accordion>
+
+        <Accordion>
+          <span slot="header">Can I customize the styling?</span>
+          <span slot="content">
+            Yes! The component uses CSS custom properties (variables) that
+            reference Tailwind CSS color tokens. You can easily modify the
+            styles in the component file.
+          </span>
+        </Accordion>
+
+        <Accordion>
+          <span slot="header">Is this accessible?</span>
+          <span slot="content">
+            The component uses semantic HTML with button elements for headers.
+            You can enhance it further by adding ARIA attributes like
+            aria-expanded and aria-controls for better screen reader support.
+          </span>
+        </Accordion>
+      </div>
+    </section>
+    <section class="w-full">
+      <div class="col flex w-full flex-col">
+        <h1 class="font-mono text-4xl">./skills --list --verbose</h1>
+        <div class="grid grid-cols-3 gap-4 py-8">
+          {Skills.map((skill) => <SkillCard skill={skill} />)}
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
