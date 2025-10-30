@@ -16,7 +16,11 @@
                 "DavidAnson.vscode-markdownlint",
                 "astro-build.astro-vscode",
                 "bradlc.vscode-tailwindcss",
-                "unifiedjs.vscode-mdx"
+                "unifiedjs.vscode-mdx",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "ms-python.debugpy",
+                "charliermarsh.ruff"
             ]
         }
     },

@@ -3,6 +3,8 @@ node = "lts"
 pnpm = "latest"
 python = "3.13"
 pre-commit = "latest"
+uv = "latest"
+ruff = "latest"
 
 [hooks]
 enter = "bash ./scripts/setup_project.sh"
