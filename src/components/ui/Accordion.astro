@@ -1,92 +1,155 @@
 ---
 import { Icon } from "astro-icon/components";
+
+interface Props {
+  emphasized?: boolean;
+  icon?: string;
+  iconAlt?: string;
+}
+
+const { emphasized = false, icon, iconAlt = "" } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-md">
-  <slot />
-</div>
-
 <div class="accordion-item">
-  <button
-    class="accordion-header bg-background hover:bg-muted text-text-default flex w-full cursor-pointer items-center justify-between border-none px-4 py-4 text-base font-medium transition-colors duration-200"
-    type="button"
-  >
-    <span class="accordion-title text-left">
-      <slot name="header" />
-    </span>
-    <span class="relative h-5 w-5 shrink-0">
-      <Icon
-        name="arrow-up"
-        class="icon-closed text-text-default absolute inset-0 h-5 w-5 opacity-100 transition-opacity duration-200"
-      />
-      <Icon
-        name="arrow-right-up"
-        class="icon-open text-text-default absolute inset-0 h-5 w-5 opacity-0 transition-opacity duration-200"
-      />
-    </span>
-  </button>
   <div
-    class="accordion-content bg-card max-h-0 overflow-hidden transition-all duration-300"
+    class="hover:bg-muted text-text-default group bg-background flex h-full w-full cursor-pointer items-center justify-between gap-4 border-none px-6 py-2 text-base font-medium transition-colors duration-200"
+    data-accordion-header
   >
-    <div class="accordion-body text-text-default px-4 py-4 leading-relaxed">
+    <div class="flex h-full w-full flex-row items-center justify-between gap-4">
+      <span class="flex shrink-0 flex-row items-center gap-4">
+        {
+          icon && (
+            <img
+              src={icon}
+              width="1.25rem"
+              height="1.25rem"
+              alt={iconAlt}
+              class="h-5 w-5"
+            />
+          )
+        }
+        <slot name="header" />
+      </span>
+      <svg
+        class="grow opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        height="2"
+        style="min-width: 20px;"
+      >
+        <line
+          x1="0"
+          y1="1"
+          x2="100%"
+          y2="1"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-dasharray="6 8"
+          class="text-text-default/20"></line>
+      </svg>
+      <div
+        class="p-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      >
+        <Icon
+          name="caret-down"
+          class="text-text-default accordion-icon h-[1.2rem] w-[1.2rem] transition-transform duration-200 ease-in-out"
+          aria-hidden="true"
+          data-accordion-icon
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="max-h-0 overflow-hidden transition-all duration-300"
+    data-accordion-content
+  >
+    <div
+      class:list={[
+        "text-text-default accordion-content-inner py-2 leading-relaxed opacity-0 transition-opacity duration-200 ease-in-out",
+        icon ? "pr-6 pl-15" : "px-6",
+      ]}
+    >
       <slot name="content" />
     </div>
   </div>
-</div>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const accordionItems =
-      document.querySelectorAll<HTMLDivElement>(".accordion-item");
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const accordionItems =
+        document.querySelectorAll<HTMLDivElement>(".accordion-item");
 
-    accordionItems.forEach((item) => {
-      // Prevent double-initialization on SPA navigations
-      if (item.dataset.initialized === "true") return;
+      accordionItems.forEach((item) => {
+        // Prevent double-initialization on SPA navigations
+        if (item.dataset.initialized === "true") return;
 
-      const header = item.querySelector<HTMLButtonElement>(".accordion-header");
-      const content = item.querySelector<HTMLElement>(".accordion-content");
-      const openIcon = item.querySelector<SVGSVGElement>(".icon-open");
-      const closedIcon = item.querySelector<SVGSVGElement>(".icon-closed");
+        const header = item.querySelector<HTMLElement>(
+          "[data-accordion-header]"
+        );
+        const content = item.querySelector<HTMLElement>(
+          "[data-accordion-content]"
+        );
+        const contentInner = item.querySelector<HTMLElement>(
+          ".accordion-content-inner"
+        );
+        const icon = item.querySelector<SVGSVGElement>("[data-accordion-icon]");
 
-      // Mark this item as initialized so we don't bind duplicate listeners
-      item.dataset.initialized = "true";
+        // Mark this item as initialized so we don't bind duplicate listeners
+        item.dataset.initialized = "true";
 
-      header?.addEventListener("click", () => {
-        // Close all other accordion items
-        accordionItems.forEach((otherItem) => {
-          if (otherItem !== item) {
-            otherItem.classList.remove("open");
-            const otherContent =
-              otherItem.querySelector<HTMLElement>(".accordion-content");
-            const otherOpenIcon =
-              otherItem.querySelector<SVGSVGElement>(".icon-open");
-            const otherClosedIcon =
-              otherItem.querySelector<SVGSVGElement>(".icon-closed");
-            if (otherContent) {
-              otherContent.style.maxHeight = "0px";
+        header?.addEventListener("click", () => {
+          // Close all other accordion items
+          accordionItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              otherItem.classList.remove("open");
+              const otherContent = otherItem.querySelector<HTMLElement>(
+                "[data-accordion-content]"
+              );
+              const otherContentInner = otherItem.querySelector<HTMLElement>(
+                ".accordion-content-inner"
+              );
+              const otherIcon = otherItem.querySelector<SVGSVGElement>(
+                "[data-accordion-icon]"
+              );
+
+              if (otherContent) {
+                otherContent.style.maxHeight = "0px";
+              }
+              if (otherContentInner) {
+                otherContentInner.style.opacity = "0";
+              }
+              if (otherIcon) {
+                otherIcon.style.transform = "rotate(0deg)";
+              }
             }
-            if (otherOpenIcon) otherOpenIcon.style.opacity = "0";
-            if (otherClosedIcon) otherClosedIcon.style.opacity = "1";
+          });
+
+          // Toggle current item
+          item.classList.toggle("open");
+
+          if (item.classList.contains("open")) {
+            if (content) {
+              content.style.maxHeight = `${content.scrollHeight}px`;
+            }
+            if (contentInner) {
+              // Delay fade-in to start after expand animation begins
+              setTimeout(() => {
+                contentInner.style.opacity = "1";
+              }, 100);
+            }
+            if (icon) {
+              icon.style.transform = "rotate(180deg)";
+            }
+          } else {
+            if (content) {
+              content.style.maxHeight = "0px";
+            }
+            if (contentInner) {
+              contentInner.style.opacity = "0";
+            }
+            if (icon) {
+              icon.style.transform = "rotate(0deg)";
+            }
           }
         });
-
-        // Toggle current item
-        item.classList.toggle("open");
-
-        if (item.classList.contains("open")) {
-          if (content) {
-            content.style.maxHeight = `${content.scrollHeight}px`;
-          }
-          if (openIcon) openIcon.style.opacity = "1";
-          if (closedIcon) closedIcon.style.opacity = "0";
-        } else {
-          if (content) {
-            content.style.maxHeight = "0px";
-          }
-          if (openIcon) openIcon.style.opacity = "0";
-          if (closedIcon) closedIcon.style.opacity = "1";
-        }
       });
     });
-  });
-</script>
+  </script>
+</div>

@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "emphasized": true,
+        "title": "IBM Cloud Essentials Certification",
+        "icon": "/favicon.svg",
+        "date": "2024-06-20",
+        "credlyUrl": "https://credly.com/your-cert",
+        "pdfUrl": "/certs/ibm-cloud.pdf"
+    },
+    {
+        "id": 2,
+        "emphasized": false,
+        "title": "AWS Solutions Architect",
+        "icon": "/favicon.svg",
+        "date": "2023-11-15",
+        "credlyUrl": "https://credly.com/your-cert-2",
+        "pdfUrl": "/certs/aws-sa.pdf"
+    },
+    {
+        "id": 3,
+        "emphasized": true,
+        "title": "Kubernetes Administrator (CKA)",
+        "icon": "/favicon.svg",
+        "date": "2024-03-10",
+        "credlyUrl": "https://credly.com/your-cert-3",
+        "pdfUrl": "/certs/cka.pdf"
+    }
+]
