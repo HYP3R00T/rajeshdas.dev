@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "GitHub Activity Events (flat array)",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "required": [
+            "id",
+            "type",
+            "at",
+            "actor",
+            "project_id",
+            "title",
+            "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Deterministic unique id (e.g. `${type}-${at}`)"
+            },
+            "type": {
+                "type": "string",
+                "enum": [
+                    "pull_opened",
+                    "pull_merged",
+                    "pull_closed",
+                    "issue_opened",
+                    "issue_closed",
+                    "issue_reopened",
+                    "commit",
+                    "release_published",
+                    "workflow_run",
+                    "repo_created",
+                    "repo_archived"
+                ]
+            },
+            "at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "ISO 8601 UTC timestamp used for sorting."
+            },
+            "actor": {
+                "type": "string",
+                "minLength": 1
+            },
+            "project_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_.-]+\\/[A-Za-z0-9_.-]+$",
+                "description": "Repository slug 'owner/repo'."
+            },
+            "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+            },
+            "url": {
+                "anyOf": [
+                    {
+                        "type": "string",
+                        "format": "uri",
+                        "minLength": 1
+                    },
+                    {
+                        "type": "null"
+                    },
+                    {
+                        "type": "string",
+                        "maxLength": 0
+                    }
+                ],
+                "description": "Canonical GitHub URL for the event, or null/empty if not available."
+            }
+        }
+    }
+}

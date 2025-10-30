@@ -1,0 +1,142 @@
+---
+import Accordion from "@/components/ui/Accordion.astro";
+import Button from "@/components/ui/Button.astro";
+import { Icon } from "astro-icon/components";
+import type { GitHubEvent, ProjectInfo } from "@/lib/types";
+import {
+  getEventInfo,
+  formatDate,
+  getProjectName,
+} from "@/lib/github-activity";
+import projectsData from "@/../project.json";
+
+interface Props {
+  event: GitHubEvent;
+  showProjectName?: boolean;
+}
+
+const { event, showProjectName = false } = Astro.props;
+
+const { actionPhrase, icon } = getEventInfo(event.type);
+const projectName = getProjectName(event.project_id);
+const formattedDate = formatDate(event.at);
+
+// Find project details from project.json
+const projectInfo: ProjectInfo | undefined = projectsData.projects.find(
+  (p: ProjectInfo) => p.id === event.project_id
+);
+
+// Get GitHub URL for the project
+const githubUrl = `https://github.com/${event.project_id}`;
+---
+
+<Accordion>
+  <div slot="header-left" class="flex items-center gap-3 overflow-x-scroll">
+    <span class="text-cyan whitespace-nowrap">{actionPhrase}</span>
+    <span
+      class="text-text-subtle overflow-hidden text-ellipsis whitespace-nowrap"
+      >{event.title}</span
+    >
+  </div>
+  <div slot="header-right" class="flex items-center gap-3">
+    {
+      showProjectName && (
+        <span class="text-text-default font-medium">{projectName}</span>
+      )
+    }
+    <span class="text-text-faint font-mono text-sm">
+      {formattedDate}
+    </span>
+  </div>
+  <div slot="content" class="space-y-4">
+    {
+      projectInfo && (
+        <div class="space-y-4">
+          {/* Header section with project name and action links */}
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0 flex-1">
+              <h3 class="text-text-default mb-2 text-lg font-semibold">
+                {projectInfo.title}
+              </h3>
+              <p class="text-text-subtle text-sm leading-relaxed">
+                {projectInfo.short_description}
+              </p>
+            </div>
+
+            {/* Action icons on the right */}
+            <div class="flex shrink-0 items-center gap-2">
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View on GitHub"
+              >
+                <Button variant="ghost" size="icon" class="h-9! w-9!">
+                  <Icon name="github" class="h-[1.2rem] w-[1.2rem]" />
+                </Button>
+              </a>
+              {projectInfo.demo_url && (
+                <a
+                  href={
+                    projectInfo.demo_url.startsWith("http")
+                      ? projectInfo.demo_url
+                      : `https://${projectInfo.demo_url}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="View Demo/Documentation"
+                >
+                  <Button variant="ghost" size="icon" class="h-9! w-9!">
+                    <Icon name="arrow-right-up" class="h-[1.2rem] w-[1.2rem]" />
+                  </Button>
+                </a>
+              )}
+              {event.url && (
+                <a
+                  href={event.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="View Event on GitHub"
+                >
+                  <Button variant="ghost" size="icon" class="h-9! w-9!">
+                    <Icon name="git-branch" class="h-[1.2rem] w-[1.2rem]" />
+                  </Button>
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Bottom section with tags and read more */}
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            {/* Tags on the left */}
+            {projectInfo.tags && projectInfo.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {projectInfo.tags.map((tag: string) => (
+                  <a
+                    href="#"
+                    class="bg-text-default/10 text-text-default hover:bg-text-default/20 rounded-full px-3 py-1 text-xs font-medium backdrop-blur-sm transition-colors"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {/* Read More on the right */}
+            <a href="#" class="ml-auto block">
+              <Button
+                variant="ghost"
+                class="text-cyan! bg-bg-subtle! before:bg-cyan/20 relative gap-1.5 overflow-hidden before:absolute before:inset-0 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:before:origin-left hover:before:scale-x-100"
+              >
+                <span class="relative z-10 flex items-center gap-1.5">
+                  Read more
+                  <Icon name="arrow-right-up" class="h-3.5 w-3.5" />
+                </span>
+              </Button>
+            </a>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</Accordion>

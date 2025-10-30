@@ -1,0 +1,2072 @@
+[
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-224362a",
+    "type": "commit",
+    "at": "2025-10-30T12:11:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(workspace): add pnpm workspace configuration",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/224362af8765ae574860ec020e090caaf10ca2b3"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c86e82c",
+    "type": "commit",
+    "at": "2025-10-30T11:55:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(workspace): remove unused built dependencies",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c86e82c5730c1a99538c6a38627ec5983a701e97"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-80e0b22",
+    "type": "commit",
+    "at": "2025-10-30T09:26:44Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(accordion): enhance accordion component with icons and content",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/80e0b22476efd8a84d66c4bc1c726a0851f03d1a"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-aebf8ef",
+    "type": "commit",
+    "at": "2025-10-30T09:26:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(icons): add SVG icons for caret and unfold actions",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/aebf8efdd2e1803b8724b7e024a0da3b7352c82b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-4573a0b",
+    "type": "commit",
+    "at": "2025-10-29T20:28:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(accordion): implement accordion component with functionality",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4573a0b494ec887b6bf23d94b50e9010c4ab434e"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f019615",
+    "type": "commit",
+    "at": "2025-10-29T20:28:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(dependencies): update package versions for improvements",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f019615c67e55e153365e0423b45a6e9771ea39e"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-fab69ed",
+    "type": "commit",
+    "at": "2025-10-29T20:27:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(prose): adjust link underline height for better visibility",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/fab69ed020c0c357ab60e51e72a34e6f9aeaeae6"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-8524231",
+    "type": "commit",
+    "at": "2025-10-29T20:27:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(header): update gradient class for logo background",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8524231695c7d187b1bef9d9cd43b1314b20056b"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-e7f700b",
+    "type": "commit",
+    "at": "2025-10-26T20:52:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat: add demo diagram",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/e7f700b8d2f0351c5461afeb215c0909d8009d1c"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-19d5e44",
+    "type": "commit",
+    "at": "2025-10-26T20:32:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "chore(mise.toml): remove commented-out run commands",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/19d5e44fedbe4494cde2644bfb6cf17802d4e39c"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-a3f5410",
+    "type": "commit",
+    "at": "2025-10-26T20:32:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "chore(devcontainer): rename project from awsbreaker to d2lab",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/a3f5410a575f6333ebc0aca6e9b96f312617b8c2"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-30618ca",
+    "type": "commit",
+    "at": "2025-10-26T20:32:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "docs: update output file names in README",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/30618caea575a762cae506bcc6596fbcc05e6886"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-9b38bee",
+    "type": "commit",
+    "at": "2025-10-19T18:36:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "fix: update remote reference keys in externalSecret.yaml for correct path resolution",
+    "url": "https://github.com/HYP3R00T/homelab/commit/9b38bee95db5699609b3ba584cbb57c1920965ef"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-11f3240",
+    "type": "commit",
+    "at": "2025-10-19T18:36:30Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: add external-secrets HelmRelease and HelmRepository configurations, update ClusterSecretStore and values for improved integration",
+    "url": "https://github.com/HYP3R00T/homelab/commit/11f3240a960ac8c31c36f3021a63fc34c99eb19c"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-60e3a3b",
+    "type": "commit",
+    "at": "2025-10-19T18:36:18Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: add cert-manager configuration with ClusterIssuers, Certificates, HelmRelease, and associated resources for improved certificate management",
+    "url": "https://github.com/HYP3R00T/homelab/commit/60e3a3b76a6358c0772ed40ae20193ac3e2f481c"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-da5c8d9",
+    "type": "commit",
+    "at": "2025-10-18T07:30:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "refactor: remove unused service nodePort configurations from Grafana, Prometheus, and Alertmanager",
+    "url": "https://github.com/HYP3R00T/homelab/commit/da5c8d90b1a8ec511f63a29a2fd9d34d8267bbdd"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-b364788",
+    "type": "commit",
+    "at": "2025-10-17T17:57:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "refactor: remove documentation as it is being hosted in a seprate repo",
+    "url": "https://github.com/HYP3R00T/homelab/commit/b36478812d47d28eeb284d2227e25a40c14b7dfd"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-df66a4e",
+    "type": "commit",
+    "at": "2025-10-17T17:44:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: add kube-prometheus-stack configuration with HelmRelease, HelmRepository, and associated resources for monitoring setup",
+    "url": "https://github.com/HYP3R00T/homelab/commit/df66a4ed16ba0974de404b59ea1148c192b3bd11"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-4dc03c0",
+    "type": "commit",
+    "at": "2025-10-17T17:38:11Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "refactor: update nginx configuration by modifying kustomization, ocirepository, and values files for improved structure and clarity",
+    "url": "https://github.com/HYP3R00T/homelab/commit/4dc03c0a64fa374d1dd1fb5a24e43a8cf64e360f"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-31e635b",
+    "type": "commit",
+    "at": "2025-10-17T17:11:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "fix: update nginx OCI repository semver to 22.0.11 and add comment in values.yaml",
+    "url": "https://github.com/HYP3R00T/homelab/commit/31e635b2b9108eecafe1aaf6b17c83b963ba7a51"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-7ba2812",
+    "type": "commit",
+    "at": "2025-10-13T16:04:02Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: add AI Fiesta service to the homepage configuration",
+    "url": "https://github.com/HYP3R00T/homelab/commit/7ba2812da744d03318925e15dca529d3f967d22f"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-21",
+    "type": "pull_merged",
+    "at": "2025-10-07T05:14:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/add ec2 security groups",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/21"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-b856ec6",
+    "type": "commit",
+    "at": "2025-10-07T05:14:51Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/add ec2 security groups (#21)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/b856ec6e6198d46a15acaddbda71b0b3eb4c332b"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-21",
+    "type": "pull_opened",
+    "at": "2025-10-07T05:12:57Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/add ec2 security groups",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/21"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-20",
+    "type": "pull_merged",
+    "at": "2025-10-07T04:27:15Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "docs: enhance documentation structure and add placeholders in pages",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/20"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-a3aba8d",
+    "type": "commit",
+    "at": "2025-10-07T04:27:14Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "docs: enhance documentation structure and add placeholders in pages (#20)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/a3aba8d445cf540608586c16e312c7549f27cc22"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-20",
+    "type": "pull_opened",
+    "at": "2025-10-07T04:25:32Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "docs: enhance documentation structure and add placeholders in pages",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/20"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-19",
+    "type": "pull_merged",
+    "at": "2025-10-07T03:49:24Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(docs): update guides and configuration for CostCutter",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/19"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-4fdbbd0",
+    "type": "commit",
+    "at": "2025-10-07T03:49:24Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(docs): update guides and configuration for CostCutter (#19)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/4fdbbd04860a07970050385768b917ac76874509"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-19",
+    "type": "pull_opened",
+    "at": "2025-10-07T03:48:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(docs): update guides and configuration for CostCutter",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/19"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-0d1f932",
+    "type": "commit",
+    "at": "2025-10-04T02:56:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(nav): add support for external links in navigation",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/0d1f93242f3d0603ab9f3007fa869206059959cf"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c406cb7",
+    "type": "commit",
+    "at": "2025-10-04T02:55:45Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(config): update site URL configuration comments",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c406cb7df0841cb9f0e31a3f3bda223454bbe3a4"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-434b417",
+    "type": "commit",
+    "at": "2025-10-03T00:03:57Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "fix: Update kubernetes icons link",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/434b41727b82dd3d1f6cd830fe1c25450a3079a0"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-e98e4d6",
+    "type": "commit",
+    "at": "2025-09-29T20:04:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: add PersistentVolumeClaim for vault data storage and include it in lab kustomization",
+    "url": "https://github.com/HYP3R00T/homelab/commit/e98e4d6b3b8eea6816038324de50d5301b721088"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-468a71c",
+    "type": "commit",
+    "at": "2025-09-29T19:37:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "refactor: update vault configurations by refining ClusterRole, upgrading HelmRelease version, and enhancing values.yaml for HA+Raft support",
+    "url": "https://github.com/HYP3R00T/homelab/commit/468a71c003096c6bf075622e9c8228d28526f75f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-8ca2d4c",
+    "type": "commit",
+    "at": "2025-09-19T19:23:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(resume): add endpoint to serve resume PDF",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8ca2d4cf67c14de33f9e86a412b5174859dfbdbd"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-1694ceb",
+    "type": "commit",
+    "at": "2025-09-19T18:15:02Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(header): enhance logo with gradient and accessibility",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1694ceb6379d2cef05191888b274f6fff1e37cea"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-77b0d0d",
+    "type": "commit",
+    "at": "2025-09-19T18:09:12Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "docs: Add new blog posts on Python package management, Linux installation, and VSCode settings organization",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/77b0d0de097695226ef1c91239ebd7a89c9a27a0"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-2886237",
+    "type": "commit",
+    "at": "2025-09-19T18:08:29Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(contact): add new pages for skills and contact",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/2886237c2c19d9d8b44b0d5a72fe6598e8e6e60d"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-a1ebf8e",
+    "type": "commit",
+    "at": "2025-09-19T17:59:24Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: add CNAME file for custom domain",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a1ebf8e00e4e1b9d59d7dd518ca1eda0674947b2"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e59662c",
+    "type": "commit",
+    "at": "2025-09-19T17:59:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(navItems): update project link to external URL",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e59662c237942a89bc50b32f26413e8b1430e4c4"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-ba0aa18",
+    "type": "commit",
+    "at": "2025-09-18T16:45:17Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Remove siteMonitor references from services.yaml",
+    "url": "https://github.com/HYP3R00T/homelab/commit/ba0aa189abf0b30a432503ed9213286dc9394208"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-5cec783",
+    "type": "commit",
+    "at": "2025-09-18T02:59:38Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Remove reference to externalSecret.yaml from Kustomization resources",
+    "url": "https://github.com/HYP3R00T/homelab/commit/5cec783dbfefdb93a0772a8f0f8195e3bd1a8a84"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-156c654",
+    "type": "commit",
+    "at": "2025-09-18T02:46:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Remove Flux configuration files for GitRepository and Kustomization in the lab cluster",
+    "url": "https://github.com/HYP3R00T/homelab/commit/156c654cf5f213cbc511adc964a8ac5d7da96787"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-a1dbd50",
+    "type": "commit",
+    "at": "2025-09-18T02:46:28Z",
+    "actor": "unknown",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Add Flux v2.6.4 component manifests",
+    "url": "https://github.com/HYP3R00T/homelab/commit/a1dbd508a0228dc1fcc3c2c8df1c092a19394a87"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-644e6b6",
+    "type": "commit",
+    "at": "2025-09-18T02:42:11Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: restructure homepage configuration by removing old ConfigMap and adding new resources",
+    "url": "https://github.com/HYP3R00T/homelab/commit/644e6b6b4d5a6b34306d28a12fef1d96f25f87f1"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-130ac44",
+    "type": "commit",
+    "at": "2025-09-17T22:01:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "docs: add icon set section to README",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/130ac447d2963293084eea709212b8dc66acd3b6"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-d166307",
+    "type": "commit",
+    "at": "2025-09-17T21:32:36Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "chore(scripts): change file permissions for d2_to_output.zsh",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/d16630783d7e2b05da4f72be0697e34b84d08371"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-fcd5742",
+    "type": "commit",
+    "at": "2025-09-17T21:32:23Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat(scripts): enhance setup script for D2 and Playwright",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/fcd5742c71dfe52845107827a9777b975800cbe0"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-21df807",
+    "type": "commit",
+    "at": "2025-09-17T13:44:23Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "docs: update README with project features and tech stack",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/21df8079168a41173497fda1c39f129da8f11bfb"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-bbae31a",
+    "type": "commit",
+    "at": "2025-09-17T13:38:16Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(Line): update width prop format for consistency",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/bbae31a572b1f7086a9adada4b4fe1c17457ffe6"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-65af147",
+    "type": "commit",
+    "at": "2025-09-17T13:38:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(PostCard): update imports and enhance type safety",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/65af14747a9684de6ca00e2a5cf882863d54a4c7"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-699e11b",
+    "type": "commit",
+    "at": "2025-09-17T13:37:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(types): enhance project and post card props",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/699e11b79d77a0f892a7ac5f37d6d97f60c5c200"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-fc55290",
+    "type": "commit",
+    "at": "2025-09-17T13:37:47Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(404): update 404 page layout and styling",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/fc55290c9fdae5eed01a379bf9c334e1f2b43fee"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-3bf7546",
+    "type": "commit",
+    "at": "2025-09-17T13:37:37Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Projects): add Projects component to homepage",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3bf754623e01233983265e3f6147f1d1bfec8d97"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-885242c",
+    "type": "commit",
+    "at": "2025-09-17T13:37:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Project): enhance project cards with links and layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/885242cd1b76d55a302f96ecc6c9e8426f60e8ef"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c521e56",
+    "type": "commit",
+    "at": "2025-09-17T13:36:47Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(Social): remove unnecessary class from anchor tag",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c521e5679afcde9c7ea174b20b205e53d08514eb"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-a80922b",
+    "type": "commit",
+    "at": "2025-09-17T13:36:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Header): add social media links to header",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a80922b924bcbb39b95cab9eeb01523ed72c587b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b1f049f",
+    "type": "commit",
+    "at": "2025-09-16T18:35:29Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(project): add project cards and detail pages",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b1f049f4fcbbed43223b60808e7da1f864c6d5b1"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-87ec6d7",
+    "type": "commit",
+    "at": "2025-09-16T18:35:16Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(PostCard): remove top margin for content spacing",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/87ec6d72473c78287fb2eb5f3f4c4f60acb210a2"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b5ea2fb",
+    "type": "commit",
+    "at": "2025-09-16T18:13:53Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(ProjectLayout): add new layout for project pages",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b5ea2fb3e647a25079dde7f142f3627cc609469d"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-39b4b5b",
+    "type": "commit",
+    "at": "2025-09-16T17:00:55Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(index): update text colors for better readability",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/39b4b5b0ccb102f450f196d83e9442fe4fa858eb"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c0e87f9",
+    "type": "commit",
+    "at": "2025-09-16T16:50:38Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(Social): disable resume link and clean up code",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c0e87f90eb22fd97e5c66684321417e632841ba0"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-d3be04c",
+    "type": "commit",
+    "at": "2025-09-16T16:41:54Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(index): enhance hero section with new layout and content",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/d3be04c60065441481b5d65cea4e33e4129676f4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f9705a2",
+    "type": "commit",
+    "at": "2025-09-16T16:24:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(config): add social links and skills section",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f9705a2f83439f64d8b6752dcf9270740f0fd168"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-013ce16",
+    "type": "commit",
+    "at": "2025-09-16T16:24:51Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(Header): remove unused navItems interface and data",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/013ce16f6691b537844043ac0cb930a124cea301"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e8f670e",
+    "type": "commit",
+    "at": "2025-09-16T16:24:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Social): add social media links with tooltips",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e8f670e152ec92e0f0d93072bd21d38b18383750"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e0f2707",
+    "type": "commit",
+    "at": "2025-09-16T16:24:28Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Tooltip): add tooltip component with hover functionality",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e0f2707ad9f28ecbbca6d0d6391a433018bc3751"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b63c687",
+    "type": "commit",
+    "at": "2025-09-16T16:24:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(Video): update player class for consistency",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b63c687a468ed2a6cd608325579181fa6d1b4ea4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b9a5fa0",
+    "type": "commit",
+    "at": "2025-09-16T16:22:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(index): restructure homepage layout and add components",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b9a5fa0f533e2c70913540fb360dda28399a35c8"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-d66ba29",
+    "type": "commit",
+    "at": "2025-09-16T16:22:47Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Articles): add articles listing and featured post display",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/d66ba294b245bd8b2b50029fd49047837bf00fe8"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-36bf7de",
+    "type": "commit",
+    "at": "2025-09-16T16:22:39Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Button): add outline variant and update accent color",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/36bf7dee7263a6f244e4ebb8bcb6e51df28ff729"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-57df351",
+    "type": "commit",
+    "at": "2025-09-16T16:22:30Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(types): add SocialObjects and NavItem interfaces",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/57df3518d6cc1e01d5c2f23226290d3427e3ebfc"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e945d51",
+    "type": "commit",
+    "at": "2025-09-16T16:22:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(box): add new small and extra small box styles",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e945d51e8f249dba5538e979a1f855cf5820891e"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-aa25b63",
+    "type": "commit",
+    "at": "2025-09-16T16:22:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(FeaturedCard): enhance props handling and class management",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/aa25b63b05d4b959c3b585641714fd5feb9c2eac"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-168d957",
+    "type": "commit",
+    "at": "2025-09-16T16:20:53Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(icons): add SVG assets for copy, git-branch, kubernetes, and linux",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/168d9576895708c4735d25e4fca251564b398f32"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-bcbabfd",
+    "type": "commit",
+    "at": "2025-09-13T23:52:24Z",
+    "actor": "unknown",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Add Flux sync manifests",
+    "url": "https://github.com/HYP3R00T/homelab/commit/bcbabfd09766cab753662fdfd73a81b13b719d4e"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-c822c26",
+    "type": "commit",
+    "at": "2025-09-13T23:52:14Z",
+    "actor": "unknown",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Add Flux v2.6.4 component manifests",
+    "url": "https://github.com/HYP3R00T/homelab/commit/c822c26293a4fc78f65faf24bd1018d3e66d381b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-5bf119c",
+    "type": "commit",
+    "at": "2025-09-11T23:41:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(Pagination): add padding to button elements",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/5bf119c644a4e7e70d58ae07e452e040296cb28f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-de14821",
+    "type": "commit",
+    "at": "2025-09-11T23:38:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(svg): add menu icon SVG asset",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/de14821b36cf6d0d6cb131a09c7c8fc0f9d978a6"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-96b4c9e",
+    "type": "commit",
+    "at": "2025-09-11T23:27:37Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(header): implement mobile navigation with toggle buttons",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/96b4c9e2b599433a52f161f8ec1c1ec2d419986d"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-20402c6",
+    "type": "commit",
+    "at": "2025-09-11T22:21:46Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(styles): rename featuredcard to box-tr-lg",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/20402c6100a23f0aa155e4e83bc698b18a52e3b4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-3778dc8",
+    "type": "commit",
+    "at": "2025-09-11T22:19:14Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(video): integrate Plyr for video playback support",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3778dc8535389bb3858c249e773f71aea571bc6d"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-faaaa70",
+    "type": "commit",
+    "at": "2025-09-11T21:40:24Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(plyr): integrate Plyr for video playback support",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/faaaa70880f19c4ba63aa5b33114ec413aba2358"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-544216b",
+    "type": "commit",
+    "at": "2025-09-11T21:39:49Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(dependencies): update plyr to version 3.8.3",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/544216bb988526a425c6ffcc1085bbd1be1b2f94"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-1b532ff",
+    "type": "commit",
+    "at": "2025-09-11T21:15:30Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(layout): improve layout structure and styling",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1b532ffca79393f7f522807c4e0e4a131072107c"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-60c1625",
+    "type": "commit",
+    "at": "2025-09-11T01:08:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(prose): enhance link styling with hover effects",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/60c16258f7c5891b524f9ee1e506ad28844929ff"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f148848",
+    "type": "commit",
+    "at": "2025-09-11T00:54:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(layout): remove unused Sidebar component and related code",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f1488480ef560fbb08c68284b842f13ff20a3923"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-96706f9",
+    "type": "commit",
+    "at": "2025-09-11T00:54:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(header): add transparent header support",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/96706f982e5a650c47b4d98261096a12d58124bf"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-ec9fa60",
+    "type": "commit",
+    "at": "2025-09-10T23:47:55Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(header): enhance navigation styling and layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/ec9fa60ac61706e708ce6a149c6f0d0ba8dacfa9"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-203be25",
+    "type": "commit",
+    "at": "2025-09-10T23:05:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(utils): add formatDate function for date formatting",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/203be2534b4b00625e2fd9ba7c6d8dfac107c775"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-5816062",
+    "type": "commit",
+    "at": "2025-09-10T23:05:25Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(post): add FeaturedCard component and update layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/5816062115f5313b958df14897c7d3818a53bd3f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-70839ce",
+    "type": "commit",
+    "at": "2025-09-10T22:17:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(layout): add FeaturedCard and PostLayout components",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/70839ceaa5fc1f12e850229038a12641754b1fa9"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-4f835fa",
+    "type": "commit",
+    "at": "2025-09-10T22:16:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(svg): add barcode SVG asset",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4f835fa7c61e8969bb00d2db4f6939f82c5dd12a"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b618880",
+    "type": "commit",
+    "at": "2025-09-10T21:14:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(postCard): enhance layout and styling of PostCard component",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b6188806f9d6e8d15ae3e80570979ef22a08707c"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-86f3c6e",
+    "type": "commit",
+    "at": "2025-09-10T21:14:28Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(header): improve layout and styling of navigation",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/86f3c6e52deb0dea1cb07bc89f7af2bbd8daff2f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e26d22b",
+    "type": "commit",
+    "at": "2025-09-10T21:14:02Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(dependencies): add fontsource-variable packages",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e26d22b93e2745d05e1838e9a582f50c08ecbc82"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-ef91dec",
+    "type": "commit",
+    "at": "2025-09-10T21:13:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(markdown): remove unused rehypePrettyCode options",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/ef91dec227ee195789bc7c16caac08ea15a643a2"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-8ef2d6c",
+    "type": "commit",
+    "at": "2025-09-09T22:40:17Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(markdown): add rehypePrettyCode for enhanced code styling",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8ef2d6cffbe7fc8595b56ef10c1984514e5cb7c7"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-bd4ce27",
+    "type": "commit",
+    "at": "2025-09-09T22:40:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(header): simplify navigation structure and improve layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/bd4ce27b4cacf1275c9ba003b353a38aafedafa9"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f13d879",
+    "type": "commit",
+    "at": "2025-09-05T21:00:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(layout): add sidebar component to base layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f13d879ebc32f37fbf55020eb3d0b095c427e553"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-3e84000",
+    "type": "commit",
+    "at": "2025-09-05T21:00:19Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(header): restructure navigation and improve layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3e8400055b12738e4b0ada1317fccb83f87a015f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-32662fe",
+    "type": "commit",
+    "at": "2025-09-03T14:59:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(utils): update post sorting function type",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/32662fe299b63b9c23c1a53e42acb893e4b8732f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-0e14354",
+    "type": "commit",
+    "at": "2025-09-03T14:58:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(tag): add dynamic tag page with post filtering",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/0e1435447c8a3b413825a29c778636e1c22b7c41"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f97313e",
+    "type": "commit",
+    "at": "2025-09-03T14:58:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update RSS feed generation to include proper types and improve site URL handling",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f97313e47f4d4e24af601fd0a01278ad788f181a"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-7386cd1",
+    "type": "commit",
+    "at": "2025-09-03T14:57:59Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(package): update sharp to version 0.34.3",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/7386cd16da3a25e748408a1eec8d7665d25cb7f4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-6b29926",
+    "type": "commit",
+    "at": "2025-09-03T14:17:19Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add header and pagination components, implement post card display, and create base layout",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/6b2992671d6ef705d8488a556b6ab22f1bd0e09e"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-d0164b7",
+    "type": "commit",
+    "at": "2025-08-31T21:55:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "fix: update homepage ConfigMap settings and layout structure",
+    "url": "https://github.com/HYP3R00T/homelab/commit/d0164b75c339c733bd81cbd1d875bf1dfdb564ed"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-dc5865e",
+    "type": "commit",
+    "at": "2025-08-31T21:55:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "feat: add valuesFrom section to HelmRelease for cnpg",
+    "url": "https://github.com/HYP3R00T/homelab/commit/dc5865e882bb41e97d7a818cdbc83119a7cec79a"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-18",
+    "type": "pull_merged",
+    "at": "2025-08-31T09:42:37Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/update ec2 add s3",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/18"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-bbc569c",
+    "type": "commit",
+    "at": "2025-08-31T09:42:36Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/update ec2 add s3 (#18)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/bbc569cb74eff308fa845b70c058be2ff08f9443"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-18",
+    "type": "pull_opened",
+    "at": "2025-08-30T15:21:23Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/update ec2 add s3",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/18"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-17",
+    "type": "pull_merged",
+    "at": "2025-08-30T10:58:25Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci(deploy): enhance path filtering for deployment",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/17"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-fa82ada",
+    "type": "commit",
+    "at": "2025-08-30T10:58:25Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci(deploy): enhance path filtering for deployment (#17)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/fa82adaa1ce3db3214d94bd190c65c2069571816"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-17",
+    "type": "pull_opened",
+    "at": "2025-08-30T10:54:54Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci(deploy): enhance path filtering for deployment",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/17"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-16",
+    "type": "pull_merged",
+    "at": "2025-08-30T10:42:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: simplify deployment workflow by removing PR checks",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/16"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-dc0cf10",
+    "type": "commit",
+    "at": "2025-08-30T10:42:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: simplify deployment workflow by removing PR checks (#16)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/dc0cf10865ac4499aa40aeba20693321263ba64f"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-16",
+    "type": "pull_opened",
+    "at": "2025-08-30T10:41:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: simplify deployment workflow by removing PR checks",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/16"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-15",
+    "type": "pull_merged",
+    "at": "2025-08-30T10:28:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/ec2",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/15"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-a94f878",
+    "type": "commit",
+    "at": "2025-08-30T10:28:51Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/ec2 (#15)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/a94f87853efa8e4cbb4647240d9cf5eb7fc70d11"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-15",
+    "type": "pull_opened",
+    "at": "2025-08-30T10:28:16Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/ec2",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/15"
+  },
+  {
+    "id": "issue_closed-HYP3R00T/CostCutter-12",
+    "type": "issue_closed",
+    "at": "2025-08-25T12:00:00Z",
+    "actor": "nonesubham",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Just a name suggestion",
+    "url": "https://github.com/HYP3R00T/CostCutter/issues/12"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-14",
+    "type": "pull_merged",
+    "at": "2025-08-25T11:38:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci: update deployment workflow for VitePress",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/14"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5608679",
+    "type": "commit",
+    "at": "2025-08-25T11:38:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci: update deployment workflow for VitePress (#14)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5608679da4257f4dc24068166f6bc2a836fb564c"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-14",
+    "type": "pull_opened",
+    "at": "2025-08-25T11:38:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci: update deployment workflow for VitePress",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/14"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-13",
+    "type": "pull_merged",
+    "at": "2025-08-25T11:33:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Ci/vitepress deployment",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/13"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f641d6d",
+    "type": "commit",
+    "at": "2025-08-25T11:33:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Ci/vitepress deployment (#13)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f641d6d8e63c0f75396163cf8f0f0af8dcea6088"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-13",
+    "type": "pull_opened",
+    "at": "2025-08-25T11:29:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Ci/vitepress deployment",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/13"
+  },
+  {
+    "id": "issue_opened-HYP3R00T/CostCutter-12",
+    "type": "issue_opened",
+    "at": "2025-08-24T14:09:15Z",
+    "actor": "nonesubham",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Just a name suggestion",
+    "url": "https://github.com/HYP3R00T/CostCutter/issues/12"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-11",
+    "type": "pull_merged",
+    "at": "2025-08-24T12:00:19Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/change folder name",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/11"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-ecc5d25",
+    "type": "commit",
+    "at": "2025-08-24T12:00:19Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/change folder name (#11)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/ecc5d2572e0445fafab9f5240154d5f639c68aa6"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-11",
+    "type": "pull_opened",
+    "at": "2025-08-24T11:57:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/change folder name",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/11"
+  },
+  {
+    "id": "pull_closed-HYP3R00T/CostCutter-10",
+    "type": "pull_closed",
+    "at": "2025-08-24T11:51:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: bump version to 0.1.2",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/10"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-10",
+    "type": "pull_opened",
+    "at": "2025-08-24T11:49:57Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: bump version to 0.1.2",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/10"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-9",
+    "type": "pull_merged",
+    "at": "2025-08-24T11:44:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor: migrate project name from awsbreaker to costcutter",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/9"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-31d8e29",
+    "type": "commit",
+    "at": "2025-08-24T11:44:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor: migrate project name from awsbreaker to costcutter (#9)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/31d8e29d175f23c3f6e06e0708e0b7bf10b679e7"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-9",
+    "type": "pull_opened",
+    "at": "2025-08-24T11:44:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor: migrate project name from awsbreaker to costcutter",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/9"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-8",
+    "type": "pull_merged",
+    "at": "2025-08-24T11:18:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Docs/vitepress",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/8"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-fe7358f",
+    "type": "commit",
+    "at": "2025-08-24T11:18:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Docs/vitepress (#8)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/fe7358f33b5b79bf19ed374f948f6708ffa47e0f"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-8",
+    "type": "pull_opened",
+    "at": "2025-08-24T11:17:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Docs/vitepress",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/8"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-7",
+    "type": "pull_merged",
+    "at": "2025-08-24T01:07:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: bump version for release v0.1.1",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/7"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-4e166e4",
+    "type": "commit",
+    "at": "2025-08-24T01:07:49Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: bump version for release v0.1.1 (#7)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/4e166e4b860a71fbb21f6fd25a81be4c4a9453ae"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-7",
+    "type": "pull_opened",
+    "at": "2025-08-24T01:07:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: bump version for release v0.1.1",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/7"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-6",
+    "type": "pull_merged",
+    "at": "2025-08-24T00:38:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(main): simplify service orchestration call",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/6"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-9fa4bff",
+    "type": "commit",
+    "at": "2025-08-24T00:38:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(main): simplify service orchestration call (#6)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/9fa4bffda90d21257547a810b1c6689e1ac5db69"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-6",
+    "type": "pull_opened",
+    "at": "2025-08-24T00:38:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(main): simplify service orchestration call",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/6"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-5",
+    "type": "pull_merged",
+    "at": "2025-08-24T00:24:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/improve design",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/5"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-de7b757",
+    "type": "commit",
+    "at": "2025-08-24T00:24:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/improve design (#5)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/de7b7573fb4cf95eb499018c018cdee9931817cd"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-5",
+    "type": "pull_opened",
+    "at": "2025-08-24T00:24:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Refactor/improve design",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/5"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b8a0b51",
+    "type": "commit",
+    "at": "2025-08-21T13:30:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(HeadSEO): enhance SEO props and image handling",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b8a0b517addd6bb4c0d2b26686976636b3e03c9c"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-82caeec",
+    "type": "commit",
+    "at": "2025-08-21T13:24:26Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add HeadSEO component for metadata management",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/82caeec7d44b95b844f25c32ad590c3df7808720"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-fba160d",
+    "type": "commit",
+    "at": "2025-08-21T10:08:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix(setup): update workspace path in setup script",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/fba160df297c94398a261ce8a83c5c19c55eb8b4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-046171a",
+    "type": "commit",
+    "at": "2025-08-21T10:07:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: upgrade package version",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/046171a5b70a164a9c4eb3edd063d8ae120db52d"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-814b327",
+    "type": "commit",
+    "at": "2025-08-21T10:07:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add commit message generation instructions",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/814b327761a5478a45366c02806941dec6122322"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f9702e4",
+    "type": "commit",
+    "at": "2025-08-21T10:06:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add icons",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f9702e40afc12dd85ba29a40d39afa62ed621d5b"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-6590bb5",
+    "type": "commit",
+    "at": "2025-08-20T15:25:28Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "style: fix typo in README header",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/6590bb5636d2c2db86cbd192acb6757230f98567"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-949d6bc",
+    "type": "commit",
+    "at": "2025-08-20T15:24:36Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "docs: correct title formatting in README",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/949d6bc60e45497cb20b9366b7af671d761b5fd7"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-4ceed83",
+    "type": "commit",
+    "at": "2025-08-20T15:06:14Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat(docs): add initial README for D2 diagram project",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/4ceed83111d9ef34d343256f175a19a09822794f"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-45af352",
+    "type": "commit",
+    "at": "2025-08-20T14:24:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "Implement code changes to enhance functionality and improve performance",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/45af3529140b22737334e08f29adaed9e013dacb"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-b0bbf44",
+    "type": "commit",
+    "at": "2025-08-20T14:23:59Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat(diagram): add initial D2 diagrams for homelab and IAM",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/b0bbf4419d7186af25f79901ea1656a50f913c0e"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-acbc1a0",
+    "type": "commit",
+    "at": "2025-08-20T14:23:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat: add configuration for d2 sketch diagram generation",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/acbc1a0c5fc7aa24597b09d62d2ec7949d10f76f"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-9dc07ea",
+    "type": "commit",
+    "at": "2025-08-20T14:22:59Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat: add GitHub Funding configuration",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/9dc07eab7159fe9b959e0db472b3a280a9c50311"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-d2af13d",
+    "type": "commit",
+    "at": "2025-08-20T14:22:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat: add GitHub Copilot and commit message generation instructions",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/d2af13d40c66c8064c5fe3fdf50f3b4aa5198faf"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-805253a",
+    "type": "commit",
+    "at": "2025-08-20T14:22:15Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat: add VSCode settings for project configuration",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/805253a9875602b9e23371e0ebdc4334050ae58b"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-062a29b",
+    "type": "commit",
+    "at": "2025-08-20T14:22:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat(devcontainer): add Dockerfile and configuration",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/062a29b0c01ea6469949b4ab6610310f0a6fd145"
+  },
+  {
+    "id": "commit-HYP3R00T/d2lab-95d619c",
+    "type": "commit",
+    "at": "2025-08-20T14:21:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/d2lab",
+    "title": "feat: add scripts for d2 output generation and setup",
+    "url": "https://github.com/HYP3R00T/d2lab/commit/95d619c6e8b61d483bc67421ba87a7158ac9c253"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-4",
+    "type": "pull_merged",
+    "at": "2025-08-19T20:42:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: remove outdated classifiers from project metadata",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/4"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5183f75",
+    "type": "commit",
+    "at": "2025-08-19T20:42:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: remove outdated classifiers from project metadata (#4)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5183f75277e10883eeeb9ff62d776361c284168c"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-4",
+    "type": "pull_opened",
+    "at": "2025-08-19T20:42:32Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: remove outdated classifiers from project metadata",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/4"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-3",
+    "type": "pull_merged",
+    "at": "2025-08-19T20:36:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Ci/pypi publish and versioning",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/3"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-755f1e1",
+    "type": "commit",
+    "at": "2025-08-19T20:36:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Ci/pypi publish and versioning (#3)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/755f1e1e6b15f663ddee8ea737bc98e27ceb0fdb"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-3",
+    "type": "pull_opened",
+    "at": "2025-08-19T20:26:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Ci/pypi publish and versioning",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/3"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-2",
+    "type": "pull_merged",
+    "at": "2025-08-16T11:01:38Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feature/cli and library support",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/2"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-042afcb",
+    "type": "commit",
+    "at": "2025-08-16T11:01:38Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feature/cli and library support (#2)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/042afcbf19d9bb99a2f9c26bf1dc61c49790e6b2"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-2",
+    "type": "pull_opened",
+    "at": "2025-08-16T04:49:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feature/cli and library support",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/2"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-1",
+    "type": "pull_merged",
+    "at": "2025-08-15T14:36:02Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci(lint): add linting workflow with path filtering",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/1"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-3c2e23d",
+    "type": "commit",
+    "at": "2025-08-15T14:36:02Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci(lint): add linting workflow with path filtering (#1)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/3c2e23de336e11308e8c04bd9ce4425284c3111a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-1",
+    "type": "pull_opened",
+    "at": "2025-08-15T13:36:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "ci(lint): add linting workflow with path filtering",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/1"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-6f66072",
+    "type": "commit",
+    "at": "2025-08-15T07:45:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(lambda): refactor run function and improve reporting",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/6f66072d5f020bc382285b1441ea7a5ee74b09a0"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5e24471",
+    "type": "commit",
+    "at": "2025-08-15T07:19:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(ec2): enhance EC2 instance management and cleanup",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5e24471f83ca57298fb9e0475136b705363108a4"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5296aa5",
+    "type": "commit",
+    "at": "2025-08-15T07:19:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(main): improve header display and summary output",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5296aa55565dec5589e0871918b6fd2ceea37f73"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-3052844",
+    "type": "commit",
+    "at": "2025-08-15T07:18:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(dependencies): add pyfiglet to project dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/3052844de9e6a6889abbda61118fa929b0c3a963"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-474b1a0",
+    "type": "commit",
+    "at": "2025-08-15T05:26:12Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "style(config): update verbose logging and level settings",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/474b1a08f17055ead4b4651af74649eb54360796"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f5ce4a5",
+    "type": "commit",
+    "at": "2025-08-15T05:26:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(services): add EC2 and Lambda service implementations",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f5ce4a51abfad78909d7a22e60bb8ffe6eae289e"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-e2c8386",
+    "type": "commit",
+    "at": "2025-08-15T05:25:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(orchestrator): streamline service handler processing",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/e2c8386da9ca387d395616168ffe0e81ca3023cb"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-aba8b2c",
+    "type": "commit",
+    "at": "2025-08-15T05:21:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(orchestrator): replace class-based handlers with functional entrypoints",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/aba8b2c7c3df86bbcdbe1220fdb1d327103c072e"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-caf325e",
+    "type": "commit",
+    "at": "2025-08-15T04:29:28Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "style(logger): update logging setup documentation for clarity",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/caf325e3951bc1914da6476cd072ffe87bd6e598"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-b86d9e7",
+    "type": "commit",
+    "at": "2025-08-14T13:15:15Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(orchestrator): implement service orchestration logic",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/b86d9e729bd3b06032a85d2fbaab8aa1a6718edd"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-c3544e9",
+    "type": "commit",
+    "at": "2025-08-14T13:15:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "style(config): remove quotes from YAML values for consistency",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/c3544e9320fc8cfc399235d27c497ab0eaf4b33d"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-fdc396c",
+    "type": "commit",
+    "at": "2025-08-14T13:14:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "test(session): update session tests to handle region as list",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/fdc396cd1d1a18a43b84d13339bc8db22db3b433"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-ad1101a",
+    "type": "commit",
+    "at": "2025-08-14T11:38:46Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(mcp): add AWS documentation server configuration",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/ad1101a9c5abb2f4e0b060cd7b485113a8eeaa65"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0b5c167",
+    "type": "commit",
+    "at": "2025-08-14T11:16:12Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(session): remove region_name from session creation",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0b5c1674a1b45f8d225731f794f4258f11870bda"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5b8fb86",
+    "type": "commit",
+    "at": "2025-08-14T11:15:04Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(logging): enhance logging configuration and handlers",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5b8fb8662f9eab62f912384122963533f26f669e"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-d2ff1cc",
+    "type": "commit",
+    "at": "2025-08-12T01:33:39Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "test(session): add unit tests for AWS session creation",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/d2ff1ccc8947e07c149590368cfa9e0ec9a2f7d5"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-c8859b4",
+    "type": "commit",
+    "at": "2025-08-12T01:27:55Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(config): update logging level and add AWS credentials",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/c8859b4a3578111d4e807839f5d381b25d78fe82"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0c80eca",
+    "type": "commit",
+    "at": "2025-08-12T01:27:34Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(aws): implement AWS session creation logic",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0c80ecaa5ace507c28d331313f404eec786bbcbf"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-bdb84c8",
+    "type": "commit",
+    "at": "2025-08-12T01:27:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(settings): update Python testing configuration",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/bdb84c8576ce1407a8f124e7dd01c2ae1e524f93"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-819b4a0",
+    "type": "commit",
+    "at": "2025-08-11T10:56:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "test(logger): add unit tests for logging setup functionality",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/819b4a09c7c17242df012ec70512a2e8b6ec1b32"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0b3ee69",
+    "type": "commit",
+    "at": "2025-08-11T10:46:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(logging): implement logging setup function",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0b3ee698603148332ea24cb35545fdbb0dfe5d57"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-9b9531c",
+    "type": "commit",
+    "at": "2025-08-11T10:20:34Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "test: add unit tests for config loading and merging",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/9b9531c569bbf0cf6dfb1f2c91eabf0f478adb0e"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-091bd31",
+    "type": "commit",
+    "at": "2025-08-11T10:20:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(settings): add debug configuration for JavaScript",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/091bd31ddf5f21a561dbfffe2ee4a488fc68f7e8"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-57cab23",
+    "type": "commit",
+    "at": "2025-08-11T10:19:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "style(scripts): format indentation in setup scripts",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/57cab2367c79489cb6b71a707ad56481c823d704"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-982526c",
+    "type": "commit",
+    "at": "2025-08-11T10:19:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(devcontainer): update AWS mount path to use localEnv",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/982526cc3bc30a795a61eedcba5b70d6e8b61cc6"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-1677f3f",
+    "type": "commit",
+    "at": "2025-08-11T10:19:16Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "docs: update logging instructions to use structlog",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/1677f3fa4310cbadd7e19741bcc1dc95cfb47f06"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-c6ce64a",
+    "type": "commit",
+    "at": "2025-08-11T10:19:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(dependencies): add pyyaml to project dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/c6ce64ac860234c3a3c754c60a08c86596052adc"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-cdd92e6",
+    "type": "commit",
+    "at": "2025-08-11T10:18:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(tasks): add task definitions for run, test, lint, fmt, and fix",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/cdd92e6e6aa980594c038bd95d7105b1ffa3621b"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-2cf9e44",
+    "type": "commit",
+    "at": "2025-08-11T10:15:25Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(config): add configuration loading and management",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/2cf9e447db5999ad62af80fcb77f59b61a343b45"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-73ae130",
+    "type": "commit",
+    "at": "2025-08-10T14:58:37Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update dev task to run Astro server with host binding",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/73ae1300f1d344627d1b5bfa88f0fc02325f093b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-6512ffe",
+    "type": "commit",
+    "at": "2025-08-10T14:57:59Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update Python version to 3.13 in mise.toml",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/6512ffe8f26756818c93a6dc98a00a50fa4e0e02"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e559b08",
+    "type": "commit",
+    "at": "2025-08-10T14:57:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add favicon.svg for application branding",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e559b08e9a1588295d8e18267bf9b865207088ce"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-4b5ba4b",
+    "type": "commit",
+    "at": "2025-08-10T14:57:23Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update pwa-node path in settings.json and remove unused Python and ShellCheck paths",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4b5ba4baa46f96ee905d1885f3ee3d9bf55a0de4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-578f99f",
+    "type": "commit",
+    "at": "2025-08-10T14:57:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add Dockerfile and devcontainer.json for development environment setup; update setup scripts",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/578f99f1185c0de13adecf5fd67b3fff00c3a08c"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-43fe4c3",
+    "type": "commit",
+    "at": "2025-08-09T18:03:34Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: add extensions.json for recommended VSCode extensions and update mcp.json server name",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/43fe4c38eba4cda6049953112dd1334e4114824b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-1dea46a",
+    "type": "commit",
+    "at": "2025-08-09T18:01:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update file permissions for astro.config.mjs and clean up formatting",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1dea46a4e359c473070ea0ed729400af19f8f8fc"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-7bbb80c",
+    "type": "commit",
+    "at": "2025-08-09T18:01:04Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update package dependencies and add pnpm workspace configuration",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/7bbb80cce34da2877f979bbcc6b9bd9866046d0f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-01cdd68",
+    "type": "commit",
+    "at": "2025-08-09T18:00:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update file permissions for setup.sh and correct safe.directory path in setup_project.sh",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/01cdd683c1ce6407ea42c5c55be23e92d19b6d35"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-8adaa4c",
+    "type": "commit",
+    "at": "2025-08-09T18:00:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update file permissions for tsconfig.json",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8adaa4c186780a76d9ceb1ef260c4a9381418edd"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-d5f42f7",
+    "type": "commit",
+    "at": "2025-08-09T18:00:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update file permissions and correct dev task command in mise.toml",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/d5f42f7ade06715cc413b510164c00b4862daf9a"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-dc86d13",
+    "type": "commit",
+    "at": "2025-08-09T17:59:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: add MCP configuration and update VSCode settings",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/dc86d13c6c0ece0f32e75d51955b5a828a8a297f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-945ef58",
+    "type": "commit",
+    "at": "2025-08-09T17:59:41Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: remove Dockerfile and devcontainer.json from the project",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/945ef58b6570cb260eae9e4abcd2a8a6dc464e61"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-6e20e41",
+    "type": "commit",
+    "at": "2025-08-09T17:59:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "fix: update file permissions for .pre-commit-config.yaml",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/6e20e412d5ff5122ca4aed4ccd3763d5b02ee9a2"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-53ce159",
+    "type": "commit",
+    "at": "2025-08-06T09:41:43Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: remove hashes",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/53ce159501c53ada277dd30f7d66d22570cb2408"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5224524",
+    "type": "commit",
+    "at": "2025-08-06T09:36:15Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(pre-commit): add args to uv-export hook",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5224524b981b15e234c29fe2e15827dcec14893d"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-07ca8a7",
+    "type": "commit",
+    "at": "2025-08-06T06:13:56Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(vscode): remove editor rulers setting",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/07ca8a7c52c671ba6713534f950b81aff43909e0"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-629ac45",
+    "type": "commit",
+    "at": "2025-08-06T01:47:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: remove unused dep and tools",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/629ac451ffe9270a3b166adeb2271546a49e4fbc"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-3038ebd",
+    "type": "commit",
+    "at": "2025-08-05T02:22:24Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "build: add aws-cli dependency to mise.toml",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/3038ebdb3fe0597d8e3e87abeb9ed83821797e19"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-7978c7c",
+    "type": "commit",
+    "at": "2025-08-05T02:20:46Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "build: add bind mount for aws directory",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/7978c7c9ee14c49e49646079850f30c348d1ac47"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-3ec5d5b",
+    "type": "commit",
+    "at": "2025-08-05T02:19:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: update pre-commit hooks to latest versions",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/3ec5d5bf2305f67cda2c76f4cecead4b85b12b27"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f97f87f",
+    "type": "commit",
+    "at": "2025-08-04T13:37:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor: clean up and initialize uv with some package",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f97f87fb452e4a00eb74ca845820648d731116e5"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-b5dfea7",
+    "type": "commit",
+    "at": "2025-08-04T13:11:44Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Initial commit",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/b5dfea7025377f5c5dd9dd0ba49e22795f36a6f2"
+  }
+]
