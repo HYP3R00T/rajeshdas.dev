@@ -3,6 +3,10 @@
         "astro-mcp": {
             "url": "https://mcp.docs.astro.build/mcp",
             "type": "http"
+        },
+        "github": {
+            "url": "https://api.githubcopilot.com/mcp/",
+            "type": "http"
         }
     },
     "inputs": []
