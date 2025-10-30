@@ -10,11 +10,14 @@ the existing github.json file, avoiding duplicate API calls.
 
 import json
 import os
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import httpx
 from dotenv import load_dotenv
+
+# IST timezone (UTC+5:30)
+IST = timezone(timedelta(hours=5, minutes=30))
 
 
 def load_github_token() -> str:
@@ -75,7 +78,7 @@ def get_date_range(days: int = 30, since: datetime | None = None) -> str:
     Returns:
         str: Date range in format YYYY-MM-DD..YYYY-MM-DD or YYYY-MM-DD for single day
     """
-    now = datetime.now(UTC)
+    now = datetime.now(IST)
     end_date = now.replace(hour=23, minute=59, second=59, microsecond=999999)
 
     start_date = since or (now - timedelta(days=days)).replace(hour=0, minute=0, second=0, microsecond=0)
@@ -329,7 +332,7 @@ def main():
             # Add a small buffer to avoid missing events due to timing
             since = most_recent - timedelta(hours=1)
             date_range = get_date_range(since=since)
-            print(f"📥 Incremental fetch since {since.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+            print(f"📥 Incremental fetch since {since.strftime('%Y-%m-%d %H:%M:%S IST')}")
         else:
             # Full fetch mode: fetch last 30 days
             days = 90
@@ -354,7 +357,7 @@ def main():
         all_events.sort(key=lambda x: x["at"], reverse=True)
 
         # Optional: Limit total events to last 90 days to keep file size manageable
-        cutoff_date = datetime.now(UTC) - timedelta(days=90)
+        cutoff_date = datetime.now(IST) - timedelta(days=90)
         all_events = [
             event for event in all_events if datetime.fromisoformat(event["at"].replace("Z", "+00:00")) >= cutoff_date
         ]
