@@ -10,9 +10,9 @@ interface Props {
 const { emphasized = false, icon, iconAlt = "" } = Astro.props;
 ---
 
-<div class="accordion-item">
+<div class="accordion-item" data-state="collapsed">
   <div
-    class="hover:bg-muted text-text-default group bg-background flex h-full w-full cursor-pointer items-center justify-between gap-4 border-none px-6 py-2 text-base font-medium transition-colors duration-200"
+    class="text-text-default group bg-background relative flex h-full w-full cursor-pointer items-center justify-between gap-4 border-none px-6 py-2 text-base font-medium transition-all duration-300 ease-out"
     data-accordion-header
   >
     <div class="flex h-full w-full flex-row items-center justify-between gap-4">
@@ -31,9 +31,10 @@ const { emphasized = false, icon, iconAlt = "" } = Astro.props;
         <slot name="header" />
       </span>
       <svg
-        class="grow opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        class="grow opacity-0 transition-opacity duration-300"
         height="2"
         style="min-width: 20px;"
+        data-accordion-line
       >
         <line
           x1="0"
@@ -46,11 +47,12 @@ const { emphasized = false, icon, iconAlt = "" } = Astro.props;
           class="text-text-default/20"></line>
       </svg>
       <div
-        class="p-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        class="p-2 opacity-0 transition-opacity duration-300"
+        data-accordion-icon-wrapper
       >
         <Icon
           name="caret-down"
-          class="text-text-default accordion-icon h-[1.2rem] w-[1.2rem] transition-transform duration-200 ease-in-out"
+          class="text-text-default accordion-icon h-[1.2rem] w-[1.2rem] transition-transform duration-300 ease-out"
           aria-hidden="true"
           data-accordion-icon
         />
@@ -58,12 +60,12 @@ const { emphasized = false, icon, iconAlt = "" } = Astro.props;
     </div>
   </div>
   <div
-    class="max-h-0 overflow-hidden transition-all duration-300"
+    class="max-h-0 overflow-hidden transition-all duration-300 ease-out"
     data-accordion-content
   >
     <div
       class:list={[
-        "text-text-default accordion-content-inner py-2 leading-relaxed opacity-0 transition-opacity duration-200 ease-in-out",
+        "text-text-default accordion-content-inner py-2 leading-relaxed opacity-0 transition-opacity duration-300 ease-out",
         icon ? "pr-6 pl-15" : "px-6",
       ]}
     >
@@ -75,6 +77,9 @@ const { emphasized = false, icon, iconAlt = "" } = Astro.props;
     document.addEventListener("astro:page-load", () => {
       const accordionItems =
         document.querySelectorAll<HTMLDivElement>(".accordion-item");
+
+      // Track pinned item globally
+      let pinnedItem: HTMLDivElement | null = null;
 
       accordionItems.forEach((item) => {
         // Prevent double-initialization on SPA navigations
@@ -90,65 +95,168 @@ const { emphasized = false, icon, iconAlt = "" } = Astro.props;
           ".accordion-content-inner"
         );
         const icon = item.querySelector<SVGSVGElement>("[data-accordion-icon]");
+        const iconWrapper = item.querySelector<HTMLElement>(
+          "[data-accordion-icon-wrapper]"
+        );
+        const line = item.querySelector<SVGSVGElement>("[data-accordion-line]");
 
         // Mark this item as initialized so we don't bind duplicate listeners
         item.dataset.initialized = "true";
 
-        header?.addEventListener("click", () => {
-          // Close all other accordion items
-          accordionItems.forEach((otherItem) => {
-            if (otherItem !== item) {
-              otherItem.classList.remove("open");
-              const otherContent = otherItem.querySelector<HTMLElement>(
-                "[data-accordion-content]"
-              );
-              const otherContentInner = otherItem.querySelector<HTMLElement>(
-                ".accordion-content-inner"
-              );
-              const otherIcon = otherItem.querySelector<SVGSVGElement>(
-                "[data-accordion-icon]"
-              );
+        // Helper function to expand an item
+        const expandItem = (
+          state: "hover" | "pinned",
+          animate: boolean = true
+        ) => {
+          if (!content || !contentInner || !icon) return;
 
-              if (otherContent) {
-                otherContent.style.maxHeight = "0px";
-              }
-              if (otherContentInner) {
-                otherContentInner.style.opacity = "0";
-              }
-              if (otherIcon) {
-                otherIcon.style.transform = "rotate(0deg)";
-              }
-            }
-          });
+          item.dataset.state = state;
 
-          // Toggle current item
-          item.classList.toggle("open");
-
-          if (item.classList.contains("open")) {
-            if (content) {
-              content.style.maxHeight = `${content.scrollHeight}px`;
-            }
-            if (contentInner) {
-              // Delay fade-in to start after expand animation begins
-              setTimeout(() => {
-                contentInner.style.opacity = "1";
-              }, 100);
-            }
-            if (icon) {
-              icon.style.transform = "rotate(180deg)";
-            }
+          // Apply state-specific styles
+          if (state === "pinned") {
+            header?.classList.add("bg-muted/50", "shadow-sm");
           } else {
-            if (content) {
-              content.style.maxHeight = "0px";
-            }
-            if (contentInner) {
-              contentInner.style.opacity = "0";
-            }
-            if (icon) {
-              icon.style.transform = "rotate(0deg)";
-            }
+            header?.classList.add("bg-muted/30");
+          }
+
+          // Show controls
+          if (iconWrapper) iconWrapper.style.opacity = "1";
+          if (line) line.style.opacity = "1";
+
+          // Expand content
+          content.style.maxHeight = `${content.scrollHeight}px`;
+          icon.style.transform = "rotate(180deg)";
+
+          // Fade in content with slight delay for smoothness
+          setTimeout(
+            () => {
+              contentInner.style.opacity = "1";
+            },
+            animate ? 100 : 0
+          );
+        };
+
+        // Helper function to collapse an item
+        const collapseItem = (animate: boolean = true) => {
+          if (!content || !contentInner || !icon) return;
+
+          item.dataset.state = "collapsed";
+
+          // Remove state-specific styles
+          header?.classList.remove("bg-muted/50", "shadow-sm", "bg-muted/30");
+
+          // Hide controls
+          if (iconWrapper) iconWrapper.style.opacity = "0";
+          if (line) line.style.opacity = "0";
+
+          // Collapse content
+          content.style.maxHeight = "0px";
+          contentInner.style.opacity = "0";
+          icon.style.transform = "rotate(0deg)";
+        };
+
+        // Hover: Expand temporarily
+        header?.addEventListener("mouseenter", () => {
+          // Only hover-expand if not already pinned
+          if (item.dataset.state !== "pinned") {
+            expandItem("hover");
           }
         });
+
+        // Hover: Collapse when leaving (unless pinned)
+        header?.addEventListener("mouseleave", () => {
+          if (item.dataset.state === "hover") {
+            collapseItem();
+          }
+        });
+
+        // Click: Toggle pinned state
+        header?.addEventListener("click", (e) => {
+          e.stopPropagation();
+
+          const currentState = item.dataset.state;
+
+          // If clicking on already pinned item, unpin it
+          if (currentState === "pinned") {
+            collapseItem();
+            pinnedItem = null;
+          } else {
+            // Close previously pinned item
+            if (pinnedItem && pinnedItem !== item) {
+              const prevContent = pinnedItem.querySelector<HTMLElement>(
+                "[data-accordion-content]"
+              );
+              const prevContentInner = pinnedItem.querySelector<HTMLElement>(
+                ".accordion-content-inner"
+              );
+              const prevIcon = pinnedItem.querySelector<SVGSVGElement>(
+                "[data-accordion-icon]"
+              );
+              const prevHeader = pinnedItem.querySelector<HTMLElement>(
+                "[data-accordion-header]"
+              );
+              const prevIconWrapper = pinnedItem.querySelector<HTMLElement>(
+                "[data-accordion-icon-wrapper]"
+              );
+              const prevLine = pinnedItem.querySelector<SVGSVGElement>(
+                "[data-accordion-line]"
+              );
+
+              pinnedItem.dataset.state = "collapsed";
+              prevHeader?.classList.remove(
+                "bg-muted/50",
+                "shadow-sm",
+                "bg-muted/30"
+              );
+              if (prevIconWrapper) prevIconWrapper.style.opacity = "0";
+              if (prevLine) prevLine.style.opacity = "0";
+              if (prevContent) prevContent.style.maxHeight = "0px";
+              if (prevContentInner) prevContentInner.style.opacity = "0";
+              if (prevIcon) prevIcon.style.transform = "rotate(0deg)";
+            }
+
+            // Pin current item
+            expandItem("pinned");
+            pinnedItem = item;
+          }
+        });
+      });
+
+      // Click outside to close pinned item (mobile-friendly)
+      document.addEventListener("click", (e) => {
+        if (pinnedItem) {
+          const target = e.target as Node;
+          if (!pinnedItem.contains(target)) {
+            const content = pinnedItem.querySelector<HTMLElement>(
+              "[data-accordion-content]"
+            );
+            const contentInner = pinnedItem.querySelector<HTMLElement>(
+              ".accordion-content-inner"
+            );
+            const icon = pinnedItem.querySelector<SVGSVGElement>(
+              "[data-accordion-icon]"
+            );
+            const header = pinnedItem.querySelector<HTMLElement>(
+              "[data-accordion-header]"
+            );
+            const iconWrapper = pinnedItem.querySelector<HTMLElement>(
+              "[data-accordion-icon-wrapper]"
+            );
+            const line = pinnedItem.querySelector<SVGSVGElement>(
+              "[data-accordion-line]"
+            );
+
+            pinnedItem.dataset.state = "collapsed";
+            header?.classList.remove("bg-muted/50", "shadow-sm", "bg-muted/30");
+            if (iconWrapper) iconWrapper.style.opacity = "0";
+            if (line) line.style.opacity = "0";
+            if (content) content.style.maxHeight = "0px";
+            if (contentInner) contentInner.style.opacity = "0";
+            if (icon) icon.style.transform = "rotate(0deg)";
+
+            pinnedItem = null;
+          }
+        }
       });
     });
   </script>
