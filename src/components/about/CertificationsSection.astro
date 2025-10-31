@@ -1,0 +1,81 @@
+---
+import { Icon } from "astro-icon/components";
+import Bar from "@/assets/barcode.svg";
+import FeaturedCertificationCard from "./FeaturedCertificationCard.astro";
+import CertificationListItem from "./CertificationListItem.astro";
+import certificationsData from "@certifications";
+
+const certifications = [...certificationsData].sort((a, b) => {
+  if (a.emphasized === b.emphasized) return 0;
+  return a.emphasized ? -1 : 1;
+});
+
+const featuredCerts = certifications.filter((cert) => cert.emphasized);
+const additionalCerts = certifications.filter((cert) => !cert.emphasized);
+---
+
+<section class="w-full">
+  <div class="col flex w-full flex-col gap-6">
+    <div class="flex flex-row items-center justify-between">
+      <h2 class="text-text-default text-3xl font-bold">Certifications</h2>
+      <div class="flex items-center justify-center opacity-30">
+        <Bar />
+      </div>
+    </div>
+    <div class="space-y-4">
+      <p class="text-text-subtle text-sm">
+        The official stamps of approval proving I can deploy things without
+        setting everything on fire 🔥
+      </p>
+      {
+        featuredCerts.length > 0 && (
+          <div class="space-y-3">
+            <h3 class="text-text-default flex items-center gap-2 text-lg font-semibold">
+              <Icon name="github" class="text-cyan h-5 w-5" />
+              Featured Certifications
+            </h3>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {featuredCerts.map((cert) => (
+                <FeaturedCertificationCard
+                  title={cert.title}
+                  provider={cert.provider}
+                  providerLogo={cert.providerLogo}
+                  badgeImage={cert.badgeImage}
+                  date={cert.date}
+                  credlyBadgeUrl={cert.credlyBadgeUrl}
+                  certificateUrl={cert.certificateUrl}
+                />
+              ))}
+            </div>
+          </div>
+        )
+      }
+      {
+        additionalCerts.length > 0 && (
+          <div class="space-y-3">
+            <h3 class="text-text-default mt-6 flex items-center gap-2 text-lg font-semibold">
+              <Icon name="github" class="text-cyan h-5 w-5" />
+              Additional Certifications
+            </h3>
+            <div class="box-tr-lg bg-content p-4">
+              <div class="space-y-3">
+                {additionalCerts.map((cert, index) => (
+                  <CertificationListItem
+                    title={cert.title}
+                    provider={cert.provider}
+                    providerLogo={cert.providerLogo}
+                    badgeImage={cert.badgeImage}
+                    date={cert.date}
+                    credlyBadgeUrl={cert.credlyBadgeUrl}
+                    certificateUrl={cert.certificateUrl}
+                    showBorder={index !== 0}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

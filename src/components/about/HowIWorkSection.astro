@@ -1,0 +1,35 @@
+---
+import Bar from "@/assets/barcode.svg";
+import WorkValueCard from "./WorkValueCard.astro";
+---
+
+<section class="w-full">
+  <div class="col flex w-full flex-col gap-6">
+    <div class="flex flex-row items-center justify-between">
+      <h2 class="text-text-default text-3xl font-bold">
+        <span class="text-cyan">03.</span> How I Work
+      </h2>
+      <div class="flex items-center justify-center opacity-30">
+        <Bar />
+      </div>
+    </div>
+    <div class="box-tr-lg bg-content p-6 md:p-8">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <WorkValueCard
+          title="[Value #1]"
+          description="[Describe a key principle or value in your work. Examples: 'Automation over repetition - if I do it twice, I script it', 'Documentation is love - future me deserves clear docs', 'Fail fast, learn faster - embrace the chaos of experimentation']"
+        />
+
+        <WorkValueCard
+          title="[Value #2]"
+          description="[Another principle. Examples: 'Simplicity over complexity - boring tech that works beats shiny tech that breaks', 'Team collaboration - DevOps is a culture, not a job title', 'Observability matters - you can't fix what you can't see']"
+        />
+
+        <WorkValueCard
+          title="[Value #3]"
+          description="[Third principle. Examples: 'Continuous improvement - there's always a better way', 'Security by default - shift left, automate all the things', 'Reliability matters - uptime is happiness']"
+        />
+      </div>
+    </div>
+  </div>
+</section>

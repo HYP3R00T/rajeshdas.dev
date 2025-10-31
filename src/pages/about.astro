@@ -1,61 +1,20 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import SkillCard from "@/components/home/SkillCard.astro";
-import { Skills } from "config";
-import Accordion from "@/components/ui/Accordion.astro";
-import certificationsData from "@certifications";
-
-// Sort certifications: emphasized items first, maintaining order within each group
-const certifications = [...certificationsData].sort((a, b) => {
-  if (a.emphasized === b.emphasized) return 0;
-  return a.emphasized ? -1 : 1;
-});
+import HeroSection from "@/components/about/HeroSection.astro";
+import MyStorySection from "@/components/about/MyStorySection.astro";
+import WhatImDoingSection from "@/components/about/WhatImDoingSection.astro";
+import HowIWorkSection from "@/components/about/HowIWorkSection.astro";
+import CertificationsSection from "@/components/about/CertificationsSection.astro";
+import SkillsSection from "@/components/about/SkillsSection.astro";
 ---
 
 <BaseLayout>
-  <div class="flex w-full flex-col gap-8 px-6 md:max-w-4xl lg:max-w-6xl">
-    <section class="w-full">
-      <div class="col flex w-full flex-col gap-4">
-        <h1 class="font-mono text-4xl">./certifications --list</h1>
-        {
-          certifications.map((cert) => (
-            <Accordion icon={cert.icon} iconAlt={cert.title}>
-              <span slot="header-left">{cert.title}</span>
-              <span slot="header-right">{cert.date}</span>
-
-              <div slot="content">
-                <a
-                  href={cert.credlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View on Credly
-                </a>
-                <br />
-                <a href={cert.pdfUrl} target="_blank" rel="noopener noreferrer">
-                  Download PDF
-                </a>
-              </div>
-            </Accordion>
-          ))
-        }
-      </div>
-    </section>
-    <section class="w-full">
-      <div class="col flex w-full flex-col">
-        <h1 class="font-mono text-4xl">./skills --list --verbose</h1>
-        <div class="grid grid-cols-3 gap-4 py-8">
-          {Skills.map((skill) => <SkillCard skill={skill} />)}
-        </div>
-      </div>
-    </section>
-    <section class="w-full">
-      <div class="col flex w-full flex-col">
-        <h1 class="font-mono text-4xl">./skills --list --verbose</h1>
-        <div class="grid grid-cols-3 gap-4 py-8">
-          {Skills.map((skill) => <SkillCard skill={skill} />)}
-        </div>
-      </div>
-    </section>
+  <div class="flex w-full flex-col gap-12 px-6 md:max-w-4xl lg:max-w-6xl">
+    <HeroSection />
+    <MyStorySection />
+    <WhatImDoingSection />
+    <HowIWorkSection />
+    <CertificationsSection />
+    <SkillsSection />
   </div>
 </BaseLayout>

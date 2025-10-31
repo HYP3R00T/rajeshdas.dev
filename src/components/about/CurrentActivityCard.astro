@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  icon?: string;
+  emoji: string;
+  title: string;
+  description: string;
+}
+
+const { icon = "github", emoji, title, description } = Astro.props;
+---
+
+<div class="box-tr-sm bg-content p-6 transition-all hover:scale-[1.02]">
+  <div class="flex items-start gap-3">
+    <Icon name={icon} class="text-cyan h-6 w-6 shrink-0 opacity-90" />
+    <div>
+      <h3 class="text-text-default text-lg font-semibold">
+        {emoji}
+        {title}
+      </h3>
+      <p class="text-text-subtle mt-2 text-sm leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </div>
+</div>
