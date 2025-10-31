@@ -6,6 +6,7 @@ import { LOCALE } from "config";
 import type { BaseLayoutProps } from "@/lib/types";
 import { Image } from "astro:assets";
 import so from "@/assets/setup.png";
+import Footer from "@/components/core/Footer.astro";
 
 const { title, description, image, imageAlt, contentType, transparent_header } =
   Astro.props as BaseLayoutProps;
@@ -31,5 +32,6 @@ const { title, description, image, imageAlt, contentType, transparent_header } =
         </div>
       </main>
     </div>
+    <Footer />
   </body>
 </html>
