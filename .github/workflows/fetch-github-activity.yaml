@@ -6,6 +6,9 @@ on:
     # Run daily at 00:05 IST (18:35 UTC previous day)
     - cron: "35 18 * * *"
 
+permissions:
+  contents: write
+
 jobs:
   fetch-activity:
     name: Fetch and Update GitHub Activity
