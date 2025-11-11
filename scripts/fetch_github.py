@@ -25,9 +25,9 @@ def load_github_token() -> str:
     env_path = Path(__file__).parent.parent / ".env"
     load_dotenv(env_path)
 
-    token = os.getenv("GITHUB_TOKEN")
+    token = os.getenv("GH_TOKEN")
     if not token:
-        raise ValueError("GITHUB_TOKEN not found in .env file")
+        raise ValueError("GH_TOKEN not found in .env file")
     return token
 
 
