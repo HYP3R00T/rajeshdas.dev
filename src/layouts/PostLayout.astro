@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/lib/utils";
-import Line from "@/components/ui/Line.astro";
 
 const {
   title,
@@ -27,32 +26,10 @@ const {
   contentType="Article"
   transparent_header="true"
 >
-  <Image
-    src={cover}
-    alt={coverAlt}
-    width={cover.width}
-    height={cover.height}
-    class="absolute inset-0 -z-10 mask-b-from-20% mask-b-to-80% object-cover opacity-30"
-  />
-
-  <div
-    class="z-10 flex w-full flex-col justify-center p-8 md:max-w-3xl lg:max-w-4xl"
-  >
-    <!-- Date -->
-    <div
-      class="text-cyan flex w-full flex-row items-center justify-center gap-2 text-lg"
-      transition:name={`${title}-date`}
-    >
-      <Line />
-      <div class="text-cyan w-full font-bold">
-        {formatDate(pubDatetime)}
-      </div>
-    </div>
-    <h1 class="my-16 text-6xl tracking-tighter" transition:name={title}>
-      {title}
-    </h1>
-    <div class="prose pt-16">
-      <slot />
-    </div>
-  </div>
+  <Image src={cover} alt={coverAlt} width={cover.width} height={cover.height} />
+  <article>
+    <time transition:name={`${title}-date`}>{formatDate(pubDatetime)}</time>
+    <h1 transition:name={title}>{title}</h1>
+    <slot />
+  </article>
 </BaseLayout>

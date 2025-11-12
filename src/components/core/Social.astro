@@ -1,25 +1,13 @@
 ---
-import { Icon } from "astro-icon/components";
-
 import { Socials } from "@data/config";
-import Button from "@/components/ui/Button.astro";
-import Tooltip from "@/components/core/Tooltip.astro";
 ---
 
-<div class="mb-4 hidden flex-wrap items-center justify-center gap-4 lg:flex">
+<nav>
   {
     Socials.filter((social) => social.active).map((social) => (
-      <a href={social.href} target="_blank" class="">
-        <Button variant="ghost" size="icon" class="h-12! w-12!">
-          <Icon name={social.name} class="h-[1.4rem] w-[1.4rem]" />
-        </Button>
-        {/* <Tooltip>
-          <Button variant="ghost" size="icon" class="h-12! w-12!">
-            <Icon name={social.name} class="h-[1.4rem] w-[1.4rem]" />
-          </Button>
-          <div slot="tooltip">{social.linkTitle}</div>
-        </Tooltip> */}
+      <a href={social.href} target="_blank" rel="noopener noreferrer">
+        {social.name}
       </a>
     ))
   }
-</div>
+</nav>

@@ -10,182 +10,92 @@ import {
   groupEventsByTimePeriod,
   groupEventsByWeek,
 } from "@/lib/github-activity";
-import { Icon } from "astro-icon/components";
-import Bar from "@/assets/barcode.svg";
 
-// Type assertions for imports
 const typedGithubEvents = githubEvents as GitHubEvent[];
 const typedProjectData = projectData as ProjectsData;
 
-// Organize events using the utility function
 const { eventsByProject, regularEvents } = organizeEvents(
   typedGithubEvents,
   typedProjectData
 );
 
-// Group regular events by time period
 const groupedEvents = groupEventsByTimePeriod(regularEvents);
-
-// Group older events (lastMonth + earlier) by week for summary cards
 const olderEvents = [...groupedEvents.lastMonth, ...groupedEvents.earlier];
 const weeklySummaries = groupEventsByWeek(olderEvents);
 ---
 
 <BaseLayout>
-  <div class="flex w-full flex-col gap-12 px-6 md:max-w-4xl lg:max-w-6xl">
-    <!-- Hero Section -->
-    <section
-      class="box-tr-bl-lg bg-content relative isolate w-full overflow-hidden p-6 md:p-10"
-    >
-      <!-- Glow accents -->
-      <div
-        class="bg-cyan/25 pointer-events-none absolute -top-20 -left-16 h-64 w-64 rounded-full blur-3xl"
-      >
-      </div>
-      <div
-        class="bg-cyan/15 pointer-events-none absolute -right-16 -bottom-16 h-64 w-64 rounded-full blur-3xl"
-      >
-      </div>
+  <section>
+    <span>Proof I'm Actually Coding</span>
+    <h1>GitHub Activity</h1>
+    <p>
+      Watch me push code, open issues, and occasionally merge PRs like a
+      responsible adult. This is my green squares flex—proof that I spend way
+      too much time staring at my terminal. Spoiler: Most commits are "fix typo"
+      and "actually fix typo this time."
+    </p>
+  </section>
 
-      <div class="relative z-10 mx-auto max-w-3xl text-center">
-        <span
-          class="text-cyan/90 bg-cyan/10 px-3 py-1 text-xs font-semibold tracking-wide"
-        >
-          Proof I'm Actually Coding
-        </span>
+  <section>
+    {
+      eventsByProject.length > 0 && (
+        <div>
+          <h2>Featured Projects</h2>
+          {eventsByProject.map(({ project, events, remainingEvents }) => {
+            if (events.length === 0) return null;
+            const totalCount = events.length + remainingEvents.length;
+            return (
+              <article>
+                <h3>
+                  <a
+                    href={`https://github.com/${project.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.title}
+                  </a>
+                  <span>
+                    (Latest {events.length} of {totalCount}{" "}
+                    {totalCount === 1 ? "activity" : "activities"})
+                  </span>
+                </h3>
+                {events.map((event) => (
+                  <ActivityAccordion event={event} />
+                ))}
+              </article>
+            );
+          })}
+        </div>
+      )
+    }
 
-        <h1
-          class="text-text-default mt-4 text-5xl leading-tight font-extrabold md:text-6xl"
-        >
-          GitHub Activity
-        </h1>
-        <p
-          class="text-text-subtle mt-4 text-base leading-relaxed text-balance md:text-lg"
-        >
-          Watch me push code, open issues, and occasionally merge PRs like a
-          responsible adult. This is my green squares flex—proof that I spend
-          way too much time staring at my terminal. Spoiler: Most commits are
-          "fix typo" and "actually fix typo this time."
-        </p>
-      </div>
-    </section>
-
-    <!-- Activity Content -->
-    <section class="w-full">
-      <div class="col flex w-full flex-col gap-6">
-        <!-- Activity Content -->
-        <section class="w-full">
-          <div class="col flex w-full flex-col gap-6">
-            <!-- Featured Projects Section -->
-            {
-              eventsByProject.length > 0 && (
-                <div class="space-y-6">
-                  <div class="flex flex-row items-center justify-between">
-                    <h2 class="text-text-default text-3xl font-bold">
-                      Featured Projects
-                    </h2>
-                    <div class="flex items-center justify-center">
-                      <Bar />
-                    </div>
-                  </div>
-                  <div class="box-tr-lg bg-content space-y-6 p-6">
-                    {eventsByProject.map(
-                      ({ project, events, remainingEvents }) => {
-                        if (events.length === 0) return null;
-
-                        const totalCount =
-                          events.length + remainingEvents.length;
-
-                        return (
-                          <div class="space-y-3">
-                            <h3 class="text-text-default flex items-center gap-2 text-xl font-medium">
-                              <a
-                                href={`https://github.com/${project.id}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="hover:text-cyan transition-colors"
-                              >
-                                {project.title}
-                              </a>
-                              <span class="text-text-subtle text-sm">
-                                (Latest {events.length} of {totalCount}{" "}
-                                {totalCount === 1 ? "activity" : "activities"})
-                              </span>
-                            </h3>
-                            <div class="pl-4">
-                              {events.map((event) => (
-                                <ActivityAccordion event={event} />
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-              )
-            }
-
-            <!-- Regular Activity Section -->
-            {
-              regularEvents.length > 0 && (
-                <div class="space-y-6">
-                  <div class="flex flex-row items-center justify-between">
-                    <h2 class="text-text-default text-3xl font-bold">
-                      All Activity
-                    </h2>
-                    <div class="flex items-center justify-center">
-                      <Bar />
-                    </div>
-                  </div>
-
-                  {/* Last Week - Show individual activities */}
-                  {groupedEvents.lastWeek.length > 0 && (
-                    <div class="space-y-3">
-                      <h3 class="text-cyan text-xl font-medium">Last Week</h3>
-                      <div class="space-y-2 pl-4">
-                        {groupedEvents.lastWeek.map((event) => (
-                          <ActivityAccordion
-                            event={event}
-                            showProjectName={true}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Older Activities - Show as weekly summaries */}
-                  {weeklySummaries.length > 0 && (
-                    <div class="space-y-3">
-                      <h3 class="text-cyan text-xl font-medium">
-                        Previous Weeks
-                      </h3>
-                      <div class="space-y-2">
-                        {weeklySummaries.map((summary) => (
-                          <WeeklySummaryCard
-                            weekStart={summary.weekStart}
-                            weekEnd={summary.weekEnd}
-                            events={summary.events}
-                            projectCounts={summary.projectCounts}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            }
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <script>
-      document.addEventListener("astro:page-load", () => {
-        document.querySelectorAll("[data-stop-propagation]").forEach((el) => {
-          el.addEventListener("click", (e) => e.stopPropagation());
-        });
-      });
-    </script>
-  </div></BaseLayout
->
+    {
+      regularEvents.length > 0 && (
+        <div>
+          <h2>All Activity</h2>
+          {groupedEvents.lastWeek.length > 0 && (
+            <article>
+              <h3>Last Week</h3>
+              {groupedEvents.lastWeek.map((event) => (
+                <ActivityAccordion event={event} showProjectName={true} />
+              ))}
+            </article>
+          )}
+          {weeklySummaries.length > 0 && (
+            <article>
+              <h3>Previous Weeks</h3>
+              {weeklySummaries.map((summary) => (
+                <WeeklySummaryCard
+                  weekStart={summary.weekStart}
+                  weekEnd={summary.weekEnd}
+                  events={summary.events}
+                  projectCounts={summary.projectCounts}
+                />
+              ))}
+            </article>
+          )}
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>

@@ -1,7 +1,6 @@
 ---
 import ActivityAccordion from "@/components/activity/ActivityAccordion.astro";
 import { formatWeekRange } from "@/lib/github-activity";
-import { Icon } from "astro-icon/components";
 
 interface Props {
   weekStart: Date;
@@ -11,85 +10,37 @@ interface Props {
 }
 
 const { weekStart, weekEnd, events, projectCounts } = Astro.props;
-
 const weekRange = formatWeekRange(weekStart, weekEnd);
 const totalActivities = events.length;
 const projectEntries = Object.entries(projectCounts).sort(
   (a, b) => b[1] - a[1]
 );
-
-// Generate unique ID for this week's accordion
 const accordionId = `week-${weekStart.getTime()}`;
 ---
 
-<div class="hover:bg-content rounded-lg p-4 transition-colors" data-week-card>
-  <button
-    type="button"
-    class="group flex w-full items-center justify-between"
-    aria-expanded="false"
-    aria-controls={accordionId}
-    data-week-accordion
-  >
-    <div class="flex flex-col items-start gap-2">
-      <h3 class="text-text-default text-lg font-medium">{weekRange}</h3>
-      <div class="flex flex-wrap gap-2">
-        {
-          projectEntries.map(([project, count]) => (
-            <span class="text-text-subtle rounded-full px-3 py-1 text-xs font-medium">
-              {project}: {count} {count === 1 ? "activity" : "activities"}
-            </span>
-          ))
-        }
-      </div>
+<details data-week-card>
+  <summary>
+    <h3>{weekRange}</h3>
+    <div>
+      {
+        projectEntries.map(([project, count]) => (
+          <span>
+            {project}: {count} {count === 1 ? "activity" : "activities"}
+          </span>
+        ))
+      }
     </div>
-    <div class="flex items-center gap-3">
-      <span class="text-text-subtle text-sm">
-        {totalActivities} total {
-          totalActivities === 1 ? "activity" : "activities"
-        }
-      </span>
-      <Icon
-        name="caret-down"
-        class="text-text-default transition-transform duration-200 group-aria-expanded:rotate-180"
-        size={20}
-      />
-    </div>
-  </button>
-
-  <div id={accordionId} class="mt-4 hidden space-y-2 pl-2" data-week-content>
+    <span
+      >{totalActivities} total {
+        totalActivities === 1 ? "activity" : "activities"
+      }</span
+    >
+  </summary>
+  <div>
     {
       events.map((event) => (
         <ActivityAccordion event={event} showProjectName={true} />
       ))
     }
   </div>
-</div>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const accordionButtons = document.querySelectorAll("[data-week-accordion]");
-
-    accordionButtons.forEach((button) => {
-      const card = button.closest("[data-week-card]");
-      const content = button.parentElement?.querySelector(
-        "[data-week-content]"
-      );
-
-      button.addEventListener("click", () => {
-        const isExpanded = button.getAttribute("aria-expanded") === "true";
-
-        button.setAttribute("aria-expanded", String(!isExpanded));
-
-        if (content && card) {
-          if (isExpanded) {
-            content.classList.add("hidden");
-            card.classList.remove("bg-content");
-          } else {
-            content.classList.remove("hidden");
-            card.classList.add("bg-content");
-          }
-        }
-      });
-    });
-  });
-</script>
+</details>

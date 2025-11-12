@@ -2,8 +2,8 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface ButtonProps extends HTMLAttributes<"button"> {
-  variant?: "default" | "accent" | "ghost" | "outline";
-  size?: "default" | "icon";
+  variant?: string;
+  size?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   class?: string;
@@ -19,40 +19,6 @@ const {
 } = Astro.props as ButtonProps;
 ---
 
-<button
-  class={[
-    "inline-flex items-center justify-center font-medium transition-colors cursor-pointer",
-    "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
-    "disabled:pointer-events-none disabled:opacity-80",
-    {
-      default: "bg-content text-text-default hover:bg-elevated",
-      accent: "bg-cyan text-background hover:bg-cyan/90",
-      ghost: "bg-transparent text-text-default hover:bg-elevated",
-      outline: "",
-    }[variant],
-    {
-      default: "h-8 px-4",
-      icon: "aspect-square special",
-    }[size],
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ")}
-  type={type}
-  disabled={disabled}
-  {...rest}
->
+<button type={type} disabled={disabled} class={className} {...rest}>
   <slot />
 </button>
-
-<style>
-  .special {
-    clip-path: polygon(
-      0 0,
-      calc(100% - 0.5rem) 0,
-      100% 0.5rem,
-      100% 100%,
-      0 100%
-    );
-  }
-</style>

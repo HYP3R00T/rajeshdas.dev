@@ -1,96 +1,37 @@
 ---
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import type { ProjectCardProps } from "@/lib/types";
-import Line from "@/components/ui/Line.astro";
-import Button from "../ui/Button.astro";
 
 const { project } = Astro.props as ProjectCardProps;
 ---
 
-<div
-  class="box-tr-lg group text-text-default bg-content relative h-full lg:bg-transparent"
->
-  <div
-    class="before:bg-content relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
-  >
-    <div class="flex flex-col">
-      {
-        project.data.readMore ? (
-          <a href={`/project/${project.id}/`} class="relative block">
-            <Image
-              src={project.data.cover}
-              alt="A cool abstract background"
-              class="aspect-video h-full w-full object-cover transition-transform duration-500 ease-in-out"
-            />
-          </a>
-        ) : (
-          <Image
-            src={project.data.cover}
-            alt="A cool abstract background"
-            class="aspect-video h-full w-full object-cover transition-transform duration-500 ease-in-out"
-          />
-        )
-      }
-
-      <div class="flex flex-col gap-4 p-4">
-        <div class="flex flex-row items-center justify-between">
-          <Line />
-          <div class="flex flex-row">
-            <a href={project.data.links?.repo} target="_blank" class="">
-              <div
-                class="text-text-subtle hover:text-text-default flex h-full flex-row items-center justify-center gap-1 bg-transparent text-sm"
-              >
-                <span>GitHub</span>
-                <Icon name="github" class="h-4 w-4" />
-              </div>
-            </a>
-            <a href={project.data.links?.homepage} target="_blank" class="ml-4">
-              <div
-                class="text-text-subtle hover:text-text-default flex h-full flex-row items-center justify-center gap-1 bg-transparent text-sm"
-              >
-                <span>Website</span>
-                <Icon name="file-text" class="h-4 w-4" />
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="">
-          <h1
-            class="text-2xl leading-tight font-bold"
-            transition:name={project.data.title}
-          >
-            {project.data.title}
-          </h1>
-        </div>
-        <div class="">
-          <p
-            class="text-text-subtle text-lg leading-tight"
-            transition:name={project.data.description}
-          >
-            {project.data.description}
-          </p>
-        </div>
-
-        {
-          project.data.readMore && (
-            <a href={`/project/${project.id}/`} class="relative block">
-              <div class="flex items-center justify-between text-sm">
-                <Button
-                  variant="ghost"
-                  class="text-cyan! before:bg-cyan/30 relative overflow-hidden text-xl before:absolute before:inset-0 before:-z-10 before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out hover:bg-transparent! hover:before:origin-left hover:before:scale-x-100"
-                >
-                  <div class="flex flex-row items-center gap-4">
-                    Read More
-                    <Icon name="arrow-right-up" />
-                  </div>
-                </Button>
-              </div>
-            </a>
-          )
-        }
-      </div>
-    </div>
+<article>
+  {
+    project.data.readMore ? (
+      <a href={`/project/${project.id}/`}>
+        <Image src={project.data.cover} alt={project.data.title} />
+      </a>
+    ) : (
+      <Image src={project.data.cover} alt={project.data.title} />
+    )
+  }
+  <div>
+    {
+      project.data.links?.repo && (
+        <a href={project.data.links.repo} target="_blank">
+          GitHub
+        </a>
+      )
+    }
+    {
+      project.data.links?.homepage && (
+        <a href={project.data.links.homepage} target="_blank">
+          Website
+        </a>
+      )
+    }
   </div>
-</div>
+  <h1 transition:name={project.data.title}>{project.data.title}</h1>
+  <p transition:name={project.data.description}>{project.data.description}</p>
+  {project.data.readMore && <a href={`/project/${project.id}/`}>Read More</a>}
+</article>
