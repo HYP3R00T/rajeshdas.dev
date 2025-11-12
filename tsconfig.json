@@ -17,14 +17,8 @@
             "@posts/*": [
                 "./content/posts/*"
             ],
-            "@certifications": [
-                "./certifications.json"
-            ],
-            "@github": [
-                "./github.json"
-            ],
-            "@project": [
-                "./project.json"
+            "@data/*": [
+                "./data/*"
             ]
         }
     }

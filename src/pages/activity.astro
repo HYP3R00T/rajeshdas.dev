@@ -2,8 +2,8 @@
 import ActivityAccordion from "@/components/activity/ActivityAccordion.astro";
 import WeeklySummaryCard from "@/components/activity/WeeklySummaryCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import githubEvents from "@github";
-import projectData from "@project";
+import githubEvents from "@data/github.json";
+import projectData from "@data/project.json";
 import type { GitHubEvent, ProjectsData } from "@/lib/types";
 import {
   organizeEvents,

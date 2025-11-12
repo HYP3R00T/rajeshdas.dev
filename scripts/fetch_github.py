@@ -2,10 +2,10 @@
 """
 Fetch GitHub activity events and generate a flat array matching github-events.schema.json.
 This script reads the GitHub token from .env file and fetches activity events
-for repositories listed in project.json.
+for repositories listed in data/project.json.
 
 Incremental mode: Fetches only the last 24 hours of events and prepends them to
-the existing github.json file, avoiding duplicate API calls.
+the existing data/github.json file, avoiding duplicate API calls.
 """
 
 import json
@@ -31,9 +31,9 @@ def load_github_token() -> str:
     return token
 
 
-def load_project_repos() -> list[str]:
-    """Load repository IDs from project.json."""
-    project_file = Path(__file__).parent.parent / "project.json"
+def load_repositories() -> list[str]:
+    """Load repository IDs from data/project.json."""
+    project_file = Path(__file__).parent.parent / "data" / "project.json"
     with open(project_file) as f:
         data = json.load(f)
     return [project["id"] for project in data["projects"]]
@@ -41,12 +41,12 @@ def load_project_repos() -> list[str]:
 
 def load_existing_events() -> tuple[list[dict], datetime | None]:
     """
-    Load existing events from github.json.
+    Load existing events from data/github.json.
 
     Returns:
         tuple: (list of existing events, most recent event timestamp or None)
     """
-    output_file = Path(__file__).parent.parent / "github.json"
+    output_file = Path(__file__).parent.parent / "data" / "github.json"
 
     if not output_file.exists():
         return [], None
@@ -63,7 +63,7 @@ def load_existing_events() -> tuple[list[dict], datetime | None]:
 
         return events, most_recent
     except (json.JSONDecodeError, ValueError, KeyError) as e:
-        print(f"⚠ Warning: Could not parse existing github.json: {e}")
+        print(f"⚠ Warning: Could not parse existing data/github.json: {e}")
         return [], None
 
 
@@ -321,7 +321,7 @@ def main():
     """Main function to fetch GitHub activity and generate events JSON."""
     try:
         token = load_github_token()
-        repo_ids = load_project_repos()
+        repo_ids = load_repositories()
 
         # Load existing events
         existing_events, most_recent = load_existing_events()
@@ -362,8 +362,8 @@ def main():
             event for event in all_events if datetime.fromisoformat(event["at"].replace("Z", "+00:00")) >= cutoff_date
         ]
 
-        # Save to github.json
-        output_file = Path(__file__).parent.parent / "github.json"
+        # Save to data/github.json
+        output_file = Path(__file__).parent.parent / "data" / "github.json"
         with open(output_file, "w") as f:
             json.dump(all_events, f, indent=2)
 

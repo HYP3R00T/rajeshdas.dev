@@ -3,15 +3,15 @@ import { Icon } from "astro-icon/components";
 import Bar from "@/assets/barcode.svg";
 import FeaturedCertificationCard from "./FeaturedCertificationCard.astro";
 import CertificationListItem from "./CertificationListItem.astro";
-import certificationsData from "@certifications";
+import certificationsData from "@data/certifications.json";
 
 const certifications = [...certificationsData].sort((a, b) => {
-  if (a.emphasized === b.emphasized) return 0;
-  return a.emphasized ? -1 : 1;
+  if (a.pinned === b.pinned) return 0;
+  return a.pinned ? -1 : 1;
 });
 
-const featuredCerts = certifications.filter((cert) => cert.emphasized);
-const additionalCerts = certifications.filter((cert) => !cert.emphasized);
+const featuredCerts = certifications.filter((cert) => cert.pinned);
+const additionalCerts = certifications.filter((cert) => !cert.pinned);
 ---
 
 <section class="w-full">
@@ -37,13 +37,13 @@ const additionalCerts = certifications.filter((cert) => !cert.emphasized);
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
               {featuredCerts.map((cert) => (
                 <FeaturedCertificationCard
-                  title={cert.title}
+                  title={cert.name}
                   provider={cert.provider}
-                  providerLogo={cert.providerLogo}
-                  badgeImage={cert.badgeImage}
-                  date={cert.date}
-                  credlyBadgeUrl={cert.credlyBadgeUrl}
-                  certificateUrl={cert.certificateUrl}
+                  providerLogo={cert.issuer}
+                  badgeImage={cert.credly}
+                  date={cert.acquired_date}
+                  credlyBadgeUrl={cert.credly}
+                  certificateUrl={cert.links?.[0] || ""}
                 />
               ))}
             </div>
@@ -61,13 +61,13 @@ const additionalCerts = certifications.filter((cert) => !cert.emphasized);
               <div class="space-y-3">
                 {additionalCerts.map((cert, index) => (
                   <CertificationListItem
-                    title={cert.title}
+                    title={cert.name}
                     provider={cert.provider}
-                    providerLogo={cert.providerLogo}
-                    badgeImage={cert.badgeImage}
-                    date={cert.date}
-                    credlyBadgeUrl={cert.credlyBadgeUrl}
-                    certificateUrl={cert.certificateUrl}
+                    providerLogo={cert.issuer}
+                    badgeImage={cert.credly}
+                    date={cert.acquired_date}
+                    credlyBadgeUrl={cert.credly}
+                    certificateUrl={cert.links?.[0] || ""}
                     showBorder={index !== 0}
                   />
                 ))}

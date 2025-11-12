@@ -1,0 +1,551 @@
+[
+  {
+    "name": "Google IT Automation with Python",
+    "acquired_date": "2024-09-23",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/professional-cert/8XQZA8BMO4LX"
+    ],
+    "credly": "https://www.credly.com/badges/7aa530c7-9ae0-4f05-9766-9faee5ac98cc/public_url",
+    "tags": [
+      "Google",
+      "Python",
+      "Automation",
+      "IT Operations",
+      "DevOps"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Intro to Generative AI: A Beginner's Primer on Core Concepts",
+    "acquired_date": "2024-09-30",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/specialization/8WNI5H80XDTG"
+    ],
+    "tags": [
+      "Google Cloud",
+      "AI",
+      "Generative AI",
+      "Machine Learning"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to Software Engineering | Software Engineering Essentials",
+    "acquired_date": "2024-09-30",
+    "issuer": "IBM",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/KJZZCLKPPRWK"
+    ],
+    "credly": "https://www.credly.com/badges/f599cb4a-dbe5-4260-9706-edd4fb4cbec4/public_url",
+    "tags": [
+      "IBM",
+      "Software Engineering",
+      "Fundamentals"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Command Line Interface (CLI) With Golang From Infosys",
+    "acquired_date": "2024-10-15",
+    "issuer": "Infosys",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/LSTATLVVR62X"
+    ],
+    "tags": [
+      "Golang",
+      "CLI",
+      "Programming"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Troubleshooting and Debugging Techniques",
+    "acquired_date": "2024-10-07",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/HG7ZPB5JITZR"
+    ],
+    "tags": [
+      "Google",
+      "Debugging",
+      "Problem Solving",
+      "DevOps"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Responsible AI: Applying AI Principles with Google Cloud",
+    "acquired_date": "2024-09-30",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/0L8FCY21KCDK"
+    ],
+    "tags": [
+      "Google Cloud",
+      "Responsible AI",
+      "Ethics",
+      "AI Policy"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to Git and GitHub",
+    "acquired_date": "2024-10-02",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "tags": [
+      "Google",
+      "Git",
+      "Version Control",
+      "DevOps"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to SQL for BigQuery and Cloud SQL",
+    "acquired_date": "2024-10-07",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/JK23SHR8FUMO"
+    ],
+    "tags": [
+      "Google Cloud",
+      "SQL",
+      "Databases",
+      "BigQuery"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Google AI Essentials",
+    "acquired_date": "2024-11-01",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/BH5LG9HBQGRN"
+    ],
+    "credly": "https://www.credly.com/badges/588595c6-b946-4d01-b47c-76c1285a6f0e/public_url",
+    "tags": [
+      "Google",
+      "AI",
+      "Generative AI",
+      "Productivity"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Configuration Management and the Cloud",
+    "acquired_date": "2024-10-09",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/BGZRLKU7ELMB"
+    ],
+    "tags": [
+      "Google",
+      "Cloud",
+      "Configuration Management",
+      "DevOps"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Building Generative AI-Powered Applications with Python",
+    "acquired_date": "2024-11-07",
+    "issuer": "IBM",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/RU28RT9KX2BV"
+    ],
+    "credly": "https://www.credly.com/badges/70adec8e-2321-423a-b13c-59f074556291/public_url",
+    "tags": [
+      "IBM",
+      "Python",
+      "AI",
+      "Generative AI"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Automating Real-World Tasks with Python",
+    "acquired_date": "2024-10-10",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/699S09JIJ04F"
+    ],
+    "tags": [
+      "Google",
+      "Python",
+      "Automation",
+      "Scripting"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Introduction to Generative AI",
+    "acquired_date": "2024-09-30",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/0FY8HRM77QX1"
+    ],
+    "tags": [
+      "Google Cloud",
+      "AI",
+      "Generative AI"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Using Python to Interact with the Operating System",
+    "acquired_date": "2024-09-30",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/8WGQ5K5TARNQ"
+    ],
+    "tags": [
+      "Google",
+      "Python",
+      "Operating System",
+      "Scripting"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Terraform Fundamentals",
+    "acquired_date": "2024-06-15",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/F5CT6QFBXYVC"
+    ],
+    "tags": [
+      "Google Cloud",
+      "Terraform",
+      "IaC",
+      "DevOps"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Open Source Software Development Methods",
+    "acquired_date": "2024-09-10",
+    "issuer": "The Linux Foundation",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/2GFZ4Y7PH7VD"
+    ],
+    "tags": [
+      "Linux Foundation",
+      "Open Source",
+      "Software Development"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to Responsible AI",
+    "acquired_date": "2024-09-30",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/3J6FSFRCUVYF"
+    ],
+    "tags": [
+      "Google Cloud",
+      "Responsible AI",
+      "Ethics"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Cloud Functions: Qwik Start - Command Line",
+    "acquired_date": "2024-07-20",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/QBSK7TF657RN"
+    ],
+    "tags": [
+      "Google Cloud",
+      "Cloud Functions",
+      "Serverless",
+      "CLI"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to Large Language Models",
+    "acquired_date": "2024-09-30",
+    "issuer": "Google Cloud",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/S9MF23IMHW0Z"
+    ],
+    "tags": [
+      "Google Cloud",
+      "LLMs",
+      "AI",
+      "NLP"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Python for Data Science, AI & Development | Python for Data Science and AI",
+    "acquired_date": "2024-04-24",
+    "issuer": "IBM",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/STJ6MDJ7QN64"
+    ],
+    "credly": "https://www.credly.com/badges/678e8685-1559-4a48-a69a-4c3febb53fbd/public_url",
+    "tags": [
+      "IBM",
+      "Python",
+      "Data Science",
+      "AI"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Hands-on Introduction to Linux Commands and Shell Scripting | Linux Commands & Shell Scripting Essentials",
+    "acquired_date": "2024-08-08",
+    "issuer": "IBM",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/9OLVAU2QKL5G"
+    ],
+    "credly": "https://www.credly.com/badges/a870b95b-528f-4c14-b18b-c47bcbf82d7c/public_url",
+    "tags": [
+      "IBM",
+      "Linux",
+      "Shell Scripting",
+      "DevOps"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Introduction to Ansible: The Fundamentals",
+    "acquired_date": "2024-08-08",
+    "issuer": "Coursera",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/JUQ04FRXEPYG"
+    ],
+    "tags": [
+      "Ansible",
+      "Automation",
+      "DevOps"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to Bash Shell Scripting",
+    "acquired_date": "2024-03-09",
+    "issuer": "Coursera",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/J8F2T8VS6EEZ"
+    ],
+    "tags": [
+      "Bash",
+      "Scripting",
+      "Linux"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to HTML5",
+    "acquired_date": "2021-08-12",
+    "issuer": "University of Michigan",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/6TU7WVAGWDBR"
+    ],
+    "tags": [
+      "HTML",
+      "Web Development"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Build a Data Science Web App with Streamlit and Python",
+    "acquired_date": "2024-03-09",
+    "issuer": "Coursera",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/CQ4U4K8Z4UQV"
+    ],
+    "tags": [
+      "Python",
+      "Streamlit",
+      "Data Science"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Crash Course on Python",
+    "acquired_date": "2024-04-04",
+    "issuer": "Google",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/MUWLTE95NDXP"
+    ],
+    "tags": [
+      "Google",
+      "Python",
+      "Programming"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Create Your First Web App with Python and Flask",
+    "acquired_date": "2022-04-19",
+    "issuer": "Coursera",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/939WN6G3JWRC"
+    ],
+    "tags": [
+      "Python",
+      "Flask",
+      "Web Development"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to Agile Development and Scrum",
+    "acquired_date": "2024-04-10",
+    "issuer": "IBM",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/UPZK3SDMNTC3"
+    ],
+    "credly": "https://www.credly.com/badges/3bc12e55-8398-4d79-ab64-b569e7eb0858/public_url",
+    "tags": [
+      "IBM",
+      "Agile",
+      "Scrum",
+      "Project Management"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Python Data Structures",
+    "acquired_date": "2024-04-13",
+    "issuer": "University of Michigan",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/TSQJNTWXKUYU"
+    ],
+    "tags": [
+      "Python",
+      "Data Structures"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Introduction to DevOps | DevOps Essentials",
+    "acquired_date": "2024-03-30",
+    "issuer": "IBM",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/UPQAYJ5Z7ALZ"
+    ],
+    "credly": "https://www.credly.com/badges/868906dd-a866-41de-8cac-05f7245eb885/public_url",
+    "tags": [
+      "IBM",
+      "DevOps",
+      "CI/CD",
+      "Automation"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Programming for Everybody (Getting Started with Python)",
+    "acquired_date": "2021-03-17",
+    "issuer": "University of Michigan",
+    "provider": "Coursera",
+    "links": [
+      "https://coursera.org/verify/UA8HV8PM352N"
+    ],
+    "tags": [
+      "Python",
+      "Programming"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Microsoft Certified: Azure Fundamentals",
+    "acquired_date": "2022-07-24",
+    "issuer": "Microsoft",
+    "provider": "Microsoft Learn",
+    "links": [
+      "https://learn.microsoft.com/api/credentials/share/en-us/hyperoot/7B93B51D1C06B161?sharingId=B2077C1BC61EDB8"
+    ],
+    "credly": "https://www.credly.com/badges/be903c6e-bc08-4117-bb7e-942e5364e32b/public_url",
+    "tags": [
+      "Microsoft",
+      "Azure",
+      "Cloud",
+      "Fundamentals"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Oracle Cloud Infrastructure 2025 Certified DevOps Professional",
+    "acquired_date": "2025-10-31",
+    "expiry_date": "2027-10-31",
+    "issuer": "Oracle",
+    "provider": "Oracle University",
+    "links": [
+      "https://catalog-education.oracle.com/pls/certview/sharebadge?id=59E4A702167FA56AD887E61DD63844B5F9573D4221E8B0AC57A9B9E28C33F777"
+    ],
+    "tags": [
+      "Oracle",
+      "OCI",
+      "Cloud",
+      "DevOps"
+    ],
+    "pinned": true
+  },
+  {
+    "name": "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
+    "acquired_date": "2025-10-31",
+    "expiry_date": "2027-10-31",
+    "issuer": "Oracle",
+    "provider": "Oracle University",
+    "links": [
+      "https://catalog-education.oracle.com/pls/certview/sharebadge?id=48F520C06EBB912ED3F33CB92D4C68B2517A18C337D132789135C7FD216628AB"
+    ],
+    "tags": [
+      "Oracle",
+      "OCI",
+      "Cloud",
+      "Foundations"
+    ],
+    "pinned": false
+  },
+  {
+    "name": "Getting Started with DevOps on AWS",
+    "acquired_date": "2025-10-08",
+    "issuer": "AWS Training & Certification",
+    "provider": "AWS Training & Certification",
+    "tags": [
+      "AWS",
+      "DevOps",
+      "Cloud"
+    ],
+    "pinned": true
+  }
+]
