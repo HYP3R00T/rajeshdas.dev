@@ -1,15 +1,18 @@
 ---
 import HeadSEO from "@/components/core/HeadSEO.astro";
 import Header from "@/components/core/Header.astro";
-import Footer from "@/components/core/Footer.astro";
+
 import { LOCALE } from "@data/config";
 import type { BaseLayoutProps } from "@/lib/types";
+import { Image } from "astro:assets";
+import so from "@/assets/setup.png";
+import Footer from "@/components/core/Footer.astro";
 
 const { title, description, image, imageAlt, contentType, transparent_header } =
   Astro.props as BaseLayoutProps;
 ---
 
-<html lang={LOCALE.lang ?? "en"}>
+<html lang=`${LOCALE.lang ?? "en"}`>
   <head>
     <HeadSEO
       title={title}
@@ -19,11 +22,16 @@ const { title, description, image, imageAlt, contentType, transparent_header } =
       contentType={contentType}
     />
   </head>
-  <body>
+
+  <body class="flex flex-col">
     <Header title="Rajesh Das" transparent_header={transparent_header} />
-    <main>
-      <slot />
-    </main>
+    <div class="flex flex-1">
+      <main class="flex h-full w-full justify-center">
+        <div class="flex w-full max-w-7xl flex-col justify-center">
+          <slot />
+        </div>
+      </main>
+    </div>
     <Footer />
   </body>
 </html>

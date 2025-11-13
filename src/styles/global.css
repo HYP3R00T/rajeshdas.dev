@@ -72,11 +72,50 @@
 
 @layer base {
   * {
-    @apply font-body box-border scroll-smooth transition-transform;
+    @apply font-body box-border scroll-smooth;
   }
 
   body {
     @apply bg-background text-text-default antialiased;
+  }
+
+  /* Container system */
+  .container {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-12;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-4xl px-6 md:px-8;
+  }
+
+  /* Section spacing */
+  section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Typography enhancements */
+  h1 {
+    @apply text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl font-semibold md:text-2xl;
+  }
+
+  p {
+    @apply text-base leading-relaxed md:text-lg;
+  }
+
+  a {
+    @apply transition-colors duration-200;
   }
 }
 
@@ -112,13 +151,6 @@
 
 .astro-code {
   @apply hover:text-text-default my-4 p-12! font-mono text-base;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 1.5rem) 0,
-    100% 1.5rem,
-    100% 100%,
-    0 100%
-  );
 }
 
 pre[data-language] {
@@ -253,14 +285,6 @@ pre[data-language]::before {
 
 .prose img {
   @apply mx-auto;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 1.5rem) 0,
-    100% 1.5rem,
-    100% 100%,
-    1.5rem 100%,
-    0 calc(100% - 1.5rem)
-  );
 }
 
 .prose hr {
@@ -269,74 +293,4 @@ pre[data-language]::before {
 
 .prose iframe {
   @apply aspect-video h-auto w-full;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 2rem) 0,
-    100% 2rem,
-    100% 100%,
-    2rem 100%,
-    0 calc(100% - 2rem)
-  );
-}
-
-/* ===== special ===== */
-.gator {
-  clip-path: polygon(
-    0 0,
-    calc(100% - 0.75rem) 0,
-    100% 0.75rem,
-    100% 100%,
-    0.75rem 100%,
-    0 calc(100% - 0.75rem)
-  );
-}
-
-/* Larger hero panel variant with 2rem notch */
-.box-tr-bl-lg {
-  clip-path: polygon(
-    0 0,
-    calc(100% - 2rem) 0,
-    100% 2rem,
-    100% 100%,
-    2rem 100%,
-    0 calc(100% - 2rem)
-  );
-}
-
-.box-tr-lg {
-  clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 0 100%);
-}
-
-.box-tr-md {
-  clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
-}
-
-.box-tr-sm {
-  clip-path: polygon(
-    0 0,
-    calc(100% - 0.75rem) 0,
-    100% 0.75rem,
-    100% 100%,
-    0 100%
-  );
-}
-
-.box-bl-sm {
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 100%,
-    0.75rem 100%,
-    0% calc(100% - 0.75rem)
-  );
-}
-
-.box-tr-xs {
-  clip-path: polygon(
-    0 0,
-    calc(100% - 0.5rem) 0,
-    100% 0.5rem,
-    100% 100%,
-    0 100%
-  );
 }
