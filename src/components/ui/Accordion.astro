@@ -1,13 +1,163 @@
 ---
-// Accordion component - simplified for redesign
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+
+interface AccordionProps extends HTMLAttributes<"div"> {
+  class?: string;
+  open?: boolean;
+  icon?: string;
+}
+
+const {
+  class: className,
+  open = false,
+  icon = "caret-up",
+  ...rest
+} = Astro.props as AccordionProps;
+
+const baseClasses =
+  "accordion-item hover:bg-content rounded-radius overflow-hidden transition-all duration-300";
+
+const classes = [baseClasses, className?.trim()].filter(Boolean).join(" ");
 ---
 
-<details>
-  <summary>
-    <slot name="header-left" />
-    <slot name="header-right" />
-  </summary>
-  <div>
-    <slot name="content" />
+<div class={classes} data-state={open ? "pinned" : "collapsed"} {...rest}>
+  <div
+    class="text-text-default flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-2 text-base font-medium transition-all duration-300"
+    data-accordion-header
+  >
+    <slot name="trigger" />
+    <div data-accordion-icon>
+      <Icon name={icon} class="size-5 transition-transform duration-200" />
+    </div>
   </div>
-</details>
+  <div
+    class="max-h-0 overflow-hidden transition-all duration-300"
+    data-accordion-content
+  >
+    <div
+      class="text-text-default px-6 py-2 leading-relaxed opacity-0 transition-opacity duration-300"
+    >
+      <slot name="content" />
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const accordionItems =
+      document.querySelectorAll<HTMLDivElement>(".accordion-item");
+
+    let pinnedItem: HTMLDivElement | null = null;
+
+    accordionItems.forEach((item) => {
+      if (item.dataset.initialized === "true") return;
+
+      const header = item.querySelector<HTMLElement>("[data-accordion-header]");
+      const content = item.querySelector<HTMLElement>(
+        "[data-accordion-content]"
+      );
+      const contentInner = content?.firstElementChild as HTMLElement;
+      const iconWrapper = item.querySelector<HTMLElement>(
+        "[data-accordion-icon]"
+      );
+      const icon = iconWrapper?.querySelector("svg");
+
+      item.dataset.initialized = "true";
+
+      // Initialize open state
+      if (item.dataset.state === "pinned" && content && contentInner) {
+        item.classList.add("bg-content");
+        if (icon) icon.style.transform = "rotate(180deg)";
+        content.style.maxHeight = `${content.scrollHeight}px`;
+        contentInner.style.opacity = "1";
+        pinnedItem = item;
+      }
+
+      let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
+
+      const expand = (pinned: boolean = false) => {
+        if (!content || !contentInner) return;
+
+        item.dataset.state = pinned ? "pinned" : "hover";
+        if (pinned) item.classList.add("bg-content");
+        if (icon) icon.style.transform = "rotate(180deg)";
+        content.style.maxHeight = `${content.scrollHeight}px`;
+        setTimeout(() => (contentInner.style.opacity = "1"), 100);
+      };
+
+      const collapse = () => {
+        if (!content || !contentInner) return;
+
+        item.dataset.state = "collapsed";
+        item.classList.remove("bg-content");
+        if (icon) icon.style.transform = "rotate(0deg)";
+        content.style.maxHeight = "0px";
+        contentInner.style.opacity = "0";
+      };
+
+      header?.addEventListener("mouseenter", () => {
+        if (item.dataset.state !== "pinned") {
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          hoverTimeout = setTimeout(() => expand(false), 180);
+        }
+      });
+
+      header?.addEventListener("mouseleave", () => {
+        if (hoverTimeout) clearTimeout(hoverTimeout);
+        if (item.dataset.state === "hover") collapse();
+      });
+
+      header?.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        if (item.dataset.state === "pinned") {
+          collapse();
+          pinnedItem = null;
+        } else {
+          if (pinnedItem && pinnedItem !== item) {
+            const prevContent = pinnedItem.querySelector<HTMLElement>(
+              "[data-accordion-content]"
+            );
+            const prevContentInner =
+              prevContent?.firstElementChild as HTMLElement;
+            const prevIconWrapper = pinnedItem.querySelector<HTMLElement>(
+              "[data-accordion-icon]"
+            );
+            const prevIcon = prevIconWrapper?.querySelector("svg");
+
+            pinnedItem.dataset.state = "collapsed";
+            pinnedItem.classList.remove("bg-content");
+            if (prevIcon) prevIcon.style.transform = "rotate(0deg)";
+            if (prevContent) prevContent.style.maxHeight = "0px";
+            if (prevContentInner) prevContentInner.style.opacity = "0";
+          }
+
+          expand(true);
+          pinnedItem = item;
+        }
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (pinnedItem && !pinnedItem.contains(e.target as Node)) {
+        const content = pinnedItem.querySelector<HTMLElement>(
+          "[data-accordion-content]"
+        );
+        const contentInner = content?.firstElementChild as HTMLElement;
+        const iconWrapper = pinnedItem.querySelector<HTMLElement>(
+          "[data-accordion-icon]"
+        );
+        const icon = iconWrapper?.querySelector("svg");
+
+        pinnedItem.dataset.state = "collapsed";
+        pinnedItem.classList.remove("bg-content");
+        if (icon) icon.style.transform = "rotate(0deg)";
+        if (content) content.style.maxHeight = "0px";
+        if (contentInner) contentInner.style.opacity = "0";
+
+        pinnedItem = null;
+      }
+    });
+  });
+</script>
