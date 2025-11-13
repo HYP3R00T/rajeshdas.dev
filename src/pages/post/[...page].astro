@@ -46,19 +46,8 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps & {
   <div class="container">
     <div class="grid gap-8 lg:grid-cols-2">
       <!-- Left: posts list -->
-      <main class="lg:pr-6">
-        <header class="py-6">
-          <div class="flex items-center justify-between">
-            <h1
-              class="text-text-default text-3xl"
-              transition:name="latest-articles"
-            >
-              Latest articles
-            </h1>
-          </div>
-        </header>
-
-        <div class="mt-6 flex flex-col gap-6">
+      <main class="">
+        <div class="mt-4 flex flex-col gap-6">
           {page.data.map((post) => <PostCard post={post} />)}
         </div>
 

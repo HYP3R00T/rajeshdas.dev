@@ -88,7 +88,7 @@
   }
 
   .container-narrow {
-    @apply mx-auto w-full max-w-4xl px-6 md:px-8;
+    @apply mx-auto w-full max-w-4xl md:px-8;
   }
 
   /* Section spacing */
@@ -153,7 +153,7 @@
 /* ===== codeblock ===== */
 
 .astro-code {
-  @apply hover:text-text-default my-4 p-12! font-mono text-base;
+  @apply hover:text-text-default my-4 p-4 font-mono text-base sm:p-6 md:p-8;
 }
 
 pre[data-language] {
@@ -184,7 +184,7 @@ pre[data-language]::before {
 
 /* ===== prose ===== */
 .prose {
-  @apply text-text-subtle text-lg;
+  @apply text-text-subtle w-full text-lg;
 }
 
 .prose a {
