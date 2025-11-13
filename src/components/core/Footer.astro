@@ -1,9 +1,14 @@
 ---
 import Social from "@/components/core/Social.astro";
+import Button from "@/components/ui/Button.astro";
 import { navItems } from "@data/config";
 ---
 
-<footer class="border-border bg-content/30 mt-24 border-t">
+<footer
+  role="contentinfo"
+  aria-label="Footer"
+  class="border-border bg-content mt-24 border-t"
+>
   <div class="container">
     <div class="grid grid-cols-1 gap-8 py-12 md:grid-cols-4">
       <!-- Brand -->
@@ -25,33 +30,52 @@ import { navItems } from "@data/config";
         <h3 class="text-text-default mb-4 text-sm font-semibold">
           Quick Links
         </h3>
-        <nav class="flex flex-col gap-2">
-          {
-            navItems.map((item) => (
-              <a
-                href={item.href}
-                target={item.blank ? "_blank" : "_self"}
-                class="text-text-subtle text-sm"
-              >
-                {item.label}
-              </a>
-            ))
-          }
+        <nav aria-label="Quick links">
+          <ul class="flex flex-col gap-2">
+            {
+              navItems.map((item: any) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-text-subtle text-sm"
+                    target={item.blank ? "_blank" : undefined}
+                    rel={item.blank ? "noopener noreferrer" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </nav>
       </div>
 
       <!-- Social -->
       <div>
         <h3 class="text-text-default mb-4 text-sm font-semibold">Connect</h3>
-        <Social />
+        <div aria-label="Social links">
+          <Social />
+        </div>
       </div>
     </div>
 
     <!-- Copyright -->
-    <div class="border-border border-t py-6">
-      <p class="text-text-faint text-center text-sm">
+    <div
+      class="border-border flex flex-col items-center gap-4 border-t py-6 md:flex-row md:justify-between"
+    >
+      <p class="text-text-faint text-center text-sm md:text-left">
         &copy; {new Date().getFullYear()} Rajesh Das. All rights reserved.
       </p>
+      <div class="flex items-center gap-3">
+        <Button
+          variant="outline"
+          size="sm"
+          href="#top"
+          class="text-text-subtle"
+        >
+          Back to top
+        </Button>
+      </div>
     </div>
   </div>
 </footer>

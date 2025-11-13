@@ -1,16 +1,6 @@
 {
     "projects": [
         {
-            "id": "HYP3R00T/rajeshdas.dev",
-            "title": "rajeshdas.dev",
-            "short_description": "A modern, performant personal portfolio",
-            "featured": true,
-            "demo_url": "rajeshdas.dev",
-            "tags": [
-                "astro"
-            ]
-        },
-        {
             "id": "HYP3R00T/homelab",
             "title": "Homelab",
             "short_description": "A production-grade self-hosted Kubernetes homelab",
@@ -30,6 +20,16 @@
             "tags": [
                 "aws",
                 "python"
+            ]
+        },
+        {
+            "id": "HYP3R00T/rajeshdas.dev",
+            "title": "rajeshdas.dev",
+            "short_description": "A modern, performant personal portfolio",
+            "featured": true,
+            "demo_url": "rajeshdas.dev",
+            "tags": [
+                "astro"
             ]
         },
         {
