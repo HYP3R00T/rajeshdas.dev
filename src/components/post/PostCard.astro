@@ -5,12 +5,34 @@ import type { PostCardProps } from "@/lib/types";
 const { post } = Astro.props as PostCardProps;
 ---
 
-<article>
-  <a href={`/post/${post.id}/`}>
-    <time transition:name={`${post.data.title}-date`}>
+<article
+  class="group border-border bg-content hover:bg-elevated rounded-xl border p-6 transition-colors duration-200"
+>
+  <a href={`/post/${post.id}/`} class="block space-y-3">
+    <time
+      class="text-text-faint block text-xs font-medium tracking-wide uppercase"
+    >
       {formatDate(post.data.pubDatetime)}
     </time>
-    <h1 transition:name={post.data.title}>{post.data.title}</h1>
-    <p>{post.data.description}</p>
+
+    <h2 class="text-text-default mt-1 text-xl leading-tight font-bold">
+      {post.data.title}
+    </h2>
+
+    <p class="text-text-subtle text-base leading-relaxed">
+      {post.data.description}
+    </p>
+
+    {
+      post.data.tags && post.data.tags.length > 0 && (
+        <div class="mt-3 flex flex-wrap gap-2">
+          {post.data.tags.map((t: string) => (
+            <span class="bg-accent/10 border-accent/30 text-accent rounded-full border px-2 py-0.5 text-xs">
+              #{t}
+            </span>
+          ))}
+        </div>
+      )
+    }
   </a>
 </article>

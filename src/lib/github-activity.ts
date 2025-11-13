@@ -3,17 +3,17 @@ export const eventTypeMap: Record<
     string,
     { actionPhrase: string; icon: string }
 > = {
-    pull_opened: { actionPhrase: "opened pull request", icon: "git-pull-request" },
-    pull_merged: { actionPhrase: "merged pull request", icon: "git-merge" },
-    pull_closed: { actionPhrase: "closed pull request", icon: "git-pull-request-closed" },
-    issue_opened: { actionPhrase: "opened issue", icon: "issue-opened" },
-    issue_closed: { actionPhrase: "closed issue", icon: "issue-closed" },
-    issue_reopened: { actionPhrase: "reopened issue", icon: "issue-reopened" },
-    commit: { actionPhrase: "pushed commit", icon: "git-commit" },
-    release_published: { actionPhrase: "published release", icon: "tag" },
-    workflow_run: { actionPhrase: "workflow completed", icon: "workflow" },
-    repo_created: { actionPhrase: "created repository", icon: "repo" },
-    repo_archived: { actionPhrase: "archived repository", icon: "archive" },
+    pull_opened: { actionPhrase: "opened pull request", icon: "github" },
+    pull_merged: { actionPhrase: "merged pull request", icon: "github" },
+    pull_closed: { actionPhrase: "closed pull request", icon: "github" },
+    issue_opened: { actionPhrase: "opened issue", icon: "github" },
+    issue_closed: { actionPhrase: "closed issue", icon: "github" },
+    issue_reopened: { actionPhrase: "reopened issue", icon: "github" },
+    commit: { actionPhrase: "pushed commit", icon: "github" },
+    release_published: { actionPhrase: "published release", icon: "github" },
+    workflow_run: { actionPhrase: "workflow completed", icon: "github" },
+    repo_created: { actionPhrase: "created repository", icon: "github" },
+    repo_archived: { actionPhrase: "archived repository", icon: "github" },
 };
 
 // Helper to convert snake_case to human readable
@@ -32,7 +32,7 @@ export function getEventInfo(type: string) {
     // Fallback
     return {
         actionPhrase: snakeCaseToWords(type),
-        icon: "git-commit",
+        icon: "github",
     };
 }
 

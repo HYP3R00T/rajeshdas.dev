@@ -60,19 +60,20 @@ const categoryNames: Record<string, string> = {
             </h2>
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {items.map((component) => (
-                <a
-                  href={`/components/${component.id}`}
-                  class="group rounded-radius border-border bg-background hover:bg-content hover:border-accent block border p-6 transition-all duration-200"
-                >
-                  <div class="space-y-2">
+                <div class="group rounded-radius border-border bg-content hover:bg-elevated border p-6 transition-colors duration-200">
+                  <div class="mb-4 space-y-2">
                     <h3 class="text-text-default group-hover:text-accent text-lg font-semibold transition-colors">
                       {component.data.title}
                     </h3>
-                    <p class="text-text-muted line-clamp-2 text-sm">
+                    <p class="text-text-subtle line-clamp-2 text-sm">
                       {component.data.description}
                     </p>
                   </div>
-                  <div class="text-accent mt-4 flex items-center text-sm font-medium">
+                  <Button
+                    variant="ghost"
+                    href={`/components/${component.id}`}
+                    class="group/btn h-auto p-0"
+                  >
                     View Component
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -84,13 +85,13 @@ const categoryNames: Record<string, string> = {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="ml-1 transition-transform group-hover:translate-x-1"
+                      class="transition-transform group-hover/btn:translate-x-1"
                     >
                       <path d="M5 12h14" />
                       <path d="m12 5 7 7-7 7" />
                     </svg>
-                  </div>
-                </a>
+                  </Button>
+                </div>
               ))}
             </div>
           </section>

@@ -2,29 +2,67 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Social from "@/components/core/Social.astro";
 import Articles from "@/components/home/Articles.astro";
-import Projects from "@/components/home/Projects.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import HeroPanel from "@/components/ui/HeroPanel.astro";
 ---
 
 <BaseLayout>
-  <section>
-    <span>Available for hire (will work for good coffee ☕)</span>
-    <h1>Rajesh Das</h1>
-    <h2>DevOps & Automation Engineer</h2>
-    <p>
-      I make clouds behave, pipelines flow smoothly, and deployments happen
-      without drama. From Kubernetes clusters to CI/CD wizardry, I automate the
-      boring stuff so teams can focus on building cool things. Think GitOps,
-      IaC, and systems that actually stay up at 3 AM.
-    </p>
-    <nav>
-      <a href="/contact">Hire Me</a>
-      <a href="https://hyperoot.dev/" target="_blank">See What I've Built</a>
-      <a href="/about">About Me</a>
-    </nav>
-    <Social />
+  <!-- Hero Section -->
+  <section class="py-8 md:py-16 lg:py-20">
+    <div class="mx-auto max-w-4xl">
+      <HeroPanel class="px-6 py-10 text-center md:px-12 md:py-14">
+        <Badge variant="accent" class="mb-6"> Available for hire </Badge>
+
+        <h1
+          class="mb-3 text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl lg:text-7xl"
+        >
+          Rajesh Das
+        </h1>
+
+        <h2
+          class="text-text-subtle mb-6 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl"
+        >
+          DevOps & Automation Engineer
+        </h2>
+
+        <p
+          class="text-text-subtle mx-auto mb-6 max-w-3xl text-lg leading-relaxed md:text-xl"
+        >
+          I make clouds behave, pipelines flow smoothly, and deployments happen
+          without drama. From Kubernetes clusters to CI/CD wizardry, I automate
+          the boring stuff so teams can focus on building cool things.
+        </p>
+
+        <nav class="mb-2 flex flex-wrap justify-center gap-3 font-bold">
+          <Button variant="accent" size="lg" href="/contact">
+            <span class="font-bold">Hire Me</span>
+          </Button>
+          <Button
+            variant="secondary"
+            size="lg"
+            href="https://hyperoot.dev/"
+            target="_blank"
+          >
+            <span class="font-bold">See What I've Built</span>
+          </Button>
+          <Button variant="secondary" size="lg" href="/about">
+            <span class="font-bold">About Me</span>
+          </Button>
+        </nav>
+
+        <div class="flex justify-center">
+          <Social />
+        </div>
+      </HeroPanel>
+    </div>
   </section>
 
-  <section>
+  <!-- Content Divider -->
+  <div class="border-border my-4 border-t"></div>
+
+  <!-- Articles Section -->
+  <section class="py-8 md:py-12">
     <Articles />
   </section>
 </BaseLayout>

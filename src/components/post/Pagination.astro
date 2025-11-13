@@ -1,10 +1,99 @@
 ---
-const { currentPage, prevUrl, nextUrl, firstUrl, lastUrl, totalPages } =
-  Astro.props;
+const {
+  currentPage,
+  prevUrl,
+  nextUrl,
+  first,
+  last,
+  firstUrl,
+  lastUrl,
+  totalPages,
+} = Astro.props;
+const firstLink = first ?? firstUrl;
+const lastLink = last ?? lastUrl;
+import Button from "@/components/ui/Button.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<nav>
-  {prevUrl ? <a href={prevUrl}>Previous</a> : <span>Previous</span>}
-  <span>{currentPage} / {totalPages}</span>
-  {nextUrl ? <a href={nextUrl}>Next</a> : <span>Next</span>}
+<nav class="flex items-center justify-between">
+  <div class="flex items-center gap-2">
+    {
+      firstLink ? (
+        <Button
+          href={firstLink}
+          variant="outline"
+          size="icon"
+          aria-label="First page"
+        >
+          <Icon name="arrow-right" class="size-5 -rotate-180" />
+        </Button>
+      ) : (
+        <Button variant="outline" size="icon" disabled aria-label="First page">
+          <Icon name="arrow-right" class="size-5 -rotate-180" />
+        </Button>
+      )
+    }
+
+    {
+      prevUrl ? (
+        <Button
+          href={prevUrl}
+          variant="outline"
+          size="icon"
+          aria-label="Previous page"
+        >
+          <Icon name="arrow-right" class="size-5 -rotate-180" />
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          size="icon"
+          disabled
+          aria-label="Previous page"
+        >
+          <Icon name="arrow-right" class="size-5 -rotate-180" />
+        </Button>
+      )
+    }
+  </div>
+
+  <div class="text-text-subtle text-sm font-medium">
+    Page {currentPage} / {totalPages}
+  </div>
+
+  <div class="flex items-center gap-2">
+    {
+      nextUrl ? (
+        <Button
+          href={nextUrl}
+          variant="outline"
+          size="icon"
+          aria-label="Next page"
+        >
+          <Icon name="arrow-right" class="size-5" />
+        </Button>
+      ) : (
+        <Button variant="outline" size="icon" disabled aria-label="Next page">
+          <Icon name="arrow-right" class="size-5" />
+        </Button>
+      )
+    }
+
+    {
+      lastLink ? (
+        <Button
+          href={lastLink}
+          variant="outline"
+          size="icon"
+          aria-label="Last page"
+        >
+          <Icon name="arrow-right" class="size-5" />
+        </Button>
+      ) : (
+        <Button variant="outline" size="icon" disabled aria-label="Last page">
+          <Icon name="arrow-right" class="size-5" />
+        </Button>
+      )
+    }
+  </div>
 </nav>

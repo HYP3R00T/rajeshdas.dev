@@ -1,7 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import PostCard from "@/components/post/PostCard.astro";
-import FeaturedCard from "@/components/post/FeaturedCard.astro";
+import { formatDate } from "@/lib/utils";
+import { Image } from "astro:assets";
+import Badge from "@/components/ui/Badge.astro";
+import Button from "@/components/ui/Button.astro";
+import cardBg from "@/assets/card-bg.jpg";
+import { Icon } from "astro-icon/components";
 
 const posts = await getCollection("posts").then((entries) =>
   entries.filter((entry) => !entry.data.draft)
@@ -13,13 +17,80 @@ posts.sort((a, b) => {
   return bDate - aDate;
 });
 
+// Get most recent featured post, or fallback to most recent
 const featured = posts.find((p) => p.data.featured) ?? posts[0];
-const leftPosts = posts.filter((p) => p.id !== featured?.id).slice(0, 2);
+const recentPosts = posts.filter((p) => p.id !== featured?.id).slice(0, 2);
 ---
 
-<section>
-  <h1 transition:name="latest-articles">Latest articles</h1>
-  <a href="/post/">View all</a>
-  {leftPosts.map((post) => <PostCard post={post} />)}
-  {featured && <FeaturedCard post={featured} />}
-</section>
+<div class="mx-auto max-w-4xl">
+  <div class="mb-8 flex items-center justify-between">
+    <h2
+      class="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl"
+      transition:name="latest-articles"
+    >
+      Latest articles
+    </h2>
+    <Button
+      href="/post/"
+      variant="ghost"
+      size="default"
+      class="text-text-subtle hover:text-text-default flex h-auto items-center gap-2 px-0 py-0 text-sm font-medium transition-colors duration-200 md:text-base"
+    >
+      <span>View all</span>
+      <Icon name="arrow-right" class="size-5" />
+    </Button>
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    <!-- Recent Posts (Left) -->
+    <div class="flex flex-col gap-6">
+      {
+        recentPosts.map((post) => (
+          <article class="group border-border bg-content hover:bg-elevated rounded-xl border p-6 transition-colors duration-200">
+            <a href={`/post/${post.id}/`} class="block space-y-3">
+              <time class="text-text-faint block text-xs font-medium tracking-wide uppercase">
+                {formatDate(post.data.pubDatetime)}
+              </time>
+              <h3 class="text-xl leading-tight font-bold">{post.data.title}</h3>
+              <p class="text-text-subtle text-base leading-relaxed">
+                {post.data.description}
+              </p>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Featured Post (Right) -->
+    {
+      featured && (
+        <article class="group border-border relative overflow-hidden rounded-xl border">
+          <a href={`/post/${featured.id}/`} class="block h-full">
+            <div class="relative h-full min-h-[400px]">
+              <Image
+                src={cardBg}
+                alt="Featured post background"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="from-background via-background/90 to-background/40 absolute inset-0 bg-linear-to-t" />
+              <div class="relative flex h-full flex-col justify-end p-8">
+                <div class="mb-4 flex items-center gap-3">
+                  <Badge variant="accent">Featured</Badge>
+                  <time class="text-text-subtle text-xs font-medium tracking-wide uppercase">
+                    {formatDate(featured.data.pubDatetime)}
+                  </time>
+                </div>
+                <h3 class="text-text-default mb-3 text-2xl leading-tight font-bold md:text-3xl">
+                  {featured.data.title}
+                </h3>
+                <p class="text-text-subtle text-base leading-relaxed md:text-lg">
+                  {featured.data.description}
+                </p>
+              </div>
+            </div>
+          </a>
+        </article>
+      )
+    }
+  </div>
+</div>

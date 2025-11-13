@@ -1,6 +1,6 @@
 ---
 import ActivityAccordion from "@/components/activity/ActivityAccordion.astro";
-import WeeklySummaryCard from "@/components/activity/WeeklySummaryCard.astro";
+import Button from "@/components/ui/Button.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import githubEvents from "@data/github.json";
 import projectData from "@data/project.json";
@@ -9,6 +9,8 @@ import {
   organizeEvents,
   groupEventsByTimePeriod,
   groupEventsByWeek,
+  getEventInfo,
+  formatWeekRange,
 } from "@/lib/github-activity";
 
 const typedGithubEvents = githubEvents as GitHubEvent[];
@@ -22,80 +24,206 @@ const { eventsByProject, regularEvents } = organizeEvents(
 const groupedEvents = groupEventsByTimePeriod(regularEvents);
 const olderEvents = [...groupedEvents.lastMonth, ...groupedEvents.earlier];
 const weeklySummaries = groupEventsByWeek(olderEvents);
+
+// Cap the initial list to ten entries so the view is lightweight on first render.
+const maxVisibleEvents = 10;
+const visibleEvents = regularEvents.slice(0, maxVisibleEvents);
+const overflowEvents = regularEvents.slice(maxVisibleEvents);
+const hasOverflowEvents =
+  overflowEvents.length > 0 || weeklySummaries.length > 0;
+
+// Aggregate stats for All Activity section
+const totalRegularEvents = regularEvents.length;
+const typeCounts = regularEvents.reduce(
+  (acc, ev) => {
+    acc[ev.type] = (acc[ev.type] || 0) + 1;
+    return acc;
+  },
+  {} as Record<string, number>
+);
+const sortedTypeCounts = (
+  Object.entries(typeCounts) as Array<[string, number]>
+).sort((a, b) => b[1] - a[1]);
 ---
 
 <BaseLayout>
-  <section>
-    <span>Proof I'm Actually Coding</span>
-    <h1>GitHub Activity</h1>
-    <p>
-      Watch me push code, open issues, and occasionally merge PRs like a
-      responsible adult. This is my green squares flex—proof that I spend way
-      too much time staring at my terminal. Spoiler: Most commits are "fix typo"
-      and "actually fix typo this time."
-    </p>
+  <!-- Hero Section -->
+  <section class="py-12 md:py-16 lg:py-20" aria-labelledby="activity-title">
+    <div class="mx-auto max-w-4xl px-6">
+      <span
+        class="bg-accent/20 text-accent mb-6 inline-block rounded-lg px-4 py-1 text-sm font-semibold tracking-wide uppercase"
+        >Live Coding Trail</span
+      >
+      <h1 id="activity-title" class="mb-4">GitHub Activity</h1>
+      <p class="text-text-subtle max-w-3xl">
+        Commits, issues, PRs and other developer breadcrumbs from my public
+        projects. Yes, some of these are quick fixes—but iteration beats
+        perfection. Dive in and explore what I've been building lately.
+      </p>
+    </div>
   </section>
 
-  <section>
-    {
-      eventsByProject.length > 0 && (
-        <div>
-          <h2>Featured Projects</h2>
-          {eventsByProject.map(({ project, events, remainingEvents }) => {
-            if (events.length === 0) return null;
-            const totalCount = events.length + remainingEvents.length;
-            return (
-              <article>
-                <h3>
-                  <a
-                    href={`https://github.com/${project.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {project.title}
-                  </a>
-                  <span>
-                    (Latest {events.length} of {totalCount}{" "}
-                    {totalCount === 1 ? "activity" : "activities"})
-                  </span>
-                </h3>
-                {events.map((event) => (
-                  <ActivityAccordion event={event} />
-                ))}
-              </article>
-            );
-          })}
-        </div>
-      )
-    }
+  <div class="border-border my-6 border-t"></div>
 
-    {
-      regularEvents.length > 0 && (
-        <div>
-          <h2>All Activity</h2>
-          {groupedEvents.lastWeek.length > 0 && (
-            <article>
-              <h3>Last Week</h3>
-              {groupedEvents.lastWeek.map((event) => (
-                <ActivityAccordion event={event} showProjectName={true} />
-              ))}
-            </article>
-          )}
-          {weeklySummaries.length > 0 && (
-            <article>
-              <h3>Previous Weeks</h3>
-              {weeklySummaries.map((summary) => (
-                <WeeklySummaryCard
-                  weekStart={summary.weekStart}
-                  weekEnd={summary.weekEnd}
-                  events={summary.events}
-                  projectCounts={summary.projectCounts}
-                />
-              ))}
-            </article>
-          )}
-        </div>
-      )
-    }
+  <!-- Featured Projects Section -->
+  <section
+    id="featured-projects"
+    aria-labelledby="featured-projects-title"
+    class="py-8 md:py-12"
+  >
+    <div class="mx-auto max-w-6xl px-6">
+      {
+        eventsByProject.some((p) => p.events.length > 0) ? (
+          <div>
+            <h2 id="featured-projects-title" class="mb-8">
+              Featured Projects
+            </h2>
+            <div class="flex flex-col gap-8">
+              {eventsByProject.map(({ project, events, remainingEvents }) => {
+                if (events.length === 0) return null;
+                const totalCount = events.length + remainingEvents.length;
+                return (
+                  <article class="flex flex-col gap-3 pb-10 last:pb-0">
+                    <h3 class="flex flex-col gap-1">
+                      <a
+                        href={`https://github.com/${project.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-accent text-xl font-semibold hover:underline"
+                      >
+                        {project.title}
+                      </a>
+                      <span class="text-text-faint font-mono text-xs">
+                        Latest {events.length} of {totalCount}{" "}
+                        {totalCount === 1 ? "activity" : "activities"}
+                      </span>
+                    </h3>
+                    <div class="flex flex-col gap-2">
+                      {events.map((event) => (
+                        <ActivityAccordion event={event} />
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <p class="text-text-subtle max-w-3xl">
+            No featured project activity yet. Check back soon as I push more
+            noteworthy updates.
+          </p>
+        )
+      }
+    </div>
   </section>
+
+  <div class="border-border my-6 border-t"></div>
+
+  <!-- All Activity Section -->
+  <section
+    id="all-activity"
+    aria-labelledby="all-activity-title"
+    class="py-8 md:py-12"
+  >
+    <div class="mx-auto max-w-5xl px-6">
+      {
+        regularEvents.length > 0 ? (
+          <div>
+            <h2 id="all-activity-title" class="mb-4">
+              All Activity
+            </h2>
+            <div class="flex flex-col gap-3">
+              {visibleEvents.map((event) => (
+                <ActivityAccordion event={event} />
+              ))}
+            </div>
+            {hasOverflowEvents && (
+              <div class="mt-4 flex items-center justify-center">
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  type="button"
+                  id="activity-view-more"
+                  aria-expanded="false"
+                  aria-controls="all-activity-overflow"
+                  class="border-border/70 bg-surface-alt text-text-subtle hover:border-accent/70 rounded-full border px-5 text-sm font-semibold transition"
+                >
+                  View more activity
+                </Button>
+              </div>
+            )}
+            <div id="all-activity-overflow" hidden>
+              {overflowEvents.map((event) => (
+                <ActivityAccordion event={event} />
+              ))}
+              {weeklySummaries.length > 0 && (
+                <article aria-labelledby="previous-weeks-title">
+                  <div class="mb-6">
+                    <h3 id="previous-weeks-title">Previous Weeks</h3>
+                  </div>
+                  <div class="space-y-6">
+                    {weeklySummaries.map((summary) => {
+                      const projectEntries = Object.entries(
+                        summary.projectCounts
+                      ).sort((a, b) => b[1] - a[1]);
+                      return (
+                        <section class="space-y-3">
+                          <div class="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+                            <p class="text-sm font-semibold">
+                              {formatWeekRange(
+                                summary.weekStart,
+                                summary.weekEnd
+                              )}
+                            </p>
+                            <p class="text-text-faint text-xs">
+                              {summary.events.length}{" "}
+                              {summary.events.length === 1
+                                ? "activity"
+                                : "activities"}
+                            </p>
+                          </div>
+                          {projectEntries.length > 0 && (
+                            <div class="text-text-subtle flex flex-wrap gap-2 text-xs">
+                              {projectEntries.map(([project, count]) => (
+                                <span class="border-border/50 rounded-full border px-3 py-1">
+                                  {project}: {count}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          <div class="flex flex-col gap-3">
+                            {summary.events.map((event) => (
+                              <ActivityAccordion event={event} />
+                            ))}
+                          </div>
+                        </section>
+                      );
+                    })}
+                  </div>
+                </article>
+              )}
+            </div>
+          </div>
+        ) : (
+          <p class="text-text-subtle">
+            No activity to display yet. Once new commits, issues, or releases
+            occur they'll appear here chronologically.
+          </p>
+        )
+      }
+    </div>
+  </section>
+  <script>
+    const viewMoreBtn = document.getElementById("activity-view-more");
+    const overflowPanel = document.getElementById("all-activity-overflow");
+    if (viewMoreBtn && overflowPanel) {
+      viewMoreBtn.addEventListener("click", () => {
+        const expanded = viewMoreBtn.getAttribute("aria-expanded") === "true";
+        viewMoreBtn.setAttribute("aria-expanded", (!expanded).toString());
+        overflowPanel.hidden = expanded;
+        viewMoreBtn.textContent = expanded ? "View more activity" : "Show less";
+      });
+    }
+  </script>
 </BaseLayout>

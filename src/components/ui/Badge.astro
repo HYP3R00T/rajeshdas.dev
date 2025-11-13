@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type BadgeVariant =
+  | "default"
+  | "secondary"
+  | "destructive"
+  | "outline"
+  | "accent";
+
+interface BadgeProps extends HTMLAttributes<"span"> {
+  variant?: BadgeVariant;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  class: className,
+  ...rest
+} = Astro.props as BadgeProps;
+
+const baseClasses =
+  "inline-flex items-center rounded-lg px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2";
+
+const variantClasses: Record<BadgeVariant, string> = {
+  default: "bg-text-default text-elevated border border-border",
+  secondary: "bg-elevated text-text-default border border-border",
+  destructive: "bg-red text-text-default",
+  outline: "text-text-default border border-border bg-transparent",
+  accent: "bg-accent/20 text-accent",
+};
+
+const resolvedVariant = variantClasses[variant] ?? variantClasses.default;
+
+const classes = [baseClasses, resolvedVariant, className?.trim()]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class={classes} {...rest}>
+  <slot />
+</span>

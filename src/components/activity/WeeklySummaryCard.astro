@@ -37,10 +37,6 @@ const accordionId = `week-${weekStart.getTime()}`;
     >
   </summary>
   <div>
-    {
-      events.map((event) => (
-        <ActivityAccordion event={event} showProjectName={true} />
-      ))
-    }
+    {events.map((event) => <ActivityAccordion event={event} />)}
   </div>
 </details>

@@ -1,10 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Social from "@/components/core/Social.astro";
-import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
+import HeroPanel from "@/components/ui/HeroPanel.astro";
 import { Socials } from "@data/config";
-import Bar from "@/assets/barcode.svg";
 
 // Derive primary contact and the socials we want to show here
 const email =
@@ -19,55 +18,141 @@ const github =
 ---
 
 <BaseLayout>
-  <section>
-    <span>Let's talk</span>
-    <h1>Contact Me</h1>
-    <p>
-      Have a role, project, or idea? I'm open to full‑time, contract, and
-      collaboration. Expect pragmatic solutions, clean automation, and proactive
-      comms.
-    </p>
-    <ul>
-      <li>Response: 24-48h</li>
-      <li>Timezone: IST (UTC+5:30)</li>
-      <li>Remote‑friendly</li>
-    </ul>
-    <nav>
-      <a href={email}>Email Me</a>
-      <a href={linkedin} target="_blank" rel="noopener">Connect on LinkedIn</a>
-    </nav>
-    <Social />
+  <!-- Hero Section -->
+  <section class="py-12 md:py-16 lg:py-20">
+    <div class="mx-auto max-w-4xl">
+      <HeroPanel class="px-6 py-10 text-center md:px-12 md:py-14">
+        <span
+          class="bg-accent/20 text-accent mb-6 inline-block rounded-lg px-4 py-1 text-sm font-semibold tracking-wide uppercase"
+        >
+          Let's talk
+        </span>
+
+        <h1
+          class="mb-3 text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl lg:text-7xl"
+        >
+          Contact Me
+        </h1>
+
+        <p
+          class="text-text-subtle mx-auto mb-6 max-w-3xl text-lg leading-relaxed md:text-xl"
+        >
+          Have a role, project, or idea? I'm open to full‑time, contract, and
+          collaboration. Expect pragmatic solutions, clean automation, and
+          proactive comms.
+        </p>
+
+        <div class="mb-8 flex flex-wrap justify-center gap-2 md:gap-3">
+          <span
+            class="bg-elevated text-accent inline-block rounded-full px-3 py-1 text-xs font-semibold"
+            >Response: 24-48h</span
+          >
+          <span
+            class="bg-elevated text-accent inline-block rounded-full px-3 py-1 text-xs font-semibold"
+            >Timezone: IST (UTC+5:30)</span
+          >
+          <span
+            class="bg-elevated text-accent inline-block rounded-full px-3 py-1 text-xs font-semibold"
+            >Remote‑friendly</span
+          >
+        </div>
+
+        <nav class="mb-2 flex flex-wrap justify-center gap-3 font-bold">
+          <Button variant="accent" size="lg" href={email}>
+            <span class="font-bold">Email Me</span>
+          </Button>
+          <Button variant="secondary" size="lg" href={linkedin} target="_blank">
+            <span class="font-bold">Connect on LinkedIn</span>
+          </Button>
+        </nav>
+
+        <div class="flex justify-center">
+          <Social />
+        </div>
+      </HeroPanel>
+    </div>
   </section>
 
-  <section>
-    <article>
-      <a href={email}>
-        <h3>Email</h3>
-        <p>
-          The old-school way. I promise my inbox isn't as scary as my Kubernetes
-          configs. Usually reply faster than a failed pipeline.
-        </p>
-      </a>
-    </article>
+  <!-- Content Divider -->
+  <div class="border-border my-8 border-t"></div>
 
-    <article>
-      <a href={linkedin} target="_blank" rel="noopener">
-        <h3>LinkedIn</h3>
-        <p>
-          Where I pretend to be professional. Connect with me for hot takes on
-          DevOps and occasional memes in the DMs.
-        </p>
-      </a>
-    </article>
+  <!-- Contact Details Section -->
+  <section class="mx-auto grid max-w-4xl gap-8 py-8 md:grid-cols-3 md:py-12">
+    <div
+      class="group border-border bg-content hover:bg-elevated flex flex-col rounded-xl border p-6 transition-colors duration-200"
+    >
+      <div class="mb-2 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="ri-mail-line text-accent text-xl"></i>
+          <h3 class="text-accent text-lg font-bold">Email</h3>
+        </div>
+        <i
+          class="ri-arrow-right-up-line text-text-subtle group-hover:text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        ></i>
+      </div>
+      <p class="text-text-subtle mb-4 grow text-base">
+        The old-school way. I promise my inbox isn't as scary as my Kubernetes
+        configs. Usually reply faster than a failed pipeline.
+      </p>
+      <Button variant="accent" href={email} size="sm" class="self-start">
+        Start an email
+      </Button>
+    </div>
 
-    <article>
-      <a href={github} target="_blank" rel="noopener">
-        <h3>GitHub</h3>
-        <p>
-          My digital portfolio of broken dreams and working code. Watch me
-          commit crimes against git history in real-time.
-        </p>
-      </a>
-    </article>
+    <div
+      class="group border-border bg-content hover:bg-elevated flex flex-col rounded-xl border p-6 transition-colors duration-200"
+    >
+      <div class="mb-2 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="ri-linkedin-line text-accent text-xl"></i>
+          <h3 class="text-accent text-lg font-bold">LinkedIn</h3>
+        </div>
+        <i
+          class="ri-arrow-right-up-line text-text-subtle group-hover:text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        ></i>
+      </div>
+      <p class="text-text-subtle mb-4 grow text-base">
+        Where I pretend to be professional. Connect with me for hot takes on
+        DevOps and occasional memes in the DMs.
+      </p>
+      <Button
+        variant="accent"
+        href={linkedin}
+        target="_blank"
+        rel="noopener"
+        size="sm"
+        class="self-start"
+      >
+        Visit profile
+      </Button>
+    </div>
+
+    <div
+      class="group border-border bg-content hover:bg-elevated flex flex-col rounded-xl border p-6 transition-colors duration-200"
+    >
+      <div class="mb-2 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="ri-github-line text-accent text-xl"></i>
+          <h3 class="text-accent text-lg font-bold">GitHub</h3>
+        </div>
+        <i
+          class="ri-arrow-right-up-line text-text-subtle group-hover:text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        ></i>
+      </div>
+      <p class="text-text-subtle mb-4 grow text-base">
+        My digital portfolio of broken dreams and working code. Watch me commit
+        crimes against git history in real-time.
+      </p>
+      <Button
+        variant="accent"
+        href={github}
+        target="_blank"
+        rel="noopener"
+        size="sm"
+        class="self-start"
+      >
+        View repositories
+      </Button>
+    </div>
   </section>
 </BaseLayout>

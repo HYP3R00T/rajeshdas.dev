@@ -27,19 +27,23 @@ const {
   transparent_header="true"
 >
   <article class="py-12">
-    <!-- Cover Image -->
-    <div class="mb-8 aspect-2/1 w-full overflow-hidden rounded-2xl">
-      <Image
-        src={cover}
-        alt={coverAlt}
-        width={cover.width}
-        height={cover.height}
-        class="h-full w-full object-cover"
-      />
-    </div>
+    <div class="container flex flex-col items-center">
+      <!-- Cover Image -->
+      <div class="mb-8 aspect-2/1 w-full overflow-hidden rounded-2xl">
+        {
+          cover && (
+            <Image
+              src={cover}
+              alt={coverAlt}
+              width={cover.width}
+              height={cover.height}
+              class="h-full w-full object-cover"
+            />
+          )
+        }
+      </div>
 
-    <!-- Article Header -->
-    <div class="container-narrow">
+      <!-- Article Header -->
       <div class="mb-8">
         <time
           transition:name={`${title}-date`}
@@ -69,7 +73,7 @@ const {
       <div class="border-border my-8 border-t"></div>
 
       <!-- Article Content -->
-      <div class="prose max-w-none">
+      <div class="prose max-w-4xl">
         <slot />
       </div>
     </div>

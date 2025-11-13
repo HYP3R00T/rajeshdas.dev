@@ -10,11 +10,10 @@ import projectsData from "@data/project.json";
 
 interface Props {
   event: GitHubEvent;
-  showProjectName?: boolean;
 }
 
-const { event, showProjectName = false } = Astro.props;
-const { actionPhrase, icon } = getEventInfo(event.type);
+const { event } = Astro.props;
+const { actionPhrase } = getEventInfo(event.type);
 const projectName = getProjectName(event.project_id);
 const formattedDate = formatDate(event.at);
 const projectInfo: ProjectInfo | undefined = projectsData.projects.find(
@@ -23,23 +22,40 @@ const projectInfo: ProjectInfo | undefined = projectsData.projects.find(
 const githubUrl = `https://github.com/${event.project_id}`;
 ---
 
-<Accordion>
-  <div slot="header-left">
-    <span>{actionPhrase}</span>
-    <span>{event.title}</span>
+<Accordion icon="caret-down">
+  <div
+    slot="trigger"
+    class="flex w-full items-center justify-between gap-4 py-2"
+  >
+    <div class="flex min-w-0 flex-col">
+      <span class="text-text-subtle font-mono text-xs">
+        {formattedDate}
+      </span>
+      <span class="text-text-default truncate text-sm font-semibold">
+        {actionPhrase} · {projectName}
+      </span>
+      <span class="text-text-faint truncate text-sm">{event.title}</span>
+    </div>
   </div>
-  <div slot="header-right">
-    {showProjectName && <span>{projectName}</span>}
-    <span>{formattedDate}</span>
-  </div>
-  <div slot="content">
+  <div slot="content" class="flex flex-col gap-3">
     {
       projectInfo && (
-        <div>
-          <h3>{projectInfo.title}</h3>
-          <p>{projectInfo.short_description}</p>
-          <nav>
-            <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+        <div class="flex flex-col gap-3">
+          <div class="flex flex-col gap-1">
+            <h4 class="text-text-default text-base font-semibold">
+              {projectInfo.title}
+            </h4>
+            <p class="text-text-subtle text-sm leading-relaxed">
+              {projectInfo.short_description}
+            </p>
+          </div>
+          <nav class="flex flex-wrap gap-3 text-sm font-medium">
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent hover:underline"
+            >
               GitHub
             </a>
             {projectInfo.demo_url && (
@@ -51,20 +67,28 @@ const githubUrl = `https://github.com/${event.project_id}`;
                 }
                 target="_blank"
                 rel="noopener noreferrer"
+                class="text-accent hover:underline"
               >
                 Demo
               </a>
             )}
             {event.url && (
-              <a href={event.url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={event.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-accent hover:underline"
+              >
                 View Event
               </a>
             )}
           </nav>
           {projectInfo.tags && projectInfo.tags.length > 0 && (
-            <div>
+            <div class="flex flex-wrap gap-2">
               {projectInfo.tags.map((tag: string) => (
-                <span>#{tag}</span>
+                <span class="bg-elevated text-text-faint rounded px-2 py-0.5 font-mono text-xs">
+                  #{tag}
+                </span>
               ))}
             </div>
           )}

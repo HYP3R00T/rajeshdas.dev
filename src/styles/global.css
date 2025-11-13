@@ -132,7 +132,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  @apply h-2 w-2;
+  @apply rounded-radius h-2 w-2;
 }
 
 /* Track */
@@ -142,7 +142,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-elevated;
+  @apply bg-elevated rounded-radius;
 }
 
 /* Handle on hover */
@@ -188,7 +188,7 @@ pre[data-language]::before {
 }
 
 .prose a {
-  @apply text-cyan decoration-cyan/30 relative overflow-hidden wrap-anywhere underline decoration-2 underline-offset-4;
+  @apply text-accent decoration-accent/30 relative overflow-hidden wrap-anywhere underline decoration-2 underline-offset-4;
 }
 
 .prose a::before {
@@ -235,7 +235,7 @@ pre[data-language]::before {
 
 .prose ul > li::before {
   content: ">";
-  @apply text-cyan absolute left-0 font-mono font-medium;
+  @apply text-accent absolute left-0 font-mono font-medium;
 }
 
 .prose ol {
@@ -250,11 +250,14 @@ pre[data-language]::before {
 
 .prose ol > li::before {
   content: counter(ol-counter, decimal-leading-zero) ". ";
-  @apply text-cyan absolute left-0 font-mono font-medium;
+  @apply text-accent absolute left-0 font-mono font-medium;
 }
 
 .prose blockquote {
-  @apply border-cyan text-text-subtle bg-content my-3 border-l-4 px-6 py-4;
+  @apply border-accent text-text-subtle bg-content my-3 border-l-4 px-6 py-4;
+}
+.prose blockquote p {
+  @apply my-0;
 }
 
 .prose pre {
@@ -267,6 +270,10 @@ pre[data-language]::before {
 
 .prose pre code {
   @apply block border-0 bg-transparent p-0;
+}
+
+.prose pre code span {
+  @apply font-mono;
 }
 
 .prose table {
