@@ -3,8 +3,6 @@ import { Icon } from "astro-icon/components";
 import { navItems, Socials } from "@data/config";
 
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1);
-const { transparent_header = false } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 flex items-center justify-center py-4">
@@ -31,7 +29,7 @@ const { transparent_header = false } = Astro.props;
               <a
                 href={item.href}
                 target={item.blank ? "_blank" : "_self"}
-                class={`text-sm font-medium whitespace-nowrap ${
+                class={`text-sm font-bold whitespace-nowrap ${
                   isActive ? "text-cyan" : "text-text-subtle"
                 }`}
               >
@@ -72,7 +70,7 @@ const { transparent_header = false } = Astro.props;
             <a
               href={item.href}
               target={item.blank ? "_blank" : "_self"}
-              class={`py-2 text-sm font-medium ${
+              class={`py-2 text-sm font-bold ${
                 isActive ? "text-cyan" : "text-text-subtle"
               }`}
             >
