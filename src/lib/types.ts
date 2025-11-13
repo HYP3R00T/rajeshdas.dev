@@ -65,7 +65,6 @@ export interface ProjectCardProps {
 // For src/layouts/BaseLayout.astro
 // Accepts any subset of SEO props; HeadSEO provides sensible defaults.
 export interface BaseLayoutProps extends Partial<HeadSEOProps> {
-    transparent_header: boolean;
 }
 
 // For src/pages/tag/[tag]/index.astro

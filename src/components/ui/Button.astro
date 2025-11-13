@@ -6,6 +6,7 @@ type ButtonVariant =
   | "destructive"
   | "outline"
   | "secondary"
+  | "accent"
   | "ghost"
   | "link";
 type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
@@ -45,11 +46,12 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   default:
-    "bg-elevated text-text-default shadow hover:bg-elevated/80 border border-border",
-  destructive: "bg-red text-text-default shadow-sm hover:bg-red/90",
+    "bg-text-default text-elevated hover:bg-text-default/80 border border-border",
+  destructive: "bg-red text-text-default hover:bg-red/90",
   outline:
-    "border border-border bg-background shadow-sm hover:bg-content hover:text-accent",
-  secondary: "bg-content text-text-default shadow-sm hover:bg-elevated",
+    "border border-border bg-background hover:bg-content hover:text-accent",
+  secondary: "bg-content text-text-default hover:bg-elevated",
+  accent: "bg-accent text-background hover:bg-accent/90",
   ghost: "hover:bg-content/60 hover:text-accent",
   link: "text-accent underline-offset-4 hover:underline",
 };
