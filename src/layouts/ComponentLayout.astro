@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import { render } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"components">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description } = entry.data;
+---
+
+<BaseLayout title={`${title} - Components`} description={description}>
+  <main class="mx-auto max-w-5xl px-4 py-12">
+    <!-- Breadcrumb -->
+    <nav class="text-text-muted mb-8 flex items-center gap-2 text-sm">
+      <a href="/" class="hover:text-accent transition-colors">Home</a>
+      <span>/</span>
+      <a href="/components" class="hover:text-accent transition-colors"
+        >Components</a
+      >
+      <span>/</span>
+      <span class="text-text-default">{title}</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-12 space-y-4">
+      <h1 class="text-text-default text-4xl font-bold">{title}</h1>
+      <p class="text-text-muted text-lg">{description}</p>
+    </div>
+
+    <!-- Content -->
+    <article
+      class="prose prose-neutral dark:prose-invert prose-headings:text-text-default prose-headings:font-semibold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-2 prose-h2:border-b prose-h2:border-border prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-p:text-text-default prose-p:leading-relaxed prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-code:text-accent prose-code:bg-content prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none prose-pre:bg-elevated prose-pre:border prose-pre:border-border prose-pre:rounded-radius prose-strong:text-text-default prose-strong:font-semibold prose-ul:text-text-default prose-ol:text-text-default prose-li:text-text-default prose-table:text-text-default prose-thead:border-border prose-tr:border-border prose-th:text-text-default prose-th:font-semibold prose-td:text-text-default prose-blockquote:text-text-muted prose-blockquote:border-l-accent max-w-none"
+    >
+      <Content />
+    </article>
+
+    <!-- Footer Navigation -->
+    <div
+      class="border-border mt-16 flex items-center justify-between border-t pt-8"
+    >
+      <a
+        href="/components"
+        class="text-text-muted hover:text-accent inline-flex items-center gap-2 transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+        Back to Components
+      </a>
+    </div>
+  </main>
+</BaseLayout>

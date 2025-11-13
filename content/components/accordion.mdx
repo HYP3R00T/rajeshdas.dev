@@ -1,0 +1,162 @@
+---
+title: "Accordion"
+description: "An interactive accordion component with hover-to-expand and click-to-pin interactions."
+category: "ui"
+order: 3
+---
+
+import Accordion from "@/components/ui/Accordion.astro";
+
+## Overview
+
+The Accordion component provides collapsible content areas with smooth animations. Features hover-to-expand behavior with a delay and click-to-pin functionality. Only one accordion can be pinned at a time.
+
+## Usage
+
+```astro
+---
+import Accordion from "@/components/ui/Accordion.astro";
+---
+
+<Accordion>
+  <span slot="trigger">Accordion Title</span>
+  <p slot="content">
+    Your accordion content goes here.
+  </p>
+</Accordion>
+```
+
+## Basic Example
+
+Create simple accordions:
+
+<Accordion>
+  <span slot="trigger">Product Information</span>
+  <div slot="content">
+    <p>Our flagship product combines cutting-edge technology...</p>
+  </div>
+</Accordion>
+
+<Accordion>
+  <span slot="trigger">Shipping Details</span>
+  <div slot="content">
+    <p>We offer worldwide shipping through trusted partners...</p>
+  </div>
+</Accordion>
+
+```astro
+<Accordion>
+  <span slot="trigger">Product Information</span>
+  <div slot="content">
+    <p>Our flagship product combines cutting-edge technology...</p>
+  </div>
+</Accordion>
+
+<Accordion>
+  <span slot="trigger">Shipping Details</span>
+  <div slot="content">
+    <p>We offer worldwide shipping through trusted partners...</p>
+  </div>
+</Accordion>
+```
+
+## Default Open
+
+Start with an accordion expanded:
+
+<Accordion open>
+  <span slot="trigger">Is it accessible?</span>
+  <p slot="content">
+    Yes. It uses hover-to-expand and click-to-pin interactions
+    with smooth animations and proper accessibility support.
+  </p>
+</Accordion>
+
+```astro
+<Accordion open>
+  <span slot="trigger">Is it accessible?</span>
+  <p slot="content">
+    Yes. It uses hover-to-expand and click-to-pin interactions
+    with smooth animations and proper accessibility support.
+  </p>
+</Accordion>
+```
+
+## Custom Icon
+
+Use a different icon:
+
+<Accordion icon="plus">
+  <span slot="trigger">With Plus Icon</span>
+  <p slot="content">
+    The icon automatically rotates when the accordion expands.
+  </p>
+</Accordion>
+
+<Accordion icon="github">
+  <span slot="trigger">With Chevron Right</span>
+  <p slot="content">
+    Any icon from your collection can be used.
+  </p>
+</Accordion>
+
+```astro
+<Accordion icon="plus">
+  <span slot="trigger">With Plus Icon</span>
+  <p slot="content">
+    The icon automatically rotates when the accordion expands.
+  </p>
+</Accordion>
+
+<Accordion icon="github">
+  <span slot="trigger">With Chevron Right</span>
+  <p slot="content">
+    Any icon from your collection can be used.
+  </p>
+</Accordion>
+```
+
+## Interaction Behavior
+
+The accordion has three states:
+
+1. **Collapsed** (default): Content is hidden
+2. **Hover**: Expands after hovering for 180ms, collapses when mouse leaves
+3. **Pinned**: Remains expanded until clicked again or another accordion is pinned
+
+### Interaction Rules
+
+- **Hover on header**: Expands after 180ms delay
+- **Leave header**: Collapses if not pinned
+- **Click header**: Toggles between pinned and collapsed
+- **Click outside**: Unpins currently pinned accordion
+- **Pin another**: Automatically unpins the previous one
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `open` | `boolean` | `false` | Whether accordion starts pinned (open) |
+| `icon` | `string` | `"caret-up"` | Icon name from your collection |
+| `class` | `string` | `undefined` | Additional CSS classes |
+
+## Slots
+
+| Slot | Description |
+|------|-------------|
+| `trigger` | Header content users click or hover over |
+| `content` | Collapsible content that expands/collapses |
+
+## Accessibility
+
+- Use semantic heading elements in the `trigger` slot when appropriate
+- Maintains focus states during interactions
+- Icon rotation provides visual feedback
+- Keyboard navigation works with standard click events
+
+## Notes
+
+- Requires the `astro-icon` package
+- Uses client-side JavaScript for interactions
+- Only one accordion pinned at a time across all accordions on page
+- 180ms hover delay prevents accidental expansions

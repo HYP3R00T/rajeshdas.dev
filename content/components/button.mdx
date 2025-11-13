@@ -1,0 +1,152 @@
+---
+title: "Button"
+description: "A versatile button component with multiple variants, sizes, and states for user interactions."
+category: "ui"
+order: 1
+---
+import Button from "@/components/ui/Button.astro";
+
+## Overview
+
+The Button component provides a flexible and accessible way to trigger actions in your application. It supports multiple visual variants, sizes, and can be used as both a button or a link element.
+
+## Usage
+
+```astro
+---
+import Button from "@/components/ui/Button.astro";
+---
+
+<Button variant="default">Click me</Button>
+```
+
+## Variants
+
+The button comes in six different visual styles:
+
+<Button variant="default">Default</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
+
+```astro
+<Button variant="default">Default</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
+```
+
+
+## Sizes
+
+Three standard sizes are available:
+
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+
+```astro
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+```
+
+## Icon Buttons
+
+For icon-only buttons, use the icon-specific sizes:
+
+<Button variant="outline" size="icon-sm" aria-label="Small icon">
+  <svg>...</svg>
+</Button>
+
+<Button variant="outline" size="icon" aria-label="Default icon">
+  <svg>...</svg>
+</Button>
+
+<Button variant="outline" size="icon-lg" aria-label="Large icon">
+  <svg>...</svg>
+</Button>
+
+```astro
+<Button variant="outline" size="icon-sm" aria-label="Small icon">
+  <svg>...</svg>
+</Button>
+
+<Button variant="outline" size="icon" aria-label="Default icon">
+  <svg>...</svg>
+</Button>
+
+<Button variant="outline" size="icon-lg" aria-label="Large icon">
+  <svg>...</svg>
+</Button>
+```
+
+## With Icons
+
+Combine text with icons:
+
+<Button variant="default">
+  <svg>...</svg>
+  Continue
+</Button>
+
+<Button variant="outline">
+  <svg>...</svg>
+  Download
+</Button>
+
+```astro
+<Button variant="default">
+  <svg>...</svg>
+  Continue
+</Button>
+
+<Button variant="outline">
+  <svg>...</svg>
+  Download
+</Button>
+```
+
+## Disabled
+
+Disable user interaction:
+
+<Button disabled>Disabled Button</Button>
+
+```astro
+<Button disabled>Disabled Button</Button>
+```
+
+## As Link
+
+Render as an anchor element:
+
+<Button href="/">Go Home</Button>
+<Button href="/about" target="_blank">External Link</Button>
+
+```astro
+<Button href="/">Go Home</Button>
+<Button href="/about" target="_blank">External Link</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style variant |
+| `size` | `"default" \| "sm" \| "lg" \| "icon" \| "icon-sm" \| "icon-lg"` | `"default"` | The button size |
+| `type` | `"button" \| "submit" \| "reset"` | `"button"` | HTML button type |
+| `disabled` | `boolean` | `false` | Disables the button |
+| `href` | `string` | `undefined` | If provided, renders as a link |
+| `class` | `string` | `undefined` | Additional CSS classes |
+
+## Accessibility
+
+- Always include descriptive text or `aria-label` for icon-only buttons
+- The component handles focus states automatically
+- Disabled buttons are not keyboard accessible
+- Use semantic button types (`submit`, `reset`) for forms
