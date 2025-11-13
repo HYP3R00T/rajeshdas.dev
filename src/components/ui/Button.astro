@@ -1,12 +1,24 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
+type ButtonVariant =
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | "link";
+type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
+
 interface ButtonProps extends HTMLAttributes<"button"> {
-  variant?: string;
-  size?: string;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   class?: string;
+  href?: string;
+  rel?: string;
+  target?: string;
 }
 
 const {
@@ -15,10 +27,55 @@ const {
   type = "button",
   disabled = false,
   class: className,
+  href,
   ...rest
 } = Astro.props as ButtonProps;
+
+const baseClasses =
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0";
+
+const sizeClasses: Record<ButtonSize, string> = {
+  default: "h-9 px-4 py-2",
+  sm: "h-8 rounded-md px-3 text-xs",
+  lg: "h-10 rounded-md px-8",
+  icon: "size-9",
+  "icon-sm": "size-8",
+  "icon-lg": "size-10",
+};
+
+const variantClasses: Record<ButtonVariant, string> = {
+  default:
+    "bg-elevated text-text-default shadow hover:bg-elevated/80 border border-border",
+  destructive: "bg-red text-text-default shadow-sm hover:bg-red/90",
+  outline:
+    "border border-border bg-background shadow-sm hover:bg-content hover:text-accent",
+  secondary: "bg-content text-text-default shadow-sm hover:bg-elevated",
+  ghost: "hover:bg-content/60 hover:text-accent",
+  link: "text-accent underline-offset-4 hover:underline",
+};
+
+const resolvedSize = sizeClasses[size] ?? sizeClasses.default;
+const resolvedVariant = variantClasses[variant] ?? variantClasses.default;
+
+const classes = [baseClasses, resolvedSize, resolvedVariant, className?.trim()]
+  .filter(Boolean)
+  .join(" ");
+
+const Tag = href ? "a" : "button";
+
+const componentProps: Record<string, unknown> = {
+  class: classes,
+  ...rest,
+};
+
+if (href) {
+  componentProps.href = href;
+} else {
+  componentProps.type = type;
+  componentProps.disabled = disabled;
+}
 ---
 
-<button type={type} disabled={disabled} class={className} {...rest}>
+<Tag {...componentProps}>
   <slot />
-</button>
+</Tag>
