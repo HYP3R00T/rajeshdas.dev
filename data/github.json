@@ -1,5 +1,158 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-8bda22f",
+    "type": "commit",
+    "at": "2025-11-13T22:13:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(layout): update container class for consistency",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8bda22f446305bc23f2361f46868a96ec4bc2300"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-43babb8",
+    "type": "commit",
+    "at": "2025-11-13T22:07:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(layout): update container class for improved styling",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/43babb818263fbf298fdb6bb737629f6d93a74ff"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-5da1f5e",
+    "type": "commit",
+    "at": "2025-11-13T21:50:34Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(projects): reorder and update portfolio entry",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/5da1f5e3f937675230c1ab2a929a1ee1d6944e0f"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-631157b",
+    "type": "commit",
+    "at": "2025-11-13T21:43:11Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(components): remove order property from UI components",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/631157bd0569c14c27e0ea40631f193822a3285a"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e0f7d48",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: enhance UI components and layout structure",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e0f7d48949314c6bef33d3659c4eb9f235fbd5f7"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-a878086",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(navigation): add components link to navigation",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a8780862d2173cf4cec6df5b77a9f9519669aa42"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-214ca4a",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(components): add accordion, button, and button group documentation",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/214ca4a51b7881970d6a092db5f572b66316884b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-a101ff5",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(PostLayout): enhance layout with cover image and tags",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a101ff51f8f90f9abd0f56bc43a7851593bc2012"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-e5979b8",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(Accordion): simplify icon handling and state management",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e5979b82b4dcf42be29219c839183d5518d741fe"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c64292c",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Accordion): redesign accordion component with improved functionality",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c64292cd1970a5792a5fba0da50c76c8731f5e76"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f1104c5",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(ButtonGroup): add new button group component",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f1104c54a627fc93a9fb64f8efc9b9eab45036a8"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-4d5eb1e",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(Button): enhance button component with new variants and size options",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4d5eb1efdf817b757ec09b235f9c48425ff3d03d"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b0dbced",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "style(header): update font weight for menu items",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b0dbced8862bcbd91d88af413b8018e7aa969487"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b9bb6c6",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(header): enhance header with mobile menu and social links",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b9bb6c6fa3791841758d92c27d6eb2e4d3f25c7b"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f01db77",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "refactor(ui): simplify ui",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f01db7791c657a5f3307fe07c02c608270838739"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-46174ef",
+    "type": "commit",
+    "at": "2025-11-13T21:41:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat: restructure project data and update imports",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/46174ef154e9e9286717aac691ae2764bc8880e4"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-b33efa0",
+    "type": "commit",
+    "at": "2025-11-13T18:45:55Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b33efa0065b9beac9bf0055e093c37fe20e29969"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-19d2285",
     "type": "commit",
     "at": "2025-11-12T18:44:19Z",
@@ -1852,32 +2005,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "Ci/pypi publish and versioning",
     "url": "https://github.com/HYP3R00T/CostCutter/pull/3"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-2",
-    "type": "pull_merged",
-    "at": "2025-08-16T11:01:38Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Feature/cli and library support",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/2"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-042afcb",
-    "type": "commit",
-    "at": "2025-08-16T11:01:38Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Feature/cli and library support (#2)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/042afcbf19d9bb99a2f9c26bf1dc61c49790e6b2"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-2",
-    "type": "pull_opened",
-    "at": "2025-08-16T04:49:27Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Feature/cli and library support",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/2"
   }
 ]
