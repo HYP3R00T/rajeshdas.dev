@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-6dd2ac1",
+    "type": "commit",
+    "at": "2025-11-18T18:46:52Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/6dd2ac123f49a9f4aaa0c1b64c788583ad8796de"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-604c358",
     "type": "commit",
     "at": "2025-11-17T18:46:12Z",
@@ -1834,59 +1843,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "Refactor/improve design",
     "url": "https://github.com/HYP3R00T/CostCutter/pull/5"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b8a0b51",
-    "type": "commit",
-    "at": "2025-08-21T13:30:35Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(HeadSEO): enhance SEO props and image handling",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b8a0b517addd6bb4c0d2b26686976636b3e03c9c"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-82caeec",
-    "type": "commit",
-    "at": "2025-08-21T13:24:26Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat: add HeadSEO component for metadata management",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/82caeec7d44b95b844f25c32ad590c3df7808720"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-fba160d",
-    "type": "commit",
-    "at": "2025-08-21T10:08:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "fix(setup): update workspace path in setup script",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/fba160df297c94398a261ce8a83c5c19c55eb8b4"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-046171a",
-    "type": "commit",
-    "at": "2025-08-21T10:07:48Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore: upgrade package version",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/046171a5b70a164a9c4eb3edd063d8ae120db52d"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-814b327",
-    "type": "commit",
-    "at": "2025-08-21T10:07:01Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat: add commit message generation instructions",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/814b327761a5478a45366c02806941dec6122322"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-f9702e4",
-    "type": "commit",
-    "at": "2025-08-21T10:06:33Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat: add icons",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f9702e40afc12dd85ba29a40d39afa62ed621d5b"
   }
 ]
