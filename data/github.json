@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-1c60b15",
+    "type": "commit",
+    "at": "2025-11-21T18:43:56Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1c60b15cf325ba0544fc2683591137820ff267ff"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-d483a6e",
     "type": "commit",
     "at": "2025-11-20T18:46:29Z",
@@ -1672,194 +1681,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "Ci/vitepress deployment",
     "url": "https://github.com/HYP3R00T/CostCutter/pull/13"
-  },
-  {
-    "id": "issue_opened-HYP3R00T/CostCutter-12",
-    "type": "issue_opened",
-    "at": "2025-08-24T14:09:15Z",
-    "actor": "nonesubham",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Just a name suggestion",
-    "url": "https://github.com/HYP3R00T/CostCutter/issues/12"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-11",
-    "type": "pull_merged",
-    "at": "2025-08-24T12:00:19Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/change folder name",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/11"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-ecc5d25",
-    "type": "commit",
-    "at": "2025-08-24T12:00:19Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/change folder name (#11)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/ecc5d2572e0445fafab9f5240154d5f639c68aa6"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-11",
-    "type": "pull_opened",
-    "at": "2025-08-24T11:57:05Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/change folder name",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/11"
-  },
-  {
-    "id": "pull_closed-HYP3R00T/CostCutter-10",
-    "type": "pull_closed",
-    "at": "2025-08-24T11:51:07Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: bump version to 0.1.2",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/10"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-10",
-    "type": "pull_opened",
-    "at": "2025-08-24T11:49:57Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: bump version to 0.1.2",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/10"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-9",
-    "type": "pull_merged",
-    "at": "2025-08-24T11:44:08Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "refactor: migrate project name from awsbreaker to costcutter",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/9"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-31d8e29",
-    "type": "commit",
-    "at": "2025-08-24T11:44:08Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "refactor: migrate project name from awsbreaker to costcutter (#9)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/31d8e29d175f23c3f6e06e0708e0b7bf10b679e7"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-9",
-    "type": "pull_opened",
-    "at": "2025-08-24T11:44:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "refactor: migrate project name from awsbreaker to costcutter",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/9"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-8",
-    "type": "pull_merged",
-    "at": "2025-08-24T11:18:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Docs/vitepress",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/8"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-fe7358f",
-    "type": "commit",
-    "at": "2025-08-24T11:18:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Docs/vitepress (#8)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/fe7358f33b5b79bf19ed374f948f6708ffa47e0f"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-8",
-    "type": "pull_opened",
-    "at": "2025-08-24T11:17:21Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Docs/vitepress",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/8"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-7",
-    "type": "pull_merged",
-    "at": "2025-08-24T01:07:50Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: bump version for release v0.1.1",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/7"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-4e166e4",
-    "type": "commit",
-    "at": "2025-08-24T01:07:49Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: bump version for release v0.1.1 (#7)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/4e166e4b860a71fbb21f6fd25a81be4c4a9453ae"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-7",
-    "type": "pull_opened",
-    "at": "2025-08-24T01:07:41Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: bump version for release v0.1.1",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/7"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-6",
-    "type": "pull_merged",
-    "at": "2025-08-24T00:38:56Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "refactor(main): simplify service orchestration call",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/6"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-9fa4bff",
-    "type": "commit",
-    "at": "2025-08-24T00:38:56Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "refactor(main): simplify service orchestration call (#6)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/9fa4bffda90d21257547a810b1c6689e1ac5db69"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-6",
-    "type": "pull_opened",
-    "at": "2025-08-24T00:38:27Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "refactor(main): simplify service orchestration call",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/6"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-5",
-    "type": "pull_merged",
-    "at": "2025-08-24T00:24:52Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/improve design",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/5"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-de7b757",
-    "type": "commit",
-    "at": "2025-08-24T00:24:52Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/improve design (#5)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/de7b7573fb4cf95eb499018c018cdee9931817cd"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-5",
-    "type": "pull_opened",
-    "at": "2025-08-24T00:24:21Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/improve design",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/5"
   }
 ]
