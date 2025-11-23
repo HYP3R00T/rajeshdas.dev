@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-0c903fb",
+    "type": "commit",
+    "at": "2025-11-22T18:43:56Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/0c903fba4291989aa66c65e10ec2867ef23a7bb5"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-1c60b15",
     "type": "commit",
     "at": "2025-11-21T18:43:56Z",
@@ -1618,68 +1627,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "Refactor/ec2",
     "url": "https://github.com/HYP3R00T/CostCutter/pull/15"
-  },
-  {
-    "id": "issue_closed-HYP3R00T/CostCutter-12",
-    "type": "issue_closed",
-    "at": "2025-08-25T12:00:00Z",
-    "actor": "nonesubham",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Just a name suggestion",
-    "url": "https://github.com/HYP3R00T/CostCutter/issues/12"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-14",
-    "type": "pull_merged",
-    "at": "2025-08-25T11:38:41Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "ci: update deployment workflow for VitePress",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/14"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-5608679",
-    "type": "commit",
-    "at": "2025-08-25T11:38:40Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "ci: update deployment workflow for VitePress (#14)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/5608679da4257f4dc24068166f6bc2a836fb564c"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-14",
-    "type": "pull_opened",
-    "at": "2025-08-25T11:38:22Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "ci: update deployment workflow for VitePress",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/14"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-13",
-    "type": "pull_merged",
-    "at": "2025-08-25T11:33:22Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Ci/vitepress deployment",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/13"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-f641d6d",
-    "type": "commit",
-    "at": "2025-08-25T11:33:21Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Ci/vitepress deployment (#13)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/f641d6d8e63c0f75396163cf8f0f0af8dcea6088"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-13",
-    "type": "pull_opened",
-    "at": "2025-08-25T11:29:48Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Ci/vitepress deployment",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/13"
   }
 ]
