@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-3ca0ff9",
+    "type": "commit",
+    "at": "2025-11-27T18:44:53Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3ca0ff9f9a179e605891d508486f3c69fe30479c"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-fee6bc8",
     "type": "commit",
     "at": "2025-11-26T18:44:37Z",
@@ -1573,95 +1582,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "Feat/update ec2 add s3 (#18)",
     "url": "https://github.com/HYP3R00T/CostCutter/commit/bbc569cb74eff308fa845b70c058be2ff08f9443"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-18",
-    "type": "pull_opened",
-    "at": "2025-08-30T15:21:23Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Feat/update ec2 add s3",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/18"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-17",
-    "type": "pull_merged",
-    "at": "2025-08-30T10:58:25Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "ci(deploy): enhance path filtering for deployment",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/17"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-fa82ada",
-    "type": "commit",
-    "at": "2025-08-30T10:58:25Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "ci(deploy): enhance path filtering for deployment (#17)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/fa82adaa1ce3db3214d94bd190c65c2069571816"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-17",
-    "type": "pull_opened",
-    "at": "2025-08-30T10:54:54Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "ci(deploy): enhance path filtering for deployment",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/17"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-16",
-    "type": "pull_merged",
-    "at": "2025-08-30T10:42:01Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: simplify deployment workflow by removing PR checks",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/16"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-dc0cf10",
-    "type": "commit",
-    "at": "2025-08-30T10:42:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: simplify deployment workflow by removing PR checks (#16)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/dc0cf10865ac4499aa40aeba20693321263ba64f"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-16",
-    "type": "pull_opened",
-    "at": "2025-08-30T10:41:52Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "chore: simplify deployment workflow by removing PR checks",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/16"
-  },
-  {
-    "id": "pull_merged-HYP3R00T/CostCutter-15",
-    "type": "pull_merged",
-    "at": "2025-08-30T10:28:52Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/ec2",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/15"
-  },
-  {
-    "id": "commit-HYP3R00T/CostCutter-a94f878",
-    "type": "commit",
-    "at": "2025-08-30T10:28:51Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/ec2 (#15)",
-    "url": "https://github.com/HYP3R00T/CostCutter/commit/a94f87853efa8e4cbb4647240d9cf5eb7fc70d11"
-  },
-  {
-    "id": "pull_opened-HYP3R00T/CostCutter-15",
-    "type": "pull_opened",
-    "at": "2025-08-30T10:28:16Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/CostCutter",
-    "title": "Refactor/ec2",
-    "url": "https://github.com/HYP3R00T/CostCutter/pull/15"
   }
 ]
