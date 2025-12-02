@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-587feff",
+    "type": "commit",
+    "at": "2025-12-01T18:50:24Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/587feff7a2fee72435e0c7fbd595a429722725ff"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-6cc59f1",
     "type": "commit",
     "at": "2025-11-30T18:44:23Z",
@@ -1528,50 +1537,5 @@
     "project_id": "HYP3R00T/rajeshdas.dev",
     "title": "refactor(header): restructure navigation and improve layout",
     "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3e8400055b12738e4b0ada1317fccb83f87a015f"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-32662fe",
-    "type": "commit",
-    "at": "2025-09-03T14:59:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(utils): update post sorting function type",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/32662fe299b63b9c23c1a53e42acb893e4b8732f"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-0e14354",
-    "type": "commit",
-    "at": "2025-09-03T14:58:50Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(tag): add dynamic tag page with post filtering",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/0e1435447c8a3b413825a29c778636e1c22b7c41"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-f97313e",
-    "type": "commit",
-    "at": "2025-09-03T14:58:41Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "fix: update RSS feed generation to include proper types and improve site URL handling",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f97313e47f4d4e24af601fd0a01278ad788f181a"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-7386cd1",
-    "type": "commit",
-    "at": "2025-09-03T14:57:59Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore(package): update sharp to version 0.34.3",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/7386cd16da3a25e748408a1eec8d7665d25cb7f4"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-6b29926",
-    "type": "commit",
-    "at": "2025-09-03T14:17:19Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat: add header and pagination components, implement post card display, and create base layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/6b2992671d6ef705d8488a556b6ab22f1bd0e09e"
   }
 ]
