@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-fa26934",
+    "type": "commit",
+    "at": "2025-12-04T18:48:56Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/fa269343d9efb97cabb40d3192393ad99713ae1b"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-256ed50",
     "type": "commit",
     "at": "2025-12-03T18:48:39Z",
@@ -1537,23 +1546,5 @@
     "project_id": "HYP3R00T/rajeshdas.dev",
     "title": "refactor(header): simplify navigation structure and improve layout",
     "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/bd4ce27b4cacf1275c9ba003b353a38aafedafa9"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-f13d879",
-    "type": "commit",
-    "at": "2025-09-05T21:00:31Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(layout): add sidebar component to base layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f13d879ebc32f37fbf55020eb3d0b095c427e553"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-3e84000",
-    "type": "commit",
-    "at": "2025-09-05T21:00:19Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(header): restructure navigation and improve layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3e8400055b12738e4b0ada1317fccb83f87a015f"
   }
 ]
