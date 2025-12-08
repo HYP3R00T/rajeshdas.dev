@@ -1,5 +1,32 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-5822ea0",
+    "type": "commit",
+    "at": "2025-12-07T22:48:32Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(docs): add post on documentation navigation design",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/5822ea0762ddfd51374fd9ffbf40e1a0ac1c67a5"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-a3942d5",
+    "type": "commit",
+    "at": "2025-12-07T22:48:32Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore(dependencies): update package versions for stability",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a3942d5d71b6270f1a76e3b662b7c03f7a191c14"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c3c54b7",
+    "type": "commit",
+    "at": "2025-12-07T18:44:02Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c3c54b7cbbdc39705caf37f7124fd679ec11be50"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-b266e38",
     "type": "commit",
     "at": "2025-12-06T18:44:19Z",
