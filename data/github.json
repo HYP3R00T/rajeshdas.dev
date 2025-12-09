@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-ec00bdc",
+    "type": "commit",
+    "at": "2025-12-08T18:47:36Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/ec00bdc5d30abca49fe2d4cd96082ca4d8007701"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-5822ea0",
     "type": "commit",
     "at": "2025-12-07T22:48:32Z",
@@ -1573,23 +1582,5 @@
     "project_id": "HYP3R00T/rajeshdas.dev",
     "title": "refactor(markdown): remove unused rehypePrettyCode options",
     "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/ef91dec227ee195789bc7c16caac08ea15a643a2"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-8ef2d6c",
-    "type": "commit",
-    "at": "2025-09-09T22:40:17Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(markdown): add rehypePrettyCode for enhanced code styling",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8ef2d6cffbe7fc8595b56ef10c1984514e5cb7c7"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-bd4ce27",
-    "type": "commit",
-    "at": "2025-09-09T22:40:05Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(header): simplify navigation structure and improve layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/bd4ce27b4cacf1275c9ba003b353a38aafedafa9"
   }
 ]
