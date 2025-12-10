@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-8c8b488",
+    "type": "commit",
+    "at": "2025-12-09T18:46:28Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8c8b4888ae7444561a40e0e2b41bb2036986424d"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-ec00bdc",
     "type": "commit",
     "at": "2025-12-08T18:47:36Z",
@@ -1474,113 +1483,5 @@
     "project_id": "HYP3R00T/rajeshdas.dev",
     "title": "refactor(layout): improve layout structure and styling",
     "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1b532ffca79393f7f522807c4e0e4a131072107c"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-60c1625",
-    "type": "commit",
-    "at": "2025-09-11T01:08:10Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(prose): enhance link styling with hover effects",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/60c16258f7c5891b524f9ee1e506ad28844929ff"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-f148848",
-    "type": "commit",
-    "at": "2025-09-11T00:54:56Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore(layout): remove unused Sidebar component and related code",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f1488480ef560fbb08c68284b842f13ff20a3923"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-96706f9",
-    "type": "commit",
-    "at": "2025-09-11T00:54:00Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(header): add transparent header support",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/96706f982e5a650c47b4d98261096a12d58124bf"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-ec9fa60",
-    "type": "commit",
-    "at": "2025-09-10T23:47:55Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(header): enhance navigation styling and layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/ec9fa60ac61706e708ce6a149c6f0d0ba8dacfa9"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-203be25",
-    "type": "commit",
-    "at": "2025-09-10T23:05:41Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(utils): add formatDate function for date formatting",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/203be2534b4b00625e2fd9ba7c6d8dfac107c775"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-5816062",
-    "type": "commit",
-    "at": "2025-09-10T23:05:25Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(post): add FeaturedCard component and update layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/5816062115f5313b958df14897c7d3818a53bd3f"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-70839ce",
-    "type": "commit",
-    "at": "2025-09-10T22:17:09Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(layout): add FeaturedCard and PostLayout components",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/70839ceaa5fc1f12e850229038a12641754b1fa9"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-4f835fa",
-    "type": "commit",
-    "at": "2025-09-10T22:16:52Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(svg): add barcode SVG asset",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4f835fa7c61e8969bb00d2db4f6939f82c5dd12a"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b618880",
-    "type": "commit",
-    "at": "2025-09-10T21:14:40Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(postCard): enhance layout and styling of PostCard component",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b6188806f9d6e8d15ae3e80570979ef22a08707c"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-86f3c6e",
-    "type": "commit",
-    "at": "2025-09-10T21:14:28Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(header): improve layout and styling of navigation",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/86f3c6e52deb0dea1cb07bc89f7af2bbd8daff2f"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-e26d22b",
-    "type": "commit",
-    "at": "2025-09-10T21:14:02Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(dependencies): add fontsource-variable packages",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e26d22b93e2745d05e1838e9a582f50c08ecbc82"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-ef91dec",
-    "type": "commit",
-    "at": "2025-09-10T21:13:50Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(markdown): remove unused rehypePrettyCode options",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/ef91dec227ee195789bc7c16caac08ea15a643a2"
   }
 ]
