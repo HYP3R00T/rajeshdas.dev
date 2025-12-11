@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-4a7833e",
+    "type": "commit",
+    "at": "2025-12-10T18:47:30Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4a7833ef2a7e73a7f5b38c44b80c4566d0dfc608"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-8c8b488",
     "type": "commit",
     "at": "2025-12-09T18:46:28Z",
@@ -1411,77 +1420,5 @@
     "project_id": "HYP3R00T/homelab",
     "title": "Add Flux v2.6.4 component manifests",
     "url": "https://github.com/HYP3R00T/homelab/commit/c822c26293a4fc78f65faf24bd1018d3e66d381b"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-5bf119c",
-    "type": "commit",
-    "at": "2025-09-11T23:41:52Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(Pagination): add padding to button elements",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/5bf119c644a4e7e70d58ae07e452e040296cb28f"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-de14821",
-    "type": "commit",
-    "at": "2025-09-11T23:38:05Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(svg): add menu icon SVG asset",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/de14821b36cf6d0d6cb131a09c7c8fc0f9d978a6"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-96b4c9e",
-    "type": "commit",
-    "at": "2025-09-11T23:27:37Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(header): implement mobile navigation with toggle buttons",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/96b4c9e2b599433a52f161f8ec1c1ec2d419986d"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-20402c6",
-    "type": "commit",
-    "at": "2025-09-11T22:21:46Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(styles): rename featuredcard to box-tr-lg",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/20402c6100a23f0aa155e4e83bc698b18a52e3b4"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-3778dc8",
-    "type": "commit",
-    "at": "2025-09-11T22:19:14Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(video): integrate Plyr for video playback support",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3778dc8535389bb3858c249e773f71aea571bc6d"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-faaaa70",
-    "type": "commit",
-    "at": "2025-09-11T21:40:24Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(plyr): integrate Plyr for video playback support",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/faaaa70880f19c4ba63aa5b33114ec413aba2358"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-544216b",
-    "type": "commit",
-    "at": "2025-09-11T21:39:49Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore(dependencies): update plyr to version 3.8.3",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/544216bb988526a425c6ffcc1085bbd1be1b2f94"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-1b532ff",
-    "type": "commit",
-    "at": "2025-09-11T21:15:30Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(layout): improve layout structure and styling",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1b532ffca79393f7f522807c4e0e4a131072107c"
   }
 ]
