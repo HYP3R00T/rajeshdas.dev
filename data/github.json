@@ -1,5 +1,41 @@
 [
   {
+    "id": "issue_opened-HYP3R00T/homelab-1",
+    "type": "issue_opened",
+    "at": "2025-12-12T11:53:10Z",
+    "actor": "project-administrator",
+    "project_id": "HYP3R00T/homelab",
+    "title": "Bootstrap instructions?",
+    "url": "https://github.com/HYP3R00T/homelab/issues/1"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-3c5a50e",
+    "type": "commit",
+    "at": "2025-12-12T00:56:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "fix: correct image tag format for homepage deployment",
+    "url": "https://github.com/HYP3R00T/homelab/commit/3c5a50e01b29f9bdb072b386f328c7336854961a"
+  },
+  {
+    "id": "commit-HYP3R00T/homelab-53f1d1e",
+    "type": "commit",
+    "at": "2025-12-12T00:53:48Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/homelab",
+    "title": "fix: update homepage image tag to specific version 1.8.0 for consistency",
+    "url": "https://github.com/HYP3R00T/homelab/commit/53f1d1edaa94bb3493fcfad74ea5109d7cbe55e1"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-05da921",
+    "type": "commit",
+    "at": "2025-12-11T18:48:33Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/05da921e673992c806cf599e0a5090fc834cd813"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-4a7833e",
     "type": "commit",
     "at": "2025-12-10T18:47:30Z",
