@@ -1,0 +1,111 @@
+---
+title: "The Tiny GitHub Star Counter That Broke My UI"
+description: "A small feature turned into a strangely satisfying debugging story while rebuilding my documentation site."
+pubDatetime: 2025-12-12
+featured: false
+draft: false
+category: "frontend"
+tags: ["astro", "ui", "devlife", "shadcn", "story"]
+cover: "./images/star-counter-ui-glitch.png"
+coverAlt: "A playful illustration of UI elements and broken components"
+---
+
+I've been giving my documentation generator a proper makeover lately — tightening the design, reorganizing components, and rebuilding sections that once held themselves together with optimism and loose Tailwind classes. The whole thing runs on Astro, Tailwind, and shadcn/ui, and for the first time it feels like a coherent system instead of a collection of experiments.
+
+Somewhere in this rebuild, I decided I wanted a tiny GitHub star counter in the header. A gentle little number. A badge of encouragement. A whisper from the universe: “Hey, someone clicked the star button.”
+
+It felt like the simplest possible feature.
+
+## And then the UI began glitching like it was trying to escape
+
+Here’s where you can imagine the chaos — or actually **see** it.
+
+**Before (the glitch):**
+
+
+![Glitching UI – before fix](./images/star-counter-ui-glitch-before.gif)
+
+**After (peace restored):**
+
+![Glitching UI – after fix](./images/star-counter-ui-glitch-after.png)
+
+Watching the UI behave like this was… educational.
+Icons duplicated.
+Spacing snapped around unpredictably.
+The button inflated, deflated, and flickered like it was communicating with an alien satellite.
+
+All from a little star counter.
+
+## My first suspect: the JavaScript
+
+Naturally, I blamed the script.
+
+Maybe the fetch timing was weird.
+Maybe `astro:page-load` was firing twice.
+Maybe I accidentally left some Tailwind classes fighting each other.
+
+But the logic was clean.
+The script ran only once.
+The DOM updates were tiny.
+
+So why did the component keep twitching?
+
+## DevTools eventually revealed the truth
+
+When I inspected the DOM, it didn’t match what I had written.
+
+The browser had quietly rearranged elements on its own.
+Some nodes moved.
+Others flattened.
+Nothing was where I expected it to be.
+
+Browsers only do this when they’re cleaning up **invalid HTML**.
+
+And there it was.
+The realization.
+The facepalm moment.
+
+I had wrapped a shadcn/ui `<Button>` component around an inner `<a>` tag.
+
+## HTML does not allow interactive nesting
+
+A `<button>` inside an `<a>`, or an `<a>` inside a `<button>` — both are illegal combinations.
+
+shadcn/ui’s Button is already an interactive element.
+The anchor was also interactive.
+
+Browsers try to “repair” this violation by rewriting the DOM on the fly.
+
+The glitchy layout wasn’t a styling mistake.
+It wasn’t Astro.
+It wasn’t Tailwind.
+It wasn’t JavaScript.
+
+It was the browser politely asking:
+*“What on earth did you just give me?”*
+
+## The fix was beautifully simple
+
+I turned the entire component into a single `<a>` styled like a button.
+
+One interactive element.
+No nesting drama.
+No browser improvisation.
+Everything instantly calmed down.
+
+shadcn/ui even supports `asChild` if you want to keep using the Button component while letting it render as an anchor — but in this case, the simplest version won.
+
+## What I learned from a tiny star counter
+
+This little feature reminded me of something easy to forget when working with layers of abstractions:
+
+Beneath Astro, Tailwind, shadcn/ui, and JavaScript,
+the browser is just a browser.
+It still cares about HTML being valid.
+
+Break the rules, and it will quietly “fix” things — often in wonderfully chaotic ways.
+
+Now I smile every time I see that star counter.
+It’s a small reminder that even tiny components can uncover fundamental lessons.
+
+And honestly, those are the moments that make building things fun.
