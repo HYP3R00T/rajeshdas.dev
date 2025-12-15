@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-35e179c",
+    "type": "commit",
+    "at": "2025-12-14T18:45:17Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/35e179cf2cb98e6f6233636a4f0393a68c1ff34a"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-8743e61",
     "type": "commit",
     "at": "2025-12-13T18:44:10Z",
@@ -1303,167 +1312,5 @@
     "project_id": "HYP3R00T/rajeshdas.dev",
     "title": "feat(Header): add social media links to header",
     "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a80922b924bcbb39b95cab9eeb01523ed72c587b"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b1f049f",
-    "type": "commit",
-    "at": "2025-09-16T18:35:29Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(project): add project cards and detail pages",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b1f049f4fcbbed43223b60808e7da1f864c6d5b1"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-87ec6d7",
-    "type": "commit",
-    "at": "2025-09-16T18:35:16Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(PostCard): remove top margin for content spacing",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/87ec6d72473c78287fb2eb5f3f4c4f60acb210a2"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b5ea2fb",
-    "type": "commit",
-    "at": "2025-09-16T18:13:53Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(ProjectLayout): add new layout for project pages",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b5ea2fb3e647a25079dde7f142f3627cc609469d"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-39b4b5b",
-    "type": "commit",
-    "at": "2025-09-16T17:00:55Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(index): update text colors for better readability",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/39b4b5b0ccb102f450f196d83e9442fe4fa858eb"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-c0e87f9",
-    "type": "commit",
-    "at": "2025-09-16T16:50:38Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(Social): disable resume link and clean up code",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c0e87f90eb22fd97e5c66684321417e632841ba0"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-d3be04c",
-    "type": "commit",
-    "at": "2025-09-16T16:41:54Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(index): enhance hero section with new layout and content",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/d3be04c60065441481b5d65cea4e33e4129676f4"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-f9705a2",
-    "type": "commit",
-    "at": "2025-09-16T16:24:58Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(config): add social links and skills section",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f9705a2f83439f64d8b6752dcf9270740f0fd168"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-013ce16",
-    "type": "commit",
-    "at": "2025-09-16T16:24:51Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(Header): remove unused navItems interface and data",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/013ce16f6691b537844043ac0cb930a124cea301"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-e8f670e",
-    "type": "commit",
-    "at": "2025-09-16T16:24:40Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Social): add social media links with tooltips",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e8f670e152ec92e0f0d93072bd21d38b18383750"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-e0f2707",
-    "type": "commit",
-    "at": "2025-09-16T16:24:28Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Tooltip): add tooltip component with hover functionality",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e0f2707ad9f28ecbbca6d0d6391a433018bc3751"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b63c687",
-    "type": "commit",
-    "at": "2025-09-16T16:24:20Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(Video): update player class for consistency",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b63c687a468ed2a6cd608325579181fa6d1b4ea4"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b9a5fa0",
-    "type": "commit",
-    "at": "2025-09-16T16:22:56Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(index): restructure homepage layout and add components",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b9a5fa0f533e2c70913540fb360dda28399a35c8"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-d66ba29",
-    "type": "commit",
-    "at": "2025-09-16T16:22:47Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Articles): add articles listing and featured post display",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/d66ba294b245bd8b2b50029fd49047837bf00fe8"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-36bf7de",
-    "type": "commit",
-    "at": "2025-09-16T16:22:39Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Button): add outline variant and update accent color",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/36bf7dee7263a6f244e4ebb8bcb6e51df28ff729"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-57df351",
-    "type": "commit",
-    "at": "2025-09-16T16:22:30Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(types): add SocialObjects and NavItem interfaces",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/57df3518d6cc1e01d5c2f23226290d3427e3ebfc"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-e945d51",
-    "type": "commit",
-    "at": "2025-09-16T16:22:20Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(box): add new small and extra small box styles",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e945d51e8f249dba5538e979a1f855cf5820891e"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-aa25b63",
-    "type": "commit",
-    "at": "2025-09-16T16:22:10Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(FeaturedCard): enhance props handling and class management",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/aa25b63b05d4b959c3b585641714fd5feb9c2eac"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-168d957",
-    "type": "commit",
-    "at": "2025-09-16T16:20:53Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(icons): add SVG assets for copy, git-branch, kubernetes, and linux",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/168d9576895708c4735d25e4fca251564b398f32"
   }
 ]
