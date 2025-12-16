@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-faf2189",
+    "type": "commit",
+    "at": "2025-12-15T18:49:07Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/faf2189691ad3c446db9760bcbd6343b014ed7fa"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-35e179c",
     "type": "commit",
     "at": "2025-12-14T18:45:17Z",
@@ -1231,86 +1240,5 @@
     "project_id": "HYP3R00T/d2lab",
     "title": "feat(scripts): enhance setup script for D2 and Playwright",
     "url": "https://github.com/HYP3R00T/d2lab/commit/fcd5742c71dfe52845107827a9777b975800cbe0"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-21df807",
-    "type": "commit",
-    "at": "2025-09-17T13:44:23Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "docs: update README with project features and tech stack",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/21df8079168a41173497fda1c39f129da8f11bfb"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-bbae31a",
-    "type": "commit",
-    "at": "2025-09-17T13:38:16Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(Line): update width prop format for consistency",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/bbae31a572b1f7086a9adada4b4fe1c17457ffe6"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-65af147",
-    "type": "commit",
-    "at": "2025-09-17T13:38:07Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(PostCard): update imports and enhance type safety",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/65af14747a9684de6ca00e2a5cf882863d54a4c7"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-699e11b",
-    "type": "commit",
-    "at": "2025-09-17T13:37:58Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(types): enhance project and post card props",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/699e11b79d77a0f892a7ac5f37d6d97f60c5c200"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-fc55290",
-    "type": "commit",
-    "at": "2025-09-17T13:37:47Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(404): update 404 page layout and styling",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/fc55290c9fdae5eed01a379bf9c334e1f2b43fee"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-3bf7546",
-    "type": "commit",
-    "at": "2025-09-17T13:37:37Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Projects): add Projects component to homepage",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3bf754623e01233983265e3f6147f1d1bfec8d97"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-885242c",
-    "type": "commit",
-    "at": "2025-09-17T13:37:05Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Project): enhance project cards with links and layout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/885242cd1b76d55a302f96ecc6c9e8426f60e8ef"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-c521e56",
-    "type": "commit",
-    "at": "2025-09-17T13:36:47Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(Social): remove unnecessary class from anchor tag",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c521e5679afcde9c7ea174b20b205e53d08514eb"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-a80922b",
-    "type": "commit",
-    "at": "2025-09-17T13:36:35Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(Header): add social media links to header",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a80922b924bcbb39b95cab9eeb01523ed72c587b"
   }
 ]
