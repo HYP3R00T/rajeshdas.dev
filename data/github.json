@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-4a6acdc",
+    "type": "commit",
+    "at": "2025-12-17T18:48:56Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/4a6acdc2a3b7838a1f95c7e9a3beab4487247baf"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-f62d8ce",
     "type": "commit",
     "at": "2025-12-16T18:48:58Z",
@@ -1132,50 +1141,5 @@
     "project_id": "HYP3R00T/rajeshdas.dev",
     "title": "feat(resume): add endpoint to serve resume PDF",
     "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8ca2d4cf67c14de33f9e86a412b5174859dfbdbd"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-1694ceb",
-    "type": "commit",
-    "at": "2025-09-19T18:15:02Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "style(header): enhance logo with gradient and accessibility",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/1694ceb6379d2cef05191888b274f6fff1e37cea"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-77b0d0d",
-    "type": "commit",
-    "at": "2025-09-19T18:09:12Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "docs: Add new blog posts on Python package management, Linux installation, and VSCode settings organization",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/77b0d0de097695226ef1c91239ebd7a89c9a27a0"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-2886237",
-    "type": "commit",
-    "at": "2025-09-19T18:08:29Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(contact): add new pages for skills and contact",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/2886237c2c19d9d8b44b0d5a72fe6598e8e6e60d"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-a1ebf8e",
-    "type": "commit",
-    "at": "2025-09-19T17:59:24Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore: add CNAME file for custom domain",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/a1ebf8e00e4e1b9d59d7dd518ca1eda0674947b2"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-e59662c",
-    "type": "commit",
-    "at": "2025-09-19T17:59:08Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "refactor(navItems): update project link to external URL",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/e59662c237942a89bc50b32f26413e8b1430e4c4"
   }
 ]
