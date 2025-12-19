@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-c550b04",
+    "type": "commit",
+    "at": "2025-12-18T18:48:53Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c550b04e4c389cbe3a71daced47f06e79fc0f921"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-4a6acdc",
     "type": "commit",
     "at": "2025-12-17T18:48:56Z",
@@ -1132,14 +1141,5 @@
     "project_id": "HYP3R00T/homelab",
     "title": "refactor: update vault configurations by refining ClusterRole, upgrading HelmRelease version, and enhancing values.yaml for HA+Raft support",
     "url": "https://github.com/HYP3R00T/homelab/commit/468a71c003096c6bf075622e9c8228d28526f75f"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-8ca2d4c",
-    "type": "commit",
-    "at": "2025-09-19T19:23:22Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(resume): add endpoint to serve resume PDF",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8ca2d4cf67c14de33f9e86a412b5174859dfbdbd"
   }
 ]
