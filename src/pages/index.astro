@@ -1,7 +1,5 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Social from "@/components/core/Social.astro";
-import Articles from "@/components/home/Articles.astro";
 import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import HeroPanel from "@/components/ui/HeroPanel.astro";
@@ -50,19 +48,7 @@ import HeroPanel from "@/components/ui/HeroPanel.astro";
             <span class="font-bold">About Me</span>
           </Button>
         </nav>
-
-        <div class="flex justify-center">
-          <Social />
-        </div>
       </HeroPanel>
     </div>
-  </section>
-
-  <!-- Content Divider -->
-  <div class="border-border my-4 border-t"></div>
-
-  <!-- Articles Section -->
-  <section class="py-8 md:py-12">
-    <Articles />
   </section>
 </BaseLayout>
