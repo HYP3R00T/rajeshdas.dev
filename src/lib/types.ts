@@ -1,5 +1,3 @@
-import type { Page, MarkdownHeading } from "astro";
-import type { CollectionEntry } from "astro:content";
 import type { ImageMetadata } from "astro";
 
 // For HeadSEO.astro
@@ -12,54 +10,24 @@ export interface HeadSEOProps {
   noIndex?: boolean;
 }
 
-// For src/pages/post/[...page].astro
-export interface PostsPageProps {
-  page: Page<CollectionEntry<"posts">>;
-  totalPages: number;
+// Site-level configuration
+export interface SiteConfig {
+  website: string;
+  author: string;
+  repo: string;
+  branch?: string;
+  title: string;
+  description: string;
+  image: string | ImageMetadata;
+  imageAlt?: string;
+  twitterHandle?: string;
+  starCountThreshold?: number;
+  enableLayoutWidthToggle?: boolean;
+  enableGitHubButton?: boolean;
+  defaultDocRedirect?: string;
 }
 
-// Reusable types for posts collections
-export type PostEntry = CollectionEntry<"posts">;
-export type Posts = PostEntry[];
-
-// Post data and headings
-export type PostData = PostEntry["data"];
-export type PostHeadings = MarkdownHeading[];
-
-// For src/pages/post/[...slug].astro
-export interface PostDetailPageProps {
-  entry: PostEntry;
-  headings: PostHeadings;
-}
-
-export interface PostPath {
-  params: { slug: string };
-  props: PostDetailPageProps;
-}
-
-export interface PostCardProps {
-  post: PostEntry;
-}
-
-// For src/layouts/BaseLayout.astro
-// Accepts any subset of SEO props; HeadSEO provides sensible defaults.
-export interface BaseLayoutProps extends Partial<HeadSEOProps> {}
-
-// For src/pages/tag/[tag]/index.astro
-export interface TagPageProps {
-  tag: string;
-  posts: Posts;
-}
-
-// For social links (config.ts)
-export interface SocialObjects {
-  name: string;
-  href: string;
-  active: boolean;
-  linkTitle: string;
-}
-
-// For navigation items (config.ts)
+// Navigation item in the header navigation
 export interface NavItem {
   href: string;
   label: string;
@@ -67,27 +35,15 @@ export interface NavItem {
   blank?: boolean;
 }
 
-// For GitHub events (github.json)
-export interface GitHubEvent {
-  id: string;
-  type: string;
-  at: string;
-  actor: string;
-  project_id: string;
-  title: string;
-  url: string | null | "";
+// Social media link configuration
+export interface SocialObjects {
+  name: string;
+  href: string;
+  active: boolean;
+  linkTitle?: string;
 }
 
-// For projects (project.json)
-export interface ProjectInfo {
-  id: string;
-  title: string;
-  short_description: string;
-  featured: boolean;
-  demo_url?: string;
-  tags: string[];
-}
-
-export interface ProjectsData {
-  projects: ProjectInfo[];
+// Locale
+export interface LocaleConfig {
+  lang: string;
 }
