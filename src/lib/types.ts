@@ -16,16 +16,12 @@ export interface SiteConfig {
   website: string;
   author: string;
   repo: string;
-  branch?: string;
   title: string;
   description: string;
   image: string | ImageMetadata;
   imageAlt?: string;
+  contentType: string;
   twitterHandle?: string;
-  starCountThreshold?: number;
-  enableLayoutWidthToggle?: boolean;
-  enableGitHubButton?: boolean;
-  defaultDocRedirect?: string;
   pageSize?: number;
 }
 
@@ -83,3 +79,7 @@ export interface PostsPageProps {
 export interface PostCardProps {
   post: PostEntry;
 }
+
+// For src/layouts/BaseLayout.astro
+// Accepts any subset of SEO props; HeadSEO provides sensible defaults.
+export interface BaseLayoutProps extends Partial<HeadSEOProps> {}

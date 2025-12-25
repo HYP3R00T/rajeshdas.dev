@@ -1,54 +1,29 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Button from "@/components/ui/Button.astro";
-import Badge from "@/components/ui/Badge.astro";
-import HeroPanel from "@/components/ui/HeroPanel.astro";
 ---
 
 <BaseLayout>
   <!-- Hero Section -->
-  <section class="py-8 md:py-16 lg:py-20">
-    <div class="mx-auto max-w-4xl">
-      <HeroPanel class="px-6 py-10 text-center md:px-12 md:py-14">
-        <Badge variant="accent" class="mb-6"> Available for hire </Badge>
+  <section class="mx-auto flex max-w-4xl flex-col items-center gap-4 py-8">
+    <h1
+      class="mb-3 text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl lg:text-7xl"
+    >
+      Rajesh Das
+    </h1>
 
-        <h1
-          class="mb-3 text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl lg:text-7xl"
-        >
-          Rajesh Das
-        </h1>
+    <h2
+      class="text-foreground-2 mb-6 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl"
+    >
+      DevOps & Automation Engineer
+    </h2>
 
-        <h2
-          class="text-foreground-2 mb-6 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl"
-        >
-          DevOps & Automation Engineer
-        </h2>
-
-        <p
-          class="text-foreground-2 mx-auto mb-6 max-w-3xl text-lg leading-relaxed md:text-xl"
-        >
-          I make clouds behave, pipelines flow smoothly, and deployments happen
-          without drama. From Kubernetes clusters to CI/CD wizardry, I automate
-          the boring stuff so teams can focus on building cool things.
-        </p>
-
-        <nav class="mb-2 flex flex-wrap justify-center gap-3 font-bold">
-          <Button variant="default" size="lg" href="/contact">
-            <span class="font-bold">Hire Me</span>
-          </Button>
-          <Button
-            variant="secondary"
-            size="lg"
-            href="https://hyperoot.dev/"
-            target="_blank"
-          >
-            <span class="font-bold">See What I've Built</span>
-          </Button>
-          <Button variant="secondary" size="lg" href="/about">
-            <span class="font-bold">About Me</span>
-          </Button>
-        </nav>
-      </HeroPanel>
-    </div>
+    <p
+      class="text-foreground-2 mx-auto mb-6 max-w-3xl text-lg leading-relaxed md:text-xl"
+    >
+      I make clouds behave, pipelines flow smoothly, and deployments happen
+      without drama. From Kubernetes clusters to CI/CD wizardry, I automate the
+      boring stuff so teams can focus on building cool things.
+    </p>
   </section>
 </BaseLayout>
