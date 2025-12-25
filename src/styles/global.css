@@ -1,2 +1,304 @@
 @import "tailwindcss";
 @import "plyr/dist/plyr.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.5rem;
+
+  /* Background Layers */
+  --background-0: hsl(220, 15%, 8%); /* environment / page */
+  --background-1: hsl(220, 14%, 11%); /* primary surface */
+  --background-2: hsl(220, 13%, 16%); /* emphasized / priority surface */
+
+  /* Text */
+  --foreground-0: hsl(220, 13%, 93%); /* primary text */
+  --foreground-1: hsl(220, 9%, 70%); /* secondary text */
+  --foreground-2: hsl(220, 6%, 55%); /* muted / meta text */
+
+  /* Accent */
+  --accent: hsl(210, 70%, 63%);
+  --accent-fg: hsl(220, 15%, 8%);
+
+  /* Structure */
+  --border: hsl(220, 12%, 22%);
+
+  /* Colors */
+  --red: hsl(0, 65%, 62%);
+  --orange: hsl(30, 70%, 60%);
+  --yellow: hsl(45, 75%, 65%);
+  --green: hsl(130, 40%, 55%);
+  --teal: hsl(165, 45%, 53%);
+  --cyan: hsl(185, 50%, 60%);
+  --blue: hsl(210, 70%, 63%);
+  --purple: hsl(270, 60%, 65%);
+  --pink: hsl(330, 65%, 67%);
+
+  /* Astro Code Theme */
+  --astro-code-background: var(--background-1);
+  --astro-code-foreground: var(--foreground-0);
+  --astro-code-token-constant: var(--pink);
+  --astro-code-token-string: var(--green);
+  --astro-code-token-comment: var(--foreground-2);
+  --astro-code-token-keyword: var(--pink);
+  --astro-code-token-parameter: var(--red);
+  --astro-code-token-function: var(--blue);
+  --astro-code-token-string-expression: var(--green);
+  --astro-code-token-punctuation: var(--red);
+  --astro-code-token-link: var(--green);
+}
+
+@theme inline {
+  /* Radii */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Core Colors */
+  --color-background: var(--background-0);
+  --color-foreground: var(--foreground-0);
+
+  /* Surfaces (mapped to your hierarchy) */
+  --color-card: var(--background-1);
+  --color-card-foreground: var(--foreground-0);
+
+  --color-popover: var(--background-1);
+  --color-popover-foreground: var(--foreground-0);
+
+  /* Primary / Accent */
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-fg);
+
+  /* Secondary / Muted unified to background-2 + fg stacks */
+  --color-secondary: var(--background-2);
+  --color-secondary-foreground: var(--foreground-0);
+
+  --color-muted: var(--background-2);
+  --color-muted-foreground: var(--foreground-1);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-fg);
+
+  /* Structure */
+  --color-border: var(--border);
+  --color-input: var(--background-2);
+  --color-ring: var(--accent);
+
+  /* Charts / extra palette mapped to your named colors */
+  --color-chart-1: var(--red);
+  --color-chart-2: var(--orange);
+  --color-chart-3: var(--yellow);
+  --color-chart-4: var(--green);
+  --color-chart-5: var(--cyan);
+
+  /* Sidebar maps into surface stack */
+  --color-sidebar: var(--background-1);
+  --color-sidebar-foreground: var(--foreground-0);
+  --color-sidebar-primary: var(--accent);
+  --color-sidebar-primary-foreground: var(--accent-fg);
+  --color-sidebar-accent: var(--background-2);
+  --color-sidebar-accent-foreground: var(--foreground-0);
+  --color-sidebar-border: var(--border);
+  --color-sidebar-ring: var(--accent);
+
+  /* Named colors */
+  --color-red: var(--red);
+  --color-orange: var(--orange);
+  --color-yellow: var(--yellow);
+  --color-green: var(--green);
+  --color-cyan: var(--cyan);
+  --color-blue: var(--blue);
+  --color-purple: var(--purple);
+  --color-pink: var(--pink);
+}
+
+@layer base {
+  * {
+    @apply border-border scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1 {
+    @apply scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance;
+  }
+
+  h2 {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  p {
+    @apply leading-7 not-first:mt-6;
+  }
+
+  ::selection {
+    @apply bg-accent-foreground text-background;
+  }
+
+  ::-webkit-scrollbar {
+    @apply h-2 w-2 rounded-lg;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-foreground;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  body[data-layout="comfort"] #header-inner {
+    @apply mx-auto max-w-7xl;
+  }
+
+  body[data-layout="comfort"] #main-content {
+    @apply max-w-7xl;
+  }
+
+  body[data-layout="wide"] #header-inner {
+    @apply max-w-full;
+  }
+
+  body[data-layout="wide"] #main-content {
+    @apply max-w-full;
+  }
+
+  .prose {
+    @apply text-foreground w-full max-w-none;
+  }
+
+  .prose a {
+    @apply text-primary decoration-primary/30 relative font-medium underline underline-offset-4 transition-colors;
+  }
+
+  .prose a:hover {
+    @apply text-primary decoration-primary;
+  }
+
+  .prose h1 {
+    @apply mt-0 mb-6 text-5xl leading-tight font-extrabold tracking-tight;
+  }
+
+  .prose h2 {
+    @apply mt-12 mb-4 text-4xl leading-snug font-bold tracking-tight;
+  }
+
+  .prose h3 {
+    @apply mt-10 mb-3 text-2xl leading-snug font-semibold;
+  }
+
+  .prose h4 {
+    @apply mt-8 mb-2 text-xl font-semibold;
+  }
+
+  .prose h5 {
+    @apply text-muted-foreground mt-6 mb-1 text-base font-semibold tracking-wide uppercase;
+  }
+
+  .prose h6 {
+    @apply text-muted-foreground mt-6 mb-1 text-sm font-semibold tracking-wide uppercase;
+  }
+
+  .prose p {
+    @apply my-6;
+  }
+
+  .prose p:first-child {
+    @apply mt-0;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply my-6 space-y-2;
+  }
+
+  .prose ul {
+    @apply list-disc pl-6;
+  }
+
+  .prose ol {
+    @apply list-decimal pl-6;
+  }
+
+  .prose li {
+    @apply leading-relaxed;
+  }
+
+  .prose blockquote {
+    @apply border-primary/40 bg-muted/40 text-muted-foreground my-8 border-l-4 px-6 py-4 italic;
+  }
+
+  .prose blockquote p {
+    @apply my-0;
+  }
+
+  .prose code {
+    @apply bg-muted rounded px-1.5 py-0.5 font-mono text-base font-medium;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+
+  .prose pre {
+    @apply bg-secondary my-8 overflow-x-auto rounded-lg px-6 py-5 text-base leading-relaxed;
+  }
+
+  .astro-code {
+    @apply bg-secondary my-8 rounded-lg px-6 py-5 font-mono text-base;
+  }
+
+  .prose table {
+    @apply my-8 w-full border-collapse text-base;
+  }
+
+  .prose th {
+    @apply border-border border-b px-4 py-3 text-left font-semibold;
+  }
+
+  .prose td {
+    @apply border-border border-b px-4 py-3 align-top;
+  }
+
+  .prose tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .prose img {
+    @apply my-8 rounded-lg;
+  }
+
+  .prose iframe {
+    @apply my-8 aspect-video w-full rounded-lg;
+  }
+
+  .prose hr {
+    @apply border-border my-12;
+  }
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--astro-code-foreground) !important;
+  background-color: var(--astro-code-background) !important;
+}
