@@ -6,7 +6,7 @@ const { class: className } = Astro.props as Props;
 ---
 
 <div
-  class={`panel relative overflow-hidden rounded-2xl border border-border bg-content/60 ${className ?? ""}`.trim()}
+  class={`panel relative overflow-hidden rounded-2xl border border-border bg-background-2/60 ${className ?? ""}`.trim()}
 >
   <div class="overlay" aria-hidden="true"></div>
   <slot />

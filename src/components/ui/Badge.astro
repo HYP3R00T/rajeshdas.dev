@@ -23,10 +23,10 @@ const baseClasses =
   "inline-flex items-center rounded-lg px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2";
 
 const variantClasses: Record<BadgeVariant, string> = {
-  default: "bg-text-default text-elevated border border-border",
-  secondary: "bg-elevated text-text-default border border-border",
-  destructive: "bg-red text-text-default",
-  outline: "text-text-default border border-border bg-transparent",
+  default: "bg-foreground-0 text-foreground-0 border border-border",
+  secondary: "bg-background-1 text-foreground-0 border border-border",
+  destructive: "bg-red text-foreground-0",
+  outline: "text-foreground-0 border border-border bg-transparent",
   accent: "bg-accent/20 text-accent",
 };
 

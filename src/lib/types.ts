@@ -1,3 +1,4 @@
+import type { CollectionEntry } from "astro:content";
 import type { ImageMetadata } from "astro";
 
 // For HeadSEO.astro
@@ -25,6 +26,7 @@ export interface SiteConfig {
   enableLayoutWidthToggle?: boolean;
   enableGitHubButton?: boolean;
   defaultDocRedirect?: string;
+  pageSize?: number;
 }
 
 // Navigation item in the header navigation
@@ -46,4 +48,38 @@ export interface SocialObjects {
 // Locale
 export interface LocaleConfig {
   lang: string;
+}
+
+// Posts / content types
+export type PostEntry = CollectionEntry<"posts">;
+export type Posts = PostEntry[];
+
+export interface PostPath {
+  params: { slug: string };
+  props: { entry: PostEntry; headings: any[] };
+}
+
+export interface PostDetailPageProps {
+  entry: PostEntry;
+  headings: any[];
+}
+
+export interface PostsPageProps {
+  page: {
+    data: PostEntry[];
+    currentPage: number;
+    pageSize: number;
+    url: {
+      first?: string;
+      prev?: string;
+      next?: string;
+      last?: string;
+    };
+  };
+  totalPages?: number;
+  featured?: PostEntry;
+}
+
+export interface PostCardProps {
+  post: PostEntry;
 }

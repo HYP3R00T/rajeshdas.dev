@@ -46,13 +46,13 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   default:
-    "bg-text-default text-elevated hover:bg-text-default/80 border border-border",
-  destructive: "bg-red text-text-default hover:bg-red/90",
+    "bg-foreground-0 text-foreground-0 hover:bg-foreground-0/80 border border-border",
+  destructive: "bg-red text-foreground-0 hover:bg-red/90",
   outline:
-    "border border-border bg-background hover:bg-content hover:text-accent",
-  secondary: "bg-content text-text-default hover:bg-elevated",
-  accent: "bg-accent text-background hover:bg-accent/90 font-semibold",
-  ghost: "hover:bg-content/60 hover:text-accent",
+    "border border-border bg-background-0 hover:bg-background-2 hover:text-accent",
+  secondary: "bg-background-2 text-foreground-0 hover:bg-background-1",
+  accent: "bg-accent text-background-0 hover:bg-accent/90 font-semibold",
+  ghost: "hover:bg-background-2/60 hover:text-accent",
   link: "text-accent underline-offset-4 hover:underline",
 };
 

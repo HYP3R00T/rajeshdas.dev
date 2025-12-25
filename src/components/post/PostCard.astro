@@ -6,20 +6,20 @@ const { post } = Astro.props as PostCardProps;
 ---
 
 <article
-  class="group border-border bg-content hover:bg-elevated rounded-xl border p-6 transition-colors duration-200"
+  class="group border-border bg-background-2 hover:bg-background-1 rounded-xl border p-6 transition-colors duration-200"
 >
   <a href={`/post/${post.id}/`} class="block space-y-3">
     <time
-      class="text-text-faint block text-xs font-medium tracking-wide uppercase"
+      class="text-foreground-2 block text-xs font-medium tracking-wide uppercase"
     >
       {formatDate(post.data.pubDatetime)}
     </time>
 
-    <h2 class="text-text-default mt-1 text-xl leading-tight font-bold">
+    <h2 class="text-foreground-0 mt-1 text-xl leading-tight font-bold">
       {post.data.title}
     </h2>
 
-    <p class="text-text-subtle text-base leading-relaxed">
+    <p class="text-foreground-2 text-base leading-relaxed">
       {post.data.description}
     </p>
 

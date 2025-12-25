@@ -15,19 +15,19 @@ const { title, description } = entry.data;
 <BaseLayout title={`${title} - Components`} description={description}>
   <main class="mx-auto max-w-5xl px-4 py-12">
     <!-- Breadcrumb -->
-    <nav class="text-text-muted mb-8 flex items-center gap-2 text-sm">
+    <nav class="text-foreground-2 mb-8 flex items-center gap-2 text-sm">
       <a href="/" class="hover:text-accent transition-colors">Home</a>
       <span>/</span>
       <a href="/components" class="hover:text-accent transition-colors">
         Components
       </a>
-      <span class="text-text-default">{title}</span>
+      <span class="text-foreground-0">{title}</span>
     </nav>
 
     <!-- Header -->
     <div class="mb-12 space-y-4">
-      <h1 class="text-text-default text-4xl font-bold">{title}</h1>
-      <p class="text-text-muted text-lg">{description}</p>
+      <h1 class="text-foreground-0 text-4xl font-bold">{title}</h1>
+      <p class="text-foreground-2 text-lg">{description}</p>
     </div>
 
     <!-- Content -->

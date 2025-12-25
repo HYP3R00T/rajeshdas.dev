@@ -42,8 +42,8 @@ const categoryNames: Record<string, string> = {
   <main class="mx-auto px-4 py-12">
     <!-- Header -->
     <div class="mb-12 space-y-4">
-      <h1 class="text-text-default text-4xl font-bold">Components</h1>
-      <p class="text-text-muted max-w-3xl text-lg">
+      <h1 class="text-foreground-0 text-4xl font-bold">Components</h1>
+      <p class="text-foreground-2 max-w-3xl text-lg">
         Beautifully designed components that you can copy and paste into your
         apps. Built with Astro and Tailwind CSS. Accessible. Customizable. Open
         Source.
@@ -55,17 +55,17 @@ const categoryNames: Record<string, string> = {
       {
         Object.entries(groupedComponents).map(([category, items]) => (
           <section>
-            <h2 class="text-text-default mb-6 text-2xl font-semibold">
+            <h2 class="text-foreground-0 mb-6 text-2xl font-semibold">
               {categoryNames[category] || category}
             </h2>
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {items.map((component) => (
-                <div class="group rounded-radius border-border bg-content hover:bg-elevated border p-6 transition-colors duration-200">
+                <div class="group border-border bg-background-2 hover:bg-background-1 rounded-lg border p-6 transition-colors duration-200">
                   <div class="mb-4 space-y-2">
-                    <h3 class="text-text-default group-hover:text-accent text-lg font-semibold transition-colors">
+                    <h3 class="text-foreground-0 group-hover:text-accent text-lg font-semibold transition-colors">
                       {component.data.title}
                     </h3>
-                    <p class="text-text-subtle line-clamp-2 text-sm">
+                    <p class="text-foreground-2 line-clamp-2 text-sm">
                       {component.data.description}
                     </p>
                   </div>
@@ -100,11 +100,11 @@ const categoryNames: Record<string, string> = {
     </div>
 
     <!-- Getting Started -->
-    <div class="rounded-radius border-border bg-elevated mt-16 border p-8">
-      <h2 class="text-text-default mb-4 text-2xl font-semibold">
+    <div class="border-border bg-background-1 mt-16 rounded-lg border p-8">
+      <h2 class="text-foreground-0 mb-4 text-2xl font-semibold">
         Getting Started
       </h2>
-      <p class="text-text-muted mb-6">
+      <p class="text-foreground-2 mb-6">
         Browse the components and copy the code directly into your project.
         Customize the styles to match your design system.
       </p>

@@ -19,6 +19,7 @@ export const SITE: SiteConfig = {
   image: setupImage,
   imageAlt: "Check out celestialdocs.hyperoot.dev",
   twitterHandle: "@HYP3R00T",
+  pageSize: 6,
   defaultDocRedirect: "/docs/getting-started/introduction",
 };
 

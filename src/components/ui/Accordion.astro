@@ -16,14 +16,14 @@ const {
 } = Astro.props as AccordionProps;
 
 const baseClasses =
-  "accordion-item hover:bg-content rounded-radius overflow-hidden transition-all duration-300";
+  "accordion-item hover:bg-background-2 rounded-lg overflow-hidden transition-all duration-300";
 
 const classes = [baseClasses, className?.trim()].filter(Boolean).join(" ");
 ---
 
 <div class={classes} data-state={open ? "pinned" : "collapsed"} {...rest}>
   <div
-    class="text-text-default flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-2 text-base font-medium transition-all duration-300"
+    class="text-foreground-0 flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-2 text-base font-medium transition-all duration-300"
     data-accordion-header
   >
     <slot name="trigger" />
@@ -38,113 +38,9 @@ const classes = [baseClasses, className?.trim()].filter(Boolean).join(" ");
     data-accordion-content
   >
     <div
-      class="text-text-default px-6 py-2 leading-relaxed opacity-0 transition-opacity duration-300"
+      class="text-foreground-0 px-6 py-2 leading-relaxed opacity-0 transition-opacity duration-300"
     >
       <slot name="content" />
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const items = document.querySelectorAll<HTMLDivElement>(".accordion-item");
-    let pinned: HTMLDivElement | null = null;
-
-    items.forEach((item) => {
-      if (item.dataset.init) return;
-      item.dataset.init = "true";
-
-      const header = item.querySelector("[data-accordion-header]");
-      const content = item.querySelector<HTMLElement>(
-        "[data-accordion-content]"
-      );
-      const inner = content?.firstElementChild as HTMLElement;
-      const icon = item.querySelector<SVGElement>("[data-accordion-icon]");
-
-      const setExpanded = (expanded: boolean, pin: boolean = false) => {
-        if (!content || !inner) return;
-
-        item.dataset.state = pin ? "pinned" : expanded ? "hover" : "collapsed";
-        item.classList.toggle("bg-content", pin);
-
-        if (icon)
-          icon.style.transform = expanded ? "rotate(180deg)" : "rotate(0deg)";
-        content.style.maxHeight = expanded
-          ? `${content.scrollHeight}px`
-          : "0px";
-
-        if (expanded) {
-          setTimeout(() => (inner.style.opacity = "1"), 100);
-        } else {
-          inner.style.opacity = "0";
-        }
-      };
-
-      // Initialize open state
-      if (item.dataset.state === "pinned") {
-        setExpanded(true, true);
-        pinned = item;
-      }
-
-      let timer: ReturnType<typeof setTimeout> | null = null;
-
-      header?.addEventListener("mouseenter", () => {
-        if (item.dataset.state !== "pinned") {
-          if (timer) clearTimeout(timer);
-          timer = setTimeout(() => setExpanded(true), 180);
-        }
-      });
-
-      header?.addEventListener("mouseleave", () => {
-        if (timer) clearTimeout(timer);
-        if (item.dataset.state === "hover") setExpanded(false);
-      });
-
-      header?.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        if (item.dataset.state === "pinned") {
-          setExpanded(false);
-          pinned = null;
-        } else {
-          if (pinned && pinned !== item) {
-            const pc = pinned.querySelector<HTMLElement>(
-              "[data-accordion-content]"
-            );
-            const pi = pc?.firstElementChild as HTMLElement;
-            const picon = pinned.querySelector<SVGElement>(
-              "[data-accordion-icon]"
-            );
-
-            pinned.dataset.state = "collapsed";
-            pinned.classList.remove("bg-content");
-            if (picon) picon.style.transform = "rotate(0deg)";
-            if (pc) pc.style.maxHeight = "0px";
-            if (pi) pi.style.opacity = "0";
-          }
-
-          setExpanded(true, true);
-          pinned = item;
-        }
-      });
-    });
-
-    document.addEventListener("click", (e) => {
-      if (pinned && !pinned.contains(e.target as Node)) {
-        const content = pinned.querySelector<HTMLElement>(
-          "[data-accordion-content]"
-        );
-        const inner = content?.firstElementChild as HTMLElement;
-        const icon = pinned.querySelector<SVGElement>("[data-accordion-icon]");
-
-        pinned.dataset.state = "collapsed";
-        pinned.classList.remove("bg-content");
-        if (icon) icon.style.transform = "rotate(0deg)";
-        if (content) content.style.maxHeight = "0px";
-        if (inner) inner.style.opacity = "0";
-
-        pinned = null;
-      }
-    });
-  });
-</script>
