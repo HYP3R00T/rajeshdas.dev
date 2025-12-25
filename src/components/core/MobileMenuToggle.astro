@@ -31,39 +31,68 @@ import { Icon } from "astro-icon/components";
 
     const iconOpen = toggleBtn.querySelector("[data-icon-open]");
     const iconClose = toggleBtn.querySelector("[data-icon-close]");
+    const panelCloseBtn = menu.querySelector("[data-mobile-menu-close]");
+
+    // compute header height and apply to menu so it sits below the header
+    function applyPanelPosition() {
+      const header = document.querySelector("header");
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      (menu as HTMLElement).style.top = `${headerHeight}px`;
+      (menu as HTMLElement).style.bottom = `0`;
+    }
+
+    applyPanelPosition();
+    window.addEventListener("resize", applyPanelPosition);
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") hideMenu();
     };
 
     function showMenu() {
-      menu!.classList.remove("hidden");
+      (menu as HTMLElement).classList.remove("hidden");
+      (menu as HTMLElement).setAttribute("aria-hidden", "false");
       toggleBtn!.setAttribute("aria-expanded", "true");
       iconOpen && iconOpen.classList.add("hidden");
       iconClose && iconClose.classList.remove("hidden");
       document.addEventListener("keydown", onKeyDown);
+      // focus close button in panel for accessibility, or the panel itself
+      if (panelCloseBtn) (panelCloseBtn as HTMLElement).focus();
       document.dispatchEvent(new CustomEvent("mobile-menu:opened"));
     }
 
     function hideMenu() {
-      menu!.classList.add("hidden");
+      (menu as HTMLElement).classList.add("hidden");
+      (menu as HTMLElement).setAttribute("aria-hidden", "true");
       toggleBtn!.setAttribute("aria-expanded", "false");
       iconOpen && iconOpen.classList.remove("hidden");
       iconClose && iconClose.classList.add("hidden");
       document.removeEventListener("keydown", onKeyDown);
+      // return focus to toggle
+      (toggleBtn as HTMLElement).focus();
       document.dispatchEvent(new CustomEvent("mobile-menu:closed"));
     }
 
+    // header toggle
     toggleBtn.addEventListener("click", () => {
-      if (menu!.classList.contains("hidden")) showMenu();
+      if ((menu as HTMLElement).classList.contains("hidden")) showMenu();
       else hideMenu();
     });
 
-    // Close when a link/button inside the panel is clicked
+    // in-panel close
+    if (panelCloseBtn) panelCloseBtn.addEventListener("click", hideMenu);
+
+    // Close when a link/button inside the panel is clicked (except the internal close button)
     menu.addEventListener("click", (e) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
-      if (target.closest("a") || target.closest("button")) {
+      // if clicking directly on the overlay background, close
+      if (target === menu) return hideMenu();
+      // close on nav link or button (but not the panel's close button since that has its own handler)
+      if (
+        target.closest("a") ||
+        (target.closest("button") &&
+          !target.closest("[data-mobile-menu-close]"))
+      ) {
         hideMenu();
       }
     });
