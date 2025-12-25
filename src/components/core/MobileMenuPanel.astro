@@ -1,0 +1,33 @@
+---
+import Button from "@/components/ui/Button.astro";
+
+interface Props {
+  navItems: Array<{ label: string; href: string; blank?: boolean }>;
+}
+
+const { navItems } = Astro.props as Props;
+---
+
+<!-- Panel (placed below header) -->
+<div
+  id="mobile-menu"
+  data-mobile-menu
+  class="border-border hidden border-t md:hidden"
+>
+  <div class="flex flex-col gap-2 px-4 py-3">
+    {
+      navItems.map((item) => (
+        <Button
+          href={item.href}
+          variant="accent"
+          size="default"
+          target={item.blank ? "_blank" : undefined}
+          rel={item.blank ? "noopener noreferrer" : undefined}
+          class="w-full text-center"
+        >
+          {item.label}
+        </Button>
+      ))
+    }
+  </div>
+</div>

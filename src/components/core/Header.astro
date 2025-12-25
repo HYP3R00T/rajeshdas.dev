@@ -1,7 +1,8 @@
 ---
 import { SITE, navItems } from "@data/config";
 import Button from "@/components/ui/Button.astro";
-import { Icon } from "astro-icon/components";
+import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
+import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 ---
 
 <header class="bg-background-0 border-border sticky top-0 z-50 border-b">
@@ -26,117 +27,10 @@ import { Icon } from "astro-icon/components";
       }
     </nav>
 
-    <!-- Mobile toggle -->
-    <div class="md:hidden">
-      <Button
-        size="icon"
-        id="icon-open"
-        aria-label="Open menu"
-        aria-expanded="false"
-      >
-        <Icon name="menu" />
-      </Button>
-      <Button
-        size="icon"
-        id="icon-close"
-        class="hidden"
-        style="display:none"
-        aria-label="Close menu"
-        aria-hidden="true"
-      >
-        <Icon name="close" />
-      </Button>
-    </div>
+    <!-- Mobile toggle (buttons) -->
+    <MobileMenuToggle />
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="border-border hidden border-t md:hidden">
-    <div class="flex flex-col gap-2 px-4 py-3">
-      {
-        navItems.map((item) => (
-          <Button
-            href={item.href}
-            variant="accent"
-            size="default"
-            target={item.blank ? "_blank" : undefined}
-            rel={item.blank ? "noopener noreferrer" : undefined}
-            class="w-full text-center"
-          >
-            {item.label}
-          </Button>
-        ))
-      }
-    </div>
-  </div>
+  <!-- Mobile menu panel (below header row) -->
+  <MobileMenuPanel navItems={navItems} />
 </header>
-
-<script>
-  (function () {
-    const openBtn = document.getElementById("icon-open") as HTMLElement | null;
-    const closeBtn = document.getElementById(
-      "icon-close"
-    ) as HTMLElement | null;
-    const menu = document.getElementById("mobile-menu") as HTMLElement | null;
-
-    if (!openBtn || !closeBtn || !menu) return;
-
-    // Initialize state: menu closed
-    const setOpen = (isOpen: boolean): void => {
-      if (isOpen) {
-        menu.classList.remove("hidden");
-        // Hide open button (inline style to avoid Tailwind display conflicts)
-        openBtn.classList.add("hidden");
-        (openBtn as HTMLElement).style.display = "none";
-        // Show close button
-        closeBtn.classList.remove("hidden");
-        (closeBtn as HTMLElement).style.display = "";
-        // ARIA: indicate expanded state and visibility
-        openBtn.setAttribute("aria-expanded", "true");
-        openBtn.setAttribute("aria-hidden", "true");
-        closeBtn.setAttribute("aria-hidden", "false");
-      } else {
-        menu.classList.add("hidden");
-        // Show open button
-        openBtn.classList.remove("hidden");
-        (openBtn as HTMLElement).style.display = "";
-        // Hide close button
-        closeBtn.classList.add("hidden");
-        (closeBtn as HTMLElement).style.display = "none";
-        // ARIA: indicate collapsed state and visibility
-        openBtn.setAttribute("aria-expanded", "false");
-        openBtn.setAttribute("aria-hidden", "false");
-        closeBtn.setAttribute("aria-hidden", "true");
-      }
-    };
-
-    // Ensure initial visibility
-    setOpen(false);
-
-    openBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      setOpen(true);
-      // focus the visible close button after opening
-      (closeBtn as HTMLElement).focus();
-    });
-
-    closeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      setOpen(false);
-      // focus the visible open button after closing
-      (openBtn as HTMLElement).focus();
-    });
-
-    // Close menu on Escape
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setOpen(false);
-    });
-
-    // Close menu when a link/button inside it is clicked (mobile behavior)
-    menu.addEventListener("click", (e) => {
-      const tgt = e.target as Element | null;
-      if (tgt && (tgt.closest("a") || tgt.closest("button"))) {
-        setOpen(false);
-      }
-    });
-  })();
-</script>
