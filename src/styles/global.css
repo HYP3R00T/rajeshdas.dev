@@ -55,52 +55,16 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Core Colors */
-  --color-background: var(--background-0);
-  --color-foreground: var(--foreground-0);
-
-  /* Surfaces (mapped to your hierarchy) */
-  --color-card: var(--background-1);
-  --color-card-foreground: var(--foreground-0);
-
-  --color-popover: var(--background-1);
-  --color-popover-foreground: var(--foreground-0);
-
-  /* Primary / Accent */
-  --color-primary: var(--accent);
-  --color-primary-foreground: var(--accent-fg);
-
-  /* Secondary / Muted unified to background-2 + fg stacks */
-  --color-secondary: var(--background-2);
-  --color-secondary-foreground: var(--foreground-0);
-
-  --color-muted: var(--background-2);
-  --color-muted-foreground: var(--foreground-1);
-
+  /* Core */
+  --color-background-0: var(--background-0);
+  --color-background-1: var(--background-1);
+  --color-background-2: var(--background-2);
+  --color-foreground-0: var(--foreground-0);
+  --color-foreground-1: var(--foreground-1);
+  --color-foreground-2: var(--foreground-2);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-fg);
-
-  /* Structure */
+  --color-accent-fg: var(--accent-fg);
   --color-border: var(--border);
-  --color-input: var(--background-2);
-  --color-ring: var(--accent);
-
-  /* Charts / extra palette mapped to your named colors */
-  --color-chart-1: var(--red);
-  --color-chart-2: var(--orange);
-  --color-chart-3: var(--yellow);
-  --color-chart-4: var(--green);
-  --color-chart-5: var(--cyan);
-
-  /* Sidebar maps into surface stack */
-  --color-sidebar: var(--background-1);
-  --color-sidebar-foreground: var(--foreground-0);
-  --color-sidebar-primary: var(--accent);
-  --color-sidebar-primary-foreground: var(--accent-fg);
-  --color-sidebar-accent: var(--background-2);
-  --color-sidebar-accent-foreground: var(--foreground-0);
-  --color-sidebar-border: var(--border);
-  --color-sidebar-ring: var(--accent);
 
   /* Named colors */
   --color-red: var(--red);
@@ -165,22 +129,6 @@
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     @apply cursor-pointer;
-  }
-
-  body[data-layout="comfort"] #header-inner {
-    @apply mx-auto max-w-7xl;
-  }
-
-  body[data-layout="comfort"] #main-content {
-    @apply max-w-7xl;
-  }
-
-  body[data-layout="wide"] #header-inner {
-    @apply max-w-full;
-  }
-
-  body[data-layout="wide"] #main-content {
-    @apply max-w-full;
   }
 
   .prose {
