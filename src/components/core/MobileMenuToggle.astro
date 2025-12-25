@@ -3,36 +3,34 @@ import Button from "@/components/ui/Button.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<!-- Toggle buttons only (placed inside header row) -->
+<!-- Toggle button (single button containing both icons) -->
 <div class="md:hidden">
   <Button
     size="icon"
-    data-mobile-menu-open
-    aria-label="Open menu"
+    data-mobile-menu-toggle
+    aria-label="Toggle menu"
     aria-expanded="false"
   >
-    <Icon name="menu" />
-  </Button>
-  <Button
-    size="icon"
-    data-mobile-menu-close
-    class="hidden"
-    aria-label="Close menu"
-    aria-hidden="true"
-  >
-    <Icon name="close" />
+    <span aria-hidden="true" data-icon-open>
+      <Icon name="menu" />
+    </span>
+    <span aria-hidden="true" data-icon-close class="hidden">
+      <Icon name="close" />
+    </span>
   </Button>
 </div>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const openBtn = document.querySelector("[data-mobile-menu-open]");
-    const closeBtn = document.querySelector("[data-mobile-menu-close]");
+    const toggleBtn = document.querySelector("[data-mobile-menu-toggle]");
     const menu =
       document.querySelector("[data-mobile-menu]") ||
       document.getElementById("mobile-menu");
 
-    if (!openBtn || !closeBtn || !menu) return;
+    if (!toggleBtn || !menu) return;
+
+    const iconOpen = toggleBtn.querySelector("[data-icon-open]");
+    const iconClose = toggleBtn.querySelector("[data-icon-close]");
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") hideMenu();
@@ -40,26 +38,26 @@ import { Icon } from "astro-icon/components";
 
     function showMenu() {
       menu!.classList.remove("hidden");
-      openBtn!.classList.add("hidden");
-      openBtn!.setAttribute("aria-expanded", "true");
-      closeBtn!.classList.remove("hidden");
-      closeBtn!.removeAttribute("aria-hidden");
+      toggleBtn!.setAttribute("aria-expanded", "true");
+      iconOpen && iconOpen.classList.add("hidden");
+      iconClose && iconClose.classList.remove("hidden");
       document.addEventListener("keydown", onKeyDown);
       document.dispatchEvent(new CustomEvent("mobile-menu:opened"));
     }
 
     function hideMenu() {
       menu!.classList.add("hidden");
-      openBtn!.classList.remove("hidden");
-      openBtn!.setAttribute("aria-expanded", "false");
-      closeBtn!.classList.add("hidden");
-      closeBtn!.setAttribute("aria-hidden", "true");
+      toggleBtn!.setAttribute("aria-expanded", "false");
+      iconOpen && iconOpen.classList.remove("hidden");
+      iconClose && iconClose.classList.add("hidden");
       document.removeEventListener("keydown", onKeyDown);
       document.dispatchEvent(new CustomEvent("mobile-menu:closed"));
     }
 
-    openBtn.addEventListener("click", showMenu);
-    closeBtn.addEventListener("click", hideMenu);
+    toggleBtn.addEventListener("click", () => {
+      if (menu!.classList.contains("hidden")) showMenu();
+      else hideMenu();
+    });
 
     // Close when a link/button inside the panel is clicked
     menu.addEventListener("click", (e) => {
