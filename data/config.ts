@@ -11,20 +11,26 @@ export const LOCALE: LocaleConfig = {
 };
 
 export const SITE: SiteConfig = {
-  website: "https://celestialdocs.hyperoot.dev",
+  website: "https://rajeshdas.dev",
   author: "Rajesh",
-  repo: "https://github.com/HYP3R00T/CelestialDocs",
-  title: "CelestialDocs",
-  description: "Documentation template using Astro and Shadcn",
+  repo: "https://github.com/HYP3R00T/rajeshdas.dev",
+  title: "Rajesh Das",
+  description:
+    "A portfolio and blog showcasing Rajesh's skills in DevOps, Python, and Cloud.",
   image: setupImage,
-  imageAlt: "Check out celestialdocs.hyperoot.dev",
+  imageAlt: "Check out rajeshdas.dev",
+  contentType: "Portfolio",
   twitterHandle: "@HYP3R00T",
-  pageSize: 6,
-  defaultDocRedirect: "/docs/getting-started/introduction",
+  pageSize: 10,
 };
 
-export const NAV_ITEMS: NavItem[] = [
-  { href: "/docs", label: "Docs", special: true },
+export const navItems: NavItem[] = [
+  { href: "/post", label: "Blog" },
+  { href: "https://hyperoot.dev/", label: "Projects", blank: true },
+  { href: "/activity", label: "Activity" },
+  { href: "/components", label: "Components" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Let's Talk", special: true },
 ];
 
 export const SOCIAL_LINKS: SocialObjects[] = [
