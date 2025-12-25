@@ -107,7 +107,7 @@
   }
 
   ::selection {
-    @apply bg-accent-foreground text-background-0;
+    @apply bg-foreground-0 text-background-0;
   }
 
   ::-webkit-scrollbar {
@@ -123,7 +123,7 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent-foreground;
+    @apply bg-accent;
   }
 
   button:not(:disabled),
