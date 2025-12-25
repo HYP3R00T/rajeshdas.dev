@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/ui/Button.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   navItems: Array<{ label: string; href: string; blank?: boolean }>;
@@ -8,17 +9,18 @@ interface Props {
 const { navItems } = Astro.props as Props;
 ---
 
-<!-- Panel (full-screen overlay below header) -->
+<!-- Panel (full-screen overlay below header). Visibility controlled via data-open attr -->
 <div
   id="mobile-menu"
   data-mobile-menu
-  class="bg-background-0 fixed inset-x-0 top-0 z-50 hidden overflow-auto backdrop-blur-sm md:hidden"
+  data-open="false"
+  class="bg-background-0 pointer-events-none fixed inset-x-0 top-0 z-50 overflow-auto opacity-0 backdrop-blur-sm transition duration-150 ease-out data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 md:hidden"
   role="dialog"
   aria-modal="true"
   aria-hidden="true"
 >
   <div class="mx-auto p-4">
-    <nav class="flex flex-col gap-2">
+    <nav class="mt-4 flex flex-col gap-2">
       {
         navItems.map((item) => (
           <Button
@@ -27,6 +29,7 @@ const { navItems } = Astro.props as Props;
             size="default"
             target={item.blank ? "_blank" : undefined}
             rel={item.blank ? "noopener noreferrer" : undefined}
+            class="w-full text-center"
           >
             {item.label}
           </Button>
