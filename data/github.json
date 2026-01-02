@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-29f50d0",
+    "type": "commit",
+    "at": "2026-01-01T18:47:08Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/29f50d0676bf03799a85db27e6b534cc4acb5fe6"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-8691691",
     "type": "commit",
     "at": "2025-12-31T18:46:48Z",
@@ -1213,23 +1222,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "feat(docs): update guides and configuration for CostCutter",
     "url": "https://github.com/HYP3R00T/CostCutter/pull/19"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-0d1f932",
-    "type": "commit",
-    "at": "2025-10-04T02:56:01Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(nav): add support for external links in navigation",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/0d1f93242f3d0603ab9f3007fa869206059959cf"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-c406cb7",
-    "type": "commit",
-    "at": "2025-10-04T02:55:45Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore(config): update site URL configuration comments",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c406cb7df0841cb9f0e31a3f3bda223454bbe3a4"
   }
 ]
