@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-25d3ec5",
+    "type": "commit",
+    "at": "2026-01-14T18:50:41Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/25d3ec54be58b2ccd4cc82539193f8b84394f5a6"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-8662928",
     "type": "commit",
     "at": "2026-01-13T18:48:51Z",
@@ -1204,41 +1213,5 @@
     "project_id": "HYP3R00T/homelab",
     "title": "refactor: remove unused service nodePort configurations from Grafana, Prometheus, and Alertmanager",
     "url": "https://github.com/HYP3R00T/homelab/commit/da5c8d90b1a8ec511f63a29a2fd9d34d8267bbdd"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-b364788",
-    "type": "commit",
-    "at": "2025-10-17T17:57:05Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "refactor: remove documentation as it is being hosted in a seprate repo",
-    "url": "https://github.com/HYP3R00T/homelab/commit/b36478812d47d28eeb284d2227e25a40c14b7dfd"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-df66a4e",
-    "type": "commit",
-    "at": "2025-10-17T17:44:58Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "feat: add kube-prometheus-stack configuration with HelmRelease, HelmRepository, and associated resources for monitoring setup",
-    "url": "https://github.com/HYP3R00T/homelab/commit/df66a4ed16ba0974de404b59ea1148c192b3bd11"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-4dc03c0",
-    "type": "commit",
-    "at": "2025-10-17T17:38:11Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "refactor: update nginx configuration by modifying kustomization, ocirepository, and values files for improved structure and clarity",
-    "url": "https://github.com/HYP3R00T/homelab/commit/4dc03c0a64fa374d1dd1fb5a24e43a8cf64e360f"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-31e635b",
-    "type": "commit",
-    "at": "2025-10-17T17:11:20Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "fix: update nginx OCI repository semver to 22.0.11 and add comment in values.yaml",
-    "url": "https://github.com/HYP3R00T/homelab/commit/31e635b2b9108eecafe1aaf6b17c83b963ba7a51"
   }
 ]
