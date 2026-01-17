@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-f699615",
+    "type": "commit",
+    "at": "2026-01-16T18:49:16Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/f699615e2d9fca61054c5dfe89fe734cdd33b2cf"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-4498c3b",
     "type": "commit",
     "at": "2026-01-15T18:52:40Z",
@@ -1186,32 +1195,5 @@
     "project_id": "HYP3R00T/d2lab",
     "title": "docs: update output file names in README",
     "url": "https://github.com/HYP3R00T/d2lab/commit/30618caea575a762cae506bcc6596fbcc05e6886"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-9b38bee",
-    "type": "commit",
-    "at": "2025-10-19T18:36:35Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "fix: update remote reference keys in externalSecret.yaml for correct path resolution",
-    "url": "https://github.com/HYP3R00T/homelab/commit/9b38bee95db5699609b3ba584cbb57c1920965ef"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-11f3240",
-    "type": "commit",
-    "at": "2025-10-19T18:36:30Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "feat: add external-secrets HelmRelease and HelmRepository configurations, update ClusterSecretStore and values for improved integration",
-    "url": "https://github.com/HYP3R00T/homelab/commit/11f3240a960ac8c31c36f3021a63fc34c99eb19c"
-  },
-  {
-    "id": "commit-HYP3R00T/homelab-60e3a3b",
-    "type": "commit",
-    "at": "2025-10-19T18:36:18Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/homelab",
-    "title": "feat: add cert-manager configuration with ClusterIssuers, Certificates, HelmRelease, and associated resources for improved certificate management",
-    "url": "https://github.com/HYP3R00T/homelab/commit/60e3a3b76a6358c0772ed40ae20193ac3e2f481c"
   }
 ]
