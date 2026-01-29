@@ -1,5 +1,14 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-cfb3b69",
+    "type": "commit",
+    "at": "2026-01-28T18:52:14Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/cfb3b6927bc7384bd301ce93f60e114cfcc47bb2"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-f37eda4",
     "type": "commit",
     "at": "2026-01-27T18:54:13Z",
@@ -1096,86 +1105,5 @@
     "project_id": "HYP3R00T/CostCutter",
     "title": "feat(ec2): add handlers for Elastic IPs, snapshots, and volumes",
     "url": "https://github.com/HYP3R00T/CostCutter/pull/22"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-d5730e8",
-    "type": "commit",
-    "at": "2025-10-31T11:44:35Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(about): restructure about page with new sections",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/d5730e85b8093ddaf2f0423c74edbb1acec412a2"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-cde668e",
-    "type": "commit",
-    "at": "2025-10-31T09:24:40Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(layout): add Footer component to BaseLayout",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/cde668e1c90a4499df429e01750149a958be4d32"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-c8f3d25",
-    "type": "commit",
-    "at": "2025-10-31T08:36:46Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(icons): add arrow-right and user SVG icons",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/c8f3d25def65cb066f7afdd2101370fe8ab7ab9c"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-3e6f60e",
-    "type": "commit",
-    "at": "2025-10-30T21:56:27Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(icons): add download and external link SVGs",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/3e6f60e571c9ce906bbb2405e9c1f99d13d2d9e1"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-45e22d1",
-    "type": "commit",
-    "at": "2025-10-30T20:52:17Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(github): add workflow to fetch GitHub activity",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/45e22d12fe6f0cb2dd5d70bd8c23a2c0fe243666"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-0daf3bb",
-    "type": "commit",
-    "at": "2025-10-30T20:43:02Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(github): implement GitHub activity fetching script",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/0daf3bbc2c92d2f32fd80dd9473337aeef7d71ec"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-9a2322f",
-    "type": "commit",
-    "at": "2025-10-30T20:42:25Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "chore(.gitignore): remove unused 'lib/' entry",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/9a2322f41bc84b93330e3c0cd7ad9399b7fb4684"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-8303f7e",
-    "type": "commit",
-    "at": "2025-10-30T20:42:09Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(activity): implement GitHub activity tracking components",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/8303f7e43807e48d5c0cdb3b35f3a04b061bdea3"
-  },
-  {
-    "id": "commit-HYP3R00T/rajeshdas.dev-b29588b",
-    "type": "commit",
-    "at": "2025-10-30T20:41:39Z",
-    "actor": "HYP3R00T",
-    "project_id": "HYP3R00T/rajeshdas.dev",
-    "title": "feat(mcp): add GitHub API server configuration",
-    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/b29588bb0d61c8476ea2811c5b5cdf100ab547cf"
   }
 ]
