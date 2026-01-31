@@ -1,5 +1,194 @@
 [
   {
+    "id": "pull_merged-HYP3R00T/CostCutter-29",
+    "type": "pull_merged",
+    "at": "2026-01-31T13:37:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Improve Test Coverage",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/29"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-3125fa5",
+    "type": "commit",
+    "at": "2026-01-31T13:37:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #29 from HYP3R00T/chore-update-tests",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/3125fa575235c637688a1aa545a55a0afa7db58a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-29",
+    "type": "pull_opened",
+    "at": "2026-01-31T13:36:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Improve Test Coverage",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/29"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-fd2ef12",
+    "type": "commit",
+    "at": "2026-01-31T13:35:57Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "test: add unit tests for EC2 resources handlers",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/fd2ef12c251efd38278d3e18ac0961daa9303372"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-28",
+    "type": "pull_merged",
+    "at": "2026-01-31T13:28:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Refactor configuration structure",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/28"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-9c725f8",
+    "type": "commit",
+    "at": "2026-01-31T13:28:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #28 from HYP3R00T/refactor/config-simplification",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/9c725f80fb0d2333d85cf9bf20389407bd5833bd"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-28",
+    "type": "pull_opened",
+    "at": "2026-01-31T13:27:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Refactor configuration structure",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/28"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-15bfaff",
+    "type": "commit",
+    "at": "2026-01-31T13:26:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(config): migrate configuration to new structure",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/15bfaff48d957412f76a5b328ea6fd64934b9f1f"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-27",
+    "type": "pull_merged",
+    "at": "2026-01-31T12:30:03Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "# Update project setup and dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/27"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f2b7d73",
+    "type": "commit",
+    "at": "2026-01-31T12:30:02Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #27 from HYP3R00T/chore-update-dx",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f2b7d7307a6a255554e45e7f6660587835fd727a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-27",
+    "type": "pull_opened",
+    "at": "2026-01-31T12:29:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "# Update project setup and dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/27"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-857b238",
+    "type": "commit",
+    "at": "2026-01-31T12:28:39Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "refactor(cli): simplify dry_run handling in run_cli",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/857b238d200286a727963dfcf57a34a488c2c22f"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-ffac190",
+    "type": "commit",
+    "at": "2026-01-31T12:15:23Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: update aws-cli version to 2.33.12",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/ffac190d854522347476cd1390437ffc39eb9104"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-c6aefd1",
+    "type": "commit",
+    "at": "2026-01-31T11:55:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: fix pnpm entry in mise.toml",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/c6aefd1e5d47604c7ba6696485aedd311f0120c3"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0923d93",
+    "type": "commit",
+    "at": "2026-01-31T11:55:28Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(dependencies): update development dependencies and add ty",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0923d93cb87f41d8fffb8c65dab9e4fcfe5d1b2c"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-84625d9",
+    "type": "commit",
+    "at": "2026-01-31T11:55:09Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(settings): update VSCode settings for JSON and Python",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/84625d97f8b703127f2c65cf1679d924f4e472b0"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-2dc1b0b",
+    "type": "commit",
+    "at": "2026-01-31T11:53:13Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: format devcontainer.json for consistency",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/2dc1b0b74563e63e25f19a2e8270c04dda704ef7"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-8354b6d",
+    "type": "commit",
+    "at": "2026-01-31T11:37:39Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: update Python version to 3.14 across configurations",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/8354b6d0051d69d0646cc750c7151c17d28ec987"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-be1dbaa",
+    "type": "commit",
+    "at": "2026-01-31T11:19:04Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: update project setup scripts and hooks",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/be1dbaa40aa5ac986851eadbe0ff40d26c363715"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f44446d",
+    "type": "commit",
+    "at": "2026-01-31T11:18:18Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(mcp): update command for AWS Docs server",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f44446de2d0047133f047a943cc4e1e21fe46389"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-070fb4a",
+    "type": "commit",
+    "at": "2026-01-30T18:55:37Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/070fb4a9f58526a9fd796242e4e4ae030f848a84"
+  },
+  {
     "id": "commit-HYP3R00T/rajeshdas.dev-032fab4",
     "type": "commit",
     "at": "2026-01-29T18:55:58Z",
