@@ -1,0 +1,273 @@
+---
+title: "A Pragmatic Release Pipeline with GitHub Actions"
+description: "A real-world walkthrough of designing a safe, repeatable Python release pipeline using GitHub Actions, branch protection, version discipline, and automated publishing to PyPI."
+pubDatetime: 2026-02-02
+modDatetime: null
+featured: true
+draft: false
+category: "Development"
+tags:
+  - github-actions
+  - ci-cd
+  - python
+  - pypi
+  - release-engineering
+  - devops
+  - automation
+cover: "./images/release-pipeline.png"
+coverAlt: "Illustration of a locked main branch flowing through GitHub Actions to a published Python package on PyPI."
+---
+
+This article is not about the *ideal* release pipeline. It is about the one that actually survived contact with reality.
+
+The workflow you see at the end of this piece is the result of repeated failures, half-understood documentation, GitHub Actions being abruptly killed with exit code 143, permission errors that look obvious only in hindsight, and a main branch that is intentionally locked down.
+
+The goal is simple:
+
+* Publish a Python package to PyPI in a controlled, repeatable way
+* Keep `main` protected at all times
+* Ensure the version that gets published is the version that eventually lands in `main`
+* Generate changelogs and releases automatically, but not recklessly
+
+Everything else is a constraint that shapes the design.
+
+## The Core Constraint: A Locked Main Branch
+
+The most important design decision is not technical. It is governance.
+
+The `main` branch is protected:
+
+* No direct pushes
+* No version bumps pushed manually
+* Every change must arrive via a pull request
+* Even the repository owner is subject to this rule
+
+This immediately eliminates a large class of "simple" CI/CD tutorials. Many examples assume the workflow can:
+
+* Bump versions
+* Commit back to `main`
+* Tag releases directly
+
+That approach simply does not work under branch protection.
+
+So the pipeline must:
+
+1. Publish first
+2. Then open a pull request to reconcile the repository state
+
+This inversion is intentional and critical.
+
+## Why This Is a Manual-Trigger Workflow
+
+The workflow uses `workflow_dispatch` instead of running on every push.
+
+Releases are not routine automation. They are deliberate actions.
+
+Using a manual trigger allows:
+
+* Explicit selection of version bump (`patch`, `minor`, `major`)
+* Explicit control of pre-releases (`alpha`, `beta`, `rc`, `dev`)
+* Safe retries when something fails mid-way
+
+This design treats releases as *events*, not side effects.
+
+## Concurrency: One Release at a Time
+
+```yaml
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+```
+
+This prevents two releases from racing each other.
+
+Without this, two manually triggered workflows can:
+
+* Compute the same next version
+* Publish conflicting artifacts
+* Create inconsistent tags and changelogs
+
+Release pipelines must be serialized. Speed is irrelevant here. Correctness is everything.
+
+## Full Git History Is Non-Negotiable
+
+```yaml
+fetch-depth: 0
+```
+
+This single line exists solely because changelog generation depends on history.
+
+Shallow clones break:
+
+* Git-based changelog tools
+* Tag comparisons
+* Semantic version inference
+
+If your changelog is wrong, your release narrative is wrong. That is not cosmetic.
+
+## Python Setup: Reproducibility First
+
+The Python version is not hardcoded in the workflow. It is read from `.python-version`.
+
+That means:
+
+* Local development
+* CI builds
+* Release artifacts
+
+All run on the same interpreter version.
+
+Drift here causes subtle packaging bugs that only appear after publishing.
+
+## Why `uv` Is the Backbone
+
+`uv` is used for:
+
+* Virtual environment creation
+* Version bumping
+* Building distributions
+* Publishing to PyPI
+
+This reduces the surface area dramatically.
+
+Using one tool instead of:
+
+* `pip`
+* `setuptools`
+* `twine`
+* ad-hoc scripts
+
+means fewer mismatched assumptions and fewer failure modes.
+
+The virtual environment is cached to avoid unnecessary rebuilds, but correctness does not depend on the cache. A cache miss is slower, not dangerous.
+
+## Version Bumping: Explicit or Fail Fast
+
+The version step enforces a rule:
+
+> At least one of version component or pre-release must be specified.
+
+Silent version changes are banned.
+
+This protects against:
+
+* Accidental republishing
+* CI re-runs producing unintended versions
+* Human memory being treated as state
+
+If no bump is specified, the workflow exits immediately.
+
+Failure early is a feature.
+
+## Changelog Generation Is a Gate
+
+The changelog is generated *before* publishing, but publishing is blocked if the changelog is missing or empty.
+
+This enforces discipline:
+
+* Every release must explain itself
+* Every tag must have context
+
+A release without a changelog is not automation. It is negligence with a YAML file.
+
+## Publish First, Commit Later (On Purpose)
+
+This is the most controversial part of the pipeline.
+
+The package is published to PyPI *before* any commit is merged to `main`.
+
+Why this works:
+
+* The version bump is deterministic
+* The published artifact is immutable
+* The repository is reconciled via a pull request immediately after
+
+If publishing fails, nothing is committed.
+
+If publishing succeeds but the PR is rejected, the published version still exists and is auditable.
+
+This avoids the far worse alternative: merging version changes that never successfully publish.
+
+## The Pull Request Is the Source of Truth
+
+After publishing, the workflow creates a pull request containing:
+
+* `pyproject.toml`
+* `uv.lock`
+* `CHANGELOG.md`
+* `requirements.txt`
+
+This PR is mandatory.
+
+It ensures:
+
+* Branch protection is respected
+* Human review is still part of the process
+* The repository state matches the published artifact
+
+The workflow explicitly fails if the PR cannot be created.
+
+A release without a PR is considered incomplete.
+
+## Tags and GitHub Releases Come Last
+
+Only after:
+
+* Publishing succeeds
+* The PR is successfully created
+
+does the workflow:
+
+* Create a git tag
+* Push the tag
+* Create a GitHub Release using the changelog
+
+Tags are signals. They should not lie.
+
+## Common Failure Modes (Learned the Hard Way)
+
+Some errors that shaped this design:
+
+* Exit code 143 when runners are killed due to long or stalled steps
+* GitHub Actions lacking permission to create or label pull requests
+* Version bumps running twice due to missing concurrency guards
+* Changelogs silently failing due to shallow clones
+
+Each failure resulted in a constraint. Each constraint hardened the pipeline.
+
+## Reference Implementation
+
+The full release workflow described in this article is available as a public reference.
+
+* **Project repository:** [https://github.com/HYP3R00T/CostCutter](https://github.com/HYP3R00T/CostCutter)
+* **GitHub Actions workflow (YAML):** [.github/workflows/release.yml](https://github.com/HYP3R00T/CostCutter/blob/main/.github/workflows/release.yml)
+
+Reading the YAML side-by-side with this article is strongly recommended. The workflow is not meant to be copied blindly; it is meant to be understood.
+
+## Tools Used (With References)
+
+This pipeline relies on a small number of well-scoped tools. Each one exists for a reason.
+
+* **[GitHub Actions](https://docs.github.com/actions)** - workflow orchestration and permissions model
+* **[uv](https://docs.astral.sh/uv/)**  - Python packaging, versioning, and publishing
+* **[git-cliff](https://git-cliff.org/)** - changelog generation from Git history
+* **[peter-evans/create-pull-request](https://github.com/peter-evans/create-pull-request)** - automated pull request creation
+* **[softprops/action-gh-release](https://github.com/softprops/action-gh-release)** - GitHub Release creation
+
+These are not endorsements. They are dependencies chosen under specific constraints.
+
+## Final Thoughts
+
+This workflow is not minimal. It is intentional.
+
+It optimizes for:
+
+* Traceability over speed
+* Safety over convenience
+* Governance over shortcuts
+
+If your main branch is locked, your release process must respect that reality. Automation does not remove responsibility. It encodes it.
+
+The full workflow is included below as a reference, not as magic.
+
+Understand it. Then adapt it.
