@@ -1,5 +1,896 @@
 [
   {
+    "id": "commit-HYP3R00T/rajeshdas.dev-10c736a",
+    "type": "commit",
+    "at": "2026-02-01T16:58:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "feat(blog): add article on pragmatic release pipeline with GitHub Actions",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/10c736ad176477fb0f15c9ea1bebed39d08c28e1"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-50",
+    "type": "pull_merged",
+    "at": "2026-02-01T16:09:36Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Docs-restructure-and-revamp",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/50"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-aa13e32",
+    "type": "commit",
+    "at": "2026-02-01T16:09:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #50 from HYP3R00T:docs-restructure-and-revamp",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/aa13e3206fa22e47410bc2437558ac025439fc85"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-50",
+    "type": "pull_opened",
+    "at": "2026-02-01T16:09:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Docs-restructure-and-revamp",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/50"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-99df528",
+    "type": "commit",
+    "at": "2026-02-01T16:08:04Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "style(theme): update icons to use Lucide library",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/99df5282d17c71a95a5a024ef1e3eb2dd4b3a771"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5238aa6",
+    "type": "commit",
+    "at": "2026-02-01T16:01:46Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "docs: remove Terraform usage documentation and update navigation",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5238aa6b62a7b9379db14b4eb0efc9999d2e6ca4"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-49",
+    "type": "pull_merged",
+    "at": "2026-02-01T14:06:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): v0.1.4",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/49"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-b6133d6",
+    "type": "commit",
+    "at": "2026-02-01T14:06:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #49 from HYP3R00T/release/v0.1.4",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/b6133d60a867c74cf390887c2009355fa77fa0c3"
+  },
+  {
+    "id": "release_published-HYP3R00T/CostCutter-v0.1.4",
+    "type": "release_published",
+    "at": "2026-02-01T14:05:47Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "v0.1.4",
+    "url": "https://github.com/HYP3R00T/CostCutter/releases/tag/v0.1.4"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-49",
+    "type": "pull_opened",
+    "at": "2026-02-01T14:05:44Z",
+    "actor": "github-actions",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): v0.1.4",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/49"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-904bbe2",
+    "type": "commit",
+    "at": "2026-02-01T14:05:43Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): v0.1.4",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/904bbe2b6a721443e0e5d1c0eaf743efcac1ee36"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-48",
+    "type": "pull_merged",
+    "at": "2026-02-01T14:04:43Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat-update-cliff",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/48"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-9fb36e7",
+    "type": "commit",
+    "at": "2026-02-01T14:04:43Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #48 from HYP3R00T:feat-update-cliff",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/9fb36e7e84b1e5f6957e49baeb4aa510ecbb026b"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-48",
+    "type": "pull_opened",
+    "at": "2026-02-01T14:04:30Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat-update-cliff",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/48"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-1dfca29",
+    "type": "commit",
+    "at": "2026-02-01T14:04:12Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(tasks): add changelog and docs tasks",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/1dfca29884806cbba4b987d4d08477b7b82e0f62"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-2debf7a",
+    "type": "commit",
+    "at": "2026-02-01T14:02:36Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(changelog): update changelog for version 0.1.4a2",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/2debf7ac1943a43708c082f619b5ffa14d0ff2d0"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-47",
+    "type": "pull_merged",
+    "at": "2026-02-01T13:30:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): v0.1.4a2",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/47"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-1d54f46",
+    "type": "commit",
+    "at": "2026-02-01T13:30:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #47 from HYP3R00T/release/v0.1.4a2",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/1d54f465db9596811eac07a27c68f1232c0ba0f5"
+  },
+  {
+    "id": "release_published-HYP3R00T/CostCutter-v0.1.4a2",
+    "type": "release_published",
+    "at": "2026-02-01T13:29:44Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "v0.1.4a2",
+    "url": "https://github.com/HYP3R00T/CostCutter/releases/tag/v0.1.4a2"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-47",
+    "type": "pull_opened",
+    "at": "2026-02-01T13:29:41Z",
+    "actor": "github-actions",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): v0.1.4a2",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/47"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-2f16ed3",
+    "type": "commit",
+    "at": "2026-02-01T13:29:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): v0.1.4a2",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/2f16ed3928d15b645efafe69918ba3688794c9e6"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-46",
+    "type": "pull_merged",
+    "at": "2026-02-01T13:28:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Update version to 0.1.4a1",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/46"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-1a3d55e",
+    "type": "commit",
+    "at": "2026-02-01T13:28:50Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #46 from HYP3R00T:fix-update-version-to-0.1.4a1",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/1a3d55ecf29866fa3e3c60a9d7ecdf64a2b5f8dc"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-46",
+    "type": "pull_opened",
+    "at": "2026-02-01T13:28:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Update version to 0.1.4a1",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/46"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-1d493d2",
+    "type": "commit",
+    "at": "2026-02-01T13:28:22Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(version): update version to 0.1.4a1 in project files",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/1d493d28c7fff81468db1498197155586d13428a"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-45",
+    "type": "pull_merged",
+    "at": "2026-02-01T13:20:08Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Resolve PR creation failure and enhance versioning support",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/45"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-cbb2dc9",
+    "type": "commit",
+    "at": "2026-02-01T13:20:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #45 from HYP3R00T:fix/release-workflow-pr-creation-and-prerelease-support",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/cbb2dc9aff676e8b852d4bd15d6c1e123b57361c"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-45",
+    "type": "pull_opened",
+    "at": "2026-02-01T13:19:55Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Resolve PR creation failure and enhance versioning support",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/45"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-92df570",
+    "type": "commit",
+    "at": "2026-02-01T13:19:27Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(version): update version to 0.1.3 in project files",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/92df570702d1c724e62f648f18114b31204eb34b"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5bf62e7",
+    "type": "commit",
+    "at": "2026-02-01T13:17:49Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(ci): resolve PR creation failure and add comprehensive prerelease support",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5bf62e72b56fce3d1ba433d175561c4ba08581a5"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-44",
+    "type": "pull_merged",
+    "at": "2026-02-01T09:50:26Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): sync 0.1.2 metadata",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/44"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-fca920a",
+    "type": "commit",
+    "at": "2026-02-01T09:50:26Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #44 from HYP3R00T:fix/manual-release-0.1.2",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/fca920ac3087ad8b8e1ecbb656becfeece2bcff5"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-44",
+    "type": "pull_opened",
+    "at": "2026-02-01T09:50:17Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): sync 0.1.2 metadata",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/44"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-dabe1e8",
+    "type": "commit",
+    "at": "2026-02-01T09:49:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): sync 0.1.2 metadata",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/dabe1e8be8b4baecb21db664a57e7e0656a30b47"
+  },
+  {
+    "id": "release_published-HYP3R00T/CostCutter-v0.1.2",
+    "type": "release_published",
+    "at": "2026-02-01T09:18:36Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "v0.1.2",
+    "url": "https://github.com/HYP3R00T/CostCutter/releases/tag/v0.1.2"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-43",
+    "type": "pull_merged",
+    "at": "2026-02-01T09:17:53Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Optimize release pipeline with caching and git-cliff action",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/43"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-815bb96",
+    "type": "commit",
+    "at": "2026-02-01T09:17:53Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #43 from HYP3R00T:feat/optimize-release-workflow",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/815bb96b4550b1640a2050ed725c5fe4735db08a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-43",
+    "type": "pull_opened",
+    "at": "2026-02-01T09:17:44Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Optimize release pipeline with caching and git-cliff action",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/43"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-8270989",
+    "type": "commit",
+    "at": "2026-02-01T09:17:21Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(workflow): optimize release pipeline with caching and git-cliff action",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/8270989dc00b139cf9058d0b2a3c2dca863e75ca"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-42",
+    "type": "pull_merged",
+    "at": "2026-02-01T08:48:55Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(workflow): improve release workflow with comments and no-sync flag",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/42"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-6414323",
+    "type": "commit",
+    "at": "2026-02-01T08:48:55Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #42 from HYP3R00T:fix/release-workflow-comments",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/641432368c749ce01fbdff7e23b7f991c1384290"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-42",
+    "type": "pull_opened",
+    "at": "2026-02-01T08:48:40Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(workflow): improve release workflow with comments and no-sync flag",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/42"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-692b564",
+    "type": "commit",
+    "at": "2026-02-01T08:48:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(workflow): improve release workflow with comments and no-sync flag",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/692b564b932a76b06d42187d7ece2040b4bfe303"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-41",
+    "type": "pull_merged",
+    "at": "2026-02-01T08:27:45Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(release): update version bump command to avoid sync",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/41"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-4d27167",
+    "type": "commit",
+    "at": "2026-02-01T08:27:44Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #41 from HYP3R00T:fix-release-bump-version",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/4d27167e4c9e038052dd9b7b9fd0e45247d1e0fd"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-41",
+    "type": "pull_opened",
+    "at": "2026-02-01T08:27:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(release): update version bump command to avoid sync",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/41"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-6510e56",
+    "type": "commit",
+    "at": "2026-02-01T08:26:58Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(release): update version bump command to avoid sync",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/6510e56b155fd4b092b6cecdde25cb39bbdaf5a7"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-40",
+    "type": "pull_merged",
+    "at": "2026-02-01T07:55:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Update release workflow and sync dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/40"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-07056ff",
+    "type": "commit",
+    "at": "2026-02-01T07:55:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #40 from HYP3R00T:fix-release",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/07056ff252de68af0272ca289a93d6c758a443be"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-40",
+    "type": "pull_opened",
+    "at": "2026-02-01T07:55:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Update release workflow and sync dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/40"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-2b1c42f",
+    "type": "commit",
+    "at": "2026-02-01T07:54:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): update release workflow and sync dependencies",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/2b1c42f60f94c3c1ef1c2acf99d2b700a3601481"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-39",
+    "type": "pull_merged",
+    "at": "2026-01-31T21:48:33Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Description",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/39"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-52b6a6c",
+    "type": "commit",
+    "at": "2026-01-31T21:48:32Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #39 from HYP3R00T:feat/release-branch-pr",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/52b6a6c3ed0f870b48ce8ef5a0bce68352e280ec"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-39",
+    "type": "pull_opened",
+    "at": "2026-01-31T21:48:17Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Description",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/39"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-377f40d",
+    "type": "commit",
+    "at": "2026-01-31T21:47:04Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(release): include updated pyproject and uv.lock",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/377f40d5911f6a9d3df45542812705e2a79f4777"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f02fc70",
+    "type": "commit",
+    "at": "2026-01-31T21:45:47Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(release): create release branch + PR flow (commit to release branch and create PR)",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f02fc70b14832ea86aba19b510cf36d39893daca"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-38",
+    "type": "pull_merged",
+    "at": "2026-01-31T21:24:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Lower minimum Python version to 3.12",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/38"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-a35472b",
+    "type": "commit",
+    "at": "2026-01-31T21:24:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #38 from HYP3R00T:chore/min-python-3.12",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/a35472b6383202f081e3ba7b7bf7d33dcc54fa50"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-38",
+    "type": "pull_opened",
+    "at": "2026-01-31T21:24:20Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Lower minimum Python version to 3.12",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/38"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-d275c93",
+    "type": "commit",
+    "at": "2026-01-31T21:23:05Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: lower minimum Python to >=3.12 and update configs",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/d275c93aa2c809e18e8b40521b09776bdfc1609e"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-37",
+    "type": "pull_merged",
+    "at": "2026-01-31T21:15:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Description",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/37"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-d8c14cb",
+    "type": "commit",
+    "at": "2026-01-31T21:15:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #37 from HYP3R00T:fix/remove-uv-sync",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/d8c14cbe7c8d21fd6f416b4e318baf0dfd92ff7a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-37",
+    "type": "pull_opened",
+    "at": "2026-01-31T21:15:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Description",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/37"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-6bd96fc",
+    "type": "commit",
+    "at": "2026-01-31T21:12:47Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix: use lightweight uv sync (--locked) in release workflow to avoid timeouts",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/6bd96fcbca7bb93f365405e2b9b94981ab4f2e97"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-36",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:54:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): remove sync step from version bump",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/36"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-edf82a3",
+    "type": "commit",
+    "at": "2026-01-31T20:54:42Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #36 from HYP3R00T:ci-fix-release",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/edf82a3b3379fc7926be9225210b2997bf52d9d8"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-36",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:54:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): remove sync step from version bump",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/36"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-8dec60e",
+    "type": "commit",
+    "at": "2026-01-31T20:54:17Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): remove sync step from version bump",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/8dec60e624ade36a9f2486eedfb10695e08a81eb"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-35",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:49:11Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): add --no-input flag to version bump",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/35"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f36aec8",
+    "type": "commit",
+    "at": "2026-01-31T20:49:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #35 from HYP3R00T:fix-ci-release",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f36aec8aef04cdee5ceb6bec60308291aa36a93a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-35",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:49:00Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): add --no-input flag to version bump",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/35"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-efbced7",
+    "type": "commit",
+    "at": "2026-01-31T20:48:51Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix(release): add --no-input flag to version bump",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/efbced7545583f740d36d23ad6c186b4dd1d1e7c"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-34",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:45:25Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Remove sync step from release workflow to avoid timeout",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/34"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-c8b8602",
+    "type": "commit",
+    "at": "2026-01-31T20:45:25Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #34 from HYP3R00T:fix/remove-sync-from-release",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/c8b8602ce7d4c709021e36e6dc4f528f0b2ccb2a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-34",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:45:15Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Remove sync step from release workflow to avoid timeout",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/34"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0a96308",
+    "type": "commit",
+    "at": "2026-01-31T20:44:23Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix: remove sync step from release workflow to avoid timeout",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0a96308b108eb13f6e9336d83afbabb71f7c7da9"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-33",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:37:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Fix timeout issue in release workflow sync",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/33"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-d731721",
+    "type": "commit",
+    "at": "2026-01-31T20:37:06Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #33 from HYP3R00T:fix/release-workflow-timeout",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/d731721178c94e36483b2d0254f493cd7c52719a"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-33",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:36:46Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Fix timeout issue in release workflow sync",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/33"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-5be0c89",
+    "type": "commit",
+    "at": "2026-01-31T20:36:10Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "fix: simplify uv sync in release workflow to avoid timeout",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/5be0c893a6047cfe32a0b135dda212016705be87"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-32",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:28:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "add cliff",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/32"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-1908b1a",
+    "type": "commit",
+    "at": "2026-01-31T20:28:01Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #32 from HYP3R00T:feature/add-cliff-changelog",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/1908b1ab70fbcc45f73c02980977d4e05f7fbc7c"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-32",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:27:49Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "add cliff",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/32"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0d4700f",
+    "type": "commit",
+    "at": "2026-01-31T20:26:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: remove PyPI release workflow",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0d4700f4391490252398385728cbb04830b69084"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-81ebee2",
+    "type": "commit",
+    "at": "2026-01-31T20:26:19Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: add release workflow with changelog generation",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/81ebee22f2b40107e3bc7e2e5aa5d01161bc003f"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-435a78f",
+    "type": "commit",
+    "at": "2026-01-31T20:25:59Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: add git-cliff changelog generation setup",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/435a78f45c646b55b5bd11904bdb218b9d2d1a85"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-31",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:19:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Title",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/31"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-90e9a9b",
+    "type": "commit",
+    "at": "2026-01-31T20:19:35Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #31 from HYP3R00T:feat/zensical-migration",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/90e9a9be634859b858c8f0d402da7ced2cc2a9b9"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-31",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:19:13Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "## Title",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/31"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-d2299d4",
+    "type": "commit",
+    "at": "2026-01-31T20:18:13Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: migrate deployment workflow from VitePress to Zensical",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/d2299d49a4bdffe199f1a15fcfde099623bd929d"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-501dc99",
+    "type": "commit",
+    "at": "2026-01-31T20:13:46Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore: migrate documentation from VitePress to Zensical",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/501dc9998fb4a06ee8d255a32e24fc614b9373f6"
+  },
+  {
+    "id": "pull_merged-HYP3R00T/CostCutter-30",
+    "type": "pull_merged",
+    "at": "2026-01-31T20:06:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/dag-orchestration-and-validation",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/30"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-62b0404",
+    "type": "commit",
+    "at": "2026-01-31T20:06:52Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Merge pull request #30 from HYP3R00T:feat/dag-orchestration-and-validation",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/62b04042d677bf81bd4e9cc46b1eda3b1d7bda5b"
+  },
+  {
+    "id": "pull_opened-HYP3R00T/CostCutter-30",
+    "type": "pull_opened",
+    "at": "2026-01-31T20:06:07Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "Feat/dag-orchestration-and-validation",
+    "url": "https://github.com/HYP3R00T/CostCutter/pull/30"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-0f8b140",
+    "type": "commit",
+    "at": "2026-01-31T20:05:38Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "docs: enhance configuration guidance and validation details",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/0f8b14096f71c51cb93d29abe1edb0ae2ddf2467"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-f321824",
+    "type": "commit",
+    "at": "2026-01-31T20:04:31Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "chore(dependencies): update utilityhub-config to 0.2.0",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/f3218242aa85e03719af8ad04679279008eb65df"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-e3bce28",
+    "type": "commit",
+    "at": "2026-01-31T20:04:24Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "test: add type ignore comments for mypy compatibility",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/e3bce285664fca9176c256acab64ca875cee5a8f"
+  },
+  {
+    "id": "commit-HYP3R00T/CostCutter-15bea1a",
+    "type": "commit",
+    "at": "2026-01-31T20:04:13Z",
+    "actor": "HYP3R00T",
+    "project_id": "HYP3R00T/CostCutter",
+    "title": "feat(config): enhance configuration model with detailed descriptions",
+    "url": "https://github.com/HYP3R00T/CostCutter/commit/15bea1a9ad4e29e9c2b6e22b56fe7491da352e78"
+  },
+  {
+    "id": "commit-HYP3R00T/rajeshdas.dev-622d64f",
+    "type": "commit",
+    "at": "2026-01-31T18:50:16Z",
+    "actor": "github-actions[bot]",
+    "project_id": "HYP3R00T/rajeshdas.dev",
+    "title": "chore: update GitHub activity [skip ci]",
+    "url": "https://github.com/HYP3R00T/rajeshdas.dev/commit/622d64f6c42c4921351b59fddb08fb4e884bd332"
+  },
+  {
     "id": "pull_merged-HYP3R00T/CostCutter-29",
     "type": "pull_merged",
     "at": "2026-01-31T13:37:01Z",
