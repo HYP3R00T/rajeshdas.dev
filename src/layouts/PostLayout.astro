@@ -28,51 +28,6 @@ const {
 >
   <article class="py-12">
     <div class="container flex flex-col items-center">
-      <!-- Cover Image -->
-      <div class="mb-8 aspect-2/1 w-full overflow-hidden rounded-2xl">
-        {
-          cover && (
-            <Image
-              src={cover}
-              alt={coverAlt}
-              width={cover.width}
-              height={cover.height}
-              class="h-full w-full object-cover"
-            />
-          )
-        }
-      </div>
-
-      <!-- Article Header -->
-      <div class="mb-8">
-        <time
-          transition:name={`${title}-date`}
-          class="text-foreground-2 text-sm font-medium tracking-wide uppercase"
-        >
-          {formatDate(pubDatetime)}
-        </time>
-        <h1
-          transition:name={title}
-          class="text-foreground-0 mt-4 text-4xl font-bold md:text-5xl lg:text-6xl"
-        >
-          {title}
-        </h1>
-        {
-          tags && tags.length > 0 && (
-            <div class="mt-6 flex flex-wrap gap-2">
-              {tags.map((tag: string) => (
-                <span class="bg-accent/10 border-accent/30 text-accent inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          )
-        }
-      </div>
-
-      <div class="border-border my-4 w-full border-t"></div>
-
-      <!-- Article Content -->
       <div class="prose max-w-4xl">
         <slot />
       </div>

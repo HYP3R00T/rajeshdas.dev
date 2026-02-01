@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import type { ImageMetadata } from "astro";
+import type { ImageMetadata, MarkdownHeading } from "astro";
 
 // For HeadSEO.astro
 export interface HeadSEOProps {
@@ -52,12 +52,12 @@ export type Posts = PostEntry[];
 
 export interface PostPath {
   params: { slug: string };
-  props: { entry: PostEntry; headings: any[] };
+  props: { entry: PostEntry; headings: MarkdownHeading[] };
 }
 
 export interface PostDetailPageProps {
   entry: PostEntry;
-  headings: any[];
+  headings: MarkdownHeading[];
 }
 
 export interface PostsPageProps {
