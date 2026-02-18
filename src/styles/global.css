@@ -83,7 +83,7 @@
   }
 
   html {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
   }
 
   body {
@@ -267,20 +267,10 @@ html.dark .astro-code span {
   );
 }
 
-.stripe-pattern-dense {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.03) 2px,
-    rgba(255, 255, 255, 0.03) 4px
-  );
-}
-
 /* Revamp: Typography Utility Classes */
 .text-section-heading {
   font-size: clamp(3rem, 8vw, 6rem);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -289,7 +279,7 @@ html.dark .astro-code span {
 
 .text-hero-heading {
   font-size: clamp(3rem, 12vw, 10rem);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
