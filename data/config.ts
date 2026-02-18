@@ -1,43 +1,42 @@
 import setupImage from "@/assets/setup.png";
 import type {
-  LocaleConfig,
-  NavItem,
-  SiteConfig,
-  SocialObjects,
+    LocaleConfig,
+    NavItem,
+    SiteConfig,
+    SocialObjects,
 } from "@/lib/types";
 
 export const LOCALE: LocaleConfig = {
-  lang: "en",
+    lang: "en",
 };
 
 export const SITE: SiteConfig = {
-  website: "https://rajeshdas.dev",
-  author: "Rajesh",
-  repo: "https://github.com/HYP3R00T/rajeshdas.dev",
-  title: "Rajesh Das",
-  description:
-    "A portfolio and blog showcasing Rajesh's skills in DevOps, Python, and Cloud.",
-  image: setupImage,
-  imageAlt: "Check out rajeshdas.dev",
-  contentType: "Portfolio",
-  twitterHandle: "@HYP3R00T",
-  pageSize: 10,
+    website: "https://rajeshdas.dev",
+    author: "Rajesh",
+    repo: "https://github.com/HYP3R00T/rajeshdas.dev",
+    title: "Rajesh Das",
+    description:
+        "A portfolio and blog showcasing Rajesh's skills in DevOps, Python, and Cloud.",
+    image: setupImage,
+    imageAlt: "Check out rajeshdas.dev",
+    contentType: "Portfolio",
+    twitterHandle: "@HYP3R00T",
+    pageSize: 10,
 };
 
 export const navItems: NavItem[] = [
-  { href: "/post", label: "Blog" },
-  { href: "https://hyperoot.dev/", label: "Projects", blank: true },
-  { href: "/activity", label: "Activity" },
-  { href: "/components", label: "Components" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Let's Talk", special: true },
+    { href: "/post", label: "Blog" },
+    { href: "https://hyperoot.dev/", label: "Projects", blank: true },
+    { href: "/activity", label: "Activity" },
+    { href: "/components", label: "Components" },
+    { href: "/about", label: "About" },
 ];
 
 export const SOCIAL_LINKS: SocialObjects[] = [
-  {
-    name: "github",
-    href: "https://github.com/HYP3R00T/",
-    linkTitle: `Checkout my GitHub profile`,
-    active: true,
-  },
+    {
+        name: "github",
+        href: "https://github.com/HYP3R00T/",
+        linkTitle: `Checkout my GitHub profile`,
+        active: true,
+    },
 ];
