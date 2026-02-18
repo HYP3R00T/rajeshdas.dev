@@ -127,7 +127,7 @@ import { Icon } from "astro-icon/components";
 
       {/* Infrastructure as Code */}
       <div
-        class="group border-r border-b border-white/10 bg-black p-8 transition-colors hover:bg-white/5 md:border-r-0"
+        class="group border-r border-white/10 bg-black p-8 transition-colors hover:bg-white/5 md:border-r-0"
       >
         <div class="mb-6 flex items-start justify-between">
           <div class="border border-white/20 p-3">
@@ -153,29 +153,31 @@ import { Icon } from "astro-icon/components";
       </div>
 
       {/* Monitoring */}
-      <div class="group bg-black p-8 transition-colors hover:bg-white/5">
+      <div
+        class="group border-l border-white/10 bg-black p-8 transition-colors hover:bg-white/5 md:border-r-0"
+      >
         <div class="mb-6 flex items-start justify-between">
           <div class="border border-white/20 p-3">
-            <!-- TODO: Add bar-chart.svg icon -->
+            <!-- TODO: Add check-circle.svg icon -->
             <Icon name="github" class="h-6 w-6 text-white" />
           </div>
+          <div class="text-sm text-white/20">05</div>
         </div>
-        <div class="text-sm text-white/20">06</div>
+
+        <h3
+          class="mb-6 text-lg tracking-wide text-white uppercase"
+          style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+        >
+          MONITORING
+        </h3>
+
+        <ul class="space-y-2">
+          <li class="text-xs tracking-wide text-white/60">Prometheus</li>
+          <li class="text-xs tracking-wide text-white/60">Grafana</li>
+          <li class="text-xs tracking-wide text-white/60">ELK Stack</li>
+          <li class="text-xs tracking-wide text-white/60">Datadog</li>
+        </ul>
       </div>
-
-      <h3
-        class="mb-6 text-lg tracking-wide text-white uppercase"
-        style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
-      >
-        MONITORING
-      </h3>
-
-      <ul class="space-y-2">
-        <li class="text-xs tracking-wide text-white/60">Prometheus</li>
-        <li class="text-xs tracking-wide text-white/60">Grafana</li>
-        <li class="text-xs tracking-wide text-white/60">ELK Stack</li>
-        <li class="text-xs tracking-wide text-white/60">Datadog</li>
-      </ul>
     </div>
   </div>
 </section>
