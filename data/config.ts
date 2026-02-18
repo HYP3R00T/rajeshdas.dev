@@ -4,6 +4,8 @@ import type {
     NavItem,
     SiteConfig,
     SocialObjects,
+    FooterNavItem,
+    FooterSocialLink,
 } from "@/lib/types";
 
 export const LOCALE: LocaleConfig = {
@@ -38,5 +40,41 @@ export const SOCIAL_LINKS: SocialObjects[] = [
         href: "https://github.com/HYP3R00T/",
         linkTitle: `Checkout my GitHub profile`,
         active: true,
+    },
+];
+
+// Footer navigation items
+export const footerNavigation: FooterNavItem[] = [
+    { href: "#skills", label: "Skills" },
+    { href: "#projects", label: "Projects" },
+    { href: "/post/", label: "Blog" },
+    { href: "#contact", label: "Contact" },
+];
+
+// Footer social links
+export const footerSocialLinks: FooterSocialLink[] = [
+    {
+        name: "github",
+        href: "https://github.com/HYP3R00T",
+        label: "GitHub",
+        linkTitle: "Visit my GitHub profile",
+    },
+    {
+        name: "linkedin",
+        href: "https://linkedin.com/in/hyp3r00t",
+        label: "LinkedIn",
+        linkTitle: "Connect with me on LinkedIn",
+    },
+    {
+        name: "twitter",
+        href: "https://twitter.com/HYP3R00T",
+        label: "Twitter",
+        linkTitle: "Follow me on Twitter",
+    },
+    {
+        name: "email",
+        href: "mailto:hello@rajeshdas.dev",
+        label: "Email",
+        linkTitle: "Send me an email",
     },
 ];
