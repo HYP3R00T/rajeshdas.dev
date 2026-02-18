@@ -1,5 +1,6 @@
 ---
 // Footer Component - Site footer with navigation, social links, and info
+import { Icon } from "astro-icon/components";
 ---
 
 <footer class="relative border-t border-white/10 bg-black px-6 py-16 md:px-12">
@@ -111,14 +112,7 @@
   aria-label="Scroll to top"
   title="Back to top"
 >
-  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3-3m0 0l3 3m-3-3v12"
-    ></path>
-  </svg>
+  <Icon name="github" />
 </button>
 
 <script>
