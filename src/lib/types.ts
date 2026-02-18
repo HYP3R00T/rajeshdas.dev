@@ -33,12 +33,27 @@ export interface NavItem {
     blank?: boolean;
 }
 
+// Footer navigation item
+export interface FooterNavItem {
+    href: string;
+    label: string;
+    blank?: boolean;
+}
+
 // Social media link configuration
 export interface SocialObjects {
     name: string;
     href: string;
     active: boolean;
     linkTitle?: string;
+}
+
+// Footer social link configuration
+export interface FooterSocialLink {
+    name: string;
+    href: string;
+    label: string;
+    linkTitle: string;
 }
 
 // Locale
