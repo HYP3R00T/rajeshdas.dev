@@ -22,6 +22,8 @@
 
   /* Structure - Revamp: White with opacity */
   --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-stronger: rgba(255, 255, 255, 0.3);
 
   /* Colors */
   --red: hsl(0, 65%, 62%);
@@ -65,6 +67,8 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-stronger: var(--border-stronger);
 
   /* Named colors */
   --color-red: var(--red);
