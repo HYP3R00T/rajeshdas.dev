@@ -1,23 +1,22 @@
 ---
-import Button from "@/components/ui/Button.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<!-- Toggle button (single button containing both icons) -->
+<!-- Toggle button -->
 <div class="md:hidden">
-  <Button
-    size="icon"
+  <button
     data-mobile-menu-toggle
+    class="p-2 text-white"
     aria-label="Toggle menu"
     aria-expanded="false"
   >
     <span aria-hidden="true" data-icon-open>
-      <Icon name="menu" />
+      <Icon name="menu" class="h-6 w-6" />
     </span>
     <span aria-hidden="true" data-icon-close class="hidden">
-      <Icon name="close" />
+      <Icon name="close" class="h-6 w-6" />
     </span>
-  </Button>
+  </button>
 </div>
 
 <script>
@@ -64,7 +63,7 @@ import { Icon } from "astro-icon/components";
     }
 
     toggleBtn.addEventListener("click", () =>
-      setOpen(menu.getAttribute("data-open") !== "true")
+      setOpen(menu.getAttribute("data-open") !== "true"),
     );
     panelCloseBtn &&
       panelCloseBtn.addEventListener("click", () => setOpen(false));

@@ -1,73 +1,70 @@
 ---
 import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 
 // Get all projects, sorted by order, filter drafts
 const allProjects = await getCollection("projects");
 const projects = allProjects
-    .filter((p) => !p.data.draft)
-    .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
 
 // Icons mapping for projects
-const icons = [
-    // Terminal
-    `<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>`,
-    // Boxes (Kubernetes)
-    `<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m0 0l-8-4m8 4v10l8-4v-10m-8 10l-8-4"></path></svg>`,
-    // Upload (Upload/Deploy)
-    `<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>`,
-    // Share (Monitoring/Observability)
-    `<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>`,
-    // Code (Terraform)
-    `<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>`,
-    // Lock (Security)
-    `<svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>`,
+const iconNames = [
+  "github", // TODO: Add terminal.svg icon
+  "kubernetes",
+  "arrow-up",
+  "download",
+  "github", // TODO: Add code.svg icon
+  "github", // TODO: Add lock.svg icon
 ];
 ---
 
 <section class="stripe-pattern relative bg-black px-6 py-32 md:px-12">
-    <div class="mx-auto max-w-[1400px]">
-        <div class="mb-20">
-            <div class="text-section-label mb-4">Selected Work</div>
-            <h2 class="text-section-heading mb-8 text-white">PROJECTS</h2>
-            <p
-                class="max-w-2xl text-sm tracking-wide text-white/60 uppercase md:text-base"
-            >
-                Recent projects and tools I've built to solve real-world DevOps
-                challenges
-            </p>
-        </div>
-
-        <div class="grid gap-px border border-white/10 md:grid-cols-2">
-            {
-                projects.map((project, index) => (
-                    <div class="group border-r border-b border-white/10 bg-black p-8 transition-colors last:border-r-0 hover:bg-white/5 md:p-12">
-                        <div class="mb-8 flex items-start justify-between">
-                            <div
-                                class="border border-white/20 p-4"
-                                set:html={icons[index] || icons[0]}
-                            />
-                            <div class="text-sm text-white/20">
-                                {String(index + 1).padStart(2, "0")}
-                            </div>
-                        </div>
-
-                        <h3
-                            class="mb-4 text-2xl tracking-tight text-white uppercase md:text-3xl"
-                            style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
-                        >
-                            {project.data.title}
-                        </h3>
-
-                        <p class="mb-6 text-sm leading-relaxed text-white/60">
-                            {project.data.description}
-                        </p>
-
-                        <div class="text-xs tracking-wide text-white/40">
-                            {project.data.technologies.join(" • ")}
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
+  <div class="mx-auto max-w-350">
+    <div class="mb-20">
+      <div class="text-section-label mb-4">Selected Work</div>
+      <h2 class="text-section-heading mb-8 text-white">PROJECTS</h2>
+      <p
+        class="max-w-2xl text-sm tracking-wide text-white/60 uppercase md:text-base"
+      >
+        Recent projects and tools I've built to solve real-world DevOps
+        challenges
+      </p>
     </div>
+
+    <div class="grid gap-px border border-white/10 md:grid-cols-2">
+      {
+        projects.map((project, index) => (
+          <div class="group border-r border-b border-white/10 bg-black p-8 transition-colors last:border-r-0 hover:bg-white/5 md:p-12">
+            <div class="mb-8 flex items-start justify-between">
+              <div class="border border-white/20 p-4">
+                <Icon
+                  name={iconNames[index] || iconNames[0]}
+                  class="h-8 w-8 text-white"
+                />
+              </div>
+              <div class="text-sm text-white/20">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+            </div>
+
+            <h3
+              class="mb-4 text-2xl tracking-tight text-white uppercase md:text-3xl"
+              style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+            >
+              {project.data.title}
+            </h3>
+
+            <p class="mb-6 text-sm leading-relaxed text-white/60">
+              {project.data.description}
+            </p>
+
+            <div class="text-xs tracking-wide text-white/40">
+              {project.data.technologies.join(" • ")}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>

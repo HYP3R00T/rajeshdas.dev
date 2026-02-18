@@ -1,0 +1,56 @@
+---
+import type { PostEntry } from "@/lib/types";
+import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  post: PostEntry;
+  index: number;
+}
+
+const { post, index } = Astro.props;
+---
+
+<a
+  href={`/post/${post.id}/`}
+  class="group block border-b border-white/10 px-6 py-8 transition-colors hover:bg-white/5 md:py-12"
+>
+  <div
+    class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+  >
+    <div class="grow">
+      <div class="mb-4 flex items-center gap-4">
+        <span class="text-sm text-white/20">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div class="flex items-center gap-4 text-xs text-white/40">
+          <time datetime={post.data.pubDatetime.toISOString()}>
+            {formatDateUppercase(post.data.pubDatetime)}
+          </time>
+          <span>•</span>
+          <span>{estimateReadTime(post.data.description)} MIN</span>
+        </div>
+      </div>
+
+      <h3
+        class="mb-3 text-xl text-white transition-colors group-hover:text-white/80 md:text-2xl"
+        style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+      >
+        {post.data.title}
+      </h3>
+
+      <p class="max-w-2xl text-sm leading-relaxed text-white/60">
+        {post.data.description}
+      </p>
+    </div>
+
+    <div class="shrink-0">
+      <div
+        class="border border-white/20 p-3 transition-colors group-hover:bg-white group-hover:text-black"
+      >
+        <!-- TODO: Replace with appropriate icon (cloud-download or similar) -->
+        <Icon name="download" class="h-6 w-6" />
+      </div>
+    </div>
+  </div>
+</a>
