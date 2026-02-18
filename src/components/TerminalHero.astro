@@ -1,0 +1,161 @@
+---
+// Terminal Hero Section Component
+// Displays the main hero section with terminal command and feature grid
+---
+
+<section
+    class="stripe-pattern-dense relative flex min-h-screen items-center justify-center px-6 py-32 md:px-12"
+>
+    <div class="mx-auto w-full max-w-[1400px]">
+        <div class="space-y-12">
+            {/* Badge */}
+            <div
+                class="inline-block border border-white bg-white px-3 py-1.5 text-xs font-medium tracking-wider text-black"
+            >
+                DEVOPS ENGINEER // RAJESH DAS
+            </div>
+
+            {/* Main Heading */}
+            <h1 class="text-hero-heading text-white">
+                <div>TERMINAL</div>
+                <div>PORTFOLIO</div>
+                <div class="text-white/40">EXPERIENCE</div>
+            </h1>
+
+            {/* Subtitle */}
+            <div class="max-w-2xl">
+                <p
+                    class="text-sm leading-relaxed tracking-wide text-white/60 uppercase md:text-base"
+                >
+                    NO IMAGES. NO SUBSCRIPTIONS. JUST YOUR DATA, STORED FOREVER.
+                    PAY ONCE, OWN FOREVER ON THE DEVS DATACHAIN.
+                </p>
+            </div>
+
+            {/* CLI Command Box */}
+            <div class="mt-12 md:mt-16">
+                <div class="text-section-label mb-3">Try the CLI</div>
+                <div
+                    class="group relative max-w-2xl border border-white/20 bg-black"
+                >
+                    <div class="flex items-center justify-between p-6">
+                        <code
+                            class="font-mono text-lg tracking-tight text-white md:text-2xl"
+                        >
+                            $ uvx rajesh-das
+                        </code>
+                        <button
+                            id="copy-button"
+                            class="border border-white/20 p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-white hover:text-black"
+                            aria-label="Copy command"
+                            title="Copy to clipboard"
+                        >
+                            <svg
+                                id="copy-icon"
+                                class="h-5 w-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            <svg
+                                id="check-icon"
+                                class="hidden h-5 w-5"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <p class="mt-4 max-w-2xl text-xs text-white/40">
+                    Experience my portfolio directly in your terminal. Run the
+                    command above using uvx to explore my work, skills, and
+                    experience in an interactive CLI.
+                </p>
+            </div>
+
+            {/* Feature Grid */}
+            <div
+                class="mt-16 grid max-w-5xl grid-cols-1 gap-px border border-white/10 md:grid-cols-3"
+            >
+                <div
+                    class="border-r border-white/10 bg-black p-8 last:border-r-0"
+                >
+                    <div class="text-section-label mb-3">CLOUD EXPERTISE</div>
+                    <div class="text-sm text-white">AWS • Azure • GCP</div>
+                </div>
+                <div
+                    class="border-r border-white/10 bg-black p-8 last:border-r-0"
+                >
+                    <div class="text-section-label mb-3">
+                        CONTAINER ORCHESTRATION
+                    </div>
+                    <div class="text-sm text-white">Kubernetes • Docker</div>
+                </div>
+                <div
+                    class="border-r border-white/10 bg-black p-8 last:border-r-0"
+                >
+                    <div class="text-section-label mb-3">
+                        INFRASTRUCTURE AS CODE
+                    </div>
+                    <div class="text-sm text-white">Terraform • Ansible</div>
+                </div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform">
+                <div class="flex flex-col items-center gap-2 text-white/40">
+                    <span class="text-xs tracking-wider uppercase">Scroll</span>
+                    <svg
+                        class="h-5 w-5 animate-bounce"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Copy to clipboard functionality
+    const copyButton = document.getElementById("copy-button");
+    const copyIcon = document.getElementById("copy-icon");
+    const checkIcon = document.getElementById("check-icon");
+    const command = "uvx rajesh-das";
+
+    if (copyButton) {
+        copyButton.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(command);
+                // Show check icon
+                copyIcon.classList.add("hidden");
+                checkIcon.classList.remove("hidden");
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    copyIcon.classList.remove("hidden");
+                    checkIcon.classList.add("hidden");
+                }, 2000);
+            } catch (err) {
+                console.error("Failed to copy:", err);
+            }
+        });
+    }
+</script>

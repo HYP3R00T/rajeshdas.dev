@@ -1,29 +1,16 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Button from "@/components/ui/Button.astro";
+import TerminalHero from "@/components/TerminalHero.astro";
+import SkillsSection from "@/components/SkillsSection.astro";
+import ProjectsSection from "@/components/ProjectsSection.astro";
+import BlogSection from "@/components/BlogSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
-  <section class="mx-auto flex max-w-4xl flex-col items-center gap-4 py-8">
-    <h1
-      class="mb-3 text-4xl leading-[1.1] font-bold tracking-tight md:text-6xl lg:text-7xl"
-    >
-      Rajesh Das
-    </h1>
-
-    <h2
-      class="text-foreground-2 mb-6 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl"
-    >
-      DevOps & Automation Engineer
-    </h2>
-
-    <p
-      class="text-foreground-2 mx-auto mb-6 max-w-3xl text-lg leading-relaxed md:text-xl"
-    >
-      I make clouds behave, pipelines flow smoothly, and deployments happen
-      without drama. From Kubernetes clusters to CI/CD wizardry, I automate the
-      boring stuff so teams can focus on building cool things.
-    </p>
-  </section>
+    <TerminalHero />
+    <SkillsSection />
+    <ProjectsSection />
+    <BlogSection />
+    <ContactSection />
 </BaseLayout>

@@ -6,22 +6,22 @@
 :root {
   --radius: 0.5rem;
 
-  /* Background Layers */
-  --background-0: hsl(220, 15%, 8%); /* environment / page */
-  --background-1: hsl(220, 14%, 11%); /* primary surface */
-  --background-2: hsl(220, 13%, 16%); /* emphasized / priority surface */
+  /* Background Layers - Revamp: Pure Black Theme */
+  --background-0: #000000; /* pure black */
+  --background-1: #000000; /* pure black */
+  --background-2: #1a1a1a; /* very dark gray for contrast */
 
-  /* Text */
-  --foreground-0: hsl(220, 13%, 93%); /* primary text */
-  --foreground-1: hsl(220, 9%, 70%); /* secondary text */
-  --foreground-2: hsl(220, 6%, 55%); /* muted / meta text */
+  /* Text - Revamp: White with opacity variants */
+  --foreground-0: #ffffff; /* primary text */
+  --foreground-1: rgba(255, 255, 255, 0.6); /* secondary text */
+  --foreground-2: rgba(255, 255, 255, 0.4); /* muted / meta text */
 
-  /* Accent */
-  --accent: hsl(210, 70%, 63%);
-  --accent-fg: hsl(220, 15%, 8%);
+  /* Accent - Revamp: White only */
+  --accent: #ffffff;
+  --accent-fg: #000000;
 
-  /* Structure */
-  --border: hsl(220, 12%, 22%);
+  /* Structure - Revamp: White with opacity */
+  --border: rgba(255, 255, 255, 0.1);
 
   /* Colors */
   --red: hsl(0, 65%, 62%);
@@ -82,8 +82,13 @@
     @apply border-border scroll-smooth;
   }
 
+  html {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
   body {
     @apply bg-background-0 text-foreground-0;
+    background-color: #000000;
   }
 
   h1 {
@@ -249,4 +254,51 @@ html.dark .astro-code,
 html.dark .astro-code span {
   color: var(--astro-code-foreground) !important;
   background-color: var(--astro-code-background) !important;
+}
+
+/* Revamp: Stripe Patterns */
+.stripe-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.02) 10px,
+    rgba(255, 255, 255, 0.02) 20px
+  );
+}
+
+.stripe-pattern-dense {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+}
+
+/* Revamp: Typography Utility Classes */
+.text-section-heading {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.text-hero-heading {
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.text-section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
 }

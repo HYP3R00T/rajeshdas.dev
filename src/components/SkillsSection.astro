@@ -1,0 +1,266 @@
+---
+// Skills Section Component
+// Displays categorized tech stack in a 3-column grid with icons and items
+---
+
+<section class="relative bg-black px-6 py-32 md:px-12">
+    <div class="mx-auto max-w-[1400px]">
+        <div class="mb-20">
+            <div class="text-section-label mb-4">Tech Stack</div>
+            <h2 class="text-section-heading mb-8 text-white">EXPERTISE</h2>
+            <p
+                class="max-w-2xl text-sm tracking-wide text-white/60 uppercase md:text-base"
+            >
+                Technologies and tools I use to build reliable, scalable
+                infrastructure
+            </p>
+        </div>
+
+        <div
+            class="grid gap-px border border-white/10 md:grid-cols-2 lg:grid-cols-3"
+        >
+            {/* Cloud Platforms */}
+            <div
+                class="group border-r border-b border-white/10 bg-black p-8 transition-colors hover:bg-white/5"
+            >
+                <div class="mb-6 flex items-start justify-between">
+                    <div class="border border-white/20 p-3">
+                        <svg
+                            class="h-6 w-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-white/20">01</div>
+                </div>
+
+                <h3
+                    class="mb-6 text-lg tracking-wide text-white uppercase"
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                    CLOUD PLATFORMS
+                </h3>
+
+                <ul class="space-y-2">
+                    <li class="text-xs tracking-wide text-white/60">AWS</li>
+                    <li class="text-xs tracking-wide text-white/60">Azure</li>
+                    <li class="text-xs tracking-wide text-white/60">GCP</li>
+                    <li class="text-xs tracking-wide text-white/60">
+                        DigitalOcean
+                    </li>
+                </ul>
+            </div>
+
+            {/* Containers */}
+            <div
+                class="group border-r border-b border-white/10 bg-black p-8 transition-colors hover:bg-white/5"
+            >
+                <div class="mb-6 flex items-start justify-between">
+                    <div class="border border-white/20 p-3">
+                        <svg
+                            class="h-6 w-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m0 0L4 7m8 4v10l8-4v-10m-8 14l-8-4"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-white/20">02</div>
+                </div>
+
+                <h3
+                    class="mb-6 text-lg tracking-wide text-white uppercase"
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                    CONTAINERS
+                </h3>
+
+                <ul class="space-y-2">
+                    <li class="text-xs tracking-wide text-white/60">Docker</li>
+                    <li class="text-xs tracking-wide text-white/60">
+                        Kubernetes
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">Helm</li>
+                    <li class="text-xs tracking-wide text-white/60">Podman</li>
+                </ul>
+            </div>
+
+            {/* CI/CD */}
+            <div
+                class="group border-b border-white/10 bg-black p-8 transition-colors hover:bg-white/5 md:border-r lg:border-r-0"
+            >
+                <div class="mb-6 flex items-start justify-between">
+                    <div class="border border-white/20 p-3">
+                        <svg
+                            class="h-6 w-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-white/20">03</div>
+                </div>
+
+                <h3
+                    class="mb-6 text-lg tracking-wide text-white uppercase"
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                    CI/CD
+                </h3>
+
+                <ul class="space-y-2">
+                    <li class="text-xs tracking-wide text-white/60">
+                        GitHub Actions
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">Jenkins</li>
+                    <li class="text-xs tracking-wide text-white/60">
+                        GitLab CI
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">ArgoCD</li>
+                </ul>
+            </div>
+
+            {/* Version Control */}
+            <div
+                class="group border-r border-b border-white/10 bg-black p-8 transition-colors hover:bg-white/5 md:border-b-0"
+            >
+                <div class="mb-6 flex items-start justify-between">
+                    <div class="border border-white/20 p-3">
+                        <svg
+                            class="h-6 w-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-white/20">04</div>
+                </div>
+
+                <h3
+                    class="mb-6 text-lg tracking-wide text-white uppercase"
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                    VERSION CONTROL
+                </h3>
+
+                <ul class="space-y-2">
+                    <li class="text-xs tracking-wide text-white/60">Git</li>
+                    <li class="text-xs tracking-wide text-white/60">GitHub</li>
+                    <li class="text-xs tracking-wide text-white/60">GitLab</li>
+                    <li class="text-xs tracking-wide text-white/60">
+                        Bitbucket
+                    </li>
+                </ul>
+            </div>
+
+            {/* Infrastructure as Code */}
+            <div
+                class="group border-r border-b border-white/10 bg-black p-8 transition-colors hover:bg-white/5 md:border-r-0"
+            >
+                <div class="mb-6 flex items-start justify-between">
+                    <div class="border border-white/20 p-3">
+                        <svg
+                            class="h-6 w-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-white/20">05</div>
+                </div>
+
+                <h3
+                    class="mb-6 text-lg tracking-wide text-white uppercase"
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                    INFRASTRUCTURE AS CODE
+                </h3>
+
+                <ul class="space-y-2">
+                    <li class="text-xs tracking-wide text-white/60">
+                        Terraform
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">Ansible</li>
+                    <li class="text-xs tracking-wide text-white/60">
+                        CloudFormation
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">Pulumi</li>
+                </ul>
+            </div>
+
+            {/* Monitoring */}
+            <div class="group bg-black p-8 transition-colors hover:bg-white/5">
+                <div class="mb-6 flex items-start justify-between">
+                    <div class="border border-white/20 p-3">
+                        <svg
+                            class="h-6 w-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="text-sm text-white/20">06</div>
+                </div>
+
+                <h3
+                    class="mb-6 text-lg tracking-wide text-white uppercase"
+                    style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                    MONITORING
+                </h3>
+
+                <ul class="space-y-2">
+                    <li class="text-xs tracking-wide text-white/60">
+                        Prometheus
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">Grafana</li>
+                    <li class="text-xs tracking-wide text-white/60">
+                        ELK Stack
+                    </li>
+                    <li class="text-xs tracking-wide text-white/60">Datadog</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

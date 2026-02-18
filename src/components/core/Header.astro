@@ -1,36 +1,156 @@
 ---
-import { SITE, navItems } from "@data/config";
-import Button from "@/components/ui/Button.astro";
-import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
-import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
+// Header Component - Navigation and branding
+import { SITE } from "@data/config";
 ---
 
-<header class="bg-background-0 sticky top-0 z-50">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-    <a href="/" class="flex items-center gap-3">
-      <span class="text-lg font-semibold">{SITE.title}</span>
-    </a>
+<header
+    class="fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-black"
+>
+    <nav class="mx-auto max-w-[1400px] px-6 py-6 md:px-12">
+        <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <a
+                href="/"
+                class="text-sm tracking-tight text-white transition-opacity hover:opacity-70 md:text-base"
+            >
+                rajesh-das
+            </a>
 
-    <!-- Desktop nav -->
-    <nav class="hidden items-center gap-4 md:flex">
-      {
-        navItems.map((item) => (
-          <Button
-            href={item.href}
-            variant="accent"
-            target={item.blank ? "_blank" : undefined}
-            rel={item.blank ? "noopener noreferrer" : undefined}
-          >
-            {item.label}
-          </Button>
-        ))
-      }
+            <!-- Desktop Navigation -->
+            <div class="hidden items-center gap-8 md:flex">
+                <a
+                    href="#skills"
+                    class="text-xs tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    SKILLS
+                </a>
+                <a
+                    href="#projects"
+                    class="text-xs tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    PROJECTS
+                </a>
+                <a
+                    href="/post/"
+                    class="text-xs tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    BLOG
+                </a>
+                <a
+                    href="#contact"
+                    class="text-xs tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    CONTACT
+                </a>
+            </div>
+
+            <!-- Desktop CTA Button -->
+            <a
+                href="#contact"
+                class="hidden border border-white bg-white px-6 py-3 text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black hover:text-white md:block"
+            >
+                GET IN TOUCH
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-btn"
+                class="p-2 text-white md:hidden"
+                aria-label="Toggle menu"
+            >
+                <svg
+                    id="menu-icon"
+                    class="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg
+                    id="close-icon"
+                    class="hidden h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
     </nav>
 
-    <!-- Mobile toggle (buttons) -->
-    <MobileMenuToggle />
-  </div>
-
-  <!-- Mobile menu panel (below header row) -->
-  <MobileMenuPanel navItems={navItems} />
+    <!-- Mobile Menu -->
+    <div
+        id="mobile-menu"
+        class="hidden border-t border-white/10 bg-black md:hidden"
+    >
+        <div class="px-6 py-8">
+            <nav class="space-y-4">
+                <a
+                    href="#skills"
+                    class="block text-sm tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    SKILLS
+                </a>
+                <a
+                    href="#projects"
+                    class="block text-sm tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    PROJECTS
+                </a>
+                <a
+                    href="/post/"
+                    class="block text-sm tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    BLOG
+                </a>
+                <a
+                    href="#contact"
+                    class="block text-sm tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+                >
+                    CONTACT
+                </a>
+                <a
+                    href="#contact"
+                    class="mt-6 block border border-white bg-white px-6 py-3 text-center text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black hover:text-white"
+                >
+                    GET IN TOUCH
+                </a>
+            </nav>
+        </div>
+    </div>
 </header>
+
+<script>
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            menuIcon.classList.toggle("hidden");
+            closeIcon.classList.toggle("hidden");
+        });
+
+        // Close menu when clicking a link
+        const links = mobileMenu.querySelectorAll("a");
+        links.forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                menuIcon.classList.remove("hidden");
+                closeIcon.classList.add("hidden");
+            });
+        });
+    }
+</script>
