@@ -48,10 +48,10 @@ import { Icon } from "astro-icon/components";
         <div class="space-y-4">
           {/* Attribute 1: Automation First */}
           <div
-            class="border border-white/20 bg-black p-6 transition-colors hover:bg-white/5"
+            class="border-border-strong border bg-black p-6 transition-colors hover:bg-white/5"
           >
             <div class="flex gap-4">
-              <div class="shrink-0 border border-white/30 p-2.5">
+              <div class="border-border-stronger shrink-0 border p-2.5">
                 <Icon name="plus" class="h-5 w-5 text-white" />
               </div>
               <div>
@@ -71,10 +71,10 @@ import { Icon } from "astro-icon/components";
 
           {/* Attribute 2: Open Source */}
           <div
-            class="border border-white/20 bg-black p-6 transition-colors hover:bg-white/5"
+            class="border-border-strong border bg-black p-6 transition-colors hover:bg-white/5"
           >
             <div class="flex gap-4">
-              <div class="shrink-0 border border-white/30 p-2.5">
+              <div class="border-border-stronger shrink-0 border p-2.5">
                 <Icon name="github" class="h-5 w-5 text-white" />
               </div>
               <div>
@@ -94,10 +94,10 @@ import { Icon } from "astro-icon/components";
 
           {/* Attribute 3: Cloud Native */}
           <div
-            class="border border-white/20 bg-black p-6 transition-colors hover:bg-white/5"
+            class="border-border-strong border bg-black p-6 transition-colors hover:bg-white/5"
           >
             <div class="flex gap-4">
-              <div class="shrink-0 border border-white/30 p-2.5">
+              <div class="border-border-stronger shrink-0 border p-2.5">
                 <Icon name="kubernetes" class="h-5 w-5 text-white" />
               </div>
               <div>
@@ -121,14 +121,16 @@ import { Icon } from "astro-icon/components";
     {/* CLI Command Box */}
     <div class="mt-20 mb-20">
       <div class="text-section-label mb-3">Try the CLI</div>
-      <div class="group relative max-w-3xl border border-white/20 bg-black">
+      <div
+        class="group border-border-strong relative max-w-3xl border bg-black"
+      >
         <div class="flex items-center justify-between p-6">
           <code class="font-mono text-lg tracking-tight text-white md:text-2xl">
             $ uvx rajesh-das
           </code>
           <button
             id="copy-button"
-            class="border border-white/20 p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-white hover:text-black"
+            class="border-border-strong border p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-white hover:text-black"
             aria-label="Copy command"
             title="Copy to clipboard"
           >
@@ -146,17 +148,17 @@ import { Icon } from "astro-icon/components";
 
     {/* Feature Grid */}
     <div
-      class="grid max-w-5xl grid-cols-1 gap-px border border-white/10 md:grid-cols-3"
+      class="border-border grid max-w-5xl grid-cols-1 gap-px border md:grid-cols-3"
     >
-      <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
+      <div class="border-border border-r bg-black p-8 last:border-r-0">
         <div class="text-section-label mb-3">CLOUD EXPERTISE</div>
         <div class="text-sm text-white">AWS • Azure • GCP</div>
       </div>
-      <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
+      <div class="border-border border-r bg-black p-8 last:border-r-0">
         <div class="text-section-label mb-3">CONTAINER ORCHESTRATION</div>
         <div class="text-sm text-white">Kubernetes • Docker</div>
       </div>
-      <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
+      <div class="border-border border-r bg-black p-8 last:border-r-0">
         <div class="text-section-label mb-3">INFRASTRUCTURE AS CODE</div>
         <div class="text-sm text-white">Terraform • Ansible</div>
       </div>

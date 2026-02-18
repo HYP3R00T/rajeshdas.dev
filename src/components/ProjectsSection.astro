@@ -32,39 +32,41 @@ const iconNames = [
       </p>
     </div>
 
-    <div class="grid gap-px border border-white/10 md:grid-cols-2">
-      {
-        projects.map((project, index) => (
-          <div class="group border-r border-b border-white/10 bg-black p-8 transition-colors last:border-r-0 hover:bg-white/5 md:p-12">
-            <div class="mb-8 flex items-start justify-between">
-              <div class="border border-white/20 p-4">
-                <Icon
-                  name={iconNames[index] || iconNames[0]}
-                  class="h-8 w-8 text-white"
-                />
+    <div class="bg-border p-px">
+      <div class="bg-border grid gap-px md:grid-cols-2">
+        {
+          projects.map((project, index) => (
+            <div class="group bg-black p-8 transition-colors hover:bg-white/5 md:p-12">
+              <div class="mb-8 flex items-start justify-between">
+                <div class="border-border-strong border p-4">
+                  <Icon
+                    name={iconNames[index] || iconNames[0]}
+                    class="h-8 w-8 text-white"
+                  />
+                </div>
+                <div class="text-sm text-white/20">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
               </div>
-              <div class="text-sm text-white/20">
-                {String(index + 1).padStart(2, "0")}
+
+              <h3
+                class="mb-4 text-2xl tracking-tight text-white uppercase md:text-3xl"
+                style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+              >
+                {project.data.title}
+              </h3>
+
+              <p class="mb-6 text-sm leading-relaxed text-white/60">
+                {project.data.description}
+              </p>
+
+              <div class="text-xs tracking-wide text-white/40">
+                {project.data.technologies.join(" • ")}
               </div>
             </div>
-
-            <h3
-              class="mb-4 text-2xl tracking-tight text-white uppercase md:text-3xl"
-              style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
-            >
-              {project.data.title}
-            </h3>
-
-            <p class="mb-6 text-sm leading-relaxed text-white/60">
-              {project.data.description}
-            </p>
-
-            <div class="text-xs tracking-wide text-white/40">
-              {project.data.technologies.join(" • ")}
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

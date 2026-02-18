@@ -13,7 +13,7 @@ const { post, index } = Astro.props;
 
 <a
   href={`/post/${post.id}/`}
-  class="group block border-b border-white/10 px-6 py-8 transition-colors hover:bg-white/5 md:py-12"
+  class="group border-border block border-b px-6 py-8 transition-colors hover:bg-white/5 md:py-12"
 >
   <div
     class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
@@ -46,7 +46,7 @@ const { post, index } = Astro.props;
 
     <div class="shrink-0">
       <div
-        class="border border-white/20 p-3 transition-colors group-hover:bg-white group-hover:text-black"
+        class="border-border-strong border p-3 transition-colors group-hover:bg-white group-hover:text-black"
       >
         <!-- TODO: Replace with appropriate icon (cloud-download or similar) -->
         <Icon name="download" class="h-6 w-6" />
