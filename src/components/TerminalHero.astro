@@ -31,12 +31,14 @@ import { Icon } from "astro-icon/components";
 
           {/* Subtitle */}
           <div class="max-w-xl space-y-6">
-            <p class="text-base leading-relaxed text-white/80 md:text-lg">
+            <p
+              class="text-foreground-muted text-base leading-relaxed md:text-lg"
+            >
               Building robust infrastructure and automation tools that empower
               development teams. Specialized in cloud architecture, CI/CD
               pipelines, and developer experience.
             </p>
-            <p class="text-sm leading-relaxed text-white/60">
+            <p class="text-foreground-1 text-sm leading-relaxed">
               From infrastructure as code to container orchestration, I focus on
               creating reliable, scalable systems that let teams ship faster and
               sleep better.
@@ -48,7 +50,7 @@ import { Icon } from "astro-icon/components";
         <div class="space-y-4">
           {/* Attribute 1: Automation First */}
           <div
-            class="border-border-strong border bg-black p-6 transition-colors hover:bg-white/5"
+            class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors"
           >
             <div class="flex gap-4">
               <div class="border-border-stronger shrink-0 border p-2.5">
@@ -61,7 +63,7 @@ import { Icon } from "astro-icon/components";
                 >
                   Automation First
                 </h3>
-                <p class="text-sm leading-relaxed text-white/60">
+                <p class="text-foreground-1 text-sm leading-relaxed">
                   If it can be automated, it should be. Building tools that
                   eliminate repetitive tasks.
                 </p>
@@ -71,7 +73,7 @@ import { Icon } from "astro-icon/components";
 
           {/* Attribute 2: Open Source */}
           <div
-            class="border-border-strong border bg-black p-6 transition-colors hover:bg-white/5"
+            class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors"
           >
             <div class="flex gap-4">
               <div class="border-border-stronger shrink-0 border p-2.5">
@@ -84,7 +86,7 @@ import { Icon } from "astro-icon/components";
                 >
                   Open Source
                 </h3>
-                <p class="text-sm leading-relaxed text-white/60">
+                <p class="text-foreground-1 text-sm leading-relaxed">
                   Contributing to the community and sharing knowledge through
                   open-source projects.
                 </p>
@@ -94,7 +96,7 @@ import { Icon } from "astro-icon/components";
 
           {/* Attribute 3: Cloud Native */}
           <div
-            class="border-border-strong border bg-black p-6 transition-colors hover:bg-white/5"
+            class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors"
           >
             <div class="flex gap-4">
               <div class="border-border-stronger shrink-0 border p-2.5">
@@ -107,7 +109,7 @@ import { Icon } from "astro-icon/components";
                 >
                   Cloud Native
                 </h3>
-                <p class="text-sm leading-relaxed text-white/60">
+                <p class="text-foreground-1 text-sm leading-relaxed">
                   Designing scalable, resilient infrastructure for modern
                   distributed systems.
                 </p>
@@ -139,7 +141,7 @@ import { Icon } from "astro-icon/components";
           </button>
         </div>
       </div>
-      <p class="mt-4 max-w-3xl text-xs text-white/40">
+      <p class="text-foreground-2 mt-4 max-w-3xl text-xs">
         Experience my portfolio directly in your terminal. Run the command above
         using uvx to explore my work, skills, and experience in an interactive
         CLI.
@@ -167,7 +169,7 @@ import { Icon } from "astro-icon/components";
     {/* Scroll Indicator */}
     <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
       <div
-        class="flex animate-bounce flex-col items-center gap-2 text-white/20"
+        class="text-foreground-3 flex animate-bounce flex-col items-center gap-2"
       >
         <Icon name="arrow-up" class="h-5 w-5" />
       </div>

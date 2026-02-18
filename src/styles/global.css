@@ -7,23 +7,34 @@
   --radius: 0.5rem;
 
   /* Background Layers - Revamp: Pure Black Theme */
-  --background-0: #000000; /* pure black */
-  --background-1: #000000; /* pure black */
-  --background-2: #1a1a1a; /* very dark gray for contrast */
+  --background-0: hsl(0, 0%, 0%); /* pure black */
+  --background-1: hsl(0, 0%, 0%); /* pure black */
+  --background-2: hsl(0, 0%, 10%); /* very dark gray for contrast */
 
-  /* Text - Revamp: White with opacity variants */
-  --foreground-0: #ffffff; /* primary text */
-  --foreground-1: rgba(255, 255, 255, 0.6); /* secondary text */
-  --foreground-2: rgba(255, 255, 255, 0.4); /* muted / meta text */
+  /* Text - Revamp: White with gray variants */
+  --foreground-0: hsl(0, 0%, 100%); /* primary text */
+  --foreground-1: hsl(0, 0%, 60%); /* secondary text */
+  --foreground-2: hsl(0, 0%, 40%); /* muted / meta text */
+  --foreground-3: hsl(0, 0%, 20%); /* subtle text / numbers */
+  --foreground-muted: hsl(0, 0%, 80%); /* slightly muted text */
+
+  /* Background variants */
+  --background-hover: hsl(0, 0%, 5%); /* hover state */
+  --background-input: hsl(0, 0%, 30%); /* placeholder text */
 
   /* Accent - Revamp: White only */
-  --accent: #ffffff;
-  --accent-fg: #000000;
+  --accent: hsl(0, 0%, 100%);
+  --accent-fg: hsl(0, 0%, 0%);
 
-  /* Structure - Revamp: White with opacity */
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --border-stronger: rgba(255, 255, 255, 0.3);
+  /* Structure - Revamp: Borders as solid grays */
+  --border: hsl(0, 0%, 10%);
+  --border-strong: hsl(0, 0%, 20%);
+  --border-stronger: hsl(0, 0%, 30%);
+
+  /* Utility colors for decorations */
+  --accent-muted: hsl(0, 0%, 30%);
+  --accent-subtle: hsl(0, 0%, 40%);
+  --background-overlay: hsl(0, 0%, 4%);
 
   /* Colors */
   --red: hsl(0, 65%, 62%);
@@ -64,11 +75,18 @@
   --color-foreground-0: var(--foreground-0);
   --color-foreground-1: var(--foreground-1);
   --color-foreground-2: var(--foreground-2);
+  --color-foreground-3: var(--foreground-3);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-background-hover: var(--background-hover);
+  --color-background-input: var(--background-input);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-border-stronger: var(--border-stronger);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-background-overlay: var(--background-overlay);
 
   /* Named colors */
   --color-red: var(--red);
@@ -145,7 +163,7 @@
   }
 
   .prose a {
-    @apply text-accent decoration-accent/30 relative font-medium underline underline-offset-4 transition-colors;
+    @apply text-accent decoration-accent-muted relative font-medium underline underline-offset-4 transition-colors;
   }
 
   .prose a:hover {
@@ -202,7 +220,7 @@
   }
 
   .prose blockquote {
-    @apply border-accent/40 bg-background-2/40 text-foreground-2 my-8 border-l-4 px-6 py-4 italic;
+    @apply border-accent-subtle bg-background-overlay text-foreground-2 my-8 border-l-4 px-6 py-4 italic;
   }
 
   .prose blockquote p {
@@ -266,8 +284,8 @@ html.dark .astro-code span {
     45deg,
     transparent,
     transparent 10px,
-    rgba(255, 255, 255, 0.02) 10px,
-    rgba(255, 255, 255, 0.02) 20px
+    hsl(0, 0%, 2%) 10px,
+    hsl(0, 0%, 2%) 20px
   );
 }
 
@@ -294,5 +312,5 @@ html.dark .astro-code span {
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: hsl(0, 0%, 40%);
 }

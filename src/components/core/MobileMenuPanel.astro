@@ -24,7 +24,7 @@ const { navItems } = Astro.props as Props;
             href={item.href}
             target={item.blank ? "_blank" : undefined}
             rel={item.blank ? "noopener noreferrer" : undefined}
-            class="block text-sm tracking-wider text-white/60 uppercase transition-colors hover:text-white"
+            class="text-foreground-1 block text-sm tracking-wider uppercase transition-colors hover:text-white"
           >
             {item.label}
           </a>

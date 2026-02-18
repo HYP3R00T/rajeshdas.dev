@@ -49,7 +49,7 @@ const skills = [
       <div class="text-section-label mb-4">Tech Stack</div>
       <h2 class="text-section-heading mb-8 text-white">EXPERTISE</h2>
       <p
-        class="max-w-2xl text-sm tracking-wide text-white/60 uppercase md:text-base"
+        class="text-foreground-1 max-w-2xl text-sm tracking-wide uppercase md:text-base"
       >
         Technologies and tools I use to build reliable, scalable infrastructure
       </p>
@@ -59,12 +59,12 @@ const skills = [
       <div class="bg-border grid gap-px md:grid-cols-2 lg:grid-cols-3">
         {
           skills.map((skill) => (
-            <div class="bg-black p-8 transition-colors hover:bg-white/5">
+            <div class="hover:bg-background-hover bg-black p-8 transition-colors">
               <div class="mb-6 flex items-start justify-between">
                 <div class="border-border-strong border p-3">
                   <Icon name={skill.icon} class="h-6 w-6 text-white" />
                 </div>
-                <div class="text-sm text-white/20">{skill.id}</div>
+                <div class="text-foreground-3 text-sm">{skill.id}</div>
               </div>
 
               <h3
@@ -76,7 +76,9 @@ const skills = [
 
               <ul class="space-y-2">
                 {skill.items.map((item) => (
-                  <li class="text-xs tracking-wide text-white/60">{item}</li>
+                  <li class="text-foreground-1 text-xs tracking-wide">
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
