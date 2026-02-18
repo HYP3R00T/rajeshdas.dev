@@ -6,7 +6,9 @@ import PostLayout from "@/layouts/PostLayout.astro";
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   const headings = await Promise.all(
-    posts.map((entry: PostEntry) => render(entry).then((data) => data.headings))
+    posts.map((entry: PostEntry) =>
+      render(entry).then((data) => data.headings),
+    ),
   );
 
   const posts_: PostPath[] = posts.map((entry: PostEntry, index: number) => ({
