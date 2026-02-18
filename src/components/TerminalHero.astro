@@ -7,86 +7,167 @@ import { Icon } from "astro-icon/components";
 <section
   class="stripe-pattern relative flex min-h-screen items-center justify-center px-6 py-32 md:px-12"
 >
-  <div class="mx-auto w-full max-w-350">
-    <div class="space-y-12">
+  <div class="mx-auto w-full max-w-6xl">
+    <div class="mb-20 space-y-8">
       {/* Badge */}
       <div
         class="inline-block border border-white bg-white px-3 py-1.5 text-xs font-medium tracking-wider text-black"
       >
-        DEVOPS ENGINEER // RAJESH DAS
+        DEVOPS ENGINEER
       </div>
 
-      {/* Main Heading */}
-      <h1 class="text-hero-heading text-white">
-        <div>TERMINAL</div>
-        <div>PORTFOLIO</div>
-        <div class="text-white/40">EXPERIENCE</div>
-      </h1>
+      {/* Main Grid Layout */}
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+        {/* Left Column - Main Content */}
+        <div>
+          {/* Main Heading */}
+          <h1
+            class="mb-8 text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-tighter text-white uppercase"
+            style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+          >
+            <div>RAJESH</div>
+            <div>DAS</div>
+          </h1>
 
-      {/* Subtitle */}
-      <div class="max-w-2xl">
-        <p
-          class="text-sm leading-relaxed tracking-wide text-white/60 uppercase md:text-base"
-        >
-          NO IMAGES. NO SUBSCRIPTIONS. JUST YOUR DATA, STORED FOREVER. PAY ONCE,
-          OWN FOREVER ON THE DEVS DATACHAIN.
-        </p>
-      </div>
-
-      {/* CLI Command Box */}
-      <div class="mt-12 md:mt-16">
-        <div class="text-section-label mb-3">Try the CLI</div>
-        <div class="group relative max-w-2xl border border-white/20 bg-black">
-          <div class="flex items-center justify-between p-6">
-            <code
-              class="font-mono text-lg tracking-tight text-white md:text-2xl"
-            >
-              $ uvx rajesh-das
-            </code>
-            <button
-              id="copy-button"
-              class="border border-white/20 p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-white hover:text-black"
-              aria-label="Copy command"
-              title="Copy to clipboard"
-            >
-              <Icon id="copy-icon" name="copy" class="h-5 w-5" />
-              <!-- TODO: Add check.svg icon -->
-              <Icon id="check-icon" name="github" class="hidden h-5 w-5" />
-            </button>
+          {/* Subtitle */}
+          <div class="max-w-xl space-y-6">
+            <p class="text-base leading-relaxed text-white/80 md:text-lg">
+              Building robust infrastructure and automation tools that empower
+              development teams. Specialized in cloud architecture, CI/CD
+              pipelines, and developer experience.
+            </p>
+            <p class="text-sm leading-relaxed text-white/60">
+              From infrastructure as code to container orchestration, I focus on
+              creating reliable, scalable systems that let teams ship faster and
+              sleep better.
+            </p>
           </div>
         </div>
-        <p class="mt-4 max-w-2xl text-xs text-white/40">
-          Experience my portfolio directly in your terminal. Run the command
-          above using uvx to explore my work, skills, and experience in an
-          interactive CLI.
-        </p>
-      </div>
 
-      {/* Feature Grid */}
+        {/* Right Column - Attributes */}
+        <div class="space-y-4">
+          {/* Attribute 1: Automation First */}
+          <div
+            class="border border-white/20 bg-black p-6 transition-colors hover:bg-white/5"
+          >
+            <div class="flex gap-4">
+              <div class="shrink-0 border border-white/30 p-2.5">
+                <Icon name="plus" class="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h3
+                  class="mb-2 text-base tracking-wide text-white uppercase"
+                  style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                  Automation First
+                </h3>
+                <p class="text-sm leading-relaxed text-white/60">
+                  If it can be automated, it should be. Building tools that
+                  eliminate repetitive tasks.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Attribute 2: Open Source */}
+          <div
+            class="border border-white/20 bg-black p-6 transition-colors hover:bg-white/5"
+          >
+            <div class="flex gap-4">
+              <div class="shrink-0 border border-white/30 p-2.5">
+                <Icon name="github" class="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h3
+                  class="mb-2 text-base tracking-wide text-white uppercase"
+                  style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                  Open Source
+                </h3>
+                <p class="text-sm leading-relaxed text-white/60">
+                  Contributing to the community and sharing knowledge through
+                  open-source projects.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Attribute 3: Cloud Native */}
+          <div
+            class="border border-white/20 bg-black p-6 transition-colors hover:bg-white/5"
+          >
+            <div class="flex gap-4">
+              <div class="shrink-0 border border-white/30 p-2.5">
+                <Icon name="kubernetes" class="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h3
+                  class="mb-2 text-base tracking-wide text-white uppercase"
+                  style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+                >
+                  Cloud Native
+                </h3>
+                <p class="text-sm leading-relaxed text-white/60">
+                  Designing scalable, resilient infrastructure for modern
+                  distributed systems.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* CLI Command Box */}
+    <div class="mt-20 mb-20">
+      <div class="text-section-label mb-3">Try the CLI</div>
+      <div class="group relative max-w-3xl border border-white/20 bg-black">
+        <div class="flex items-center justify-between p-6">
+          <code class="font-mono text-lg tracking-tight text-white md:text-2xl">
+            $ uvx rajesh-das
+          </code>
+          <button
+            id="copy-button"
+            class="border border-white/20 p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-white hover:text-black"
+            aria-label="Copy command"
+            title="Copy to clipboard"
+          >
+            <Icon id="copy-icon" name="copy" class="h-5 w-5" />
+            <Icon id="check-icon" name="plus" class="hidden h-5 w-5" />
+          </button>
+        </div>
+      </div>
+      <p class="mt-4 max-w-3xl text-xs text-white/40">
+        Experience my portfolio directly in your terminal. Run the command above
+        using uvx to explore my work, skills, and experience in an interactive
+        CLI.
+      </p>
+    </div>
+
+    {/* Feature Grid */}
+    <div
+      class="grid max-w-5xl grid-cols-1 gap-px border border-white/10 md:grid-cols-3"
+    >
+      <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
+        <div class="text-section-label mb-3">CLOUD EXPERTISE</div>
+        <div class="text-sm text-white">AWS • Azure • GCP</div>
+      </div>
+      <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
+        <div class="text-section-label mb-3">CONTAINER ORCHESTRATION</div>
+        <div class="text-sm text-white">Kubernetes • Docker</div>
+      </div>
+      <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
+        <div class="text-section-label mb-3">INFRASTRUCTURE AS CODE</div>
+        <div class="text-sm text-white">Terraform • Ansible</div>
+      </div>
+    </div>
+
+    {/* Scroll Indicator */}
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
       <div
-        class="mt-16 grid max-w-5xl grid-cols-1 gap-px border border-white/10 md:grid-cols-3"
+        class="flex animate-bounce flex-col items-center gap-2 text-white/20"
       >
-        <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
-          <div class="text-section-label mb-3">CLOUD EXPERTISE</div>
-          <div class="text-sm text-white">AWS • Azure • GCP</div>
-        </div>
-        <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
-          <div class="text-section-label mb-3">CONTAINER ORCHESTRATION</div>
-          <div class="text-sm text-white">Kubernetes • Docker</div>
-        </div>
-        <div class="border-r border-white/10 bg-black p-8 last:border-r-0">
-          <div class="text-section-label mb-3">INFRASTRUCTURE AS CODE</div>
-          <div class="text-sm text-white">Terraform • Ansible</div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform">
-        <div class="flex flex-col items-center gap-2 text-white/40">
-          <span class="text-xs tracking-wider uppercase">Scroll</span>
-          <!-- TODO: Add arrow-down.svg icon -->
-          <Icon name="github" class="h-5 w-5 animate-bounce" />
-        </div>
+        <Icon name="arrow-up" class="h-5 w-5" />
       </div>
     </div>
   </div>
