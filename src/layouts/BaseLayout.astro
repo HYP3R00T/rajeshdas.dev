@@ -7,29 +7,29 @@ import type { BaseLayoutProps } from "@/lib/types";
 import Footer from "@/components/core/Footer.astro";
 
 const { title, description, image, imageAlt, contentType } =
-    Astro.props as BaseLayoutProps;
+  Astro.props as BaseLayoutProps;
 ---
 
 <html lang=`${LOCALE.lang ?? "en"}`>
-    <head>
-        <HeadSEO
-            title={title}
-            description={description}
-            image={image}
-            imageAlt={imageAlt}
-            contentType={contentType}
-        />
-    </head>
+  <head>
+    <HeadSEO
+      title={title}
+      description={description}
+      image={image}
+      imageAlt={imageAlt}
+      contentType={contentType}
+    />
+  </head>
 
-    <body class="flex flex-col">
-        <Header />
-        <div class="flex flex-1 pt-[73px]">
-            <main class="flex h-full w-full justify-center">
-                <div class="flex w-full max-w-7xl flex-col justify-center px-4">
-                    <slot />
-                </div>
-            </main>
+  <body class="flex flex-col">
+    <Header />
+    <div class="flex flex-1 pt-18.25">
+      <main class="flex h-full w-full justify-center">
+        <div class="flex w-full max-w-7xl flex-col justify-center px-4">
+          <slot />
         </div>
-        <Footer />
-    </body>
+      </main>
+    </div>
+    <Footer />
+  </body>
 </html>
