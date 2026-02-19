@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Badge from "@/components/ui/Badge.astro";
+---
+
+<BaseLayout>
+  <section
+    class="relative flex items-center justify-center bg-black px-4 py-12 md:px-12"
+  >
+    <div class="mx-auto w-full max-w-7xl">
+      <!-- Greeter -->
+      <div class="mb-16">
+        <Badge variant="accent">Projects</Badge>
+        <h1
+          class="text-foreground-0 font-display my-8 max-w-2xl text-left text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-tighter uppercase"
+        >
+          <div>My</div>
+          <div>Work</div>
+        </h1>
+
+        <p
+          class="text-foreground-muted max-w-2xl space-y-6 text-base leading-relaxed md:text-lg"
+        >
+          A collection of production infrastructure, automation tools, and
+          DevOps solutions built to solve real-world challenges at scale.
+        </p>
+      </div>
+
+      <!-- All projects -->
+    </div>
+  </section>
+</BaseLayout>
