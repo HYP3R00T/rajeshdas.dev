@@ -97,6 +97,8 @@
   --color-blue: var(--blue);
   --color-purple: var(--purple);
   --color-pink: var(--pink);
+  --font-display: "Space Grotesk Variable", sans-serif;
+  --font-mono: "JetBrains Mono Variable", monospace;
 }
 
 @layer base {
@@ -286,6 +288,16 @@ html.dark .astro-code span {
     transparent 10px,
     hsl(0, 0%, 2%) 10px,
     hsl(0, 0%, 2%) 20px
+  );
+}
+
+.stripe-pattern-dense {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
   );
 }
 
