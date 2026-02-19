@@ -1,0 +1,63 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ButtonComponent from "@/components/ui/Button.astro";
+
+export const metadata = {
+  title: "Button",
+  description: "Core button variants and sizes.",
+  category: "ui",
+  order: 1,
+};
+
+const variantOptions = ["default", "outline", "secondary", "ghost", "link"];
+
+const sizeOptions = ["sm", "default", "lg"];
+---
+
+<BaseLayout
+  title={`${metadata.title} - Components`}
+  description={metadata.description}
+>
+  <main class="mx-auto max-w-4xl space-y-10 px-6 py-16 md:px-12">
+    <header>
+      <h1
+        class="text-foreground-0 text-4xl font-extrabold uppercase"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        {metadata.title}
+      </h1>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Variants
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        {
+          variantOptions.map((variant) => (
+            <ButtonComponent variant={variant}>{variant}</ButtonComponent>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">Sizes</h2>
+      <div class="flex flex-wrap gap-3">
+        {
+          sizeOptions.map((size) => (
+            <ButtonComponent size={size}>{size}</ButtonComponent>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">States</h2>
+      <div class="flex flex-wrap gap-3">
+        <ButtonComponent>Default</ButtonComponent>
+        <ButtonComponent disabled>Disabled</ButtonComponent>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

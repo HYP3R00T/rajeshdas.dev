@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ToggleGroupComponent from "@/components/ui/ToggleGroup.astro";
+
+export const metadata = {
+  title: "Toggle Group",
+  description: "Single-choice toggle buttons.",
+  category: "ui",
+  order: 8,
+};
+
+const options = [
+  { label: "Beginner", value: "beginner" },
+  { label: "Intermediate", value: "intermediate" },
+  { label: "Advanced", value: "advanced" },
+];
+---
+
+<BaseLayout
+  title={`${metadata.title} - Components`}
+  description={metadata.description}
+>
+  <main class="mx-auto max-w-4xl space-y-10 px-6 py-16 md:px-12">
+    <header>
+      <h1
+        class="text-foreground-0 text-4xl font-extrabold uppercase"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        {metadata.title}
+      </h1>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Horizontal
+      </h2>
+      <ToggleGroupComponent
+        name="difficulty"
+        value="intermediate"
+        orientation="horizontal"
+        options={options}
+      />
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Vertical
+      </h2>
+      <ToggleGroupComponent
+        name="difficulty-vertical"
+        value="intermediate"
+        orientation="vertical"
+        options={options}
+      />
+    </section>
+  </main>
+</BaseLayout>

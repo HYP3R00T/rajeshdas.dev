@@ -1,0 +1,48 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BadgeComponent from "@/components/ui/Badge.astro";
+
+export const metadata = {
+  title: "Badge",
+  description: "Simple badge variants for inline labels.",
+  category: "ui",
+  order: 2,
+};
+
+const variants = [
+  { label: "Default", value: "default" },
+  { label: "Outline", value: "outline" },
+  { label: "Accent", value: "accent" },
+];
+---
+
+<BaseLayout
+  title={`${metadata.title} - Components`}
+  description={metadata.description}
+>
+  <main class="mx-auto max-w-4xl space-y-10 px-6 py-16 md:px-12">
+    <header>
+      <h1
+        class="text-foreground-0 text-4xl font-extrabold uppercase"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        {metadata.title}
+      </h1>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Variants
+      </h2>
+      <div class="flex flex-wrap gap-3">
+        {
+          variants.map((variant) => (
+            <BadgeComponent variant={variant.value}>
+              {variant.label}
+            </BadgeComponent>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

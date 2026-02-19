@@ -1,0 +1,63 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import InputComponent from "@/components/ui/Input.astro";
+
+export const metadata = {
+  title: "Input",
+  description: "Simplified form inputs.",
+  category: "form",
+  order: 3,
+};
+
+const types = ["text", "email", "password", "number", "url"];
+---
+
+<BaseLayout
+  title={`${metadata.title} - Components`}
+  description={metadata.description}
+>
+  <main class="mx-auto max-w-4xl space-y-10 px-6 py-16 md:px-12">
+    <header>
+      <h1
+        class="text-foreground-0 text-4xl font-extrabold uppercase"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        {metadata.title}
+      </h1>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">Types</h2>
+      <div class="space-y-3">
+        {
+          types.map((item) => (
+            <div class="flex flex-col gap-2">
+              <span class="text-foreground-2 text-xs tracking-wide uppercase">
+                {item}
+              </span>
+              <InputComponent type={item} placeholder={`Enter ${item}`} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">States</h2>
+      <div class="space-y-3">
+        <div class="flex flex-col gap-2">
+          <span class="text-foreground-2 text-xs tracking-wide uppercase"
+            >Default</span
+          >
+          <InputComponent placeholder="Default" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="text-foreground-2 text-xs tracking-wide uppercase"
+            >Disabled</span
+          >
+          <InputComponent placeholder="Disabled" disabled />
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

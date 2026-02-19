@@ -1,0 +1,69 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import IconBoxComponent from "@/components/ui/IconBox.astro";
+import { Icon } from "astro-icon/components";
+
+export const metadata = {
+  title: "Icon Box",
+  description: "Minimal icon containers.",
+  category: "ui",
+  order: 7,
+};
+
+const sizes = ["sm", "default", "lg"];
+const variants = ["default", "strong", "hoverable"];
+---
+
+<BaseLayout
+  title={`${metadata.title} - Components`}
+  description={metadata.description}
+>
+  <main class="mx-auto max-w-4xl space-y-10 px-6 py-16 md:px-12">
+    <header>
+      <h1
+        class="text-foreground-0 text-4xl font-extrabold uppercase"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        {metadata.title}
+      </h1>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">Sizes</h2>
+      <div class="flex flex-wrap items-center gap-4">
+        {
+          sizes.map((size) => (
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-foreground-2 text-xs tracking-wide uppercase">
+                {size}
+              </span>
+              <IconBoxComponent size={size}>
+                <Icon name="github" class="h-5 w-5" />
+              </IconBoxComponent>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Variants
+      </h2>
+      <div class="flex flex-wrap items-center gap-4">
+        {
+          variants.map((variant) => (
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-foreground-2 text-xs tracking-wide uppercase">
+                {variant}
+              </span>
+              <IconBoxComponent variant={variant}>
+                <Icon name="github" class="h-4 w-4" />
+              </IconBoxComponent>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

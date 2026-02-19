@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import DividerComponent from "@/components/ui/Divider.astro";
+
+export const metadata = {
+  title: "Divider",
+  description: "Simple dividers for content separation.",
+  category: "ui",
+  order: 6,
+};
+
+const variantOptions = ["default", "strong"];
+---
+
+<BaseLayout
+  title={`${metadata.title} - Components`}
+  description={metadata.description}
+>
+  <main class="mx-auto max-w-4xl space-y-10 px-6 py-16 md:px-12">
+    <header>
+      <h1
+        class="text-foreground-0 text-4xl font-extrabold uppercase"
+        style="font-family: 'Space Grotesk', sans-serif;"
+      >
+        {metadata.title}
+      </h1>
+    </header>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Orientation
+      </h2>
+      <div class="space-y-3">
+        <div class="space-y-2">
+          <span class="text-foreground-2 text-xs tracking-wide uppercase"
+            >Horizontal</span
+          >
+          <p class="text-foreground-1 text-sm">Top content</p>
+          <DividerComponent />
+          <p class="text-foreground-1 text-sm">Bottom content</p>
+        </div>
+        <div class="space-y-2">
+          <span class="text-foreground-2 text-xs tracking-wide uppercase"
+            >Vertical</span
+          >
+          <div class="flex items-center gap-3">
+            <p class="text-foreground-1 text-sm">Left</p>
+            <DividerComponent orientation="vertical" />
+            <p class="text-foreground-1 text-sm">Right</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Variants
+      </h2>
+      <div class="space-y-3">
+        {
+          variantOptions.map((variant) => (
+            <div class="space-y-2">
+              <p class="text-foreground-1 text-sm">{variant}</p>
+              <DividerComponent variant={variant} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

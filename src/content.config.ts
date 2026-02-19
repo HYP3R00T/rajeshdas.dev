@@ -16,17 +16,6 @@ const posts = defineCollection({
         }),
 });
 
-const components = defineCollection({
-    loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/components" }),
-    schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        category: z.enum(["ui", "layout", "form"]).default("ui"),
-        order: z.number().default(999),
-        draft: z.boolean().optional().default(false),
-    }),
-});
-
 const projects = defineCollection({
     loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/projects" }),
     schema: z.object({
@@ -40,4 +29,4 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { posts, components, projects };
+export const collections = { posts, projects };
