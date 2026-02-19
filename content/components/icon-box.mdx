@@ -1,0 +1,157 @@
+---
+title: "Icon Box"
+description: "A bordered square container for displaying icons consistently."
+category: "ui"
+order: 7
+---
+import IconBox from "@/components/ui/IconBox.astro";
+import { Icon } from "astro-icon/components";
+
+## Overview
+
+The IconBox component is a primitive container for icons. It provides a consistent bordered square that can be used throughout your application for featuring icons in a structured way.
+
+## Usage
+
+```astro
+---
+import IconBox from "@/components/ui/IconBox.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<IconBox>
+  <Icon name="github" class="h-5 w-5" />
+</IconBox>
+```
+
+## Sizes
+
+Three size options are available:
+
+### Small
+
+```astro
+<IconBox size="sm">
+  <Icon name="github" class="h-4 w-4" />
+</IconBox>
+```
+
+### Default
+
+```astro
+<IconBox size="default">
+  <Icon name="github" class="h-5 w-5" />
+</IconBox>
+```
+
+### Large
+
+```astro
+<IconBox size="lg">
+  <Icon name="github" class="h-6 w-6" />
+</IconBox>
+```
+
+## Variants
+
+### Default
+
+Subtle border using `border-border-stronger`:
+
+```astro
+<IconBox variant="default">
+  <Icon name="zap" class="h-5 w-5" />
+</IconBox>
+```
+
+### Strong
+
+More prominent border using `border-border-strong`:
+
+```astro
+<IconBox variant="strong">
+  <Icon name="zap" class="h-5 w-5" />
+</IconBox>
+```
+
+### Hoverable
+
+Adds hover effects for interactive contexts:
+
+```astro
+<IconBox variant="hoverable">
+  <Icon name="zap" class="h-5 w-5" />
+</IconBox>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Component size |
+| `variant` | `"default" \| "strong" \| "hoverable"` | `"default"` | Visual style and behavior |
+| `class` | `string` | `undefined` | Additional CSS classes |
+
+## Usage Examples
+
+### Hero Section
+
+```astro
+<div class="grid grid-cols-3 gap-4">
+  <div>
+    <IconBox variant="strong">
+      <Icon name="zap" class="h-5 w-5" />
+    </IconBox>
+    <h3>Automation</h3>
+  </div>
+  <div>
+    <IconBox variant="strong">
+      <Icon name="code" class="h-5 w-5" />
+    </IconBox>
+    <h3>Development</h3>
+  </div>
+  <div>
+    <IconBox variant="strong">
+      <Icon name="cloud" class="h-5 w-5" />
+    </IconBox>
+    <h3>Infrastructure</h3>
+  </div>
+</div>
+```
+
+### Social Links
+
+```astro
+{
+  links.map((link) => (
+    <a href={link.href} class="group">
+      <IconBox variant="hoverable" size="default">
+        <Icon name={link.icon} class="h-5 w-5" />
+      </IconBox>
+    </a>
+  ))
+}
+```
+
+### Contact Information
+
+```astro
+<div class="space-y-4">
+  <div class="flex gap-4">
+    <IconBox variant="strong" size="sm">
+      <Icon name="mail" class="h-4 w-4" />
+    </IconBox>
+    <div>
+      <p>Email</p>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </div>
+  </div>
+</div>
+```
+
+## Accessibility
+
+- Always pair with descriptive text or labels
+- Use appropriate icon names that convey meaning
+- The component is non-interactive; use wrapper elements for links/buttons
+- Ensure sufficient color contrast for the icons inside

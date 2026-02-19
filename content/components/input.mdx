@@ -1,0 +1,95 @@
+---
+title: "Input"
+description: "A flexible text input component for forms with multiple input types."
+category: "form"
+order: 3
+---
+import Input from "@/components/ui/Input.astro";
+import Label from "@/components/ui/Label.astro";
+
+## Overview
+
+The Input component is a primitive form control for collecting text-based data. It supports various input types and maintains consistent styling with your design system.
+
+## Usage
+
+```astro
+---
+import Input from "@/components/ui/Input.astro";
+---
+
+<Input type="text" placeholder="Enter text..." />
+```
+
+## Input Types
+
+The component supports standard HTML input types:
+
+```astro
+<Input type="text" placeholder="Text input" />
+<Input type="email" placeholder="Email address" />
+<Input type="password" placeholder="Password" />
+<Input type="number" placeholder="Number" />
+<Input type="tel" placeholder="Phone number" />
+<Input type="url" placeholder="Website URL" />
+<Input type="search" placeholder="Search..." />
+<Input type="date" />
+<Input type="time" />
+```
+
+## With Label
+
+Pair with the Label component for proper form structure:
+
+```astro
+---
+import Input from "@/components/ui/Input.astro";
+import Label from "@/components/ui/Label.astro";
+---
+
+<div>
+  <Label for="email" required>Email</Label>
+  <Input type="email" id="email" placeholder="you@example.com" required />
+</div>
+```
+
+## States
+
+### Default
+
+```astro
+<Input type="text" placeholder="Default state" />
+```
+
+### Disabled
+
+```astro
+<Input type="text" placeholder="Disabled" disabled />
+```
+
+### With Value
+
+```astro
+<Input type="text" value="Filled input" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search" \| "date" \| "time"` | `"text"` | HTML input type |
+| `placeholder` | `string` | `""` | Placeholder text |
+| `disabled` | `boolean` | `false` | Disables the input |
+| `required` | `boolean` | `false` | Marks input as required |
+| `value` | `string \| number` | `undefined` | Initial or current value |
+| `name` | `string` | `undefined` | Input name for form submission |
+| `id` | `string` | `undefined` | Unique identifier |
+| `class` | `string` | `undefined` | Additional CSS classes |
+
+## Accessibility
+
+- Always pair inputs with a `<Label>` component
+- Provide descriptive placeholders
+- Use appropriate `type` attributes for semantic HTML
+- The component manages focus states automatically
+- Disabled inputs are not keyboard accessible

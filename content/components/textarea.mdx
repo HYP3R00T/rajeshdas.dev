@@ -1,0 +1,95 @@
+---
+title: "Textarea"
+description: "A multi-line text input component for longer text entries."
+category: "form"
+order: 4
+---
+import Textarea from "@/components/ui/Textarea.astro";
+import Label from "@/components/ui/Label.astro";
+
+## Overview
+
+The Textarea component is a primitive form control for collecting multi-line text input. It maintains consistent styling with Input and other form elements.
+
+## Usage
+
+```astro
+---
+import Textarea from "@/components/ui/Textarea.astro";
+---
+
+<Textarea placeholder="Enter your message..." rows={6} />
+```
+
+## With Label
+
+Pair with the Label component for proper form structure:
+
+```astro
+---
+import Textarea from "@/components/ui/Textarea.astro";
+import Label from "@/components/ui/Label.astro";
+---
+
+<div>
+  <Label for="message" required>Message</Label>
+  <Textarea id="message" placeholder="Tell us more..." rows={6} required />
+</div>
+```
+
+## Row Sizes
+
+Control the height with the `rows` prop:
+
+```astro
+<Textarea rows={3} placeholder="Short message" />
+<Textarea rows={6} placeholder="Medium message" />
+<Textarea rows={10} placeholder="Longer message" />
+```
+
+## States
+
+### Default
+
+```astro
+<Textarea placeholder="Default state" />
+```
+
+### Disabled
+
+```astro
+<Textarea placeholder="Disabled" disabled />
+```
+
+### With Value
+
+```astro
+<Textarea value="Pre-filled content" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `rows` | `number` | `6` | Number of visible rows |
+| `placeholder` | `string` | `""` | Placeholder text |
+| `disabled` | `boolean` | `false` | Disables the textarea |
+| `required` | `boolean` | `false` | Marks textarea as required |
+| `value` | `string` | `undefined` | Initial or current text content |
+| `name` | `string` | `undefined` | Textarea name for form submission |
+| `id` | `string` | `undefined` | Unique identifier |
+| `class` | `string` | `undefined` | Additional CSS classes |
+
+## Notes
+
+- The component prevents resizing via the `resize-none` class
+- Use the `rows` prop to control initial height
+- Pair with a Label component for better accessibility
+- The textarea does not scroll to hide overflow; adjust rows as needed
+
+## Accessibility
+
+- Always pair textareas with a `<Label>` component
+- Provide descriptive placeholders
+- The component manages focus states automatically
+- Disabled textareas are not keyboard accessible

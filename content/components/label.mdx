@@ -1,0 +1,100 @@
+---
+title: "Label"
+description: "A form label component that associates text with form controls."
+category: "form"
+order: 5
+---
+import Label from "@/components/ui/Label.astro";
+import Input from "@/components/ui/Input.astro";
+
+## Overview
+
+The Label component is a primitive form control element. It provides semantic HTML labeling and consistent styling for form inputs.
+
+## Usage
+
+```astro
+---
+import Label from "@/components/ui/Label.astro";
+---
+
+<Label for="name">Name</Label>
+```
+
+## With Input
+
+Use the `for` prop to associate labels with inputs:
+
+```astro
+---
+import Label from "@/components/ui/Label.astro";
+import Input from "@/components/ui/Input.astro";
+---
+
+<div>
+  <Label for="email">Email</Label>
+  <Input type="email" id="email" placeholder="you@example.com" />
+</div>
+```
+
+## Required Fields
+
+Add the `required` prop to indicate required fields:
+
+```astro
+<Label for="name" required>Full Name</Label>
+<Label for="email" required>Email Address</Label>
+<Label for="bio">Bio (Optional)</Label>
+```
+
+When `required` is true, a red asterisk (`*`) is appended to the label text.
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `for` | `string` | `undefined` | Associates label with input's `id` |
+| `required` | `boolean` | `false` | Shows required indicator |
+| `class` | `string` | `undefined` | Additional CSS classes |
+
+## Form Structure
+
+The recommended form structure pairs Label with Input/Textarea:
+
+```astro
+---
+import Label from "@/components/ui/Label.astro";
+import Input from "@/components/ui/Input.astro";
+import Textarea from "@/components/ui/Textarea.astro";
+---
+
+<form>
+  <div>
+    <Label for="name" required>Name</Label>
+    <Input type="text" id="name" required />
+  </div>
+
+  <div>
+    <Label for="email" required>Email</Label>
+    <Input type="email" id="email" required />
+  </div>
+
+  <div>
+    <Label for="message" required>Message</Label>
+    <Textarea id="message" required />
+  </div>
+</form>
+```
+
+## Styling
+
+- Uses the `.text-section-label` utility class (uppercase, smaller, muted color)
+- Automatically adds `mb-3` for consistent spacing above form controls
+- Required indicator displays in red
+
+## Accessibility
+
+- The `for` attribute creates an association with form controls
+- Clicking the label focuses the associated input
+- Always use Label with form controls for semantic HTML
+- The red asterisk in required fields helps users identify mandatory fields
