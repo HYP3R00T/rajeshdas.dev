@@ -43,6 +43,9 @@ export async function getStaticPaths({
 }
 
 const { page, totalPages, featured } = Astro.props as PostsPageProps;
+const defaultPageSize = SITE.pageSize ?? 10;
+const pageSize = page.pageSize ?? defaultPageSize;
+const pageOffset = (page.currentPage - 1) * pageSize;
 ---
 
 <BaseLayout>
@@ -84,7 +87,7 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps;
         <div class="border-border space-y-0 border-t">
           {
             page.data.map((post, index) => (
-              <PostCard post={post} index={index} />
+              <PostCard post={post} index={pageOffset + index} />
             ))
           }
         </div>
