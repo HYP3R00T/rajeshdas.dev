@@ -14,36 +14,16 @@ const lastLink = last ?? lastUrl;
 import { Icon } from "astro-icon/components";
 ---
 
-<nav class="border-border flex items-center justify-between border-t pt-8">
-  <div class="flex items-center gap-2">
-    {
-      firstLink ? (
-        <a
-          href={firstLink}
-          class="border-border-strong hover:bg-foreground-0 border p-3 transition-colors hover:text-black"
-          aria-label="First page"
-        >
-          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
-        </a>
-      ) : (
-        <button
-          class="border-border text-foreground-3 border p-3"
-          disabled
-          aria-label="First page"
-        >
-          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
-        </button>
-      )
-    }
-
+<nav class="flex items-center justify-center gap-4">
+  <div class="flex items-center justify-center gap-2">
     {
       prevUrl ? (
         <a
           href={prevUrl}
-          class="border-border-strong hover:bg-foreground-0 border p-3 transition-colors hover:text-black"
+          class="border-border-strong hover:bg-foreground-0 hover:border-foreground-0 border p-3 transition-colors hover:text-black"
           aria-label="Previous page"
         >
-          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
+          <Icon name="arrow-left" class="h-5 w-5" />
         </a>
       ) : (
         <button
@@ -51,7 +31,7 @@ import { Icon } from "astro-icon/components";
           disabled
           aria-label="Previous page"
         >
-          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
+          <Icon name="arrow-left" class="h-5 w-5" />
         </button>
       )
     }
@@ -66,7 +46,7 @@ import { Icon } from "astro-icon/components";
       nextUrl ? (
         <a
           href={nextUrl}
-          class="border-border-strong hover:bg-foreground-0 border p-3 transition-colors hover:text-black"
+          class="border-border-strong hover:bg-foreground-0 hover:border-foreground-0 border p-3 transition-colors hover:text-black"
           aria-label="Next page"
         >
           <Icon name="arrow-right" class="h-5 w-5" />
@@ -76,26 +56,6 @@ import { Icon } from "astro-icon/components";
           class="border-border text-foreground-3 border p-3"
           disabled
           aria-label="Next page"
-        >
-          <Icon name="arrow-right" class="h-5 w-5" />
-        </button>
-      )
-    }
-
-    {
-      lastLink ? (
-        <a
-          href={lastLink}
-          class="border-border-strong hover:bg-foreground-0 border p-3 transition-colors hover:text-black"
-          aria-label="Last page"
-        >
-          <Icon name="arrow-right" class="h-5 w-5" />
-        </a>
-      ) : (
-        <button
-          class="border-border text-foreground-3 border p-3"
-          disabled
-          aria-label="Last page"
         >
           <Icon name="arrow-right" class="h-5 w-5" />
         </button>
