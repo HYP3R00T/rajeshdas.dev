@@ -32,8 +32,10 @@ const readTime = body ? estimateReadTime(body) : 5;
   imageAlt={coverAlt}
   contentType="Article"
 >
-  <div class="relative flex w-full justify-center bg-black">
-    <div class="">
+  <div
+    class="relative flex items-center justify-center bg-black px-4 py-12 md:px-12"
+  >
+    <div class="mx-auto w-full max-w-7xl">
       <!-- Back Navigation -->
       <div class="flex h-12 items-center">
         <a
@@ -46,33 +48,29 @@ const readTime = body ? estimateReadTime(body) : 5;
       </div>
 
       <!-- Hero Image -->
-      <div class="mx-auto px-6 pt-12 md:px-12">
-        <div class="overflow-hidden">
-          <Image
-            src={cover}
-            alt={coverAlt || title}
-            class="h-auto w-full grayscale"
-            widths={[800, 1200, 1600]}
-            sizes="(max-width: 1400px) 100vw, 1400px"
-          />
-        </div>
+      <div class="overflow-hidden">
+        <Image
+          src={cover}
+          alt={coverAlt || title}
+          class="h-auto w-full grayscale"
+          widths={[800, 1200, 1600]}
+          sizes="(max-width: 1400px) 100vw, 1400px"
+        />
       </div>
 
       <!-- Metadata -->
-      <div class="mx-auto px-6 pt-8 md:px-12">
-        <div class="text-foreground-2 flex items-center gap-4 text-xs">
-          <time datetime={pubDatetime.toISOString()}>
-            {formatDateUppercase(pubDatetime)}
-          </time>
-          <span>•</span>
-          <span>{readTime} MIN</span>
-          <span>•</span>
-          <span class="uppercase">{SITE.author}</span>
-        </div>
+      <div class="text-foreground-2 flex items-center gap-4 text-xs">
+        <time datetime={pubDatetime.toISOString()}>
+          {formatDateUppercase(pubDatetime)}
+        </time>
+        <span>•</span>
+        <span>{readTime} MIN</span>
+        <span>•</span>
+        <span class="uppercase">{SITE.author}</span>
       </div>
 
       <!-- Title & Description -->
-      <div class="mx-auto px-6 pt-8 md:px-12">
+      <div class="">
         <h1
           class="text-foreground-0 mb-6 text-4xl uppercase md:text-5xl"
           style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1;"
@@ -106,7 +104,7 @@ const readTime = body ? estimateReadTime(body) : 5;
       </div>
 
       <!-- Article Content -->
-      <article class="mx-auto px-6 py-16 md:px-12">
+      <article class="">
         <div class="prose prose-invert max-w-none">
           <slot />
         </div>
