@@ -7,16 +7,6 @@ const allProjects = await getCollection("projects");
 const projects = allProjects
   .filter((p) => !p.data.draft)
   .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
-
-// Icons mapping for projects
-const iconNames = [
-  "github", // TODO: Add terminal.svg icon
-  "kubernetes",
-  "arrow-up",
-  "download",
-  "github", // TODO: Add code.svg icon
-  "github", // TODO: Add lock.svg icon
-];
 ---
 
 <section class="stripe-pattern relative bg-black px-6 py-32 md:px-12">
@@ -40,7 +30,7 @@ const iconNames = [
               <div class="mb-8 flex items-start justify-between">
                 <div class="border-border-strong border p-4">
                   <Icon
-                    name={iconNames[index] || iconNames[0]}
+                    name={project.data.icon || "github"}
                     class="h-8 w-8 text-white"
                   />
                 </div>

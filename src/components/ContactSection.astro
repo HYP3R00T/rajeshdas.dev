@@ -2,6 +2,8 @@
 // Contact Section Component
 // Displays contact form and contact information with social links
 import { Icon } from "astro-icon/components";
+import { footerSocialLinks } from "@data/config";
+import type { FooterSocialLink } from "@/lib/types";
 ---
 
 <section class="stripe-pattern relative bg-black px-6 py-32 md:px-12">
@@ -86,47 +88,21 @@ import { Icon } from "astro-icon/components";
         <div class="border-border border p-8">
           <div class="text-section-label mb-6">Connect</div>
           <div class="grid grid-cols-2 gap-4">
-            {/* GitHub */}
-            <a
-              href="https://github.com/HYP3R00T"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="border-border-strong border p-4 transition-colors hover:bg-white hover:text-black"
-              title="GitHub"
-            >
-              <Icon name="github" class="h-6 w-6" />
-            </a>
-
-            {/* LinkedIn */}
-            <a
-              href="https://linkedin.com/in/hyp3r00t"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="border-border-strong border p-4 transition-colors hover:bg-white hover:text-black"
-              title="LinkedIn"
-            >
-              <Icon name="linkedin" class="h-6 w-6" />
-            </a>
-
-            {/* Twitter */}
-            <a
-              href="https://twitter.com/HYP3R00T"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="border-border-strong border p-4 transition-colors hover:bg-white hover:text-black"
-              title="Twitter"
-            >
-              <Icon name="x" class="h-6 w-6" />
-            </a>
-
-            {/* Email */}
-            <a
-              href="mailto:hello@rajeshdas.dev"
-              class="border-border-strong border p-4 transition-colors hover:bg-white hover:text-black"
-              title="Email"
-            >
-              <Icon name="mail" class="h-6 w-6" />
-            </a>
+            {
+              footerSocialLinks.map((link: FooterSocialLink) => (
+                <a
+                  href={link.href}
+                  target={link.name !== "email" ? "_blank" : undefined}
+                  rel={
+                    link.name !== "email" ? "noopener noreferrer" : undefined
+                  }
+                  class="border-border-strong border p-4 transition-colors hover:bg-white hover:text-black"
+                  title={link.linkTitle}
+                >
+                  <Icon name={link.name} class="size-6" />
+                </a>
+              ))
+            }
           </div>
         </div>
       </div>
