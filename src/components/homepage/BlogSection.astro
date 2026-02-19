@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BlogPostCard from "@/components/homepage/BlogPostCard.astro";
+import PostCard from "@/components/post/PostCard.astro";
 
 // Get all posts, filter drafts, sort by date (newest first)
 const allPosts = await getCollection("posts");
@@ -23,7 +23,7 @@ const posts = allPosts
     </div>
 
     <div class="border-border space-y-0 border-t">
-      {posts.map((post, index) => <BlogPostCard post={post} index={index} />)}
+      {posts.map((post, index) => <PostCard post={post} index={index} />)}
     </div>
 
     <div class="mt-12 text-center">
