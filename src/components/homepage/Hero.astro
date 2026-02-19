@@ -1,6 +1,4 @@
 ---
-// Terminal Hero Section Component
-// Displays the main hero section with terminal command and feature grid
 import { Icon } from "astro-icon/components";
 import IconBox from "@/components/ui/IconBox.astro";
 
@@ -95,52 +93,6 @@ const attributes = [
       </div>
     </div>
 
-    <!-- CLI Command Box -->
-    <!-- <div class="mt-20 mb-20">
-      <div class="text-section-label mb-3">Try the CLI</div>
-      <div
-        class="group border-border-strong relative max-w-3xl border bg-black"
-      >
-        <div class="flex items-center justify-between p-6">
-          <code class="font-mono text-lg tracking-tight text-foreground-0 md:text-2xl">
-            $ uvx rajesh-das
-          </code>
-          <button
-            id="copy-button"
-            class="border-border-strong border p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-foreground-0 hover:text-black"
-            aria-label="Copy command"
-            title="Copy to clipboard"
-          >
-            <Icon id="copy-icon" name="copy" class="h-5 w-5" />
-            <Icon id="check-icon" name="plus" class="hidden h-5 w-5" />
-          </button>
-        </div>
-      </div>
-      <p class="text-foreground-2 mt-4 max-w-3xl text-xs">
-        Experience my portfolio directly in your terminal. Run the command above
-        using uvx to explore my work, skills, and experience in an interactive
-        CLI.
-      </p>
-    </div> -->
-
-    <!-- Feature Grid -->
-    <!-- <div
-      class="border-border grid max-w-5xl grid-cols-1 gap-px border md:grid-cols-3"
-    >
-      <div class="border-border border-r bg-black p-8 last:border-r-0">
-        <div class="text-section-label mb-3">CLOUD EXPERTISE</div>
-        <div class="text-sm text-foreground-0">AWS • Azure • GCP</div>
-      </div>
-      <div class="border-border border-r bg-black p-8 last:border-r-0">
-        <div class="text-section-label mb-3">CONTAINER ORCHESTRATION</div>
-        <div class="text-sm text-foreground-0">Kubernetes • Docker</div>
-      </div>
-      <div class="border-border border-r bg-black p-8 last:border-r-0">
-        <div class="text-section-label mb-3">INFRASTRUCTURE AS CODE</div>
-        <div class="text-sm text-foreground-0">Terraform • Ansible</div>
-      </div>
-    </div> -->
-
     <!-- Scroll Indicator -->
     <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
       <div
@@ -151,29 +103,3 @@ const attributes = [
     </div>
   </div>
 </section>
-
-<!-- <script>
-  // Copy to clipboard functionality
-  const copyButton = document.getElementById("copy-button");
-  const copyIcon = document.getElementById("copy-icon");
-  const checkIcon = document.getElementById("check-icon");
-  const command = "uvx rajesh-das";
-
-  if (copyButton && copyIcon && checkIcon) {
-    copyButton.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(command);
-        // Show check icon
-        copyIcon.classList.add("hidden");
-        checkIcon.classList.remove("hidden");
-        // Reset after 2 seconds
-        setTimeout(() => {
-          copyIcon.classList.remove("hidden");
-          checkIcon.classList.add("hidden");
-        }, 2000);
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
-    });
-  }
-</script> -->
