@@ -19,7 +19,11 @@ export async function getStaticPaths() {
 }
 const { entry, headings } = Astro.props as PostDetailPageProps;
 const { Content } = await render(entry);
-const idAndData = { headings, ...entry.data };
+const idAndData = {
+  headings,
+  body: entry.body,
+  ...entry.data,
+};
 ---
 
 <PostLayout {...idAndData}>

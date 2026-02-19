@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import type { PostsPageProps } from "@/lib/types";
 import Pagination from "@/components/post/Pagination.astro";
 import PostCard from "@/components/post/PostCard.astro";
+import FeaturedPostCard from "@/components/post/FeaturedPostCard.astro";
 import { SITE } from "@data/config";
 
 export async function getStaticPaths({
@@ -40,28 +41,58 @@ export async function getStaticPaths({
   }));
 }
 
-const { page, totalPages } = Astro.props as PostsPageProps;
+const { page, totalPages, featured } = Astro.props as PostsPageProps;
 ---
 
 <BaseLayout>
-  <div class="container">
-    <div class="flex flex-col gap-8">
-      <main class="">
-        <div class="mt-4 flex flex-col gap-6">
-          {page.data.map((post) => <PostCard post={post} />)}
-        </div>
+  <section class="relative bg-black px-6 py-32 md:px-12">
+    <div class="mx-auto max-w-350">
+      <div class="mb-20">
+        <div class="text-section-label mb-4">Blog</div>
+        <h1 class="text-section-heading mb-8 text-white">
+          ARTICLES &<br />INSIGHTS
+        </h1>
+        <p
+          class="text-foreground-1 max-w-2xl text-sm tracking-wide uppercase md:text-base"
+        >
+          Thoughts and learnings on DevOps, infrastructure, automation, cloud
+          architecture, and building reliable systems at scale.
+        </p>
+      </div>
 
-        <div class="mt-8 mb-12 px-2">
-          <Pagination
-            currentPage={page.currentPage}
-            prevUrl={page.url.prev}
-            nextUrl={page.url.next}
-            first={page.url.first}
-            last={page.url.last}
-            totalPages={totalPages}
-          />
+      {/* Latest Article */}
+      {
+        featured && page.currentPage === 1 && (
+          <div class="mb-20">
+            <div class="text-section-label mb-4">Latest Article</div>
+            <FeaturedPostCard post={featured} />
+          </div>
+        )
+      }
+
+      {/* All Articles */}
+      <div class="mb-20">
+        <div class="text-section-label mb-4">All Articles</div>
+        <div class="border-border space-y-0 border-t">
+          {
+            page.data.map((post, index) => (
+              <PostCard post={post} index={index} />
+            ))
+          }
         </div>
-      </main>
+      </div>
+
+      {/* Pagination */}
+      <div class="px-2">
+        <Pagination
+          currentPage={page.currentPage}
+          prevUrl={page.url.prev}
+          nextUrl={page.url.next}
+          first={page.url.first}
+          last={page.url.last}
+          totalPages={totalPages}
+        />
+      </div>
     </div>
-  </div>
+  </section>
 </BaseLayout>
