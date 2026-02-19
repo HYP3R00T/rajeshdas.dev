@@ -4,6 +4,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 import { SITE } from "@data/config";
+import Badge from "@/components/ui/Badge.astro";
+import Divider from "@/components/ui/Divider.astro";
 
 const {
   title,
@@ -90,11 +92,7 @@ const readTime = body ? estimateReadTime(body) : 5;
           {
             tags &&
               tags.length > 0 &&
-              tags.map((tag: string) => (
-                <span class="border-border-strong text-foreground-2 border px-3 py-1 text-xs tracking-wide">
-                  {tag}
-                </span>
-              ))
+              tags.map((tag: string) => <Badge variant="default">{tag}</Badge>)
           }
         </div>
         <button
