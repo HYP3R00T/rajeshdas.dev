@@ -1,0 +1,60 @@
+---
+import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
+import type { PostCardProps } from "@/lib/types";
+import { Image } from "astro:assets";
+
+const { post } = Astro.props as PostCardProps;
+---
+
+<div
+  class="border-border group hover:bg-background-hover border bg-black transition-colors"
+>
+  <a href={`/post/${post.id}/`} class="grid md:grid-cols-2">
+    {/* Image */}
+    <div class="aspect-video overflow-hidden md:aspect-auto">
+      <Image
+        src={post.data.cover}
+        alt={post.data.coverAlt || post.data.title}
+        class="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+        widths={[400, 600, 800]}
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+    </div>
+
+    {/* Content */}
+    <div class="flex flex-col justify-between p-8 md:p-12">
+      <div>
+        <div class="text-foreground-2 mb-4 flex items-center gap-4 text-xs">
+          <time datetime={post.data.pubDatetime.toISOString()}>
+            {formatDateUppercase(post.data.pubDatetime)}
+          </time>
+          <span>•</span>
+          <span>{estimateReadTime(post.data.description)} MIN</span>
+        </div>
+
+        <h2
+          class="group-hover:text-foreground-muted mb-4 text-2xl text-white uppercase transition-colors md:text-3xl"
+          style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+        >
+          {post.data.title}
+        </h2>
+
+        <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
+          {post.data.description}
+        </p>
+      </div>
+
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="border-border-strong text-foreground-2 border px-3 py-1 text-xs tracking-wide">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </a>
+</div>

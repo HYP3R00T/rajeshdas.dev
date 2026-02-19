@@ -1,38 +1,69 @@
 ---
-import { formatDate } from "@/lib/utils";
+import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import type { PostCardProps } from "@/lib/types";
+import { Icon } from "astro-icon/components";
 
-const { post } = Astro.props as PostCardProps;
+const { post, index } = Astro.props as PostCardProps & { index?: number };
 ---
 
-<article
-  class="group border-border bg-background-2 hover:bg-background-1 rounded-xl border p-6 transition-colors duration-200"
+<a
+  href={`/post/${post.id}/`}
+  class="border-border group hover:bg-background-hover block border-b px-6 py-8 transition-colors md:py-12"
 >
-  <a href={`/post/${post.id}/`} class="block space-y-3">
-    <time
-      class="text-foreground-2 block text-xs font-medium tracking-wide uppercase"
-    >
-      {formatDate(post.data.pubDatetime)}
-    </time>
-
-    <h2 class="text-foreground-0 mt-1 text-xl leading-tight font-bold">
-      {post.data.title}
-    </h2>
-
-    <p class="text-foreground-2 text-base leading-relaxed">
-      {post.data.description}
-    </p>
-
-    {
-      post.data.tags && post.data.tags.length > 0 && (
-        <div class="mt-3 flex flex-wrap gap-2">
-          {post.data.tags.map((t: string) => (
-            <span class="bg-accent/10 border-accent/30 text-accent rounded-full border px-2 py-0.5 text-xs">
-              #{t}
-            </span>
-          ))}
+  <div
+    class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+  >
+    <div class="grow">
+      <div class="mb-4 flex items-center gap-4">
+        {
+          index !== undefined && (
+            <>
+              <span class="text-foreground-3 text-sm">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class="text-foreground-3">•</span>
+            </>
+          )
+        }
+        <div class="text-foreground-2 flex items-center gap-4 text-xs">
+          <time datetime={post.data.pubDatetime.toISOString()}>
+            {formatDateUppercase(post.data.pubDatetime)}
+          </time>
+          <span>•</span>
+          <span>{estimateReadTime(post.data.description)} MIN</span>
         </div>
-      )
-    }
-  </a>
-</article>
+      </div>
+
+      <h3
+        class="group-hover:text-foreground-muted mb-3 text-xl text-white transition-colors md:text-2xl"
+        style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
+      >
+        {post.data.title}
+      </h3>
+
+      <p class="text-foreground-1 mb-4 max-w-2xl text-sm leading-relaxed">
+        {post.data.description}
+      </p>
+
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="border-border-strong text-foreground-2 border px-2 py-1 text-xs tracking-wide">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="shrink-0">
+      <div
+        class="border-border-strong border p-3 transition-colors group-hover:bg-white group-hover:text-black"
+      >
+        <Icon name="arrow-up" class="h-6 w-6 rotate-45" />
+      </div>
+    </div>
+  </div>
+</a>

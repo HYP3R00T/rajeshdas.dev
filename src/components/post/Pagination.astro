@@ -11,88 +11,94 @@ const {
 } = Astro.props;
 const firstLink = first ?? firstUrl;
 const lastLink = last ?? lastUrl;
-import Button from "@/components/ui/Button.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<nav class="flex items-center justify-between">
+<nav class="border-border flex items-center justify-between border-t pt-8">
   <div class="flex items-center gap-2">
     {
       firstLink ? (
-        <Button
+        <a
           href={firstLink}
-          variant="outline"
-          size="icon"
+          class="border-border-strong border p-3 transition-colors hover:bg-white hover:text-black"
           aria-label="First page"
         >
-          <Icon name="arrow-right" class="size-5 -rotate-180" />
-        </Button>
+          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
+        </a>
       ) : (
-        <Button variant="outline" size="icon" disabled aria-label="First page">
-          <Icon name="arrow-right" class="size-5 -rotate-180" />
-        </Button>
+        <button
+          class="border-border text-foreground-3 border p-3"
+          disabled
+          aria-label="First page"
+        >
+          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
+        </button>
       )
     }
 
     {
       prevUrl ? (
-        <Button
+        <a
           href={prevUrl}
-          variant="outline"
-          size="icon"
+          class="border-border-strong border p-3 transition-colors hover:bg-white hover:text-black"
           aria-label="Previous page"
         >
-          <Icon name="arrow-right" class="size-5 -rotate-180" />
-        </Button>
+          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
+        </a>
       ) : (
-        <Button
-          variant="outline"
-          size="icon"
+        <button
+          class="border-border text-foreground-3 border p-3"
           disabled
           aria-label="Previous page"
         >
-          <Icon name="arrow-right" class="size-5 -rotate-180" />
-        </Button>
+          <Icon name="arrow-right" class="h-5 w-5 rotate-180" />
+        </button>
       )
     }
   </div>
 
   <div class="text-foreground-2 text-sm font-medium">
-    Page {currentPage} / {totalPages}
+    {currentPage} / {totalPages}
   </div>
 
   <div class="flex items-center gap-2">
     {
       nextUrl ? (
-        <Button
+        <a
           href={nextUrl}
-          variant="outline"
-          size="icon"
+          class="border-border-strong border p-3 transition-colors hover:bg-white hover:text-black"
           aria-label="Next page"
         >
-          <Icon name="arrow-right" class="size-5" />
-        </Button>
+          <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
       ) : (
-        <Button variant="outline" size="icon" disabled aria-label="Next page">
-          <Icon name="arrow-right" class="size-5" />
-        </Button>
+        <button
+          class="border-border text-foreground-3 border p-3"
+          disabled
+          aria-label="Next page"
+        >
+          <Icon name="arrow-right" class="h-5 w-5" />
+        </button>
       )
     }
 
     {
       lastLink ? (
-        <Button
+        <a
           href={lastLink}
-          variant="outline"
-          size="icon"
+          class="border-border-strong border p-3 transition-colors hover:bg-white hover:text-black"
           aria-label="Last page"
         >
-          <Icon name="arrow-right" class="size-5" />
-        </Button>
+          <Icon name="arrow-right" class="h-5 w-5" />
+        </a>
       ) : (
-        <Button variant="outline" size="icon" disabled aria-label="Last page">
-          <Icon name="arrow-right" class="size-5" />
-        </Button>
+        <button
+          class="border-border text-foreground-3 border p-3"
+          disabled
+          aria-label="Last page"
+        >
+          <Icon name="arrow-right" class="h-5 w-5" />
+        </button>
       )
     }
   </div>
