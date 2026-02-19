@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type DividerVariant = "default" | "strong";
+type DividerOrientation = "horizontal" | "vertical";
+
+interface DividerProps extends HTMLAttributes<"div"> {
+  variant?: DividerVariant;
+  orientation?: DividerOrientation;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  orientation = "horizontal",
+  class: className,
+  ...rest
+} = Astro.props as DividerProps;
+
+const variantClasses: Record<DividerVariant, string> = {
+  default: "border-border",
+  strong: "border-border-strong",
+};
+
+const orientationClasses: Record<DividerOrientation, string> = {
+  horizontal: "border-t",
+  vertical: "border-l",
+};
+
+const baseClasses = orientation === "horizontal" ? "w-full" : "h-full min-h-6";
+
+const classes = [
+  baseClasses,
+  "border",
+  variantClasses[variant] ?? variantClasses.default,
+  orientationClasses[orientation] ?? orientationClasses.horizontal,
+  className?.trim(),
+]
+  .filter(Boolean)
+  .join(" ");
+---

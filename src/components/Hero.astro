@@ -2,6 +2,7 @@
 // Terminal Hero Section Component
 // Displays the main hero section with terminal command and feature grid
 import { Icon } from "astro-icon/components";
+import IconBox from "@/components/ui/IconBox.astro";
 
 const attributes = [
   {
@@ -72,12 +73,12 @@ const attributes = [
             attributes.map((attribute) => (
               <div class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors">
                 <div class="flex gap-4">
-                  <div class="border-border-stronger flex h-12 w-12 shrink-0 items-center justify-center border">
+                  <IconBox variant="strong">
                     <Icon
                       name={attribute.icon}
                       class="text-foreground-0 h-5 w-5"
                     />
-                  </div>
+                  </IconBox>
                   <div>
                     <h3 class="font-display text-foreground-0 mb-2 text-base tracking-wide uppercase">
                       {attribute.title}

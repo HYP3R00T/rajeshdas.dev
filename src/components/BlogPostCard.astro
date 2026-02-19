@@ -2,6 +2,8 @@
 import type { PostEntry } from "@/lib/types";
 import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
+import Badge from "@/components/ui/Badge.astro";
+import IconBox from "@/components/ui/IconBox.astro";
 
 interface Props {
   post: PostEntry;
@@ -45,12 +47,9 @@ const { post, index } = Astro.props;
     </div>
 
     <div class="shrink-0">
-      <div
-        class="border-border-strong group-hover:bg-foreground-0 border p-3 transition-colors group-hover:text-black"
-      >
-        <!-- TODO: Replace with appropriate icon (cloud-download or similar) -->
+      <IconBox variant="strong">
         <Icon name="arrow-up-right" class="h-6 w-6" />
-      </div>
+      </IconBox>
     </div>
   </div>
 </a>
