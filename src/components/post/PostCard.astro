@@ -2,6 +2,8 @@
 import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import type { PostCardProps } from "@/lib/types";
 import { Icon } from "astro-icon/components";
+import Badge from "@/components/ui/Badge.astro";
+import IconBox from "@/components/ui/IconBox.astro";
 
 const { post, index } = Astro.props as PostCardProps & { index?: number };
 ---
@@ -49,20 +51,16 @@ const { post, index } = Astro.props as PostCardProps & { index?: number };
         post.data.tags && post.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag: string) => (
-              <span class="border-border-strong text-foreground-2 border px-2 py-1 text-xs tracking-wide">
-                {tag}
-              </span>
+              <Badge variant="default">{tag}</Badge>
             ))}
           </div>
         )
       }
-    </div>
 
-    <div class="shrink-0">
-      <div
-        class="border-border-strong group-hover:bg-foreground-0 border p-3 transition-colors group-hover:text-black"
-      >
-        <Icon name="arrow-up" class="h-6 w-6 rotate-45" />
+      <div class="shrink-0">
+        <IconBox variant="strong">
+          <Icon name="arrow-up" class="h-6 w-6 rotate-45" />
+        </IconBox>
       </div>
     </div>
   </div>
