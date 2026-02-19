@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BlogPostCard from "@/components/BlogPostCard.astro";
+import BlogPostCard from "@/components/homepage/BlogPostCard.astro";
 
 // Get all posts, filter drafts, sort by date (newest first)
 const allPosts = await getCollection("posts");
