@@ -33,6 +33,7 @@ const projects = defineCollection({
         title: z.string(),
         description: z.string(),
         technologies: z.array(z.string()).default([]),
+        icon: z.string().optional(),
         featured: z.boolean().optional().default(false),
         draft: z.boolean().optional().default(false),
         order: z.number().default(999),
