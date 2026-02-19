@@ -3,6 +3,7 @@ import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import type { PostCardProps } from "@/lib/types";
 import { Icon } from "astro-icon/components";
 import Badge from "@/components/ui/Badge.astro";
+import { Image } from "astro:assets";
 
 const { post, index } = Astro.props as PostCardProps & { index?: number };
 const readTime = estimateReadTime(post.body || post.data.description);
@@ -10,10 +11,17 @@ const readTime = estimateReadTime(post.body || post.data.description);
 
 <a
   href={`/post/${post.id}/`}
-  class="border-border group hover:bg-background-hover block border-b px-6 py-8 transition-colors md:py-12"
+  class="border-border group hover:bg-background-hover block border-b transition-colors"
 >
   <div class="flex">
-    <div class="flex grow flex-col gap-4">
+    <div class="aspect-video max-w-md shrink-0 overflow-hidden">
+      <Image
+        src={post.data.cover}
+        alt={post.data.coverAlt || post.data.title}
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+    <div class="flex grow flex-col gap-4 px-6 py-8 md:py-12">
       <div class="flex items-center gap-4">
         {
           index !== undefined && (
@@ -55,7 +63,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
         )
       }
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center px-6 py-8 md:py-12">
       <div
         class="border-border-stronger group-hover:bg-foreground-0 group-hover:text-background-0 hover:bg-foreground-0 hover:text-background-0 group-hover:border-foreground-0 flex h-12 w-12 shrink-0 items-center justify-center border transition-colors"
       >
