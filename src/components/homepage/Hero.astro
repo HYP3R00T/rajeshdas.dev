@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import IconBox from "@/components/ui/IconBox.astro";
+import Badge from "@/components/ui/Badge.astro";
 
 const attributes = [
   {
@@ -25,16 +26,12 @@ const attributes = [
 ---
 
 <section
-  class="stripe-pattern-dense relative flex items-center justify-center px-4 py-16 md:px-12"
+  class="stripe-pattern-dense relative flex items-center justify-center px-4 py-12 md:px-12"
 >
   <div class="mx-auto w-full max-w-7xl">
     <div class="mb-20 space-y-8">
       <!-- Badge -->
-      <div
-        class="border-foreground-0 bg-foreground-0 inline-block border px-3 py-1.5 font-mono text-xs font-medium tracking-wider text-black"
-      >
-        DEVOPS ENGINEER
-      </div>
+      <Badge variant="accent">DevOps Engineer</Badge>
 
       <!-- Main Grid Layout -->
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
