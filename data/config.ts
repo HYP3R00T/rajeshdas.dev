@@ -66,13 +66,13 @@ export const footerSocialLinks: FooterSocialLink[] = [
         linkTitle: "Connect with me on LinkedIn",
     },
     {
-        name: "twitter",
-        href: "https://twitter.com/HYP3R00T",
-        label: "Twitter",
-        linkTitle: "Follow me on Twitter",
+        name: "x",
+        href: "https://x.com/HYP3R00T",
+        label: "X",
+        linkTitle: "Follow me on X",
     },
     {
-        name: "email",
+        name: "mail",
         href: "mailto:hello@rajeshdas.dev",
         label: "Email",
         linkTitle: "Send me an email",
