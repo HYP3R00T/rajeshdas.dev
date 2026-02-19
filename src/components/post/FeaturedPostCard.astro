@@ -16,7 +16,7 @@ const { post } = Astro.props as PostCardProps;
       <Image
         src={post.data.cover}
         alt={post.data.coverAlt || post.data.title}
-        class="h-full w-full object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+        class="h-full w-full object-cover"
         widths={[400, 600, 800]}
         sizes="(max-width: 768px) 100vw, 50vw"
       />
