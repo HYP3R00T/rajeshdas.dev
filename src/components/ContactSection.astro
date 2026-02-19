@@ -7,10 +7,10 @@ import type { FooterSocialLink } from "@/lib/types";
 ---
 
 <section class="stripe-pattern relative bg-black px-6 py-32 md:px-12">
-  <div class="mx-auto max-w-350">
+  <div class="mx-auto max-w-7xl">
     <div class="mb-20">
       <div class="text-section-label mb-4">Get In Touch</div>
-      <h2 class="text-section-heading mb-8 text-white">
+      <h2 class="text-section-heading text-foreground-0 mb-8">
         LET'S WORK<br />TOGETHER
       </h2>
       <p
@@ -30,7 +30,7 @@ import type { FooterSocialLink } from "@/lib/types";
             type="text"
             id="name"
             name="name"
-            class="border-border-strong placeholder:text-background-input w-full border bg-transparent px-4 py-4 text-sm text-white transition-colors focus:border-white focus:outline-none"
+            class="border-border-strong placeholder:text-background-input text-foreground-0 focus:border-foreground-0 w-full border bg-transparent px-4 py-4 text-sm transition-colors focus:outline-none"
             placeholder="Your name"
             required
           />
@@ -44,7 +44,7 @@ import type { FooterSocialLink } from "@/lib/types";
             type="email"
             id="email"
             name="email"
-            class="border-border-strong placeholder:text-background-input w-full border bg-transparent px-4 py-4 text-sm text-white transition-colors focus:border-white focus:outline-none"
+            class="border-border-strong placeholder:text-background-input text-foreground-0 focus:border-foreground-0 w-full border bg-transparent px-4 py-4 text-sm transition-colors focus:outline-none"
             placeholder="you@example.com"
             required
           />
@@ -58,14 +58,14 @@ import type { FooterSocialLink } from "@/lib/types";
             id="message"
             name="message"
             rows={6}
-            class="border-border-strong placeholder:text-background-input w-full resize-none border bg-transparent px-4 py-4 text-sm text-white transition-colors focus:border-white focus:outline-none"
+            class="border-border-strong placeholder:text-background-input text-foreground-0 focus:border-foreground-0 w-full resize-none border bg-transparent px-4 py-4 text-sm transition-colors focus:outline-none"
             placeholder="Tell me about your project..."
             required></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full border border-white bg-white px-8 py-4 text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black hover:text-white"
+          class="border-foreground-0 bg-foreground-0 hover:text-foreground-0 w-full border px-8 py-4 text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black"
         >
           Send Message
         </button>
@@ -78,7 +78,7 @@ import type { FooterSocialLink } from "@/lib/types";
           <div class="text-section-label mb-4">Email</div>
           <a
             href="mailto:hello@rajeshdas.dev"
-            class="hover:text-foreground-1 text-xl break-all text-white transition-colors"
+            class="hover:text-foreground-1 text-foreground-0 text-xl break-all transition-colors"
           >
             hello@rajeshdas.dev
           </a>
@@ -96,7 +96,7 @@ import type { FooterSocialLink } from "@/lib/types";
                   rel={
                     link.name !== "email" ? "noopener noreferrer" : undefined
                   }
-                  class="border-border-strong border p-4 transition-colors hover:bg-white hover:text-black"
+                  class="border-border-strong hover:bg-foreground-0 border p-4 transition-colors hover:text-black"
                   title={link.linkTitle}
                 >
                   <Icon name={link.name} class="size-6" />

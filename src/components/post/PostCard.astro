@@ -35,7 +35,7 @@ const { post, index } = Astro.props as PostCardProps & { index?: number };
       </div>
 
       <h3
-        class="group-hover:text-foreground-muted mb-3 text-xl text-white transition-colors md:text-2xl"
+        class="group-hover:text-foreground-muted text-foreground-0 mb-3 text-xl transition-colors md:text-2xl"
         style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
       >
         {post.data.title}
@@ -60,7 +60,7 @@ const { post, index } = Astro.props as PostCardProps & { index?: number };
 
     <div class="shrink-0">
       <div
-        class="border-border-strong border p-3 transition-colors group-hover:bg-white group-hover:text-black"
+        class="border-border-strong group-hover:bg-foreground-0 border p-3 transition-colors group-hover:text-black"
       >
         <Icon name="arrow-up" class="h-6 w-6 rotate-45" />
       </div>

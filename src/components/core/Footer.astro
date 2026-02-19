@@ -10,7 +10,7 @@ import { footerNavigation, footerSocialLinks } from "@data/config";
       <!-- Site Info -->
       <div>
         <h3
-          class="mb-4 text-2xl text-white"
+          class="text-foreground-0 mb-4 text-2xl"
           style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
         >
           rajesh-das
@@ -31,7 +31,7 @@ import { footerNavigation, footerSocialLinks } from "@data/config";
               footerNavigation.map((item) => (
                 <a
                   href={item.href}
-                  class="text-foreground-1 block text-sm transition-colors hover:text-white"
+                  class="text-foreground-1 hover:text-foreground-0 block text-sm transition-colors"
                   target={item.blank ? "_blank" : undefined}
                   rel={item.blank ? "noopener noreferrer" : undefined}
                 >
@@ -50,7 +50,7 @@ import { footerNavigation, footerSocialLinks } from "@data/config";
               footerSocialLinks.map((link) => (
                 <a
                   href={link.href}
-                  class="text-foreground-1 block text-sm transition-colors hover:text-white"
+                  class="text-foreground-1 hover:text-foreground-0 block text-sm transition-colors"
                   title={link.linkTitle}
                   target={link.name !== "email" ? "_blank" : undefined}
                   rel={
@@ -84,7 +84,7 @@ import { footerNavigation, footerSocialLinks } from "@data/config";
 <!-- Scroll to Top Button -->
 <button
   id="scroll-to-top"
-  class="fixed right-8 bottom-8 z-40 hidden border border-white bg-white p-4 text-black transition-colors hover:bg-black hover:text-white"
+  class="border-foreground-0 bg-foreground-0 hover:text-foreground-0 fixed right-8 bottom-8 z-40 hidden border p-4 text-black transition-colors hover:bg-black"
   aria-label="Scroll to top"
   title="Back to top"
 >

@@ -24,7 +24,7 @@ const { navItems } = Astro.props as Props;
             href={item.href}
             target={item.blank ? "_blank" : undefined}
             rel={item.blank ? "noopener noreferrer" : undefined}
-            class="text-foreground-1 block text-sm tracking-wider uppercase transition-colors hover:text-white"
+            class="text-foreground-1 hover:text-foreground-0 block text-sm tracking-wider uppercase transition-colors"
           >
             {item.label}
           </a>
@@ -32,7 +32,7 @@ const { navItems } = Astro.props as Props;
       }
       <a
         href="#contact"
-        class="mt-6 block border border-white bg-white px-6 py-3 text-center text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black hover:text-white"
+        class="border-foreground-0 bg-foreground-0 hover:text-foreground-0 mt-6 block border px-6 py-3 text-center text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black"
       >
         GET IN TOUCH
       </a>

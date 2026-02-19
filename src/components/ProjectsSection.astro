@@ -10,10 +10,10 @@ const projects = allProjects
 ---
 
 <section class="stripe-pattern relative bg-black px-6 py-32 md:px-12">
-  <div class="mx-auto max-w-350">
+  <div class="mx-auto max-w-7xl">
     <div class="mb-20">
       <div class="text-section-label mb-4">Selected Work</div>
-      <h2 class="text-section-heading mb-8 text-white">PROJECTS</h2>
+      <h2 class="text-section-heading text-foreground-0 mb-8">PROJECTS</h2>
       <p
         class="text-foreground-1 max-w-2xl text-sm tracking-wide uppercase md:text-base"
       >
@@ -31,7 +31,7 @@ const projects = allProjects
                 <div class="border-border-strong border p-4">
                   <Icon
                     name={project.data.icon || "github"}
-                    class="h-8 w-8 text-white"
+                    class="text-foreground-0 h-8 w-8"
                   />
                 </div>
                 <div class="text-foreground-3 text-sm">
@@ -40,7 +40,7 @@ const projects = allProjects
               </div>
 
               <h3
-                class="mb-4 text-2xl tracking-tight text-white uppercase md:text-3xl"
+                class="text-foreground-0 mb-4 text-2xl tracking-tight uppercase md:text-3xl"
                 style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
               >
                 {project.data.title}

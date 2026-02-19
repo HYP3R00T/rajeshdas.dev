@@ -32,7 +32,7 @@ const attributes = [
     <div class="mb-20 space-y-8">
       <!-- Badge -->
       <div
-        class="inline-block border border-white bg-white px-3 py-1.5 font-mono text-xs font-medium tracking-wider text-black"
+        class="border-foreground-0 bg-foreground-0 inline-block border px-3 py-1.5 font-mono text-xs font-medium tracking-wider text-black"
       >
         DEVOPS ENGINEER
       </div>
@@ -43,7 +43,7 @@ const attributes = [
         <div>
           <!-- Main Heading -->
           <h1
-            class="mb-8 text-left font-mono text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-tighter text-white uppercase"
+            class="text-foreground-0 mb-8 text-left font-mono text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-tighter uppercase"
           >
             <div>RAJESH</div>
             <div>DAS</div>
@@ -73,10 +73,13 @@ const attributes = [
               <div class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors">
                 <div class="flex gap-4">
                   <div class="border-border-stronger flex h-12 w-12 shrink-0 items-center justify-center border">
-                    <Icon name={attribute.icon} class="h-5 w-5 text-white" />
+                    <Icon
+                      name={attribute.icon}
+                      class="text-foreground-0 h-5 w-5"
+                    />
                   </div>
                   <div>
-                    <h3 class="font-display mb-2 text-base tracking-wide text-white uppercase">
+                    <h3 class="font-display text-foreground-0 mb-2 text-base tracking-wide uppercase">
                       {attribute.title}
                     </h3>
                     <p class="text-foreground-1 text-sm leading-relaxed">
@@ -98,12 +101,12 @@ const attributes = [
         class="group border-border-strong relative max-w-3xl border bg-black"
       >
         <div class="flex items-center justify-between p-6">
-          <code class="font-mono text-lg tracking-tight text-white md:text-2xl">
+          <code class="font-mono text-lg tracking-tight text-foreground-0 md:text-2xl">
             $ uvx rajesh-das
           </code>
           <button
             id="copy-button"
-            class="border-border-strong border p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-white hover:text-black"
+            class="border-border-strong border p-3 opacity-0 transition-colors group-hover:opacity-100 hover:bg-foreground-0 hover:text-black"
             aria-label="Copy command"
             title="Copy to clipboard"
           >
@@ -125,15 +128,15 @@ const attributes = [
     >
       <div class="border-border border-r bg-black p-8 last:border-r-0">
         <div class="text-section-label mb-3">CLOUD EXPERTISE</div>
-        <div class="text-sm text-white">AWS • Azure • GCP</div>
+        <div class="text-sm text-foreground-0">AWS • Azure • GCP</div>
       </div>
       <div class="border-border border-r bg-black p-8 last:border-r-0">
         <div class="text-section-label mb-3">CONTAINER ORCHESTRATION</div>
-        <div class="text-sm text-white">Kubernetes • Docker</div>
+        <div class="text-sm text-foreground-0">Kubernetes • Docker</div>
       </div>
       <div class="border-border border-r bg-black p-8 last:border-r-0">
         <div class="text-section-label mb-3">INFRASTRUCTURE AS CODE</div>
-        <div class="text-sm text-white">Terraform • Ansible</div>
+        <div class="text-sm text-foreground-0">Terraform • Ansible</div>
       </div>
     </div> -->
 

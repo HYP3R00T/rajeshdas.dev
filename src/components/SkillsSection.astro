@@ -44,10 +44,10 @@ const skills = [
 ---
 
 <section class="relative bg-black px-6 py-32 md:px-12">
-  <div class="mx-auto max-w-350">
+  <div class="mx-auto max-w-7xl">
     <div class="mb-20">
       <div class="text-section-label mb-4">Tech Stack</div>
-      <h2 class="text-section-heading mb-8 text-white">EXPERTISE</h2>
+      <h2 class="text-section-heading text-foreground-0 mb-8">EXPERTISE</h2>
       <p
         class="text-foreground-1 max-w-2xl text-sm tracking-wide uppercase md:text-base"
       >
@@ -62,13 +62,13 @@ const skills = [
             <div class="hover:bg-background-hover bg-black p-8 transition-colors">
               <div class="mb-6 flex items-start justify-between">
                 <div class="border-border-strong border p-3">
-                  <Icon name={skill.icon} class="h-6 w-6 text-white" />
+                  <Icon name={skill.icon} class="text-foreground-0 h-6 w-6" />
                 </div>
                 <div class="text-foreground-3 text-sm">{skill.id}</div>
               </div>
 
               <h3
-                class="mb-6 text-lg tracking-wide text-white uppercase"
+                class="text-foreground-0 mb-6 text-lg tracking-wide uppercase"
                 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
               >
                 {skill.title}
