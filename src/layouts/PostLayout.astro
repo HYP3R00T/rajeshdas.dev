@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { formatDate } from "@/lib/utils";
+import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
+import { Icon } from "astro-icon/components";
+import { SITE } from "@data/config";
 
 const {
   title,
@@ -15,7 +17,10 @@ const {
   category,
   coverAlt,
   headings,
+  body,
 } = Astro.props;
+
+const readTime = body ? estimateReadTime(body) : 5;
 ---
 
 <BaseLayout
@@ -24,13 +29,122 @@ const {
   image={cover}
   imageAlt={coverAlt}
   contentType="Article"
-  transparent_header="true"
 >
-  <article class="py-12">
-    <div class="container flex flex-col items-center">
-      <div class="prose max-w-4xl">
-        <slot />
+  <div class="relative flex w-full justify-center bg-black">
+    <div class="max-w-5xl">
+      {/* Back Navigation */}
+      <div class="px-6 py-6 md:px-12">
+        <a
+          href="/post"
+          class="text-foreground-1 inline-flex items-center gap-2 text-xs tracking-wider uppercase transition-colors hover:text-white"
+        >
+          <Icon name="arrow-right" class="h-4 w-4 rotate-180" />
+          BACK TO ARTICLES
+        </a>
       </div>
+
+      {/* Hero Image */}
+      <div class="mx-auto px-6 pt-12 md:px-12">
+        <div class="overflow-hidden">
+          <Image
+            src={cover}
+            alt={coverAlt || title}
+            class="h-auto w-full grayscale"
+            widths={[800, 1200, 1600]}
+            sizes="(max-width: 1400px) 100vw, 1400px"
+          />
+        </div>
+      </div>
+
+      {/* Metadata */}
+      <div class="mx-auto px-6 pt-8 md:px-12">
+        <div class="text-foreground-2 flex items-center gap-4 text-xs">
+          <time datetime={pubDatetime.toISOString()}>
+            {formatDateUppercase(pubDatetime)}
+          </time>
+          <span>•</span>
+          <span>{readTime} MIN</span>
+          <span>•</span>
+          <span class="uppercase">{SITE.author}</span>
+        </div>
+      </div>
+
+      {/* Title & Description */}
+      <div class="mx-auto px-6 pt-8 md:px-12">
+        <h1
+          class="mb-6 text-4xl text-white uppercase md:text-5xl"
+          style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1;"
+        >
+          {title}
+        </h1>
+        <p class="text-foreground-1 text-base leading-relaxed md:text-lg">
+          {description}
+        </p>
+      </div>
+
+      {/* Tags & Share */}
+      <div
+        class="border-border mx-auto flex items-center justify-between border-b px-6 py-8 md:px-12"
+      >
+        <div class="flex flex-wrap gap-2">
+          {
+            tags &&
+              tags.length > 0 &&
+              tags.map((tag: string) => (
+                <span class="border-border-strong text-foreground-2 border px-3 py-1 text-xs tracking-wide">
+                  {tag}
+                </span>
+              ))
+          }
+        </div>
+        <button
+          id="share-button"
+          class="border-border-strong flex shrink-0 items-center gap-2 border px-4 py-2 text-xs tracking-wider uppercase transition-colors hover:bg-white hover:text-black"
+          aria-label="Share article"
+        >
+          <Icon name="arrow-up" class="h-4 w-4 rotate-45" />
+          SHARE
+        </button>
+      </div>
+
+      {/* Article Content */}
+      <article class="mx-auto px-6 py-16 md:px-12">
+        <div class="prose prose-invert max-w-none">
+          <slot />
+        </div>
+      </article>
     </div>
-  </article>
+  </div>
 </BaseLayout>
+
+<script>
+  document
+    .getElementById("share-button")
+    ?.addEventListener("click", async () => {
+      const url = window.location.href;
+      const title = document.title;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url });
+        } catch (err) {
+          console.log("Share canceled");
+        }
+      } else {
+        // Fallback: copy to clipboard
+        try {
+          await navigator.clipboard.writeText(url);
+          const button = document.getElementById("share-button");
+          if (button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = `<svg class="h-4 w-4"><use href="#icon-check"></use></svg> COPIED`;
+            setTimeout(() => {
+              button.innerHTML = originalText;
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("Failed to copy:", err);
+        }
+      }
+    });
+</script>
