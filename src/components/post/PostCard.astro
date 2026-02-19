@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import Badge from "@/components/ui/Badge.astro";
 
 const { post, index } = Astro.props as PostCardProps & { index?: number };
+const readTime = estimateReadTime(post.body || post.data.description);
 ---
 
 <a
@@ -30,7 +31,7 @@ const { post, index } = Astro.props as PostCardProps & { index?: number };
             {formatDateUppercase(post.data.pubDatetime)}
           </time>
           <span>•</span>
-          <span>{estimateReadTime(post.data.description)} MIN</span>
+          <span>{readTime} MIN</span>
         </div>
       </div>
 
