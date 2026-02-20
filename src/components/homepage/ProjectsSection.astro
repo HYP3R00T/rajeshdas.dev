@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
-import IconBox from "@/components/ui/IconBox.astro";
+import Button from "@/components/ui/Button.astro";
 
 // Get all projects, sorted by order, filter drafts
 const allProjects = await getCollection("projects");
@@ -29,12 +29,12 @@ const projects = allProjects
           projects.map((project, index) => (
             <div class="group hover:bg-background-hover bg-black p-8 transition-colors md:p-12">
               <div class="mb-8 flex items-start justify-between">
-                <IconBox variant="strong">
+                <Button as="div" variant="outline" size="icon">
                   <Icon
                     name={project.data.icon || "github"}
                     class="text-foreground-0 h-8 w-8"
                   />
-                </IconBox>
+                </Button>
                 <div class="text-foreground-3 text-sm">
                   {String(index + 1).padStart(2, "0")}
                 </div>

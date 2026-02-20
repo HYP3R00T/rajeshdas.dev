@@ -3,8 +3,9 @@ import type { HTMLAttributes } from "astro/types";
 
 type ButtonVariant = "default" | "outline" | "secondary" | "ghost" | "link";
 type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
+type ButtonElement = "button" | "a" | "div";
 
-interface ButtonProps extends HTMLAttributes<"button" | "a"> {
+interface ButtonProps extends HTMLAttributes<"button" | "a" | "div"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   type?: "button" | "submit" | "reset";
@@ -13,6 +14,7 @@ interface ButtonProps extends HTMLAttributes<"button" | "a"> {
   href?: string;
   rel?: string;
   target?: string;
+  as?: ButtonElement;
 }
 
 const {
@@ -24,26 +26,29 @@ const {
   href,
   rel,
   target,
+  as: element,
   ...rest
-} = Astro.props as ButtonProps & HTMLAttributes<"button" | "a">;
+} = Astro.props as ButtonProps & HTMLAttributes<"button" | "a" | "div">;
 
 const baseClasses =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-4 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50";
 
 const sizeClasses: Record<ButtonSize, string> = {
-  default: "h-9 px-4 py-2",
-  sm: "h-8 px-3 text-xs",
-  lg: "h-10 px-8",
-  icon: "h-9 w-9 p-0",
-  "icon-sm": "h-8 w-8 p-0",
-  "icon-lg": "h-10 w-10 p-0",
+  default: "h-9 px-6 py-2",
+  sm: "h-8 px-4 text-xs",
+  lg: "h-10 px-10",
+  icon: "size-9 p-0 flex-shrink-0",
+  "icon-sm": "size-6 p-0 flex-shrink-0",
+  "icon-lg": "size-10 p-0 flex-shrink-0",
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  default: "bg-background-1 text-foreground-1",
+  default:
+    "bg-foreground-0 text-background-0 hover:bg-background-0 hover:text-foreground-0 border border-foreground-0",
+  secondary:
+    "border border-border-strong bg-transparent hover:bg-background-2 hover:text-accent",
   outline:
-    "border border-border bg-transparent hover:bg-background-2 hover:text-accent",
-  secondary: "bg-content text-foreground-0 hover:bg-background-1",
+    "border border-border-strong bg-transparent hover:bg-none hover:text-accent",
   ghost: "bg-transparent hover:bg-background-2 hover:text-accent",
   link: "text-accent underline-offset-4 hover:underline bg-transparent",
 };
@@ -58,18 +63,26 @@ const classes = [
   .filter(Boolean)
   .join(" ");
 
-const Tag = href ? "a" : "button";
+// Determine the element to render
+let Tag: ButtonElement;
+if (element) {
+  Tag = element;
+} else if (href) {
+  Tag = "a";
+} else {
+  Tag = "button";
+}
 
 const componentProps: Record<string, unknown> = {
   class: classes,
   ...rest,
 };
 
-if (href) {
+if (Tag === "a") {
   componentProps.href = href;
   if (rel) componentProps.rel = rel;
   if (target) componentProps.target = target;
-} else {
+} else if (Tag === "button") {
   componentProps.type = type;
   componentProps.disabled = disabled;
 }

@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import IconBox from "@/components/ui/IconBox.astro";
+import Button from "@/components/ui/Button.astro";
 
 interface Props {
   title: string;
@@ -12,12 +12,12 @@ const { title, icon, description } = Astro.props;
 ---
 
 <div
-  class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors"
+  class="border-border-strong hover:bg-background-hover/50 border bg-black p-6 transition-colors"
 >
   <div class="flex gap-4">
-    <IconBox variant="strong">
+    <Button as="div" variant="outline" size="icon-lg">
       <Icon name={icon} class="text-foreground-0 h-5 w-5" />
-    </IconBox>
+    </Button>
     <div>
       <h3
         class="font-display text-foreground-0 mb-2 text-base tracking-wide uppercase"
