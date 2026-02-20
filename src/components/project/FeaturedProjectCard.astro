@@ -4,7 +4,6 @@ import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import ImageCarousel from "@/components/ui/ImageCarousel.astro";
 import defaultCardBg from "@/assets/card-bg.jpg";
-import setupPng from "@/assets/setup.png";
 
 interface Props {
   project: {
@@ -25,7 +24,7 @@ const { project } = Astro.props;
 const projectImages =
   project.data.images && project.data.images.length > 0
     ? project.data.images
-    : [defaultCardBg, setupPng];
+    : [defaultCardBg];
 ---
 
 <div
