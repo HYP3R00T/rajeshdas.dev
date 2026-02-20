@@ -7,7 +7,6 @@ import type { FooterSocialLink } from "@/lib/types";
 import Input from "@/components/ui/Input.astro";
 import Textarea from "@/components/ui/Textarea.astro";
 import Label from "@/components/ui/Label.astro";
-import Divider from "@/components/ui/Divider.astro";
 import Button from "@/components/ui/Button.astro";
 ---
 
@@ -98,11 +97,7 @@ import Button from "@/components/ui/Button.astro";
                   }
                   title={link.linkTitle}
                 >
-                  <Button
-                    as="div"
-                    variant="outline"
-                    size="icon"
-                  >
+                  <Button as="div" variant="outline" size="icon">
                     <Icon name={link.name} class="h-6 w-6" />
                   </Button>
                 </a>
