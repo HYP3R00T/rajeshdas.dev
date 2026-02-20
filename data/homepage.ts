@@ -1,4 +1,4 @@
-import type { Attribute } from "@/lib/types";
+import type { Attribute, Skill } from "@/lib/types";
 
 export const attributes: Attribute[] = [
     {
@@ -18,5 +18,44 @@ export const attributes: Attribute[] = [
         icon: "git-branch",
         description:
             "Designing scalable, resilient infrastructure for modern distributed systems.",
+    },
+];
+
+export const skills: Skill[] = [
+    {
+        id: "01",
+        title: "CLOUD PLATFORMS",
+        icon: "cloud",
+        items: ["AWS", "Azure", "GCP", "DigitalOcean"],
+    },
+    {
+        id: "02",
+        title: "CONTAINERS",
+        icon: "kubernetes",
+        items: ["Docker", "Kubernetes", "Helm", "Podman"],
+    },
+    {
+        id: "03",
+        title: "CI/CD",
+        icon: "zap",
+        items: ["GitHub Actions", "Jenkins", "GitLab CI", "ArgoCD"],
+    },
+    {
+        id: "04",
+        title: "VERSION CONTROL",
+        icon: "file-text",
+        items: ["Git", "GitHub", "GitLab", "Bitbucket"],
+    },
+    {
+        id: "05",
+        title: "INFRASTRUCTURE AS CODE",
+        icon: "server",
+        items: ["Terraform", "Ansible", "CloudFormation", "Pulumi"],
+    },
+    {
+        id: "06",
+        title: "MONITORING",
+        icon: "monitor",
+        items: ["Prometheus", "Grafana", "ELK Stack", "Datadog"],
     },
 ];

@@ -105,3 +105,11 @@ export interface Attribute {
     icon: string;
     description: string;
 }
+
+// Homepage skills
+export interface Skill {
+    id: string;
+    title: string;
+    icon: string;
+    items: string[];
+}
