@@ -97,8 +97,13 @@
   --color-blue: var(--blue);
   --color-purple: var(--purple);
   --color-pink: var(--pink);
+
+  --aspect-retro: 4 / 3;
+
+  /* font */
   --font-display: "Space Grotesk Variable", sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
+  --font-sans: "Inter Variable", sans-serif;
 }
 
 @layer base {
@@ -112,7 +117,6 @@
 
   body {
     @apply bg-background-0 text-foreground-0;
-    background-color: #000000;
   }
 
   h1 {
@@ -161,7 +165,7 @@
   }
 
   .prose {
-    @apply text-foreground-0 w-full max-w-none;
+    @apply text-foreground-1 w-full max-w-none font-mono;
   }
 
   .prose a {
@@ -173,19 +177,19 @@
   }
 
   .prose h1 {
-    @apply mt-0 mb-6 text-5xl leading-tight font-extrabold tracking-tight;
+    @apply text-foreground-0 font-display mt-0 mb-6 text-5xl leading-tight font-extrabold tracking-tight;
   }
 
   .prose h2 {
-    @apply mt-12 mb-4 text-4xl leading-snug font-bold tracking-tight;
+    @apply text-foreground-0 font-display mt-12 mb-4 text-4xl leading-snug font-bold tracking-tight;
   }
 
   .prose h3 {
-    @apply mt-10 mb-3 text-2xl leading-snug font-semibold;
+    @apply text-foreground-0 font-display mt-10 mb-3 text-2xl leading-snug font-semibold;
   }
 
   .prose h4 {
-    @apply mt-8 mb-2 text-xl font-semibold;
+    @apply text-foreground-0 font-display mt-8 mb-2 text-xl font-semibold;
   }
 
   .prose h5 {
@@ -197,7 +201,7 @@
   }
 
   .prose p {
-    @apply my-6;
+    @apply my-6 font-sans;
   }
 
   .prose p:first-child {
