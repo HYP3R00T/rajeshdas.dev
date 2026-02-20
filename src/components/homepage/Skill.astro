@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+
+interface Props {
+  id: string;
+  title: string;
+  icon: string;
+  items: string[];
+}
+
+const { id, title, icon, items } = Astro.props;
+---
+
+<div class="hover:bg-background-hover bg-black p-8 transition-colors">
+  <div class="mb-6 flex items-start justify-between">
+    <Button as="div" variant="outline" size="icon-lg">
+      <Icon name={icon} class="text-foreground-0 h-6 w-6" />
+    </Button>
+    <div class="text-foreground-3 text-sm">{id}</div>
+  </div>
+
+  <h3
+    class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase"
+  >
+    {title}
+  </h3>
+
+  <ul class="space-y-2">
+    {
+      items.map((item) => (
+        <li class="text-foreground-1 text-xs tracking-wide">{item}</li>
+      ))
+    }
+  </ul>
+</div>

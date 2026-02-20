@@ -2,6 +2,8 @@
 // Skills Section Component
 // Displays categorized tech stack in a 3-column grid with icons and items
 import { Icon } from "astro-icon/components";
+import Badge from "@/components/ui/Badge.astro";
+import Skill from "@/components/homepage/Skill.astro";
 
 const skills = [
   {
@@ -43,45 +45,30 @@ const skills = [
 ];
 ---
 
-<section class="relative bg-black px-6 py-32 md:px-12">
-  <div class="mx-auto max-w-7xl">
-    <div class="mb-20">
-      <div class="text-section-label mb-4">Tech Stack</div>
-      <h2 class="text-section-heading text-foreground-0 mb-8">EXPERTISE</h2>
-      <p
-        class="text-foreground-1 max-w-2xl text-sm tracking-wide uppercase md:text-base"
-      >
-        Technologies and tools I use to build reliable, scalable infrastructure
-      </p>
-    </div>
+<section class="relative flex items-center justify-center px-4 py-12 md:px-12">
+  <div class="mx-auto w-full max-w-7xl">
+    <!-- Badge -->
+    <Badge variant="accent">DevOps Engineer</Badge>
+    <h1 class="text-section-heading my-8">
+      <div>EXPERTISE</div>
+    </h1>
 
-    <div class="bg-border p-px">
+    <p
+      class="text-foreground-muted max-w-2xl space-y-6 text-base leading-relaxed md:text-lg"
+    >
+      Technologies and tools I use to build reliable, scalable infrastructure
+    </p>
+
+    <div class="bg-border mt-8 p-px">
       <div class="bg-border grid gap-px md:grid-cols-2 lg:grid-cols-3">
         {
           skills.map((skill) => (
-            <div class="hover:bg-background-hover bg-black p-8 transition-colors">
-              <div class="mb-6 flex items-start justify-between">
-                <div class="border-border-strong border p-3">
-                  <Icon name={skill.icon} class="text-foreground-0 h-6 w-6" />
-                </div>
-                <div class="text-foreground-3 text-sm">{skill.id}</div>
-              </div>
-
-              <h3
-                class="text-foreground-0 mb-6 text-lg tracking-wide uppercase"
-                style="font-family: 'Space Grotesk', sans-serif; font-weight: 600;"
-              >
-                {skill.title}
-              </h3>
-
-              <ul class="space-y-2">
-                {skill.items.map((item) => (
-                  <li class="text-foreground-1 text-xs tracking-wide">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Skill
+              id={skill.id}
+              title={skill.title}
+              icon={skill.icon}
+              items={skill.items}
+            />
           ))
         }
       </div>
