@@ -3,6 +3,7 @@
 import { SITE, navItems } from "@data/config";
 import MobileMenuToggle from "./MobileMenuToggle.astro";
 import MobileMenuPanel from "./MobileMenuPanel.astro";
+import Button from "../ui/Button.astro";
 ---
 
 <header
@@ -37,11 +38,8 @@ import MobileMenuPanel from "./MobileMenuPanel.astro";
       </div>
 
       <!-- Desktop CTA Button -->
-      <a
-        href="#contact"
-        class="border-foreground-0 bg-foreground-0 hover:text-foreground-0 hidden border px-6 py-3 text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black md:block"
-      >
-        GET IN TOUCH
+      <a href="/contact/">
+        <Button size="lg" class="uppercase">GET IN TOUCH</Button>
       </a>
 
       <!-- Mobile Menu Toggle -->

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
+import Badge from "../ui/Badge.astro";
 
 // Get all projects, sorted by order, filter drafts
 const allProjects = await getCollection("projects");
@@ -10,29 +11,32 @@ const projects = allProjects
   .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
 ---
 
-<section class="stripe-pattern relative bg-black px-6 py-32 md:px-12">
-  <div class="mx-auto max-w-7xl">
-    <div class="mb-20">
-      <div class="text-section-label mb-4">Selected Work</div>
-      <h2 class="text-section-heading text-foreground-0 mb-8">PROJECTS</h2>
-      <p
-        class="text-foreground-1 max-w-2xl text-sm tracking-wide uppercase md:text-base"
-      >
-        Recent projects and tools I've built to solve real-world DevOps
-        challenges
-      </p>
-    </div>
+<section
+  class="stripe-pattern relative flex items-center justify-center px-6 py-32 md:px-12"
+>
+  <div class="mx-auto w-full max-w-7xl">
+    <!-- Badge -->
+    <Badge variant="accent">Selected Work</Badge>
+    <h1 class="text-section-heading my-8">
+      <div>PROJECTS</div>
+    </h1>
 
-    <div class="bg-border p-px">
+    <p
+      class="text-foreground-muted max-w-2xl space-y-6 text-base leading-relaxed md:text-lg"
+    >
+      Recent projects and tools I've built to solve real-world DevOps challenges
+    </p>
+
+    <div class="bg-border mt-8 p-px">
       <div class="bg-border grid gap-px md:grid-cols-2">
         {
           projects.map((project, index) => (
-            <div class="group hover:bg-background-hover bg-black p-8 transition-colors md:p-12">
+            <div class="group hover:bg-background-hover/50 bg-black p-8 transition-colors md:p-12">
               <div class="mb-8 flex items-start justify-between">
-                <Button as="div" variant="outline" size="icon">
+                <Button as="div" variant="outline" size="icon-lg">
                   <Icon
                     name={project.data.icon || "github"}
-                    class="text-foreground-0 h-8 w-8"
+                    class="text-foreground-0 size-6"
                   />
                 </Button>
                 <div class="text-foreground-3 text-sm">
@@ -40,10 +44,7 @@ const projects = allProjects
                 </div>
               </div>
 
-              <h3
-                class="text-foreground-0 mb-4 text-2xl tracking-tight uppercase md:text-3xl"
-                style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
-              >
+              <h3 class="text-foreground-0 font-display mb-4 text-2xl tracking-tight uppercase md:text-3xl">
                 {project.data.title}
               </h3>
 
@@ -58,6 +59,12 @@ const projects = allProjects
           ))
         }
       </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/project/">
+        <Button size="lg" class="uppercase">View All Projects</Button>
+      </a>
     </div>
   </div>
 </section>
