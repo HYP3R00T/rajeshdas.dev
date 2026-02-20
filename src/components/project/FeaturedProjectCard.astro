@@ -28,7 +28,9 @@ const projectImages =
     : [defaultCardBg, setupPng];
 ---
 
-<div class="border-border hover:bg-background-hover border-b transition-colors">
+<div
+  class="group border-border hover:bg-background-hover/50 border-b transition-colors"
+>
   <div class="grid md:grid-cols-2">
     <!-- Image Section (not linked) -->
     <div>
@@ -42,7 +44,7 @@ const projectImages =
     <!-- Content Section (linked) -->
     <a
       href={`/project/${project.id}/`}
-      class="group flex flex-col justify-between p-8 transition-colors hover:bg-black/50 md:p-12"
+      class="flex flex-col justify-between p-8 transition-colors md:p-12"
     >
       <div>
         <div class="mb-4 flex items-center justify-between">
@@ -54,7 +56,7 @@ const projectImages =
           </Button>
           {
             project.data.openSource && (
-              <Badge variant="accent">OPEN SOURCE</Badge>
+              <Badge variant="outline">OPEN SOURCE</Badge>
             )
           }
         </div>

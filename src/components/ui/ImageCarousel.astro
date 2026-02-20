@@ -36,79 +36,79 @@ const totalImages = images.length;
   <!-- Navigation Overlay (visible on image hover) -->
   {
     totalImages > 1 && (
-      <div class="absolute inset-0 flex items-center justify-between bg-black/0 opacity-0 transition-opacity duration-300 hover:opacity-100">
-        <!-- Left Arrow -->
-        <button
-          class="carousel-prev ml-4 flex items-center justify-center"
+      <div class="absolute inset-0 flex items-center justify-between bg-black/0 p-4 opacity-0 transition-opacity duration-300 hover:opacity-100">
+        <Button
           aria-label="Previous image"
           data-carousel-container=".image-carousel-container"
+          size="icon"
+          variant="ghost"
+          class="carousel-prev"
         >
-          <Icon name="arrow-left" class="text-white size-6" />
-        </button>
-
-        <!-- Center Counter -->
-        <div class="text-foreground-2 text-xs font-medium">
-          <span class="carousel-counter-current">1</span> /
-          <span class="carousel-counter-total">{totalImages}</span>
-        </div>
-
-        <!-- Right Arrow -->
-        <button
-          class="carousel-next mr-4 flex items-center justify-center"
-          aria-label="Next image"
+          <Icon name="arrow-left" class="text-foreground-0 size-6" />
+        </Button>
+        <Button
+          aria-label="Previous image"
           data-carousel-container=".image-carousel-container"
+          size="icon"
+          variant="ghost"
+          class="carousel-next"
         >
-          <Icon name="arrow-right" class="text-white size-6" />
-        </button>
+          <Icon name="arrow-right" class="text-foreground-0 size-6" />
+        </Button>
       </div>
     )
   }
 </div>
 
 <script>
-    document.addEventListener("astro:page-load", () => {
-  // Find all carousel containers on the page
-  const carousels = document.querySelectorAll(".image-carousel-container");
+  document.addEventListener("astro:page-load", () => {
+    // Find all carousel containers on the page
+    const carousels = document.querySelectorAll(".image-carousel-container");
 
-  carousels.forEach((carousel) => {
-    let currentIndex = 0;
-    const totalSlides = parseInt(carousel.getAttribute("data-total") ?? "1", 10);
-    const slides = carousel.querySelectorAll(".carousel-slide");
+    carousels.forEach((carousel) => {
+      let currentIndex = 0;
+      const totalSlides = parseInt(
+        carousel.getAttribute("data-total") ?? "1",
+        10,
+      );
+      const slides = carousel.querySelectorAll(".carousel-slide");
 
-    // Find the navigation buttons for this carousel
-    const navContainer = carousel.parentElement;
-    const prevBtn = navContainer?.querySelector(".carousel-prev");
-    const nextBtn = navContainer?.querySelector(".carousel-next");
-    const counterCurrent = navContainer?.querySelector(".carousel-counter-current");
+      // Find the navigation buttons for this carousel
+      const navContainer = carousel.parentElement;
+      const prevBtn = navContainer?.querySelector(".carousel-prev");
+      const nextBtn = navContainer?.querySelector(".carousel-next");
+      const counterCurrent = navContainer?.querySelector(
+        ".carousel-counter-current",
+      );
 
-    function updateCarousel() {
-      // Hide all slides
-      slides.forEach((slide) => {
-        (slide as HTMLElement).style.display = "none";
-      });
+      function updateCarousel() {
+        // Hide all slides
+        slides.forEach((slide) => {
+          (slide as HTMLElement).style.display = "none";
+        });
 
-      // Show current slide
-      (slides[currentIndex] as HTMLElement).style.display = "block";
+        // Show current slide
+        (slides[currentIndex] as HTMLElement).style.display = "block";
 
-      // Update counter
-      if (counterCurrent) {
-        counterCurrent.textContent = String(currentIndex + 1);
+        // Update counter
+        if (counterCurrent) {
+          counterCurrent.textContent = String(currentIndex + 1);
+        }
       }
-    }
 
-    function goToPrev() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-    }
+      function goToPrev() {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+      }
 
-    function goToNext() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    }
+      function goToNext() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+      }
 
-    // Attach event listeners
-    prevBtn?.addEventListener("click", goToPrev);
-    nextBtn?.addEventListener("click", goToNext);
-  })
-   });
+      // Attach event listeners
+      prevBtn?.addEventListener("click", goToPrev);
+      nextBtn?.addEventListener("click", goToNext);
+    });
+  });
 </script>
