@@ -1,28 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
-import IconBox from "@/components/ui/IconBox.astro";
 import Badge from "@/components/ui/Badge.astro";
-
-const attributes = [
-  {
-    title: "Automation First",
-    icon: "zap",
-    description:
-      "If it can be automated, it should be. Building tools that eliminate repetitive tasks.",
-  },
-  {
-    title: "Open Source",
-    icon: "code",
-    description:
-      "Contributing to the community and sharing knowledge through open-source projects.",
-  },
-  {
-    title: "Cloud Native",
-    icon: "git-branch",
-    description:
-      "Designing scalable, resilient infrastructure for modern distributed systems.",
-  },
-];
+import Attribute from "./Attribute.astro";
+import { attributes } from "@data/homepage";
 ---
 
 <section
@@ -66,24 +46,11 @@ const attributes = [
         <div class="space-y-4">
           {
             attributes.map((attribute) => (
-              <div class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors">
-                <div class="flex gap-4">
-                  <IconBox variant="strong">
-                    <Icon
-                      name={attribute.icon}
-                      class="text-foreground-0 h-5 w-5"
-                    />
-                  </IconBox>
-                  <div>
-                    <h3 class="font-display text-foreground-0 mb-2 text-base tracking-wide uppercase">
-                      {attribute.title}
-                    </h3>
-                    <p class="text-foreground-1 text-sm leading-relaxed">
-                      {attribute.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <Attribute
+                title={attribute.title}
+                icon={attribute.icon}
+                description={attribute.description}
+              />
             ))
           }
         </div>

@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+import IconBox from "@/components/ui/IconBox.astro";
+
+interface Props {
+  title: string;
+  icon: string;
+  description: string;
+}
+
+const { title, icon, description } = Astro.props;
+---
+
+<div
+  class="border-border-strong hover:bg-background-hover border bg-black p-6 transition-colors"
+>
+  <div class="flex gap-4">
+    <IconBox variant="strong">
+      <Icon name={icon} class="text-foreground-0 h-5 w-5" />
+    </IconBox>
+    <div>
+      <h3
+        class="font-display text-foreground-0 mb-2 text-base tracking-wide uppercase"
+      >
+        {title}
+      </h3>
+      <p class="text-foreground-1 text-sm leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </div>
+</div>
