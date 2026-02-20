@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import ImageCarousel from "@/components/ui/ImageCarousel.astro";
+import defaultCardBg from "@/assets/card-bg.jpg";
+import setupPng from "@/assets/setup.png";
+
+interface Props {
+  project: {
+    id: string;
+    data: {
+      icon?: string;
+      title: string;
+      description: string;
+      technologies: string[];
+      images?: ImageMetadata[];
+      imageAlt?: string;
+      openSource?: boolean;
+    };
+  };
+}
+
+const { project } = Astro.props;
+const projectImages =
+  project.data.images && project.data.images.length > 0
+    ? project.data.images
+    : [defaultCardBg, setupPng];
+---
+
+<div class="border-border hover:bg-background-hover border-b transition-colors">
+  <div class="grid md:grid-cols-2">
+    <!-- Image Section (not linked) -->
+    <div>
+      <ImageCarousel
+        images={projectImages}
+        projectTitle={project.data.title}
+        imageAlt={project.data.imageAlt}
+      />
+    </div>
+
+    <!-- Content Section (linked) -->
+    <a
+      href={`/project/${project.id}/`}
+      class="group flex flex-col justify-between p-8 transition-colors hover:bg-black/50 md:p-12"
+    >
+      <div>
+        <div class="mb-4 flex items-center justify-between">
+          <Button as="div" variant="outline" size="icon-lg">
+            <Icon
+              name={project.data.icon || "github"}
+              class="text-foreground-0 size-6"
+            />
+          </Button>
+          {
+            project.data.openSource && (
+              <Badge variant="accent">OPEN SOURCE</Badge>
+            )
+          }
+        </div>
+
+        <h2
+          class="group-hover:text-foreground-muted text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
+          style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+        >
+          {project.data.title}
+        </h2>
+
+        <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
+          {project.data.description}
+        </p>
+      </div>
+
+      {
+        project.data.technologies && project.data.technologies.length > 0 && (
+          <div class="text-foreground-2 text-xs tracking-wide">
+            {project.data.technologies.join(" • ")}
+          </div>
+        )
+      }
+    </a>
+  </div>
+</div>

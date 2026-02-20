@@ -1,6 +1,19 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Badge from "@/components/ui/Badge.astro";
+import FeaturedProjectCard from "@/components/project/FeaturedProjectCard.astro";
+import ProjectListItem from "@/components/project/ProjectListItem.astro";
+
+// Get all projects, sorted by order, filter drafts
+const allProjects = await getCollection("projects");
+const projects = allProjects
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+
+// Separate featured and non-featured projects
+const featuredProjects = projects.filter((p) => p.data.featured);
+const otherProjects = projects.filter((p) => !p.data.featured);
 ---
 
 <BaseLayout>
@@ -25,6 +38,36 @@ import Badge from "@/components/ui/Badge.astro";
       </div>
 
       <!-- All projects -->
+
+      {
+        featuredProjects.length > 0 && (
+          <div class="mb-16">
+            <h2 class="text-foreground-0 mb-8 text-2xl uppercase md:text-3xl">
+              Featured Projects
+            </h2>
+            <div class="border-border space-y-4 border-t md:space-y-0">
+              {featuredProjects.map((project) => (
+                <FeaturedProjectCard project={project} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      {
+        otherProjects.length > 0 && (
+          <div>
+            <h2 class="text-foreground-0 mb-8 text-2xl uppercase md:text-3xl">
+              Other Projects
+            </h2>
+            <div class="border-border space-y-4 border-t md:space-y-0">
+              {otherProjects.map((project) => (
+                <ProjectListItem project={project} />
+              ))}
+            </div>
+          </div>
+        )
+      }
     </div>
   </section>
 </BaseLayout>

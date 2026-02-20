@@ -1,0 +1,55 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+
+interface Props {
+  project: {
+    id: string;
+    data: {
+      icon?: string;
+      title: string;
+      description: string;
+      technologies: string[];
+      openSource?: boolean;
+    };
+  };
+}
+
+const { project } = Astro.props;
+---
+
+<a
+  href={`/project/${project.id}/`}
+  class="border-border group hover:bg-background-hover block border-b transition-colors"
+>
+  <div class="flex flex-col gap-4 px-6 py-8 md:py-12">
+    <div class="flex items-center justify-between">
+      <Button as="div" variant="outline" size="icon-lg">
+        <Icon
+          name={project.data.icon || "github"}
+          class="text-foreground-0 size-6"
+        />
+      </Button>
+      {project.data.openSource && <Badge variant="accent">OPEN SOURCE</Badge>}
+    </div>
+
+    <h3
+      class="group-hover:text-foreground-muted text-foreground-0 font-display text-xl transition-colors md:text-2xl"
+    >
+      {project.data.title}
+    </h3>
+
+    <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
+      {project.data.description}
+    </div>
+
+    {
+      project.data.technologies && project.data.technologies.length > 0 && (
+        <div class="text-foreground-2 text-xs tracking-wide">
+          {project.data.technologies.join(" • ")}
+        </div>
+      )
+    }
+  </div>
+</a>
