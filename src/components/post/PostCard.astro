@@ -14,13 +14,13 @@ const readTime = estimateReadTime(post.body || post.data.description);
   class="border-border group hover:bg-background-hover block border-b transition-colors"
 >
   <div class="flex flex-col md:flex-row">
-    <div class="aspect-video w-full shrink-0 overflow-hidden md:w-md">
+    <!-- <div class="aspect-video w-full shrink-0 overflow-hidden md:w-md">
       <Image
         src={post.data.cover}
         alt={post.data.coverAlt || post.data.title}
         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-    </div>
+    </div> -->
     <div class="flex grow flex-col gap-4 px-6 py-8 md:py-12">
       <div class="flex items-center gap-4">
         {
