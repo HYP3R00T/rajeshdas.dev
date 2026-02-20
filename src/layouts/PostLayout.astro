@@ -35,31 +35,30 @@ const readTime = body ? estimateReadTime(body) : 5;
   <div
     class="relative flex items-center justify-center bg-black px-4 py-12 md:px-12"
   >
-    <div class="mx-auto w-full max-w-7xl">
+    <div class="mx-auto w-full max-w-4xl">
       <!-- Back Navigation -->
-      <div class="flex h-12 items-center">
-        <a
-          href="/post"
-          class="text-foreground-1 hover:text-foreground-0 inline-flex items-center gap-2 text-xs tracking-wider uppercase transition-colors"
-        >
-          <Icon name="arrow-right" class="h-4 w-4 rotate-180" />
-          BACK TO ARTICLES
+      <div class="mb-16">
+        <a href="/post">
+          <Badge>
+            <div class="flex flex-row items-center gap-2">
+              <Icon name="arrow-left" class="size-4" />
+              <div class="">BACK TO ARTICLES</div>
+            </div>
+          </Badge>
         </a>
       </div>
 
       <!-- Hero Image -->
-      <div class="overflow-hidden">
+      <div class="aspect-video overflow-hidden">
         <Image
           src={cover}
           alt={coverAlt || title}
-          class="h-auto w-full grayscale"
-          widths={[800, 1200, 1600]}
-          sizes="(max-width: 1400px) 100vw, 1400px"
+          class="h-full w-full object-cover"
         />
       </div>
 
       <!-- Metadata -->
-      <div class="text-foreground-2 flex items-center gap-4 text-xs">
+      <div class="text-foreground-2 flex items-center gap-4 py-4 text-xs">
         <time datetime={pubDatetime.toISOString()}>
           {formatDateUppercase(pubDatetime)}
         </time>
@@ -70,27 +69,26 @@ const readTime = body ? estimateReadTime(body) : 5;
       </div>
 
       <!-- Title & Description -->
-      <div class="">
+      <div class="flex flex-col items-start gap-4">
         <h1
-          class="text-foreground-0 mb-6 text-4xl uppercase md:text-5xl"
-          style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1;"
+          class="text-foreground-0 font-display text-left text-4xl text-[clamp(2rem,10vw,5rem)]"
         >
           {title}
         </h1>
-        <p class="text-foreground-1 text-base leading-relaxed md:text-lg">
+        <p class="text-foreground-1 mt-0 mb-8 text-lg leading-relaxed">
           {description}
         </p>
       </div>
 
       <!-- Tags & Share -->
       <div
-        class="border-border mx-auto flex items-center justify-between border-b px-6 py-8 md:px-12"
+        class="border-border mx-auto flex items-center justify-between border-b py-4"
       >
         <div class="flex flex-wrap gap-2">
           {
             tags &&
               tags.length > 0 &&
-              tags.map((tag: string) => <Badge variant="default">{tag}</Badge>)
+              tags.map((tag: string) => <Badge variant="outline">{tag}</Badge>)
           }
         </div>
         <button
@@ -98,14 +96,14 @@ const readTime = body ? estimateReadTime(body) : 5;
           class="border-border-strong hover:bg-foreground-0 flex shrink-0 items-center gap-2 border px-4 py-2 text-xs tracking-wider uppercase transition-colors hover:text-black"
           aria-label="Share article"
         >
-          <Icon name="arrow-up" class="h-4 w-4 rotate-45" />
+          <Icon name="arrow-up-right" class="size-4" />
           SHARE
         </button>
       </div>
 
       <!-- Article Content -->
       <article class="">
-        <div class="prose prose-invert max-w-none">
+        <div class="prose prose-invert max-w-none pt-8">
           <slot />
         </div>
       </article>
