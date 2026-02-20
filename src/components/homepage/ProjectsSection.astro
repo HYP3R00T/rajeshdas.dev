@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
-import Button from "@/components/ui/Button.astro";
 import Badge from "../ui/Badge.astro";
+import ProjectCard from "@/components/project/ProjectCard.astro";
+import Button from "../ui/Button.astro";
 
 // Get all projects, sorted by order, filter drafts
 const allProjects = await getCollection("projects");
@@ -31,31 +31,7 @@ const projects = allProjects
       <div class="bg-border grid gap-px md:grid-cols-2">
         {
           projects.map((project, index) => (
-            <div class="group hover:bg-background-hover/50 bg-black p-8 transition-colors md:p-12">
-              <div class="mb-8 flex items-start justify-between">
-                <Button as="div" variant="outline" size="icon-lg">
-                  <Icon
-                    name={project.data.icon || "github"}
-                    class="text-foreground-0 size-6"
-                  />
-                </Button>
-                <div class="text-foreground-3 text-sm">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-              </div>
-
-              <h3 class="text-foreground-0 font-display mb-4 text-2xl tracking-tight uppercase md:text-3xl">
-                {project.data.title}
-              </h3>
-
-              <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
-                {project.data.description}
-              </p>
-
-              <div class="text-foreground-2 text-xs tracking-wide">
-                {project.data.technologies.join(" • ")}
-              </div>
-            </div>
+            <ProjectCard project={project} index={index} />
           ))
         }
       </div>
