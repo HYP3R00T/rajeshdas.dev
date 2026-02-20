@@ -17,8 +17,6 @@ const { post } = Astro.props as PostCardProps;
         src={post.data.cover}
         alt={post.data.coverAlt || post.data.title}
         class="h-full w-full object-cover"
-        widths={[400, 600, 800]}
-        sizes="(max-width: 768px) 100vw, 50vw"
       />
     </div>
 

@@ -15,10 +15,10 @@ const {
 } = Astro.props as BadgeProps;
 
 const baseClasses =
-  "inline-block px-3 py-1 text-xs font-medium tracking-wide uppercase";
+  "inline-block px-3 py-1 text-xs font-medium tracking-wide uppercase w-fit";
 
 const variantClasses: Record<BadgeVariant, string> = {
-  default: "border border-border-strong text-foreground-2",
+  default: "text-foreground-2",
   outline: "border border-border bg-transparent text-foreground-2",
   accent: "bg-accent text-accent-fg border border-accent",
 };
