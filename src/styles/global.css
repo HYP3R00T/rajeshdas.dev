@@ -29,7 +29,7 @@
   /* Structure - Revamp: Borders as solid grays */
   --border: hsl(0, 0%, 10%);
   --border-strong: hsl(0, 0%, 20%);
-  --border-stronger: hsl(0, 0%, 30%);
+  --border-stronger: hsl(0, 0%, 40%);
 
   /* Utility colors for decorations */
   --accent-muted: hsl(0, 0%, 30%);
@@ -111,15 +111,11 @@
     @apply border-border scroll-smooth;
   }
 
-  html {
-    font-family: "JetBrains Mono", monospace;
-  }
-
   body {
-    @apply bg-background-0 text-foreground-0;
+    @apply bg-background-0 text-foreground-0 font-mono;
   }
 
-  h1 {
+  /* h1 {
     @apply scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance;
   }
 
@@ -137,7 +133,7 @@
 
   p {
     @apply leading-7 not-first:mt-6;
-  }
+  } */
 
   ::selection {
     @apply bg-foreground-0 text-background-0;
@@ -306,27 +302,8 @@ html.dark .astro-code span {
 }
 
 /* Revamp: Typography Utility Classes */
-.text-section-heading {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
-}
-
-.text-hero-heading {
-  font-size: clamp(3rem, 12vw, 10rem);
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 0.9;
-}
-
-.text-section-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: hsl(0, 0%, 40%);
+@layer utilities {
+  .text-section-heading {
+    @apply text-foreground-0 mb-8 text-left font-mono text-[clamp(3rem,10vw,7rem)] leading-[0.9] font-bold tracking-tighter uppercase;
+  }
 }
