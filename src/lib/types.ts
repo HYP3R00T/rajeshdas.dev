@@ -98,3 +98,10 @@ export interface PostCardProps {
 // For src/layouts/BaseLayout.astro
 // Accepts any subset of SEO props; HeadSEO provides sensible defaults.
 export interface BaseLayoutProps extends Partial<HeadSEOProps> { }
+
+// Homepage attributes
+export interface Attribute {
+    title: string;
+    icon: string;
+    description: string;
+}
