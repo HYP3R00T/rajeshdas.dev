@@ -66,6 +66,7 @@ const totalImages = images.length;
 </div>
 
 <script>
+    document.addEventListener("astro:page-load", () => {
   // Find all carousel containers on the page
   const carousels = document.querySelectorAll(".image-carousel-container");
 
@@ -108,5 +109,6 @@ const totalImages = images.length;
     // Attach event listeners
     prevBtn?.addEventListener("click", goToPrev);
     nextBtn?.addEventListener("click", goToNext);
-  });
+  })
+   });
 </script>
