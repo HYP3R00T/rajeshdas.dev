@@ -41,10 +41,8 @@ const otherProjects = projects.filter((p) => !p.data.featured);
 
       {
         featuredProjects.length > 0 && (
-          <div class="mb-16">
-            <h2 class="text-foreground-0 mb-8 text-2xl uppercase md:text-3xl">
-              Featured Projects
-            </h2>
+          <div class="mb-20 flex flex-col gap-4">
+            <Badge>Featured Projects</Badge>
             <div class="border-border space-y-4 border-t md:space-y-0">
               {featuredProjects.map((project) => (
                 <FeaturedProjectCard project={project} />
@@ -56,10 +54,8 @@ const otherProjects = projects.filter((p) => !p.data.featured);
 
       {
         otherProjects.length > 0 && (
-          <div>
-            <h2 class="text-foreground-0 mb-8 text-2xl uppercase md:text-3xl">
-              Other Projects
-            </h2>
+          <div class="mb-20 flex flex-col gap-4">
+            <Badge>Other Projects</Badge>
             <div class="border-border space-y-4 border-t md:space-y-0">
               {otherProjects.map((project) => (
                 <ProjectListItem project={project} />
