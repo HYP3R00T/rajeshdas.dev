@@ -19,9 +19,7 @@ import Cycle from '@posts/images/github_action_development_cycle.png';
 
 Recently, I was assigned to develop a workflow that will deploy the documentation whenever we push some changed to the `main` branch. The traditional way to develop GitHub Action pipeline is as following.
 
-<div class="flex justify-center">
-    <Image src={Cycle} alt="Viscious cycle" class="w-1/2" />
-</div>
+![GitHub Action Development Cycle](./images/github_action_development_cycle.png)
 
 The problem is that we won't know what's wrong with our pipeline, unless we push it to GitHub and trigger the pipeline. This is not at all the best way to develop the pipeline.
 
@@ -52,6 +50,7 @@ Create a workflow in `.github/workflows` directory. Then you can run `act` as fo
 # act -W <path-to-workflow>
 act -W .github/workflows/mkdocs_test.yml
 ```
+
 If everything is fine, you will see job completed message at the end. Otherwise, fix the issues and rerun the tool.
 
 ### The Problem

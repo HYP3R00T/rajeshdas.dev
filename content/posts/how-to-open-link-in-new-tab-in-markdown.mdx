@@ -29,7 +29,7 @@ I want this -> [example.com](https://example.com/)
 
 So, there are a couple of solutions to achieve this.
 
-### Solution 1: Using anchor tags
+## Solution 1: Using anchor tags
 
 ```html
 <a href="https://example.com/" target="_self">example.com</a>
@@ -37,7 +37,7 @@ So, there are a couple of solutions to achieve this.
 
 The only downside is that your markdown document is no longer purely Markdown as it contains HTML.
 
-### Solution 2: Using a base element
+## Solution 2: Using a base element
 
 ```html
 <base target="_blank" />
@@ -45,7 +45,7 @@ The only downside is that your markdown document is no longer purely Markdown as
 
 You can place this at the top of the markdown page. This will add `target=“_blank”` to every link on your page.
 
-### Solution 3: Using `rehype-external-links`
+## Solution 3: Using `rehype-external-links`
 
 Install the `rehype-external-links` plugin.
 
