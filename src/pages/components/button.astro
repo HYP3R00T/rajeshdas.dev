@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ButtonComponent from "@/components/ui/Button.astro";
+import { Icon } from "astro-icon/components";
 
 export const metadata = {
   title: "Button",
@@ -9,9 +10,10 @@ export const metadata = {
   order: 1,
 };
 
-const variantOptions = ["default", "outline", "secondary", "ghost", "link"];
+const variantOptions = ["default", "secondary", "outline", "ghost", "link"];
 
-const sizeOptions = ["sm", "default", "lg"];
+const textSizes = ["sm", "default", "lg"];
+const iconSizes = ["icon-sm", "icon", "icon-lg"];
 ---
 
 <BaseLayout
@@ -42,11 +44,33 @@ const sizeOptions = ["sm", "default", "lg"];
     </section>
 
     <section class="space-y-4">
-      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">Sizes</h2>
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Text Sizes
+      </h2>
       <div class="flex flex-wrap gap-3">
         {
-          sizeOptions.map((size) => (
+          textSizes.map((size) => (
             <ButtonComponent size={size}>{size}</ButtonComponent>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-foreground-1 text-sm tracking-wide uppercase">
+        Icon Sizes
+      </h2>
+      <div class="flex flex-wrap items-center gap-6">
+        {
+          iconSizes.map((size) => (
+            <div class="flex flex-col items-center gap-2">
+              <span class="text-foreground-2 text-xs tracking-wide uppercase">
+                {size}
+              </span>
+              <ButtonComponent as="div" variant="outline" size={size}>
+                <Icon name="github" class="text-foreground-0" />
+              </ButtonComponent>
+            </div>
           ))
         }
       </div>
