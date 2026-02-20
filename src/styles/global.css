@@ -280,7 +280,7 @@ html.dark .astro-code span {
   background-color: var(--astro-code-background) !important;
 }
 
-/* Revamp: Stripe Patterns */
+/* Stripe Patterns */
 .stripe-pattern {
   background-image: repeating-linear-gradient(
     45deg,
@@ -301,7 +301,7 @@ html.dark .astro-code span {
   );
 }
 
-/* Revamp: Typography Utility Classes */
+/* Typography Utility Classes */
 @layer utilities {
   .text-section-heading {
     @apply text-foreground-0 mb-8 text-left font-mono text-[clamp(3rem,10vw,7rem)] leading-[0.9] font-bold tracking-tighter uppercase;
