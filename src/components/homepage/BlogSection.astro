@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import PostCard from "@/components/post/PostCard.astro";
-import Button from "../ui/Button.astro";
-import Badge from "../ui/Badge.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
 
 // Get all posts, filter drafts, sort by date (newest first)
 const allPosts = await getCollection("posts");
@@ -14,7 +14,7 @@ const posts = allPosts
 
 <section class="relative bg-black px-6 py-32 md:px-12">
   <div class="mx-auto max-w-7xl">
-    <Badge variant="accent">Insights</Badge>
+    <Badge variant="outline">Insights</Badge>
     <h1 class="text-section-heading my-8">
       <div>ARTICLES</div>
     </h1>
