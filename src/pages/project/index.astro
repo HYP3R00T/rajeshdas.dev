@@ -5,11 +5,9 @@ import Badge from "@/components/ui/Badge.astro";
 import FeaturedProjectCard from "@/components/project/FeaturedProjectCard.astro";
 import ProjectListItem from "@/components/project/ProjectListItem.astro";
 
-// Get all projects, sorted by order, filter drafts
+// Get all projects and filter drafts
 const allProjects = await getCollection("projects");
-const projects = allProjects
-  .filter((p) => !p.data.draft)
-  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+const projects = allProjects.filter((p) => !p.data.draft);
 
 // Separate featured and non-featured projects
 const featuredProjects = projects.filter((p) => p.data.featured);

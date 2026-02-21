@@ -26,7 +26,6 @@ const projects = defineCollection({
             icon: z.string().optional(),
             featured: z.boolean().optional().default(false),
             draft: z.boolean().optional().default(false),
-            order: z.number().default(999),
             images: z.array(image()).optional(),
             imageAlt: z.string().optional(),
             openSource: z.boolean().default(true),
