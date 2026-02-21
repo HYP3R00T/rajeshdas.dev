@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button.astro";
 ---
 
 <header
-  class="border-border fixed top-0 right-0 left-0 z-50 flex h-24 items-center justify-center border-b bg-black px-4 py-12 md:px-12"
+  class="border-border sticky top-0 z-50 flex h-24 items-center justify-center border-b bg-black px-4 py-12 md:px-12"
 >
   <nav class="mx-auto w-full max-w-7xl">
     <div class="flex items-center justify-between">
@@ -38,7 +38,7 @@ import Button from "@/components/ui/Button.astro";
       </div>
 
       <!-- Desktop CTA Button -->
-      <a href="/contact/">
+      <a href="/contact/" class="hidden md:block">
         <Button size="lg" class="uppercase">GET IN TOUCH</Button>
       </a>
 
