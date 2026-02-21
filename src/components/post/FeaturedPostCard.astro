@@ -8,7 +8,7 @@ const { post } = Astro.props as PostCardProps;
 ---
 
 <div
-  class="border-border group hover:bg-background-hover border bg-black transition-colors"
+  class="border-border group hover:bg-background-1 border bg-black transition-colors"
 >
   <a href={`/post/${post.id}/`} class="grid md:grid-cols-2">
     <!-- Image -->
@@ -32,7 +32,7 @@ const { post } = Astro.props as PostCardProps;
         </div>
 
         <h2
-          class="group-hover:text-foreground-muted text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
+          class="group-hover:text-foreground-1 text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
           style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
         >
           {post.data.title}

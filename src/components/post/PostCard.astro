@@ -11,7 +11,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
 
 <a
   href={`/post/${post.id}/`}
-  class="border-border group hover:bg-background-hover/50 block border-b transition-colors"
+  class="border-border group hover:bg-background-1/50 block border-b transition-colors"
 >
   <div class="flex flex-col md:flex-row">
     <!-- <div class="aspect-video w-full shrink-0 overflow-hidden md:w-md">
@@ -44,7 +44,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
       </div>
 
       <h3
-        class="group-hover:text-foreground-muted text-foreground-0 font-display text-xl transition-colors md:text-2xl"
+        class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl"
       >
         {post.data.title}
       </h3>
@@ -65,7 +65,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
     </div>
     <div class="hidden items-center justify-end px-6 py-8 md:flex md:py-12">
       <div
-        class="border-border-stronger group-hover:bg-foreground-0 group-hover:text-background-0 hover:bg-foreground-0 hover:text-background-0 group-hover:border-foreground-0 flex size-12 shrink-0 items-center justify-center border transition-colors"
+        class="border-border group-hover:bg-foreground-0 group-hover:text-background-0 hover:bg-foreground-0 hover:text-background-0 group-hover:border-foreground-0 flex size-12 shrink-0 items-center justify-center border transition-colors"
       >
         <Icon name="arrow-up" class="size-6 rotate-45" />
       </div>

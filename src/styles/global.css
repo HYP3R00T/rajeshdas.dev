@@ -8,7 +8,7 @@
 
   /* Background Layers - Revamp: Pure Black Theme */
   --background-0: hsl(0, 0%, 0%); /* pure black */
-  --background-1: hsl(0, 0%, 4%); /* pure black */
+  --background-1: hsl(0, 0%, 5%); /* pure black */
   --background-2: hsl(0, 0%, 10%); /* very dark gray for contrast */
 
   /* Text - Revamp: White with gray variants */
@@ -16,25 +16,17 @@
   --foreground-1: hsl(0, 0%, 60%); /* secondary text */
   --foreground-2: hsl(0, 0%, 40%); /* muted / meta text */
   --foreground-3: hsl(0, 0%, 20%); /* subtle text / numbers */
-  --foreground-muted: hsl(0, 0%, 80%); /* slightly muted text */
-
-  /* Background variants */
-  --background-hover: hsl(0, 0%, 5%); /* hover state */
-  --background-input: hsl(0, 0%, 30%); /* placeholder text */
 
   /* Accent - Revamp: White only */
   --accent: hsl(0, 0%, 100%);
   --accent-fg: hsl(0, 0%, 0%);
 
-  /* Structure - Revamp: Borders as solid grays */
+  /* Borders */
   --border: hsl(0, 0%, 10%);
-  --border-strong: hsl(0, 0%, 20%);
-  --border-stronger: hsl(0, 0%, 40%);
 
   /* Utility colors for decorations */
   --accent-muted: hsl(0, 0%, 30%);
   --accent-subtle: hsl(0, 0%, 40%);
-  --background-overlay: hsl(0, 0%, 4%);
 
   /* Colors */
   --red: hsl(0, 65%, 62%);
@@ -59,6 +51,9 @@
   --astro-code-token-string-expression: var(--green);
   --astro-code-token-punctuation: var(--red);
   --astro-code-token-link: var(--green);
+
+  /* Plyr theme */
+  --plyr-color-main: var(--accent);
 }
 
 @theme inline {
@@ -76,17 +71,11 @@
   --color-foreground-1: var(--foreground-1);
   --color-foreground-2: var(--foreground-2);
   --color-foreground-3: var(--foreground-3);
-  --color-foreground-muted: var(--foreground-muted);
-  --color-background-hover: var(--background-hover);
-  --color-background-input: var(--background-input);
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-border-stronger: var(--border-stronger);
   --color-accent-muted: var(--accent-muted);
   --color-accent-subtle: var(--accent-subtle);
-  --color-background-overlay: var(--background-overlay);
 
   /* Named colors */
   --color-red: var(--red);
@@ -198,15 +187,22 @@
   }
 
   .prose li {
-    @apply leading-relaxed;
+    @apply font-sans leading-relaxed;
   }
 
   .prose blockquote {
-    @apply border-accent-subtle bg-background-overlay text-foreground-2 my-8 border-l-4 px-6 py-4 italic;
+    @apply border-accent-subtle bg-background-2 text-foreground-0 my-8 border-l-4 px-6 py-4;
   }
 
   .prose blockquote p {
     @apply my-0;
+  }
+
+  .prose blockquote h2,
+  .prose blockquote h3,
+  .prose blockquote h4,
+  .prose blockquote h5 {
+    @apply mt-0;
   }
 
   .prose code {
@@ -226,7 +222,7 @@
   }
 
   .prose table {
-    @apply my-8 w-full border-collapse text-base;
+    @apply my-8 w-full border-collapse font-sans text-base;
   }
 
   .prose th {
