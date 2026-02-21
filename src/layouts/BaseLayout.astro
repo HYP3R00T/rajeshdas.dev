@@ -1,6 +1,7 @@
 ---
 import HeadSEO from "@/components/core/HeadSEO.astro";
 import Header from "@/components/core/Header.astro";
+import CodeCopyButton from "@/components/core/CodeCopyButton.astro";
 
 import { LOCALE } from "@data/config";
 import type { BaseLayoutProps } from "@/lib/types";
@@ -31,5 +32,6 @@ const { title, description, image, imageAlt, contentType } =
       </main>
     </div>
     <Footer />
+    <CodeCopyButton />
   </body>
 </html>
