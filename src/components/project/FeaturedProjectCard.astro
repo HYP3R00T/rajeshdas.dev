@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import ImageCarousel from "@/components/ui/ImageCarousel.astro";
 import defaultCardBg from "@/assets/card-bg.jpg";
+import { formatMonthYearRange } from "@/lib/utils";
 
 interface Props {
   project: {
@@ -17,6 +18,8 @@ interface Props {
       imageAlt?: string;
       openSource?: boolean;
       hasPage?: boolean;
+      startDate?: Date;
+      endDate?: Date;
     };
   };
 }
@@ -26,6 +29,10 @@ const projectImages =
   project.data.images && project.data.images.length > 0
     ? project.data.images
     : [defaultCardBg];
+const projectDates = formatMonthYearRange(
+  project.data.startDate,
+  project.data.endDate,
+);
 ---
 
 <div
@@ -71,6 +78,12 @@ const projectImages =
             <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
               {project.data.description}
             </p>
+
+            {projectDates && (
+              <div class="text-foreground-2 mb-4 text-xs tracking-wide">
+                {projectDates}
+              </div>
+            )}
           </div>
 
           {project.data.technologies &&
@@ -105,6 +118,12 @@ const projectImages =
             <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
               {project.data.description}
             </p>
+
+            {projectDates && (
+              <div class="text-foreground-2 mb-4 text-xs tracking-wide">
+                {projectDates}
+              </div>
+            )}
           </div>
 
           {project.data.technologies &&

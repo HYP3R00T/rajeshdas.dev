@@ -55,6 +55,32 @@ export function formatDateUppercase(date: Date): string {
         .toUpperCase();
 }
 
+export function formatMonthYear(date: Date, locale = "en-US"): string {
+    return date.toLocaleDateString(locale, {
+        month: "short",
+        year: "numeric",
+    });
+}
+
+export function formatMonthYearRange(
+    startDate?: Date,
+    endDate?: Date,
+    locale = "en-US",
+): string | null {
+    if (!startDate && !endDate) {
+        return null;
+    }
+
+    const startText = startDate ? formatMonthYear(startDate, locale) : null;
+    const endText = endDate ? formatMonthYear(endDate, locale) : null;
+
+    if (startText && endText) {
+        return `${startText} - ${endText}`;
+    }
+
+    return startText ?? endText;
+}
+
 export function estimateReadTime(text: string): number {
     const wordsPerMinute = 200;
     const wordCount = text.split(/\s+/).length;

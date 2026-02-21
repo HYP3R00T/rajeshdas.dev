@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
+import { formatMonthYearRange } from "@/lib/utils";
 
 interface Props {
   project: {
@@ -9,12 +10,18 @@ interface Props {
       title: string;
       description: string;
       technologies: string[];
+      startDate?: Date;
+      endDate?: Date;
     };
   };
   index: number;
 }
 
 const { project, index } = Astro.props;
+const projectDates = formatMonthYearRange(
+  project.data.startDate,
+  project.data.endDate,
+);
 ---
 
 <div
@@ -42,6 +49,14 @@ const { project, index } = Astro.props;
   <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
     {project.data.description}
   </p>
+
+  {
+    projectDates && (
+      <div class="text-foreground-2 mb-4 text-xs tracking-wide">
+        {projectDates}
+      </div>
+    )
+  }
 
   <div class="text-foreground-2 text-xs tracking-wide">
     {project.data.technologies.join(" • ")}

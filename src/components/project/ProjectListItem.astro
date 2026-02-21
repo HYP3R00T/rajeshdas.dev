@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
+import { formatMonthYearRange } from "@/lib/utils";
 
 interface Props {
   project: {
@@ -13,11 +14,17 @@ interface Props {
       technologies: string[];
       openSource?: boolean;
       hasPage?: boolean;
+      startDate?: Date;
+      endDate?: Date;
     };
   };
 }
 
 const { project } = Astro.props;
+const projectDates = formatMonthYearRange(
+  project.data.startDate,
+  project.data.endDate,
+);
 ---
 
 {
@@ -46,6 +53,12 @@ const { project } = Astro.props;
         <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
           {project.data.description}
         </div>
+
+        {projectDates && (
+          <div class="text-foreground-2 text-xs tracking-wide">
+            {projectDates}
+          </div>
+        )}
 
         {project.data.technologies && project.data.technologies.length > 0 && (
           <div class="text-foreground-2 text-xs tracking-wide">
@@ -76,6 +89,12 @@ const { project } = Astro.props;
         <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
           {project.data.description}
         </div>
+
+        {projectDates && (
+          <div class="text-foreground-2 text-xs tracking-wide">
+            {projectDates}
+          </div>
+        )}
 
         {project.data.technologies && project.data.technologies.length > 0 && (
           <div class="text-foreground-2 text-xs tracking-wide">
