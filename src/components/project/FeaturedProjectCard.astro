@@ -16,6 +16,7 @@ interface Props {
       images?: ImageMetadata[];
       imageAlt?: string;
       openSource?: boolean;
+      hasPage?: boolean;
     };
   };
 }
@@ -41,44 +42,79 @@ const projectImages =
     </div>
 
     <!-- Content Section (linked) -->
-    <a
-      href={`/project/${project.id}/`}
-      class="flex flex-col justify-between p-8 transition-colors md:p-12"
-    >
-      <div>
-        <div class="mb-4 flex items-center justify-between">
-          <Button as="div" variant="outline" size="icon-lg">
-            <Icon
-              name={project.data.icon || "github"}
-              class="text-foreground-0 size-6"
-            />
-          </Button>
-          {
-            project.data.openSource && (
-              <Badge variant="outline">OPEN SOURCE</Badge>
-            )
-          }
-        </div>
-
-        <h2
-          class="group-hover:text-foreground-1 text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
-          style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+    {
+      project.data.hasPage !== false ? (
+        <a
+          href={`/project/${project.id}/`}
+          class="flex flex-col justify-between p-8 transition-colors md:p-12"
         >
-          {project.data.title}
-        </h2>
+          <div>
+            <div class="mb-4 flex items-center justify-between">
+              <Button as="div" variant="outline" size="icon-lg">
+                <Icon
+                  name={project.data.icon || "github"}
+                  class="text-foreground-0 size-6"
+                />
+              </Button>
+              {project.data.openSource && (
+                <Badge variant="outline">OPEN SOURCE</Badge>
+              )}
+            </div>
 
-        <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
-          {project.data.description}
-        </p>
-      </div>
+            <h2
+              class="group-hover:text-foreground-1 text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
+              style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+            >
+              {project.data.title}
+            </h2>
 
-      {
-        project.data.technologies && project.data.technologies.length > 0 && (
-          <div class="text-foreground-2 text-xs tracking-wide">
-            {project.data.technologies.join(" • ")}
+            <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
+              {project.data.description}
+            </p>
           </div>
-        )
-      }
-    </a>
+
+          {project.data.technologies &&
+            project.data.technologies.length > 0 && (
+              <div class="text-foreground-2 text-xs tracking-wide">
+                {project.data.technologies.join(" • ")}
+              </div>
+            )}
+        </a>
+      ) : (
+        <div class="flex flex-col justify-between p-8 transition-colors md:p-12">
+          <div>
+            <div class="mb-4 flex items-center justify-between">
+              <Button as="div" variant="outline" size="icon-lg">
+                <Icon
+                  name={project.data.icon || "github"}
+                  class="text-foreground-0 size-6"
+                />
+              </Button>
+              {project.data.openSource && (
+                <Badge variant="outline">OPEN SOURCE</Badge>
+              )}
+            </div>
+
+            <h2
+              class="group-hover:text-foreground-1 text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
+              style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
+            >
+              {project.data.title}
+            </h2>
+
+            <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
+              {project.data.description}
+            </p>
+          </div>
+
+          {project.data.technologies &&
+            project.data.technologies.length > 0 && (
+              <div class="text-foreground-2 text-xs tracking-wide">
+                {project.data.technologies.join(" • ")}
+              </div>
+            )}
+        </div>
+      )
+    }
   </div>
 </div>
