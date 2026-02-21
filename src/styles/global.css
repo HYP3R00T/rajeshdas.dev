@@ -24,10 +24,6 @@
   /* Borders */
   --border: hsl(0, 0%, 10%);
 
-  /* Utility colors for decorations */
-  --accent-muted: hsl(0, 0%, 30%);
-  --accent-subtle: hsl(0, 0%, 40%);
-
   /* Colors */
   --red: hsl(0, 65%, 62%);
   --orange: hsl(30, 70%, 60%);
@@ -74,8 +70,6 @@
   --color-accent: var(--accent);
   --color-accent-fg: var(--accent-fg);
   --color-border: var(--border);
-  --color-accent-muted: var(--accent-muted);
-  --color-accent-subtle: var(--accent-subtle);
 
   /* Named colors */
   --color-red: var(--red);
@@ -134,7 +128,7 @@
   }
 
   .prose a {
-    @apply text-accent decoration-accent-muted relative font-medium underline underline-offset-4 transition-colors;
+    @apply text-accent decoration-accent relative font-medium underline underline-offset-4 transition-colors;
   }
 
   .prose a:hover {
@@ -191,7 +185,7 @@
   }
 
   .prose blockquote {
-    @apply border-accent-subtle bg-background-2 text-foreground-0 my-8 border-l-4 px-6 py-4;
+    @apply border-accent bg-background-2 text-foreground-0 my-8 border-l-4 px-6 py-4;
   }
 
   .prose blockquote p {
