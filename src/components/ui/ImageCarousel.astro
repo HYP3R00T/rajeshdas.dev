@@ -13,7 +13,7 @@ const { images, projectTitle, imageAlt } = Astro.props;
 const totalImages = images.length;
 ---
 
-<div class="relative aspect-video overflow-hidden">
+<div class="relative h-full min-h-60 overflow-hidden">
   <!-- Image Container -->
   <div class="image-carousel-container h-full w-full" data-total={totalImages}>
     {

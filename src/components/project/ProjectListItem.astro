@@ -16,6 +16,8 @@ interface Props {
       hasPage?: boolean;
       startDate?: Date;
       endDate?: Date;
+      sourceRepo?: string;
+      website?: string;
     };
   };
 }
@@ -25,83 +27,85 @@ const projectDates = formatMonthYearRange(
   project.data.startDate,
   project.data.endDate,
 );
+const hasPage = project.data.hasPage !== false;
+const showLinks = Boolean(project.data.sourceRepo || project.data.website);
 ---
 
-{
-  project.data.hasPage !== false ? (
-    <a
-      href={`/project/${project.id}/`}
-      class="border-border group hover:bg-background-1 block border-b transition-colors"
-    >
-      <div class="flex flex-col gap-4 px-6 py-8 md:py-12">
-        <div class="flex items-center justify-between">
-          <Button as="div" variant="outline" size="icon-lg">
-            <Icon
-              name={project.data.icon || "github"}
-              class="text-foreground-0 size-6"
-            />
-          </Button>
-          {project.data.openSource && (
-            <Badge variant="accent">OPEN SOURCE</Badge>
-          )}
-        </div>
-
-        <h3 class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl">
-          {project.data.title}
-        </h3>
-
-        <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
-          {project.data.description}
-        </div>
-
-        {projectDates && (
-          <div class="text-foreground-2 text-xs tracking-wide">
-            {projectDates}
-          </div>
-        )}
-
-        {project.data.technologies && project.data.technologies.length > 0 && (
-          <div class="text-foreground-2 text-xs tracking-wide">
-            {project.data.technologies.join(" • ")}
-          </div>
-        )}
-      </div>
-    </a>
-  ) : (
-    <div class="border-border group hover:bg-background-1 block border-b transition-colors">
-      <div class="flex flex-col gap-4 px-6 py-8 md:py-12">
-        <div class="flex items-center justify-between">
-          <Button as="div" variant="outline" size="icon-lg">
-            <Icon
-              name={project.data.icon || "github"}
-              class="text-foreground-0 size-6"
-            />
-          </Button>
-          {project.data.openSource && (
-            <Badge variant="accent">OPEN SOURCE</Badge>
-          )}
-        </div>
-
-        <h3 class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl">
-          {project.data.title}
-        </h3>
-
-        <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
-          {project.data.description}
-        </div>
-
-        {projectDates && (
-          <div class="text-foreground-2 text-xs tracking-wide">
-            {projectDates}
-          </div>
-        )}
-
-        {project.data.technologies && project.data.technologies.length > 0 && (
-          <div class="text-foreground-2 text-xs tracking-wide">
-            {project.data.technologies.join(" • ")}
-          </div>
-        )}
-      </div>
+<div
+  class="border-border group hover:bg-background-1 block border-b transition-colors"
+>
+  <div class="flex flex-col gap-4 px-6 py-8 md:py-12">
+    <div class="flex items-center justify-between">
+      <Button as="div" variant="outline" size="icon-lg">
+        <Icon
+          name={project.data.icon || "github"}
+          class="text-foreground-0 size-6"
+        />
+      </Button>
+      {project.data.openSource && <Badge variant="accent">OPEN SOURCE</Badge>}
     </div>
-  )
-}
+
+    <h3
+      class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl"
+    >
+      {
+        hasPage ? (
+          <a href={`/project/${project.id}/`}>{project.data.title}</a>
+        ) : (
+          project.data.title
+        )
+      }
+    </h3>
+
+    <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
+      {project.data.description}
+    </div>
+
+    {
+      projectDates && (
+        <div class="text-foreground-2 text-xs tracking-wide">
+          {projectDates}
+        </div>
+      )
+    }
+
+    {
+      showLinks && (
+        <div class="flex flex-wrap gap-2">
+          {project.data.sourceRepo && (
+            <Button
+              as="a"
+              href={project.data.sourceRepo}
+              target="_blank"
+              rel="noreferrer"
+              variant="outline"
+              size="sm"
+            >
+              Source
+            </Button>
+          )}
+          {project.data.website && (
+            <Button
+              as="a"
+              href={project.data.website}
+              target="_blank"
+              rel="noreferrer"
+              variant="outline"
+              size="sm"
+            >
+              Website
+            </Button>
+          )}
+        </div>
+      )
+    }
+
+    {
+      project.data.technologies && project.data.technologies.length > 0 && (
+        <div class="text-foreground-2 text-xs tracking-wide">
+          {project.data.technologies.join(" • ")}
+        </div>
+      )
+    }
+  </div>
+</div>

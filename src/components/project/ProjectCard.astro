@@ -12,6 +12,8 @@ interface Props {
       technologies: string[];
       startDate?: Date;
       endDate?: Date;
+      sourceRepo?: string;
+      website?: string;
     };
   };
   index: number;
@@ -22,6 +24,7 @@ const projectDates = formatMonthYearRange(
   project.data.startDate,
   project.data.endDate,
 );
+const showLinks = Boolean(project.data.sourceRepo || project.data.website);
 ---
 
 <div
@@ -54,6 +57,37 @@ const projectDates = formatMonthYearRange(
     projectDates && (
       <div class="text-foreground-2 mb-4 text-xs tracking-wide">
         {projectDates}
+      </div>
+    )
+  }
+
+  {
+    showLinks && (
+      <div class="mb-4 flex flex-wrap gap-2">
+        {project.data.sourceRepo && (
+          <Button
+            as="a"
+            href={project.data.sourceRepo}
+            target="_blank"
+            rel="noreferrer"
+            variant="outline"
+            size="sm"
+          >
+            Source
+          </Button>
+        )}
+        {project.data.website && (
+          <Button
+            as="a"
+            href={project.data.website}
+            target="_blank"
+            rel="noreferrer"
+            variant="outline"
+            size="sm"
+          >
+            Website
+          </Button>
+        )}
       </div>
     )
   }

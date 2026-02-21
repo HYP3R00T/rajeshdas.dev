@@ -32,6 +32,8 @@ const projects = defineCollection({
             images: z.array(image()).optional(),
             imageAlt: z.string().optional(),
             openSource: z.boolean().default(true),
+            sourceRepo: z.string().optional(),
+            website: z.string().optional(),
             hasPage: z.boolean().optional().default(false),
         }),
 });
