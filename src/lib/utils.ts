@@ -78,7 +78,11 @@ export function formatMonthYearRange(
         return `${startText} - ${endText}`;
     }
 
-    return startText ?? endText;
+    if (startText && !endText) {
+        return `${startText} - Present`;
+    }
+
+    return endText;
 }
 
 export function estimateReadTime(text: string): number {
