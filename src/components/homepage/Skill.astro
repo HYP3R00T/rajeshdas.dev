@@ -12,7 +12,10 @@ interface Props {
 const { id, title, icon, items } = Astro.props;
 ---
 
-<div class="hover:bg-background-hover bg-black p-8 transition-colors">
+<div
+  class="border-border hover:bg-background-hover/50 relative border bg-transparent p-8 transition-all hover:z-10"
+  style="margin-right: -1px; margin-bottom: -1px;"
+>
   <div class="mb-6 flex items-start justify-between">
     <Button as="div" variant="outline" size="icon-lg">
       <Icon name={icon} class="text-foreground-0 size-6" />

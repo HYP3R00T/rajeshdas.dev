@@ -20,19 +20,17 @@ import { skills } from "@data/homepage";
       Technologies and tools I use to build reliable, scalable infrastructure
     </p>
 
-    <div class="bg-border mt-8 p-px">
-      <div class="bg-border grid gap-px md:grid-cols-2 lg:grid-cols-3">
-        {
-          skills.map((skill) => (
-            <Skill
-              id={skill.id}
-              title={skill.title}
-              icon={skill.icon}
-              items={skill.items}
-            />
-          ))
-        }
-      </div>
+    <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3">
+      {
+        skills.map((skill) => (
+          <Skill
+            id={skill.id}
+            title={skill.title}
+            icon={skill.icon}
+            items={skill.items}
+          />
+        ))
+      }
     </div>
   </div>
 </section>

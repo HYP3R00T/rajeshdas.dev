@@ -11,7 +11,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
 
 <a
   href={`/post/${post.id}/`}
-  class="border-border group hover:bg-background-hover block border-b transition-colors"
+  class="border-border group hover:bg-background-hover/50 block border-b transition-colors"
 >
   <div class="flex flex-col md:flex-row">
     <!-- <div class="aspect-video w-full shrink-0 overflow-hidden md:w-md">
@@ -57,7 +57,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
         post.data.tags && post.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag: string) => (
-              <Badge variant="default">{tag}</Badge>
+              <Badge variant="outline">{tag}</Badge>
             ))}
           </div>
         )
