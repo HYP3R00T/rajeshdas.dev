@@ -13,9 +13,9 @@
 
   /* Text - Revamp: White with gray variants */
   --foreground-0: hsl(0, 0%, 100%); /* primary text */
-  --foreground-1: hsl(0, 0%, 60%); /* secondary text */
-  --foreground-2: hsl(0, 0%, 40%); /* muted / meta text */
-  --foreground-3: hsl(0, 0%, 20%); /* subtle text / numbers */
+  --foreground-1: hsl(0, 0%, 80%); /* secondary text */
+  --foreground-2: hsl(0, 0%, 60%); /* muted / meta text */
+  --foreground-3: hsl(0, 0%, 40%); /* subtle text / numbers */
 
   /* Accent - Revamp: White only */
   --accent: hsl(0, 0%, 100%);
