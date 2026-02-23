@@ -58,4 +58,16 @@ export const skills: Skill[] = [
         icon: "monitor",
         items: ["Prometheus", "Grafana", "ELK Stack", "Datadog"],
     },
+    {
+        id: "07",
+        title: "MONITORING",
+        icon: "monitor",
+        items: ["Prometheus", "Grafana", "ELK Stack", "Datadog"],
+    },
+    {
+        id: "08",
+        title: "MONITORING",
+        icon: "monitor",
+        items: ["Prometheus", "Grafana", "ELK Stack", "Datadog"],
+    },
 ];
