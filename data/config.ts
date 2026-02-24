@@ -28,9 +28,10 @@ export const SITE: SiteConfig = {
 
 export const navItems: NavItem[] = [
     { href: "/post", label: "Blog" },
-    { href: "/project", label: "Projects" },
-    { href: "/components", label: "Components" },
-    { href: "/about", label: "About" },
+    { href: "https://hyperoot.dev/", label: "Projects", blank: true },
+    // { href: "/project", label: "Projects" },
+    // { href: "/components", label: "Components" },
+    // { href: "/about", label: "About" },
 ];
 
 export const SOCIAL_LINKS: SocialObjects[] = [
@@ -44,10 +45,10 @@ export const SOCIAL_LINKS: SocialObjects[] = [
 
 // Footer navigation items
 export const footerNavigation: FooterNavItem[] = [
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
+    // { href: "#skills", label: "Skills" },
+    // { href: "#projects", label: "Projects" },
     { href: "/post/", label: "Blog" },
-    { href: "#contact", label: "Contact" },
+    // { href: "#contact", label: "Contact" },
 ];
 
 // Footer social links
@@ -60,15 +61,9 @@ export const footerSocialLinks: FooterSocialLink[] = [
     },
     {
         name: "linkedin",
-        href: "https://linkedin.com/in/hyp3r00t",
+        href: "https://linkedin.com/in/rajesh-kumar-das",
         label: "LinkedIn",
         linkTitle: "Connect with me on LinkedIn",
-    },
-    {
-        name: "x",
-        href: "https://x.com/HYP3R00T",
-        label: "X",
-        linkTitle: "Follow me on X",
     },
     {
         name: "mail",
