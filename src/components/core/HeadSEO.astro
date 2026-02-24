@@ -36,7 +36,18 @@ let ogImageUrl: string;
 
 if (typeof image === "object" && "src" in image) {
   // Case 1: Imported asset or content collection image()
-  ogImageUrl = new URL(image.src, siteUrl).toString();
+  try {
+    const { src } = await getImage({
+      src: image,
+      width: 1200,
+      height: 630,
+      format: "jpeg",
+      quality: 70,
+    });
+    ogImageUrl = new URL(src, siteUrl).toString();
+  } catch {
+    ogImageUrl = new URL(image.src, siteUrl).toString();
+  }
 } else if (typeof image === "string" && !image.startsWith("http")) {
   // Case 2: Local relative path (blogs/assets or similar)
   try {
@@ -44,7 +55,8 @@ if (typeof image === "object" && "src" in image) {
       src: image,
       width: 1200,
       height: 630,
-      format: "webp",
+      format: "jpeg",
+      quality: 70,
     });
     ogImageUrl = new URL(src, siteUrl).toString();
   } catch {
