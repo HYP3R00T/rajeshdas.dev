@@ -37,22 +37,10 @@ import ThemeToggle from "./ThemeToggle.astro";
         }
       </div>
 
-      <div class="hidden items-center gap-2 md:flex">
-        <a href={SITE.repo} target="_blank" class="hidden md:block">
-          <Button size="icon" variant="secondary">
-            <Icon name="github" />
-          </Button>
-        </a>
-        <a href="https://rajeshdas.dev" target="_blank" class="hidden md:block">
-          <Button size="icon" variant="secondary">
-            <Icon name="user" />
-          </Button>
-        </a>
+      <div class="items-center gap-2 flex">
         <ThemeToggle />
+        <MobileMenuToggle />
       </div>
-
-      <!-- Mobile Menu Toggle -->
-      <MobileMenuToggle />
     </div>
   </nav>
 </header>

@@ -4,10 +4,6 @@ interface Props {
 }
 
 const { navItems } = Astro.props as Props;
-
-import { SITE } from "@data/config";
-import { Icon } from "astro-icon/components";
-import Button from "@/components/ui/Button.astro";
 ---
 
 <!-- Panel (full-screen overlay below header). Visibility controlled via data-open attr -->
@@ -35,28 +31,5 @@ import Button from "@/components/ui/Button.astro";
         ))
       }
     </nav>
-
-    <div class="mt-6 pt-6 flex items-center gap-3">
-      <a
-        href={SITE.repo}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block"
-      >
-        <Button size="icon" variant="secondary" aria-label="GitHub">
-          <Icon name="github" />
-        </Button>
-      </a>
-      <a
-        href="https://rajeshdas.dev"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block"
-      >
-        <Button size="icon" variant="secondary" aria-label="Personal site">
-          <Icon name="user" />
-        </Button>
-      </a>
-    </div>
   </div>
 </div>
