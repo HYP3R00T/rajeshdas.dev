@@ -1,6 +1,7 @@
 ---
 // Header Component - Navigation and branding
 import { navItems, SITE } from "@data/config";
+import { Icon } from "astro-icon/components";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import Button from "@/components/ui/Button.astro";
@@ -14,7 +15,7 @@ import ThemeToggle from "./ThemeToggle.astro";
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <a href="/">
-        <Button variant="secondary">rajeshdas.dev</Button>
+        <Button size="icon" variant="secondary">rd</Button>
       </a>
 
       <!-- Desktop Navigation -->
