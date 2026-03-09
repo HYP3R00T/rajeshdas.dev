@@ -22,3 +22,23 @@ updates:
           - "*"
     assignees:
       - HYP3R00T
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "03:00"
+    open-pull-requests-limit: 5
+    rebase-strategy: auto
+    labels:
+      - dependencies
+      - ci
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+    assignees:
+      - HYP3R00T
