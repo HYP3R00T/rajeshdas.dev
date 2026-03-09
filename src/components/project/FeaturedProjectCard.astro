@@ -3,7 +3,8 @@ import { Icon } from "astro-icon/components";
 import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import ImageCarousel from "@/components/ui/ImageCarousel.astro";
-import defaultCardBg from "@/assets/card-bg.jpg";
+import placeholder1 from "@/assets/placeholder1.png";
+import placeholder2 from "@/assets/placeholder2.png";
 import { formatMonthYearRange } from "@/lib/utils";
 
 interface Props {
@@ -30,7 +31,7 @@ const { project } = Astro.props;
 const projectImages =
   project.data.images && project.data.images.length > 0
     ? project.data.images
-    : [defaultCardBg];
+    : [placeholder1, placeholder2];
 const projectDates = formatMonthYearRange(
   project.data.startDate,
   project.data.endDate,

@@ -8,19 +8,21 @@ Follow Conventional Commits specification (conventionalcommits.org).
 <type>(<scope>): <description>
 ```
 
-**Type** describes the nature of the change. **Scope** (optional) identifies which component is affected. **Description** explains what changed, in imperative mood, under 72 characters.
+- **Type**: describes the nature of the change.
+- **Scope**: (optional) identifies which component is affected.
+- **Description**: explains what changed, in imperative mood, under 72 characters.
 
 ## Choosing the Type
 
 The type reflects **what kind of change** this is, not where the change is located:
 
-- `feat` — adds new capability or functionality to the application
-- `fix` — corrects a bug or error in existing functionality
-- `test` — adds, modifies, or fixes tests (no production code changes)
-- `docs` — updates documentation only
-- `refactor` — restructures code without changing behavior
-- `chore` — build process, dependencies, tooling, configuration
-- `style` — formatting, whitespace, linting (no logic changes)
+- `feat` - adds new capability or functionality to the application
+- `fix` - corrects a bug or error in existing functionality
+- `test` - adds, modifies, or fixes tests (no production code changes)
+- `docs` - updates documentation only
+- `refactor` - restructures code without changing behavior
+- `chore` - build process, dependencies, tooling, configuration
+- `style` - formatting, whitespace, linting (no logic changes)
 
 ## Choosing the Scope
 
@@ -28,9 +30,9 @@ Scope identifies **which component or module** is affected, not where the files 
 
 Examples:
 
-- Changes to API service → `(api)` not `(services)`
-- Tests for API → `test(api):` not `test(tests):` or `feat(tests):`
-- Kubernetes manifests → `(kubernetes)` or `(k8s)`
+- Changes to API service -> `(api)` not `(services)`
+- Tests for API -> `test(api):` not `test(tests):` or `feat(tests):`
+- Kubernetes manifests -> `(kubernetes)` or `(k8s)`
 
 Scope is optional. Omit it when the change spans multiple components or is repository-wide.
 

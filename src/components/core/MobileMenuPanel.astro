@@ -11,7 +11,7 @@ const { navItems } = Astro.props as Props;
   id="mobile-menu"
   data-mobile-menu
   data-open="false"
-  class="border-border pointer-events-none fixed inset-x-0 top-0 z-40 overflow-auto border-t bg-black opacity-0 transition duration-150 ease-out data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 md:hidden"
+  class="border-border pointer-events-none fixed inset-x-0 top-0 z-40 overflow-auto border-t bg-background-0 opacity-0 transition duration-150 ease-out data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 md:hidden"
   role="dialog"
   aria-modal="true"
   aria-hidden="true"
@@ -30,12 +30,6 @@ const { navItems } = Astro.props as Props;
           </a>
         ))
       }
-      <!-- <a
-        href="#contact"
-        class="border-foreground-0 bg-foreground-0 hover:text-foreground-0 mt-6 block border px-6 py-3 text-center text-xs font-medium tracking-wider text-black uppercase transition-colors hover:bg-black"
-      >
-        GET IN TOUCH
-      </a> -->
     </nav>
   </div>
 </div>

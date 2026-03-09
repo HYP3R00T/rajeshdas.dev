@@ -6,34 +6,45 @@
 :root {
   --radius: 0.5rem;
 
-  /* Background Layers - Revamp: Pure Black Theme */
-  --background-0: hsl(0, 0%, 0%); /* pure black */
-  --background-1: hsl(0, 0%, 5%); /* pure black */
-  --background-2: hsl(0, 0%, 10%); /* very dark gray for contrast */
+  /* Background Layers - Revamp: Pure background-0 Theme */
+  --background-0: hsl(0, 0%, 0%);
+  /* pure background-0 */
+  --background-1: hsl(0, 0%, 5%);
+  /* pure background-0 */
+  --background-2: hsl(0, 0%, 10%);
+  /* very dark gray for contrast */
 
   /* Text - Revamp: White with gray variants */
-  --foreground-0: hsl(0, 0%, 100%); /* primary text */
-  --foreground-1: hsl(0, 0%, 80%); /* secondary text */
-  --foreground-2: hsl(0, 0%, 60%); /* muted / meta text */
-  --foreground-3: hsl(0, 0%, 40%); /* subtle text / numbers */
+  --foreground-0: hsl(0, 0%, 100%);
+  /* primary text */
+  --foreground-1: hsl(0, 0%, 80%);
+  /* secondary text */
+  --foreground-2: hsl(0, 0%, 60%);
+  /* muted / meta text */
+  --foreground-3: hsl(0, 0%, 40%);
+  /* subtle text / numbers */
 
-  /* Accent - Revamp: White only */
-  --accent: hsl(0, 0%, 100%);
-  --accent-fg: hsl(0, 0%, 0%);
+  /* Accent palette (editable) */
+  --accent: hsl(256, 100%, 70%); /* neon purple */
+  --accent-2: hsl(191, 100%, 70%); /* cyan */
+  --accent-3: hsl(338, 100%, 70%); /* pink */
 
   /* Borders */
   --border: hsl(0, 0%, 10%);
 
+  /* pattern */
+  --pattern: hsl(0, 0%, 2%);
+
   /* Colors */
-  --red: hsl(0, 65%, 62%);
-  --orange: hsl(30, 70%, 60%);
-  --yellow: hsl(45, 75%, 65%);
-  --green: hsl(130, 40%, 55%);
-  --teal: hsl(165, 45%, 53%);
-  --cyan: hsl(185, 50%, 60%);
-  --blue: hsl(210, 70%, 63%);
-  --purple: hsl(270, 60%, 65%);
-  --pink: hsl(330, 65%, 67%);
+  --red: hsl(0, 100%, 70%);
+  --orange: hsl(30, 100%, 70%);
+  --yellow: hsl(45, 100%, 70%);
+  --green: hsl(130, 100%, 70%);
+  --teal: hsl(165, 100%, 70%);
+  --cyan: hsl(191, 100%, 70%);
+  --blue: hsl(256, 100%, 70%);
+  --purple: hsl(270, 100%, 70%);
+  --pink: hsl(338, 100%, 70%);
 
   /* Astro Code Theme */
   --astro-code-background: var(--background-1);
@@ -52,6 +63,64 @@
   --plyr-color-main: var(--accent);
 }
 
+.light {
+  --background-0: hsl(0, 0%, 100%);
+  --background-1: hsl(0, 0%, 95%);
+  --background-2: hsl(0, 0%, 80%);
+
+  --foreground-0: hsl(0, 0%, 0%);
+  --foreground-1: hsl(0, 0%, 20%);
+  --foreground-2: hsl(0, 0%, 40%);
+  --foreground-3: hsl(0, 0%, 60%);
+
+  --accent: hsl(256, 100%, 40%);
+  --accent-2: hsl(191, 100%, 40%);
+  --accent-3: hsl(338, 100%, 40%);
+
+  --border: hsl(0, 0%, 90%);
+
+  --pattern: hsl(0, 0%, 97%);
+
+  --red: hsl(0, 65%, 40%);
+  --orange: hsl(30, 70%, 40%);
+  --yellow: hsl(45, 75%, 40%);
+  --green: hsl(130, 40%, 40%);
+  --teal: hsl(165, 45%, 40%);
+  --cyan: hsl(191, 50%, 40%);
+  --blue: hsl(256, 70%, 40%);
+  --purple: hsl(270, 60%, 40%);
+  --pink: hsl(338, 65%, 40%);
+}
+
+.dark {
+  --background-0: hsl(0, 0%, 0%);
+  --background-1: hsl(0, 0%, 5%);
+  --background-2: hsl(0, 0%, 10%);
+
+  --foreground-0: hsl(0, 0%, 100%);
+  --foreground-1: hsl(0, 0%, 80%);
+  --foreground-2: hsl(0, 0%, 60%);
+  --foreground-3: hsl(0, 0%, 40%);
+
+  --accent: hsl(256, 100%, 70%);
+  --accent-2: hsl(191, 100%, 70%);
+  --accent-3: hsl(338, 100%, 70%);
+
+  --border: hsl(0, 0%, 10%);
+
+  --pattern: hsl(0, 0%, 2%);
+
+  --red: hsl(0, 100%, 70%);
+  --orange: hsl(30, 100%, 70%);
+  --yellow: hsl(45, 100%, 70%);
+  --green: hsl(130, 100%, 70%);
+  --teal: hsl(165, 100%, 70%);
+  --cyan: hsl(191, 100%, 70%);
+  --blue: hsl(256, 100%, 70%);
+  --purple: hsl(270, 100%, 70%);
+  --pink: hsl(338, 100%, 70%);
+}
+
 @theme inline {
   /* Radii */
   --radius-sm: calc(var(--radius) - 4px);
@@ -68,7 +137,8 @@
   --color-foreground-2: var(--foreground-2);
   --color-foreground-3: var(--foreground-3);
   --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --color-border: var(--border);
 
   /* Named colors */
@@ -115,7 +185,7 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent;
+    @apply bg-foreground-0;
   }
 
   button:not(:disabled),
@@ -184,6 +254,11 @@
     @apply font-sans leading-relaxed;
   }
 
+  .prose li ul,
+  .prose li ol {
+    @apply mt-2 mb-0;
+  }
+
   .prose blockquote {
     @apply border-accent bg-background-2 text-foreground-0 my-8 border-l-4 px-6 py-4;
   }
@@ -200,7 +275,7 @@
   }
 
   .prose code {
-    @apply bg-background-2 px-1.5 py-0.5 font-mono text-base font-medium;
+    @apply bg-background-2 px-1.5 py-0.5 font-mono text-sm font-medium;
   }
 
   .prose pre code {
@@ -211,9 +286,9 @@
     @apply bg-background-2 my-8 overflow-x-auto px-6 py-5 text-base leading-relaxed;
   }
 
-  .astro-code {
+  /* .astro-code {
     @apply bg-background-2 my-8 px-6 py-5 font-mono text-base;
-  }
+  } */
 
   .prose table {
     @apply my-8 w-full border-collapse font-sans text-base;
@@ -246,8 +321,8 @@
 
 html.dark .astro-code,
 html.dark .astro-code span {
-  color: var(--astro-code-foreground) !important;
-  background-color: var(--astro-code-background) !important;
+  color: var(--astro-code-foreground);
+  background-color: var(--astro-code-background);
 }
 
 /* Stripe Patterns */
@@ -256,8 +331,8 @@ html.dark .astro-code span {
     45deg,
     transparent,
     transparent 10px,
-    hsl(0, 0%, 2%) 10px,
-    hsl(0, 0%, 2%) 20px
+    var(--pattern) 10px,
+    var(--pattern) 20px
   );
 }
 
@@ -266,14 +341,14 @@ html.dark .astro-code span {
     45deg,
     transparent,
     transparent 2px,
-    hsl(0, 0%, 2%) 2px,
-    hsl(0, 0%, 2%) 4px
+    var(--pattern) 2px,
+    var(--pattern) 4px
   );
 }
 
 /* Typography Utility Classes */
 @layer utilities {
   .text-section-heading {
-    @apply text-foreground-0 mb-8 text-left font-mono text-[clamp(3rem,10vw,7rem)] leading-[0.9] font-bold tracking-tighter uppercase;
+    @apply text-foreground-0 mb-8 text-left font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] font-bold tracking-tight;
   }
 }

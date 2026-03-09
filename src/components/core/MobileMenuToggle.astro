@@ -1,22 +1,24 @@
 ---
 import { Icon } from "astro-icon/components";
+import Button from "../ui/Button.astro";
 ---
 
 <!-- Toggle button -->
 <div class="md:hidden">
-  <button
+  <Button
     data-mobile-menu-toggle
-    class="text-foreground-0 p-2"
     aria-label="Toggle menu"
     aria-expanded="false"
+    size="icon"
+    variant="outline"
   >
     <span aria-hidden="true" data-icon-open>
-      <Icon name="menu" class="h-6 w-6" />
+      <Icon name="menu" />
     </span>
     <span aria-hidden="true" data-icon-close class="hidden">
-      <Icon name="close" class="h-6 w-6" />
+      <Icon name="close" />
     </span>
-  </button>
+  </Button>
 </div>
 
 <script>

@@ -9,7 +9,16 @@ repos:
       - id: trailing-whitespace
       - id: check-shebang-scripts-are-executable
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.13.8
+    rev: v4.13.9
     hooks:
       - id: commitizen
         stages: [commit-msg]
+  - repo: https://github.com/biomejs/pre-commit
+    rev: v2.4.6
+    hooks:
+      - id: biome-check
+        exclude: '\.astro$'
+      - id: biome-format
+        exclude: '\.astro$'
+      - id: biome-lint
+        exclude: '\.astro$'
