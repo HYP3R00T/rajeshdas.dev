@@ -14,7 +14,7 @@ const {
   ...rest
 } = Astro.props as LabelProps;
 
-const baseClasses = "text-section-label mb-3 block";
+const baseClasses = "mb-3 block";
 
 const classes = [baseClasses, className?.trim()].filter(Boolean).join(" ");
 ---

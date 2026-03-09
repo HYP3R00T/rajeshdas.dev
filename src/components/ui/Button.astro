@@ -3,18 +3,13 @@ import type { HTMLAttributes } from "astro/types";
 
 type ButtonVariant = "default" | "outline" | "secondary" | "ghost" | "link";
 type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
-type ButtonElement = "button" | "a" | "div";
 
-interface ButtonProps extends HTMLAttributes<"button" | "a" | "div"> {
+interface ButtonProps extends HTMLAttributes<"button"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   class?: string;
-  href?: string;
-  rel?: string;
-  target?: string;
-  as?: ButtonElement;
 }
 
 const {
@@ -23,71 +18,38 @@ const {
   type = "button",
   disabled = false,
   class: className,
-  href,
-  rel,
-  target,
-  as: element,
   ...rest
-} = Astro.props as ButtonProps & HTMLAttributes<"button" | "a" | "div">;
-
-const baseClasses =
-  "inline-flex items-center justify-center gap-4 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50";
-
-const sizeClasses: Record<ButtonSize, string> = {
-  default: "h-9 px-6 py-2",
-  sm: "h-8 px-4 text-xs",
-  lg: "px-8 py-4 text-xs",
-  icon: "size-9 p-0 flex-shrink-0",
-  "icon-sm": "size-7 p-0 flex-shrink-0",
-  "icon-lg": "size-11 p-0 flex-shrink-0",
-};
-
-const variantClasses: Record<ButtonVariant, string> = {
-  default:
-    "bg-foreground-0 text-background-0 hover:bg-background-0 hover:text-foreground-0 border border-foreground-0",
-  secondary:
-    "border border-border bg-transparent hover:bg-background-2 hover:text-accent",
-  outline:
-    "border border-border bg-transparent hover:bg-none hover:text-accent",
-  ghost: "bg-transparent hover:bg-background-2 hover:text-accent",
-  link: "text-accent underline-offset-4 hover:underline bg-transparent",
-};
-
-const classes = [
-  baseClasses,
-  sizeClasses[size] ?? sizeClasses.default,
-  variantClasses[variant] ?? variantClasses.default,
-  className?.trim(),
-  disabled ? "opacity-50 pointer-events-none cursor-not-allowed" : "",
-]
-  .filter(Boolean)
-  .join(" ");
-
-// Determine the element to render
-let Tag: ButtonElement;
-if (element) {
-  Tag = element;
-} else if (href) {
-  Tag = "a";
-} else {
-  Tag = "button";
-}
-
-const componentProps: Record<string, unknown> = {
-  class: classes,
-  ...rest,
-};
-
-if (Tag === "a") {
-  componentProps.href = href;
-  if (rel) componentProps.rel = rel;
-  if (target) componentProps.target = target;
-} else if (Tag === "button") {
-  componentProps.type = type;
-  componentProps.disabled = disabled;
-}
+} = Astro.props as ButtonProps;
 ---
 
-<Tag {...componentProps}>
+<button
+  type={type}
+  disabled={disabled}
+  class:list={[
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium leading-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50",
+    {
+      "text-xs px-3 py-1.5": size === "sm",
+      "text-sm px-4 py-2": size === "default",
+      "text-base px-6 py-3": size === "lg",
+      "size-6.5 p-0 shrink-0 [&>svg]:size-3.25": size === "icon-sm",
+      "size-8 p-0 shrink-0 [&>svg]:size-4": size === "icon",
+      "size-10.5 p-0 shrink-0 [&>svg]:size-5.25": size === "icon-lg",
+    },
+    {
+      "bg-foreground-0 text-background-0 hover:bg-background-0 hover:text-foreground-0 border border-foreground-0":
+        variant === "default",
+      "border border-border bg-transparent text-foreground-1 hover:bg-foreground-0/10 hover:text-foreground-0":
+        variant === "secondary",
+      "border border-border bg-transparent hover:bg-none hover:text-foreground-0":
+        variant === "outline",
+      "bg-transparent hover:bg-foreground-0/10 hover:text-foreground-0":
+        variant === "ghost",
+      "text-foreground-1 underline-offset-4 hover:underline hover:text-foreground-0 bg-transparent":
+        variant === "link",
+    },
+    className,
+  ]}
+  {...rest}
+>
   <slot />
-</Tag>
+</button>

@@ -1,26 +1,27 @@
 ---
 // Header Component - Navigation and branding
-import { SITE, navItems } from "@data/config";
-import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
+import { navItems, SITE } from "@data/config";
+import { Icon } from "astro-icon/components";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
+import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import Button from "@/components/ui/Button.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header
-  class="border-border sticky top-0 z-50 flex h-24 items-center justify-center border-b bg-black px-4 py-12 md:px-12"
+  class="border-border sticky top-0 z-50 flex h-24 items-center justify-center border-b bg-background-0 px-4 py-12 md:px-12"
 >
   <nav class="mx-auto w-full max-w-7xl">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a
-        href="/"
-        class="text-foreground-0 text-sm tracking-tight transition-opacity hover:opacity-70 md:text-base"
-      >
-        rajesh-das
+      <a href="/">
+        <Button size="icon" variant="secondary">
+          <Icon name="zap" />
+        </Button>
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden items-center gap-8 md:flex">
+      <div class="hidden items-center gap-4 md:flex">
         {
           navItems
             .filter((item) => !item.special)
@@ -29,18 +30,26 @@ import Button from "@/components/ui/Button.astro";
                 href={item.href}
                 target={item.blank ? "_blank" : undefined}
                 rel={item.blank ? "noopener noreferrer" : undefined}
-                class="text-foreground-1 hover:text-foreground-0 text-xs tracking-wider uppercase transition-colors"
               >
-                {item.label}
+                <Button variant="ghost">{item.label}</Button>
               </a>
             ))
         }
       </div>
 
-      <!-- Desktop CTA Button -->
-      <!-- <a href="/contact/" class="hidden md:block">
-        <Button size="lg" class="uppercase">GET IN TOUCH</Button>
-      </a> -->
+      <div class="hidden items-center gap-2 md:flex">
+        <a href={SITE.repo} target="_blank" class="hidden md:block">
+          <Button size="icon" variant="secondary">
+            <Icon name="github" />
+          </Button>
+        </a>
+        <a href="https://rajeshdas.dev" target="_blank" class="hidden md:block">
+          <Button size="icon" variant="secondary">
+            <Icon name="user" />
+          </Button>
+        </a>
+        <ThemeToggle />
+      </div>
 
       <!-- Mobile Menu Toggle -->
       <MobileMenuToggle />

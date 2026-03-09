@@ -13,25 +13,20 @@ const {
   class: className,
   ...rest
 } = Astro.props as BadgeProps;
-
-const baseClasses =
-  "inline-block px-3 py-1 text-xs font-medium tracking-wide uppercase w-fit";
-
-const variantClasses: Record<BadgeVariant, string> = {
-  default: "text-foreground-2",
-  outline: "border border-border bg-transparent text-foreground-2",
-  accent: "bg-accent text-accent-fg border border-accent",
-};
-
-const classes = [
-  baseClasses,
-  variantClasses[variant] ?? variantClasses.default,
-  className?.trim(),
-]
-  .filter(Boolean)
-  .join(" ");
 ---
 
-<span class={classes} {...rest}>
+<span
+  class:list={[
+    "inline-block px-3 py-1 text-xs font-medium tracking-wide uppercase w-fit",
+    {
+      "text-foreground-1": variant === "default",
+      "border border-border bg-transparent text-foreground-1":
+        variant === "outline",
+      "bg-accent text-background-0 border border-accent": variant === "accent",
+    },
+    className?.trim(),
+  ]}
+  {...rest}
+>
   <slot />
 </span>
