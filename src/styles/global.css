@@ -36,15 +36,15 @@
   --pattern: hsl(0, 0%, 2%);
 
   /* Colors */
-  --red: hsl(0, 65%, 62%);
-  --orange: hsl(30, 70%, 60%);
-  --yellow: hsl(45, 75%, 65%);
-  --green: hsl(130, 40%, 55%);
-  --teal: hsl(165, 45%, 53%);
-  --cyan: hsl(185, 50%, 60%);
-  --blue: hsl(210, 70%, 63%);
-  --purple: hsl(270, 60%, 65%);
-  --pink: hsl(330, 65%, 67%);
+  --red: hsl(0, 100%, 70%);
+  --orange: hsl(30, 100%, 70%);
+  --yellow: hsl(45, 100%, 70%);
+  --green: hsl(130, 100%, 70%);
+  --teal: hsl(165, 100%, 70%);
+  --cyan: hsl(191, 100%, 70%);
+  --blue: hsl(256, 100%, 70%);
+  --purple: hsl(270, 100%, 70%);
+  --pink: hsl(338, 100%, 70%);
 
   /* Astro Code Theme */
   --astro-code-background: var(--background-1);
@@ -81,15 +81,15 @@
 
   --pattern: hsl(0, 0%, 97%);
 
-  --red: hsl(0, 65%, 62%);
-  --orange: hsl(30, 70%, 60%);
-  --yellow: hsl(45, 75%, 65%);
-  --green: hsl(130, 40%, 55%);
-  --teal: hsl(165, 45%, 53%);
-  --cyan: hsl(185, 50%, 60%);
-  --blue: hsl(210, 70%, 63%);
-  --purple: hsl(270, 60%, 65%);
-  --pink: hsl(330, 65%, 67%);
+  --red: hsl(0, 65%, 40%);
+  --orange: hsl(30, 70%, 40%);
+  --yellow: hsl(45, 75%, 40%);
+  --green: hsl(130, 40%, 40%);
+  --teal: hsl(165, 45%, 40%);
+  --cyan: hsl(191, 50%, 40%);
+  --blue: hsl(256, 70%, 40%);
+  --purple: hsl(270, 60%, 40%);
+  --pink: hsl(338, 65%, 40%);
 }
 
 .dark {
@@ -110,15 +110,15 @@
 
   --pattern: hsl(0, 0%, 2%);
 
-  --red: hsl(0, 65%, 62%);
-  --orange: hsl(30, 70%, 60%);
-  --yellow: hsl(45, 75%, 65%);
-  --green: hsl(130, 40%, 55%);
-  --teal: hsl(165, 45%, 53%);
-  --cyan: hsl(185, 50%, 60%);
-  --blue: hsl(210, 70%, 63%);
-  --purple: hsl(270, 60%, 65%);
-  --pink: hsl(330, 65%, 67%);
+  --red: hsl(0, 100%, 70%);
+  --orange: hsl(30, 100%, 70%);
+  --yellow: hsl(45, 100%, 70%);
+  --green: hsl(130, 100%, 70%);
+  --teal: hsl(165, 100%, 70%);
+  --cyan: hsl(191, 100%, 70%);
+  --blue: hsl(256, 100%, 70%);
+  --purple: hsl(270, 100%, 70%);
+  --pink: hsl(338, 100%, 70%);
 }
 
 @theme inline {
