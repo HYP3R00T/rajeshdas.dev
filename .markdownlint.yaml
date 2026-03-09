@@ -23,7 +23,20 @@ MD029:
 
 # MD033/no-inline-html - Inline HTML
 MD033:
-  allowed_elements: [a, pre, br, Video]
+  allowed_elements:
+    [
+      a,
+      pre,
+      br,
+      Video,
+      Icon,
+      BadgeComponent,
+      ButtonComponent,
+      ImageCarouselComponent,
+      InputComponent,
+      LabelComponent,
+      TextareaComponent,
+    ]
 
 # MD034/no-bare-urls
 MD034: false
