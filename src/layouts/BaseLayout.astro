@@ -1,17 +1,15 @@
 ---
-import HeadSEO from "@/components/core/HeadSEO.astro";
-import Header from "@/components/core/Header.astro";
+import { SITE } from "@data/config";
 import CodeCopyButton from "@/components/core/CodeCopyButton.astro";
-
-import { LOCALE } from "@data/config";
+import Header from "@/components/core/Header.astro";
+import HeadSEO from "@/components/core/HeadSEO.astro";
 import type { BaseLayoutProps } from "@/lib/types";
-import Footer from "@/components/core/Footer.astro";
 
 const { title, description, image, imageAlt, contentType } =
   Astro.props as BaseLayoutProps;
 ---
 
-<html lang=`${LOCALE.lang ?? "en"}`>
+<html lang=`${SITE.lang ?? "en"}`>
   <head>
     <HeadSEO
       title={title}
@@ -31,7 +29,6 @@ const { title, description, image, imageAlt, contentType } =
         </div>
       </main>
     </div>
-    <Footer />
     <CodeCopyButton />
   </body>
 </html>
