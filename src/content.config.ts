@@ -1,41 +1,41 @@
-import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
+import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
 
 const posts = defineCollection({
-    loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/posts" }),
-    schema: ({ image }) =>
-        z.object({
-            title: z.string(),
-            description: z.string(),
-            pubDatetime: z.date(),
-            featured: z.boolean().optional().default(false),
-            draft: z.boolean().optional().default(false),
-            tags: z.array(z.string()).default([]),
-            cover: image(),
-            coverAlt: z.string().optional(),
-        }),
-});
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './content/posts' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      pubDatetime: z.date(),
+      featured: z.boolean().optional().default(false),
+      draft: z.boolean().optional().default(false),
+      tags: z.array(z.string()).default([]),
+      cover: image(),
+      coverAlt: z.string().optional(),
+    }),
+})
 
 const projects = defineCollection({
-    loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/projects" }),
-    schema: ({ image }) =>
-        z.object({
-            title: z.string(),
-            description: z.string(),
-            technologies: z.array(z.string()).default([]),
-            icon: z.string().optional(),
-            order: z.number().optional(),
-            startDate: z.date().optional(),
-            endDate: z.date().optional(),
-            featured: z.boolean().optional().default(false),
-            draft: z.boolean().optional().default(false),
-            images: z.array(image()).optional(),
-            imageAlt: z.string().optional(),
-            openSource: z.boolean().default(true),
-            sourceRepo: z.string().optional(),
-            website: z.string().optional(),
-            hasPage: z.boolean().optional().default(false),
-        }),
-});
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './content/projects' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      technologies: z.array(z.string()).default([]),
+      icon: z.string().optional(),
+      order: z.number().optional(),
+      startDate: z.date().optional(),
+      endDate: z.date().optional(),
+      featured: z.boolean().optional().default(false),
+      draft: z.boolean().optional().default(false),
+      images: z.array(image()).optional(),
+      imageAlt: z.string().optional(),
+      openSource: z.boolean().default(true),
+      sourceRepo: z.string().optional(),
+      website: z.string().optional(),
+      hasPage: z.boolean().optional().default(false),
+    }),
+})
 
-export const collections = { posts, projects };
+export const collections = { posts, projects }
