@@ -9,26 +9,26 @@
         "astro": "astro"
     },
     "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/ts-plugin": "^1.10.6",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/ts-plugin": "^1.10.7",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/space-grotesk": "^5.2.10",
-    "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.18.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.1",
     "astro-auto-import": "^0.5.1",
     "astro-icon": "^1.1.5",
     "plyr": "^3.8.4",
     "rehype-pretty-code": "^0.14.3",
     "sharp": "^0.34.5",
     "shiki": "^4.0.2",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3"
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.6",
+    "@biomejs/biome": "2.4.9",
     "globals": "^17.4.0"
   }
 }
