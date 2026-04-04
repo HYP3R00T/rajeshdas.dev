@@ -71,3 +71,5 @@ export const skills: Skill[] = [
     items: ['Astro', 'TailwindCSS', 'ReactJS'],
   },
 ]
+
+export const projectsLimit = 6

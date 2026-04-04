@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import Badge from "@/components/ui/Badge.astro";
 import ProjectCard from "@/components/project/ProjectCard.astro";
 import Button from "@/components/ui/Button.astro";
+import { projectsLimit } from "@data/homepage";
 
 // Get all projects, filter drafts, then sort by order and dates
 const allProjects = await getCollection("projects");
@@ -29,6 +30,11 @@ const sortByOrderAndDate = (a: ProjectEntry, b: ProjectEntry) => {
 const sortedProjects = shouldSortProjects
   ? [...projects].sort(sortByOrderAndDate)
   : projects;
+
+const displayProjects =
+  typeof projectsLimit === "number" && projectsLimit > 0
+    ? sortedProjects.slice(0, projectsLimit)
+    : sortedProjects;
 ---
 
 <section
@@ -49,7 +55,7 @@ const sortedProjects = shouldSortProjects
 
     <div class="mt-8 grid md:grid-cols-2">
       {
-        sortedProjects.map((project, index) => (
+        displayProjects.map((project, index) => (
           <ProjectCard project={project} index={index} />
         ))
       }
