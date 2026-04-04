@@ -1,10 +1,10 @@
 [tools]
-github-cli = "latest"
-markdownlint-cli2 = "latest"
+uv = "latest"
 node = "lts"
 pnpm = "latest"
-pre-commit = "latest"
-python = "3.14"
+prek = "latest"
+github-cli = "latest"
+markdownlint-cli2 = "latest"
 
 [settings]
 experimental = true

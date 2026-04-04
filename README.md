@@ -39,7 +39,7 @@ A modern, performant personal portfolio and blog built with Astro, showcasing sk
 - **[Docker](https://www.docker.com/)** - Containerized development environment
 - **[Dev Container](https://containers.dev/)** - VS Code development container configuration
 - **[mise](https://mise.jdx.dev/)** - Development environment manager (Node.js, Python, pnpm)
-- **[pre-commit](https://pre-commit.com/)** - Git hooks for code quality
+- **[prek](https://prek.j178.dev/)** - Git hooks for code quality
 
 ## 📧 Contact
 
