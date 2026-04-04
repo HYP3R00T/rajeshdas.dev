@@ -1,17 +1,17 @@
 {
-    "servers": {
-        "astro-mcp": {
-            "url": "https://mcp.docs.astro.build/mcp",
-            "type": "http"
-        },
-        "github": {
-            "url": "https://api.githubcopilot.com/mcp/",
-            "type": "http"
-        },
-        "figma": {
-            "url": "https://mcp.figma.com/mcp",
-            "type": "http",
-        }
+  "servers": {
+    "astro": {
+      "url": "https://mcp.docs.astro.build/mcp",
+      "type": "http"
     },
-    "inputs": []
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "type": "http"
+    },
+    "figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "type": "http"
+    }
+  },
+  "inputs": []
 }
