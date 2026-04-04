@@ -30,5 +30,12 @@
     ".github/instructions": true
   },
   "css.lint.unknownAtRules": "ignore",
-  "markdownlint.configFile": ".markdownlint.yaml"
+  "markdownlint.configFile": ".markdownlint.yaml",
+  "search.exclude": {
+    "**/.astro": true,
+    "**/.git": true,
+    "**/.pnpm-store": true,
+    "**/dist": true,
+    "**/node_modules": true
+  }
 }
