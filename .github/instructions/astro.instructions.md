@@ -8,7 +8,7 @@ applyTo: '**/*.astro, **/*.ts, **/*.js
 Instructions for building high-quality Astro applications following the content-driven, server-first architecture with modern best practices.
 
 ## Project Context
-- Astro 5.x with Islands Architecture and Content Layer API
+- Astro 6.x with Islands Architecture and Content Layer API
 - TypeScript for type safety and better DX with auto-generated types
 - Content-driven websites (blogs, marketing, e-commerce, documentation)
 - Server-first rendering with selective client-side hydration
