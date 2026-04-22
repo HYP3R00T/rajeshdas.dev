@@ -1,4 +1,5 @@
 {
+  "workbench.browser.openLocalhostLinks": true,
   "explorer.excludeGitIgnore": true,
   "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
