@@ -19,7 +19,7 @@ export const SITE: SiteConfig = {
 export const navItems: NavItem[] = [
   { href: '/post', label: 'Blog' },
   { href: '/project', label: 'Projects' },
-  { href: '/contact', label: 'Contact Me' },
+  { href: '/contact', label: 'Contacts' },
 ]
 
 export const SOCIAL_LINKS = [
