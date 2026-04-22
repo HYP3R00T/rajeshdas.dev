@@ -3,8 +3,10 @@ import type { HTMLAttributes } from "astro/types";
 
 type ButtonVariant = "default" | "outline" | "secondary" | "ghost" | "link";
 type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
+type ButtonAs = "button" | "a" | "div";
 
 interface ButtonProps extends HTMLAttributes<"button"> {
+  as?: ButtonAs;
   variant?: ButtonVariant;
   size?: ButtonSize;
   type?: "button" | "submit" | "reset";
@@ -13,6 +15,7 @@ interface ButtonProps extends HTMLAttributes<"button"> {
 }
 
 const {
+  as = "button",
   variant = "default",
   size = "default",
   type = "button",
@@ -20,11 +23,17 @@ const {
   class: className,
   ...rest
 } = Astro.props as ButtonProps;
+
+const Tag = as;
+const isButton = as === "button";
+const isLink = as === "a";
 ---
 
-<button
-  type={type}
-  disabled={disabled}
+<Tag
+  type={isButton ? type : undefined}
+  disabled={isButton ? disabled : undefined}
+  aria-disabled={!isButton && disabled ? "true" : undefined}
+  tabindex={isLink && disabled ? -1 : undefined}
   class:list={[
     "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium leading-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50",
     {
@@ -47,9 +56,12 @@ const {
       "text-foreground-1 underline-offset-4 hover:underline hover:text-foreground-0 bg-transparent":
         variant === "link",
     },
+    {
+      "pointer-events-none opacity-50": !isButton && disabled,
+    },
     className,
   ]}
   {...rest}
 >
   <slot />
-</button>
+</Tag>
