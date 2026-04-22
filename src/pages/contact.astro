@@ -26,17 +26,18 @@ const contactLinks = [
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="stripe-pattern-dense relative px-4 py-12 md:px-12">
-    <div class="mx-auto w-full max-w-5xl space-y-10">
-      <div class="space-y-6">
+  <section
+    class="stripe-pattern relative flex items-center justify-center px-4 py-12 md:px-12"
+  >
+    <div class="mx-auto w-full max-w-7xl">
+      <!-- Badge -->
+      <div class="mb-16">
         <Badge variant="accent">Contact</Badge>
-        <h1
-          class="font-display text-balance text-5xl leading-none font-bold tracking-tight md:text-7xl"
-        >
-          Let us talk if there is a fit.
+        <h1 class="text-section-heading my-8">
+          <div>Ping Me</div>
         </h1>
         <p
-          class="text-foreground-1 max-w-3xl text-base leading-relaxed md:text-lg"
+          class="text-foreground-1 max-w-2xl space-y-6 text-base leading-relaxed md:text-lg"
         >
           Use any of the links below if you want to collaborate, discuss a role,
           or simply continue the conversation.
