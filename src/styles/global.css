@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0px;
 
   /* Background Layers - Revamp: Pure background-0 Theme */
   --background-0: hsl(0, 0%, 0%);
