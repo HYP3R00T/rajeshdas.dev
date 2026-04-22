@@ -17,6 +17,9 @@ MD013: false
 MD024:
   siblings_only: true
 
+# MD025/single-title/single-h1: Multiple top-level headings in the same document
+MD025: false
+
 # MD029/ol-prefix - Ordered list item prefix
 MD029:
   style: ordered
