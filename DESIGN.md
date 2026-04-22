@@ -1,9 +1,13 @@
 ---
 version: alpha
 name: Infra Brutalist Monochrome
-description: Sharp-edged, high-contrast portfolio aesthetic with restrained neon accents and subtle diagonal texture.
+description: Sharp-edged, monochrome-first interface language for technical content with restrained neon accents, diagonal stripe texture, and low-noise interaction feedback.
 
 colors:
+  primary: "#8f66ff"
+  secondary: "#66e3ff"
+  tertiary: "#ff669e"
+  neutral: "#000000"
   background-0: "#000000"
   background-1: "#0d0d0d"
   background-2: "#1a1a1a"
@@ -38,47 +42,46 @@ colors:
   light-accent-3: "#cc004b"
 
 typography:
-  display-xl:
+  section-heading-fluid:
     fontFamily: "Space Grotesk Variable, sans-serif"
     fontSize: 7rem
     fontWeight: 700
     lineHeight: 0.9
     letterSpacing: -0.03em
-  display-lg:
-    fontFamily: "Space Grotesk Variable, sans-serif"
-    fontSize: 4rem
-    fontWeight: 700
-    lineHeight: 0.95
-    letterSpacing: -0.02em
-  heading-1:
+  h1:
     fontFamily: "Space Grotesk Variable, sans-serif"
     fontSize: 3rem
     fontWeight: 800
     lineHeight: 1.1
     letterSpacing: -0.02em
-  heading-2:
+  h2:
     fontFamily: "Space Grotesk Variable, sans-serif"
     fontSize: 2.25rem
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: -0.01em
-  heading-3:
+  h3:
     fontFamily: "Space Grotesk Variable, sans-serif"
     fontSize: 1.5rem
     fontWeight: 600
     lineHeight: 1.25
-  body-lg:
-    fontFamily: "Inter Variable, sans-serif"
-    fontSize: 1.125rem
-    fontWeight: 400
-    lineHeight: 1.625
-  body-md:
+  prose-body:
     fontFamily: "Inter Variable, sans-serif"
     fontSize: 1rem
     fontWeight: 400
     lineHeight: 1.625
+  body-lg:
+    fontFamily: "JetBrains Mono Variable, monospace"
+    fontSize: 1.125rem
+    fontWeight: 400
+    lineHeight: 1.625
+  body-md:
+    fontFamily: "JetBrains Mono Variable, monospace"
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.6
   body-sm:
-    fontFamily: "Inter Variable, sans-serif"
+    fontFamily: "JetBrains Mono Variable, monospace"
     fontSize: 0.875rem
     fontWeight: 400
     lineHeight: 1.5
@@ -96,10 +99,7 @@ typography:
 
 rounded:
   none: 0px
-  sm: 4px
-  md: 6px
-  lg: 8px
-  xl: 12px
+  default: 0px
 
 spacing:
   xs: 4px
@@ -113,6 +113,7 @@ spacing:
   section-y: 128px
   container-max: 1280px
   reading-max: 896px
+  narrow-max: 672px
 
 shadows:
   none: "none"
@@ -143,26 +144,39 @@ components:
   page-surface:
     backgroundColor: "{colors.background-0}"
     textColor: "{colors.foreground-0}"
+
   nav-bar:
     backgroundColor: "{colors.background-0}"
     textColor: "{colors.foreground-1}"
     height: 96px
-  section-intro-badge:
+
+  section-intro-badge-accent:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.background-0}"
     typography: "{typography.label-caps}"
     rounded: "{rounded.none}"
     padding: "4px 12px"
+
+  section-intro-badge-outline:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    typography: "{typography.label-caps}"
+    rounded: "{rounded.none}"
+    padding: "4px 12px"
+
   section-heading:
     textColor: "{colors.foreground-0}"
-    typography: "{typography.display-xl}"
+    typography: "{typography.section-heading-fluid}"
+
   card-default:
     backgroundColor: "{colors.background-0}"
     textColor: "{colors.foreground-1}"
     rounded: "{rounded.none}"
     padding: 24px
+
   card-default-hover:
     backgroundColor: "{colors.background-1}"
+
   button-primary:
     backgroundColor: "{colors.foreground-0}"
     textColor: "{colors.background-0}"
@@ -170,26 +184,91 @@ components:
     typography: "{typography.body-sm}"
     padding: "8px 16px"
     height: 40px
+
   button-primary-hover:
     backgroundColor: "{colors.background-0}"
     textColor: "{colors.foreground-0}"
+
   button-secondary:
     backgroundColor: "{colors.background-0}"
     textColor: "{colors.foreground-1}"
     rounded: "{rounded.none}"
     padding: "8px 16px"
     height: 40px
+
   button-secondary-hover:
     backgroundColor: "{colors.background-1}"
     textColor: "{colors.foreground-0}"
+
+  button-outline:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    padding: "8px 16px"
+    height: 40px
+
+  button-ghost:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    padding: "8px 16px"
+    height: 40px
+
+  button-link:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    padding: "4px 0px"
+
+  icon-button-sm:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    width: 26px
+    height: 26px
+
+  icon-button-md:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    width: 32px
+    height: 32px
+
+  icon-button-lg:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    width: 42px
+    height: 42px
+
   input-default:
     backgroundColor: "{colors.background-0}"
     textColor: "{colors.foreground-0}"
     rounded: "{rounded.none}"
     padding: "16px 16px"
     height: 56px
+
   input-default-focus:
     textColor: "{colors.foreground-0}"
+
+  textarea-default:
+    backgroundColor: "{colors.background-0}"
+    textColor: "{colors.foreground-1}"
+    rounded: "{rounded.none}"
+    padding: "16px 16px"
+
+  prose-blockquote:
+    backgroundColor: "{colors.background-2}"
+    textColor: "{colors.foreground-0}"
+    rounded: "{rounded.none}"
+    padding: "16px 24px"
+
+  prose-inline-code:
+    backgroundColor: "{colors.background-2}"
+    textColor: "{colors.foreground-0}"
+    typography: "{typography.mono-md}"
+    rounded: "{rounded.none}"
+    padding: "2px 6px"
 ---
 
 # Overview
@@ -198,9 +277,15 @@ This interface is a disciplined, infrastructure-inspired brutalist system: monoc
 
 The emotional tone is calm confidence: quiet surfaces, strong hierarchy, and precise interactions.
 
+## Visual Theme & Atmosphere
+
+The system is built for developer audiences who value readability, structure, and signal over decoration. Base surfaces stay very dark, typography carries hierarchy, and accents appear only where attention must shift quickly.
+
+The visual texture is intentionally restrained: selective diagonal stripe overlays create depth without gradients or blur-heavy ornamentation.
+
 ## Colors
 
-The palette is primarily grayscale, with one electric accent family used sparingly for semantic emphasis.
+The palette is primarily grayscale, with one electric accent family used sparingly for semantic emphasis and interaction focus.
 
 - Backgrounds stay near pure black in dark mode and pure white in light mode.
 - Text follows a four-step luminance ladder from primary (`foreground-0`) to subtle (`foreground-3`).
@@ -215,18 +300,19 @@ Color usage ratio should remain heavily neutral: accents should occupy a small f
 Typography is role-based and highly consistent.
 
 - Display and section hierarchy use Space Grotesk Variable.
-- Reading and descriptive copy use Inter Variable.
+- General interface text (navigation, controls, metadata, labels) uses JetBrains Mono Variable.
+- Reading paragraphs in long-form prose use Inter Variable.
 - Technical/meta language and code contexts use JetBrains Mono Variable.
 
-Headlines are bold and compressed with tight tracking. Body text remains relaxed and readable. Labels and metadata use uppercase treatment with added tracking to communicate system structure.
+Headlines are bold and compressed with tight tracking. Section headlines use a fluid scale: `clamp(3rem, 10vw, 7rem)`. Body text remains readable with relaxed line-height. Labels and metadata often use uppercase treatment with added tracking to communicate structure.
 
 ## Layout
 
 Layout is modular, wide, and rhythm-driven.
 
-- Core page content sits in a centered large container.
-- Reading-heavy content uses a narrower measure.
-- Sections use generous vertical spacing.
+- Core page content sits in a centered large container (1280px max).
+- Reading-heavy content uses narrower measures (896px and 672px ranges).
+- Sections use generous vertical spacing (commonly 128px).
 - Cards and lists align to a strict spacing scale with clear separators.
 
 Composition pattern:
@@ -243,15 +329,20 @@ Depth is intentionally minimal.
 - Surfaces are mostly flat.
 - Separation is created by border contrast and tonal shifts, not heavy shadows.
 - Hover and active states use slight background changes and text emphasis.
-- Focus treatment uses an accent ring with clear contrast.
+- Focus treatment uses a 2px accent ring at reduced opacity.
+
+Texture pattern model:
+
+- Standard stripe pattern: 45 degree diagonals with 10px transparent + 10px pattern intervals.
+- Dense stripe pattern: 45 degree diagonals with 2px transparent + 2px pattern intervals.
+- Patterns are used only on selected hero/section surfaces.
 
 ## Shapes
 
 Shape language is hard-edged.
 
 - Default corner profile is square.
-- Rounded corners are minimal and used only where necessary.
-- Cards, buttons, and fields should keep a strict geometric silhouette.
+- Cards, buttons, badges, and fields use zero radius by default.
 - Avoid soft, bubbly, or highly rounded forms.
 
 ## Components
@@ -272,7 +363,38 @@ Cards use thin borders, monochrome surfaces, and subtle hover shifts. Informatio
 
 ### Buttons and Inputs
 
-Buttons favor clear state transitions and high contrast over ornamentation. Inputs are rectangular, generously padded, and rely on border/focus contrast.
+Buttons use five behavior variants: primary, secondary, outline, ghost, and link. Icon buttons use dedicated compact square sizes. Inputs and textareas are rectangular, generously padded, and rely on border/focus contrast instead of shadow depth.
+
+Variant behavior model:
+
+- Primary: high-contrast inversion treatment for strongest action emphasis.
+- Secondary: bordered neutral action with subtle hover lift.
+- Outline: low-surface interaction with border-led affordance.
+- Ghost: minimal fill for dense control clusters.
+- Link: text-forward action with underline on hover.
+
+Focus behavior is consistent across controls: accent ring, no decorative glow.
+
+### Badges
+
+Badges have three variants:
+
+- Accent badges for section labels and high-signal markers.
+- Outline badges for tags and taxonomy labels.
+- Default badges for low-intensity metadata contexts.
+
+All badges remain compact, uppercase, and hard-edged.
+
+### Prose and Content Rendering
+
+Long-form content uses a dedicated prose system.
+
+- Prose headings use display typography and tighter tracking.
+- Paragraph text uses Inter with relaxed line-height.
+- Blockquotes use an accent left border and dark inset surface.
+- Inline code and code blocks use mono type and dark contrast blocks.
+- Links remain underlined with accent emphasis and offset for legibility.
+- Tables, lists, and dividers prioritize structure and readability over visual embellishment.
 
 ### Lists and Metadata
 
@@ -287,6 +409,8 @@ Do:
 - Use strong heading hierarchy and generous section spacing.
 - Favor borders and tonal steps over shadow-heavy depth.
 - Maintain square, sharp-edged component geometry.
+- Use texture patterns sparingly on large structural surfaces.
+- Keep interaction transitions purposeful and short.
 
 Don't:
 
@@ -295,3 +419,4 @@ Don't:
 - Add decorative shadows, glows, or blur-heavy effects.
 - Use highly rounded corners as a default.
 - Mix unrelated visual styles inside one page.
+- Apply stylistic motion that does not communicate state or hierarchy.
