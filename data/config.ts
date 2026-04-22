@@ -7,7 +7,7 @@ export const SITE: SiteConfig = {
   repo: 'https://github.com/HYP3R00T/rajeshdas.dev',
   title: 'Rajesh Das',
   description:
-    "A portfolio and blog showcasing Rajesh's skills in DevOps, Python, and Cloud.",
+    'A personal portfolio and value-first router for self-directed developers who want structure, practical systems, and curated guidance.',
   image: placeholder1,
   imageAlt: 'Check out rajeshdas.dev',
   contentType: 'Portfolio',
@@ -19,6 +19,7 @@ export const SITE: SiteConfig = {
 export const navItems: NavItem[] = [
   { href: '/post', label: 'Blog' },
   { href: '/project', label: 'Projects' },
+  { href: '/contact', label: 'Contact Me' },
 ]
 
 export const SOCIAL_LINKS = [

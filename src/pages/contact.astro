@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Badge from "@/components/ui/Badge.astro";
+
+const pageTitle = "Contact | Rajesh Das";
+const pageDescription =
+  "Ways to reach Rajesh Das for collaboration, hiring, or general conversation.";
+
+const contactLinks = [
+  {
+    title: "Email",
+    description: "Best for collaboration, hiring, and direct questions.",
+    href: "mailto:hello@rajeshdas.dev",
+  },
+  {
+    title: "GitHub",
+    description: "See the code, projects, and open-source activity.",
+    href: "https://github.com/HYP3R00T",
+  },
+  {
+    title: "LinkedIn",
+    description: "Professional connection and role-based conversation.",
+    href: "https://linkedin.com/in/rajesh-kumar-das",
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="stripe-pattern-dense relative px-4 py-12 md:px-12">
+    <div class="mx-auto w-full max-w-5xl space-y-10">
+      <div class="space-y-6">
+        <Badge variant="accent">Contact</Badge>
+        <h1
+          class="font-display text-balance text-5xl leading-none font-bold tracking-tight md:text-7xl"
+        >
+          Let us talk if there is a fit.
+        </h1>
+        <p
+          class="text-foreground-1 max-w-3xl text-base leading-relaxed md:text-lg"
+        >
+          Use any of the links below if you want to collaborate, discuss a role,
+          or simply continue the conversation.
+        </p>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          contactLinks.map((link) => (
+            <a
+              href={link.href}
+              class="border-border bg-background-0 hover:bg-background-1/70 focus-visible:ring-accent/60 flex flex-col gap-3 border p-5 transition-all focus-visible:outline-none focus-visible:ring-2"
+            >
+              <span class="font-display text-foreground-0 text-xl font-semibold">
+                {link.title}
+              </span>
+              <span class="text-foreground-1 text-sm leading-relaxed">
+                {link.description}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
