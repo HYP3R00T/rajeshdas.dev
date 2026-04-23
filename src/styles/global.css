@@ -329,8 +329,8 @@ html.dark .astro-code span {
 .stripe-pattern {
   background-image: repeating-linear-gradient(
     45deg,
-    transparent,
-    transparent 10px,
+    var(--background-0),
+    var(--background-0) 10px,
     var(--pattern) 10px,
     var(--pattern) 20px
   );
@@ -339,11 +339,66 @@ html.dark .astro-code span {
 .stripe-pattern-dense {
   background-image: repeating-linear-gradient(
     45deg,
-    transparent,
-    transparent 2px,
+    var(--background-0),
+    var(--background-0) 2px,
     var(--pattern) 2px,
     var(--pattern) 4px
   );
+}
+
+/* Interactive Dot Pattern */
+.dot-pattern-interactive {
+  --dot-size: 1px;
+  --dot-grid: 14px;
+  --dot-mx: 50%;
+  --dot-my: 50%;
+  --dot-spot-size: 190px;
+  --dot-highlight-opacity: 0;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.dot-pattern-interactive::before,
+.dot-pattern-interactive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot-pattern-interactive::before {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in hsl, var(--foreground-1) 22%, transparent) var(--dot-size),
+    transparent calc(var(--dot-size) + 0.6px)
+  );
+  background-size: var(--dot-grid) var(--dot-grid);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.dot-pattern-interactive::after {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in hsl, var(--foreground-0) 36%, transparent) var(--dot-size),
+    transparent calc(var(--dot-size) + 0.6px)
+  );
+  background-size: var(--dot-grid) var(--dot-grid);
+  mask-image: radial-gradient(
+    circle var(--dot-spot-size) at var(--dot-mx) var(--dot-my),
+    black 0%,
+    transparent 78%
+  );
+  opacity: calc(0.36 * var(--dot-highlight-opacity));
+  transition: opacity 200ms ease;
+  z-index: 0;
+}
+
+.dot-pattern-interactive > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Typography Utility Classes */
