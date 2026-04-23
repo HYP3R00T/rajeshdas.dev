@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Section from "@/components/ui/Section.astro";
-import SectionHeader from "@/components/ui/SectionHeader.astro";
+import Badge from "@/components/ui/Badge.astro";
 import PostCard from "@/components/post/PostCard.astro";
 import Button from "@/components/ui/Button.astro";
 
@@ -13,21 +12,28 @@ const posts = allPosts
   .slice(0, 6);
 ---
 
-<Section>
-  <SectionHeader
-    badge="Insights"
-    description="Thoughts and learnings on DevOps, infrastructure, and automation"
-  >
-    <div>ARTICLES</div>
-  </SectionHeader>
+<section class="relative px-6 py-24 md:px-12 md:py-32">
+  <div class="mx-auto w-full max-w-7xl">
+    <div class="mb-12">
+      <Badge variant="outline">Insights</Badge>
+      <h1 class="text-section-heading my-8">
+        <div>ARTICLES</div>
+      </h1>
+      <p
+        class="text-foreground-1 max-w-2xl text-base leading-relaxed md:text-lg"
+      >
+        Thoughts and learnings on DevOps, infrastructure, and automation
+      </p>
+    </div>
 
-  <div class="border-border space-y-0 border-t">
-    {posts.map((post, index) => <PostCard post={post} index={index} />)}
-  </div>
+    <div class="border-border space-y-0 border-t">
+      {posts.map((post, index) => <PostCard post={post} index={index} />)}
+    </div>
 
-  <div class="mt-12 text-center">
-    <a href="/post/">
-      <Button size="lg" class="uppercase">View All Articles</Button>
-    </a>
+    <div class="mt-12 text-center">
+      <a href="/post/">
+        <Button size="lg" class="uppercase">View All Articles</Button>
+      </a>
+    </div>
   </div>
-</Section>
+</section>
