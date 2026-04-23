@@ -1,7 +1,6 @@
 ---
 // Header Component - Navigation and branding
 import { navItems, SITE } from "@data/config";
-import { Icon } from "astro-icon/components";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import Button from "@/components/ui/Button.astro";
@@ -9,7 +8,7 @@ import ThemeToggle from "./ThemeToggle.astro";
 ---
 
 <header
-  class="border-border sticky top-0 z-50 flex h-24 items-center justify-center border-b bg-background-0 px-4 py-12 md:px-12"
+  class="border-border sticky top-0 z-50 flex h-24 items-center justify-center border-b bg-background-0/80 backdrop-blur-3xl px-4 py-12 md:px-12"
 >
   <nav class="mx-auto w-full max-w-7xl md:px-6">
     <div class="flex items-center justify-between">
