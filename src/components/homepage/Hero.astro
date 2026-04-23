@@ -1,17 +1,16 @@
 ---
-import { Icon } from "astro-icon/components";
 import Badge from "@/components/ui/Badge.astro";
-import Attribute from "@/components/homepage/Attribute.astro";
-import { attributes } from "@data/homepage";
 import { skills } from "@data/homepage";
-import Skill from "./Skill.astro";
+import Skill from "@/components/homepage/Skill.astro";
 ---
 
-<section class="relative flex items-center justify-center px-4 md:px-12">
+<section
+  class="relative flex items-center justify-center px-4 md:px-12 border-b dot-pattern-interactive"
+>
   <div
     class="stripe-pattern-dense mx-auto w-full max-w-7xl border-r border-l p-6"
   >
-    <div class="mb-20 space-y-8">
+    <div class="">
       <!-- Main Grid Layout -->
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
         <!-- Left Column - Main Content -->
@@ -20,8 +19,8 @@ import Skill from "./Skill.astro";
           <Badge variant="accent">DevOps Engineer</Badge>
           <!-- Main Heading -->
           <h1 class="text-section-heading">
-            <div>RAJESH</div>
-            <div>DAS</div>
+            <div>Rajesh</div>
+            <div>Das</div>
           </h1>
 
           <!-- Subtitle -->
@@ -47,15 +46,6 @@ import Skill from "./Skill.astro";
             ))
           }
         </div>
-      </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2">
-      <div
-        class="text-foreground-3 flex animate-bounce flex-col items-center gap-2"
-      >
-        <Icon name="chevron-down-double" class="size-6" />
       </div>
     </div>
   </div>
