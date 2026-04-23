@@ -9,58 +9,56 @@ import IntentCards from "@/components/homepage/IntentCards.astro";
   <div
     class="stripe-pattern-dense mx-auto w-full max-w-7xl border-r border-l p-6"
   >
-    <div class="">
-      <!-- Main Grid Layout -->
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
-        <!-- Left Column - Main Content -->
-        <div class="flex flex-col gap-8">
-          <!-- Badge -->
-          <Badge variant="accent">DevOps Engineer</Badge>
-          <!-- Main Heading -->
-          <h1 class="text-section-heading mb-0!">
-            <div>Rajesh</div>
-            <div>Das</div>
-          </h1>
+    <!-- Main Grid Layout -->
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+      <!-- Left Column - Main Content -->
+      <div class="flex flex-col gap-8">
+        <!-- Badge -->
+        <Badge variant="accent">DevOps Engineer</Badge>
+        <!-- Main Heading -->
+        <h1 class="text-section-heading mb-0!">
+          <div>Rajesh</div>
+          <div>Das</div>
+        </h1>
 
-          <!-- Subtitle -->
-          <div class="max-w-xl space-y-6">
-            <p class="text-foreground-1 text-base leading-relaxed md:text-lg">
-              Building robust infrastructure and automation tools that empower
-              development teams. Specialized in cloud architecture, CI/CD
-              pipelines, and developer experience.
-            </p>
-          </div>
+        <!-- Subtitle -->
+        <div class="max-w-xl space-y-6">
+          <p class="text-foreground-1 text-base leading-relaxed md:text-lg">
+            Building robust infrastructure and automation tools that empower
+            development teams. Specialized in cloud architecture, CI/CD
+            pipelines, and developer experience.
+          </p>
         </div>
+      </div>
 
-        <!-- Right Column - Attributes -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-2">
-          <IntentCards
-            tag="//learn"
-            title="The Map"
-            href="https://hyperootlabs.notion.site/learninghub"
-          >
-            <p class="text-foreground-2 text-sm">
-              Stop guessing what to learn next. Follow a structured path that
-              actually builds skill.
-            </p>
-          </IntentCards>
-          <IntentCards tag="//blog" title="Field Notes" href="/post">
-            <p class="text-foreground-2 text-sm">
-              How decisions are made, what breaks, and what actually works.
-            </p>
-          </IntentCards>
-          <IntentCards tag="//projects" title="The Builds" href="/project">
-            <p class="text-foreground-2 text-sm">
-              Real systems. Real problems. Built, tested, and evolving.
-            </p>
-          </IntentCards>
-          <IntentCards tag="//contact" title="Work With Me" href="/contact">
-            <p class="text-foreground-2 text-sm">
-              If you're building something real and need clarity over noise,
-              reach out.
-            </p>
-          </IntentCards>
-        </div>
+      <!-- Right Column - Attributes -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-2">
+        <IntentCards
+          tag="//learn"
+          title="The Map"
+          href="https://hyperootlabs.notion.site/learninghub"
+        >
+          <p class="text-foreground-2 text-sm">
+            Stop guessing what to learn next. Follow a structured path that
+            actually builds skill.
+          </p>
+        </IntentCards>
+        <IntentCards tag="//blog" title="Field Notes" href="/post">
+          <p class="text-foreground-2 text-sm">
+            How decisions are made, what breaks, and what actually works.
+          </p>
+        </IntentCards>
+        <IntentCards tag="//projects" title="The Builds" href="/project">
+          <p class="text-foreground-2 text-sm">
+            Real systems. Real problems. Built, tested, and evolving.
+          </p>
+        </IntentCards>
+        <IntentCards tag="//contact" title="Work With Me" href="/contact">
+          <p class="text-foreground-2 text-sm">
+            If you're building something real and need clarity over noise, reach
+            out.
+          </p>
+        </IntentCards>
       </div>
     </div>
   </div>
