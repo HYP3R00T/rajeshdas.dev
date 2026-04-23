@@ -3,20 +3,21 @@ import { Icon } from "astro-icon/components";
 import Badge from "@/components/ui/Badge.astro";
 import Attribute from "@/components/homepage/Attribute.astro";
 import { attributes } from "@data/homepage";
+import { skills } from "@data/homepage";
+import Skill from "./Skill.astro";
 ---
 
-<section
-  class="stripe-pattern-dense relative flex items-center justify-center px-4 py-12 md:px-12"
->
-  <div class="mx-auto w-full max-w-7xl">
+<section class="relative flex items-center justify-center px-4 md:px-12">
+  <div
+    class="stripe-pattern-dense mx-auto w-full max-w-7xl border-r border-l p-6"
+  >
     <div class="mb-20 space-y-8">
-      <!-- Badge -->
-      <Badge variant="accent">DevOps Engineer</Badge>
-
       <!-- Main Grid Layout -->
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
         <!-- Left Column - Main Content -->
-        <div>
+        <div class="flex flex-col gap-8">
+          <!-- Badge -->
+          <Badge variant="accent">DevOps Engineer</Badge>
           <!-- Main Heading -->
           <h1 class="text-section-heading">
             <div>RAJESH</div>
@@ -30,22 +31,18 @@ import { attributes } from "@data/homepage";
               development teams. Specialized in cloud architecture, CI/CD
               pipelines, and developer experience.
             </p>
-            <p class="text-foreground-1 text-sm leading-relaxed">
-              From infrastructure as code to container orchestration, I focus on
-              creating reliable, scalable systems that let teams ship faster and
-              sleep better.
-            </p>
           </div>
         </div>
 
         <!-- Right Column - Attributes -->
-        <div class="space-y-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-2">
           {
-            attributes.map((attribute) => (
-              <Attribute
-                title={attribute.title}
-                icon={attribute.icon}
-                description={attribute.description}
+            skills.map((skill) => (
+              <Skill
+                id={skill.id}
+                title={skill.title}
+                icon={skill.icon}
+                items={skill.items}
               />
             ))
           }
