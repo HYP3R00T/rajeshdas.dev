@@ -7,9 +7,9 @@
   --radius: 0px;
 
   /* Background Layers - Revamp: Pure background-0 Theme */
-  --background-0: hsl(0, 0%, 0%);
+  --background-0: hsl(0, 0%, 2%);
   /* pure background-0 */
-  --background-1: hsl(0, 0%, 3%);
+  --background-1: hsl(0, 0%, 4%);
   /* pure background-0 */
   --background-2: hsl(0, 0%, 10%);
   /* very dark gray for contrast */
@@ -64,8 +64,8 @@
 }
 
 .light {
-  --background-0: hsl(0, 0%, 100%);
-  --background-1: hsl(0, 0%, 97%);
+  --background-0: hsl(0, 0%, 98%);
+  --background-1: hsl(0, 0%, 96%);
   --background-2: hsl(0, 0%, 80%);
 
   --foreground-0: hsl(0, 0%, 0%);
@@ -93,8 +93,8 @@
 }
 
 .dark {
-  --background-0: hsl(0, 0%, 0%);
-  --background-1: hsl(0, 0%, 3%);
+  --background-0: hsl(0, 0%, 2%);
+  --background-1: hsl(0, 0%, 4%);
   --background-2: hsl(0, 0%, 10%);
 
   --foreground-0: hsl(0, 0%, 100%);
