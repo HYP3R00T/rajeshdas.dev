@@ -329,8 +329,8 @@ html.dark .astro-code span {
 .stripe-pattern {
   background-image: repeating-linear-gradient(
     45deg,
-    var(--background-0),
-    var(--background-0) 10px,
+    var(--background-1),
+    var(--background-1) 10px,
     var(--pattern) 10px,
     var(--pattern) 20px
   );
@@ -339,8 +339,8 @@ html.dark .astro-code span {
 .stripe-pattern-dense {
   background-image: repeating-linear-gradient(
     45deg,
-    var(--background-0),
-    var(--background-0) 3px,
+    var(--background-1),
+    var(--background-1) 3px,
     var(--pattern) 3px,
     var(--pattern) 6px
   );
