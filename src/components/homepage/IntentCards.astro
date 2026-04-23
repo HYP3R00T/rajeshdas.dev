@@ -1,0 +1,27 @@
+---
+import CardGrid from "../ui/CardGrid.astro";
+
+interface Props {
+  tag: string;
+  title: string;
+  href: string;
+}
+
+const { tag, title, href } = Astro.props;
+---
+
+<CardGrid>
+  <a href={href}>
+    <div class="mb-6 flex items-start justify-between">
+      <h3
+        class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase"
+      >
+        {title}
+      </h3>
+      <div class="text-foreground-3 text-sm">{tag}</div>
+    </div>
+    <div class="">
+      <slot />
+    </div>
+  </a>
+</CardGrid>

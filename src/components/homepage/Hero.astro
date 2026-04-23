@@ -1,7 +1,6 @@
 ---
 import Badge from "@/components/ui/Badge.astro";
-import { skills } from "@data/homepage";
-import Skill from "@/components/homepage/Skill.astro";
+import IntentCards from "@/components/homepage/IntentCards.astro";
 ---
 
 <section
@@ -35,16 +34,32 @@ import Skill from "@/components/homepage/Skill.astro";
 
         <!-- Right Column - Attributes -->
         <div class="grid md:grid-cols-2 lg:grid-cols-2">
-          {
-            skills.map((skill) => (
-              <Skill
-                id={skill.id}
-                title={skill.title}
-                icon={skill.icon}
-                items={skill.items}
-              />
-            ))
-          }
+          <IntentCards
+            tag="//learn"
+            title="The Map"
+            href="https://hyperootlabs.notion.site/learninghub"
+          >
+            <p class="text-foreground-2 text-sm">
+              Stop guessing what to learn next. Follow a structured path that
+              actually builds skill.
+            </p>
+          </IntentCards>
+          <IntentCards tag="//blog" title="Field Notes" href="/post">
+            <p class="text-foreground-2 text-sm">
+              How decisions are made, what breaks, and what actually works.
+            </p>
+          </IntentCards>
+          <IntentCards tag="//projects" title="The Builds" href="/project">
+            <p class="text-foreground-2 text-sm">
+              Real systems. Real problems. Built, tested, and evolving.
+            </p>
+          </IntentCards>
+          <IntentCards tag="//contact" title="Work With Me" href="/contact">
+            <p class="text-foreground-2 text-sm">
+              If you're building something real and need clarity over noise,
+              reach out.
+            </p>
+          </IntentCards>
         </div>
       </div>
     </div>
