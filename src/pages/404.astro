@@ -1,12 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/ui/Section.astro";
 import Button from "@/components/ui/Button.astro";
 ---
 
 <BaseLayout>
-  <section
-    class="stripe-pattern-dense relative flex h-screen items-center justify-center px-4 py-12 md:px-12"
-  >
+  <Section pattern="stripe-dense" class="flex min-h-screen items-center">
     <div class="mx-auto w-full max-w-2xl">
       <div class="space-y-12 text-center">
         <!-- Large 404 display -->
@@ -49,5 +48,5 @@ import Button from "@/components/ui/Button.astro";
         </div>
       </div>
     </div>
-  </section>
+  </Section>
 </BaseLayout>

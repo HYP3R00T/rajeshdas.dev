@@ -1,36 +1,30 @@
 ---
 // Skills Section Component
-// Displays categorized tech stack in a 3-column grid with icons and items
-import Badge from "@/components/ui/Badge.astro";
+// Displays categorized tech stack in a grid with icons and items
+import Section from "@/components/ui/Section.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
 import Skill from "@/components/homepage/Skill.astro";
 import { skills } from "@data/homepage";
 ---
 
-<section class="relative flex items-center justify-center px-6 py-32 md:px-12">
-  <div class="mx-auto w-full max-w-7xl">
-    <!-- Badge -->
-    <Badge variant="outline">Tech Stack</Badge>
-    <h1 class="text-section-heading my-8">
-      <div>EXPERTISE</div>
-    </h1>
+<Section>
+  <SectionHeader
+    badge="Tech Stack"
+    description="Technologies and tools I use to build reliable, scalable infrastructure"
+  >
+    <div>EXPERTISE</div>
+  </SectionHeader>
 
-    <p
-      class="text-foreground-1 max-w-2xl space-y-6 text-base leading-relaxed md:text-lg"
-    >
-      Technologies and tools I use to build reliable, scalable infrastructure
-    </p>
-
-    <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4">
-      {
-        skills.map((skill) => (
-          <Skill
-            id={skill.id}
-            title={skill.title}
-            icon={skill.icon}
-            items={skill.items}
-          />
-        ))
-      }
-    </div>
+  <div class="grid md:grid-cols-2 lg:grid-cols-4">
+    {
+      skills.map((skill) => (
+        <Skill
+          id={skill.id}
+          title={skill.title}
+          icon={skill.icon}
+          items={skill.items}
+        />
+      ))
+    }
   </div>
-</section>
+</Section>

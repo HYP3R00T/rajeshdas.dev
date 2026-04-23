@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import Badge from "@/components/ui/Badge.astro";
+import Section from "@/components/ui/Section.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
 import ProjectCard from "@/components/project/ProjectCard.astro";
 import Button from "@/components/ui/Button.astro";
 
@@ -31,34 +32,25 @@ const sortedProjects = shouldSortProjects
   : projects;
 ---
 
-<section
-  class="stripe-pattern relative flex items-center justify-center px-6 py-32 md:px-12"
->
-  <div class="mx-auto w-full max-w-7xl">
-    <!-- Badge -->
-    <Badge variant="outline">Selected Work</Badge>
-    <h1 class="text-section-heading my-8">
-      <div>PROJECTS</div>
-    </h1>
+<Section pattern="stripe">
+  <SectionHeader
+    badge="Selected Work"
+    description="Recent projects and tools I've built to solve real-world DevOps challenges"
+  >
+    <div>PROJECTS</div>
+  </SectionHeader>
 
-    <p
-      class="text-foreground-1 max-w-2xl space-y-6 text-base leading-relaxed md:text-lg"
-    >
-      Recent projects and tools I've built to solve real-world DevOps challenges
-    </p>
-
-    <div class="mt-8 grid md:grid-cols-2">
-      {
-        sortedProjects.map((project, index) => (
-          <ProjectCard project={project} index={index} />
-        ))
-      }
-    </div>
-
-    <div class="mt-12 text-center">
-      <a href="/project/">
-        <Button size="lg" class="uppercase">View All Projects</Button>
-      </a>
-    </div>
+  <div class="grid md:grid-cols-2">
+    {
+      sortedProjects.map((project, index) => (
+        <ProjectCard project={project} index={index} />
+      ))
+    }
   </div>
-</section>
+
+  <div class="mt-12 text-center">
+    <a href="/project/">
+      <Button size="lg" class="uppercase">View All Projects</Button>
+    </a>
+  </div>
+</Section>

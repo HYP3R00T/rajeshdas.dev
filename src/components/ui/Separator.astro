@@ -1,0 +1,38 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  label?: string;
+  class?: string;
+}
+
+const { label, class: className, ...rest } = Astro.props;
+---
+
+{
+  label ? (
+    <div
+      class:list={[
+        "flex items-center gap-4",
+        className?.trim(),
+      ]}
+      role="separator"
+      {...rest}
+    >
+      <div class="border-border flex-1 border-t" />
+      <span class="text-foreground-3 text-xs tracking-widest uppercase">
+        {label}
+      </span>
+      <div class="border-border flex-1 border-t" />
+    </div>
+  ) : (
+    <div
+      class:list={[
+        "border-border border-t",
+        className?.trim(),
+      ]}
+      role="separator"
+      {...rest}
+    />
+  )
+}

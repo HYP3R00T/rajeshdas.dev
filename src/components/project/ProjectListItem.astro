@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import IconFrame from "@/components/ui/IconFrame.astro";
 import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import { formatMonthYearRange } from "@/lib/utils";
@@ -32,16 +33,16 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
 ---
 
 <div
-  class="border-border group hover:bg-background-1 block border-b transition-colors"
+  class="border-border group hover:bg-background-1 block border-b transition-colors duration-200"
 >
   <div class="flex flex-col gap-4 px-6 py-8 md:py-12">
     <div class="flex items-center justify-between">
-      <Button as="div" variant="outline" size="icon-lg">
+      <IconFrame size="lg">
         <Icon
           name={project.data.icon || "github"}
           class="text-foreground-0 size-6"
         />
-      </Button>
+      </IconFrame>
       {project.data.openSource && <Badge variant="accent">OPEN SOURCE</Badge>}
     </div>
 

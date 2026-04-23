@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import Section from "@/components/ui/Section.astro";
+import SectionHeader from "@/components/ui/SectionHeader.astro";
 import PostCard from "@/components/post/PostCard.astro";
 import Button from "@/components/ui/Button.astro";
-import Badge from "@/components/ui/Badge.astro";
 
 // Get all posts, filter drafts, sort by date (newest first)
 const allPosts = await getCollection("posts");
@@ -12,26 +13,21 @@ const posts = allPosts
   .slice(0, 6);
 ---
 
-<section class="relative bg-background-0 px-6 py-32 md:px-12">
-  <div class="mx-auto max-w-7xl">
-    <Badge variant="outline">Insights</Badge>
-    <h1 class="text-section-heading my-8">
-      <div>ARTICLES</div>
-    </h1>
-    <p
-      class="text-foreground-1 max-w-2xl space-y-6 pb-4 text-base leading-relaxed md:text-lg"
-    >
-      Thoughts and learnings on DevOps, infrastructure, and automation
-    </p>
+<Section>
+  <SectionHeader
+    badge="Insights"
+    description="Thoughts and learnings on DevOps, infrastructure, and automation"
+  >
+    <div>ARTICLES</div>
+  </SectionHeader>
 
-    <div class="border-border space-y-0 border-t">
-      {posts.map((post, index) => <PostCard post={post} index={index} />)}
-    </div>
-
-    <div class="mt-12 text-center">
-      <a href="/post/">
-        <Button size="lg" class="uppercase">View All Articles</Button>
-      </a>
-    </div>
+  <div class="border-border space-y-0 border-t">
+    {posts.map((post, index) => <PostCard post={post} index={index} />)}
   </div>
-</section>
+
+  <div class="mt-12 text-center">
+    <a href="/post/">
+      <Button size="lg" class="uppercase">View All Articles</Button>
+    </a>
+  </div>
+</Section>
