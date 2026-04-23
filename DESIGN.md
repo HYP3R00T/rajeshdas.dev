@@ -419,10 +419,6 @@ This pattern is used consistently across all sections. The component guarantees 
 
 A styled horizontal divider with an optional centered text label. Replaces ad-hoc `border-t` patterns throughout the site.
 
-### Icon Frame (IconFrame)
-
-A dedicated non-interactive icon container in three sizes (sm, md, lg). Replaces the semantic misuse of `<Button as="div">` for display-only icons. Uses the same sizing scale as icon buttons but without interactive affordance.
-
 ### Footer
 
 The site footer uses a three-column bordered grid layout:
@@ -466,7 +462,6 @@ Do:
 - Keep interaction transitions purposeful and short.
 - Use solid hover backgrounds, not opacity-reduced ones.
 - Use the Section and SectionHeader primitives for all page sections.
-- Use IconFrame for non-interactive icon display.
 
 Don't:
 
@@ -476,6 +471,5 @@ Don't:
 - Use highly rounded corners as a default.
 - Mix unrelated visual styles inside one page.
 - Apply stylistic motion that does not communicate state or hierarchy.
-- Use `<Button as="div">` for non-interactive icon holders.
 - Hand-roll section padding — always use the Section component.
 - Use opacity-based hover backgrounds (e.g. `bg-background-1/50`).

@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import IconFrame from "@/components/ui/IconFrame.astro";
 import Button from "@/components/ui/Button.astro";
 import { formatMonthYearRange } from "@/lib/utils";
 
@@ -35,13 +34,17 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
   <!-- Top row: icon + index + arrow -->
   <div class="mb-4 flex items-start justify-between">
     <div class="flex items-center gap-3">
-      <IconFrame size="lg">
+      <div
+        class="border-border inline-flex size-10.5 shrink-0 items-center justify-center border [&>svg]:size-5.25"
+      >
         <Icon
           name={project.data.icon || "github"}
           class="text-foreground-0 size-5"
         />
-      </IconFrame>
-      <div class="text-foreground-3 text-xs">{String(index + 1).padStart(2, "0")}</div>
+      </div>
+      <div class="text-foreground-3 text-xs">
+        {String(index + 1).padStart(2, "0")}
+      </div>
     </div>
     <div
       class="border-border group-hover:bg-foreground-0 group-hover:text-background-0 group-hover:border-foreground-0 flex size-8 shrink-0 items-center justify-center border transition-colors duration-200"
