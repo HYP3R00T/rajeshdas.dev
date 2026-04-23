@@ -109,3 +109,22 @@ export interface Skill {
   icon: string
   items: string[]
 }
+
+// Homepage intent-router content model
+export interface IntentRoute {
+  id: string
+  title: string
+  audience: string
+  outcome: string
+  description: string
+  href: string
+  ctaLabel: string
+  status?: 'ready' | 'planned'
+}
+
+export interface HomepageIntentContent {
+  eyebrow: string
+  headline: string
+  subheadline: string
+  routes: IntentRoute[]
+}
