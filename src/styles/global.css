@@ -371,18 +371,18 @@ html.dark .astro-code span {
 .dot-pattern-interactive::before {
   background-image: radial-gradient(
     circle,
-    color-mix(in hsl, var(--foreground-1) 22%, transparent) var(--dot-size),
+    color-mix(in hsl, var(--foreground-1) 30%, transparent) var(--dot-size),
     transparent calc(var(--dot-size) + 0.6px)
   );
   background-size: var(--dot-grid) var(--dot-grid);
-  opacity: 0.2;
+  opacity: 0.3;
   z-index: 0;
 }
 
 .dot-pattern-interactive::after {
   background-image: radial-gradient(
     circle,
-    color-mix(in hsl, var(--foreground-0) 36%, transparent) var(--dot-size),
+    color-mix(in hsl, var(--foreground-0) 44%, transparent) var(--dot-size),
     transparent calc(var(--dot-size) + 0.6px)
   );
   background-size: var(--dot-grid) var(--dot-grid);
@@ -391,7 +391,7 @@ html.dark .astro-code span {
     black 0%,
     transparent 78%
   );
-  opacity: calc(0.36 * var(--dot-highlight-opacity));
+  opacity: calc(0.5 * var(--dot-highlight-opacity));
   transition: opacity 200ms ease;
   z-index: 0;
 }
