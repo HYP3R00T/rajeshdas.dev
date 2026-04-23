@@ -15,7 +15,7 @@ colors:
   foreground-1: "#cccccc"
   foreground-2: "#999999"
   foreground-3: "#666666"
-  border: "#1a1a1a"
+  border: "#262626"
   pattern: "#050505"
   accent: "#8f66ff"
   accent-2: "#66e3ff"
@@ -35,7 +35,7 @@ colors:
   light-foreground-1: "#333333"
   light-foreground-2: "#666666"
   light-foreground-3: "#999999"
-  light-border: "#e6e6e6"
+  light-border: "#d9d9d9"
   light-pattern: "#f7f7f7"
   light-accent: "#3600cc"
   light-accent-2: "#00a7cc"
@@ -289,7 +289,8 @@ The palette is primarily grayscale, with one electric accent family used sparing
 
 - Backgrounds stay near pure black in dark mode and pure white in light mode.
 - Text follows a four-step luminance ladder from primary (`foreground-0`) to subtle (`foreground-3`).
-- Borders are low-contrast separators, never heavy outlines.
+- Borders are low-contrast but intentional separators — they define structure in a zero-radius system.
+- Borders participate in grid composition: every content surface should be bordered to create a continuous architectural framework.
 - Accent colors (violet, cyan, magenta) are reserved for highlights, focus, and selective badges.
 - Pattern color is intentionally close to the base surface to create texture without noise.
 
@@ -400,6 +401,58 @@ Long-form content uses a dedicated prose system.
 
 List rows use separators and muted metadata for scannability. Dots, index numbers, and uppercase labels provide structure without clutter.
 
+### Section Wrapper (Section)
+
+The Section component is the standard wrapper for all page sections. It enforces consistent padding (`px-6 py-24 md:px-12 md:py-32`), a centered `max-w-7xl` inner container, and optional stripe pattern backgrounds (`none`, `stripe`, `stripe-dense`). Every section on every page should use this primitive instead of hand-rolling padding and max-width values.
+
+### Section Header (SectionHeader)
+
+The SectionHeader component formalizes the section composition pattern:
+
+1. Intro badge (with variant: accent, outline, or default)
+2. Large section title (slot-based for multi-line headings)
+3. Supporting description paragraph
+
+This pattern is used consistently across all sections. The component guarantees identical spacing and alignment regardless of where it appears.
+
+### Separator
+
+A styled horizontal divider with an optional centered text label. Replaces ad-hoc `border-t` patterns throughout the site.
+
+### Icon Frame (IconFrame)
+
+A dedicated non-interactive icon container in three sizes (sm, md, lg). Replaces the semantic misuse of `<Button as="div">` for display-only icons. Uses the same sizing scale as icon buttons but without interactive affordance.
+
+### Footer
+
+The site footer uses a three-column bordered grid layout:
+
+- Brand column: name and tagline
+- Navigation column: site navigation links
+- Social column: external social links with icons
+- Bottom bar: copyright and source link
+
+The footer uses `stripe-pattern-dense` background to mirror the hero section, creating visual bookends for the page.
+
+## Interaction States
+
+All interactive surfaces follow these rules:
+
+- Hover backgrounds use solid fills (`bg-background-1`), never opacity-reduced values.
+- Hover borders shift from `border` to `foreground-3` for visible feedback.
+- All transitions use explicit `duration-200` (200ms) timing.
+- Post list items gain a subtle `accent` left border on hover.
+- Focus states use a 2px accent ring at reduced opacity.
+
+## Section Composition
+
+Every content section follows a standardized composition:
+
+1. **Section wrapper** — consistent padding and max-width via the Section component
+2. **Section header** — badge + oversized heading + supporting text via SectionHeader
+3. **Content block** — grid, list, or card layout with bordered surfaces
+4. **Optional CTA** — centered button linking to full listing page
+
 ## Do's and Don'ts
 
 Do:
@@ -411,6 +464,9 @@ Do:
 - Maintain square, sharp-edged component geometry.
 - Use texture patterns sparingly on large structural surfaces.
 - Keep interaction transitions purposeful and short.
+- Use solid hover backgrounds, not opacity-reduced ones.
+- Use the Section and SectionHeader primitives for all page sections.
+- Use IconFrame for non-interactive icon display.
 
 Don't:
 
@@ -420,3 +476,6 @@ Don't:
 - Use highly rounded corners as a default.
 - Mix unrelated visual styles inside one page.
 - Apply stylistic motion that does not communicate state or hierarchy.
+- Use `<Button as="div">` for non-interactive icon holders.
+- Hand-roll section padding — always use the Section component.
+- Use opacity-based hover backgrounds (e.g. `bg-background-1/50`).
