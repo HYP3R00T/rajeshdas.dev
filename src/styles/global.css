@@ -340,9 +340,9 @@ html.dark .astro-code span {
   background-image: repeating-linear-gradient(
     45deg,
     var(--background-0),
-    var(--background-0) 2px,
-    var(--pattern) 2px,
-    var(--pattern) 4px
+    var(--background-0) 3px,
+    var(--pattern) 3px,
+    var(--pattern) 6px
   );
 }
 
