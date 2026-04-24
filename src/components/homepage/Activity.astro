@@ -1,5 +1,4 @@
 ---
-import CardGrid from "../ui/CardGrid.astro";
 import LatestBlog from "./LatestBlog.astro";
 import LatestVideo from "./LatestVideo.astro";
 import LatestActivity from "./LatestActivity.astro";
@@ -15,9 +14,11 @@ import LatestActivity from "./LatestActivity.astro";
     </p>
 
     <!-- Card grid -->
-    <div class="activity-grid grid grid-cols-1 lg:grid-cols-3">
-      <LatestBlog />
-      <LatestVideo />
+    <div class="activity-grid grid grid-cols-1 lg:grid-cols-3 lg:items-start">
+      <div class="lg:col-span-2 flex flex-col">
+        <LatestVideo />
+        <LatestBlog />
+      </div>
       <LatestActivity />
     </div>
   </div>
