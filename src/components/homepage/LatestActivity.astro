@@ -1,49 +1,242 @@
 ---
-import CardGrid from "../ui/CardGrid.astro";
+import { Icon } from "astro-icon/components";
+import CardGrid from "@/components/ui/CardGrid.astro";
+import { pinnedProjects } from "@data/pinned-projects";
+import activityData from "@data/github-activity.json";
+
+// ── Contribution heatmap ──────────────────────────────────────────────────────
+// Build a 16-week grid: columns = weeks (oldest → newest, left → right)
+//                        rows   = days  (Mon → Sun, top → bottom)
+
+interface ContribDay {
+  date: string;
+  count: number;
+}
+
+const contributions: ContribDay[] = activityData.contributions ?? [];
+
+// Group by ISO week string (YYYY-Www) so we get clean 7-day columns
+const weekMap = new Map<string, ContribDay[]>();
+
+for (const day of contributions) {
+  const d = new Date(day.date + "T00:00:00Z");
+  // ISO week: shift so Monday = 0
+  const dow = (d.getUTCDay() + 6) % 7; // 0=Mon … 6=Sun
+  const thursday = new Date(d);
+  thursday.setUTCDate(d.getUTCDate() + (3 - dow));
+  const yearStart = new Date(Date.UTC(thursday.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil(
+    ((thursday.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
+  );
+  const key = `${thursday.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+
+  if (!weekMap.has(key)) weekMap.set(key, []);
+  weekMap.get(key)!.push(day);
+}
+
+// Sort weeks chronologically and take the last 16
+const sortedWeeks = [...weekMap.entries()]
+  .sort(([a], [b]) => a.localeCompare(b))
+  .slice(-16);
+
+// For each week, build a 7-slot array (Mon–Sun), filling gaps with null
+const grid: (ContribDay | null)[][] = sortedWeeks.map(([, days]) => {
+  const slots: (ContribDay | null)[] = Array(7).fill(null);
+  for (const day of days) {
+    const d = new Date(day.date + "T00:00:00Z");
+    const dow = (d.getUTCDay() + 6) % 7;
+    slots[dow] = day;
+  }
+  return slots;
+});
+
+// Determine max count for relative intensity
+const maxCount = Math.max(1, ...contributions.map((c) => c.count));
+
+// Map count → one of 5 intensity levels (0–4)
+function intensity(count: number): number {
+  if (count === 0) return 0;
+  const ratio = count / maxCount;
+  if (ratio <= 0.15) return 1;
+  if (ratio <= 0.4) return 2;
+  if (ratio <= 0.7) return 3;
+  return 4;
+}
+
+// Total contributions in the window
+const totalContribs = contributions.reduce((s, c) => s + c.count, 0);
+
+// Month labels: collect the first week index where a new month starts
+const monthLabels: { label: string; col: number }[] = [];
+let lastMonth = -1;
+sortedWeeks.forEach(([, days], colIdx) => {
+  const firstDay = days.sort((a, b) => a.date.localeCompare(b.date))[0];
+  if (!firstDay) return;
+  const m = new Date(firstDay.date + "T00:00:00Z").getUTCMonth();
+  if (m !== lastMonth) {
+    const label = new Date(firstDay.date + "T00:00:00Z").toLocaleDateString(
+      "en-US",
+      { month: "short", timeZone: "UTC" },
+    );
+    monthLabels.push({ label, col: colIdx });
+    lastMonth = m;
+  }
+});
+
+const hasData = grid.length > 0;
 ---
 
-<CardGrid class="h-full">
-  <!-- Column 3: Project -->
-  <a href="/project" class="flex flex-col h-full">
-    <!-- Header -->
-    <div class="flex items-start justify-between mb-6">
-      <h3
-        class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase"
-      >
-        [EXE] ACTIVE_SYSTEM
-      </h3>
-      <span class="font-mono text-foreground-3 text-xs">// build</span>
-    </div>
-
-    <!-- Prompt -->
-    <p
-      class="font-mono text-foreground-2 text-sm mb-8 transition-colors duration-200"
+<CardGrid class="h-full flex flex-col">
+  <!-- Header -->
+  <div class="flex items-start justify-between mb-4">
+    <h3
+      class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase"
     >
-      &gt; git status --short
-    </p>
+      [SYS] ACTIVITY
+    </h3>
+    <span class="font-mono text-foreground-3 text-xs">03 // build</span>
+  </div>
 
-    <!-- Divider -->
-    <div class="border-border border-t mb-6"></div>
+  <!-- Prompt -->
+  <p class="font-mono text-foreground-2 text-sm mb-4">
+    &gt; gh contributions --weeks 16
+  </p>
 
-    <!-- Content -->
-    <h4 class="font-display text-foreground-0 text-base font-bold mb-2">
-      Infrastructure Orchestration
-    </h4>
-    <p class="font-sans text-foreground-2 text-sm leading-relaxed mb-8">
-      Refactoring infrastructure orchestration: solving the ROCm dependency
-      conflict.
-    </p>
+  <!-- ── Heatmap ─────────────────────────────────────────────────────────── -->
+  {
+    hasData ? (
+      <div class="mb-4 flex-shrink-0">
+        <!-- Month labels row -->
+        <div
+          class="grid mb-1"
+          style={`grid-template-columns: repeat(${grid.length}, minmax(0, 1fr)); gap: 2px;`}
+        >
+          {sortedWeeks.map(([, days], colIdx) => {
+            const label = monthLabels.find((m) => m.col === colIdx);
+            return (
+              <div class="font-mono text-foreground-3 text-[8px] leading-none truncate">
+                {label ? label.label : ""}
+              </div>
+            );
+          })}
+        </div>
 
-    <!-- Footer -->
-    <div class="flex items-end justify-between mt-auto">
-      <span class="font-mono text-foreground-3 text-[10px] tracking-wider">
-        Rajesh.sys
-      </span>
-      <span
-        class="font-mono text-foreground-3 text-[10px] tracking-wider text-right"
-      >
-        BRANCH: main | LAST_COMMIT: 4h ago
-      </span>
-    </div>
-  </a>
+        <!-- Day grid: each column is a week, each row is a day -->
+        <div
+          class="grid"
+          style={`grid-template-columns: repeat(${grid.length}, minmax(0, 1fr)); gap: 2px;`}
+        >
+          {grid.map((week) =>
+            week.map((day, rowIdx) => {
+              const level = day ? intensity(day.count) : 0;
+              const title = day
+                ? `${day.count} contribution${day.count !== 1 ? "s" : ""} on ${day.date}`
+                : "";
+              return (
+                <div
+                  class="contrib-cell aspect-square w-full"
+                  data-level={level}
+                  data-title={title}
+                  title={title}
+                  aria-label={title || "No contributions"}
+                />
+              );
+            })
+          )}
+        </div>
+
+        <!-- Legend -->
+        <div class="flex items-center gap-1.5 mt-2 justify-end">
+          <span class="font-mono text-foreground-3 text-[8px]">less</span>
+          {[0, 1, 2, 3, 4].map((level) => (
+            <div class="contrib-cell w-2 h-2" data-level={level} />
+          ))}
+          <span class="font-mono text-foreground-3 text-[8px]">more</span>
+        </div>
+
+        <!-- Summary -->
+        <p class="font-mono text-foreground-3 text-[10px] tracking-wider mt-1 text-right">
+          {totalContribs} CONTRIBUTIONS / 16 WEEKS
+        </p>
+      </div>
+    ) : (
+      <div class="mb-4 border border-border p-3 flex-shrink-0">
+        <p class="font-mono text-foreground-3 text-xs text-center">
+          // run scripts/fetch-github-activity.py
+        </p>
+        <p class="font-mono text-foreground-3 text-[10px] text-center mt-1">
+          to populate contribution data
+        </p>
+      </div>
+    )
+  }
+
+  <!-- Divider -->
+  <div class="border-border border-t mb-4 flex-shrink-0"></div>
+
+  <!-- ── Pinned projects ─────────────────────────────────────────────────── -->
+  <div class="flex flex-col gap-2 flex-1">
+    {
+      pinnedProjects.map((project) => (
+        <a
+          href={project.href}
+          target={project.external ? "_blank" : undefined}
+          rel={project.external ? "noopener noreferrer" : undefined}
+          class="group flex items-start gap-3 p-2 -mx-2 transition-colors hover:bg-background-2"
+        >
+          <div class="mt-0.5 shrink-0 text-foreground-3 group-hover:text-accent transition-colors">
+            <Icon name={project.icon} class="w-3.5 h-3.5" />
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono text-foreground-0 text-xs font-medium group-hover:text-accent transition-colors truncate">
+                {project.title}
+              </span>
+              {project.external && (
+                <Icon
+                  name="arrow-up-right"
+                  class="w-2.5 h-2.5 text-foreground-3 shrink-0"
+                />
+              )}
+            </div>
+            <p class="font-sans text-foreground-3 text-[10px] leading-snug mt-0.5 line-clamp-1">
+              {project.description}
+            </p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Footer -->
+  <div class="flex items-center justify-between mt-auto pt-3 flex-shrink-0">
+    <a
+      href="https://github.com/HYP3R00T"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-mono text-foreground-3 text-[10px] tracking-wider hover:text-accent transition-colors"
+    >
+      github.com/HYP3R00T
+    </a>
+    <Icon name="github" class="w-3.5 h-3.5 text-foreground-3" />
+  </div>
 </CardGrid>
+
+<style>
+  /* Contribution cell colors using CSS variables from the theme */
+  .contrib-cell[data-level="0"] {
+    background-color: var(--background-2);
+  }
+  .contrib-cell[data-level="1"] {
+    background-color: color-mix(in hsl, var(--accent) 20%, transparent);
+  }
+  .contrib-cell[data-level="2"] {
+    background-color: color-mix(in hsl, var(--accent) 40%, transparent);
+  }
+  .contrib-cell[data-level="3"] {
+    background-color: color-mix(in hsl, var(--accent) 65%, transparent);
+  }
+  .contrib-cell[data-level="4"] {
+    background-color: var(--accent);
+  }
+</style>
