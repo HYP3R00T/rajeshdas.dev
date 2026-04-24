@@ -1,0 +1,48 @@
+---
+import CardGrid from "../ui/CardGrid.astro";
+---
+
+<CardGrid>
+  <!-- Column 1: Blog -->
+  <a href="/post">
+    <!-- Header -->
+    <div class="flex items-start justify-between mb-6">
+      <h3
+        class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase"
+      >
+        [TXT] LATEST_ENTRY
+      </h3>
+      <span class="font-mono text-foreground-3 text-xs">01 // note</span>
+    </div>
+
+    <!-- Prompt -->
+    <p
+      class="font-mono text-foreground-2 text-sm mb-8 transition-colors duration-200"
+    >
+      &gt; fetch ./field_notes/latest.md
+    </p>
+
+    <!-- Divider -->
+    <div class="border-border border-t mb-6"></div>
+
+    <!-- Content -->
+    <h4 class="font-display text-foreground-0 text-base font-bold mb-2">
+      Why I chose K3s over Talos
+    </h4>
+    <p class="font-sans text-foreground-2 text-sm leading-relaxed mb-8">
+      Dynamic excerpt placeholder from the blog post.
+    </p>
+
+    <!-- Footer -->
+    <div class="flex items-end justify-between mt-auto">
+      <span class="font-mono text-foreground-3 text-[10px] tracking-wider">
+        Rajesh.sys
+      </span>
+      <span
+        class="font-mono text-foreground-3 text-[10px] tracking-wider text-right"
+      >
+        SYS.DATE: 2026-04-23 | PUBLISHED
+      </span>
+    </div>
+  </a>
+</CardGrid>

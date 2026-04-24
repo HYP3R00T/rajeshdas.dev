@@ -1,0 +1,48 @@
+---
+import CardGrid from "../ui/CardGrid.astro";
+---
+
+<CardGrid>
+  <!-- Column 2: Video -->
+  <a href="#">
+    <!-- Header -->
+    <div class="flex items-start justify-between mb-6">
+      <h3
+        class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase"
+      >
+        [VID] BROADCAST
+      </h3>
+      <span class="font-mono text-foreground-3 text-xs">02 // video</span>
+    </div>
+
+    <!-- Prompt -->
+    <p
+      class="font-mono text-foreground-2 text-sm mb-8 transition-colors duration-200"
+    >
+      &gt; connect --source youtube
+    </p>
+
+    <!-- Divider -->
+    <div class="border-border border-t mb-6"></div>
+
+    <!-- Content -->
+    <h4 class="font-display text-foreground-0 text-base font-bold mb-2">
+      Structuring your DevOps pipeline
+    </h4>
+    <p class="font-sans text-foreground-2 text-sm leading-relaxed mb-8">
+      Dynamic excerpt placeholder from the video description.
+    </p>
+
+    <!-- Footer -->
+    <div class="flex items-end justify-between mt-auto">
+      <span class="font-mono text-foreground-3 text-[10px] tracking-wider">
+        Rajesh.sys
+      </span>
+      <span
+        class="font-mono text-foreground-3 text-[10px] tracking-wider text-right"
+      >
+        PING: 1024 | STATE: STREAMING
+      </span>
+    </div>
+  </a>
+</CardGrid>
