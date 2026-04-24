@@ -1,89 +1,23 @@
 ---
 import { Icon } from "astro-icon/components";
 import CardGrid from "@/components/ui/CardGrid.astro";
+import Button from "@/components/ui/Button.astro";
 import { pinnedProjects } from "@data/pinned-projects";
 import activityData from "@data/github-activity.json";
+import statsData from "@data/github-stats.json";
+import {
+  buildContribGrid,
+  contribIntensity,
+  mergeProjectStats,
+  type RepoStats,
+} from "@/lib/github";
 
-// ── Contribution heatmap ──────────────────────────────────────────────────────
-// Build a 16-week grid: columns = weeks (oldest → newest, left → right)
-//                        rows   = days  (Mon → Sun, top → bottom)
-
-interface ContribDay {
-  date: string;
-  count: number;
-}
-
-const contributions: ContribDay[] = activityData.contributions ?? [];
-
-// Group by ISO week string (YYYY-Www) so we get clean 7-day columns
-const weekMap = new Map<string, ContribDay[]>();
-
-for (const day of contributions) {
-  const d = new Date(day.date + "T00:00:00Z");
-  // ISO week: shift so Monday = 0
-  const dow = (d.getUTCDay() + 6) % 7; // 0=Mon … 6=Sun
-  const thursday = new Date(d);
-  thursday.setUTCDate(d.getUTCDate() + (3 - dow));
-  const yearStart = new Date(Date.UTC(thursday.getUTCFullYear(), 0, 1));
-  const weekNum = Math.ceil(
-    ((thursday.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
-  );
-  const key = `${thursday.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
-
-  if (!weekMap.has(key)) weekMap.set(key, []);
-  weekMap.get(key)!.push(day);
-}
-
-// Sort weeks chronologically and take the last 16
-const sortedWeeks = [...weekMap.entries()]
-  .sort(([a], [b]) => a.localeCompare(b))
-  .slice(-16);
-
-// For each week, build a 7-slot array (Mon–Sun), filling gaps with null
-const grid: (ContribDay | null)[][] = sortedWeeks.map(([, days]) => {
-  const slots: (ContribDay | null)[] = Array(7).fill(null);
-  for (const day of days) {
-    const d = new Date(day.date + "T00:00:00Z");
-    const dow = (d.getUTCDay() + 6) % 7;
-    slots[dow] = day;
-  }
-  return slots;
-});
-
-// Determine max count for relative intensity
-const maxCount = Math.max(1, ...contributions.map((c) => c.count));
-
-// Map count → one of 5 intensity levels (0–4)
-function intensity(count: number): number {
-  if (count === 0) return 0;
-  const ratio = count / maxCount;
-  if (ratio <= 0.15) return 1;
-  if (ratio <= 0.4) return 2;
-  if (ratio <= 0.7) return 3;
-  return 4;
-}
-
-// Total contributions in the window
-const totalContribs = contributions.reduce((s, c) => s + c.count, 0);
-
-// Month labels: collect the first week index where a new month starts
-const monthLabels: { label: string; col: number }[] = [];
-let lastMonth = -1;
-sortedWeeks.forEach(([, days], colIdx) => {
-  const firstDay = days.sort((a, b) => a.date.localeCompare(b.date))[0];
-  if (!firstDay) return;
-  const m = new Date(firstDay.date + "T00:00:00Z").getUTCMonth();
-  if (m !== lastMonth) {
-    const label = new Date(firstDay.date + "T00:00:00Z").toLocaleDateString(
-      "en-US",
-      { month: "short", timeZone: "UTC" },
-    );
-    monthLabels.push({ label, col: colIdx });
-    lastMonth = m;
-  }
-});
-
+const contributions = activityData.contributions ?? [];
+const { grid, rowLabels, totalContribs, maxCount } = buildContribGrid(contributions);
 const hasData = grid.length > 0;
+
+const repoStatsMap = statsData.repos as Record<string, RepoStats>;
+const projectsWithStats = mergeProjectStats(pinnedProjects, repoStatsMap);
 ---
 
 <CardGrid class="h-full flex flex-col">
@@ -102,104 +36,92 @@ const hasData = grid.length > 0;
     &gt; gh contributions --weeks 16
   </p>
 
-  <!-- Heatmap  -->
+  <!-- Heatmap -->
   {
     hasData ? (
       <div class="mb-4 flex-shrink-0">
-        <!-- Month labels row -->
-        <div
-          class="grid mb-1"
-          style={`grid-template-columns: repeat(${grid.length}, minmax(0, 1fr)); gap: 2px;`}
-        >
-          {sortedWeeks.map(([, days], colIdx) => {
-            const label = monthLabels.find((m) => m.col === colIdx);
-            return (
-              <div class="font-mono text-foreground-3 text-[8px] leading-none truncate">
-                {label ? label.label : ""}
+        <div class="flex mb-1 pl-9">
+          <div class="grid grid-cols-7 gap-[2px] flex-1">
+            {["M", "T", "W", "T", "F", "S", "S"].map((d) => (
+              <div class="font-mono text-foreground-3 text-xs leading-none text-center">
+                {d}
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        <!-- Day grid: each column is a week, each row is a day -->
-        <div
-          class="grid"
-          style={`grid-template-columns: repeat(${grid.length}, minmax(0, 1fr)); gap: 2px;`}
-        >
-          {grid.map((week) =>
-            week.map((day, rowIdx) => {
-              const level = day ? intensity(day.count) : 0;
-              const title = day
-                ? `${day.count} contribution${day.count !== 1 ? "s" : ""} on ${day.date}`
-                : "";
-              return (
-                <div
-                  class="contrib-cell aspect-square w-full"
-                  data-level={level}
-                  data-title={title}
-                  title={title}
-                  aria-label={title || "No contributions"}
-                />
-              );
-            })
-          )}
-        </div>
-
-        <!-- Legend -->
-        <div class="flex items-center gap-1.5 mt-2 justify-end">
-          <span class="font-mono text-foreground-3 text-[8px]">less</span>
-          {[0, 1, 2, 3, 4].map((level) => (
-            <div class="contrib-cell w-2 h-2" data-level={level} />
+        <div class="flex flex-col gap-[2px]">
+          {grid.map((week, rowIdx) => (
+            <div class="flex items-center gap-1">
+              <div class="w-8 shrink-0 font-mono text-foreground-3 text-xs leading-none text-right">
+                {rowLabels[rowIdx] ?? ""}
+              </div>
+              <div class="grid grid-cols-7 gap-[2px] flex-1">
+                {week.map((day) => {
+                  const level = day ? contribIntensity(day.count, maxCount) : 0;
+                  const title = day
+                    ? `${day.count} contribution${day.count !== 1 ? "s" : ""} on ${day.date}`
+                    : "";
+                  return (
+                    <div
+                      class="contrib-cell aspect-square w-full"
+                      data-level={level}
+                      title={title}
+                      aria-label={title || "No contributions"}
+                    />
+                  );
+                })}
+              </div>
+            </div>
           ))}
-          <span class="font-mono text-foreground-3 text-[8px]">more</span>
         </div>
 
-        <!-- Summary -->
-        <p class="font-mono text-foreground-3 text-[10px] tracking-wider mt-1 text-right">
-          {totalContribs} CONTRIBUTIONS / 16 WEEKS
-        </p>
+        <!-- Legend + summary -->
+        <div class="flex items-center justify-between mt-2">
+          <p class="font-mono text-foreground-3 text-[10px] tracking-wider">
+            {totalContribs} CONTRIB / 16W
+          </p>
+          <div class="flex items-center gap-1">
+            <span class="font-mono text-foreground-3 text-[8px]">less</span>
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div class="contrib-cell w-2 h-2" data-level={level} />
+            ))}
+            <span class="font-mono text-foreground-3 text-[8px]">more</span>
+          </div>
+        </div>
       </div>
     ) : (
       <div class="mb-4 border border-border p-3 flex-shrink-0">
         <p class="font-mono text-foreground-3 text-xs text-center">
-          // run scripts/fetch-github-activity.py
-        </p>
-        <p class="font-mono text-foreground-3 text-[10px] text-center mt-1">
-          to populate contribution data
+          // run: uv run fetch-github-activity
         </p>
       </div>
     )
   }
 
-  <!-- Divider -->
-  <div class="border-border border-t mb-4 flex-shrink-0"></div>
-
-  <!-- ── Pinned projects ─────────────────────────────────────────────────── -->
-  <div class="flex flex-col gap-2 flex-1">
+  <div class="flex flex-col gap-3">
     {
-      pinnedProjects.map((project) => (
+      projectsWithStats.map((project) => (
         <a
           href={project.href}
           target={project.external ? "_blank" : undefined}
           rel={project.external ? "noopener noreferrer" : undefined}
-          class="group flex items-start gap-3 p-2 -mx-2 transition-colors hover:bg-background-2"
+          class="group flex items-start gap-3 py-2 border-t border-border transition-colors hover:bg-background-2 -mx-6 px-6"
         >
           <div class="mt-0.5 shrink-0 text-foreground-3 group-hover:text-accent transition-colors">
-            <Icon name={project.icon} class="w-3.5 h-3.5" />
+            <Icon name={project.icon} class="w-4 h-4" />
           </div>
           <div class="min-w-0 flex-1">
-            <div class="flex items-center gap-1.5">
-              <span class="font-mono text-foreground-0 text-xs font-medium group-hover:text-accent transition-colors truncate">
+            <div class="flex items-center justify-between gap-2 mb-0.5">
+              <span class="font-mono text-foreground-0 text-sm font-medium group-hover:text-accent transition-colors truncate">
                 {project.title}
               </span>
-              {project.external && (
-                <Icon
-                  name="arrow-up-right"
-                  class="w-2.5 h-2.5 text-foreground-3 shrink-0"
-                />
-              )}
+              <div class="flex items-center gap-1 shrink-0 text-foreground-3">
+                <Icon name="zap" class="w-3 h-3" />
+                <span class="font-mono text-xs">{project.stars}</span>
+              </div>
             </div>
-            <p class="font-sans text-foreground-3 text-[10px] leading-snug mt-0.5 line-clamp-1">
+            <p class="font-sans text-foreground-2 text-xs leading-snug line-clamp-1">
               {project.description}
             </p>
           </div>
@@ -209,16 +131,18 @@ const hasData = grid.length > 0;
   </div>
 
   <!-- Footer -->
-  <div class="flex items-center justify-between mt-auto pt-3 flex-shrink-0">
-    <a
+  <div class="flex items-center justify-between pt-4 mt-4 border-t border-border">
+    <Button
+      as="a"
       href="https://github.com/HYP3R00T"
       target="_blank"
       rel="noopener noreferrer"
-      class="font-mono text-foreground-3 text-[10px] tracking-wider hover:text-accent transition-colors"
+      variant="secondary"
+      size="sm"
     >
       github.com/HYP3R00T
-    </a>
-    <Icon name="github" class="w-3.5 h-3.5 text-foreground-3" />
+    </Button>
+    <Icon name="github" class="w-4 h-4 text-foreground-3" />
   </div>
 </CardGrid>
 
