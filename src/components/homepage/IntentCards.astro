@@ -10,7 +10,7 @@ interface Props {
 const { tag, title, href } = Astro.props;
 ---
 
-<CardGrid>
+<CardGrid class="hover:bg-accent/10!">
   <a href={href} class="flex flex-col h-full">
     <h3
       class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase"

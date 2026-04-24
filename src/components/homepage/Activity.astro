@@ -10,11 +10,21 @@ import CardGrid from "@/components/ui/CardGrid.astro";
 >
   <div class="mx-auto w-full max-w-5xl flex flex-col bg-background-0 my-16">
     <!-- Section label card -->
-    <CardGrid>
+    <CardGrid class="label-card-hover">
       <p class="font-mono text-foreground-3 text-xs tracking-widest uppercase">
         &#47;&#47; latest_activity
       </p>
     </CardGrid>
+
+    <style is:global>
+      .label-card-hover:hover {
+        background: linear-gradient(
+          to right,
+          color-mix(in hsl, var(--accent) 15%, transparent),
+          color-mix(in hsl, var(--accent-2) 15%, transparent)
+        ) !important;
+      }
+    </style>
     <LatestVideo />
     <LatestBlog />
   </div>
