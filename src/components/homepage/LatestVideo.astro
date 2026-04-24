@@ -1,6 +1,7 @@
 ---
 import CardGrid from "../ui/CardGrid.astro";
 import Video from "@/components/core/Video.astro";
+import Button from "@/components/ui/Button.astro";
 ---
 
 <CardGrid>
@@ -29,15 +30,68 @@ import Video from "@/components/core/Video.astro";
     </div>
 
     <!-- Footer -->
-    <div class="flex items-end justify-between mt-auto">
-      <span class="font-mono text-foreground-3 text-[10px] tracking-wider">
-        Rajesh.sys
-      </span>
-      <span
-        class="font-mono text-foreground-3 text-[10px] tracking-wider text-right"
+    <div class="flex items-center justify-between mt-auto">
+      <Button
+        as="a"
+        href="https://www.youtube.com/@hyperoot"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="secondary"
+        size="sm"
       >
-        PING: 1024 | STATE: STREAMING
+        Subscribe Channel
+      </Button>
+      <span
+        id="video-state"
+        class="font-mono text-foreground-3 text-[10px] tracking-wider text-right uppercase"
+      >
+        STATE: IDLE
       </span>
     </div>
   </div>
 </CardGrid>
+
+<script>
+  const setupVideoState = () => {
+    const playerEl = document.getElementById("player") as any;
+    const stateEl = document.getElementById("video-state");
+
+    if (!playerEl || !stateEl) return;
+
+    const setPlaying = () => {
+      stateEl.textContent = "STATE: STREAMING";
+      stateEl.classList.add("text-accent");
+      stateEl.classList.remove("text-foreground-3");
+    };
+
+    const setPaused = () => {
+      stateEl.textContent = "STATE: PAUSED";
+      stateEl.classList.remove("text-accent");
+      stateEl.classList.add("text-foreground-3");
+    };
+
+    const setIdle = () => {
+      stateEl.textContent = "STATE: IDLE";
+      stateEl.classList.remove("text-accent");
+      stateEl.classList.add("text-foreground-3");
+    };
+
+    // Wait for Plyr to be fully initialized and attached to the DOM element
+    const checkInterval = setInterval(() => {
+      if (playerEl.plyr) {
+        clearInterval(checkInterval);
+        
+        // Listen directly to the Plyr instance's event emitter
+        playerEl.plyr.on("playing", setPlaying);
+        playerEl.plyr.on("play", setPlaying);
+        playerEl.plyr.on("pause", setPaused);
+        playerEl.plyr.on("ended", setIdle);
+      }
+    }, 100);
+
+    // Clean up interval after 5 seconds to prevent memory leaks if Plyr fails to load
+    setTimeout(() => clearInterval(checkInterval), 5000);
+  };
+
+  document.addEventListener("astro:page-load", setupVideoState);
+</script>
