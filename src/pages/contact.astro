@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Badge from "@/components/ui/Badge.astro";
+import CardGrid from "@/components/ui/CardGrid.astro";
 
 const pageTitle = "Contact | Rajesh Das";
 const pageDescription =
@@ -43,20 +44,19 @@ const contactLinks = [
         </p>
       </div>
 
-      <div class="grid gap-4 md:grid-cols-3">
+      <div class="grid md:grid-cols-3">
         {
           contactLinks.map((link) => (
-            <a
-              href={link.href}
-              class="border-border bg-background-0 hover:border-foreground-3 hover:bg-background-1 focus-visible:ring-accent/60 flex flex-col gap-3 border p-5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2"
-            >
-              <span class="font-display text-foreground-0 text-xl font-semibold">
-                {link.title}
-              </span>
-              <span class="text-foreground-1 text-sm leading-relaxed">
-                {link.description}
-              </span>
-            </a>
+            <CardGrid>
+              <a href={link.href} class="flex flex-col gap-3">
+                <span class="font-display text-foreground-0 text-xl font-semibold">
+                  {link.title}
+                </span>
+                <span class="text-foreground-1 text-sm leading-relaxed">
+                  {link.description}
+                </span>
+              </a>
+            </CardGrid>
           ))
         }
       </div>
