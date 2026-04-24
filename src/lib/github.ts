@@ -21,7 +21,7 @@ export interface ProjectWithStats extends PinnedProject {
  */
 export function buildContribGrid(
   contributions: ContribDay[],
-  weeks = 16,
+  weeks = 12,
 ): {
   grid: (ContribDay | null)[][]
   rowLabels: (string | null)[]
