@@ -1,7 +1,6 @@
 ---
 import LatestBlog from "./LatestBlog.astro";
 import LatestVideo from "./LatestVideo.astro";
-import LatestActivity from "./LatestActivity.astro";
 ---
 
 <section class="relative px-4 md:px-12 py-24 md:py-32" id="latest-activity">
@@ -14,12 +13,9 @@ import LatestActivity from "./LatestActivity.astro";
     </p>
 
     <!-- Card grid -->
-    <div class="activity-grid grid grid-cols-1 lg:grid-cols-3">
-      <div class="lg:col-span-2 flex flex-col">
-        <LatestVideo />
-        <LatestBlog />
-      </div>
-      <LatestActivity />
+    <div class="flex flex-col max-w-4xl">
+      <LatestVideo />
+      <LatestBlog />
     </div>
   </div>
 </section>
