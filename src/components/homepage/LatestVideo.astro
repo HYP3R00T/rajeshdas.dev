@@ -53,10 +53,8 @@ import Button from "@/components/ui/Button.astro";
 
 <script>
   const setupVideoState = () => {
-    const playerEl = document.getElementById("player") as any;
     const stateEl = document.getElementById("video-state");
-
-    if (!playerEl || !stateEl) return;
+    if (!stateEl) return;
 
     const setPlaying = () => {
       stateEl.textContent = "STATE: STREAMING";
@@ -76,21 +74,11 @@ import Button from "@/components/ui/Button.astro";
       stateEl.classList.add("text-foreground-3");
     };
 
-    // Wait for Plyr to be fully initialized and attached to the DOM element
-    const checkInterval = setInterval(() => {
-      if (playerEl.plyr) {
-        clearInterval(checkInterval);
-        
-        // Listen directly to the Plyr instance's event emitter
-        playerEl.plyr.on("playing", setPlaying);
-        playerEl.plyr.on("play", setPlaying);
-        playerEl.plyr.on("pause", setPaused);
-        playerEl.plyr.on("ended", setIdle);
-      }
-    }, 100);
-
-    // Clean up interval after 5 seconds to prevent memory leaks if Plyr fails to load
-    setTimeout(() => clearInterval(checkInterval), 5000);
+    // Listen to the global custom events dispatched by initPlyr.js
+    document.addEventListener("plyr:playing", setPlaying);
+    document.addEventListener("plyr:play", setPlaying);
+    document.addEventListener("plyr:pause", setPaused);
+    document.addEventListener("plyr:ended", setIdle);
   };
 
   document.addEventListener("astro:page-load", setupVideoState);

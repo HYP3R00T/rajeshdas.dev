@@ -32,6 +32,17 @@ export default () => {
       },
     })
 
+    // Broadcast Plyr events globally so components can react reliably
+    if (players && players.length > 0) {
+      players.forEach(p => {
+        ['play', 'playing', 'pause', 'ended'].forEach(eventName => {
+          p.on(eventName, () => {
+            document.dispatchEvent(new CustomEvent(`plyr:${eventName}`));
+          });
+        });
+      });
+    }
+
     return players
   })
 }
