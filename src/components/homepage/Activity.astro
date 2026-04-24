@@ -1,21 +1,18 @@
 ---
 import LatestBlog from "./LatestBlog.astro";
 import LatestVideo from "./LatestVideo.astro";
+import CardGrid from "@/components/ui/CardGrid.astro";
 ---
 
 <section class="relative px-4 md:px-12 py-24 md:py-32" id="latest-activity">
-  <div class="mx-auto w-full max-w-7xl">
-    <!-- Section label -->
-    <p
-      class="font-mono text-foreground-3 text-xs tracking-widest uppercase mb-4"
-    >
-      // latest_activity
-    </p>
-
-    <!-- Card grid -->
-    <div class="flex flex-col max-w-4xl">
-      <LatestVideo />
-      <LatestBlog />
-    </div>
+  <div class="mx-auto w-full max-w-4xl flex flex-col">
+    <!-- Section label card -->
+    <CardGrid>
+      <p class="font-mono text-foreground-3 text-xs tracking-widest uppercase">
+        &#47;&#47; latest_activity
+      </p>
+    </CardGrid>
+    <LatestVideo />
+    <LatestBlog />
   </div>
 </section>
