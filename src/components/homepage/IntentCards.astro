@@ -11,17 +11,17 @@ const { tag, title, href } = Astro.props;
 ---
 
 <CardGrid>
-  <a href={href}>
-    <div class="mb-6 flex items-start justify-between">
-      <h3
-        class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase"
-      >
-        {title}
-      </h3>
-      <div class="text-foreground-3 text-xs">{tag}</div>
-    </div>
-    <div class="">
+  <a href={href} class="flex flex-col h-full">
+    <h3
+      class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase"
+    >
+      {title}
+    </h3>
+    <div class="flex-1">
       <slot />
+    </div>
+    <div class="flex justify-end mt-4">
+      <span class="text-foreground-3 text-xs">{tag}</span>
     </div>
   </a>
 </CardGrid>
