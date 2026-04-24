@@ -36,7 +36,7 @@ const latest = sorted[0];
           <Image
             src={latest.data.cover}
             alt={latest.data.coverAlt || latest.data.title}
-            class="w-full h-full object-cover scale-105 blur-[2px] brightness-40 transition-all duration-500 group-hover/img:brightness-50 group-hover/img:blur-[3px]"
+            class="w-full h-full object-cover scale-105 blur-[3px] brightness-[0.25] transition-all duration-500 group-hover/img:brightness-[0.3] group-hover/img:blur-[4px]"
             widths={[640, 960]}
             sizes="(max-width: 768px) 100vw, 640px"
           />
@@ -45,14 +45,14 @@ const latest = sorted[0];
         <!-- Text overlay -->
         <div class="absolute inset-0 flex flex-col justify-end p-4">
           {latest.data.tags.length > 0 && (
-            <span class="font-mono text-accent text-[10px] tracking-widest uppercase mb-2">
+            <span class="font-mono text-white/60 text-[10px] tracking-widest uppercase mb-2">
               {latest.data.tags[0]}
             </span>
           )}
-          <h4 class="font-display text-foreground-0 text-3xl font-bold leading-snug mb-1 drop-shadow">
+          <h4 class="font-display text-white text-3xl font-bold leading-snug mb-1 drop-shadow">
             {latest.data.title}
           </h4>
-          <p class="font-sans text-foreground-1 text-base leading-relaxed line-clamp-2 drop-shadow">
+          <p class="font-sans text-white/75 text-base leading-relaxed line-clamp-2 drop-shadow">
             {latest.data.description}
           </p>
         </div>
