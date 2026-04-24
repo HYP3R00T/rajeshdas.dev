@@ -17,11 +17,13 @@ export const SITE: SiteConfig = {
 }
 
 export const navItems: NavItem[] = [
-  // { href: '/learn', label: 'Learn' },
+  { href: '/learn', label: 'Learn' },
   { href: '/post', label: 'Blog' },
   { href: '/project', label: 'Projects' },
   { href: '/contact', label: 'Contacts' },
 ]
+
+export const LEARN_URL = 'https://hyperootlabs.notion.site/devos'
 
 export const SOCIAL_LINKS = [
   {
