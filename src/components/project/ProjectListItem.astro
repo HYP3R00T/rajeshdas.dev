@@ -36,13 +36,26 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
 >
   <div class="flex flex-col gap-4 p-6">
     <div class="flex items-center justify-between">
-      <Button
-        size="icon"
-        variant="secondary"
-        class="border-border inline-flex shrink-0 items-center justify-center border"
-      >
-        <Icon name={project.data.icon || "github"} />
-      </Button>
+      <div class="flex gap-4 items-center justify-center">
+        <Button
+          size="icon"
+          variant="secondary"
+          class="border-border inline-flex shrink-0 items-center justify-center border"
+        >
+          <Icon name={project.data.icon || "github"} />
+        </Button>
+        <h3
+          class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl"
+        >
+          {
+            hasPage ? (
+              <a href={`/project/${project.id}/`}>{project.data.title}</a>
+            ) : (
+              project.data.title
+            )
+          }
+        </h3>
+      </div>
       {
         project.data.openSource && (
           <span class="font-mono text-foreground-3 text-xs">
@@ -52,19 +65,7 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
       }
     </div>
 
-    <h3
-      class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl"
-    >
-      {
-        hasPage ? (
-          <a href={`/project/${project.id}/`}>{project.data.title}</a>
-        ) : (
-          project.data.title
-        )
-      }
-    </h3>
-
-    <div class="text-foreground-1 max-w-2xl text-sm leading-relaxed">
+    <div class="text-foreground-1 max-w-4xl text-sm leading-relaxed">
       {project.data.description}
     </div>
 
