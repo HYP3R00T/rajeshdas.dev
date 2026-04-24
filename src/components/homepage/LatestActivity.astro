@@ -41,7 +41,7 @@ const projectsWithStats = mergeProjectStats(pinnedProjects, repoStatsMap);
     hasData ? (
       <div class="mb-4 flex-shrink-0">
         <div class="flex mb-1 pl-9">
-          <div class="grid grid-cols-7 gap-[2px] flex-1">
+          <div class="grid grid-cols-7 gap-1 flex-1">
             {["M", "T", "W", "T", "F", "S", "S"].map((d) => (
               <div class="font-mono text-foreground-3 text-xs leading-none text-center">
                 {d}
@@ -50,13 +50,13 @@ const projectsWithStats = mergeProjectStats(pinnedProjects, repoStatsMap);
           </div>
         </div>
 
-        <div class="flex flex-col gap-[2px]">
+        <div class="flex flex-col gap-1">
           {grid.map((week, rowIdx) => (
             <div class="flex items-center gap-1">
               <div class="w-8 shrink-0 font-mono text-foreground-3 text-xs leading-none text-right">
                 {rowLabels[rowIdx] ?? ""}
               </div>
-              <div class="grid grid-cols-7 gap-[2px] flex-1">
+              <div class="grid grid-cols-7 gap-1 flex-1">
                 {week.map((day) => {
                   const level = day ? contribIntensity(day.count, maxCount) : 0;
                   const title = day
@@ -108,12 +108,12 @@ const projectsWithStats = mergeProjectStats(pinnedProjects, repoStatsMap);
           rel={project.external ? "noopener noreferrer" : undefined}
           class="group flex items-start gap-3 py-2 border-t border-border transition-colors hover:bg-background-2 -mx-6 px-6"
         >
-          <div class="mt-0.5 shrink-0 text-foreground-3 group-hover:text-accent transition-colors">
+          <div class="mt-0.5 shrink-0 text-foreground-3 transition-colors">
             <Icon name={project.icon} class="w-4 h-4" />
           </div>
           <div class="min-w-0 flex-1">
             <div class="flex items-center justify-between gap-2 mb-0.5">
-              <span class="font-mono text-foreground-0 text-sm font-medium group-hover:text-accent transition-colors truncate">
+              <span class="font-mono text-foreground-0 text-sm font-medium transition-colors truncate">
                 {project.title}
               </span>
               <div class="flex items-center gap-1 shrink-0 text-foreground-3">
