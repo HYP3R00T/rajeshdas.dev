@@ -1,10 +1,11 @@
 ---
 import CardGrid from "../ui/CardGrid.astro";
+import Video from "@/components/core/Video.astro";
 ---
 
 <CardGrid>
   <!-- Column 2: Video -->
-  <a href="#">
+  <div>
     <!-- Header -->
     <div class="flex items-start justify-between mb-6">
       <h3
@@ -22,16 +23,10 @@ import CardGrid from "../ui/CardGrid.astro";
       &gt; connect --source youtube
     </p>
 
-    <!-- Divider -->
-    <div class="border-border border-t mb-6"></div>
-
-    <!-- Content -->
-    <h4 class="font-display text-foreground-0 text-base font-bold mb-2">
-      Structuring your DevOps pipeline
-    </h4>
-    <p class="font-sans text-foreground-2 text-sm leading-relaxed mb-8">
-      Dynamic excerpt placeholder from the video description.
-    </p>
+    <!-- Video Player -->
+    <div class="mb-8">
+      <Video id="v_rcTD2O-aU" />
+    </div>
 
     <!-- Footer -->
     <div class="flex items-end justify-between mt-auto">
@@ -44,5 +39,5 @@ import CardGrid from "../ui/CardGrid.astro";
         PING: 1024 | STATE: STREAMING
       </span>
     </div>
-  </a>
+  </div>
 </CardGrid>

@@ -8,7 +8,7 @@ export default () => {
         'progress',
         'current-time',
         'mute',
-        'volume',
+        // 'volume',
         'settings',
         'fullscreen',
       ],
@@ -22,6 +22,13 @@ export default () => {
       quality: {
         default: 1080,
         options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240],
+      },
+      youtube: {
+        noCookie: true,
+        rel: 0,
+        showinfo: 0,
+        iv_load_policy: 3,
+        modestbranding: 1,
       },
     })
 
