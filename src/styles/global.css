@@ -2,6 +2,7 @@
 @import "plyr/dist/plyr.css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 :root {
   --radius: 0px;
@@ -25,9 +26,12 @@
   /* subtle text / numbers */
 
   /* Accent palette (editable) */
-  --accent: hsl(256, 100%, 70%); /* neon purple */
-  --accent-2: hsl(191, 100%, 70%); /* cyan */
-  --accent-3: hsl(338, 100%, 70%); /* pink */
+  --accent: hsl(256, 100%, 70%);
+  /* neon purple */
+  --accent-2: hsl(191, 100%, 70%);
+  /* cyan */
+  --accent-3: hsl(338, 100%, 70%);
+  /* pink */
 
   /* Borders */
   --border: hsl(0, 0%, 15%);
@@ -327,23 +331,19 @@ html.dark .astro-code span {
 
 /* Stripe Patterns */
 .stripe-pattern {
-  background-image: repeating-linear-gradient(
-    45deg,
-    var(--background-1),
-    var(--background-1) 10px,
-    var(--pattern) 10px,
-    var(--pattern) 20px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      var(--background-1),
+      var(--background-1) 10px,
+      var(--pattern) 10px,
+      var(--pattern) 20px);
 }
 
 .stripe-pattern-dense {
-  background-image: repeating-linear-gradient(
-    45deg,
-    var(--background-1),
-    var(--background-1) 3px,
-    var(--pattern) 3px,
-    var(--pattern) 6px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      var(--background-1),
+      var(--background-1) 3px,
+      var(--pattern) 3px,
+      var(--pattern) 6px);
 }
 
 /* Interactive Dot Pattern */
@@ -369,34 +369,28 @@ html.dark .astro-code span {
 }
 
 .dot-pattern-interactive::before {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in hsl, var(--foreground-1) 30%, transparent) var(--dot-size),
-    transparent calc(var(--dot-size) + 0.6px)
-  );
+  background-image: radial-gradient(circle,
+      color-mix(in hsl, var(--foreground-1) 30%, transparent) var(--dot-size),
+      transparent calc(var(--dot-size) + 0.6px));
   background-size: var(--dot-grid) var(--dot-grid);
   opacity: 0.3;
   z-index: 0;
 }
 
 .dot-pattern-interactive::after {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in hsl, var(--foreground-0) 44%, transparent) var(--dot-size),
-    transparent calc(var(--dot-size) + 0.6px)
-  );
+  background-image: radial-gradient(circle,
+      color-mix(in hsl, var(--foreground-0) 44%, transparent) var(--dot-size),
+      transparent calc(var(--dot-size) + 0.6px));
   background-size: var(--dot-grid) var(--dot-grid);
-  mask-image: radial-gradient(
-    circle var(--dot-spot-size) at var(--dot-mx) var(--dot-my),
-    black 0%,
-    transparent 78%
-  );
+  mask-image: radial-gradient(circle var(--dot-spot-size) at var(--dot-mx) var(--dot-my),
+      black 0%,
+      transparent 78%);
   opacity: calc(0.5 * var(--dot-highlight-opacity));
   transition: opacity 200ms ease;
   z-index: 0;
 }
 
-.dot-pattern-interactive > * {
+.dot-pattern-interactive>* {
   position: relative;
   z-index: 1;
 }
@@ -404,6 +398,13 @@ html.dark .astro-code span {
 /* Typography Utility Classes */
 @layer utilities {
   .text-section-heading {
-    @apply text-foreground-0 mb-8 text-left font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] font-bold tracking-tight;
+    color: var(--foreground-0);
+    margin-bottom: 2rem;
+    text-align: left;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 0.9;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 }
