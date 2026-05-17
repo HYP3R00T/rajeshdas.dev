@@ -1,3 +1,10 @@
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 import type { CollectionEntry } from 'astro:content'
 import type { Posts } from '@/lib/types'
 
@@ -22,13 +29,8 @@ export const getSortedPosts = (posts: Posts) => {
     )
 }
 
-export function formatDate(
-  dateString: string | Date,
-  locale = 'en-US',
-  options?: Intl.DateTimeFormatOptions,
-) {
-  const date =
-    typeof dateString === 'string' ? new Date(dateString) : dateString
+export function formatDate(dateString: string | Date, locale = 'en-US', options?: Intl.DateTimeFormatOptions) {
+  const date = typeof dateString === 'string' ? new Date(dateString) : dateString
 
   return date.toLocaleDateString(locale, {
     year: 'numeric',
@@ -55,11 +57,7 @@ export function formatMonthYear(date: Date, locale = 'en-US'): string {
   })
 }
 
-export function formatMonthYearRange(
-  startDate?: Date,
-  endDate?: Date,
-  locale = 'en-US',
-): string | null {
+export function formatMonthYearRange(startDate?: Date, endDate?: Date, locale = 'en-US'): string | null {
   if (!startDate && !endDate) {
     return null
   }

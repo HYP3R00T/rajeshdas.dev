@@ -1,22 +1,16 @@
 ---
-import { Icon } from "astro-icon/components";
-import Button from "../ui/Button.astro";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 ---
 
 <!-- Toggle button -->
 <div class="md:hidden">
-  <Button
-    data-mobile-menu-toggle
-    aria-label="Toggle menu"
-    aria-expanded="false"
-    size="icon"
-    variant="outline"
-  >
+  <Button data-mobile-menu-toggle aria-label="Toggle menu" aria-expanded="false" size="icon" variant="outline">
     <span aria-hidden="true" data-icon-open>
-      <Icon name="menu" />
+      <Menu />
     </span>
     <span aria-hidden="true" data-icon-close class="hidden">
-      <Icon name="close" />
+      <X />
     </span>
   </Button>
 </div>
@@ -64,19 +58,15 @@ import Button from "../ui/Button.astro";
       }
     }
 
-    toggleBtn.addEventListener("click", () =>
-      setOpen(menu.getAttribute("data-open") !== "true"),
-    );
-    panelCloseBtn &&
-      panelCloseBtn.addEventListener("click", () => setOpen(false));
+    toggleBtn.addEventListener("click", () => setOpen(menu.getAttribute("data-open") !== "true"));
+    panelCloseBtn && panelCloseBtn.addEventListener("click", () => setOpen(false));
 
     menu.addEventListener("click", (e) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
       if (target === menu) return setOpen(false);
       const isCloseButton = !!target.closest("[data-mobile-menu-close]");
-      if (!isCloseButton && (target.closest("a") || target.closest("button")))
-        setOpen(false);
+      if (!isCloseButton && (target.closest("a") || target.closest("button"))) setOpen(false);
     });
   });
 </script>

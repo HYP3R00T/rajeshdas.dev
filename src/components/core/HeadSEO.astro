@@ -4,11 +4,11 @@ import { ClientRouter } from "astro:transitions";
 
 import "@/styles/global.css";
 // Supports weights 100-900
-import "@fontsource-variable/inter";
-// Supports weights 100-800
-import "@fontsource-variable/jetbrains-mono";
+import "@fontsource-variable/inter/wght.css";
 // Supports weights 300-700
-import "@fontsource-variable/space-grotesk";
+import "@fontsource-variable/space-grotesk/wght.css";
+// Supports weights 100-800
+import "@fontsource-variable/jetbrains-mono/wght.css";
 
 import { SITE } from "@data/config";
 import type { HeadSEOProps } from "@/lib/types";
@@ -72,10 +72,7 @@ if (typeof image === "object" && "src" in image) {
 <meta name="generator" content={Astro.generator} />
 <meta charset="UTF-8" />
 <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
-<meta
-  name="googlebot"
-  content={noIndex ? "noindex, nofollow" : "index, follow"}
-/>
+<meta name="googlebot" content={noIndex ? "noindex, nofollow" : "index, follow"} />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
