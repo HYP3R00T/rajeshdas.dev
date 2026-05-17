@@ -5,7 +5,7 @@ import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
 import { SITE } from "@data/config";
 import { Badge } from "@/components/ui/badge";
-import Button from "@/components/ui/Button.astro";
+import { Button } from "@/components/ui/button";
 
 const {
   title,
@@ -75,7 +75,7 @@ const readTime = body ? estimateReadTime(body) : 5;
           id="share-button"
           variant="secondary"
           size="sm"
-          class="shrink-0 text-xs tracking-wider uppercase"
+          className="shrink-0 text-xs tracking-wider uppercase"
           aria-label="Share article"
         >
           <Icon name="arrow-up-right" class="size-4" />

@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import Button from "@/components/ui/Button.astro";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { formatMonthYearRange } from "@/lib/utils";
 
 interface Props {
@@ -34,7 +34,7 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
         <Button
           size="icon"
           variant="secondary"
-          class="border-border inline-flex shrink-0 items-center justify-center border"
+          className="border-border inline-flex shrink-0 items-center justify-center border"
         >
           <Icon name={project.data.icon || "github"} />
         </Button>
@@ -55,14 +55,24 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
       showLinks && (
         <div class="flex flex-wrap gap-2">
           {project.data.sourceRepo && (
-            <Button as="a" href={project.data.sourceRepo} target="_blank" rel="noreferrer" variant="outline" size="sm">
+            <a
+              href={project.data.sourceRepo}
+              target="_blank"
+              rel="noreferrer"
+              class={buttonVariants({ variant: "outline", size: "sm" })}
+            >
               Source
-            </Button>
+            </a>
           )}
           {project.data.website && (
-            <Button as="a" href={project.data.website} target="_blank" rel="noreferrer" variant="outline" size="sm">
+            <a
+              href={project.data.website}
+              target="_blank"
+              rel="noreferrer"
+              class={buttonVariants({ variant: "outline", size: "sm" })}
+            >
               Website
-            </Button>
+            </a>
           )}
         </div>
       )

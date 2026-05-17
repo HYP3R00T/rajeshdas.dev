@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import Button from "@/components/ui/Button.astro";
+import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ImageCarousel from "@/components/ui/ImageCarousel.astro";
 import placeholder1 from "@/assets/placeholder1.png";
@@ -71,21 +71,24 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
           showLinks && (
             <div class="mb-4 flex flex-wrap gap-2">
               {project.data.sourceRepo && (
-                <Button
-                  as="a"
+                <a
                   href={project.data.sourceRepo}
                   target="_blank"
                   rel="noreferrer"
-                  variant="outline"
-                  size="sm"
+                  class={buttonVariants({ variant: "outline", size: "sm" })}
                 >
                   Source
-                </Button>
+                </a>
               )}
               {project.data.website && (
-                <Button as="a" href={project.data.website} target="_blank" rel="noreferrer" variant="outline" size="sm">
+                <a
+                  href={project.data.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  class={buttonVariants({ variant: "outline", size: "sm" })}
+                >
                   Website
-                </Button>
+                </a>
               )}
             </div>
           )

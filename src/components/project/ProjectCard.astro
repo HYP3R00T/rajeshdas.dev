@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import Button from "@/components/ui/Button.astro";
+import { buttonVariants } from "@/components/ui/button";
 import { formatMonthYearRange } from "@/lib/utils";
 
 interface Props {
@@ -20,10 +20,7 @@ interface Props {
 }
 
 const { project, index } = Astro.props;
-const projectDates = formatMonthYearRange(
-  project.data.startDate,
-  project.data.endDate,
-);
+const projectDates = formatMonthYearRange(project.data.startDate, project.data.endDate);
 const showLinks = Boolean(project.data.sourceRepo || project.data.website);
 ---
 
@@ -34,13 +31,8 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
   <!-- Top row: icon + index + arrow -->
   <div class="mb-4 flex items-start justify-between">
     <div class="flex items-center gap-3">
-      <div
-        class="border-border inline-flex size-10.5 shrink-0 items-center justify-center border [&>svg]:size-5.25"
-      >
-        <Icon
-          name={project.data.icon || "github"}
-          class="text-foreground-0 size-5"
-        />
+      <div class="border-border inline-flex size-10.5 shrink-0 items-center justify-center border [&>svg]:size-5.25">
+        <Icon name={project.data.icon || "github"} class="text-foreground-0 size-5" />
       </div>
       <div class="text-foreground-3 text-xs">
         {String(index + 1).padStart(2, "0")}
@@ -54,9 +46,7 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
   </div>
 
   <!-- Title -->
-  <h3
-    class="text-foreground-0 font-display mb-2 text-lg tracking-tight uppercase md:text-xl"
-  >
+  <h3 class="text-foreground-0 font-display mb-2 text-lg tracking-tight uppercase md:text-xl">
     {project.data.title}
   </h3>
 
@@ -65,40 +55,30 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
     {project.data.description}
   </p>
 
-  {
-    projectDates && (
-      <div class="text-foreground-2 mb-3 text-xs tracking-wide">
-        {projectDates}
-      </div>
-    )
-  }
+  {projectDates && <div class="text-foreground-2 mb-3 text-xs tracking-wide">{projectDates}</div>}
 
   {
     showLinks && (
       <div class="mb-3 flex flex-wrap gap-2">
         {project.data.sourceRepo && (
-          <Button
-            as="a"
+          <a
             href={project.data.sourceRepo}
             target="_blank"
             rel="noreferrer"
-            variant="outline"
-            size="sm"
+            class={buttonVariants({ variant: "outline", size: "sm" })}
           >
             Source
-          </Button>
+          </a>
         )}
         {project.data.website && (
-          <Button
-            as="a"
+          <a
             href={project.data.website}
             target="_blank"
             rel="noreferrer"
-            variant="outline"
-            size="sm"
+            class={buttonVariants({ variant: "outline", size: "sm" })}
           >
             Website
-          </Button>
+          </a>
         )}
       </div>
     )
