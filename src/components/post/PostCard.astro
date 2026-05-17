@@ -2,7 +2,7 @@
 import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import type { PostCardProps } from "@/lib/types";
 import { Icon } from "astro-icon/components";
-import Badge from "@/components/ui/Badge.astro";
+import { Badge } from "@/components/ui/badge";
 import { Image } from "astro:assets";
 
 const { post, index } = Astro.props as PostCardProps & { index?: number };
@@ -26,9 +26,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
         {
           index !== undefined && (
             <div>
-              <span class="text-foreground-3 text-sm">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+              <span class="text-foreground-3 text-sm">{String(index + 1).padStart(2, "0")}</span>
               <span class="text-foreground-3">•</span>
             </div>
           )
@@ -43,9 +41,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
         </div>
       </div>
 
-      <h3
-        class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl"
-      >
+      <h3 class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl">
         {post.data.title}
       </h3>
 
