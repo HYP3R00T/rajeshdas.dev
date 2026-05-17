@@ -1,40 +1,31 @@
 {
-  "workbench.browser.openLocalhostLinks": true,
   "explorer.excludeGitIgnore": true,
-  "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "explicit"
   },
-  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-  "github.copilot.chat.reviewSelection.instructions": [
-    {
-      "file": "./.github/instructions/codeReview.instructions.md"
-    }
-  ],
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.suggest.insertMode": "replace"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.maxTokenizationLineLength": 2500
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace"
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "biome.configurationPath": "biome.json",
-  "chat.instructionsFilesLocations": {
-    ".github/instructions": true
-  },
-  "css.lint.unknownAtRules": "ignore",
-  "markdownlint.configFile": ".markdownlint.yaml",
-  "search.exclude": {
-    "**/.astro": true,
-    "**/pnpm-store": true,
-    "**/node_modules": true
-  }
+  "css.lint.unknownAtRules": "ignore"
 }
