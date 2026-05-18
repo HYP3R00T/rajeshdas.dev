@@ -27,7 +27,7 @@ const contactLinks = [
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl border p-6 bg-background my-16">
+    <div class="mx-auto w-full max-w-5xl border p-6 bg-background-0 my-16">
       <div class="mb-12">
         <Badge variant="secondary">Contact</Badge>
         <h1 class="text-section-heading my-8">
@@ -41,9 +41,11 @@ const contactLinks = [
       <div class="grid md:grid-cols-3">
         {
           contactLinks.map((link) => (
-            <CardGrid class="hover:bg-accent/10!">
+            <CardGrid>
               <a href={link.href} class="flex flex-col gap-3">
-                <span class="font-display text-foreground-0 text-xl font-semibold">{link.title}</span>
+                <span class="font-display text-foreground-1 group-hover:text-accent-1 text-xl font-semibold">
+                  {link.title}
+                </span>
                 <span class="text-foreground-2 text-sm leading-relaxed">{link.description}</span>
               </a>
             </CardGrid>
