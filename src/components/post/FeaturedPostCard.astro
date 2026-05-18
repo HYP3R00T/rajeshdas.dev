@@ -2,22 +2,16 @@
 import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import type { PostCardProps } from "@/lib/types";
 import { Image } from "astro:assets";
-import Badge from "@/components/ui/Badge.astro";
+import { Badge } from "@/components/ui/badge";
 
 const { post } = Astro.props as PostCardProps;
 ---
 
-<div
-  class="border-border group hover:bg-background-1 border bg-background-0 transition-colors duration-200"
->
+<div class="border-border group hover:bg-background-1 border bg-background transition-colors duration-200">
   <a href={`/post/${post.id}/`} class="grid md:grid-cols-2">
     <!-- Image -->
     <div class="aspect-video overflow-hidden md:aspect-auto">
-      <Image
-        src={post.data.cover}
-        alt={post.data.coverAlt || post.data.title}
-        class="h-full w-full object-cover"
-      />
+      <Image src={post.data.cover} alt={post.data.coverAlt || post.data.title} class="h-full w-full object-cover" />
     </div>
 
     <!-- Content -->
@@ -32,13 +26,13 @@ const { post } = Astro.props as PostCardProps;
         </div>
 
         <h2
-          class="group-hover:text-foreground-1 text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
+          class="group-hover:text-accent-1 text-foreground-0 mb-4 text-2xl uppercase transition-colors md:text-3xl"
           style="font-family: 'Space Grotesk', sans-serif; font-weight: 700;"
         >
           {post.data.title}
         </h2>
 
-        <p class="text-foreground-1 mb-6 text-sm leading-relaxed">
+        <p class="text-foreground-2 mb-6 text-sm leading-relaxed">
           {post.data.description}
         </p>
       </div>

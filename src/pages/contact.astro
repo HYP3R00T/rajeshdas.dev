@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Badge from "@/components/ui/Badge.astro";
-import CardGrid from "@/components/ui/CardGrid.astro";
+import { Badge } from "@/components/ui/badge";
+import CardGrid from "@/components/common/CardGrid.astro";
 
 const pageTitle = "Contact | Rajesh Das";
-const pageDescription =
-  "Ways to reach Rajesh Das for collaboration, hiring, or general conversation.";
+const pageDescription = "Ways to reach Rajesh Das for collaboration, hiring, or general conversation.";
 
 const contactLinks = [
   {
@@ -27,34 +26,27 @@ const contactLinks = [
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section
-    class="dot-pattern-interactive relative flex items-center justify-center px-4 md:px-12"
-  >
+  <section class="relative flex items-center justify-center px-4 md:px-12">
     <div class="mx-auto w-full max-w-5xl border p-6 bg-background-0 my-16">
       <div class="mb-12">
-        <Badge variant="accent">Contact</Badge>
+        <Badge variant="secondary">Contact</Badge>
         <h1 class="text-section-heading my-8">
           <div>Ping Me</div>
         </h1>
-        <p
-          class="text-foreground-1 max-w-2xl text-base leading-relaxed md:text-lg"
-        >
-          Use any of the links below if you want to collaborate, discuss a role,
-          or simply continue the conversation.
+        <p class="text-foreground-2 max-w-2xl text-base leading-relaxed md:text-lg">
+          Use any of the links below if you want to collaborate, discuss a role, or simply continue the conversation.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3">
         {
           contactLinks.map((link) => (
-            <CardGrid class="hover:bg-accent/10!">
+            <CardGrid>
               <a href={link.href} class="flex flex-col gap-3">
-                <span class="font-display text-foreground-0 text-xl font-semibold">
+                <span class="font-display text-foreground-1 group-hover:text-accent-1 text-xl font-semibold">
                   {link.title}
                 </span>
-                <span class="text-foreground-1 text-sm leading-relaxed">
-                  {link.description}
-                </span>
+                <span class="text-foreground-2 text-sm leading-relaxed">{link.description}</span>
               </a>
             </CardGrid>
           ))

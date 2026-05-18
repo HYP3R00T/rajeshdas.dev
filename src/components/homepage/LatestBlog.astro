@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import CardGrid from "../ui/CardGrid.astro";
-import Button from "@/components/ui/Button.astro";
+import CardGrid from "../common/CardGrid.astro";
+import { buttonVariants } from "@/components/ui/button";
 import { getSortedPosts } from "@/lib/utils";
 
 const allPosts = await getCollection("posts");
@@ -15,10 +15,10 @@ const latest = sorted[0];
     <CardGrid>
       <!-- Header -->
       <div class="flex items-start justify-between mb-4">
-        <h3 class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase">
+        <h3 class="font-display text-foreground-1 text-sm font-bold tracking-wide uppercase">
           [TXT] LATEST_ENTRY
         </h3>
-        <span class="font-mono text-foreground-3 text-xs">// note</span>
+        <span class="font-mono text-accent-1 text-xs">// note</span>
       </div>
 
       <!-- Prompt -->
@@ -60,18 +60,13 @@ const latest = sorted[0];
 
       <!-- Footer -->
       <div class="flex items-center justify-between">
-        <Button
-          as="a"
-          href="/post"
-          variant="secondary"
-          size="sm"
-        >
+        <a href="/post" class={buttonVariants({ variant: "default", size: "sm" })}>
           All Posts
-        </Button>
+        </a>
 
         <span
           id="blog-time-ago"
-          class="font-mono text-foreground-3 text-[10px] tracking-wider uppercase"
+          class="font-mono text-foreground-2 text-[10px] tracking-wider uppercase"
           data-date={latest.data.pubDatetime.toISOString()}
         >
           PUBLISHED

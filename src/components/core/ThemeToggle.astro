@@ -1,21 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import Button from "@/components/ui/Button.astro";
+import { Button } from "@/components/ui/button";
 ---
 
-<Button
-  id="theme-toggle"
-  type="button"
-  variant="secondary"
-  size="icon"
-  class="relative"
-  aria-label="Toggle theme"
->
-  <Icon
-    name="toggle"
-    class="transition-transform duration-200 dark:rotate-180"
-  />
+<Button id="theme-toggle" type="button" variant="secondary" size="icon" className="relative" aria-label="Toggle theme">
+  <Icon name="toggle" class="transition-transform duration-200 dark:rotate-180" />
   <span class="sr-only">Toggle theme</span>
 </Button>
 
@@ -54,9 +44,7 @@ import Button from "@/components/ui/Button.astro";
 
     // Toggle theme on click
     toggle.addEventListener("click", () => {
-      const current = document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
+      const current = document.documentElement.classList.contains("dark") ? "dark" : "light";
       applyTheme(current === "dark" ? "light" : "dark");
     });
   }

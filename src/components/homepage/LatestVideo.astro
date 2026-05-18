@@ -1,7 +1,7 @@
 ---
-import CardGrid from "../ui/CardGrid.astro";
+import CardGrid from "@/components/common/CardGrid.astro";
 import Video from "@/components/core/Video.astro";
-import Button from "@/components/ui/Button.astro";
+import { buttonVariants } from "@/components/ui/button";
 ---
 
 <CardGrid>
@@ -9,20 +9,12 @@ import Button from "@/components/ui/Button.astro";
   <div>
     <!-- Header -->
     <div class="flex items-start justify-between mb-6">
-      <h3
-        class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase"
-      >
-        [VID] BROADCAST
-      </h3>
-      <span class="font-mono text-foreground-3 text-xs">// video</span>
+      <h3 class="font-display text-foreground-1 text-sm font-bold tracking-wide uppercase">[VID] BROADCAST</h3>
+      <span class="font-mono text-accent-1 text-xs">// video</span>
     </div>
 
     <!-- Prompt -->
-    <p
-      class="font-mono text-foreground-2 text-sm mb-8 transition-colors duration-200"
-    >
-      &gt; connect --source youtube
-    </p>
+    <p class="font-mono text-foreground-2 text-sm mb-8 transition-colors duration-200">&gt; connect --source youtube</p>
 
     <!-- Video Player -->
     <div class="mb-8">
@@ -31,20 +23,15 @@ import Button from "@/components/ui/Button.astro";
 
     <!-- Footer -->
     <div class="flex items-center justify-between mt-auto">
-      <Button
-        as="a"
+      <a
         href="https://www.youtube.com/@hyperoot"
         target="_blank"
         rel="noopener noreferrer"
-        variant="secondary"
-        size="sm"
+        class={buttonVariants({ variant: "default", size: "sm" })}
       >
         Subscribe Channel
-      </Button>
-      <span
-        id="video-state"
-        class="font-mono text-foreground-3 text-[10px] tracking-wider text-right uppercase"
-      >
+      </a>
+      <span id="video-state" class="font-mono text-foreground-2 text-[10px] tracking-wider text-right uppercase">
         STATE: IDLE
       </span>
     </div>
@@ -59,19 +46,19 @@ import Button from "@/components/ui/Button.astro";
     const setPlaying = () => {
       stateEl.textContent = "STATE: STREAMING";
       stateEl.classList.add("text-accent");
-      stateEl.classList.remove("text-foreground-3");
+      stateEl.classList.remove("text-muted");
     };
 
     const setPaused = () => {
       stateEl.textContent = "STATE: PAUSED";
       stateEl.classList.remove("text-accent");
-      stateEl.classList.add("text-foreground-3");
+      stateEl.classList.add("text-muted");
     };
 
     const setIdle = () => {
       stateEl.textContent = "STATE: IDLE";
       stateEl.classList.remove("text-accent");
-      stateEl.classList.add("text-foreground-3");
+      stateEl.classList.add("text-muted");
     };
 
     // Listen to the global custom events dispatched by initPlyr.js

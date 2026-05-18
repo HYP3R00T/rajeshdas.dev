@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Badge from "@/components/ui/Badge.astro";
+import { Badge } from "@/components/ui/badge";
 import FeaturedProjectCard from "@/components/project/FeaturedProjectCard.astro";
 import ProjectListItem from "@/components/project/ProjectListItem.astro";
 
@@ -11,9 +11,7 @@ const projects = allProjects.filter((p) => !p.data.draft);
 
 type ProjectEntry = CollectionEntry<"projects">;
 
-const shouldSortProjects = projects.some(
-  (p) => p.data.order !== undefined || p.data.startDate || p.data.endDate,
-);
+const shouldSortProjects = projects.some((p) => p.data.order !== undefined || p.data.startDate || p.data.endDate);
 
 const sortByOrderAndDate = (a: ProjectEntry, b: ProjectEntry) => {
   const orderDiff = (a.data.order ?? 999) - (b.data.order ?? 999);
@@ -27,8 +25,7 @@ const sortByOrderAndDate = (a: ProjectEntry, b: ProjectEntry) => {
   return dateDiff !== 0 ? dateDiff : 0;
 };
 
-const sortProjects = (list: ProjectEntry[]) =>
-  shouldSortProjects ? [...list].sort(sortByOrderAndDate) : list;
+const sortProjects = (list: ProjectEntry[]) => (shouldSortProjects ? [...list].sort(sortByOrderAndDate) : list);
 
 // Separate featured and non-featured projects
 const featuredProjects = sortProjects(projects.filter((p) => p.data.featured));
@@ -36,21 +33,17 @@ const otherProjects = sortProjects(projects.filter((p) => !p.data.featured));
 ---
 
 <BaseLayout>
-  <section
-    class="dot-pattern-interactive relative flex items-center justify-center px-4 md:px-12"
-  >
-    <div class="bg-background-0 mx-auto w-full max-w-5xl border my-16 p-6">
+  <section class="relative flex items-center justify-center px-4 md:px-12">
+    <div class="bg-background mx-auto w-full max-w-5xl border my-16 p-6">
       <div class="mb-12">
-        <Badge variant="accent">Projects</Badge>
+        <Badge variant="secondary">Projects</Badge>
         <h1 class="text-section-heading my-8">
           <div>My</div>
           <div>Work</div>
         </h1>
-        <p
-          class="text-foreground-1 max-w-2xl text-base leading-relaxed md:text-lg"
-        >
-          A collection of production infrastructure, automation tools, and
-          DevOps solutions built to solve real-world challenges at scale.
+        <p class="text-foreground-2 max-w-2xl text-base leading-relaxed md:text-lg">
+          A collection of production infrastructure, automation tools, and DevOps solutions built to solve real-world
+          challenges at scale.
         </p>
       </div>
 
@@ -69,7 +62,7 @@ const otherProjects = sortProjects(projects.filter((p) => !p.data.featured));
 
       {
         otherProjects.length > 0 && (
-          <div class="mb-20 flex flex-col gap-4">
+          <div class="flex flex-col gap-4">
             <Badge>Other Projects</Badge>
             <div class="border-border space-y-4 border-t md:space-y-0">
               {otherProjects.map((project) => (

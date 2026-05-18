@@ -11,18 +11,23 @@ repos:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
       - id: check-shebang-scripts-are-executable
-      - id: check-added-large-files
       - id: check-merge-conflict
       - id: detect-private-key
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.13.9
+    rev: v4.16.2
     hooks:
       - id: commitizen
         stages: [commit-msg]
 
+  - repo: https://github.com/rvben/rumdl-pre-commit
+    rev: v0.0.222
+    hooks:
+      - id: rumdl
+      - id: rumdl-fmt
+
   - repo: https://github.com/biomejs/pre-commit
-    rev: v2.4.10
+    rev: v2.4.15
     hooks:
       - id: biome-check
         exclude: '\.astro$'

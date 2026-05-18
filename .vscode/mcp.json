@@ -4,14 +4,12 @@
       "url": "https://mcp.docs.astro.build/mcp",
       "type": "http"
     },
-    "github": {
-      "url": "https://api.githubcopilot.com/mcp/",
-      "type": "http"
-    },
-    "figma": {
-      "url": "https://mcp.figma.com/mcp",
-      "type": "http"
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
     }
-  },
-  "inputs": []
+  }
 }
