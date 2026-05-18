@@ -23,8 +23,7 @@ function setupDotPattern(el) {
     el.style.setProperty('--dot-mx', `${currentX}px`)
     el.style.setProperty('--dot-my', `${currentY}px`)
 
-    const isSettled =
-      Math.abs(targetX - currentX) < 0.2 && Math.abs(targetY - currentY) < 0.2
+    const isSettled = Math.abs(targetX - currentX) < 0.2 && Math.abs(targetY - currentY) < 0.2
 
     if (!isSettled) {
       rafId = window.requestAnimationFrame(animate)
