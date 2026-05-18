@@ -212,6 +212,26 @@
     @apply font-sans;
   }
 
+  ::selection {
+    @apply bg-accent-1 text-background-0;
+  }
+
+  ::-webkit-scrollbar {
+    @apply h-2 w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-foreground-2;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-1;
+  }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     @apply cursor-pointer;
