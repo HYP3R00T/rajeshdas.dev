@@ -323,7 +323,7 @@
   }
 
   .prose code {
-    @apply bg-background-0 px-1.5 py-0.5 font-mono text-sm font-medium;
+    @apply bg-background-2 text-foreground-0 px-2 py-0.5 font-mono text-sm font-medium;
   }
 
   .prose pre code {
