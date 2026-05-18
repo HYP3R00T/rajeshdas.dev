@@ -1,30 +1,26 @@
 ---
 import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import type { PostCardProps } from "@/lib/types";
-import { Icon } from "astro-icon/components";
 import { Badge } from "@/components/ui/badge";
-import { Image } from "astro:assets";
+import { Button } from "../ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 const { post, index } = Astro.props as PostCardProps & { index?: number };
 const readTime = estimateReadTime(post.body || post.data.description);
 ---
 
-<a href={`/post/${post.id}/`} class="border-border group hover:bg-card block border-b transition-colors duration-200">
+<a
+  href={`/post/${post.id}/`}
+  class="border-border group hover:bg-background-1 block border-b transition-colors duration-200"
+>
   <div class="flex flex-col md:flex-row">
-    <!-- <div class="aspect-video w-full shrink-0 overflow-hidden md:w-md">
-      <Image
-        src={post.data.cover}
-        alt={post.data.coverAlt || post.data.title}
-        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-    </div> -->
     <div class="flex grow flex-col gap-4 px-6 py-8 md:py-12">
       <div class="flex items-center gap-4">
         {
           index !== undefined && (
             <div>
-              <span class="text-muted text-sm">{String(index + 1).padStart(2, "0")}</span>
-              <span class="text-muted">•</span>
+              <span class="text-foreground-2 text-sm">{String(index + 1).padStart(2, "0")}</span>
+              <span class="text-foreground-2">•</span>
             </div>
           )
         }
@@ -38,7 +34,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
         </div>
       </div>
 
-      <h3 class="group-hover:text-foreground-2 text-foreground-0 font-display text-xl transition-colors md:text-2xl">
+      <h3 class="group-hover:text-accent-1 text-foreground-1 font-display text-xl transition-colors md:text-2xl">
         {post.data.title}
       </h3>
 
@@ -50,18 +46,16 @@ const readTime = estimateReadTime(post.body || post.data.description);
         post.data.tags && post.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag: string) => (
-              <Badge variant="outline">{tag}</Badge>
+              <Badge variant="secondary">{tag}</Badge>
             ))}
           </div>
         )
       }
     </div>
     <div class="hidden items-center justify-end px-6 py-8 md:flex md:py-12">
-      <div
-        class="border-border group-hover:bg-foreground group-hover:text-background hover:bg-foreground hover:text-background group-hover:border-foreground flex size-12 shrink-0 items-center justify-center border transition-colors"
-      >
-        <Icon name="arrow-up" class="size-6 rotate-45" />
-      </div>
+      <Button variant="outline" size="icon-lg">
+        <ArrowUpRight />
+      </Button>
     </div>
   </div>
 </a>

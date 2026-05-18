@@ -1,25 +1,23 @@
 ---
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
 const { currentPage, prevUrl, nextUrl, first, last, firstUrl, lastUrl, totalPages } = Astro.props;
 const firstLink = first ?? firstUrl;
 const lastLink = last ?? lastUrl;
-import { Icon } from "astro-icon/components";
 ---
 
 <nav class="flex items-center justify-center gap-4">
   <div class="flex items-center justify-center gap-2">
     {
       prevUrl ? (
-        <a
-          href={prevUrl}
-          class="border-border hover:bg-foreground hover:border-foreground border p-3 transition-colors hover:text-background"
-          aria-label="Previous page"
-        >
-          <Icon name="arrow-left" class="h-5 w-5" />
+        <a href={prevUrl} aria-label="Previous page" class={buttonVariants({ variant: "outline", size: "icon-lg" })}>
+          <ArrowLeft />
         </a>
       ) : (
-        <button class="border-border text-muted border p-3" disabled aria-label="Previous page">
-          <Icon name="arrow-left" class="h-5 w-5" />
-        </button>
+        <Button variant="outline" size="icon-lg" disabled aria-label="Previous page">
+          <ArrowLeft />
+        </Button>
       )
     }
   </div>
@@ -31,17 +29,13 @@ import { Icon } from "astro-icon/components";
   <div class="flex items-center gap-2">
     {
       nextUrl ? (
-        <a
-          href={nextUrl}
-          class="border-border hover:bg-foreground hover:border-foreground border p-3 transition-colors hover:text-background"
-          aria-label="Next page"
-        >
-          <Icon name="arrow-right" class="h-5 w-5" />
+        <a href={nextUrl} aria-label="Next page" class={buttonVariants({ variant: "outline", size: "icon-lg" })}>
+          <ArrowRight />
         </a>
       ) : (
-        <button class="border-border text-muted border p-3" disabled aria-label="Next page">
-          <Icon name="arrow-right" class="h-5 w-5" />
-        </button>
+        <Button variant="outline" size="icon-lg" disabled aria-label="Next page">
+          <ArrowRight />
+        </Button>
       )
     }
   </div>

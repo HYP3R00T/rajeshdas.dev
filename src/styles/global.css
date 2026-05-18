@@ -5,56 +5,56 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* base */
   --background-0: hsl(225, 20%, 100%);
-  --background-1: hsl(225, 20%, 95%);
-  --background-2: hsl(225, 20%, 90%);
-  --background-3: hsl(225, 20%, 85%);
-  --foreground-2: hsl(225, 20%, 12%);
-  --foreground-1: hsl(225, 20%, 10%);
+  --background-1: hsl(225, 20%, 96%);
+  --background-2: hsl(225, 20%, 92%);
+  --background-3: hsl(225, 20%, 87%);
+  --background-4: hsl(225, 20%, 82%);
+  --background-5: hsl(225, 20%, 78%);
+
+  --foreground-3: hsl(225, 12%, 65%);
+  --foreground-2: hsl(225, 15%, 45%);
+  --foreground-1: hsl(225, 18%, 25%);
   --foreground-0: hsl(225, 20%, 8%);
 
-  /* colors */
-  --red-0: hsl(0, 70%, 30%);
-  --orange-0: hsl(30, 70%, 30%);
-  --yellow-0: hsl(45, 70%, 30%);
-  --green-0: hsl(130, 70%, 30%);
-  --teal-0: hsl(170, 70%, 30%);
-  --cyan-0: hsl(191, 70%, 30%);
-  --blue-0: hsl(256, 70%, 30%);
-  --purple-0: hsl(270, 70%, 30%);
-  --pink-0: hsl(338, 70%, 30%);
+  --accent-0: hsl(170, 70%, 90%);
+  --accent-1: hsl(170, 70%, 35%);
+  --accent-2: hsl(170, 70%, 22%);
 
-  /* accents */
-  --accent-0: hsl(170, 70%, 50%);
-  --accent-1: hsl(170, 70%, 30%);
-  --accent-2: hsl(170, 70%, 10%);
+  --red-0: hsl(0, 75%, 45%);
+  --orange-0: hsl(30, 75%, 40%);
+  --yellow-0: hsl(45, 75%, 38%);
+  --green-0: hsl(130, 60%, 35%);
+  --teal-0: hsl(170, 70%, 35%);
+  --cyan-0: hsl(191, 70%, 38%);
+  --blue-0: hsl(220, 70%, 48%);
+  --purple-0: hsl(270, 70%, 50%);
+  --pink-0: hsl(338, 70%, 48%);
 
-  /* shadcn */
   --background: var(--background-0);
   --foreground: var(--foreground-0);
-  --card: var(--background-1);
-  --card-foreground: var(--foreground-1);
-  --popover: var(--background-1);
-  --popover-foreground: var(--foreground-1);
-  --primary: var(--accent-1);
-  --primary-foreground: var(--background-0);
-  --secondary: var(--background-1);
-  --secondary-foreground: var(--foreground-1);
   --muted: var(--background-2);
   --muted-foreground: var(--foreground-2);
-  --accent: var(--accent-1);
-  --accent-foreground: var(--background-0);
-  --destructive: var(--red-0);
-  --destructive-foreground: var(--foreground-1);
   --border: var(--background-3);
-  --input: var(--background-3);
+  --input: var(--background-5);
+  --card: var(--background-3);
+  --card-foreground: var(--foreground-1);
+  --popover: var(--background-4);
+  --popover-foreground: var(--foreground-1);
+  --secondary: var(--background-3);
+  --secondary-foreground: var(--foreground-1);
+  --primary: var(--accent-1);
+  --primary-foreground: var(--background-0);
+  --accent: var(--background-1);
+  --accent-foreground: var(--foreground-0);
+  --destructive: var(--red-0);
+  --destructive-foreground: var(--foreground-0);
   --ring: var(--accent-1);
-  --chart-1: var(--accent-1);
-  --chart-2: var(--accent-2);
-  --chart-3: var(--accent-1);
-  --chart-4: var(--accent-2);
-  --chart-5: var(--accent-1);
+  --chart-1: var(--teal-0);
+  --chart-2: var(--cyan-0);
+  --chart-3: var(--blue-0);
+  --chart-4: var(--purple-0);
+  --chart-5: var(--pink-0);
   --sidebar: var(--background-0);
   --sidebar-foreground: var(--foreground-2);
   --sidebar-primary: var(--accent-1);
@@ -70,55 +70,58 @@
 
 .dark {
   /* base */
-  --background-0: hsl(225, 20%, 8%);
+  --background-0: hsl(225, 20%, 7%);
   --background-1: hsl(225, 20%, 10%);
-  --background-2: hsl(225, 20%, 12%);
-  --background-3: hsl(225, 20%, 14%);
-  --foreground-2: hsl(225, 20%, 60%);
-  --foreground-1: hsl(225, 20%, 80%);
-  --foreground-0: hsl(225, 20%, 100%);
+  --background-2: hsl(225, 20%, 13%);
+  --background-3: hsl(225, 20%, 17%);
+  --background-4: hsl(225, 20%, 21%);
+  --background-5: hsl(225, 20%, 25%);
+
+  --foreground-3: hsl(225, 15%, 40%);
+  --foreground-2: hsl(225, 15%, 55%);
+  --foreground-1: hsl(225, 10%, 75%);
+  --foreground-0: hsl(225, 8%, 95%);
+
+  --accent-0: hsl(170, 70%, 25%);
+  --accent-1: hsl(170, 70%, 55%);
+  --accent-2: hsl(170, 70%, 68%);
 
   /* colors */
-  --red-0: hsl(0, 70%, 60%);
-  --orange-0: hsl(30, 70%, 60%);
-  --yellow-0: hsl(45, 70%, 60%);
-  --green-0: hsl(130, 70%, 60%);
-  --teal-0: hsl(170, 70%, 60%);
+  --red-0: hsl(0, 70%, 62%);
+  --orange-0: hsl(30, 70%, 62%);
+  --yellow-0: hsl(45, 70%, 62%);
+  --green-0: hsl(130, 60%, 55%);
+  --teal-0: hsl(170, 70%, 55%);
   --cyan-0: hsl(191, 70%, 60%);
-  --blue-0: hsl(256, 70%, 60%);
-  --purple-0: hsl(270, 70%, 60%);
-  --pink-0: hsl(338, 70%, 60%);
-
-  /* accents */
-  --accent-0: hsl(170, 70%, 30%);
-  --accent-1: hsl(170, 70%, 60%);
-  --accent-2: hsl(170, 70%, 70%);
+  --blue-0: hsl(220, 70%, 65%);
+  --purple-0: hsl(270, 70%, 68%);
+  --pink-0: hsl(338, 70%, 65%);
 
   /* shadcn */
   --background: var(--background-0);
   --foreground: var(--foreground-0);
-  --card: var(--background-1);
-  --card-foreground: var(--foreground-1);
-  --popover: var(--background-1);
-  --popover-foreground: var(--foreground-1);
-  --primary: var(--accent-1);
-  --primary-foreground: var(--background-0);
-  --secondary: var(--background-1);
-  --secondary-foreground: var(--foreground-1);
   --muted: var(--background-2);
   --muted-foreground: var(--foreground-2);
-  --accent: var(--accent-1);
-  --accent-foreground: var(--background-0);
-  --destructive: var(--red-0);
-  --destructive-foreground: var(--foreground-1);
   --border: var(--background-3);
-  --input: var(--background-3);
+  --input: var(--background-5);
+  --card: var(--background-3);
+  --card-foreground: var(--foreground-1);
+  --popover: var(--background-4);
+  --popover-foreground: var(--foreground-1);
+  --secondary: var(--background-3);
+  --secondary-foreground: var(--foreground-1);
+  --primary: var(--accent-1);
+  --primary-foreground: var(--background-0);
+  --accent: var(--background-1);
+  --accent-foreground: var(--foreground-0);
+  --destructive: var(--red-0);
+  --destructive-foreground: var(--foreground-0);
   --ring: var(--accent-1);
-  --chart-1: var(--accent-1);
-  --chart-2: var(--accent-2);
-  --chart-3: var(--accent-1);
-  --chart-4: var(--accent-2);
-  --chart-5: var(--accent-1);
+  --chart-1: var(--teal-0);
+  --chart-2: var(--cyan-0);
+  --chart-3: var(--blue-0);
+  --chart-4: var(--purple-0);
+  --chart-5: var(--pink-0);
   --sidebar: var(--background-0);
   --sidebar-foreground: var(--foreground-2);
   --sidebar-primary: var(--accent-1);
@@ -138,6 +141,7 @@
   --color-background-1: var(--background-1);
   --color-background-2: var(--background-2);
   --color-background-3: var(--background-3);
+  --color-foreground-3: var(--foreground-3);
   --color-foreground-2: var(--foreground-2);
   --color-foreground-1: var(--foreground-1);
   --color-foreground-0: var(--foreground-0);
