@@ -209,7 +209,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background-0 text-foreground;
   }
 
   html {
@@ -242,43 +242,43 @@
   }
 
   .prose {
-    @apply text-foreground w-full max-w-none font-mono;
+    @apply text-foreground-0 w-full max-w-none font-mono;
   }
 
   .prose a {
-    @apply text-accent decoration-accent relative font-medium underline underline-offset-4 transition-colors;
+    @apply text-accent-1 decoration-accent-1 relative font-medium underline underline-offset-4 transition-colors;
   }
 
   .prose a:hover {
-    @apply text-accent decoration-accent;
+    @apply text-accent-2 decoration-accent-2;
   }
 
   .prose h1 {
-    @apply text-foreground font-display mt-0 mb-6 text-5xl leading-tight font-extrabold tracking-tight;
+    @apply text-foreground-0 font-display mt-0 mb-6 text-5xl leading-tight font-extrabold tracking-tight;
   }
 
   .prose h2 {
-    @apply text-foreground font-display mt-12 mb-4 text-4xl leading-snug font-bold tracking-tight;
+    @apply text-foreground-0 font-display mt-12 mb-4 text-4xl leading-snug font-bold tracking-tight;
   }
 
   .prose h3 {
-    @apply text-foreground font-display mt-10 mb-3 text-2xl leading-snug font-semibold;
+    @apply text-foreground-0 font-display mt-10 mb-3 text-2xl leading-snug font-semibold;
   }
 
   .prose h4 {
-    @apply text-foreground font-display mt-8 mb-2 text-xl font-semibold;
+    @apply text-foreground-0 font-display mt-8 mb-2 text-xl font-semibold;
   }
 
   .prose h5 {
-    @apply text-foreground mt-6 mb-1 text-base font-semibold tracking-wide uppercase;
+    @apply text-foreground-0 mt-6 mb-1 text-base font-semibold tracking-wide uppercase;
   }
 
   .prose h6 {
-    @apply text-foreground mt-6 mb-1 text-sm font-semibold tracking-wide uppercase;
+    @apply text-foreground-0 mt-6 mb-1 text-sm font-semibold tracking-wide uppercase;
   }
 
   .prose p {
-    @apply my-6 font-sans;
+    @apply my-6 font-sans text-foreground-1;
   }
 
   .prose p:first-child {
@@ -308,7 +308,7 @@
   }
 
   .prose blockquote {
-    @apply border-accent bg-background text-foreground my-8 border-l-4 px-6 py-4;
+    @apply border-accent-1 bg-background-0 text-foreground-0 my-8 border-l-4 px-6 py-4;
   }
 
   .prose blockquote p {
@@ -323,7 +323,7 @@
   }
 
   .prose code {
-    @apply bg-background px-1.5 py-0.5 font-mono text-sm font-medium;
+    @apply bg-background-0 px-1.5 py-0.5 font-mono text-sm font-medium;
   }
 
   .prose pre code {
@@ -331,11 +331,11 @@
   }
 
   .prose pre {
-    @apply bg-background my-8 overflow-x-auto px-6 py-5 text-base leading-relaxed;
+    @apply bg-background-0 my-8 overflow-x-auto px-6 py-5 text-base leading-relaxed;
   }
 
   /* .astro-code {
-      @apply bg-background my-8 px-6 py-5 font-mono text-base;
+      @apply bg-background-0 my-8 px-6 py-5 font-mono text-base;
     } */
 
   .prose table {
