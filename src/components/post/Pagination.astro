@@ -1,14 +1,5 @@
 ---
-const {
-  currentPage,
-  prevUrl,
-  nextUrl,
-  first,
-  last,
-  firstUrl,
-  lastUrl,
-  totalPages,
-} = Astro.props;
+const { currentPage, prevUrl, nextUrl, first, last, firstUrl, lastUrl, totalPages } = Astro.props;
 const firstLink = first ?? firstUrl;
 const lastLink = last ?? lastUrl;
 import { Icon } from "astro-icon/components";
@@ -20,17 +11,13 @@ import { Icon } from "astro-icon/components";
       prevUrl ? (
         <a
           href={prevUrl}
-          class="border-border hover:bg-foreground-0 hover:border-foreground-0 border p-3 transition-colors hover:text-background-0"
+          class="border-border hover:bg-foreground hover:border-foreground border p-3 transition-colors hover:text-background"
           aria-label="Previous page"
         >
           <Icon name="arrow-left" class="h-5 w-5" />
         </a>
       ) : (
-        <button
-          class="border-border text-foreground-3 border p-3"
-          disabled
-          aria-label="Previous page"
-        >
+        <button class="border-border text-muted border p-3" disabled aria-label="Previous page">
           <Icon name="arrow-left" class="h-5 w-5" />
         </button>
       )
@@ -46,17 +33,13 @@ import { Icon } from "astro-icon/components";
       nextUrl ? (
         <a
           href={nextUrl}
-          class="border-border hover:bg-foreground-0 hover:border-foreground-0 border p-3 transition-colors hover:text-background-0"
+          class="border-border hover:bg-foreground hover:border-foreground border p-3 transition-colors hover:text-background"
           aria-label="Next page"
         >
           <Icon name="arrow-right" class="h-5 w-5" />
         </a>
       ) : (
-        <button
-          class="border-border text-foreground-3 border p-3"
-          disabled
-          aria-label="Next page"
-        >
+        <button class="border-border text-muted border p-3" disabled aria-label="Next page">
           <Icon name="arrow-right" class="h-5 w-5" />
         </button>
       )

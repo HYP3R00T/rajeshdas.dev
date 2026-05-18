@@ -9,8 +9,8 @@ import { buttonVariants } from "@/components/ui/button";
   <div>
     <!-- Header -->
     <div class="flex items-start justify-between mb-6">
-      <h3 class="font-display text-foreground-0 text-sm font-bold tracking-wide uppercase">[VID] BROADCAST</h3>
-      <span class="font-mono text-foreground-3 text-xs">// video</span>
+      <h3 class="font-display text-foreground-1 text-sm font-bold tracking-wide uppercase">[VID] BROADCAST</h3>
+      <span class="font-mono text-accent-1 text-xs">// video</span>
     </div>
 
     <!-- Prompt -->
@@ -27,11 +27,11 @@ import { buttonVariants } from "@/components/ui/button";
         href="https://www.youtube.com/@hyperoot"
         target="_blank"
         rel="noopener noreferrer"
-        class={buttonVariants({ variant: "secondary", size: "sm" })}
+        class={buttonVariants({ variant: "default", size: "sm" })}
       >
         Subscribe Channel
       </a>
-      <span id="video-state" class="font-mono text-foreground-3 text-[10px] tracking-wider text-right uppercase">
+      <span id="video-state" class="font-mono text-foreground-2 text-[10px] tracking-wider text-right uppercase">
         STATE: IDLE
       </span>
     </div>
@@ -46,19 +46,19 @@ import { buttonVariants } from "@/components/ui/button";
     const setPlaying = () => {
       stateEl.textContent = "STATE: STREAMING";
       stateEl.classList.add("text-accent");
-      stateEl.classList.remove("text-foreground-3");
+      stateEl.classList.remove("text-muted");
     };
 
     const setPaused = () => {
       stateEl.textContent = "STATE: PAUSED";
       stateEl.classList.remove("text-accent");
-      stateEl.classList.add("text-foreground-3");
+      stateEl.classList.add("text-muted");
     };
 
     const setIdle = () => {
       stateEl.textContent = "STATE: IDLE";
       stateEl.classList.remove("text-accent");
-      stateEl.classList.add("text-foreground-3");
+      stateEl.classList.add("text-muted");
     };
 
     // Listen to the global custom events dispatched by initPlyr.js

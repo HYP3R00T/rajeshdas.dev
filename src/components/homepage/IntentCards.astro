@@ -1,5 +1,5 @@
 ---
-import CardGrid from "../ui/CardGrid.astro";
+import CardGrid from "@/components/ui/CardGrid.astro";
 
 interface Props {
   tag: string;
@@ -10,18 +10,16 @@ interface Props {
 const { tag, title, href } = Astro.props;
 ---
 
-<CardGrid class="hover:bg-accent/10!">
+<CardGrid>
   <a href={href} class="flex flex-col h-full">
-    <h3
-      class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase"
-    >
+    <h3 class="font-display text-foreground-0 mb-6 font-semibold tracking-wide uppercase">
       {title}
     </h3>
     <div class="flex-1">
       <slot />
     </div>
     <div class="flex justify-end mt-4">
-      <span class="text-foreground-3 text-xs">{tag}</span>
+      <span class="text-primary text-xs">{tag}</span>
     </div>
   </a>
 </CardGrid>

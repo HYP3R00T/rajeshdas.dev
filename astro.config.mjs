@@ -13,8 +13,7 @@ export default defineConfig({
 
   markdown: {
     shikiConfig: {
-      theme: 'css-variables',
-      defaultColor: false,
+      theme: 'poimandres',
     },
   },
 

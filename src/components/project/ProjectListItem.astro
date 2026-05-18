@@ -27,7 +27,7 @@ const hasPage = project.data.hasPage !== false;
 const showLinks = Boolean(project.data.sourceRepo || project.data.website);
 ---
 
-<div class="border-border group hover:bg-background-1 block border-b transition-colors duration-200">
+<div class="border-border group hover:bg-card block border-b transition-colors duration-200">
   <div class="flex flex-col gap-4 p-6">
     <div class="flex items-center justify-between">
       <div class="flex gap-4 items-center justify-center">
@@ -38,14 +38,14 @@ const showLinks = Boolean(project.data.sourceRepo || project.data.website);
         >
           <Icon name={project.data.icon || "github"} />
         </Button>
-        <h3 class="group-hover:text-foreground-1 text-foreground-0 font-display text-xl transition-colors md:text-2xl">
+        <h3 class="group-hover:text-foreground-2 text-foreground-0 font-display text-xl transition-colors md:text-2xl">
           {hasPage ? <a href={`/project/${project.id}/`}>{project.data.title}</a> : project.data.title}
         </h3>
       </div>
-      {project.data.openSource && <span class="font-mono text-foreground-3 text-xs">// Open Source</span>}
+      {project.data.openSource && <span class="font-mono text-muted text-xs">// Open Source</span>}
     </div>
 
-    <div class="text-foreground-1 max-w-4xl text-sm leading-relaxed">
+    <div class="text-foreground-2 max-w-4xl text-sm leading-relaxed">
       {project.data.description}
     </div>
 
