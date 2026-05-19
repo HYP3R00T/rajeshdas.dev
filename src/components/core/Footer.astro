@@ -11,7 +11,7 @@ const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
   <div class="grid grid-cols-1 md:grid-cols-3 px-4 md:px-12">
     <!-- Brand column -->
     <div class="border-border border-b p-8 md:border-r md:border-b-0 md:py-12 md:pr-12 md:pl-0">
-      <div class="text-foreground-0 font-display mb-4 text-lg font-semibold tracking-wide uppercase">
+      <div class="text-foreground-0 font-mono mb-4 text-lg font-semibold tracking-wide">
         {SITE.author}
       </div>
       <p class="text-foreground-2 text-sm leading-relaxed">
@@ -21,7 +21,7 @@ const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
 
     <!-- Navigation column -->
     <div class="border-border border-b p-8 md:border-r md:border-b-0 md:py-12 md:px-12">
-      <div class="text-foreground-2 mb-6 text-xs font-medium tracking-widest uppercase">Navigation</div>
+      <div class="text-foreground-2 mb-6 text-sm font-medium tracking-widest uppercase">Navigation</div>
       <nav class="flex flex-col gap-3">
         {
           navItems.map((item) => (
@@ -29,7 +29,7 @@ const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
               href={item.href}
               target={item.blank ? "_blank" : undefined}
               rel={item.blank ? "noopener noreferrer" : undefined}
-              class="text-foreground-1 hover:text-foreground-0 w-fit text-sm tracking-wide uppercase transition-colors"
+              class="text-foreground-1 hover:text-foreground-0 w-fit text-sm tracking-wide transition-colors"
             >
               {item.label}
             </a>
@@ -40,7 +40,7 @@ const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
 
     <!-- Social column -->
     <div class="p-8 md:py-12 md:pl-12 md:pr-0">
-      <div class="text-foreground-2 mb-6 text-xs font-medium tracking-widest uppercase">Connect</div>
+      <div class="text-foreground-2 mb-6 text-sm font-medium tracking-widest uppercase">Connect</div>
       <div class="flex flex-col gap-3">
         {
           activeSocials.map((social) => (
@@ -49,7 +49,7 @@ const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
               target="_blank"
               rel="noopener noreferrer"
               title={social.linkTitle}
-              class="text-foreground-1 hover:text-foreground-0 flex w-fit items-center gap-3 text-sm tracking-wide uppercase transition-colors"
+              class="text-foreground-1 hover:text-foreground-0 flex w-fit items-center gap-3 text-sm tracking-wide transition-colors"
             >
               <Icon name={social.name} class="size-4" />
               {social.name}
@@ -70,7 +70,7 @@ const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
       href={SITE.repo}
       target="_blank"
       rel="noopener noreferrer"
-      class="text-foreground-2 hover:text-foreground-0 text-xs tracking-wide uppercase transition-colors"
+      class="text-foreground-2 hover:text-foreground-0 text-xs tracking-wide transition-colors"
     >
       Source
     </a>
