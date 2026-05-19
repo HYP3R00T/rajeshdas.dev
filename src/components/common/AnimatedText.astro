@@ -1,0 +1,64 @@
+---
+interface Props {
+  text?: string;
+  auto?: boolean;
+  hover?: boolean;
+  tag?: keyof HTMLElementTagNameMap | string;
+  class?: string;
+}
+
+const { text = "", auto = false, hover = true, tag = "div", class: className = "" } = Astro.props as Props;
+
+const Tag = tag as any;
+---
+
+<Tag data-animated-text data-value={text} data-auto={auto} data-hover={hover} class={className}>
+  {text}
+</Tag>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+
+    document.querySelectorAll("[data-animated-text]").forEach((el) => {
+      const eln = el as HTMLElement;
+      const target = eln.dataset.value || eln.textContent || "";
+      eln.dataset.value = target;
+      eln.textContent = target;
+      const targetVal = eln.dataset.value || "";
+
+      let interval: number | null = null;
+
+      function playAnimation() {
+        if (interval !== null) {
+          clearInterval(interval);
+        }
+        let iteration = 0;
+        interval = window.setInterval(() => {
+          eln.textContent = (eln.textContent || "")
+            .split("")
+            .map((letter: string, index: number) => {
+              if (index < iteration) return targetVal[index];
+              return letters[Math.floor(Math.random() * letters.length)];
+            })
+            .join("");
+
+          if (iteration >= targetVal.length) {
+            if (interval !== null) {
+              clearInterval(interval);
+              interval = null;
+            }
+          }
+
+          iteration += 1 / 3;
+        }, 30);
+      }
+
+      const auto = eln.dataset!.auto === "true";
+      const hover = eln.dataset!.hover === "true";
+
+      if (auto) playAnimation();
+      if (hover) eln.addEventListener("mouseover", playAnimation);
+    });
+  });
+</script>

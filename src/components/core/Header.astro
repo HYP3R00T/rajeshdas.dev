@@ -4,6 +4,7 @@ import { navItems, SITE } from "@data/config";
 import { Button } from "@/components/ui/button";
 import { Icon } from "astro-icon/components";
 import { ModeToggle } from "@/components/core/ModeToggle";
+import AnimatedText from "@/components/common/AnimatedText.astro";
 import { User } from "lucide-react";
 import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
@@ -15,8 +16,8 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
   <nav class="mx-auto w-full max-w-7xl">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="flex flex-row font-mono items-end" id="whoami">
-        <div class="text-accent-1" id="name">rajeshdas</div>
+      <a href="/" class="flex flex-row font-mono items-end">
+        <AnimatedText text="rajeshdas" class="text-accent-1" auto={true} hover={true} />
         <div class="text-foreground-3">.dev</div>
       </a>
 
@@ -62,65 +63,4 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 <!-- Mobile Menu Panel -->
 <MobileMenuPanel navItems={navItems.filter((item) => !item.special)} />
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const name: any = document.getElementById("name");
-    const whoami: any = document.getElementById("whoami");
-
-    whoami.addEventListener("mouseover", () => {
-      name.innerText = "rajeshdas";
-      name.dataset.value = "rajeshdas";
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-      let interval: any = null;
-      let iteration = 0;
-      clearInterval(interval);
-
-      interval = setInterval(() => {
-        name.innerText = name.innerText
-          .split("")
-          .map((letter: any, index: any) => {
-            if (index < iteration) {
-              return name.dataset.value[index];
-            }
-
-            return letters[Math.floor(Math.random() * 62)];
-          })
-          .join("");
-
-        if (iteration >= name.dataset.value.length) {
-          clearInterval(interval);
-        }
-
-        iteration += 1 / 3;
-      }, 30);
-    });
-
-    whoami.addEventListener("mouseout", () => {
-      name.innerText = "rajeshdas";
-      name.dataset.value = "rajeshdas";
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
-      let interval: any = null;
-      let iteration = 0;
-      clearInterval(interval);
-
-      interval = setInterval(() => {
-        name.innerText = name.innerText
-          .split("")
-          .map((letter: any, index: any) => {
-            if (index < iteration) {
-              return name.dataset.value[index];
-            }
-
-            return letters[Math.floor(Math.random() * 62)];
-          })
-          .join("");
-
-        if (iteration >= name.dataset.value.length) {
-          clearInterval(interval);
-        }
-
-        iteration += 1 / 3;
-      }, 30);
-    });
-  });
-</script>
+<!-- AnimatedText component handles the animation behavior -->
