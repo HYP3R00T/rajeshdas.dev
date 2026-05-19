@@ -21,7 +21,7 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden items-center gap-4 md:flex">
+      <div class="hidden items-center gap-12 md:flex font-mono">
         {
           navItems
             .filter((item) => !item.special)
@@ -31,7 +31,7 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
                 target={item.blank ? "_blank" : undefined}
                 rel={item.blank ? "noopener noreferrer" : undefined}
               >
-                <div class="text-sm text-foreground-1 hover:text-accent-1">{item.label}</div>
+                <div class="text-sm text-foreground-2 hover:text-accent-1">{item.label}</div>
               </a>
             ))
         }
@@ -39,12 +39,12 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 
       <div class="hidden items-center gap-2 md:flex">
         <a href={SITE.repo} target="_blank" class="hidden md:block">
-          <Button size="icon" variant="ghost">
+          <Button size="icon" variant="ghost" className="text-foreground-2">
             <Icon name="github" />
           </Button>
         </a>
         <a href="https://rajeshdas.dev" target="_blank" class="hidden md:block">
-          <Button size="icon" variant="ghost">
+          <Button size="icon" variant="ghost" className="text-foreground-2">
             <User />
           </Button>
         </a>
