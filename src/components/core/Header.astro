@@ -4,7 +4,7 @@ import { navItems, SITE } from "@data/config";
 import { Button } from "@/components/ui/button";
 import { Icon } from "astro-icon/components";
 import { ModeToggle } from "@/components/core/ModeToggle";
-import AnimatedText from "@/components/common/AnimatedText.astro";
+import AnimatedText from "@/components/common/AnimatedText.tsx";
 import { User } from "lucide-react";
 import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
@@ -17,7 +17,7 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <a href="/" class="flex flex-row font-mono items-end">
-        <AnimatedText text="rajeshdas" class="text-accent-1" auto={true} hover={true} />
+        <AnimatedText client:load text="rajeshdas" className="text-accent-1" auto={true} hover={true} />
         <div class="text-foreground-3">.dev</div>
       </a>
 
