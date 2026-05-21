@@ -7,10 +7,9 @@ import CardGrid from "@/components/common/CardGrid.astro";
 <section class="relative px-4 md:px-12" id="latest-activity">
   <div class="mx-auto w-full max-w-5xl flex flex-col">
     <!-- Section label card -->
-    <CardGrid class="hover:bg-transparent!">
-      <p class="font-mono text-secondary-foreground text-xs tracking-widest uppercase">&#47;&#47; latest_activity</p>
-    </CardGrid>
-    <LatestVideo />
-    <LatestBlog />
+    <div class="grid md:grid-cols-2">
+      <LatestVideo />
+      <LatestBlog />
+    </div>
   </div>
 </section>

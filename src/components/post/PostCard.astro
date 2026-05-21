@@ -14,19 +14,11 @@ const readTime = estimateReadTime(post.body || post.data.description);
   <a href={`/post/${post.id}/`}>
     <div class="flex flex-col md:flex-row">
       <div class="flex grow flex-col gap-4">
-        <div class="text-foreground-2 flex items-center gap-4 text-xs font-mono">
-          {
-            index !== undefined && (
-                <span class="text-accent-0 text-xs">//  {String(index + 1).padStart(2, "0")}</span>
-                <span class="text-foreground-2">•</span>
-            )
-          }
-
+        <div class="text-foreground-2 flex items-center justify-between gap-4 text-xs font-mono">
+          {index !== undefined && <span class="text-accent-1 text-xs">// {String(index + 1).padStart(2, "0")}</span>}
           <time datetime={post.data.pubDatetime.toISOString()}>
             {formatDateUppercase(post.data.pubDatetime)}
           </time>
-          <span>•</span>
-          <span>{readTime} MIN</span>
         </div>
 
         <h3 class="group-hover:text-accent-1 text-foreground-1 font-display text-xl transition-colors md:text-2xl">

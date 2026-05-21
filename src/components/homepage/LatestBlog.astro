@@ -13,20 +13,16 @@ const latest = sorted[0];
 {
   latest && (
     <CardGrid>
-      <!-- Header -->
+      {/* Header */}
       <div class="flex items-start justify-between mb-4">
-        <h3 class="font-display text-foreground-1 text-sm font-bold tracking-wide uppercase">
-          [TXT] LATEST_ENTRY
-        </h3>
+        <h3 class="font-display text-foreground-1 text-sm font-bold tracking-wide uppercase">[TXT] LATEST_ENTRY</h3>
         <span class="font-mono text-accent-1 text-xs">// note</span>
       </div>
 
-      <!-- Prompt -->
-      <p class="font-mono text-foreground-2 text-sm mb-4 transition-colors duration-200">
-        &gt; fetch ./field_notes/latest.md
-      </p>
+      {/* Prompt */}
+      <p class="font-mono text-foreground-2 text-sm mb-4 transition-colors duration-200">&gt; fetch ./post/latest.md</p>
 
-      <!-- Cover image with overlay -->
+      {/* Cover image with overlay */}
       <a
         href={`/post/${latest.id}`}
         class="group/img block relative overflow-hidden mb-4"
@@ -42,23 +38,21 @@ const latest = sorted[0];
           />
         </div>
 
-        <!-- Text overlay -->
+        {/* Text overlay */}
         <div class="absolute inset-0 flex flex-col justify-end p-4">
           {latest.data.tags.length > 0 && (
             <span class="font-mono text-white/60 text-[10px] tracking-widest uppercase mb-2">
               {latest.data.tags[0]}
             </span>
           )}
-          <h4 class="font-display text-white text-3xl font-bold leading-snug mb-1 drop-shadow">
-            {latest.data.title}
-          </h4>
+          <h4 class="font-display text-white text-3xl font-bold leading-snug mb-1 drop-shadow">{latest.data.title}</h4>
           <p class="font-sans text-white/75 text-base leading-relaxed line-clamp-2 drop-shadow">
             {latest.data.description}
           </p>
         </div>
       </a>
 
-      <!-- Footer -->
+      {/* Footer */}
       <div class="flex items-center justify-between">
         <a href="/post" class={buttonVariants({ variant: "default", size: "sm" })}>
           All Posts

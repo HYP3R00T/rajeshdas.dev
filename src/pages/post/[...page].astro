@@ -44,9 +44,8 @@ const pageOffset = (page.currentPage - 1) * pageSize;
 
 <BaseLayout>
   <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="bg-transparent mx-auto w-full max-w-5xl my-16">
+    <div class="mx-auto w-full max-w-5xl">
       <div class="mb-12">
-        <Badge variant="secondary">Blog</Badge>
         <h1 class="text-section-heading my-8">
           <div>Articles &</div>
           <div>Insights</div>
@@ -60,7 +59,7 @@ const pageOffset = (page.currentPage - 1) * pageSize;
       <!-- Latest Article -->
       {
         featured && page.currentPage === 1 && (
-          <div class="mb-20 flex flex-col gap-4">
+          <div class="mb-12 flex flex-col gap-4">
             <Badge>Featured Article</Badge>
             <FeaturedPostCard post={featured} />
           </div>
@@ -68,7 +67,7 @@ const pageOffset = (page.currentPage - 1) * pageSize;
       }
 
       <!-- All Articles -->
-      <div class="mb-20 flex flex-col gap-4">
+      <div class="mb-8 flex flex-col gap-4">
         <Badge>All Articles</Badge>
         <div class="border-border space-y-4 md:space-y-0 grid grid-cols-2">
           {page.data.map((post, index) => <PostCard post={post} index={pageOffset + index} />)}
@@ -76,7 +75,7 @@ const pageOffset = (page.currentPage - 1) * pageSize;
       </div>
 
       <!-- Pagination -->
-      <div class="px-2">
+      <div class="px-2 pb-8">
         <Pagination
           currentPage={page.currentPage}
           prevUrl={page.url.prev}
