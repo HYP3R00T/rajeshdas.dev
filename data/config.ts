@@ -19,7 +19,7 @@ export const SITE: SiteConfig = {
 export const navItems: NavItem[] = [
   { href: '/learn', label: 'Learn' },
   { href: '/post', label: 'Blog' },
-  { href: '/project', label: 'Projects' },
+  { href: 'https://hyperoot.dev', label: 'Projects' },
   { href: '/contact', label: 'Contacts' },
 ]
 
