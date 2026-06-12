@@ -41,8 +41,8 @@ const readTime = body ? estimateReadTime(body) : 5;
       </div>
 
       <!-- Hero Image -->
-      <div class="aspect-video overflow-hidden">
-        <Image src={cover} alt={coverAlt || title} class="h-full w-full" />
+      <div class="aspect-og overflow-hidden">
+        <Image src={cover} alt={coverAlt || title} class="h-full w-full object-cover" />
       </div>
 
       <!-- Metadata -->

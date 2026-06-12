@@ -197,6 +197,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
+  --aspect-og: 1.91;
+
   /* Fonts */
   --font-display: "Space Grotesk Variable", sans-serif;
   --font-mono: "JetBrains Mono Variable", monospace;
