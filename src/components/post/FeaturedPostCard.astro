@@ -10,7 +10,7 @@ const { post } = Astro.props as PostCardProps;
 <div class="border-border group hover:bg-background-1 border bg-background transition-colors duration-200">
   <a href={`/post/${post.id}/`} class="grid md:grid-cols-2">
     <!-- Image -->
-    <div class="aspect-video overflow-hidden md:aspect-auto">
+    <div class="aspect-og overflow-hidden md:aspect-og md:pl-8 flex self-center">
       <Image src={post.data.cover} alt={post.data.coverAlt || post.data.title} class="h-full w-full object-cover" />
     </div>
 
