@@ -30,7 +30,6 @@ Key configuration files and their purposes:
 - [package.json](package.json): Dependencies and npm scripts
 - [src/content.config.ts](src/content.config.ts): Content collection schemas for posts and projects
 - [data/config.ts](data/config.ts): Global site configuration and identity
-- [data/homepage.ts](data/homepage.ts): Homepage content and section configuration
 
 ## Commands Agents Should Use
 
@@ -116,6 +115,7 @@ Icons are managed via astro-icon integration with local SVG assets:
 - **Available Icons**: Check `src/assets/icons/` directory for existing icons before adding new ones
 
 Example usage:
+
 ```astro
 ---
 import { Icon } from 'astro-icon/components'
@@ -130,18 +130,21 @@ Content collections are defined in [src/content.config.ts](src/content.config.ts
 ### Posts Schema (`content/posts/`)
 
 Required frontmatter fields:
+
 - `title`: string - Post title
 - `description`: string - Post description/excerpt
 - `pubDatetime`: date - Publication date (ISO 8601 format)
 - `cover`: image - Cover image (use `image()` helper)
 
 Optional frontmatter fields:
+
 - `coverAlt`: string - Alt text for cover image
 - `featured`: boolean - Show in featured section (default: false)
 - `draft`: boolean - Hide from production (default: false)
 - `tags`: string[] - Post tags/categories (default: [])
 
 Example:
+
 ```yaml
 ---
 title: "My Blog Post"
@@ -158,10 +161,12 @@ tags: ["typescript", "astro"]
 ### Projects Schema (`content/projects/`)
 
 Required frontmatter fields:
+
 - `title`: string - Project title
 - `description`: string - Project description
 
 Optional frontmatter fields:
+
 - `technologies`: string[] - Tech stack (default: [])
 - `icon`: string - Icon name from `src/assets/icons/`
 - `order`: number - Display order in listings
@@ -177,6 +182,7 @@ Optional frontmatter fields:
 - `hasPage`: boolean - Has dedicated project page (default: false)
 
 Example:
+
 ```yaml
 ---
 title: "My Project"
