@@ -12,7 +12,7 @@ export const SITE: SiteConfig = {
   imageAlt: "Check out rajeshdas.dev",
   contentType: "Portfolio",
   twitterHandle: "@HYP3R00T",
-  pageSize: 10,
+  pageSize: 12,
   lang: "en",
 }
 

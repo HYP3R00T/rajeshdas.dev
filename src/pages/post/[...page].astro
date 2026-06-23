@@ -7,7 +7,6 @@ import Pagination from "@/components/post/Pagination.astro";
 import PostCard from "@/components/post/PostCard.astro";
 import FeaturedPostCard from "@/components/post/FeaturedPostCard.astro";
 import { SITE } from "@data/config";
-import { Badge } from "@/components/ui/badge";
 
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
   const posts = await getCollection("posts").then((entries) => entries.filter((entry) => !entry.data.draft));
@@ -40,51 +39,50 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps;
 const defaultPageSize = SITE.pageSize ?? 10;
 const pageSize = page.pageSize ?? defaultPageSize;
 const pageOffset = (page.currentPage - 1) * pageSize;
+const articleTotalPages = totalPages ?? 1;
 ---
 
 <BaseLayout>
-  <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl">
-      <div class="mb-12">
-        <h1 class="text-section-heading my-8">
-          <div>Articles &</div>
-          <div>Insights</div>
+  <section class="px-4 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28">
+    <div class="mx-auto w-full max-w-site space-y-14 md:space-y-18">
+      <header>
+        <p class="font-mono text-xs tracking-[0.28em] text-accent-1 uppercase">Articles</p>
+        <h1 class="mt-6 max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl xl:text-7xl">
+          Field notes for systems that need to survive reality.
         </h1>
-        <p class="text-foreground-2 max-w-2xl text-base leading-relaxed md:text-lg">
-          Thoughts and learnings on DevOps, infrastructure automation, cloud architecture, and building reliable systems
-          at scale.
-        </p>
-      </div>
+      </header>
 
-      <!-- Latest Article -->
       {
         featured && page.currentPage === 1 && (
-          <div class="mb-12 flex flex-col gap-4">
-            <Badge>Featured Article</Badge>
+          <section aria-label="Featured article">
             <FeaturedPostCard post={featured} />
-          </div>
+          </section>
         )
       }
 
-      <!-- All Articles -->
-      <div class="mb-8 flex flex-col gap-4">
-        <Badge>All Articles</Badge>
-        <div class="border-border space-y-4 md:space-y-0 grid grid-cols-2">
+      <section aria-labelledby="all-articles" class="space-y-5">
+        <div>
+          <p class="font-mono text-xs tracking-[0.28em] text-accent-1 uppercase">Archive</p>
+          <h2 id="all-articles" class="mt-2 font-display text-2xl text-foreground-0 md:text-3xl">
+            All field notes
+          </h2>
+        </div>
+
+        <div class="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">
           {page.data.map((post, index) => <PostCard post={post} index={pageOffset + index} />)}
         </div>
-      </div>
+      </section>
 
-      <!-- Pagination -->
-      <div class="px-2 pb-8">
-        <Pagination
-          currentPage={page.currentPage}
-          prevUrl={page.url.prev}
-          nextUrl={page.url.next}
-          first={page.url.first}
-          last={page.url.last}
-          totalPages={totalPages}
-        />
-      </div>
+      {
+        articleTotalPages > 1 && (
+          <Pagination
+            currentPage={page.currentPage}
+            prevUrl={page.url.prev}
+            nextUrl={page.url.next}
+            totalPages={articleTotalPages}
+          />
+        )
+      }
     </div>
   </section>
 </BaseLayout>
