@@ -11,7 +11,7 @@ import { featuredProjects } from "@data/homepage";
     class="home-hero-shell relative mx-auto grid min-h-[calc(100svh-6rem)] max-w-8xl grid-rows-[auto_1fr_auto] px-4 py-8 md:px-10 lg:px-16"
   >
     <div class="home-hero-heading max-w-3xl">
-      <h1 class="font-display leading-[1.02] font-semibold tracking-[-0.05em] text-foreground-0">
+      <h1 class="font-display leading-[1.02] font-semibold tracking-tighter text-foreground-0">
         DevOps engineer + automation builder based in Kolkata, India.
       </h1>
     </div>
@@ -26,8 +26,8 @@ import { featuredProjects } from "@data/homepage";
           <span data-local-time>Asia/Kolkata</span>
         </p>
         <p class="mt-4 text-base leading-relaxed text-foreground-1 md:text-lg">
-          I build reproducible developer environments, automation workflows, and technical learning systems for teams who
-          want less setup friction and clearer engineering paths.
+          I build reproducible developer environments, automation workflows, and technical learning systems for teams
+          who want less setup friction and clearer engineering paths.
         </p>
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">
           <a href="/contact" class={buttonVariants({ variant: "default", size: "lg" })}>
@@ -255,7 +255,10 @@ import { featuredProjects } from "@data/homepage";
       linear-gradient(90deg, color-mix(in oklab, var(--border) 80%, transparent) 1px, transparent 1px),
       linear-gradient(color-mix(in oklab, var(--border) 80%, transparent) 1px, transparent 1px),
       linear-gradient(135deg, color-mix(in oklab, var(--accent-1) 18%, transparent), transparent 42%);
-    background-size: 26px 26px, 26px 26px, 100% 100%;
+    background-size:
+      26px 26px,
+      26px 26px,
+      100% 100%;
   }
 </style>
 
