@@ -1,22 +1,21 @@
 ---
+import { Image } from "astro:assets";
 import { buttonVariants } from "@/components/ui/button";
 import { Icon } from "astro-icon/components";
+import placeholder1 from "@/assets/placeholder1.png";
+import placeholder2 from "@/assets/placeholder2.png";
 import { featuredProjects } from "@data/homepage";
+
+const projectImages = [placeholder1, placeholder2] as const;
 ---
 
-<section
-  id="hero"
-  class="relative min-h-svh border-b border-border"
-  data-home-section
->
+<section id="hero" class="relative min-h-[calc(100svh-5.5rem)] border-b border-border" data-home-section>
   <div class="absolute inset-0 bg-background-0"></div>
 
   <div
-    class="relative mx-auto flex min-h-svh max-w-8xl flex-col justify-between gap-8 px-4 py-8 md:px-10 lg:px-16"
+    class="relative mx-auto flex min-h-[calc(100svh-5.5rem)] w-full max-w-site flex-col justify-between gap-8 px-4 py-6 md:px-8 md:py-8"
   >
-    <div
-      class="max-w-2xl pb-16 sm:pb-24 lg:max-w-md lg:pb-0 xl:max-w-xl"
-    >
+    <div class="max-w-2xl pb-16 sm:pb-24 lg:max-w-md lg:pb-0 xl:max-w-xl">
       <h1
         class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl"
       >
@@ -24,18 +23,14 @@ import { featuredProjects } from "@data/homepage";
       </h1>
     </div>
 
-    <div
-      class="grid gap-8 pb-2 lg:grid-cols-2 lg:items-end lg:gap-12 xl:gap-20"
-    >
+    <div class="grid gap-8 pb-2 lg:grid-cols-2 lg:items-end lg:gap-12 xl:gap-20">
       <div class="max-w-xl">
         <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">
           <span>Remote</span>
           <span class="text-foreground-3"> / </span>
           <span data-local-time>Asia/Kolkata</span>
         </p>
-        <p
-          class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg"
-        >
+        <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
           I build reproducible developer environments, automation workflows, and technical learning systems for teams
           who want less setup friction and clearer engineering paths.
         </p>
@@ -51,35 +46,28 @@ import { featuredProjects } from "@data/homepage";
         </div>
       </div>
 
-      <div
-        class="grid items-end gap-4 sm:grid-cols-2 lg:gap-6"
-      >
+      <div class="grid items-end gap-4 sm:grid-cols-2 lg:gap-6">
         {
-          featuredProjects.map((project) => (
+          featuredProjects.map((project, index) => (
             <a
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="group min-w-0 border border-border bg-background-0 transition-colors hover:border-accent-1 hover:bg-background-1"
+              class="group flex min-w-0 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0"
             >
-              <div class="relative aspect-video overflow-hidden border-b border-border bg-background-1">
-                <div class="absolute inset-0 opacity-70 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--border)_80%,transparent)_1px,transparent_1px),linear-gradient(color-mix(in_oklab,var(--border)_80%,transparent)_1px,transparent_1px),linear-gradient(135deg,color-mix(in_oklab,var(--accent-1)_18%,transparent),transparent_42%)] bg-size-[26px_26px,26px_26px,100%_100%]" />
-                <div class="absolute left-5 top-5 font-mono text-xs tracking-widest text-accent-1 uppercase">
-                  {project.signal}
-                </div>
-                <div class="absolute bottom-5 right-5 h-14 w-20 border border-border bg-background-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
-                  <div class="h-full w-full bg-linear-to-br from-accent-1/35 via-transparent to-foreground-0/10" />
-                </div>
+              <div class="aspect-video overflow-hidden rounded-md bg-background-1">
+                <Image
+                  src={projectImages[index] ?? placeholder1}
+                  alt={`${project.title} preview`}
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  widths={[480, 720, 960]}
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                />
               </div>
-              <div class="p-4 xl:p-5">
-                <div class="font-mono text-xs tracking-widest text-foreground-2 uppercase">{project.label}</div>
-                <h2 class="mt-3 font-display text-xl leading-tight text-foreground-0 xl:text-2xl">
-                  {project.title}
-                </h2>
-                <p class="mt-3 text-sm leading-relaxed text-foreground-1">
-                  {project.body}
-                </p>
-                <div class="mt-5 border-t border-border pt-4 font-mono text-xs tracking-widest text-foreground-1 uppercase transition-colors group-hover:text-accent-1">
+              <div class="flex flex-1 flex-col px-1 pt-4 pb-1 xl:pt-5">
+                <h2 class="font-display text-xl leading-tight text-foreground-0 xl:text-2xl">{project.title}</h2>
+                <p class="mt-2 text-sm leading-relaxed text-foreground-1">{project.body}</p>
+                <div class="mt-5 border-t border-border/80 pt-4 font-display text-sm font-medium text-foreground-0 transition-colors group-hover:text-accent-1">
                   <span class="inline-flex items-center gap-2">
                     View case study
                     <Icon name="arrow-up-right" class="size-4" />

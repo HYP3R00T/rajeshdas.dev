@@ -5,31 +5,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background-0: hsl(225, 20%, 100%);
-  --background-1: hsl(225, 20%, 96%);
-  --background-2: hsl(225, 20%, 92%);
-  --background-3: hsl(225, 20%, 87%);
-  --background-4: hsl(225, 20%, 82%);
-  --background-5: hsl(225, 20%, 78%);
+  --background-0: hsl(40, 18%, 97%);
+  --background-1: hsl(40, 14%, 94%);
+  --background-2: hsl(40, 10%, 89%);
+  --background-3: hsl(40, 8%, 82%);
+  --background-4: hsl(40, 7%, 74%);
+  --background-5: hsl(40, 6%, 66%);
 
-  --foreground-3: hsl(225, 12%, 65%);
-  --foreground-2: hsl(225, 15%, 45%);
-  --foreground-1: hsl(225, 18%, 25%);
-  --foreground-0: hsl(225, 20%, 8%);
+  --foreground-3: hsl(220, 5%, 58%);
+  --foreground-2: hsl(220, 6%, 42%);
+  --foreground-1: hsl(220, 8%, 24%);
+  --foreground-0: hsl(220, 10%, 8%);
 
-  --accent-0: hsl(170, 70%, 90%);
-  --accent-1: hsl(170, 70%, 28%);
-  --accent-2: hsl(170, 70%, 22%);
+  --accent-0: hsl(215, 42%, 90%);
+  --accent-1: hsl(215, 52%, 42%);
+  --accent-2: hsl(215, 48%, 30%);
 
-  --red-0: hsl(0, 75%, 38%);
-  --orange-0: hsl(30, 75%, 33%);
-  --yellow-0: hsl(45, 75%, 31%);
-  --green-0: hsl(130, 60%, 28%);
-  --teal-0: hsl(170, 70%, 28%);
-  --cyan-0: hsl(191, 70%, 31%);
-  --blue-0: hsl(220, 70%, 41%);
-  --purple-0: hsl(270, 70%, 43%);
-  --pink-0: hsl(338, 70%, 41%);
+  --red-0: hsl(2, 55%, 42%);
+  --orange-0: hsl(28, 58%, 40%);
+  --yellow-0: hsl(42, 55%, 36%);
+  --green-0: hsl(135, 38%, 34%);
+  --teal-0: hsl(170, 45%, 34%);
+  --cyan-0: hsl(195, 42%, 38%);
+  --blue-0: hsl(220, 42%, 45%);
+  --purple-0: hsl(270, 35%, 45%);
+  --pink-0: hsl(340, 42%, 45%);
 
   --background: var(--background-0);
   --foreground: var(--foreground-0);
@@ -70,32 +70,32 @@
 
 .dark {
   /* base */
-  --background-0: hsl(225, 20%, 7%);
-  --background-1: hsl(225, 20%, 10%);
-  --background-2: hsl(225, 20%, 13%);
-  --background-3: hsl(225, 20%, 17%);
-  --background-4: hsl(225, 20%, 21%);
-  --background-5: hsl(225, 20%, 25%);
+  --background-0: hsl(220, 9%, 7%);
+  --background-1: hsl(220, 8%, 10%);
+  --background-2: hsl(220, 7%, 14%);
+  --background-3: hsl(220, 6%, 18%);
+  --background-4: hsl(220, 6%, 23%);
+  --background-5: hsl(220, 5%, 29%);
 
-  --foreground-3: hsl(225, 15%, 40%);
-  --foreground-2: hsl(225, 15%, 55%);
-  --foreground-1: hsl(225, 10%, 75%);
-  --foreground-0: hsl(225, 8%, 95%);
+  --foreground-3: hsl(220, 5%, 42%);
+  --foreground-2: hsl(220, 5%, 61%);
+  --foreground-1: hsl(40, 9%, 78%);
+  --foreground-0: hsl(40, 16%, 94%);
 
-  --accent-0: hsl(170, 70%, 25%);
-  --accent-1: hsl(170, 70%, 55%);
-  --accent-2: hsl(170, 70%, 68%);
+  --accent-0: hsl(215, 28%, 22%);
+  --accent-1: hsl(215, 72%, 66%);
+  --accent-2: hsl(215, 78%, 76%);
 
   /* colors */
-  --red-0: hsl(0, 70%, 62%);
-  --orange-0: hsl(30, 70%, 62%);
-  --yellow-0: hsl(45, 70%, 62%);
-  --green-0: hsl(130, 60%, 55%);
-  --teal-0: hsl(170, 70%, 55%);
-  --cyan-0: hsl(191, 70%, 60%);
-  --blue-0: hsl(220, 70%, 65%);
-  --purple-0: hsl(270, 70%, 68%);
-  --pink-0: hsl(338, 70%, 65%);
+  --red-0: hsl(2, 58%, 62%);
+  --orange-0: hsl(28, 58%, 62%);
+  --yellow-0: hsl(42, 56%, 62%);
+  --green-0: hsl(135, 40%, 58%);
+  --teal-0: hsl(170, 48%, 58%);
+  --cyan-0: hsl(195, 45%, 61%);
+  --blue-0: hsl(220, 48%, 66%);
+  --purple-0: hsl(270, 40%, 68%);
+  --pink-0: hsl(340, 45%, 66%);
 
   /* shadcn */
   --background: var(--background-0);
@@ -198,6 +198,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --aspect-og: 1.91;
+  --container-site: 100rem;
 
   /* Fonts */
   --font-display: "Space Grotesk Variable", sans-serif;
