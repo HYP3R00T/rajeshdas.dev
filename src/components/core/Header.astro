@@ -7,9 +7,11 @@ import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 ---
 
-<header class="sticky top-0 z-50 px-4 py-4 md:px-8 md:py-5">
+<header data-header-shell data-menu-open="false" class="sticky top-0 z-50 px-4 py-4 data-[menu-open=true]:fixed data-[menu-open=true]:inset-x-0 data-[menu-open=true]:top-0 md:px-8 md:py-5">
   <nav
-    class="mx-auto w-full max-w-7xl rounded-full border border-border bg-background-0/90 px-4 py-3 shadow-sm backdrop-blur-xl md:px-6"
+    data-header-nav
+    data-menu-open="false"
+    class="mx-auto w-full max-w-7xl rounded-lg border border-border bg-background-0/90 px-4 py-3 shadow-sm backdrop-blur-xl transition-[border-radius] data-[menu-open=true]:rounded-b-none md:px-6"
   >
     <div class="flex items-center gap-4">
       <a href="/" class="flex flex-1 flex-row font-mono text-base md:text-lg">

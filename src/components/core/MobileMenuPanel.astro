@@ -5,31 +5,28 @@ interface Props {
 
 const { navItems } = Astro.props as Props;
 
-import { SITE } from "@data/config";
+import { buttonVariants } from "@/components/ui/button";
+import { ModeToggle } from "@/components/core/ModeToggle";
 import { Icon } from "astro-icon/components";
-import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
 ---
 
-<!-- Panel (full-screen overlay below header). Visibility controlled via data-open attr -->
 <div
   id="mobile-menu"
   data-mobile-menu
   data-open="false"
-  class="border-border pointer-events-none fixed inset-x-0 top-0 z-40 overflow-auto border-t bg-background opacity-0 transition duration-150 ease-out data-[open=true]:pointer-events-auto data-[open=true]:translate-y-0 data-[open=true]:opacity-100 md:hidden"
+  class="pointer-events-none fixed inset-x-4 top-20 z-40 mx-auto max-h-0 max-w-7xl -translate-y-2 overflow-hidden rounded-b-lg border-x border-b border-border bg-background-0/95 opacity-0 shadow-sm backdrop-blur-xl transition-all duration-300 ease-out data-[open=true]:pointer-events-auto data-[open=true]:max-h-96 data-[open=true]:translate-y-0 data-[open=true]:opacity-100 md:hidden"
   role="dialog"
-  aria-modal="true"
   aria-hidden="true"
 >
-  <div class="px-4 py-4">
-    <nav class="space-y-4">
+  <div class="px-5 py-5">
+    <nav class="divide-y divide-border border-b border-border">
       {
         navItems.map((item) => (
           <a
             href={item.href}
             target={item.blank ? "_blank" : undefined}
             rel={item.blank ? "noopener noreferrer" : undefined}
-            class="text-foreground-2 hover:text-foreground block text-sm tracking-wider uppercase transition-colors"
+            class="block py-4 font-display text-lg text-foreground-1 transition-colors hover:text-accent-1"
           >
             {item.label}
           </a>
@@ -37,17 +34,12 @@ import { User } from "lucide-react";
       }
     </nav>
 
-    <div class="mt-6 pt-6 flex items-center gap-3">
-      <a href={SITE.repo} target="_blank" rel="noopener noreferrer" class="block">
-        <Button size="icon" variant="outline" aria-label="GitHub">
-          <Icon name="github" />
-        </Button>
+    <div class="mt-6 flex items-center justify-between gap-3">
+      <a href="/contact" class={buttonVariants({ variant: "default", size: "lg" })}>
+        <Icon name="arrow-right" class="size-4" />
+        Let&apos;s Work Together
       </a>
-      <a href="https://rajeshdas.dev" target="_blank" rel="noopener noreferrer" class="block">
-        <Button size="icon" variant="outline" aria-label="Personal site">
-          <User />
-        </Button>
-      </a>
+      <ModeToggle client:load />
     </div>
   </div>
 </div>
