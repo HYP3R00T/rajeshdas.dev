@@ -1,47 +1,47 @@
-import placeholder1 from '@/assets/placeholder1.png'
-import type { NavItem, SiteConfig } from '@/lib/types'
+import placeholder1 from "@/assets/placeholder1.png"
+import type { NavItem, SiteConfig } from "@/lib/types"
 
 export const SITE: SiteConfig = {
-  website: 'https://rajeshdas.dev',
-  author: 'Rajesh',
-  repo: 'https://github.com/HYP3R00T/rajeshdas.dev',
-  title: 'Rajesh Das',
+  website: "https://rajeshdas.dev",
+  author: "Rajesh",
+  repo: "https://github.com/HYP3R00T/rajeshdas.dev",
+  title: "Rajesh Das",
   description:
-    'A personal portfolio and value-first router for self-directed developers who want structure, practical systems, and curated guidance.',
+    "A personal portfolio and value-first router for self-directed developers who want structure, practical systems, and curated guidance.",
   image: placeholder1,
-  imageAlt: 'Check out rajeshdas.dev',
-  contentType: 'Portfolio',
-  twitterHandle: '@HYP3R00T',
+  imageAlt: "Check out rajeshdas.dev",
+  contentType: "Portfolio",
+  twitterHandle: "@HYP3R00T",
   pageSize: 10,
-  lang: 'en',
+  lang: "en",
 }
 
 export const navItems: NavItem[] = [
-  { href: '/learn', label: 'Learn' },
-  { href: '/post', label: 'Articles' },
-  { href: 'https://hyperoot.dev', label: 'Projects' },
-  { href: '/contact', label: 'Contacts' },
+  { href: "/learn", label: "Learn" },
+  { href: "/post", label: "Articles" },
+  { href: "https://hyperoot.dev", label: "Projects" },
+  { href: "/contact", label: "Contacts" },
 ]
 
-export const LEARN_URL = 'https://hyperootlabs.notion.site/devos'
+export const LEARN_URL = "https://hyperootlabs.notion.site/devos"
 
 export const SOCIAL_LINKS = [
   {
-    name: 'github',
-    href: 'https://github.com/HYP3R00T',
+    name: "github",
+    href: "https://github.com/HYP3R00T",
     active: true,
-    linkTitle: 'Visit my GitHub profile',
+    linkTitle: "Visit my GitHub profile",
   },
   {
-    name: 'linkedin',
-    href: 'https://linkedin.com/in/rajesh-kumar-das',
+    name: "linkedin",
+    href: "https://linkedin.com/in/rajesh-kumar-das",
     active: true,
-    linkTitle: 'Connect with me on LinkedIn',
+    linkTitle: "Connect with me on LinkedIn",
   },
   {
-    name: 'mail',
-    href: 'mailto:hello@rajeshdas.dev',
+    name: "mail",
+    href: "mailto:hello@rajeshdas.dev",
     active: true,
-    linkTitle: 'Send me an email',
+    linkTitle: "Send me an email",
   },
 ]
