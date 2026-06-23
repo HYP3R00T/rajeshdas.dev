@@ -4,32 +4,42 @@ import { Icon } from "astro-icon/components";
 import { featuredProjects } from "@data/homepage";
 ---
 
-<section id="hero" class="relative min-h-[calc(100svh-5.5rem)] border-b border-border max-[900px]:min-h-[auto]" data-home-section>
+<section
+  id="hero"
+  class="relative min-h-svh border-b border-border"
+  data-home-section
+>
   <div class="absolute inset-0 bg-background-0"></div>
 
   <div
-    class="relative mx-auto grid min-h-[calc(100svh-5.5rem)] max-w-8xl grid-rows-[auto_1fr_auto] gap-y-[clamp(1rem,3svh,2.5rem)] px-4 pt-[clamp(1.5rem,4svh,2.75rem)] pb-[clamp(1.25rem,3svh,2rem)] md:px-10 lg:px-16 [@media(max-height:760px)_and_(min-width:901px)]:gap-y-3 [@media(max-height:760px)_and_(min-width:901px)]:pt-4 [@media(max-height:760px)_and_(min-width:901px)]:pb-4 max-[900px]:min-h-[auto] max-[900px]:grid-rows-[auto_auto] max-[900px]:pt-8 max-[900px]:pb-8"
+    class="relative mx-auto flex min-h-svh max-w-8xl flex-col justify-between gap-8 px-4 py-8 md:px-10 lg:px-16"
   >
-    <div class="max-w-[min(34rem,46vw)] max-[1180px]:max-w-[28rem] [@media(max-height:760px)_and_(min-width:901px)]:max-w-[30rem] max-[900px]:max-w-[42rem] max-[900px]:pb-[clamp(4rem,12svh,8rem)] max-[640px]:pb-12">
-      <h1 class="font-display text-[clamp(2rem,3.05vw,3.6rem)] leading-[1.02] font-semibold tracking-tighter text-foreground-0 max-[1180px]:text-[clamp(1.85rem,3.35vw,2.75rem)] [@media(max-height:760px)_and_(min-width:901px)]:text-[clamp(1.75rem,2.65vw,2.65rem)] [@media(max-height:760px)_and_(min-width:901px)]:leading-none max-[900px]:text-[clamp(2.25rem,8vw,4.5rem)] max-[640px]:text-[clamp(2rem,10vw,3.25rem)]">
+    <div
+      class="max-w-2xl pb-16 sm:pb-24 lg:max-w-md lg:pb-0 xl:max-w-xl"
+    >
+      <h1
+        class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl"
+      >
         DevOps engineer + automation builder based in Kolkata, India.
       </h1>
     </div>
 
-    <div class="max-[900px]:hidden" aria-hidden="true"></div>
-
-    <div class="grid gap-10 gap-x-[clamp(2rem,7vw,5rem)] pb-2 lg:grid-cols-[0.46fr_0.54fr] lg:items-end lg:gap-y-10 max-[1180px]:grid-cols-[minmax(17rem,0.68fr)_minmax(28rem,1fr)] max-[1180px]:gap-8 max-[900px]:grid-cols-1 max-[900px]:gap-8">
+    <div
+      class="grid gap-8 pb-2 lg:grid-cols-2 lg:items-end lg:gap-12 xl:gap-20"
+    >
       <div class="max-w-xl">
-        <p class="font-mono text-xs tracking-[0.18em] text-foreground-2 uppercase">
+        <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">
           <span>Remote</span>
           <span class="text-foreground-3"> / </span>
           <span data-local-time>Asia/Kolkata</span>
         </p>
-        <p class="mt-4 max-w-[31rem] text-base leading-relaxed text-foreground-1 md:text-lg [@media(max-height:760px)_and_(min-width:901px)]:max-w-[30rem] [@media(max-height:760px)_and_(min-width:901px)]:text-[0.95rem] [@media(max-height:760px)_and_(min-width:901px)]:leading-[1.55]">
+        <p
+          class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg"
+        >
           I build reproducible developer environments, automation workflows, and technical learning systems for teams
           who want less setup friction and clearer engineering paths.
         </p>
-        <div class="mt-7 flex flex-col gap-3 sm:flex-row [@media(max-height:760px)_and_(min-width:901px)]:mt-5">
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
           <a href="/contact" class={buttonVariants({ variant: "default", size: "lg" })}>
             Let&apos;s Work Together
             <Icon name="arrow-right" class="size-4" />
@@ -41,7 +51,9 @@ import { featuredProjects } from "@data/homepage";
         </div>
       </div>
 
-      <div class="grid items-end gap-6 md:grid-cols-2 max-[900px]:grid-cols-2 max-[900px]:gap-4 max-[640px]:grid-cols-1">
+      <div
+        class="grid items-end gap-4 sm:grid-cols-2 lg:gap-6"
+      >
         {
           featuredProjects.map((project) => (
             <a
@@ -51,19 +63,23 @@ import { featuredProjects } from "@data/homepage";
               class="group min-w-0 border border-border bg-background-0 transition-colors hover:border-accent-1 hover:bg-background-1"
             >
               <div class="relative aspect-video overflow-hidden border-b border-border bg-background-1">
-                <div class="absolute inset-0 opacity-70 [background-image:linear-gradient(90deg,color-mix(in_oklab,var(--border)_80%,transparent)_1px,transparent_1px),linear-gradient(color-mix(in_oklab,var(--border)_80%,transparent)_1px,transparent_1px),linear-gradient(135deg,color-mix(in_oklab,var(--accent-1)_18%,transparent),transparent_42%)] [background-size:26px_26px,26px_26px,100%_100%]" />
-                <div class="absolute left-5 top-5 font-mono text-[10px] tracking-[0.22em] text-accent-1 uppercase">
+                <div class="absolute inset-0 opacity-70 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--border)_80%,transparent)_1px,transparent_1px),linear-gradient(color-mix(in_oklab,var(--border)_80%,transparent)_1px,transparent_1px),linear-gradient(135deg,color-mix(in_oklab,var(--accent-1)_18%,transparent),transparent_42%)] bg-size-[26px_26px,26px_26px,100%_100%]" />
+                <div class="absolute left-5 top-5 font-mono text-xs tracking-widest text-accent-1 uppercase">
                   {project.signal}
                 </div>
                 <div class="absolute bottom-5 right-5 h-14 w-20 border border-border bg-background-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
                   <div class="h-full w-full bg-linear-to-br from-accent-1/35 via-transparent to-foreground-0/10" />
                 </div>
               </div>
-              <div class="p-[clamp(0.875rem,1.4vw,1.25rem)] max-[1180px]:p-[0.95rem] [@media(max-height:760px)_and_(min-width:901px)]:px-[0.9rem] [@media(max-height:760px)_and_(min-width:901px)]:py-[0.8rem]">
-                <div class="font-mono text-[10px] tracking-[0.2em] text-foreground-2 uppercase">{project.label}</div>
-                <h2 class="mt-3 font-display text-[clamp(1.1rem,1.25vw,1.4rem)] leading-tight text-foreground-0 [@media(max-height:760px)_and_(min-width:901px)]:mt-[0.55rem] [@media(max-height:760px)_and_(min-width:901px)]:text-[1.1rem]">{project.title}</h2>
-                <p class="mt-3 text-[clamp(0.78rem,0.85vw,0.9rem)] leading-relaxed text-foreground-1 max-[1180px]:text-[0.8125rem] max-[1180px]:leading-[1.5] [@media(max-height:760px)_and_(min-width:901px)]:hidden">{project.body}</p>
-                <div class="mt-5 border-t border-border pt-4 font-mono text-[11px] tracking-[0.18em] text-foreground-1 uppercase transition-colors group-hover:text-accent-1 [@media(max-height:760px)_and_(min-width:901px)]:mt-3 [@media(max-height:760px)_and_(min-width:901px)]:pt-3">
+              <div class="p-4 xl:p-5">
+                <div class="font-mono text-xs tracking-widest text-foreground-2 uppercase">{project.label}</div>
+                <h2 class="mt-3 font-display text-xl leading-tight text-foreground-0 xl:text-2xl">
+                  {project.title}
+                </h2>
+                <p class="mt-3 text-sm leading-relaxed text-foreground-1">
+                  {project.body}
+                </p>
+                <div class="mt-5 border-t border-border pt-4 font-mono text-xs tracking-widest text-foreground-1 uppercase transition-colors group-hover:text-accent-1">
                   <span class="inline-flex items-center gap-2">
                     View case study
                     <Icon name="arrow-up-right" class="size-4" />
@@ -77,7 +93,6 @@ import { featuredProjects } from "@data/homepage";
     </div>
   </div>
 </section>
-
 
 <script>
   const setupLocalTime = () => {
