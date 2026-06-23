@@ -7,10 +7,10 @@
 :root {
   --background-0: hsl(40, 18%, 97%);
   --background-1: hsl(40, 14%, 94%);
-  --background-2: hsl(40, 10%, 89%);
-  --background-3: hsl(40, 8%, 82%);
-  --background-4: hsl(40, 7%, 74%);
-  --background-5: hsl(40, 6%, 66%);
+  --background-2: hsl(40, 10%, 87%);
+  --background-3: hsl(40, 8%, 78%);
+  --background-4: hsl(40, 7%, 68%);
+  --background-5: hsl(40, 6%, 58%);
 
   --foreground-3: hsl(220, 5%, 58%);
   --foreground-2: hsl(220, 6%, 42%);
@@ -36,14 +36,14 @@
   --muted: var(--background-2);
   --muted-foreground: var(--foreground-2);
   --border: var(--background-3);
-  --input: var(--background-5);
-  --card: var(--background-3);
-  --card-foreground: var(--foreground-1);
+  --input: var(--background-3);
+  --card: var(--background-1);
+  --card-foreground: var(--foreground-0);
   --popover: var(--background-1);
   --popover-foreground: var(--foreground-0);
-  --secondary: var(--background-3);
-  --secondary-foreground: var(--foreground-1);
-  --primary: var(--accent-1);
+  --secondary: var(--background-1);
+  --secondary-foreground: var(--foreground-0);
+  --primary: var(--foreground-0);
   --primary-foreground: var(--background-0);
   --accent: var(--background-2);
   --accent-foreground: var(--foreground-0);
@@ -57,7 +57,7 @@
   --chart-5: var(--pink-0);
   --sidebar: var(--background-0);
   --sidebar-foreground: var(--foreground-2);
-  --sidebar-primary: var(--accent-1);
+  --sidebar-primary: var(--foreground-0);
   --sidebar-primary-foreground: var(--background-0);
   --sidebar-accent: var(--background-1);
   --sidebar-accent-foreground: var(--foreground-0);
@@ -66,16 +66,22 @@
   --radius: 0.5rem;
   --shadow-x: 0rem;
   --shadow-y: 0rem;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
 }
 
 .dark {
   /* base */
   --background-0: hsl(220, 9%, 7%);
   --background-1: hsl(220, 8%, 10%);
-  --background-2: hsl(220, 7%, 14%);
-  --background-3: hsl(220, 6%, 18%);
-  --background-4: hsl(220, 6%, 23%);
-  --background-5: hsl(220, 5%, 29%);
+  --background-2: hsl(220, 7%, 17%);
+  --background-3: hsl(220, 6%, 24%);
+  --background-4: hsl(220, 6%, 32%);
+  --background-5: hsl(220, 5%, 42%);
 
   --foreground-3: hsl(220, 5%, 42%);
   --foreground-2: hsl(220, 5%, 61%);
@@ -100,19 +106,19 @@
   /* shadcn */
   --background: var(--background-0);
   --foreground: var(--foreground-0);
-  --muted: var(--background-2);
-  --muted-foreground: var(--foreground-2);
+  --muted: var(--background-4);
+  --muted-foreground: var(--foreground-1);
   --border: var(--background-3);
-  --input: var(--background-5);
-  --card: var(--background-3);
-  --card-foreground: var(--foreground-1);
+  --input: var(--background-3);
+  --card: var(--background-1);
+  --card-foreground: var(--foreground-0);
   --popover: var(--background-2);
   --popover-foreground: var(--foreground-1);
-  --secondary: var(--background-3);
-  --secondary-foreground: var(--foreground-1);
-  --primary: var(--accent-1);
+  --secondary: var(--background-1);
+  --secondary-foreground: var(--foreground-0);
+  --primary: var(--foreground-0);
   --primary-foreground: var(--background-0);
-  --accent: var(--background-1);
+  --accent: var(--background-2);
   --accent-foreground: var(--foreground-0);
   --destructive: var(--red-0);
   --destructive-foreground: var(--foreground-0);
@@ -124,7 +130,7 @@
   --chart-5: var(--pink-0);
   --sidebar: var(--background-0);
   --sidebar-foreground: var(--foreground-2);
-  --sidebar-primary: var(--accent-1);
+  --sidebar-primary: var(--foreground-0);
   --sidebar-primary-foreground: var(--background-0);
   --sidebar-accent: var(--background-1);
   --sidebar-accent-foreground: var(--foreground-0);
@@ -133,6 +139,12 @@
   --radius: 0.5rem;
   --shadow-x: 0rem;
   --shadow-y: 0rem;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
 }
 
 @theme inline {

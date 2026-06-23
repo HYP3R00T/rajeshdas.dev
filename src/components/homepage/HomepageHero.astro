@@ -17,70 +17,70 @@ const projectImages = [placeholder1, placeholder2] as const;
       class="mx-auto grid min-h-[calc(100svh-5.5rem)] w-full max-w-site gap-10 pt-8 pb-6 md:pt-12 md:pb-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-end lg:gap-12 xl:gap-20"
     >
       <div class="flex min-h-[calc(100svh-11rem)] flex-col justify-between gap-10">
-      <div class="max-w-2xl lg:max-w-xl">
-        <h1
-          class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl"
-        >
-          DevOps engineer + automation builder based in Kolkata, India.
-        </h1>
-      </div>
+        <div class="max-w-2xl lg:max-w-xl">
+          <h1
+            class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl"
+          >
+            DevOps engineer + automation builder based in India.
+          </h1>
+        </div>
 
-      <div class="max-w-xl pb-2">
-        <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">
-          <span>Remote</span>
-          <span class="text-foreground-3"> / </span>
-          <span data-local-time>Asia/Kolkata</span>
-        </p>
-        <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
-          I build reproducible developer environments, automation workflows, and technical learning systems for teams
-          who want less setup friction and clearer engineering paths.
-        </p>
-        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-          <a href="/contact" class={buttonVariants({ variant: "default", size: "lg" })}>
-            Let&apos;s Work Together
-            <Icon name="arrow-right" class="size-4" />
-          </a>
-          <a href="https://hyperoot.dev" class={buttonVariants({ variant: "outline", size: "lg" })}>
-            View All Work
-            <Icon name="arrow-up-right" class="size-4" />
-          </a>
+        <div class="max-w-xl pb-2">
+          <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">
+            <span>Remote</span>
+            <span class="text-foreground-3"> / </span>
+            <span data-local-time>Asia/Kolkata</span>
+          </p>
+          <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+            I build reproducible developer environments, automation workflows, and technical learning systems for teams
+            who want less setup friction and clearer engineering paths.
+          </p>
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a href="/contact" class={buttonVariants({ variant: "default", size: "lg" })}>
+              Let&apos;s Work Together
+              <Icon name="arrow-right" class="size-4" />
+            </a>
+            <a href="https://hyperoot.dev" class={buttonVariants({ variant: "outline", size: "lg" })}>
+              View All Work
+              <Icon name="arrow-up-right" class="size-4" />
+            </a>
+          </div>
         </div>
       </div>
-    </div>
 
       <div class="flex items-end">
-      <div class="grid w-full items-stretch gap-4 sm:grid-cols-2 lg:gap-6">
-        {
-          featuredProjects.map((project, index) => (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0"
-            >
-              <div class="aspect-video overflow-hidden rounded-md bg-background-1">
-                <Image
-                  src={projectImages[index] ?? placeholder1}
-                  alt={`${project.title} preview`}
-                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  widths={[480, 720, 960]}
-                  sizes="(max-width: 1024px) 100vw, 420px"
-                />
-              </div>
-              <div class="flex flex-1 flex-col px-1 pt-4 pb-1 xl:pt-5">
-                <h2 class="font-display text-xl leading-tight text-foreground-0 xl:text-2xl">{project.title}</h2>
-                <p class="mt-2 text-sm leading-relaxed text-foreground-1">{project.body}</p>
-                <div class="mt-auto border-t border-border/80 pt-4 font-display text-sm font-medium text-foreground-0 transition-colors group-hover:text-accent-1">
-                  <span class="inline-flex items-center gap-2">
-                    View case study
-                    <Icon name="arrow-up-right" class="size-4" />
-                  </span>
+        <div class="grid w-full items-stretch gap-4 sm:grid-cols-2 lg:gap-6">
+          {
+            featuredProjects.map((project, index) => (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0"
+              >
+                <div class="aspect-video overflow-hidden rounded-md bg-background-1">
+                  <Image
+                    src={projectImages[index] ?? placeholder1}
+                    alt={`${project.title} preview`}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    widths={[480, 720, 960]}
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                  />
                 </div>
-              </div>
-            </a>
-          ))
-        }
-      </div>
+                <div class="flex flex-1 flex-col px-1 pt-4 pb-1 xl:pt-5">
+                  <h2 class="font-display text-xl leading-tight text-foreground-0 xl:text-2xl">{project.title}</h2>
+                  <p class="mt-2 mb-6 text-sm leading-relaxed text-foreground-1">{project.body}</p>
+                  <div class="mt-auto border-t border-border/80 pt-4 font-display text-sm font-medium text-foreground-0 transition-colors group-hover:text-accent-1">
+                    <span class="inline-flex items-center gap-2">
+                      View case study
+                      <Icon name="arrow-up-right" class="size-4" />
+                    </span>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
