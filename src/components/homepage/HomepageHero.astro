@@ -1,0 +1,285 @@
+---
+import { buttonVariants } from "@/components/ui/button";
+import { Icon } from "astro-icon/components";
+import { featuredProjects } from "@data/homepage";
+---
+
+<section id="hero" class="home-hero relative min-h-[calc(100svh-6rem)] border-b border-border" data-home-section>
+  <div class="absolute inset-0 bg-background-0"></div>
+
+  <div
+    class="home-hero-shell relative mx-auto grid min-h-[calc(100svh-6rem)] max-w-8xl grid-rows-[auto_1fr_auto] px-4 py-8 md:px-10 lg:px-16"
+  >
+    <div class="home-hero-heading max-w-3xl">
+      <h1 class="font-display leading-[1.02] font-semibold tracking-[-0.05em] text-foreground-0">
+        DevOps engineer + automation builder based in Kolkata, India.
+      </h1>
+    </div>
+
+    <div aria-hidden="true"></div>
+
+    <div class="home-hero-bottom grid gap-10 pb-2 lg:grid-cols-[0.46fr_0.54fr] lg:items-end lg:gap-20">
+      <div class="home-hero-intro max-w-xl">
+        <p class="font-mono text-xs tracking-[0.18em] text-foreground-2 uppercase">
+          <span>Remote</span>
+          <span class="text-foreground-3"> / </span>
+          <span data-local-time>Asia/Kolkata</span>
+        </p>
+        <p class="mt-4 text-base leading-relaxed text-foreground-1 md:text-lg">
+          I build reproducible developer environments, automation workflows, and technical learning systems for teams who
+          want less setup friction and clearer engineering paths.
+        </p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <a href="/contact" class={buttonVariants({ variant: "default", size: "lg" })}>
+            Let&apos;s Work Together
+            <Icon name="arrow-right" class="size-4" />
+          </a>
+          <a href="https://hyperoot.dev" class={buttonVariants({ variant: "outline", size: "lg" })}>
+            View All Work
+            <Icon name="arrow-up-right" class="size-4" />
+          </a>
+        </div>
+      </div>
+
+      <div class="home-hero-cases grid gap-6 md:grid-cols-2">
+        {
+          featuredProjects.map((project) => (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="home-case-card group border border-border bg-background-0 transition-colors hover:border-accent-1 hover:bg-background-1"
+            >
+              <div class="home-case-visual relative overflow-hidden border-b border-border bg-background-1">
+                <div class="absolute inset-0 home-project-field opacity-70" />
+                <div class="absolute left-5 top-5 font-mono text-[10px] tracking-[0.22em] text-accent-1 uppercase">
+                  {project.signal}
+                </div>
+                <div class="absolute bottom-5 right-5 h-14 w-20 border border-border bg-background-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+                  <div class="h-full w-full bg-linear-to-br from-accent-1/35 via-transparent to-foreground-0/10" />
+                </div>
+              </div>
+              <div class="home-case-content p-5">
+                <div class="font-mono text-[10px] tracking-[0.2em] text-foreground-2 uppercase">{project.label}</div>
+                <h2 class="home-case-title mt-3 font-display leading-tight text-foreground-0">{project.title}</h2>
+                <p class="home-case-body mt-3 text-sm leading-relaxed text-foreground-1">{project.body}</p>
+                <div class="mt-5 border-t border-border pt-4 font-mono text-[11px] tracking-[0.18em] text-foreground-1 uppercase transition-colors group-hover:text-accent-1">
+                  <span class="inline-flex items-center gap-2">
+                    View case study
+                    <Icon name="arrow-up-right" class="size-4" />
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-hero {
+    min-height: calc(100svh - 5.5rem);
+  }
+
+  .home-hero-shell {
+    min-height: calc(100svh - 5.5rem);
+    row-gap: clamp(1rem, 3svh, 2.5rem);
+    padding-top: clamp(1.5rem, 4svh, 2.75rem);
+    padding-bottom: clamp(1.25rem, 3svh, 2rem);
+  }
+
+  .home-hero-heading {
+    max-width: min(34rem, 46vw);
+  }
+
+  .home-hero-heading h1 {
+    font-size: clamp(2rem, 3.05vw, 3.6rem);
+  }
+
+  .home-hero-bottom {
+    column-gap: clamp(2rem, 7vw, 5rem);
+  }
+
+  .home-hero-intro p:not(:first-child) {
+    max-width: 31rem;
+  }
+
+  .home-hero-cases {
+    align-items: end;
+  }
+
+  .home-case-card {
+    min-width: 0;
+  }
+
+  .home-case-visual {
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .home-case-content {
+    padding: clamp(0.875rem, 1.4vw, 1.25rem);
+  }
+
+  .home-case-title {
+    font-size: clamp(1.1rem, 1.25vw, 1.4rem);
+  }
+
+  .home-case-body {
+    font-size: clamp(0.78rem, 0.85vw, 0.9rem);
+  }
+
+  @media (max-width: 1180px) {
+    .home-hero-heading {
+      max-width: 28rem;
+    }
+
+    .home-hero-heading h1 {
+      font-size: clamp(1.85rem, 3.35vw, 2.75rem);
+    }
+
+    .home-hero-bottom {
+      grid-template-columns: minmax(17rem, 0.68fr) minmax(28rem, 1fr);
+      gap: 2rem;
+    }
+
+    .home-case-content {
+      padding: 0.95rem;
+    }
+
+    .home-case-body {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-height: 760px) and (min-width: 901px) {
+    .home-hero-shell {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      row-gap: 0.75rem;
+    }
+
+    .home-hero-heading {
+      max-width: 30rem;
+    }
+
+    .home-hero-heading h1 {
+      font-size: clamp(1.75rem, 2.65vw, 2.65rem);
+      line-height: 1;
+    }
+
+    .home-hero-intro p:not(:first-child) {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      max-width: 30rem;
+    }
+
+    .home-hero-intro .mt-7 {
+      margin-top: 1.25rem;
+    }
+
+    .home-case-content {
+      padding: 0.8rem 0.9rem;
+    }
+
+    .home-case-title {
+      margin-top: 0.55rem;
+      font-size: 1.1rem;
+    }
+
+    .home-case-body {
+      display: none;
+    }
+
+    .home-case-content .mt-5 {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .home-hero {
+      min-height: auto;
+    }
+
+    .home-hero-shell {
+      min-height: auto;
+      grid-template-rows: auto auto;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .home-hero-shell > [aria-hidden="true"] {
+      display: none;
+    }
+
+    .home-hero-heading {
+      max-width: 42rem;
+      padding-bottom: clamp(4rem, 12svh, 8rem);
+    }
+
+    .home-hero-heading h1 {
+      font-size: clamp(2.25rem, 8vw, 4.5rem);
+    }
+
+    .home-hero-bottom {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .home-hero-cases {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-hero-heading {
+      padding-bottom: 3rem;
+    }
+
+    .home-hero-heading h1 {
+      font-size: clamp(2rem, 10vw, 3.25rem);
+    }
+
+    .home-hero-cases {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .home-project-field {
+    background-image:
+      linear-gradient(90deg, color-mix(in oklab, var(--border) 80%, transparent) 1px, transparent 1px),
+      linear-gradient(color-mix(in oklab, var(--border) 80%, transparent) 1px, transparent 1px),
+      linear-gradient(135deg, color-mix(in oklab, var(--accent-1) 18%, transparent), transparent 42%);
+    background-size: 26px 26px, 26px 26px, 100% 100%;
+  }
+</style>
+
+<script>
+  const setupLocalTime = () => {
+    const target = document.querySelector("[data-local-time]");
+    if (!target) return;
+
+    const update = () => {
+      const time = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      }).format(new Date());
+
+      target.textContent = `Now, ${time} IST`;
+    };
+
+    update();
+    const interval = window.setInterval(update, 1000);
+    document.addEventListener("astro:before-swap", () => window.clearInterval(interval), { once: true });
+  };
+
+  document.addEventListener("astro:page-load", setupLocalTime);
+</script>

@@ -1,0 +1,218 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { buttonVariants } from "@/components/ui/button";
+import { Icon } from "astro-icon/components";
+import { latestVideo } from "@data/homepage";
+
+interface Props {
+  latestPost: CollectionEntry<"posts">;
+}
+
+const { latestPost } = Astro.props as Props;
+const videoThumb = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.jpg`;
+const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`;
+---
+
+<section id="writing" class="border-t border-border py-16 md:py-24" data-home-section>
+  <div class="mx-auto grid max-w-8xl gap-10 px-4 md:px-10 lg:grid-cols-[0.34fr_0.66fr] lg:px-16">
+    <div>
+      <p class="font-mono text-xs tracking-[0.22em] text-accent-1 uppercase">Live notes</p>
+      <h2 class="mt-4 max-w-md font-display text-4xl leading-tight tracking-[-0.03em] text-foreground-0 md:text-5xl">
+        Fresh from the lab, before it becomes a case study.
+      </h2>
+    </div>
+
+    <div class="flex flex-col border border-border bg-background-0">
+      <div class="grid border-b border-border bg-background-1 sm:grid-cols-2" role="tablist" aria-label="Latest content switcher">
+        <button
+          type="button"
+          class="home-tab group border-b border-border px-5 py-3 text-left transition-colors data-[active=true]:bg-background-0 sm:border-r sm:border-b-0"
+          data-home-tab
+          data-panel="article"
+          data-active="true"
+          role="tab"
+          aria-selected="true"
+        >
+          <span class="flex items-center justify-between gap-4">
+            <span class="font-mono text-[11px] tracking-[0.2em] text-foreground-2 uppercase">Article</span>
+            <span class="h-2 w-2 border border-foreground-3 group-data-[active=true]:border-accent-1 group-data-[active=true]:bg-accent-1"></span>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="home-tab group px-5 py-3 text-left transition-colors data-[active=true]:bg-background-0"
+          data-home-tab
+          data-panel="video"
+          role="tab"
+          aria-selected="false"
+        >
+          <span class="flex items-center justify-between gap-4">
+            <span class="font-mono text-[11px] tracking-[0.2em] text-foreground-2 uppercase">Video</span>
+            <span class="h-2 w-2 border border-foreground-3 group-data-[active=true]:border-accent-1 group-data-[active=true]:bg-accent-1"></span>
+          </span>
+        </button>
+      </div>
+
+      <div data-home-panel="article">
+        <a href={`/post/${latestPost.id}`} class="group block overflow-hidden bg-background-0 transition-colors">
+          <div class="relative aspect-og overflow-hidden bg-background-1">
+            <Image
+              src={latestPost.data.cover}
+              alt={latestPost.data.coverAlt || latestPost.data.title}
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04] group-hover:blur-sm group-focus-visible:scale-[1.04] group-focus-visible:blur-sm"
+              widths={[720, 1080]}
+              sizes="(max-width: 1024px) 100vw, 720px"
+            />
+            <div
+              class="absolute inset-0 bg-background-0/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+            ></div>
+            <div
+              class="absolute inset-x-0 bottom-0 translate-y-4 p-6 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 md:p-8"
+            >
+              <h3 class="max-w-3xl font-display text-4xl leading-tight text-white md:text-5xl">
+                {latestPost.data.title}
+              </h3>
+            </div>
+          </div>
+          <div class="border-t border-border px-6 py-4 font-mono text-[11px] tracking-[0.2em] text-foreground-2 uppercase md:px-8">
+            <div class="flex items-center justify-between gap-4">
+              <span>{latestPost.data.pubDatetime.toISOString().slice(0, 10)}</span>
+              <span class="flex items-center gap-2 text-foreground-1 transition-colors group-hover:text-accent-1">
+                Read article
+                <Icon name="arrow-right" class="size-4" />
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div data-home-panel="video" class="hidden">
+        <div class="overflow-hidden bg-background-0">
+          <button
+            type="button"
+            class="group relative block aspect-og w-full overflow-hidden bg-background-1 text-left"
+            data-video-open
+            aria-label="Open latest video"
+          >
+            <img
+              src={videoThumb}
+              alt="Latest video thumbnail"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04] group-hover:blur-sm group-focus-visible:scale-[1.04] group-focus-visible:blur-sm"
+            />
+            <span
+              class="absolute inset-0 grid place-items-center bg-background-0/55 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+            >
+              <span class="border border-accent-1 px-5 py-3 font-mono text-xs tracking-[0.2em] text-white uppercase">
+                Play video
+              </span>
+            </span>
+          </button>
+          <div class="border-t border-border px-6 py-4 md:px-8">
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <button type="button" class={buttonVariants({ variant: "default", size: "lg" })} data-video-open>
+                Open Video
+              </button>
+              <a
+                href={latestVideo.channelUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                Visit Channel
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div
+  id="video-overlay"
+  data-video-url={videoUrl}
+  class="fixed inset-0 z-80 hidden items-center justify-center bg-background-0/90 p-4 backdrop-blur-sm"
+>
+  <div class="relative w-full max-w-5xl border border-border bg-background-0">
+    <button
+      type="button"
+      id="video-overlay-close"
+      class="absolute -top-12 right-0 border border-border bg-background-0 px-4 py-3 font-mono text-xs tracking-[0.2em] text-foreground-1 uppercase transition-colors hover:bg-background-1"
+      aria-label="Close video overlay"
+    >
+      Close
+    </button>
+    <div class="aspect-video w-full">
+      <iframe
+        id="video-overlay-frame"
+        class="h-full w-full"
+        title="Latest video"
+        src=""
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  const setupHomepageLatestSignal = () => {
+    const tabs = Array.from(document.querySelectorAll("[data-home-tab]"));
+    const panels = Array.from(document.querySelectorAll("[data-home-panel]"));
+    const overlay = document.getElementById("video-overlay");
+    const frame = document.getElementById("video-overlay-frame");
+    const closeButton = document.getElementById("video-overlay-close");
+    const openButtons = Array.from(document.querySelectorAll("[data-video-open]"));
+    const videoUrl = overlay?.getAttribute("data-video-url") || "";
+
+    if (tabs.length && panels.length) {
+      const activatePanel = (name: string) => {
+        tabs.forEach((tab) => {
+          const tabElement = tab as HTMLElement;
+          const active = tabElement.getAttribute("data-panel") === name;
+          tabElement.dataset.active = active ? "true" : "false";
+          tabElement.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.toggle("hidden", panel.getAttribute("data-home-panel") !== name);
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const panelName = tab.getAttribute("data-panel");
+          if (panelName) activatePanel(panelName);
+        });
+      });
+    }
+
+    const closeOverlay = () => {
+      if (!overlay || !frame) return;
+      overlay.classList.add("hidden");
+      overlay.classList.remove("flex");
+      frame.setAttribute("src", "");
+      document.documentElement.classList.remove("overflow-hidden");
+    };
+
+    const openOverlay = () => {
+      if (!overlay || !frame) return;
+      overlay.classList.remove("hidden");
+      overlay.classList.add("flex");
+      frame.setAttribute("src", videoUrl);
+      document.documentElement.classList.add("overflow-hidden");
+    };
+
+    openButtons.forEach((button) => button.addEventListener("click", openOverlay));
+    closeButton?.addEventListener("click", closeOverlay);
+    overlay?.addEventListener("click", (event) => {
+      if (event.target === overlay) closeOverlay();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeOverlay();
+    });
+  };
+
+  document.addEventListener("astro:page-load", setupHomepageLatestSignal);
+</script>
