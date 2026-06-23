@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import HomepageHero from "@/components/homepage/HomepageHero.astro";
+import HomepageMetrics from "@/components/homepage/HomepageMetrics.astro";
 import HomepageLatestSignal from "@/components/homepage/HomepageLatestSignal.astro";
 
 interface Props {
@@ -10,7 +11,103 @@ interface Props {
 const { latestPost } = Astro.props as Props;
 ---
 
-<div class="homepage overflow-hidden">
+<div class="homepage homepage-snap overflow-hidden">
   <HomepageHero />
+  <HomepageMetrics />
   <HomepageLatestSignal latestPost={latestPost} />
 </div>
+
+<style is:global>
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    html:has(.homepage-snap) {
+      scroll-behavior: smooth;
+      scroll-padding-top: 0;
+    }
+  }
+</style>
+
+<script>
+  declare global {
+    interface Window {
+      __homepageSectionSnapCleanup?: () => void;
+    }
+  }
+
+  const setupHomepageSectionSnap = () => {
+    window.__homepageSectionSnapCleanup?.();
+
+    const root = document.querySelector(".homepage-snap");
+    const canSnap = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)");
+
+    if (!root || !canSnap.matches) return;
+
+    const sections = Array.from(root.querySelectorAll<HTMLElement>("[data-home-section]"));
+
+    if (sections.length < 2) return;
+
+    let isSnapping = false;
+    let releaseTimer = 0;
+
+    const currentSectionIndex = () => {
+      return sections.reduce(
+        (closest, section, index) => {
+          const distance = Math.abs(section.getBoundingClientRect().top);
+          return distance < closest.distance ? { index, distance } : closest;
+        },
+        { index: 0, distance: Number.POSITIVE_INFINITY },
+      ).index;
+    };
+
+    const scrollToSection = (index: number) => {
+      const target = sections[index];
+      if (!target) return;
+
+      isSnapping = true;
+      window.clearTimeout(releaseTimer);
+
+      const top = index === 0 ? 0 : Math.max(0, window.scrollY + target.getBoundingClientRect().top);
+      window.scrollTo({ top, behavior: "smooth" });
+
+      releaseTimer = window.setTimeout(() => {
+        isSnapping = false;
+      }, 900);
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      const target = event.target as HTMLElement | null;
+
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (Math.abs(event.deltaY) < 12) return;
+      if (target?.closest("#video-overlay")) return;
+
+      const currentIndex = currentSectionIndex();
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const nextIndex = currentIndex + direction;
+
+      if (nextIndex < 0 || nextIndex >= sections.length) return;
+
+      event.preventDefault();
+
+      if (isSnapping) return;
+      scrollToSection(nextIndex);
+    };
+
+    const onMediaChange = () => {
+      if (!canSnap.matches) window.__homepageSectionSnapCleanup?.();
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    canSnap.addEventListener("change", onMediaChange);
+
+    window.__homepageSectionSnapCleanup = () => {
+      window.removeEventListener("wheel", onWheel);
+      canSnap.removeEventListener("change", onMediaChange);
+      window.clearTimeout(releaseTimer);
+      isSnapping = false;
+      window.__homepageSectionSnapCleanup = undefined;
+    };
+  };
+
+  document.addEventListener("astro:page-load", setupHomepageSectionSnap);
+</script>

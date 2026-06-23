@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import { buttonVariants } from "@/components/ui/button";
 import SegmentedTabs from "@/components/common/SegmentedTabs";
 import { Icon } from "astro-icon/components";
+import { FileText, Play } from "lucide-react";
 import { latestVideo } from "@data/homepage";
 
 interface Props {
@@ -14,13 +15,13 @@ const { latestPost } = Astro.props as Props;
 const videoThumb = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.jpg`;
 const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`;
 const signalTabs = [
-  { value: "article", label: "Article" },
-  { value: "video", label: "Video" },
+  { value: "article", label: "Article", icon: FileText },
+  { value: "video", label: "Video", icon: Play },
 ];
 ---
 
-<section id="writing" class="px-4 pt-44 pb-16 md:px-8 md:pt-64 md:pb-24 lg:pt-72" data-home-section>
-  <div class="mx-auto grid w-full max-w-site gap-10 lg:grid-cols-[0.34fr_0.66fr]">
+<section id="writing" class="px-4 py-16 md:px-8 md:py-20 lg:flex lg:min-h-[100svh] lg:items-center lg:pt-32 lg:pb-12" data-home-section>
+  <div class="mx-auto grid w-full max-w-site gap-8 lg:grid-cols-[0.34fr_0.66fr] lg:items-center">
     <div class="max-w-xl">
       <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest signal</p>
       <h2 class="mt-4 max-w-md font-display text-4xl leading-tight tracking-tighter text-foreground-0 md:text-5xl">

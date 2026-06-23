@@ -4,9 +4,12 @@ import { buttonVariants } from "@/components/ui/button";
 import { Icon } from "astro-icon/components";
 import placeholder1 from "@/assets/placeholder1.png";
 import placeholder2 from "@/assets/placeholder2.png";
+import placeholder3 from "@/assets/placeholder3.png";
+import placeholder4 from "@/assets/placeholder4.png";
+import placeholder5 from "@/assets/placeholder5.png";
 import { featuredProjects } from "@data/homepage";
 
-const projectImages = [placeholder1, placeholder2] as const;
+const projectImages = [placeholder1, placeholder2, placeholder3, placeholder4, placeholder5] as const;
 ---
 
 <section id="hero" class="relative min-h-[calc(100svh-5.5rem)]" data-home-section>
@@ -48,38 +51,65 @@ const projectImages = [placeholder1, placeholder2] as const;
         </div>
       </div>
 
-      <div class="flex items-end">
-        <div class="grid w-full items-stretch gap-4 sm:grid-cols-2 lg:gap-6">
-          {
-            featuredProjects.map((project, index) => (
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0"
+      <div class="flex items-end overflow-hidden">
+        <div class="w-full min-w-0" data-project-carousel>
+          <div class="mb-4 flex items-center justify-between gap-4 px-1">
+            <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">Featured work</p>
+            <div class="hidden gap-2 sm:flex">
+              <button
+                type="button"
+                class="rounded-md border border-border/80 bg-background-1 p-2 text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1"
+                aria-label="Previous project"
+                data-carousel-prev
               >
-                <div class="aspect-video overflow-hidden rounded-md bg-background-1">
-                  <Image
-                    src={projectImages[index] ?? placeholder1}
-                    alt={`${project.title} preview`}
-                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    widths={[480, 720, 960]}
-                    sizes="(max-width: 1024px) 100vw, 420px"
-                  />
-                </div>
-                <div class="flex flex-1 flex-col px-1 pt-4 pb-1 xl:pt-5">
-                  <h2 class="font-display text-xl leading-tight text-foreground-0 xl:text-2xl">{project.title}</h2>
-                  <p class="mt-2 mb-6 text-sm leading-relaxed text-foreground-1">{project.body}</p>
-                  <div class="mt-auto border-t border-border/80 pt-4 font-display text-sm font-medium text-foreground-0 transition-colors group-hover:text-accent-1">
-                    <span class="inline-flex items-center gap-2">
-                      View case study
-                      <Icon name="arrow-up-right" class="size-4" />
-                    </span>
+                <Icon name="arrow-left" class="size-4" />
+              </button>
+              <button
+                type="button"
+                class="rounded-md border border-border/80 bg-background-1 p-2 text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1"
+                aria-label="Next project"
+                data-carousel-next
+              >
+                <Icon name="arrow-right" class="size-4" />
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="grid auto-cols-[minmax(17rem,86%)] grid-flow-col gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-1 scrollbar-none sm:auto-cols-[calc((100%-1rem)/2)] lg:auto-cols-[calc((100%-1.5rem)/2)] lg:gap-6 sm:[&::-webkit-scrollbar]:hidden"
+            data-carousel-track
+          >
+            {
+              featuredProjects.map((project, index) => (
+                <a
+                  href={project.href}
+                  target={project.href.startsWith("http") ? "_blank" : undefined}
+                  rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  class="group flex h-full min-w-0 snap-start flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0"
+                >
+                  <div class="aspect-video overflow-hidden rounded-md bg-background-1">
+                    <Image
+                      src={projectImages[index] ?? placeholder1}
+                      alt={`${project.title} preview`}
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      widths={[480, 720, 960]}
+                      sizes="(max-width: 1024px) 86vw, 420px"
+                    />
                   </div>
-                </div>
-              </a>
-            ))
-          }
+                  <div class="flex flex-1 flex-col px-1 pt-4 pb-1 xl:pt-5">
+                    <h2 class="font-display text-xl leading-tight text-foreground-0 xl:text-2xl">{project.title}</h2>
+                    <p class="mt-2 mb-6 text-sm leading-relaxed text-foreground-1">{project.body}</p>
+                    <div class="mt-auto pt-4 font-display text-sm font-medium text-foreground-1 transition-colors group-hover:text-accent-1">
+                      <span class="inline-flex items-center gap-2">
+                        View project
+                        <Icon name="arrow-up-right" class="size-4" />
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
@@ -108,5 +138,54 @@ const projectImages = [placeholder1, placeholder2] as const;
     document.addEventListener("astro:before-swap", () => window.clearInterval(interval), { once: true });
   };
 
-  document.addEventListener("astro:page-load", setupLocalTime);
+  const setupProjectCarousel = () => {
+    const carousel = document.querySelector<HTMLElement>("[data-project-carousel]");
+    const track = carousel?.querySelector<HTMLElement>("[data-carousel-track]");
+    const previous = carousel?.querySelector<HTMLButtonElement>("[data-carousel-prev]");
+    const next = carousel?.querySelector<HTMLButtonElement>("[data-carousel-next]");
+    if (!carousel || !track) return;
+
+    const getStep = () => track.querySelector<HTMLElement>("a")?.offsetWidth ?? track.clientWidth;
+    const scrollByStep = (direction: 1 | -1) => {
+      const step = getStep() + 24;
+      const maxScroll = track.scrollWidth - track.clientWidth - 4;
+      const atEnd = track.scrollLeft >= maxScroll;
+      const atStart = track.scrollLeft <= 4;
+
+      if (direction === 1 && atEnd) {
+        track.scrollTo({ left: 0, behavior: "smooth" });
+        return;
+      }
+
+      if (direction === -1 && atStart) {
+        track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+        return;
+      }
+
+      track.scrollBy({ left: step * direction, behavior: "smooth" });
+    };
+
+    previous?.addEventListener("click", () => scrollByStep(-1));
+    next?.addEventListener("click", () => scrollByStep(1));
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let interval = window.setInterval(() => scrollByStep(1), 5200);
+    const pause = () => window.clearInterval(interval);
+    const resume = () => {
+      window.clearInterval(interval);
+      interval = window.setInterval(() => scrollByStep(1), 5200);
+    };
+
+    carousel.addEventListener("pointerenter", pause);
+    carousel.addEventListener("pointerleave", resume);
+    carousel.addEventListener("focusin", pause);
+    carousel.addEventListener("focusout", resume);
+    document.addEventListener("astro:before-swap", () => window.clearInterval(interval), { once: true });
+  };
+
+  document.addEventListener("astro:page-load", () => {
+    setupLocalTime();
+    setupProjectCarousel();
+  });
 </script>

@@ -1,8 +1,11 @@
+import type { LucideIcon } from "lucide-react"
+
 import { cn } from "@/lib/utils"
 
 interface TabItem {
   value: string
   label: string
+  icon?: LucideIcon
 }
 
 interface SegmentedTabsProps {
@@ -29,6 +32,7 @@ export default function SegmentedTabs({
     >
       {items.map((item) => {
         const active = item.value === activeValue
+        const ItemIcon = item.icon
 
         return (
           <button
@@ -42,7 +46,10 @@ export default function SegmentedTabs({
             data-tab-group={group}
             data-tab-value={item.value}
           >
-            {item.label}
+            <span className="inline-flex items-center gap-2">
+              {ItemIcon ? <ItemIcon className="size-3.5" strokeWidth={1.8} aria-hidden="true" /> : null}
+              {item.label}
+            </span>
           </button>
         )
       })}
