@@ -244,7 +244,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-foreground-2;
+    @apply bg-foreground-2 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
