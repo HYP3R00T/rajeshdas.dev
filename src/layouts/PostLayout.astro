@@ -107,7 +107,7 @@ const visibleHeadings = headings.filter((heading: { depth: number }) => heading.
               </p>
             </header>
 
-            <div class="mt-12 w-full lg:w-[calc(100%+4rem)] xl:w-[calc(100%+6rem)]">
+            <div class="mt-12 w-full">
               <div
                 class="overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3"
                 transition:name={`post-cover-${slug}`}
@@ -118,7 +118,7 @@ const visibleHeadings = headings.filter((heading: { depth: number }) => heading.
                     alt={coverAlt || title}
                     class="h-full w-full object-cover"
                     widths={[720, 960, 1280, 1600]}
-                    sizes="(max-width: 1024px) 100vw, 52rem"
+                    sizes="(min-width: 1024px) 46rem, calc(100vw - 2rem)"
                   />
                 </div>
               </div>

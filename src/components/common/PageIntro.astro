@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  class?: string;
+}
+
+const { title, description, class: className } = Astro.props as Props;
+---
+
+<header class:list={["max-w-2xl", className]}>
+  <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+    {title}
+  </h1>
+  {
+    description && (
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-foreground-1 md:text-lg">
+        {description}
+      </p>
+    )
+  }
+</header>

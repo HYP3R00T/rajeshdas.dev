@@ -1,0 +1,162 @@
+---
+import { Image } from "astro:assets"
+import { getCollection, render } from "astro:content"
+import { Icon } from "astro-icon/components"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import { Badge } from "@/components/ui/badge"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { slugifyTopic } from "@/lib/slug"
+import { estimateReadTime, formatDateUppercase } from "@/lib/utils"
+import { SITE } from "@data/config"
+
+export async function getStaticPaths() {
+  const notes = await getCollection("til")
+  return notes
+    .filter((entry) => !entry.data.draft)
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }))
+}
+
+const { entry } = Astro.props as { entry: any }
+const { Content } = await render(entry)
+const readTime = estimateReadTime(entry.body || entry.data.description)
+const topicSlug = slugifyTopic(entry.data.topic)
+---
+
+<BaseLayout
+  title={`${entry.data.title} | Today I Learned | ${SITE.title}`}
+  description={entry.data.description}
+  image={entry.data.cover}
+  imageAlt={entry.data.coverAlt || entry.data.title}
+  contentType="Article"
+>
+  <section class="px-4 pt-12 pb-20 md:px-8 md:pt-18 md:pb-28">
+    <div class="mx-auto w-full max-w-site">
+      <div class="mx-auto w-full max-w-[88rem] xl:ml-auto xl:mr-0">
+        <div class="mb-10 flex flex-wrap gap-3">
+          <a href="/til/" class={buttonVariants({ variant: "outline", size: "sm" })}>
+            <Icon name="arrow-left" class="size-4" />
+            TIL
+          </a>
+          <a href={`/til/topic/${topicSlug}/`} class={buttonVariants({ variant: "outline", size: "sm" })}>
+            {entry.data.topic}
+          </a>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-[16rem_minmax(0,44rem)_minmax(0,8rem)] lg:gap-12 xl:grid-cols-[18rem_minmax(0,46rem)_minmax(0,10rem)] xl:gap-16">
+          <aside class="order-2 lg:order-1 lg:sticky lg:top-28 lg:self-start">
+            <div class="rounded-lg border border-border/80 bg-background-1 p-5">
+              <div class="space-y-5">
+                <div>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Topic</p>
+                  <p class="mt-2 text-sm text-foreground-1">{entry.data.topic}</p>
+                </div>
+
+                <div>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Published</p>
+                  <time class="mt-2 block text-sm text-foreground-1" datetime={entry.data.pubDatetime.toISOString()}>
+                    {formatDateUppercase(entry.data.pubDatetime)}
+                  </time>
+                </div>
+
+                <div>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Read time</p>
+                  <p class="mt-2 text-sm text-foreground-1">{readTime} min</p>
+                </div>
+              </div>
+
+              {
+                entry.data.tags.length > 0 && (
+                  <div class="mt-6 flex flex-wrap gap-2">
+                    {entry.data.tags.map((tag: string) => (
+                      <Badge variant="secondary" className="border border-border/80 bg-background-2 text-foreground-1">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )
+              }
+
+              <Button id="share-button" variant="outline" size="sm" className="mt-6 w-full justify-between">
+                Share note
+                <Icon name="arrow-up-right" class="size-4" />
+              </Button>
+            </div>
+          </aside>
+
+          <article class="order-1 lg:order-2">
+            <header>
+              <h1
+                class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl xl:text-7xl"
+                transition:name={`til-title-${entry.id}`}
+              >
+                {entry.data.title}
+              </h1>
+              <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1 md:text-xl">
+                {entry.data.description}
+              </p>
+            </header>
+
+            {
+              entry.data.cover && (
+                <div class="mt-12 w-full">
+                  <div class="overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3" transition:name={`til-cover-${entry.id}`}>
+                    <div class="aspect-og overflow-hidden rounded-md bg-background-0">
+                      <Image
+                        src={entry.data.cover}
+                        alt={entry.data.coverAlt || entry.data.title}
+                        class="h-full w-full object-cover"
+                        widths={[720, 960, 1280, 1600]}
+                        sizes="(min-width: 1024px) 46rem, calc(100vw - 2rem)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            <div class="prose mt-14 max-w-none">
+              <Content />
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const setupShareButton = () => {
+    const button = document.getElementById("share-button")
+    if (!button) return
+
+    button.addEventListener("click", async () => {
+      const url = window.location.href
+      const title = document.title
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url })
+        } catch {
+          // Sharing was dismissed; no visible recovery is needed.
+        }
+        return
+      }
+
+      try {
+        await navigator.clipboard.writeText(url)
+        const originalText = button.innerHTML
+        button.innerHTML = "Copied"
+        window.setTimeout(() => {
+          button.innerHTML = originalText
+        }, 1600)
+      } catch {
+        button.setAttribute("data-copy-failed", "true")
+      }
+    })
+  }
+
+  document.addEventListener("astro:page-load", setupShareButton)
+</script>

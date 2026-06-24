@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import type { PaginateFunction } from "astro";
 import { getCollection } from "astro:content";
 import type { PostsPageProps } from "@/lib/types";
+import PageIntro from "@/components/common/PageIntro.astro";
 import Pagination from "@/components/post/Pagination.astro";
 import PostCard from "@/components/post/PostCard.astro";
 import FeaturedPostCard from "@/components/post/FeaturedPostCard.astro";
@@ -46,31 +47,23 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
 <BaseLayout>
   <div class={hasFeaturedPanel ? "articles-index" : ""}>
     <section
-      class:list={[
-        "px-4 md:px-8",
-        hasFeaturedPanel
-          ? "min-h-[calc(100svh-5.5rem)] pt-6 pb-8 md:pt-8 lg:pt-10"
-          : "pt-16 pb-20 md:pt-24 md:pb-28",
-      ]}
+      class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28"
       data-articles-featured={hasFeaturedPanel ? "true" : undefined}
     >
       <div
         class:list={[
           "mx-auto w-full max-w-site",
-          hasFeaturedPanel ? "grid min-h-[calc(100svh-9rem)] content-center gap-6" : "space-y-14 md:space-y-18",
+          hasFeaturedPanel ? "space-y-14 md:space-y-16" : "space-y-14 md:space-y-18",
         ]}
       >
-        <header>
-          <h1
-            class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl xl:text-6xl"
-          >
-            Field notes for systems that need to survive reality.
-          </h1>
-        </header>
+        <PageIntro
+          title="Field notes for systems that need to survive reality."
+          description="Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work."
+        />
 
         {
           featured && page.currentPage === 1 && (
-            <section aria-label="Featured article">
+            <section aria-label="Featured article" class="max-w-5xl">
               <FeaturedPostCard post={featured} />
             </section>
           )
@@ -86,8 +79,7 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
     >
       <div class="mx-auto w-full max-w-site space-y-5">
         <div>
-          <p class="font-mono text-xs tracking-[0.28em] text-accent-1 uppercase">Archive</p>
-          <h2 id="all-articles" class="mt-2 font-display text-2xl text-foreground-0 md:text-3xl">All field notes</h2>
+          <h2 id="all-articles" class="font-display text-2xl text-foreground-0 md:text-3xl">All field notes</h2>
         </div>
 
         <div class="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">

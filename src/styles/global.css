@@ -35,7 +35,7 @@
   --foreground: var(--foreground-0);
   --muted: var(--background-2);
   --muted-foreground: var(--foreground-2);
-  --border: var(--background-3);
+  --border: var(--background-2);
   --input: var(--background-3);
   --card: var(--background-1);
   --card-foreground: var(--foreground-0);
@@ -108,7 +108,7 @@
   --foreground: var(--foreground-0);
   --muted: var(--background-4);
   --muted-foreground: var(--foreground-1);
-  --border: var(--background-3);
+  --border: var(--background-2);
   --input: var(--background-3);
   --card: var(--background-1);
   --card-foreground: var(--foreground-0);

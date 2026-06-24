@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import PageIntro from "@/components/common/PageIntro.astro"
+import TilCard from "@/components/til/TilCard.astro"
+import TopicPill from "@/components/til/TopicPill.astro"
+import { slugifyTopic } from "@/lib/slug"
+import { SITE } from "@data/config"
+
+const notes = (await getCollection("til"))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf())
+
+const topicCounts = notes.reduce<Record<string, number>>((acc, entry) => {
+  acc[entry.data.topic] = (acc[entry.data.topic] ?? 0) + 1
+  return acc
+}, {})
+const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b))
+---
+
+<BaseLayout
+  title={`Today I Learned | ${SITE.title}`}
+  description="Short notes from the things Rajesh learns across engineering, language, physics, math, and nearby curiosities."
+>
+  <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
+    <div class="mx-auto w-full max-w-site">
+      <PageIntro
+        title="Today I Learned."
+        description="Small discoveries from the parts of the world I keep poking at: words, systems, physics, math, tools, and whatever else refuses to stay boring."
+        class="min-h-44 md:h-52"
+      />
+
+      <section aria-labelledby="all-til" class="mt-14 md:mt-16">
+        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <h2 id="all-til" class="sr-only">All notes</h2>
+          <nav aria-label="TIL topics" class="flex flex-wrap gap-2">
+            <TopicPill href="/til/" label="All" count={notes.length} active />
+            {topics.map(([topic, count]) => <TopicPill href={`/til/topic/${slugifyTopic(topic)}/`} label={topic} count={count} />)}
+          </nav>
+        </div>
+
+        <div class="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">
+          {notes.map((entry) => <TilCard entry={entry} />)}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

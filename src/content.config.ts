@@ -45,4 +45,19 @@ const learn = defineCollection({
     ]),
 })
 
-export const collections = { posts, learn }
+const til = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/til" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      pubDatetime: z.date(),
+      topic: z.string(),
+      tags: z.array(z.string()).default([]),
+      draft: z.boolean().optional().default(false),
+      cover: image().optional(),
+      coverAlt: z.string().optional(),
+    }),
+})
+
+export const collections = { posts, learn, til }

@@ -11,32 +11,32 @@ const readTime = estimateReadTime(post.body || post.data.description);
 
 <a
   href={`/post/${post.id}/`}
-  class="group grid overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0 lg:grid-cols-[0.52fr_0.48fr] lg:gap-4"
+  class="group grid overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0 lg:grid-cols-[0.54fr_0.46fr] lg:gap-4"
 >
-  <div class="aspect-og overflow-hidden rounded-md bg-background-1 lg:aspect-auto lg:min-h-72" transition:name={`post-cover-${post.id}`}>
+  <div class="aspect-og overflow-hidden rounded-md bg-background-1 lg:aspect-auto lg:min-h-48" transition:name={`post-cover-${post.id}`}>
     <Image
       src={post.data.cover}
       alt={post.data.coverAlt || post.data.title}
       class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       widths={[720, 960, 1280, 1600]}
-      sizes="(max-width: 1024px) 100vw, 54vw"
+      sizes="(max-width: 1024px) 100vw, 460px"
     />
   </div>
 
-  <div class="flex min-h-full flex-col px-1 pt-5 pb-1 lg:px-5 lg:py-4">
+  <div class="flex min-h-full flex-col px-1 pt-5 pb-1 lg:px-5 lg:py-3">
     <div class="flex items-center justify-between gap-4 font-mono text-xs text-foreground-3 uppercase">
       <time datetime={post.data.pubDatetime.toISOString()}>{formatDateUppercase(post.data.pubDatetime)}</time>
       <span class="text-accent-1">{readTime} min read</span>
     </div>
 
     <h3
-      class="mt-4 max-w-2xl font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl xl:text-4xl"
+      class="mt-4 max-w-2xl font-display text-3xl leading-tight text-foreground-0 md:text-3xl xl:text-3xl"
       transition:name={`post-title-${post.id}`}
     >
       {post.data.title}
     </h3>
 
-    <p class="mt-3 max-w-xl text-sm leading-relaxed text-foreground-1 md:text-base">
+    <p class="mt-3 max-w-xl text-sm leading-relaxed text-foreground-1 md:text-base lg:text-sm xl:text-base">
       {post.data.description}
     </p>
 
@@ -52,7 +52,7 @@ const readTime = estimateReadTime(post.body || post.data.description);
       )
     }
 
-    <div class="mt-auto pt-4 font-display text-sm font-medium text-foreground-1 transition-colors group-hover:text-accent-1">
+    <div class="mt-auto pt-4 font-display text-sm font-medium text-foreground-1 transition-colors group-hover:text-foreground-0">
       <span class="inline-flex items-center gap-2">
         Read featured article
         <Icon name="arrow-up-right" class="size-4" />
