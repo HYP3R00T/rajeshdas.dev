@@ -17,4 +17,27 @@ const posts = defineCollection({
     }),
 })
 
-export const collections = { posts }
+const learnBaseSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  status: z.enum(["ready", "draft", "planned"]),
+  order: z.number(),
+  tags: z.array(z.string()).default([]),
+})
+
+const learn = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/learn" }),
+  schema: z.discriminatedUnion("kind", [
+    learnBaseSchema.extend({
+      kind: z.literal("skill-map"),
+      outcome: z.string(),
+    }),
+    learnBaseSchema.extend({
+      kind: z.literal("module"),
+      summary: z.string(),
+      prerequisites: z.array(z.string()).default([]),
+    }),
+  ]),
+})
+
+export const collections = { posts, learn }

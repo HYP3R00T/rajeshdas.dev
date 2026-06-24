@@ -1,0 +1,19 @@
+---
+import ModulePreviewCard from "@/components/learn/ModulePreviewCard.astro";
+import { getModuleSlug, getSkillMapSlug } from "@/lib/learn";
+
+const { skillMap, modules } = Astro.props;
+const skillMapSlug = getSkillMapSlug(skillMap);
+---
+
+<div class="grid gap-4">
+  {
+    modules.map((module: any, index: number) => (
+      <ModulePreviewCard
+        module={module}
+        href={`/learn/${skillMapSlug}/${getModuleSlug(module)}/`}
+        index={index}
+      />
+    ))
+  }
+</div>

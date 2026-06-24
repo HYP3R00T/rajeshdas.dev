@@ -1,0 +1,234 @@
+---
+kind: module
+title: Open Source Project Setup
+description: A practical module for setting up the systems around a maintainable Python open source repository.
+status: ready
+order: 1
+tags:
+  - repository
+  - automation
+  - ci
+  - documentation
+summary: Set up the repository systems before writing serious code.
+---
+
+This module focuses on the project systems that make a repository easier to trust. The point is not to add every possible tool on day one. The point is to make the important decisions visible, repeatable, and easy to check.
+
+A good open source setup should feel boring in the best possible way. A new contributor should be able to understand the repository, install the project, run the checks, and know where documentation lives without needing private context from the maintainer.
+
+Use this module as a sequence of decisions. You can follow it from top to bottom for a new project, or jump into the section that matches the part of an existing repository that feels fragile.
+
+## Repository Structure
+
+A repository structure is the first map a future maintainer receives. Before the project grows, the layout should answer simple questions quickly: where the package lives, where tests belong, where examples go, and what someone should read first.
+
+For most Python packages, start with a predictable `src/` layout, a README, a license, and a clear test directory. This is not about copying a template blindly. It is about making the project boring enough that the interesting engineering can stand out.
+
+A reasonable starting point looks like this:
+
+```txt
+my-project/
+  src/my_project/
+  tests/
+  docs/
+  examples/
+  README.md
+  pyproject.toml
+  LICENSE
+```
+
+Use the structure to communicate intent. If you choose a simpler flat layout, document why that is enough for the project right now.
+
+### Checklist
+
+- Create a `src/` package layout or document why the project is intentionally simpler.
+- Add a README that explains the project purpose and first run command.
+- Keep examples, tests, and docs in predictable top-level directories.
+
+### References
+
+- [Python Packaging User Guide - src layout vs flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
+- [Sample Python project structure](https://github.com/pypa/sampleproject)
+
+## Runtime And Package Manager
+
+A project is not really portable until another machine can install it without guessing. The runtime and package manager define the contract for how contributors create an environment, install dependencies, and run the project.
+
+Pick one project tool and make the setup command obvious. For modern Python projects, `uv` is a strong default because it handles environments, dependency resolution, and project commands with very little ceremony.
+
+The goal is not to make packaging clever. The goal is to make the first command boring.
+
+```bash
+uv sync
+uv run pytest
+```
+
+If a contributor can clone the project, run one setup command, and reach the same state as you, the project is already easier to maintain.
+
+### Checklist
+
+- Choose the Python version range intentionally.
+- Add a project metadata file.
+- Document the install and run commands.
+
+### References
+
+- [Python Packaging User Guide - writing pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+- [uv project documentation](https://docs.astral.sh/uv/concepts/projects/)
+
+## Formatter
+
+Formatting is a social tool as much as a technical one. It removes taste debates from review and lets people focus on behavior, architecture, and correctness instead of whitespace and line wrapping.
+
+In Python, Ruff is a practical default because it can format code quickly and can be wired into local commands, pre-commit hooks, and CI. The important part is not the logo on the tool. The important part is that formatting becomes automatic and repeatable.
+
+A formatter should not be a discussion every time someone opens a pull request. Put the command in the project documentation and make CI enforce it.
+
+```bash
+uv run ruff format .
+uv run ruff format --check .
+```
+
+### Checklist
+
+- Add formatter configuration.
+- Add a package script or task command.
+- Make CI fail when formatting is not applied.
+
+### References
+
+- [Ruff formatter documentation](https://docs.astral.sh/ruff/formatter/)
+
+## Linter
+
+A linter catches the small mistakes that humans should not have to repeatedly notice. It also documents the project’s quality baseline, which makes contributions easier to review and easier to trust.
+
+Start with a small rule set that catches real problems without creating noise. Ruff is a good default here too because it is fast, broadly adopted, and can replace several older Python linting tools in one place.
+
+The danger with linting is pretending that more rules always means better code. Start with rules that protect maintainability, then expand only when the team understands why the new rule exists.
+
+```bash
+uv run ruff check .
+```
+
+### Checklist
+
+- Add lint configuration.
+- Document how to run lint checks locally.
+- Run lint in CI.
+
+### References
+
+- [Ruff linter documentation](https://docs.astral.sh/ruff/linter/)
+
+## Type Checking
+
+Type checking is useful when the project starts to expose reusable functions, classes, or public APIs. It turns implicit assumptions into visible contracts and helps future changes avoid breaking callers accidentally.
+
+Add type checking where it protects the shape of the system. For a library, that usually means source modules and public interfaces first. Mypy and Pyright are both reasonable choices; the better choice is the one your project can run consistently.
+
+You do not need to type every experimental script on day one. Start where the code becomes a dependency for other code.
+
+### Checklist
+
+- Decide whether type checking is required for all code or only source modules.
+- Add the type-check command.
+- Include type checking in CI when the project is ready.
+
+### References
+
+- [mypy documentation](https://mypy.readthedocs.io/en/stable/)
+- [Pyright documentation](https://microsoft.github.io/pyright/#/)
+
+## CI Pipeline
+
+CI is the project’s shared proof mechanism. It keeps quality checks from living only on one person’s laptop and makes every pull request answer the same basic question: does this still work?
+
+Start with a small GitHub Actions workflow that installs dependencies and runs the checks people already run locally. Keep it readable. A simple workflow that contributors can debug is better than a clever one nobody understands.
+
+A useful first pipeline usually checks formatting, linting, tests, and eventually types. If the project ships a package, add build verification too.
+
+### Checklist
+
+- Add a pull request workflow.
+- Cache dependencies where useful.
+- Keep the workflow readable enough for contributors to debug.
+
+### References
+
+- [GitHub Actions documentation](https://docs.github.com/en/actions)
+- [Test GitHub Action pipeline locally](/post/test-github-action-pipeline-locally/)
+
+## Documentation
+
+Documentation is the bridge between a working project and a usable project. It should help someone understand the purpose, install the tool, run the first example, and decide whether the project is worth deeper attention.
+
+Start with a README, installation instructions, one real usage example, and contribution notes. A full documentation site can come later. The first goal is to make the project usable from the repository page itself.
+
+Think of documentation as progressive disclosure. The README should answer the first questions. Deeper docs can explain architecture, design tradeoffs, and advanced usage.
+
+### Checklist
+
+- Explain what the project does and who it is for.
+- Add installation and usage examples.
+- Link to deeper docs only when they exist.
+
+### References
+
+- [Diataxis documentation framework](https://diataxis.fr/)
+- [Designing Docs Navigation](/post/designing-docs-navigation/)
+
+## License
+
+A license removes ambiguity. Without one, users and contributors do not have clear permission to copy, modify, distribute, or build on the work, even if the repository is public.
+
+Choose a standard license intentionally and add it early. MIT, Apache 2.0, and GPL-style licenses communicate different expectations, so the right choice depends on how you want the work to be reused.
+
+The license is not decorative metadata. It is part of the project contract.
+
+### Checklist
+
+- Choose a license intentionally.
+- Add the license file.
+- Mention licensing in the README.
+
+### References
+
+- [Choose an open source license](https://choosealicense.com/)
+
+## Code Of Conduct
+
+Collaboration gets easier when expectations are visible before conflict appears. A code of conduct and contributing guide tell people how to participate, how to report issues, and what kind of behavior the project expects.
+
+If the project invites public contribution, use a standard code of conduct and keep the contribution path simple. People should know where to open issues, how to propose changes, and what kind of pull request is useful.
+
+This is not about bureaucracy. It is about reducing ambiguity before collaboration becomes emotionally expensive.
+
+### Checklist
+
+- Add a code of conduct when inviting public collaboration.
+- Add contributing guidelines.
+- Explain how issues and pull requests should be opened.
+
+### References
+
+- [Contributor Covenant](https://www.contributor-covenant.org/)
+- [GitHub community health files](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions)
+
+## AI Project Instructions
+
+AI coding assistants perform better when they know the project’s boundaries. Without project instructions, they guess the commands, architecture, conventions, and risk areas, which often creates confident but wrong changes.
+
+Add concise project instructions that explain setup, test, lint, build commands, file placement, and things that should not be changed casually. Treat it like onboarding documentation for a fast but forgetful contributor.
+
+This is especially useful in open source projects because the assistant is not the only reader. Clear instructions help humans and tools share the same operating model.
+
+### Checklist
+
+- Document setup, test, lint, and build commands.
+- Explain where code belongs.
+- State what must not be changed casually.
+
+### References
+
+- [About custom instructions for coding agents](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot)

@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import RoadmapList from "@/components/learn/RoadmapList.astro";
+import { getModuleSkillMapSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn";
+import { SITE } from "@data/config";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("learn");
+  return entries
+    .filter((entry) => isSkillMapEntry(entry) && entry.data.status === "ready")
+    .map((entry) => ({
+      params: { skillMap: getSkillMapSlug(entry) },
+      props: { skillMap: entry },
+    }));
+}
+
+const { skillMap } = Astro.props as { skillMap: any };
+const skillMapSlug = getSkillMapSlug(skillMap);
+const allEntries = await getCollection("learn");
+const modules = (allEntries as Array<any>)
+  .filter((entry) => isModuleEntry(entry) && getModuleSkillMapSlug(entry) === skillMapSlug && entry.data.status === "ready")
+  .sort((a, b) => a.data.order - b.data.order);
+const { Content } = await render(skillMap);
+---
+
+<BaseLayout title={`${skillMap.data.title} | Learn | ${SITE.title}`} description={skillMap.data.description}>
+  <section class="px-4 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28">
+    <div class="mx-auto w-full max-w-site">
+      <a href="/learn/" class="inline-flex items-center gap-2 rounded-md border border-border bg-background-1 px-3 py-2 text-sm text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1">
+        <Icon name="arrow-left" class="size-4" />
+        Learn
+      </a>
+
+      <header class="mt-14 grid gap-10 lg:grid-cols-[0.72fr_1fr] lg:gap-16">
+        <div>
+          <h1 class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl">
+            {skillMap.data.title}
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-foreground-1">{skillMap.data.description}</p>
+        </div>
+        <div class="flex items-end">
+          <div class="prose max-w-2xl">
+            <Content />
+          </div>
+        </div>
+      </header>
+
+      <section aria-labelledby="map-modules" class="mt-20 grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:gap-16">
+        <h2 id="map-modules" class="font-display text-3xl leading-tight text-foreground-0 md:text-4xl">Modules</h2>
+        <RoadmapList skillMap={skillMap} modules={modules} />
+      </section>
+    </div>
+  </section>
+</BaseLayout>
