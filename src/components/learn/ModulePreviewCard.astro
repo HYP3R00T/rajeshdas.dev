@@ -4,6 +4,13 @@ import { Icon } from "astro-icon/components";
 const { module, href, index, active = false } = Astro.props;
 const title = module.data?.title ?? module.title;
 const summary = module.data?.summary ?? module.summary;
+const progressStatus = module.data?.progressStatus ?? "completed";
+const progressLabels: Record<string, string> = {
+  "work-in-progress": "Work in progress",
+  updated: "Updated",
+};
+const showProgressStatus = progressStatus !== "completed";
+const progressLabel = progressLabels[progressStatus] ?? progressStatus;
 ---
 
 <a
@@ -13,7 +20,16 @@ const summary = module.data?.summary ?? module.summary;
   <div class="grid gap-4 md:grid-cols-[4rem_1fr_auto] md:items-start">
     <p class="font-mono text-xs tracking-[0.24em] text-accent-1 uppercase">{String(index + 1).padStart(2, "0")}</p>
     <div>
-      <h3 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1">{title}</h3>
+      <div class="flex flex-wrap items-center gap-3">
+        <h3 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1">{title}</h3>
+        {
+          showProgressStatus && (
+            <span class="inline-flex rounded-md border border-accent-1/35 bg-accent-1/10 px-2 py-1 text-xs font-medium text-accent-1">
+              {progressLabel}
+            </span>
+          )
+        }
+      </div>
       <p class="mt-3 max-w-xl text-sm leading-relaxed text-foreground-1">{summary}</p>
     </div>
     <span class="inline-flex w-fit items-center gap-2 text-sm text-foreground-2 transition-colors group-hover:text-accent-1">

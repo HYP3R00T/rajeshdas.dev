@@ -10,6 +10,10 @@ tags:
   - ci
   - documentation
 summary: Set up the repository systems before writing serious code.
+cover: ../../posts/images/setup.png
+coverAlt: Abstract setup illustration for a technical learning module.
+progressStatus: work-in-progress
+progressNote: This module is being refined as the learning format settles.
 ---
 
 This module focuses on the project systems that make a repository easier to trust. The point is not to add every possible tool on day one. The point is to make the important decisions visible, repeatable, and easy to check.
@@ -39,12 +43,6 @@ my-project/
 
 Use the structure to communicate intent. If you choose a simpler flat layout, document why that is enough for the project right now.
 
-### Checklist
-
-- Create a `src/` package layout or document why the project is intentionally simpler.
-- Add a README that explains the project purpose and first run command.
-- Keep examples, tests, and docs in predictable top-level directories.
-
 ### References
 
 - [Python Packaging User Guide - src layout vs flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
@@ -65,12 +63,6 @@ uv run pytest
 
 If a contributor can clone the project, run one setup command, and reach the same state as you, the project is already easier to maintain.
 
-### Checklist
-
-- Choose the Python version range intentionally.
-- Add a project metadata file.
-- Document the install and run commands.
-
 ### References
 
 - [Python Packaging User Guide - writing pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
@@ -89,12 +81,6 @@ uv run ruff format .
 uv run ruff format --check .
 ```
 
-### Checklist
-
-- Add formatter configuration.
-- Add a package script or task command.
-- Make CI fail when formatting is not applied.
-
 ### References
 
 - [Ruff formatter documentation](https://docs.astral.sh/ruff/formatter/)
@@ -111,12 +97,6 @@ The danger with linting is pretending that more rules always means better code. 
 uv run ruff check .
 ```
 
-### Checklist
-
-- Add lint configuration.
-- Document how to run lint checks locally.
-- Run lint in CI.
-
 ### References
 
 - [Ruff linter documentation](https://docs.astral.sh/ruff/linter/)
@@ -128,12 +108,6 @@ Type checking is useful when the project starts to expose reusable functions, cl
 Add type checking where it protects the shape of the system. For a library, that usually means source modules and public interfaces first. Mypy and Pyright are both reasonable choices; the better choice is the one your project can run consistently.
 
 You do not need to type every experimental script on day one. Start where the code becomes a dependency for other code.
-
-### Checklist
-
-- Decide whether type checking is required for all code or only source modules.
-- Add the type-check command.
-- Include type checking in CI when the project is ready.
 
 ### References
 
@@ -148,12 +122,6 @@ Start with a small GitHub Actions workflow that installs dependencies and runs t
 
 A useful first pipeline usually checks formatting, linting, tests, and eventually types. If the project ships a package, add build verification too.
 
-### Checklist
-
-- Add a pull request workflow.
-- Cache dependencies where useful.
-- Keep the workflow readable enough for contributors to debug.
-
 ### References
 
 - [GitHub Actions documentation](https://docs.github.com/en/actions)
@@ -166,12 +134,6 @@ Documentation is the bridge between a working project and a usable project. It s
 Start with a README, installation instructions, one real usage example, and contribution notes. A full documentation site can come later. The first goal is to make the project usable from the repository page itself.
 
 Think of documentation as progressive disclosure. The README should answer the first questions. Deeper docs can explain architecture, design tradeoffs, and advanced usage.
-
-### Checklist
-
-- Explain what the project does and who it is for.
-- Add installation and usage examples.
-- Link to deeper docs only when they exist.
 
 ### References
 
@@ -186,12 +148,6 @@ Choose a standard license intentionally and add it early. MIT, Apache 2.0, and G
 
 The license is not decorative metadata. It is part of the project contract.
 
-### Checklist
-
-- Choose a license intentionally.
-- Add the license file.
-- Mention licensing in the README.
-
 ### References
 
 - [Choose an open source license](https://choosealicense.com/)
@@ -203,12 +159,6 @@ Collaboration gets easier when expectations are visible before conflict appears.
 If the project invites public contribution, use a standard code of conduct and keep the contribution path simple. People should know where to open issues, how to propose changes, and what kind of pull request is useful.
 
 This is not about bureaucracy. It is about reducing ambiguity before collaboration becomes emotionally expensive.
-
-### Checklist
-
-- Add a code of conduct when inviting public collaboration.
-- Add contributing guidelines.
-- Explain how issues and pull requests should be opened.
 
 ### References
 
@@ -222,12 +172,6 @@ AI coding assistants perform better when they know the project’s boundaries. W
 Add concise project instructions that explain setup, test, lint, build commands, file placement, and things that should not be changed casually. Treat it like onboarding documentation for a fast but forgetful contributor.
 
 This is especially useful in open source projects because the assistant is not the only reader. Clear instructions help humans and tools share the same operating model.
-
-### Checklist
-
-- Document setup, test, lint, and build commands.
-- Explain where code belongs.
-- State what must not be changed casually.
 
 ### References
 

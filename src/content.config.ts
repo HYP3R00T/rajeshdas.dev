@@ -27,17 +27,22 @@ const learnBaseSchema = z.object({
 
 const learn = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/learn" }),
-  schema: z.discriminatedUnion("kind", [
-    learnBaseSchema.extend({
-      kind: z.literal("skill-map"),
-      outcome: z.string(),
-    }),
-    learnBaseSchema.extend({
-      kind: z.literal("module"),
-      summary: z.string(),
-      prerequisites: z.array(z.string()).default([]),
-    }),
-  ]),
+  schema: ({ image }) =>
+    z.discriminatedUnion("kind", [
+      learnBaseSchema.extend({
+        kind: z.literal("skill-map"),
+        outcome: z.string(),
+      }),
+      learnBaseSchema.extend({
+        kind: z.literal("module"),
+        summary: z.string(),
+        cover: image().optional(),
+        coverAlt: z.string().optional(),
+        progressStatus: z.enum(["completed", "work-in-progress", "updated"]).default("completed"),
+        progressNote: z.string().optional(),
+        prerequisites: z.array(z.string()).default([]),
+      }),
+    ]),
 })
 
 export const collections = { posts, learn }
