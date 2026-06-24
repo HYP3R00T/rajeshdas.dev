@@ -24,7 +24,13 @@ const modules = (allEntries as Array<any>)
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title={`${skillMap.data.title} | Learn | ${SITE.title}`} description={skillMap.data.description}>
+<BaseLayout
+  title={`${skillMap.data.title} | Learn | ${SITE.title}`}
+  description={skillMap.data.description}
+  image={skillMap.data.cover}
+  imageAlt={skillMap.data.coverAlt || skillMap.data.title}
+  contentType="Article"
+>
   <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
     <div class="mx-auto w-full max-w-site">
       <a href="/learn/" class="inline-flex items-center gap-2 rounded-md border border-border bg-background-1 px-3 py-2 text-sm text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1">

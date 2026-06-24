@@ -1,57 +1,117 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Badge } from "@/components/ui/badge";
-import CardGrid from "@/components/common/CardGrid.astro";
+import { Icon } from "astro-icon/components";
+import { buttonVariants } from "@/components/ui/button";
+import { SITE } from "@data/config";
 
-const pageTitle = "Contact | Rajesh Das";
-const pageDescription = "Ways to reach Rajesh Das for collaboration, hiring, or general conversation.";
+const pageTitle = `Contact | ${SITE.title}`;
+const pageDescription = "A direct path for collaboration, hiring, and thoughtful engineering conversations with Rajesh Das.";
 
-const contactLinks = [
+const contactRoutes = [
   {
-    title: "Email",
-    description: "Best for collaboration, hiring, and direct questions.",
+    label: "Email",
     href: "mailto:hello@rajeshdas.dev",
+    note: "Best for collaboration, hiring, and anything that needs context.",
   },
   {
-    title: "GitHub",
-    description: "See the code, projects, and open-source activity.",
-    href: "https://github.com/HYP3R00T",
-  },
-  {
-    title: "LinkedIn",
-    description: "Professional connection and role-based conversation.",
+    label: "LinkedIn",
     href: "https://linkedin.com/in/rajesh-kumar-das",
+    note: "Start here if you want the quick professional summary first.",
   },
-];
+  {
+    label: "GitHub",
+    href: "https://github.com/HYP3R00T",
+    note: "Go here if you want to inspect the public proof of work.",
+  },
+] as const;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl border p-6 bg-background-0 my-16">
-      <div class="mb-12">
-        <Badge variant="secondary">Contact</Badge>
-        <h1 class="text-section-heading my-8">
-          <div>Ping Me</div>
-        </h1>
-        <p class="text-foreground-2 max-w-2xl text-base leading-relaxed md:text-lg">
-          Use any of the links below if you want to collaborate, discuss a role, or simply continue the conversation.
-        </p>
+  <section class="px-4 pt-8 pb-16 md:px-8 md:pt-12 md:pb-20">
+    <div class="mx-auto grid min-h-[calc(100svh-5.5rem)] w-full max-w-site gap-10 lg:grid-cols-[0.54fr_0.46fr] lg:items-end lg:gap-12 xl:gap-20">
+      <div class="flex min-h-[calc(100svh-11rem)] flex-col justify-between gap-12">
+        <div class="max-w-2xl lg:max-w-xl">
+          <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+            Let&apos;s make the next conversation worth having.
+          </h1>
+          <p class="mt-6 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+            If you&apos;re hiring, exploring a collaboration, or trying to untangle a systems problem, this is the direct route. I prefer clear context, real constraints, and conversations that go somewhere useful.
+          </p>
+        </div>
+
+        <div class="max-w-xl pb-2">
+          <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">
+            <span>Remote</span>
+            <span class="text-foreground-3"> / </span>
+            <span data-local-time>Asia/Kolkata</span>
+          </p>
+
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a href="mailto:hello@rajeshdas.dev" class={buttonVariants({ variant: "default", size: "lg" })}>
+              Say hello
+              <Icon name="arrow-right" class="size-4" />
+            </a>
+            <a href="https://hyperoot.dev" class={buttonVariants({ variant: "outline", size: "lg" })} target="_blank" rel="noopener noreferrer">
+              View project archive
+              <Icon name="arrow-up-right" class="size-4" />
+            </a>
+          </div>
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-3">
-        {
-          contactLinks.map((link) => (
-            <CardGrid>
-              <a href={link.href} class="flex flex-col gap-3">
-                <span class="font-display text-foreground-1 group-hover:text-accent-1 text-xl font-semibold">
-                  {link.title}
-                </span>
-                <span class="text-foreground-2 text-sm leading-relaxed">{link.description}</span>
-              </a>
-            </CardGrid>
-          ))
-        }
+      <div class="flex min-h-[calc(100svh-11rem)] items-end">
+        <div class="w-full border-t border-border/80">
+          {contactRoutes.map((route) => (
+            <a
+              href={route.href}
+              target={route.href.startsWith("http") ? "_blank" : undefined}
+              rel={route.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="group grid gap-3 border-b border-border/80 py-5 transition-colors hover:text-accent-1 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:gap-6"
+            >
+              <div>
+                <div class="flex items-center gap-3">
+                  <h2 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-3xl">
+                    {route.label}
+                  </h2>
+                </div>
+                <p class="mt-2 max-w-md text-sm leading-relaxed text-foreground-2 md:text-base">
+                  {route.note}
+                </p>
+              </div>
+
+              <div class="flex items-center gap-3 font-mono text-xs tracking-[0.22em] text-foreground-3 uppercase transition-colors group-hover:text-accent-1">
+                <span>Open</span>
+                <Icon name="arrow-up-right" class="size-4" />
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const setupLocalTime = () => {
+    const target = document.querySelector("[data-local-time]");
+    if (!target) return;
+
+    const update = () => {
+      const time = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      }).format(new Date());
+
+      target.textContent = `Now, ${time} IST`;
+    };
+
+    update();
+    const interval = window.setInterval(update, 1000);
+    document.addEventListener("astro:before-swap", () => window.clearInterval(interval), { once: true });
+  };
+
+  document.addEventListener("astro:page-load", setupLocalTime);
+</script>

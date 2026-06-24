@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { slugifyTopic } from "@/lib/slug"
 import { estimateReadTime, formatDateUppercase } from "@/lib/utils"
 import { SITE } from "@data/config"
+import tilDefaultCover from "../../../content/til/images/til-default.png"
 
 export async function getStaticPaths() {
   const notes = await getCollection("til")
@@ -23,13 +24,14 @@ const { entry } = Astro.props as { entry: any }
 const { Content } = await render(entry)
 const readTime = estimateReadTime(entry.body || entry.data.description)
 const topicSlug = slugifyTopic(entry.data.topic)
+const noteImage = entry.data.cover || tilDefaultCover
 ---
 
 <BaseLayout
   title={`${entry.data.title} | Today I Learned | ${SITE.title}`}
   description={entry.data.description}
-  image={entry.data.cover}
-  imageAlt={entry.data.coverAlt || entry.data.title}
+  image={noteImage}
+  imageAlt={entry.data.coverAlt || `${entry.data.title} note cover`}
   contentType="Article"
 >
   <section class="px-4 pt-12 pb-20 md:px-8 md:pt-18 md:pb-28">

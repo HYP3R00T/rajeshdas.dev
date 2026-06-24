@@ -32,6 +32,8 @@ const learn = defineCollection({
       learnBaseSchema.extend({
         kind: z.literal("skill-map"),
         outcome: z.string(),
+        cover: image().optional(),
+        coverAlt: z.string().optional(),
       }),
       learnBaseSchema.extend({
         kind: z.literal("module"),
