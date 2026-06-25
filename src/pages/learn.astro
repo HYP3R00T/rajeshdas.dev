@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/common/PageHero.astro";
 import SkillMapCard from "@/components/learn/SkillMapCard.astro";
 import { getModuleSkillMapSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn";
 import { SITE } from "@data/config";
@@ -16,44 +17,34 @@ const showAllSkillMaps = skillMaps.length > 1;
 ---
 
 <BaseLayout title={`Learn | ${SITE.title}`} description="Curated technical skill maps for learning what matters, why it matters, and where to go next.">
-  <section class="relative min-h-[calc(100svh-5.5rem)]">
-    <div class="absolute inset-0 bg-background-0"></div>
+  <PageHero>
+    <Fragment slot="headline">
+      <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+        Learn by following a map, not a pile of links.
+      </h1>
+    </Fragment>
 
-    <div class="relative px-4 md:px-8">
-      <div
-        class="mx-auto grid min-h-[calc(100svh-5.5rem)] w-full max-w-site gap-10 pt-8 pb-6 md:pt-12 md:pb-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-end lg:gap-12 xl:gap-20"
-      >
-        <div class="flex min-h-[calc(100svh-11rem)] flex-col justify-between gap-10">
-          <div class="max-w-2xl lg:max-w-xl">
-            <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
-              Learn by following a map, not a pile of links.
-            </h1>
-          </div>
+    <Fragment slot="supporting">
+      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest skill map</p>
+      <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+        Curated paths for building practical engineering judgment, one focused module at a time.
+      </p>
+    </Fragment>
 
-          <div class="max-w-xl pb-2">
-            <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest skill map</p>
-            <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
-              Curated paths for building practical engineering judgment, one focused module at a time.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex items-end overflow-hidden">
-          {
-            latestMap ? (
-              <section aria-label="Latest skill map" class="w-full pb-1">
-                <SkillMapCard map={latestMap} moduleCount={getModuleCount(latestMap)} />
-              </section>
-            ) : (
-              <p class="w-full rounded-lg border border-border/80 bg-background-1 p-6 text-foreground-1">
-                No skill maps are ready yet.
-              </p>
-            )
-          }
-        </div>
-      </div>
-    </div>
-  </section>
+    <Fragment slot="aside">
+      {
+        latestMap ? (
+          <section aria-label="Latest skill map" class="w-full">
+            <SkillMapCard map={latestMap} moduleCount={getModuleCount(latestMap)} />
+          </section>
+        ) : (
+          <p class="w-full rounded-lg border border-border/80 bg-background-1 p-6 text-foreground-1">
+            No skill maps are ready yet.
+          </p>
+        )
+      }
+    </Fragment>
+  </PageHero>
 
   {
     showAllSkillMaps && (

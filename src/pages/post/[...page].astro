@@ -4,6 +4,7 @@ import type { PaginateFunction } from "astro";
 import { getCollection } from "astro:content";
 import type { PostsPageProps } from "@/lib/types";
 import PageIntro from "@/components/common/PageIntro.astro";
+import PageHero from "@/components/common/PageHero.astro";
 import Pagination from "@/components/post/Pagination.astro";
 import PostCard from "@/components/post/PostCard.astro";
 import FeaturedPostCard from "@/components/post/FeaturedPostCard.astro";
@@ -48,34 +49,26 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
   <div class={hasFeaturedPanel ? "articles-index" : ""}>
     {
       hasFeaturedPanel && featured ? (
-        <section class="relative min-h-[calc(100svh-5.5rem)]" data-articles-featured="true">
-          <div class="absolute inset-0 bg-background-0"></div>
+        <PageHero dataArticlesFeatured>
+          <Fragment slot="headline">
+            <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+              Field notes for systems that need to survive reality.
+            </h1>
+          </Fragment>
 
-          <div class="relative px-4 md:px-8">
-            <div class="mx-auto grid min-h-[calc(100svh-5.5rem)] w-full max-w-site gap-10 pt-8 pb-6 md:pt-12 md:pb-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-end lg:gap-12 xl:gap-20">
-              <div class="flex min-h-[calc(100svh-11rem)] flex-col justify-between gap-10">
-                <div class="max-w-2xl lg:max-w-xl">
-                  <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
-                    Field notes for systems that need to survive reality.
-                  </h1>
-                </div>
+          <Fragment slot="supporting">
+            <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Articles</p>
+            <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+              Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work.
+            </p>
+          </Fragment>
 
-                <div class="max-w-xl pb-2">
-                  <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Articles</p>
-                  <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
-                    Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work.
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex items-end overflow-hidden">
-                <section aria-label="Featured article" class="w-full pb-1">
-                  <FeaturedPostCard post={featured} />
-                </section>
-              </div>
-            </div>
-          </div>
-        </section>
+          <Fragment slot="aside">
+            <section aria-label="Featured article" class="w-full">
+              <FeaturedPostCard post={featured} />
+            </section>
+          </Fragment>
+        </PageHero>
       ) : (
         <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
           <div class="mx-auto w-full max-w-site space-y-14 md:space-y-18">
