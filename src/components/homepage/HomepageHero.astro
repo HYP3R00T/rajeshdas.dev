@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import Carousel from "@/components/common/Carousel";
 import PageHero from "@/components/common/PageHero.astro";
@@ -14,14 +15,25 @@ import { featuredProjects } from "@data/homepage";
 const projectImages = [placeholder1, placeholder2, placeholder3, placeholder4, placeholder5] as const;
 ---
 
-<PageHero id="hero" dataHomeSection asideClass="w-full">
-  <Fragment slot="headline">
+<PageHero id="hero" dataHomeSection bottomRightClass="w-full">
+  <Fragment slot="topLeft">
     <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
       DevOps engineer + automation builder based in India.
     </h1>
   </Fragment>
 
-  <Fragment slot="supporting">
+  <Fragment slot="topRight">
+    <a href="/contact" aria-label="Available for work. Go to contact page">
+      <Badge
+        variant="outline"
+        className="border-accent-1/70 bg-transparent px-2 font-mono text-[10px] font-medium tracking-widest text-accent-1 uppercase hover:border-accent-1 hover:text-accent-1"
+      >
+        Available for work
+      </Badge>
+    </a>
+  </Fragment>
+
+  <Fragment slot="bottomLeft">
     <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">
       <span>Remote</span>
       <span class="text-foreground-3"> / </span>
@@ -43,7 +55,7 @@ const projectImages = [placeholder1, placeholder2, placeholder3, placeholder4, p
     </div>
   </Fragment>
 
-  <Fragment slot="aside">
+  <Fragment slot="bottomRight">
     <Carousel client:load label="Featured work" itemSelector="[data-project-card]">
       {
         featuredProjects.map((project, index) => (

@@ -18,20 +18,20 @@ const showAllSkillMaps = skillMaps.length > 1;
 
 <BaseLayout title={`Learn | ${SITE.title}`} description="Curated technical skill maps for learning what matters, why it matters, and where to go next.">
   <PageHero>
-    <Fragment slot="headline">
+    <Fragment slot="topLeft">
       <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
         Learn by following a map, not a pile of links.
       </h1>
     </Fragment>
 
-    <Fragment slot="supporting">
+    <Fragment slot="bottomLeft">
       <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest skill map</p>
       <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
         Curated paths for building practical engineering judgment, one focused module at a time.
       </p>
     </Fragment>
 
-    <Fragment slot="aside">
+    <Fragment slot="bottomRight">
       {
         latestMap ? (
           <section aria-label="Latest skill map" class="w-full">

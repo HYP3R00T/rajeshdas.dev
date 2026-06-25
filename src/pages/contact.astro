@@ -26,15 +26,14 @@ const contactRoutes = [
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <PageHero>
-    <Fragment slot="headline">
-      <p class="mb-5 font-mono text-xs tracking-widest text-accent-1 uppercase">Contact</p>
+    <Fragment slot="topLeft">
       <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
         Let&apos;s make the next conversation worth having.
       </h1>
     </Fragment>
 
-    <Fragment slot="supporting">
-      <p class="font-mono text-xs tracking-widest text-foreground-2 uppercase">Direct routes only</p>
+    <Fragment slot="bottomLeft">
+      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Contact</p>
       <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
         If you&apos;re hiring, exploring a collaboration, or trying to untangle a systems problem, email and LinkedIn are the cleanest ways to reach me.
       </p>
@@ -55,7 +54,7 @@ const contactRoutes = [
       </div>
     </Fragment>
 
-    <Fragment slot="aside">
+    <Fragment slot="bottomRight">
       <div class="grid w-full gap-4 sm:grid-cols-2">
         {
           contactRoutes.map((route) => (

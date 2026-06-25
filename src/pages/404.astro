@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageIntro from "@/components/common/PageIntro.astro";
+import PageHero from "@/components/common/PageHero.astro";
 import { Icon } from "astro-icon/components";
 import { buttonVariants } from "@/components/ui/button";
 import { SITE } from "@data/config";
@@ -10,80 +10,75 @@ const pageDescription = "The page you're looking for isn't here, but the rest of
 
 const recoveryLinks = [
   {
-    label: "Go home",
-    href: "/",
-    note: "Start again from the main overview.",
-  },
-  {
-    label: "Browse articles",
-    href: "/post",
-    note: "Read field notes, write-ups, and practical breakdowns.",
-  },
-  {
-    label: "Open learn",
+    label: "Open learn map",
     href: "/learn",
-    note: "Follow a structured path instead of guessing where to go next.",
+    eyebrow: "Structured path",
+    note: "Follow a curated route instead of wandering through random links.",
+    action: "Start learning",
+  },
+  {
+    label: "Explore projects",
+    href: "/projects",
+    eyebrow: "Proof trail",
+    note: "See the systems, tools, and experiments that are still on the map.",
+    action: "View work",
   },
 ] as const;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
-    <div class="mx-auto w-full max-w-site">
-      <div class="grid gap-14 xl:grid-cols-[minmax(0,0.88fr)_minmax(24rem,0.72fr)] xl:gap-12">
-        <div>
-          <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">404</p>
-          <div class="mt-4 max-w-2xl">
-            <PageIntro
-              title="This page drifted out of range."
-              description="The link may be outdated, the route may have moved, or the page may no longer exist. The rest of the site is still intact."
-            />
-          </div>
+  <PageHero>
+    <Fragment slot="topLeft">
+      <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+        This route fell off the map.
+      </h1>
+    </Fragment>
 
-          <div class="mt-8 rounded-lg border border-border/80 bg-background-1 p-6 md:p-7">
-            <p class="font-mono text-xs tracking-[0.24em] text-foreground-3 uppercase">Status</p>
-            <p class="mt-5 font-display text-[5rem] leading-none font-semibold tracking-tighter text-foreground-0 sm:text-[6.5rem] md:text-[8rem]">
-              404
-            </p>
-            <p class="mt-5 max-w-xl text-sm leading-relaxed text-foreground-1 md:text-base">
-              If you arrived here from an old bookmark or an external link, the safest next step is to use one of the routes on the right.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid gap-4 self-start xl:pt-[5.1rem]">
-          {
-            recoveryLinks.map((link) => (
-              <a
-                href={link.href}
-                class="group rounded-lg border border-border/80 bg-background-1 p-6 transition-colors hover:bg-background-0 md:p-7"
-              >
-                <div class="flex items-start justify-between gap-6">
-                  <div>
-                    <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">Suggested route</p>
-                    <h2 class="mt-4 font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl">
-                      {link.label}
-                    </h2>
-                  </div>
-                  <Icon name="arrow-right" class="size-4 text-foreground-3 transition-colors group-hover:text-accent-1" />
-                </div>
-                <p class="mt-4 max-w-md text-sm leading-relaxed text-foreground-1 md:text-base">{link.note}</p>
-              </a>
-            ))
-          }
-
-          <div class="rounded-lg border border-border/80 bg-background-1 p-6 md:p-7">
-            <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">Quick reset</p>
-            <p class="mt-4 max-w-md text-sm leading-relaxed text-foreground-1 md:text-base">
-              If you just want the fastest way back, head to the homepage and continue from there.
-            </p>
-            <a href="/" class={`${buttonVariants({ variant: "default", size: "lg" })} mt-6 w-fit`}>
-              Return home
-              <Icon name="arrow-right" class="size-4" />
-            </a>
-          </div>
-        </div>
+    <Fragment slot="bottomLeft">
+      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">404</p>
+      <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+        The link may be old, renamed, or quietly retired. Head home if you want the clean reset, or send me a note if this looks like something I should fix.
+      </p>
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+        <a href="/" class={buttonVariants({ variant: "default", size: "lg" })}>
+          Back to home
+          <Icon name="arrow-right" class="size-4" />
+        </a>
+        <a href="/contact" class={buttonVariants({ variant: "outline", size: "lg" })}>
+          Report the route
+          <Icon name="arrow-up-right" class="size-4" />
+        </a>
       </div>
-    </div>
-  </section>
+    </Fragment>
+
+    <Fragment slot="bottomRight">
+      <div class="grid w-full gap-4 sm:grid-cols-2">
+        {
+          recoveryLinks.map((link) => (
+            <a
+              href={link.href}
+              class="group flex min-h-80 flex-col justify-between overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:p-6"
+            >
+              <div class="flex items-start justify-between gap-6">
+                <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">{link.eyebrow}</p>
+                <Icon name="arrow-up-right" class="size-4 text-foreground-3 transition-colors group-hover:text-accent-1" />
+              </div>
+
+              <div>
+                <h2 class="font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl">
+                  {link.label}
+                </h2>
+                <p class="mt-4 text-sm leading-relaxed text-foreground-1 md:text-base">{link.note}</p>
+              </div>
+
+              <div class="mt-8 flex items-center justify-between gap-4 border-t border-border/80 pt-5">
+                <span class="font-mono text-xs tracking-[0.22em] text-foreground-3 uppercase">{link.action}</span>
+                <span class="font-mono text-xs tracking-[0.22em] text-accent-1 uppercase">Open</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Fragment>
+  </PageHero>
 </BaseLayout>

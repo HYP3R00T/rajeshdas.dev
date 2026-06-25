@@ -50,20 +50,20 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
     {
       hasFeaturedPanel && featured ? (
         <PageHero dataArticlesFeatured>
-          <Fragment slot="headline">
+          <Fragment slot="topLeft">
             <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
               Field notes for systems that need to survive reality.
             </h1>
           </Fragment>
 
-          <Fragment slot="supporting">
+          <Fragment slot="bottomLeft">
             <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Articles</p>
             <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
               Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work.
             </p>
           </Fragment>
 
-          <Fragment slot="aside">
+          <Fragment slot="bottomRight">
             <section aria-label="Featured article" class="w-full">
               <FeaturedPostCard post={featured} />
             </section>
