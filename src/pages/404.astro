@@ -1,42 +1,86 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageIntro from "@/components/common/PageIntro.astro";
+import { Icon } from "astro-icon/components";
 import { buttonVariants } from "@/components/ui/button";
+import { SITE } from "@data/config";
+
+const pageTitle = `Not Found | ${SITE.title}`;
+const pageDescription = "The page you're looking for isn't here, but the rest of the site still is.";
+
+const recoveryLinks = [
+  {
+    label: "Go home",
+    href: "/",
+    note: "Start again from the main overview.",
+  },
+  {
+    label: "Browse articles",
+    href: "/post",
+    note: "Read field notes, write-ups, and practical breakdowns.",
+  },
+  {
+    label: "Open learn",
+    href: "/learn",
+    note: "Follow a structured path instead of guessing where to go next.",
+  },
+] as const;
 ---
 
-<BaseLayout>
-  <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl border-r border-l p-6 bg-background">
-      <div class="mx-auto w-full">
-        <div class="space-y-12 text-center">
-          <!-- Large 404 display -->
-          <div class="relative">
-            <div
-              class="text-foreground-2 md:text-48 font-display text-9xl leading-none font-background tracking-tighter select-none"
-            >
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
+    <div class="mx-auto w-full max-w-site">
+      <div class="grid gap-14 xl:grid-cols-[minmax(0,0.88fr)_minmax(24rem,0.72fr)] xl:gap-12">
+        <div>
+          <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">404</p>
+          <div class="mt-4 max-w-2xl">
+            <PageIntro
+              title="This page drifted out of range."
+              description="The link may be outdated, the route may have moved, or the page may no longer exist. The rest of the site is still intact."
+            />
+          </div>
+
+          <div class="mt-8 rounded-lg border border-border/80 bg-background-1 p-6 md:p-7">
+            <p class="font-mono text-xs tracking-[0.24em] text-foreground-3 uppercase">Status</p>
+            <p class="mt-5 font-display text-[5rem] leading-none font-semibold tracking-tighter text-foreground-0 sm:text-[6.5rem] md:text-[8rem]">
               404
-            </div>
+            </p>
+            <p class="mt-5 max-w-xl text-sm leading-relaxed text-foreground-1 md:text-base">
+              If you arrived here from an old bookmark or an external link, the safest next step is to use one of the routes on the right.
+            </p>
           </div>
+        </div>
 
-          <!-- Heading -->
-          <div class="space-y-6">
-            <h1 class="text-section-heading font-display text-center!">Lost in the void</h1>
+        <div class="grid gap-4 self-start xl:pt-[5.1rem]">
+          {
+            recoveryLinks.map((link) => (
+              <a
+                href={link.href}
+                class="group rounded-lg border border-border/80 bg-background-1 p-6 transition-colors hover:bg-background-0 md:p-7"
+              >
+                <div class="flex items-start justify-between gap-6">
+                  <div>
+                    <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">Suggested route</p>
+                    <h2 class="mt-4 font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl">
+                      {link.label}
+                    </h2>
+                  </div>
+                  <Icon name="arrow-right" class="size-4 text-foreground-3 transition-colors group-hover:text-accent-1" />
+                </div>
+                <p class="mt-4 max-w-md text-sm leading-relaxed text-foreground-1 md:text-base">{link.note}</p>
+              </a>
+            ))
+          }
 
-            <!-- Witty message -->
-            <div class="text-foreground-2 space-y-4">
-              <p class="text-lg leading-relaxed md:text-xl">
-                Looks like this page took an unplanned detour through a git rebase.
-              </p>
-              <p class="text-foreground-2 text-base">
-                The file you're looking for has either been moved to a different branch, deleted, or never existed in
-                the first place. Kind of like Docker layers you forgot to clean up.
-              </p>
-            </div>
-          </div>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col justify-center gap-4 pt-6 sm:flex-row">
-            <a href="/" class={buttonVariants({ variant: "default", size: "lg" })}> Go back home </a>
-            <a href="/post" class={buttonVariants({ variant: "secondary", size: "lg" })}> Read my articles </a>
+          <div class="rounded-lg border border-border/80 bg-background-1 p-6 md:p-7">
+            <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">Quick reset</p>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-foreground-1 md:text-base">
+              If you just want the fastest way back, head to the homepage and continue from there.
+            </p>
+            <a href="/" class={`${buttonVariants({ variant: "default", size: "lg" })} mt-6 w-fit`}>
+              Return home
+              <Icon name="arrow-right" class="size-4" />
+            </a>
           </div>
         </div>
       </div>

@@ -19,9 +19,9 @@ export const SITE: SiteConfig = {
 export const navItems: NavItem[] = [
   { href: "/learn", label: "Learn" },
   { href: "/post", label: "Articles" },
-  { href: "/til", label: "TIL" },
+  { href: "/til", label: "Notes" },
   { href: "https://hyperoot.dev", label: "Projects" },
-  { href: "/contact", label: "Contacts" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export const LEARN_URL = "https://hyperootlabs.notion.site/devos"
