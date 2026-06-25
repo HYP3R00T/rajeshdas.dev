@@ -46,30 +46,47 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
 
 <BaseLayout>
   <div class={hasFeaturedPanel ? "articles-index" : ""}>
-    <section
-      class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28"
-      data-articles-featured={hasFeaturedPanel ? "true" : undefined}
-    >
-      <div
-        class:list={[
-          "mx-auto w-full max-w-site",
-          hasFeaturedPanel ? "space-y-14 md:space-y-16" : "space-y-14 md:space-y-18",
-        ]}
-      >
-        <PageIntro
-          title="Field notes for systems that need to survive reality."
-          description="Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work."
-        />
+    {
+      hasFeaturedPanel && featured ? (
+        <section class="relative min-h-[calc(100svh-5.5rem)]" data-articles-featured="true">
+          <div class="absolute inset-0 bg-background-0"></div>
 
-        {
-          featured && page.currentPage === 1 && (
-            <section aria-label="Featured article" class="max-w-5xl">
-              <FeaturedPostCard post={featured} />
-            </section>
-          )
-        }
-      </div>
-    </section>
+          <div class="relative px-4 md:px-8">
+            <div class="mx-auto grid min-h-[calc(100svh-5.5rem)] w-full max-w-site gap-10 pt-8 pb-6 md:pt-12 md:pb-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-end lg:gap-12 xl:gap-20">
+              <div class="flex min-h-[calc(100svh-11rem)] flex-col justify-between gap-10">
+                <div class="max-w-2xl lg:max-w-xl">
+                  <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+                    Field notes for systems that need to survive reality.
+                  </h1>
+                </div>
+
+                <div class="max-w-xl pb-2">
+                  <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Articles</p>
+                  <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+                    Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-end overflow-hidden">
+                <section aria-label="Featured article" class="w-full pb-1">
+                  <FeaturedPostCard post={featured} />
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
+          <div class="mx-auto w-full max-w-site space-y-14 md:space-y-18">
+            <PageIntro
+              title="Field notes for systems that need to survive reality."
+              description="Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work."
+            />
+          </div>
+        </section>
+      )
+    }
 
     <section
       id="all-articles-panel"
@@ -121,10 +138,10 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
     let isSnapping = false;
     let releaseTimer = 0;
 
-    const scrollToPanel = (target: HTMLElement) => {
+    const scrollToPanel = (target: HTMLElement, topOverride?: number) => {
       isSnapping = true;
       window.clearTimeout(releaseTimer);
-      const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top);
+      const top = topOverride ?? Math.max(0, window.scrollY + target.getBoundingClientRect().top);
       window.scrollTo({ top, behavior: "smooth" });
       releaseTimer = window.setTimeout(() => {
         isSnapping = false;
@@ -150,7 +167,7 @@ const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
 
       if (direction === -1 && nearArchiveStart) {
         event.preventDefault();
-        if (!isSnapping) scrollToPanel(featuredPanel);
+        if (!isSnapping) scrollToPanel(featuredPanel, 0);
       }
     };
 

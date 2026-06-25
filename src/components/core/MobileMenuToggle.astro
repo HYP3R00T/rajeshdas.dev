@@ -63,7 +63,7 @@ import { Menu, X } from "lucide-react";
         if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = "false";
         document.documentElement.classList.remove("overflow-hidden");
         document.body.classList.remove("overflow-hidden");
-        window.scrollTo(0, previousScrollY);
+        if (Math.abs(window.scrollY - previousScrollY) > 1) window.scrollTo(0, previousScrollY);
         document.removeEventListener("keydown", onKey);
         (toggleBtn as HTMLElement).focus();
         document.dispatchEvent(new CustomEvent("mobile-menu:closed"));
