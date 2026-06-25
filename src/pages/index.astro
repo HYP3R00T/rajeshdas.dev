@@ -1,14 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import HomepageExperience from '@/components/homepage/HomepageExperience.astro';
-import { getCollection } from 'astro:content';
-import { getSortedPosts } from '@/lib/utils';
-
-const allPosts = await getCollection('posts');
-const sorted = getSortedPosts(allPosts);
-const latestPost = sorted[0];
 ---
 
 <BaseLayout>
-  {latestPost && <HomepageExperience latestPost={latestPost} />}
+  <HomepageExperience />
 </BaseLayout>
