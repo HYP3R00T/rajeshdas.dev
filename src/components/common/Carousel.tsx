@@ -123,7 +123,7 @@ export default function Carousel({
       <section
         ref={trackRef}
         className={cn(
-          "grid auto-cols-[minmax(17rem,86%)] grid-flow-col gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-1 scrollbar-none sm:auto-cols-[calc((100%-1rem)/2)] lg:auto-cols-[calc((100%-1.5rem)/2)] lg:gap-6 sm:[&::-webkit-scrollbar]:hidden",
+          "grid auto-cols-[minmax(17rem,86%)] grid-flow-col gap-4 overflow-x-auto px-1 scroll-px-1 scroll-smooth snap-x snap-mandatory pb-1 scrollbar-none sm:auto-cols-[calc((100%-1rem)/2)] lg:auto-cols-[calc((100%-1.5rem)/2)] lg:gap-6 sm:[&::-webkit-scrollbar]:hidden",
           trackClassName,
         )}
         aria-labelledby={carouselId}
