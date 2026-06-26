@@ -1,33 +1,18 @@
 export const featuredProjects = [
   {
-    title: "Dotfiles",
-    label: "Reproducible environments",
+    title: "dotfiles",
     body: "A one-command machine setup workflow for devcontainers, WSL, and cloud VMs.",
     href: "https://dotfiles.hyperoot.dev/",
   },
   {
     title: "Celestial Docs",
-    label: "Documentation systems",
     body: "A static docs system built for customization, free hosting, and source-level ownership.",
     href: "https://celestialdocs.hyperoot.dev/",
   },
   {
-    title: "HyperCLI",
-    label: "Python tooling",
-    body: "A menu-driven CLI framework shaped around repeatable local and enterprise workflow automation.",
-    href: "https://hyperoot.dev/",
-  },
-  {
-    title: "Bootstrap Scripts",
-    label: "Developer setup",
-    body: "Linux bootstrap automation that turns a fresh machine into a usable engineering environment faster.",
-    href: "https://hyperoot.dev/",
-  },
-  {
-    title: "Learning Systems",
-    label: "Technical education",
-    body: "Structured technical writing and learning paths that make infrastructure and tooling easier to understand.",
-    href: "https://rajeshdas.dev/post/",
+    title: "VoicePad",
+    body: "A lightweight voice note workspace focused on capturing ideas quickly and turning them into usable text.",
+    href: "https://voicepad.hyperoot.dev/",
   },
 ] as const
 
@@ -60,10 +45,10 @@ export const homepageMetrics = [
     strength: "supporting",
   },
   {
-    value: "5",
+    value: "3",
     unit: "systems",
     label: "public proof points",
-    detail: "Project entry points across infrastructure, documentation, tooling, and learning systems.",
+    detail: "Project entry points across reproducible environments, documentation, and voice-first tooling.",
     source: "featured work",
     icon: "code",
     strength: "supporting",
@@ -78,8 +63,6 @@ export const homepageMetrics = [
     strength: "supporting",
   },
 ] as const
-
-export const focusAreas = ["Developer environments", "Automation workflows", "Python tooling", "Technical writing"]
 
 export const latestVideo = {
   id: "v_rcTD2O-aU",
