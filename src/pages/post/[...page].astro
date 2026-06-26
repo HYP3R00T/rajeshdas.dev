@@ -3,11 +3,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import type { PaginateFunction } from "astro";
 import { getCollection } from "astro:content";
 import type { PostsPageProps } from "@/lib/types";
+import PageIntro from "@/components/common/PageIntro.astro";
+import PageHero from "@/components/common/PageHero.astro";
 import Pagination from "@/components/post/Pagination.astro";
 import PostCard from "@/components/post/PostCard.astro";
 import FeaturedPostCard from "@/components/post/FeaturedPostCard.astro";
 import { SITE } from "@data/config";
-import { Badge } from "@/components/ui/badge";
 
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
   const posts = await getCollection("posts").then((entries) => entries.filter((entry) => !entry.data.draft));
@@ -40,51 +41,144 @@ const { page, totalPages, featured } = Astro.props as PostsPageProps;
 const defaultPageSize = SITE.pageSize ?? 10;
 const pageSize = page.pageSize ?? defaultPageSize;
 const pageOffset = (page.currentPage - 1) * pageSize;
+const articleTotalPages = totalPages ?? 1;
+const hasFeaturedPanel = Boolean(featured && page.currentPage === 1);
 ---
 
 <BaseLayout>
-  <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl">
-      <div class="mb-12">
-        <h1 class="text-section-heading my-8">
-          <div>Articles &</div>
-          <div>Insights</div>
-        </h1>
-        <p class="text-foreground-2 max-w-2xl text-base leading-relaxed md:text-lg">
-          Thoughts and learnings on DevOps, infrastructure automation, cloud architecture, and building reliable systems
-          at scale.
-        </p>
-      </div>
+  <div class={hasFeaturedPanel ? "articles-index" : ""}>
+    {
+      hasFeaturedPanel && featured ? (
+        <PageHero dataArticlesFeatured>
+          <Fragment slot="topLeft">
+            <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+              Field notes for systems that need to survive reality.
+            </h1>
+          </Fragment>
 
-      <!-- Latest Article -->
-      {
-        featured && page.currentPage === 1 && (
-          <div class="mb-12 flex flex-col gap-4">
-            <Badge>Featured Article</Badge>
-            <FeaturedPostCard post={featured} />
+          <Fragment slot="bottomLeft">
+            <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Articles</p>
+            <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+              Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work.
+            </p>
+          </Fragment>
+
+          <Fragment slot="bottomRight">
+            <section aria-label="Featured article" class="w-full">
+              <FeaturedPostCard post={featured} />
+            </section>
+          </Fragment>
+        </PageHero>
+      ) : (
+        <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
+          <div class="mx-auto w-full max-w-site space-y-14 md:space-y-18">
+            <PageIntro
+              title="Field notes for systems that need to survive reality."
+              description="Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work."
+            />
           </div>
-        )
-      }
+        </section>
+      )
+    }
 
-      <!-- All Articles -->
-      <div class="mb-8 flex flex-col gap-4">
-        <Badge>All Articles</Badge>
-        <div class="border-border space-y-4 md:space-y-0 grid grid-cols-2">
+    <section
+      id="all-articles-panel"
+      aria-labelledby="all-articles"
+      class="px-4 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28"
+      data-articles-list
+    >
+      <div class="mx-auto w-full max-w-site space-y-5">
+        <div>
+          <h2 id="all-articles" class="font-display text-2xl text-foreground-0 md:text-3xl">All field notes</h2>
+        </div>
+
+        <div class="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">
           {page.data.map((post, index) => <PostCard post={post} index={pageOffset + index} />)}
         </div>
-      </div>
 
-      <!-- Pagination -->
-      <div class="px-2 pb-8">
-        <Pagination
-          currentPage={page.currentPage}
-          prevUrl={page.url.prev}
-          nextUrl={page.url.next}
-          first={page.url.first}
-          last={page.url.last}
-          totalPages={totalPages}
-        />
+        {
+          articleTotalPages > 1 && (
+            <Pagination
+              currentPage={page.currentPage}
+              prevUrl={page.url.prev}
+              nextUrl={page.url.next}
+              totalPages={articleTotalPages}
+            />
+          )
+        }
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
+
+<script>
+  declare global {
+    interface Window {
+      __articlesPanelSnapCleanup?: () => void;
+    }
+  }
+
+  const setupArticlesPanelSnap = () => {
+    window.__articlesPanelSnapCleanup?.();
+
+    const root = document.querySelector(".articles-index");
+    const featuredPanel = document.querySelector<HTMLElement>("[data-articles-featured='true']");
+    const listPanel = document.querySelector<HTMLElement>("[data-articles-list]");
+    const canSnap = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)");
+
+    if (!root || !featuredPanel || !listPanel || !canSnap.matches) return;
+
+    let isSnapping = false;
+    let releaseTimer = 0;
+
+    const scrollToPanel = (target: HTMLElement, topOverride?: number) => {
+      isSnapping = true;
+      window.clearTimeout(releaseTimer);
+      const top = topOverride ?? Math.max(0, window.scrollY + target.getBoundingClientRect().top);
+      window.scrollTo({ top, behavior: "smooth" });
+      releaseTimer = window.setTimeout(() => {
+        isSnapping = false;
+      }, 850);
+    };
+
+    const onWheel = (event: WheelEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (Math.abs(event.deltaY) < 12) return;
+
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const currentY = window.scrollY;
+      const listTop = currentY + listPanel.getBoundingClientRect().top;
+      const beforeArchive = currentY < listTop - 24;
+      const nearArchiveStart = currentY >= listTop - 120 && currentY <= listTop + 160;
+
+      if (direction === 1 && beforeArchive) {
+        event.preventDefault();
+        if (!isSnapping) scrollToPanel(listPanel);
+        return;
+      }
+
+      if (direction === -1 && nearArchiveStart) {
+        event.preventDefault();
+        if (!isSnapping) scrollToPanel(featuredPanel, 0);
+      }
+    };
+
+    const onMediaChange = () => {
+      if (!canSnap.matches) window.__articlesPanelSnapCleanup?.();
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    canSnap.addEventListener("change", onMediaChange);
+
+    window.__articlesPanelSnapCleanup = () => {
+      window.removeEventListener("wheel", onWheel);
+      canSnap.removeEventListener("change", onMediaChange);
+      window.clearTimeout(releaseTimer);
+      isSnapping = false;
+      window.__articlesPanelSnapCleanup = undefined;
+    };
+  };
+
+  document.addEventListener("astro:page-load", setupArticlesPanelSnap);
+</script>

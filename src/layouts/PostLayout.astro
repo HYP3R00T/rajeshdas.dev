@@ -1,122 +1,215 @@
 ---
 import { Image } from "astro:assets";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { formatDateUppercase, estimateReadTime } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
-import { SITE } from "@data/config";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
+import { SITE } from "@data/config";
 
-const {
-  title,
-  description,
-  pubDatetime,
-  modDatetime,
-  featured,
-  draft,
-  tags,
-  cover,
-  category,
-  coverAlt,
-  headings,
-  body,
-} = Astro.props;
-
+const { slug, title, description, pubDatetime, modDatetime, tags, cover, coverAlt, headings = [], body } = Astro.props;
 const readTime = body ? estimateReadTime(body) : 5;
+const visibleHeadings = headings.filter((heading: { depth: number }) => heading.depth > 1 && heading.depth < 4).slice(0, 6);
 ---
 
 <BaseLayout title={title} description={description} image={cover} imageAlt={coverAlt} contentType="Article">
-  <div class="relative bg-transparent flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl my-16">
-      <!-- Back Navigation -->
-      <div class="mb-4">
-        <a href="/post">
-          <Badge>
-            <div class="flex flex-row items-center gap-2">
-              <Icon name="arrow-left" class="size-4" />
-              <div class="">BACK TO ARTICLES</div>
-            </div>
-          </Badge>
+  <section class="px-4 pt-12 pb-20 md:px-8 md:pt-18 md:pb-28">
+    <div class="mx-auto w-full max-w-site">
+      <div class="mx-auto w-full max-w-[88rem] xl:ml-auto xl:mr-0">
+        <a href="/post" class={`${buttonVariants({ variant: "outline", size: "sm" })} mb-10`}>
+          <Icon name="arrow-left" class="size-4" />
+          Articles
         </a>
-      </div>
 
-      <!-- Hero Image -->
-      <div class="aspect-og overflow-hidden">
-        <Image src={cover} alt={coverAlt || title} class="h-full w-full object-cover" />
-      </div>
+        <div class="grid gap-10 lg:grid-cols-[16rem_minmax(0,44rem)_minmax(0,8rem)] lg:gap-12 xl:grid-cols-[18rem_minmax(0,46rem)_minmax(0,10rem)] xl:gap-16">
+          <aside class="order-2 lg:order-1 lg:sticky lg:top-28 lg:self-start">
+            <div class="rounded-lg border border-border/80 bg-background-1 p-5">
+              <div class="space-y-5">
+                <div>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Published</p>
+                  <time class="mt-2 block text-sm text-foreground-1" datetime={pubDatetime.toISOString()}>
+                    {formatDateUppercase(pubDatetime)}
+                  </time>
+                </div>
 
-      <!-- Metadata -->
-      <div class="text-foreground-2 flex items-center gap-4 py-4 text-xs">
-        <time datetime={pubDatetime.toISOString()}>
-          {formatDateUppercase(pubDatetime)}
-        </time>
-        <span>•</span>
-        <span>{readTime} MIN</span>
-        <span>•</span>
-        <span class="uppercase">{SITE.author}</span>
-      </div>
+                <div>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Read time</p>
+                  <p class="mt-2 text-sm text-foreground-1">{readTime} min</p>
+                </div>
 
-      <!-- Title & Description -->
-      <div class="flex flex-col items-start gap-4">
-        <h1 class="text-foreground font-display text-left text-4xl text-[clamp(2rem,10vw,5rem)]">
-          {title}
-        </h1>
-        <p class="text-foreground-2 mt-0 mb-8 text-lg leading-relaxed">
-          {description}
-        </p>
-      </div>
+                {
+                  modDatetime && (
+                    <div>
+                      <p class="font-mono text-xs text-foreground-3 uppercase">Updated</p>
+                      <time class="mt-2 block text-sm text-foreground-1" datetime={modDatetime.toISOString()}>
+                        {formatDateUppercase(modDatetime)}
+                      </time>
+                    </div>
+                  )
+                }
 
-      <!-- Tags & Share -->
-      <div class="border-border mx-auto flex items-center justify-between border-b py-4">
-        <div class="flex flex-wrap gap-2">
-          {tags && tags.length > 0 && tags.map((tag: string) => <Badge variant="outline">{tag}</Badge>)}
+                <div>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Author</p>
+                  <p class="mt-2 text-sm text-foreground-1">{SITE.author}</p>
+                </div>
+              </div>
+
+              {
+                tags && tags.length > 0 && (
+                  <div class="mt-6 flex flex-wrap gap-2">
+                    {tags.map((tag: string) => (
+                      <Badge variant="secondary" className="border border-border/80 bg-background-2 text-foreground-1">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )
+              }
+
+              <Button id="share-button" variant="outline" size="sm" className="mt-6 w-full justify-between">
+                Share article
+                <Icon name="arrow-up-right" class="size-4" />
+              </Button>
+            </div>
+
+            {
+              visibleHeadings.length > 0 && (
+                <nav aria-label="Article sections" class="mt-5 rounded-lg border border-border/80 bg-background-1 p-5">
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Sections</p>
+                  <ol class="mt-4 space-y-3">
+                    {visibleHeadings.map((heading: { slug: string; text: string; depth: number }) => (
+                      <li class={heading.depth === 3 ? "pl-3" : ""}>
+                        <a
+                          href={`#${heading.slug}`}
+                          data-toc-link={heading.slug}
+                          class="block border-l border-transparent py-1 pl-3 text-sm leading-snug text-foreground-2 transition-all duration-200 hover:text-accent-1"
+                        >
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              )
+            }
+          </aside>
+
+          <article class="order-1 lg:order-2">
+            <header>
+              <h1
+                class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl xl:text-7xl"
+                transition:name={`post-title-${slug}`}
+              >
+                {title}
+              </h1>
+              <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1 md:text-xl">
+                {description}
+              </p>
+            </header>
+
+            <div class="mt-12 w-full">
+              <div
+                class="overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3"
+                transition:name={`post-cover-${slug}`}
+              >
+                <div class="aspect-og overflow-hidden rounded-md bg-background-1">
+                  <Image
+                    src={cover}
+                    alt={coverAlt || title}
+                    class="h-full w-full object-cover"
+                    widths={[720, 960, 1280, 1600]}
+                    sizes="(min-width: 1024px) 46rem, calc(100vw - 2rem)"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="prose mt-14 max-w-none">
+              <slot />
+            </div>
+          </article>
         </div>
-        <Button
-          id="share-button"
-          variant="secondary"
-          size="sm"
-          className="shrink-0 text-xs tracking-wider uppercase"
-          aria-label="Share article"
-        >
-          <Icon name="arrow-up-right" class="size-4" />
-          SHARE
-        </Button>
       </div>
-
-      <!-- Article Content -->
-      <article class="prose max-w-none pt-8">
-        <slot />
-      </article>
     </div>
-  </div>
+  </section>
 </BaseLayout>
 
 <script>
-  document.getElementById("share-button")?.addEventListener("click", async () => {
-    const url = window.location.href;
-    const title = document.title;
+  const setupShareButton = () => {
+    const button = document.getElementById("share-button");
+    if (!button) return;
 
-    if (navigator.share) {
-      try {
-        await navigator.share({ title, url });
-      } catch (err) {
-        console.log("Share canceled");
+    button.addEventListener("click", async () => {
+      const url = window.location.href;
+      const title = document.title;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url });
+        } catch {
+          // Sharing was dismissed; no visible recovery is needed.
+        }
+        return;
       }
-    } else {
-      // Fallback: copy to clipboard
+
       try {
         await navigator.clipboard.writeText(url);
-        const button = document.getElementById("share-button");
-        if (button) {
-          const originalText = button.innerHTML;
-          button.innerHTML = `<svg class="h-4 w-4"><use href="#icon-check"></use></svg> COPIED`;
-          setTimeout(() => {
-            button.innerHTML = originalText;
-          }, 2000);
-        }
-      } catch (err) {
-        console.error("Failed to copy:", err);
+        const originalText = button.innerHTML;
+        button.innerHTML = "Copied";
+        window.setTimeout(() => {
+          button.innerHTML = originalText;
+        }, 1600);
+      } catch {
+        button.setAttribute("data-copy-failed", "true");
       }
-    }
+    });
+  };
+
+  const setupActiveTableOfContents = () => {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
+    if (links.length === 0) return;
+
+    const linkById = new Map(links.map((link) => [link.dataset.tocLink, link]));
+    const headings = Array.from(document.querySelectorAll<HTMLElement>(".prose :is(h2, h3)[id]")).filter((heading) =>
+      linkById.has(heading.id),
+    );
+    if (headings.length === 0) return;
+
+    const setActive = (id: string) => {
+      for (const link of links) {
+        const isActive = link.dataset.tocLink === id;
+        link.classList.toggle("border-accent-1", isActive);
+        link.classList.toggle("text-accent-1", isActive);
+        link.classList.toggle("translate-x-1", isActive);
+        link.classList.toggle("text-foreground-2", !isActive);
+        link.setAttribute("aria-current", isActive ? "location" : "false");
+      }
+    };
+
+    setActive(headings[0].id);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+        if (visible?.target instanceof HTMLElement) {
+          setActive(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-22% 0px -62% 0px",
+        threshold: [0, 1],
+      },
+    );
+
+    headings.forEach((heading) => observer.observe(heading));
+    document.addEventListener("astro:before-swap", () => observer.disconnect(), { once: true });
+  };
+
+  document.addEventListener("astro:page-load", () => {
+    setupShareButton();
+    setupActiveTableOfContents();
   });
 </script>

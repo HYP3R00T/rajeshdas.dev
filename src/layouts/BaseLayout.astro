@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import { SITE } from "@data/config";
 import Header from "@/components/core/Header.astro";
 import HeadSEO from "@/components/core/HeadSEO.astro";
@@ -11,11 +12,12 @@ const { title, description, image, imageAlt, contentType } = Astro.props as Base
 <html lang=`${SITE.lang ?? "en"}`>
   <head>
     <HeadSEO title={title} description={description} image={image} imageAlt={imageAlt} contentType={contentType} />
+    <ClientRouter />
   </head>
 
   <body class="flex flex-col">
     <Header />
-    <div class="flex flex-1 dot-pattern-interactive">
+    <div class="flex flex-1">
       <main class="flex h-full w-full justify-center">
         <div class="flex w-full flex-col justify-center">
           <slot />

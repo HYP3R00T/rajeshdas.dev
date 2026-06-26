@@ -1,57 +1,89 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Badge } from "@/components/ui/badge";
-import CardGrid from "@/components/common/CardGrid.astro";
+import PageHero from "@/components/common/PageHero.astro";
+import { Icon } from "astro-icon/components";
+import { buttonVariants } from "@/components/ui/button";
+import { SITE } from "@data/config";
 
-const pageTitle = "Contact | Rajesh Das";
-const pageDescription = "Ways to reach Rajesh Das for collaboration, hiring, or general conversation.";
+const pageTitle = `Contact | ${SITE.title}`;
+const pageDescription = "A direct path for collaboration, hiring, and thoughtful engineering conversations with Rajesh Das.";
 
-const contactLinks = [
+const contactRoutes = [
   {
-    title: "Email",
-    description: "Best for collaboration, hiring, and direct questions.",
+    label: "Email",
     href: "mailto:hello@rajeshdas.dev",
+    note: "Best for collaboration, hiring, and anything that needs clear context.",
+    action: "Write directly",
   },
   {
-    title: "GitHub",
-    description: "See the code, projects, and open-source activity.",
-    href: "https://github.com/HYP3R00T",
-  },
-  {
-    title: "LinkedIn",
-    description: "Professional connection and role-based conversation.",
+    label: "LinkedIn",
     href: "https://linkedin.com/in/rajesh-kumar-das",
+    note: "Best for professional context, role-based conversations, and quick introductions.",
+    action: "Reach out",
   },
-];
+] as const;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="relative flex items-center justify-center px-4 md:px-12">
-    <div class="mx-auto w-full max-w-5xl border p-6 bg-background-0 my-16">
-      <div class="mb-12">
-        <Badge variant="secondary">Contact</Badge>
-        <h1 class="text-section-heading my-8">
-          <div>Ping Me</div>
-        </h1>
-        <p class="text-foreground-2 max-w-2xl text-base leading-relaxed md:text-lg">
-          Use any of the links below if you want to collaborate, discuss a role, or simply continue the conversation.
-        </p>
-      </div>
+  <PageHero>
+    <Fragment slot="topLeft">
+      <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+        Let&apos;s make the next conversation worth having.
+      </h1>
+    </Fragment>
 
-      <div class="grid md:grid-cols-3">
+    <Fragment slot="bottomLeft">
+      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Contact</p>
+      <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+        If you&apos;re hiring, exploring a collaboration, or trying to untangle a systems problem, email and LinkedIn are the cleanest ways to reach me.
+      </p>
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+        <a href="mailto:hello@rajeshdas.dev" class={buttonVariants({ variant: "default", size: "lg" })}>
+          Email Rajesh
+          <Icon name="arrow-right" class="size-4" />
+        </a>
+        <a
+          href="https://linkedin.com/in/rajesh-kumar-das"
+          target="_blank"
+          rel="noopener noreferrer"
+          class={buttonVariants({ variant: "outline", size: "lg" })}
+        >
+          LinkedIn
+          <Icon name="arrow-up-right" class="size-4" />
+        </a>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bottomRight">
+      <div class="grid w-full gap-4 sm:grid-cols-2">
         {
-          contactLinks.map((link) => (
-            <CardGrid>
-              <a href={link.href} class="flex flex-col gap-3">
-                <span class="font-display text-foreground-1 group-hover:text-accent-1 text-xl font-semibold">
-                  {link.title}
-                </span>
-                <span class="text-foreground-2 text-sm leading-relaxed">{link.description}</span>
-              </a>
-            </CardGrid>
+          contactRoutes.map((route) => (
+            <a
+              href={route.href}
+              target={route.href.startsWith("http") ? "_blank" : undefined}
+              rel={route.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="group flex min-h-80 flex-col justify-between overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:p-6"
+            >
+              <div class="flex items-start justify-between gap-6">
+                <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">Contact route</p>
+                <Icon name="arrow-up-right" class="size-4 text-foreground-3 transition-colors group-hover:text-accent-1" />
+              </div>
+
+              <div>
+                <h2 class="font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl">
+                  {route.label}
+                </h2>
+                <p class="mt-4 text-sm leading-relaxed text-foreground-1 md:text-base">{route.note}</p>
+              </div>
+
+              <div class="mt-8 flex items-center justify-between gap-4 border-t border-border/80 pt-5">
+                <span class="font-mono text-xs tracking-[0.22em] text-foreground-3 uppercase">{route.action}</span>
+                <span class="font-mono text-xs tracking-[0.22em] text-accent-1 uppercase">Open</span>
+              </div>
+            </a>
           ))
         }
       </div>
-    </div>
-  </section>
+    </Fragment>
+  </PageHero>
 </BaseLayout>
