@@ -34,7 +34,7 @@ export default defineConfig({
       },
     }),
     AutoImport({
-      imports: ["./src/components/core/Video.astro"],
+      imports: ["./src/components/core/Video.astro", "./src/components/common/LinkPreview.astro"],
     }),
     mdx(),
     react(),
