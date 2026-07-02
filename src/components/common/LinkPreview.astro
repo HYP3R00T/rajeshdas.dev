@@ -1,0 +1,156 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  mediaAlt?: string;
+}
+
+type LinkPreviewMetadata = {
+  title?: string;
+  description?: string;
+  image?: string;
+};
+
+const metadataCache = new Map<string, Promise<LinkPreviewMetadata | null>>();
+
+function decodeHtmlEntities(value: string) {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .trim();
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[|{}()[\]^$+*?.]/g, "\\$&");
+}
+
+function extractMetaContent(html: string, key: string, attribute: "property" | "name") {
+  const attributePattern = `${attribute}=["']${escapeRegExp(key)}["']`;
+  const patterns = [
+    new RegExp(`<meta[^>]*${attributePattern}[^>]*content=["']([^"']+)["'][^>]*>`, "i"),
+    new RegExp(`<meta[^>]*content=["']([^"']+)["'][^>]*${attributePattern}[^>]*>`, "i"),
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match?.[1]) return decodeHtmlEntities(match[1]);
+  }
+
+  return undefined;
+}
+
+function extractTitleTag(html: string) {
+  const match = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  return match?.[1] ? decodeHtmlEntities(match[1]) : undefined;
+}
+
+function resolveUrl(baseUrl: string, candidate?: string) {
+  if (!candidate) return undefined;
+
+  try {
+    return new URL(candidate, baseUrl).toString();
+  } catch {
+    return undefined;
+  }
+}
+
+async function fetchLinkPreviewMetadata(url: string): Promise<LinkPreviewMetadata | null> {
+  let metadataPromise = metadataCache.get(url);
+
+  if (!metadataPromise) {
+    metadataPromise = (async () => {
+      try {
+        const response = await fetch(url, {
+          headers: {
+            "user-agent": "Mozilla/5.0 (compatible; rajeshdas.dev link preview bot; +https://rajeshdas.dev)",
+          },
+        });
+
+        if (!response.ok) return null;
+
+        const html = await response.text();
+        const ogTitle = extractMetaContent(html, "og:title", "property");
+        const twitterTitle = extractMetaContent(html, "twitter:title", "name");
+        const ogDescription = extractMetaContent(html, "og:description", "property");
+        const metaDescription = extractMetaContent(html, "description", "name");
+        const twitterDescription = extractMetaContent(html, "twitter:description", "name");
+        const ogImage = resolveUrl(url, extractMetaContent(html, "og:image", "property"));
+        const twitterImage = resolveUrl(url, extractMetaContent(html, "twitter:image", "name"));
+
+        return {
+          title: ogTitle ?? twitterTitle ?? extractTitleTag(html),
+          description: ogDescription ?? twitterDescription ?? metaDescription,
+          image: ogImage ?? twitterImage,
+        };
+      } catch {
+        return null;
+      }
+    })();
+
+    metadataCache.set(url, metadataPromise);
+  }
+
+  return metadataPromise;
+}
+
+const { url, title, description, image, mediaAlt } = Astro.props as Props;
+
+const parsedUrl = (() => {
+  try {
+    return new URL(url);
+  } catch {
+    return null;
+  }
+})();
+
+const metadata = parsedUrl ? await fetchLinkPreviewMetadata(url) : null;
+const hostname = parsedUrl?.hostname.replace(/^www\./, "") ?? url;
+const pathname = parsedUrl ? `${parsedUrl.pathname}${parsedUrl.search}`.replace(/\/$/, "") || "/" : url;
+const resolvedTitle = title ?? metadata?.title ?? hostname;
+const resolvedDescription = description ?? metadata?.description ?? "Open this external resource.";
+const resolvedImage = image ?? metadata?.image;
+const resolvedMediaAlt = mediaAlt ?? `${resolvedTitle} preview`;
+const previewPath = pathname === "/" ? hostname : `${hostname}${pathname}`;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group flex w-full min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-2 no-underline transition-colors hover:bg-background-0 sm:flex-row sm:items-stretch"
+  aria-label={`Open ${resolvedTitle}`}
+>
+  <div class="flex min-w-0 flex-1 flex-col justify-between self-stretch">
+    <div class="min-w-0">
+      <h3 class="m-0! text-balance text-lg leading-none text-foreground-1 transition-colors group-hover:text-accent-1">
+        {resolvedTitle}
+      </h3>
+
+      <p class="my-0! mt-2! line-clamp-2 text-sm leading-snug text-foreground-3 md:text-sm">
+        {resolvedDescription}
+      </p>
+    </div>
+
+    <div class="m-0! mt-2! flex min-w-0 items-center gap-2 text-sm text-foreground-1">
+      <span class="min-w-0 truncate">{previewPath}</span>
+    </div>
+  </div>
+
+  {
+    resolvedImage && (
+      <div class="hidden shrink-0 overflow-hidden rounded-md sm:ml-auto sm:flex sm:h-auto sm:w-36 sm:self-stretch md:w-44">
+        <img
+          src={resolvedImage}
+          alt={resolvedMediaAlt}
+          loading="lazy"
+          class="block h-full w-full rounded-none! border-0! my-0! object-cover"
+        />
+      </div>
+    )
+  }
+</a>

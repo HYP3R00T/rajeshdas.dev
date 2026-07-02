@@ -25,18 +25,12 @@ import { Menu, X } from "lucide-react";
     const iconClose = toggleBtn.querySelector("[data-icon-close]");
     const headerShell = document.querySelector("[data-header-shell]");
     const headerNav = document.querySelector("[data-header-nav]");
-    let previousScrollY = 0;
 
-    // Keep the compact panel visually attached to the bottom edge of the floating nav.
-    const applyPanelPosition = () => {
-      const navBottom = headerNav ? headerNav.getBoundingClientRect().bottom : 0;
-      (menu as HTMLElement).style.top = `${navBottom}px`;
-      (menu as HTMLElement).style.bottom = "auto";
+    const syncPanelPosition = () => {
+      if (!(menu instanceof HTMLElement)) return;
+      const navRect = headerNav instanceof HTMLElement ? headerNav.getBoundingClientRect() : null;
+      menu.style.top = navRect ? `${navRect.bottom}px` : "0px";
     };
-
-    applyPanelPosition();
-    window.addEventListener("resize", applyPanelPosition);
-    window.addEventListener("scroll", applyPanelPosition, { passive: true });
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -52,23 +46,20 @@ import { Menu, X } from "lucide-react";
       if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = String(open);
 
       if (open) {
-        previousScrollY = window.scrollY;
-        document.documentElement.classList.add("overflow-hidden");
-        document.body.classList.add("overflow-hidden");
-        requestAnimationFrame(applyPanelPosition);
+        syncPanelPosition();
         document.addEventListener("keydown", onKey);
         document.dispatchEvent(new CustomEvent("mobile-menu:opened"));
       } else {
         if (headerShell instanceof HTMLElement) headerShell.dataset.menuOpen = "false";
         if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = "false";
-        document.documentElement.classList.remove("overflow-hidden");
-        document.body.classList.remove("overflow-hidden");
-        if (Math.abs(window.scrollY - previousScrollY) > 1) window.scrollTo(0, previousScrollY);
         document.removeEventListener("keydown", onKey);
         (toggleBtn as HTMLElement).focus();
         document.dispatchEvent(new CustomEvent("mobile-menu:closed"));
       }
     }
+
+    syncPanelPosition();
+    window.addEventListener("resize", syncPanelPosition, { passive: true });
 
     toggleBtn.addEventListener("click", () => setOpen(menu.getAttribute("data-open") !== "true"));
     menu.addEventListener("click", (e) => {
@@ -80,8 +71,8 @@ import { Menu, X } from "lucide-react";
     document.addEventListener("astro:before-swap", () => {
       if (headerShell instanceof HTMLElement) headerShell.dataset.menuOpen = "false";
       if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = "false";
-      document.documentElement.classList.remove("overflow-hidden");
-      document.body.classList.remove("overflow-hidden");
+      document.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", syncPanelPosition);
     }, { once: true });
   });
 </script>

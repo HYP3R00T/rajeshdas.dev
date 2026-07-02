@@ -7,11 +7,7 @@ import MobileMenuToggle from "@/components/core/MobileMenuToggle.astro";
 import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
 ---
 
-<header
-  data-header-shell
-  data-menu-open="false"
-  class="sticky top-0 z-50 px-4 py-4 md:px-8 md:py-5"
->
+<header data-header-shell data-menu-open="false" class="sticky top-0 z-80 px-4 py-4 md:px-8 md:py-5">
   <nav
     data-header-nav
     data-menu-open="false"
@@ -47,9 +43,7 @@ import MobileMenuPanel from "@/components/core/MobileMenuPanel.astro";
       <MobileMenuToggle />
     </div>
   </nav>
+  <MobileMenuPanel navItems={navItems.filter((item) => !item.special)} />
 </header>
-
-<!-- Mobile Menu Panel -->
-<MobileMenuPanel navItems={navItems.filter((item) => !item.special)} />
 
 <!-- AnimatedText component handles the animation behavior -->
