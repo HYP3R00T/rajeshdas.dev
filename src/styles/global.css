@@ -76,16 +76,16 @@
 
 .dark {
   /* base */
-  --background-0: hsl(220, 9%, 7%);
-  --background-1: hsl(220, 8%, 10%);
+  --background-0: hsl(220, 10%, 3%);
+  --background-1: hsl(220, 8%, 9%);
   --background-2: hsl(220, 7%, 17%);
   --background-3: hsl(220, 6%, 20%);
   --background-4: hsl(220, 6%, 32%);
   --background-5: hsl(220, 5%, 42%);
 
-  --foreground-3: hsl(220, 5%, 42%);
-  --foreground-2: hsl(220, 5%, 61%);
-  --foreground-1: hsl(40, 9%, 78%);
+  --foreground-3: hsl(220, 5%, 48%);
+  --foreground-2: hsl(220, 5%, 66%);
+  --foreground-1: hsl(40, 10%, 84%);
   --foreground-0: hsl(40, 16%, 94%);
 
   --accent-0: hsl(220, 42%, 24%);
@@ -257,7 +257,7 @@
   }
 
   .prose {
-    @apply text-foreground-0 w-full max-w-none font-sans text-lg leading-relaxed;
+    @apply text-foreground-1 w-full max-w-none font-sans text-base leading-7;
   }
 
   .prose a {
@@ -273,15 +273,15 @@
   }
 
   .prose h2 {
-    @apply text-foreground-0 font-display mt-14 mb-5 scroll-mt-28 text-3xl leading-tight font-semibold tracking-tight;
+    @apply text-foreground-0 font-display mt-18 mb-6 border-l-4 border-accent-1 pl-4 scroll-mt-28 text-4xl leading-tight font-semibold tracking-tight;
   }
 
   .prose h3 {
-    @apply text-foreground-0 font-display mt-10 mb-3 scroll-mt-28 text-2xl leading-snug font-semibold;
+    @apply text-foreground-0 font-display mt-12 mb-4 scroll-mt-28 text-2xl leading-tight font-semibold;
   }
 
   .prose h4 {
-    @apply text-foreground-0 font-display mt-8 mb-2 text-xl font-semibold;
+    @apply text-accent-2 font-display mt-8 mb-3 text-xl leading-snug font-semibold;
   }
 
   .prose h5 {
@@ -293,16 +293,30 @@
   }
 
   .prose p {
-    @apply my-6 font-sans text-foreground-1;
+    @apply my-5 font-sans text-foreground-1;
   }
 
   .prose p:first-child {
     @apply mt-0;
   }
 
+  .prose p + p {
+    @apply mt-5;
+  }
+
+  .prose p + :is(ul, ol, blockquote, pre, table, hr, div, a),
+  .prose :is(ul, ol, blockquote, pre, table, hr, div, a) + p,
+  .prose :is(ul, ol, blockquote, pre, table, hr, div, a) + :is(ul, ol, blockquote, pre, table, hr, div, a) {
+    @apply mt-7;
+  }
+
+  .prose strong {
+    @apply font-semibold text-foreground-0;
+  }
+
   .prose ul,
   .prose ol {
-    @apply my-6 space-y-2;
+    @apply my-0 space-y-2;
   }
 
   .prose ul {
@@ -314,7 +328,15 @@
   }
 
   .prose li {
-    @apply font-sans leading-relaxed text-foreground-1;
+    @apply font-sans leading-7 text-foreground-1;
+  }
+
+  .prose li::marker {
+    @apply text-foreground-3;
+  }
+
+  .prose li + li {
+    @apply mt-1;
   }
 
   .prose li ul,
@@ -323,11 +345,11 @@
   }
 
   .prose blockquote {
-    @apply my-8 rounded-lg border border-border/80 bg-background-1 px-6 py-5 text-foreground-0;
+    @apply my-0 rounded-lg border border-border/80 bg-background-1 px-6 py-5 text-foreground-0;
   }
 
   .prose blockquote p {
-    @apply my-0;
+    @apply my-0 text-foreground-0;
   }
 
   .prose blockquote h2,
@@ -338,7 +360,7 @@
   }
 
   .prose code {
-    @apply rounded-sm bg-background-2 px-2 py-0.5 font-mono text-sm font-medium text-foreground-0;
+    @apply rounded-sm bg-background-2 px-2 py-0.5 font-mono text-[0.92rem] font-medium text-foreground-0;
   }
 
   .prose pre code {
@@ -346,7 +368,7 @@
   }
 
   .prose pre {
-    @apply my-8 overflow-x-auto rounded-lg border border-border/80 bg-background-1 px-6 py-5 text-base leading-relaxed;
+    @apply my-0 overflow-x-auto rounded-lg border border-border/80 bg-background-2/70 px-6 py-5 text-[0.98rem] leading-7 text-foreground-0;
   }
 
   /* .astro-code {
@@ -354,7 +376,7 @@
     } */
 
   .prose table {
-    @apply my-8 w-full overflow-hidden rounded-lg border border-border/80 bg-background-1 font-sans text-base;
+    @apply my-0 w-full overflow-hidden rounded-lg border border-border/80 bg-background-1 font-sans text-base;
   }
 
   .prose th {
@@ -370,15 +392,15 @@
   }
 
   .prose img {
-    @apply my-8 rounded-lg border border-border/80;
+    @apply my-0 rounded-lg border border-border/80;
   }
 
   .prose iframe {
-    @apply my-8 aspect-video w-full rounded-lg border border-border/80;
+    @apply my-0 aspect-video w-full rounded-lg border border-border/80;
   }
 
   .prose hr {
-    @apply my-12 border-border/80;
+    @apply my-0 border-border/80;
   }
 }
 
