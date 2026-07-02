@@ -118,39 +118,41 @@ const resolvedMediaAlt = mediaAlt ?? `${resolvedTitle} preview`;
 const previewPath = pathname === "/" ? hostname : `${hostname}${pathname}`;
 ---
 
-<a
-  href={url}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="group flex w-full min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-2 no-underline transition-colors hover:bg-background-0 sm:flex-row sm:items-stretch"
-  aria-label={`Open ${resolvedTitle}`}
->
-  <div class="flex min-w-0 flex-1 flex-col justify-between self-stretch">
-    <div class="min-w-0">
-      <h3 class="m-0! text-balance text-lg leading-none text-foreground-1 transition-colors group-hover:text-accent-1">
+<div class="my-4">
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="not-prose group mt-0! mb-7! flex w-full min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-2 no-underline transition-colors hover:bg-background-0 sm:flex-row sm:items-stretch"
+    aria-label={`Open ${resolvedTitle}`}
+  >
+    <div class="flex min-w-0 flex-1 flex-col gap-2 self-stretch p-1 sm:gap-2.5 sm:pr-2">
+      <h3
+        class="m-0! line-clamp-2 text-balance text-lg leading-tight text-foreground-1 transition-colors group-hover:text-accent-1"
+      >
         {resolvedTitle}
       </h3>
 
-      <p class="my-0! mt-2! line-clamp-2 text-sm leading-snug text-foreground-3 md:text-sm">
+      <p class="m-0! line-clamp-2 text-sm leading-snug text-foreground-3 md:text-sm">
         {resolvedDescription}
       </p>
-    </div>
 
-    <div class="m-0! mt-2! flex min-w-0 items-center gap-2 text-sm text-foreground-1">
-      <span class="min-w-0 truncate">{previewPath}</span>
-    </div>
-  </div>
-
-  {
-    resolvedImage && (
-      <div class="hidden shrink-0 overflow-hidden rounded-md sm:ml-auto sm:flex sm:h-auto sm:w-36 sm:self-stretch md:w-44">
-        <img
-          src={resolvedImage}
-          alt={resolvedMediaAlt}
-          loading="lazy"
-          class="block h-full w-full rounded-none! border-0! my-0! object-cover"
-        />
+      <div class="m-0! min-w-0 pt-0.5 text-sm leading-none text-foreground-1">
+        <span class="block min-w-0 truncate">{previewPath}</span>
       </div>
-    )
-  }
-</a>
+    </div>
+
+    {
+      resolvedImage && (
+        <div class="hidden shrink-0 overflow-hidden rounded-md mt-0! sm:ml-auto sm:flex sm:w-36 sm:self-stretch md:w-44">
+          <img
+            src={resolvedImage}
+            alt={resolvedMediaAlt}
+            loading="lazy"
+            class="block h-full w-full rounded-md! border-0! my-0! object-cover"
+          />
+        </div>
+      )
+    }
+  </a>
+</div>
