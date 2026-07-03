@@ -24,7 +24,8 @@
   "[mdx]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.rumdl": "explicit"
-    }
+    },
+    "editor.defaultFormatter": "rvben.rumdl"
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
