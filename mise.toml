@@ -3,6 +3,7 @@ github-cli = "latest"
 node = "lts"
 pnpm = "latest"
 prek = "latest"
+rtk = "latest"
 rumdl = "latest"
 uv = "latest"
 
