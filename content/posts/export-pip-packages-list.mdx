@@ -9,8 +9,10 @@ tags:
   - python-module
 description: Export the list of external python packages using Python
 category: Technology
-cover: "./images/python.png"
+cover: "./cover/python.png"
 coverAlt: Default image
+ogImage: "./og/python.png"
+ogImageAlt: Default image
 ---
 
 Sometimes while I start with a new project, I end up playing around with different external packages which I don't keep track of. To list all the pip packages, we can use `pip list` in the terminal. But it won't generate a `requirements.txt` file. We can use `pip freeze > requirements.txt` to generate it but it also contains the fixed version of the packages. I don't want that. So, here is a simple way to generate `requirements.txt` file that contains only the package name.

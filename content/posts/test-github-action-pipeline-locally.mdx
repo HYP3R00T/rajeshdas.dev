@@ -9,18 +9,19 @@ tags:
   - act
 description: Learn how to test and develop GitHub Action workflow locally using `act`.
 category: Technology
-cover: "./images/github_action.png"
+cover: "./cover/github_action.png"
 coverAlt: GitHub Action workflow illustration
+ogImage: "./og/github_action.png"
+ogImageAlt: GitHub Action workflow illustration
 ---
 
 import { Image } from 'astro:assets';
-import Cycle from '@posts/images/github_action_development_cycle.png';
 
 ## A genuine problem
 
 Recently, I was assigned to develop a workflow that will deploy the documentation whenever we push some changed to the `main` branch. The traditional way to develop GitHub Action pipeline is as following.
 
-![GitHub Action Development Cycle](./images/github_action_development_cycle.png)
+![GitHub Action Development Cycle](./cover/github_action_development_cycle.png)
 
 The problem is that we won't know what's wrong with our pipeline, unless we push it to GitHub and trigger the pipeline. This is not at all the best way to develop the pipeline.
 
