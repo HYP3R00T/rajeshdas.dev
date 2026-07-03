@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -33,24 +34,46 @@ const modules = (allEntries as Array<any>)
 >
   <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
     <div class="mx-auto w-full max-w-site">
-      <a href="/learn/" class="inline-flex items-center gap-2 rounded-md border border-border bg-background-1 px-3 py-2 text-sm text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1">
-        <Icon name="arrow-left" class="size-4" />
-        Learn
-      </a>
+      <section class="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16" aria-label="Skill map modules">
+        <div class="lg:sticky lg:top-36 lg:self-start">
+          <a href="/learn/" class="inline-flex items-center gap-2 rounded-md border border-border bg-background-1 px-3 py-2 text-sm text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1">
+            <Icon name="arrow-left" class="size-4" />
+            Learn
+          </a>
 
-      <header class="mt-12 max-w-4xl">
-        <h1
-          class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl"
-          transition:name={`skill-map-title-${skillMapSlug}`}
-        >
-          {skillMap.data.title}
-        </h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1">{skillMap.data.description}</p>
-      </header>
+          <header class="mt-12 max-w-4xl">
+            <h1
+              class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl"
+              transition:name={`skill-map-title-${skillMapSlug}`}
+            >
+              {skillMap.data.title}
+            </h1>
+            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1">{skillMap.data.description}</p>
+          </header>
 
-      <section aria-labelledby="map-modules" class="mt-14 grid gap-8 lg:grid-cols-[0.72fr_1fr] lg:gap-16">
-        <h2 id="map-modules" class="font-display text-3xl leading-tight text-foreground-0 md:text-4xl">Modules</h2>
-        <RoadmapList skillMap={skillMap} modules={modules} />
+          {
+            skillMap.data.cover && (
+              <div
+                class="mt-10 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3"
+                transition:name={`skill-map-cover-${skillMapSlug}`}
+              >
+                <div class="aspect-video overflow-hidden rounded-md bg-background-0 lg:min-h-64">
+                  <Image
+                    src={skillMap.data.cover}
+                    alt={skillMap.data.coverAlt || skillMap.data.title}
+                    class="h-full w-full object-cover"
+                    widths={[720, 960, 1200]}
+                    sizes="(min-width: 1024px) 40rem, calc(100vw - 2rem)"
+                  />
+                </div>
+              </div>
+            )
+          }
+        </div>
+
+        <div class="lg:pt-28">
+          <RoadmapList skillMap={skillMap} modules={modules} />
+        </div>
       </section>
     </div>
   </section>

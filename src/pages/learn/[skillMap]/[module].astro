@@ -148,20 +148,6 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
               )
             }
 
-            {
-              moduleEntry.data.prerequisites.length > 0 && (
-                <details class="mt-5 shrink-0 rounded-lg border border-border/80 bg-background-1 p-5">
-                  <summary class="cursor-pointer font-mono text-xs text-foreground-3 uppercase transition-colors hover:text-accent-1">
-                    Before you start
-                  </summary>
-                  <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-foreground-1">
-                    {moduleEntry.data.prerequisites.map((item: string) => (
-                      <li>{item}</li>
-                    ))}
-                  </ul>
-                </details>
-              )
-            }
           </aside>
 
           <article class="order-1 min-w-0 lg:order-2">

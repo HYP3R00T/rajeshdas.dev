@@ -12,7 +12,10 @@ const cover = map.data.cover;
   href={href}
   class="group grid h-full min-w-0 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3 transition-colors hover:bg-background-0 lg:grid-cols-2 lg:gap-4"
 >
-  <div class="aspect-video overflow-hidden rounded-md bg-background-1 lg:aspect-auto lg:min-h-56">
+  <div
+    class="aspect-video overflow-hidden rounded-md bg-background-1 lg:aspect-auto lg:min-h-56"
+    transition:name={`skill-map-cover-${getSkillMapSlug(map)}`}
+  >
     {
       cover ? (
         <Image
