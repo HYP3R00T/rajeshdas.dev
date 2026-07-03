@@ -14,6 +14,8 @@ const posts = defineCollection({
       tags: z.array(z.string()).default([]),
       cover: image(),
       coverAlt: z.string().optional(),
+      ogImage: image().optional(),
+      ogImageAlt: z.string().optional(),
     }),
 })
 

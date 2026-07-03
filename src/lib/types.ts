@@ -6,7 +6,7 @@ export interface HeadSEOProps {
   title: string
   description: string
   image: string | ImageMetadata
-  imageAlt: string
+  imageAlt?: string
   contentType: string
   noIndex?: boolean
 }
