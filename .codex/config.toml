@@ -1,0 +1,8 @@
+[features]
+rmcp_client = true
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+
+[mcp_servers.figma.tools.use_figma]
+approval_mode = "approve"
