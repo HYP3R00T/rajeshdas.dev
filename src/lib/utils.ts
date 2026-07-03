@@ -76,8 +76,12 @@ export function formatMonthYearRange(startDate?: Date, endDate?: Date, locale = 
   return endText
 }
 
-export function estimateReadTime(text: string): number {
+export function estimateReadTime(text?: string | null): number {
+  if (!text) {
+    return 1
+  }
+
   const wordsPerMinute = 200
-  const wordCount = text.split(/\s+/).length
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length
   return Math.max(1, Math.ceil(wordCount / wordsPerMinute))
 }
