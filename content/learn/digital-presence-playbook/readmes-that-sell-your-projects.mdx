@@ -1,0 +1,117 @@
+---
+kind: module
+title: READMEs That Sell Your Projects
+description: A practical guide to writing GitHub READMEs that clearly explain what a project does, why it matters, how it looks, and how to use it.
+status: ready
+order: 3
+tags:
+  - github
+  - documentation
+  - open-source
+summary: "This module explains what makes a README effective: a clear headline, useful description, relevant badges, a strong visual snapshot, feature list, usage guidance, and when to move longer material into a dedicated docs site."
+progressStatus: completed
+prerequisites:
+  - github-that-gets-you-hired
+---
+
+A README is usually the first real product explanation a visitor sees. Before they run your code, star the repository, or decide whether the project is worth their time, they read the README.
+
+That means the README is not just a formality. It is a decision-making surface. A good one helps people understand what the project is, why it exists, what it gives them, and how to start using it without confusion.
+
+GitHub's own documentation says a repository README should explain what the project does, why it is useful, how users can get started, where to get help, and who maintains it.
+
+<LinkPreview url="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" />
+
+## What makes a README effective
+
+An effective README reduces uncertainty. It answers the most important questions quickly and makes the next step obvious.
+
+A weak README makes visitors work too hard. It hides the purpose behind a clever project name, dumps setup details before context, or assumes the reader already understands the value.
+
+A strong README gives the project a clear title and positioning, explains what it actually does, shows the main capabilities, tells people how to use it, and points to help or deeper documentation when needed. The key idea is simple: it removes uncertainty instead of adding more of it.
+
+## Start with a clear headline and short tagline
+
+The first thing people should see is the project name and a short line that explains what it is. This matters because many projects have names that sound interesting but do not explain the purpose.
+
+A good headline section should make the reader understand, within a few seconds, what category of project this is and why they should care. The tagline should not be vague or decorative. It should explain the project in plain language.
+
+For example, a stronger opening is not just a name like `Cheatsheetify`, but something that quickly clarifies what it does, such as a tool that turns command-line help and manuals into readable cheat sheets.
+
+If your project needs badges, use them deliberately. Badges can improve the README when they answer quick trust questions: is the build passing, is there a current release, what is the license, is documentation available, is the package published. That is where badges help.
+
+Where people go wrong is turning the top of the README into a wall of shiny labels. Too many badges make the project feel noisy and harder to scan. A good rule is that every badge should earn its place by providing useful signal in one glance. If it is decorative, redundant, or only interesting to you as the author, it probably does not belong there.
+
+## Explain what the project actually does
+
+Right after the headline, the README should explain the project clearly. Many repositories fail here because they assume the name is enough, or they describe the implementation instead of the user value.
+
+A good description answers simple questions. What is this project? Who is it for? What problem does it solve? What makes it useful?
+
+This description should be written for a person seeing the project for the first time. That means you should prefer clarity over internal jargon. If someone can read the introduction and still not understand what the project does, the README is not doing its job.
+
+## Add a visual snapshot when it helps the project land faster
+
+A strong visual can go a long way in a README. If the project has any visual surface at all, such as a website, terminal UI, dashboard, CLI output, interface, workflow screen, or architecture diagram, showing it early can make the project easier to understand and more persuasive.
+
+This matters because people are influenced by how quickly they can picture the thing. A screenshot, terminal capture, product image, or architecture diagram often explains more in a few seconds than a long paragraph can.
+
+The key is relevance. The image should help the reader understand the project better, not just decorate the page. For a product, show the product. For a CLI tool, show the real command output. For an infrastructure or systems project, an architecture diagram can be more useful than a generic screenshot.
+
+A good visual usually belongs early in the README, after the title, badges, and short description. At that point the reader knows what the project is, and the visual helps make it concrete.
+
+If you add an image, keep it clean and intentional. Use something readable, current, and representative of the actual project experience. Do not use random stock art or unrelated visuals just because the README feels empty without an image.
+
+## Show the main features clearly
+
+Once the reader understands the project at a high level, the next useful thing is a feature list. This is where you make the value concrete.
+
+The feature list should not be filler. It should enumerate the important capabilities the project provides, the things a user can actually do with it, or the reasons someone would choose it over a weaker alternative.
+
+A good feature list helps a reader scan quickly and say, "Yes, this has the things I need," or, "No, this is not for me." That is useful in both directions.
+
+Keep the list focused. Highlight the meaningful capabilities, not every tiny implementation detail.
+
+## Include a usage guide, not just contributor setup
+
+One of the most common README mistakes is treating the README like a contributor onboarding file instead of a user-facing guide.
+
+Most visitors first want to know how to use the project, not how to clone it, install dev dependencies, and start editing source files. That contributor material may still matter, but it should not dominate the README if the project is meant to be used by others.
+
+A strong README shows how the project is used in practice. That might mean a command example, a small workflow, a basic configuration example, a short quickstart, or a screenshot of the main flow. The important thing is that a user can understand how to get value from the project.
+
+If local development or contribution instructions are needed, place them later in the README or move them to `CONTRIBUTING.md`.
+
+## Make the next step obvious
+
+A visitor should never finish a README and wonder what to do next. Good READMEs create a clear path forward.
+
+The next step depends on the project, but it should be obvious. That might mean installing it, trying a quick example, reading the docs, opening a live demo, or following an API reference. What matters is that the reader does not need to guess where to go next.
+
+This is where links matter. GitHub recommends relative links inside repositories because they work better for readers browsing the code and for people cloning the project.
+
+## Keep long material in dedicated documentation
+
+A README should be strong, but it should not try to become your entire documentation system. GitHub's documentation explicitly notes that a README should contain what users need to get started, while longer documentation is better suited to a wiki or other dedicated documentation surface.
+
+If your project has many workflows, integrations, commands, APIs, or advanced configuration paths, move that detail into a dedicated docs site and let the README act as the front door.
+
+That is usually the right move when the README starts becoming too long, too dense, or too hard to scan.
+
+Good documentation site options include Starlight for Astro-based documentation, VitePress for fast Markdown-driven docs, Docusaurus for larger structured doc systems with versioning, and MkDocs for Markdown-first project documentation. The right choice depends on your stack and how much documentation surface the project actually needs.
+
+<LinkPreview url="https://starlight.astro.build/" />
+<LinkPreview url="https://vitepress.dev/" />
+<LinkPreview url="https://zensical.org/" />
+
+## A practical README structure
+
+A simple structure that works for many open-source projects is: project name, one-line tagline, relevant badges, a clear description of what the project does, then a visual snapshot if the project benefits from one, followed by key features, quick usage guidance, and links to deeper documentation or support if needed. Contribution and development material can come later or live in separate files.
+
+You do not need every section for every project. The point is not to follow a template blindly. The point is to make the project understandable and usable.
+
+## A simple final check
+
+Before you call a README good, make sure a new visitor can understand the project within a few seconds, see why it is useful, find the important features, and know what to do next. Make sure the badges add trust instead of clutter, and make sure the README shows how to use the project rather than only how to develop it. If the project needs much more explanation, move that into proper documentation instead of forcing the README to carry everything.
+
+That is the standard. A good README reduces confusion, builds trust, and makes the project easier to adopt.
