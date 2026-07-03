@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getModuleSkillMapSlug, getModuleSlug } from "@/lib/learn";
 
 const { module, href, index, active = false } = Astro.props;
 const title = module.data?.title ?? module.title;
@@ -11,6 +12,7 @@ const progressLabels: Record<string, string> = {
 };
 const showProgressStatus = progressStatus !== "completed";
 const progressLabel = progressLabels[progressStatus] ?? progressStatus;
+const transitionName = `module-title-${getModuleSkillMapSlug(module)}-${getModuleSlug(module)}`;
 ---
 
 <a
@@ -21,7 +23,10 @@ const progressLabel = progressLabels[progressStatus] ?? progressStatus;
     <p class="font-mono text-xs tracking-[0.24em] text-accent-1 uppercase">{String(index + 1).padStart(2, "0")}</p>
     <div>
       <div class="flex flex-wrap items-center gap-3">
-        <h3 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1">{title}</h3>
+        <h3
+          class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1"
+          transition:name={transitionName}
+        >{title}</h3>
         {
           showProgressStatus && (
             <span class="inline-flex rounded-md border border-accent-1/35 bg-accent-1/10 px-2 py-1 text-xs font-medium text-accent-1">

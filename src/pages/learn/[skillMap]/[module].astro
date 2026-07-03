@@ -6,6 +6,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { getModuleSkillMapSlug, getModuleSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn";
+import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
 import { SITE } from "@data/config";
 
 export async function getStaticPaths() {
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
 
 const { skillMap, moduleEntry } = Astro.props as { skillMap: any; moduleEntry: any };
 const skillMapSlug = getSkillMapSlug(skillMap);
+const moduleSlug = getModuleSlug(moduleEntry);
 const allEntries = (await getCollection("learn")) as Array<any>;
 const modules = allEntries
   .filter(
@@ -45,7 +47,10 @@ const progressLabels: Record<string, string> = {
 const showProgressStatus = moduleEntry.data.progressStatus !== "completed";
 const progressLabel = progressLabels[moduleEntry.data.progressStatus] ?? moduleEntry.data.progressStatus;
 const moduleCover = moduleEntry.data.cover;
-const sectionCount = visibleHeadings.length;
+const moduleReadTime = estimateReadTime(moduleEntry.body);
+const modulePublishedAt = moduleEntry.data.pubDatetime;
+const moduleAuthor = moduleEntry.data.author || SITE.author;
+const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
 ---
 
 <BaseLayout
@@ -79,19 +84,25 @@ const sectionCount = visibleHeadings.length;
           >
             <div class="shrink-0 rounded-lg border border-border/80 bg-background-1 p-5">
               <div class="space-y-5">
+                {
+                  modulePublishedAt && (
+                    <div>
+                      <p class="font-mono text-xs text-foreground-3 uppercase">Published</p>
+                      <time class="mt-2 block text-sm text-foreground-1" datetime={modulePublishedAt.toISOString()}>
+                        {formatDateUppercase(modulePublishedAt)}
+                      </time>
+                    </div>
+                  )
+                }
+
                 <div>
-                  <p class="font-mono text-xs text-foreground-3 uppercase">Format</p>
-                  <p class="mt-2 text-sm text-foreground-1">Learning module</p>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Read time</p>
+                  <p class="mt-2 text-sm text-foreground-1">{moduleReadTime} min</p>
                 </div>
 
                 <div>
-                  <p class="font-mono text-xs text-foreground-3 uppercase">Status</p>
-                  <p class="mt-2 text-sm text-foreground-1">{progressLabel}</p>
-                </div>
-
-                <div>
-                  <p class="font-mono text-xs text-foreground-3 uppercase">Sections</p>
-                  <p class="mt-2 text-sm text-foreground-1">{sectionCount}</p>
+                  <p class="font-mono text-xs text-foreground-3 uppercase">Author</p>
+                  <p class="mt-2 text-sm text-foreground-1">{moduleAuthor}</p>
                 </div>
               </div>
 
@@ -157,6 +168,7 @@ const sectionCount = visibleHeadings.length;
             <header>
               <h1
                 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl xl:text-7xl"
+                transition:name={moduleTitleTransitionName}
               >
                 {moduleEntry.data.title}
               </h1>

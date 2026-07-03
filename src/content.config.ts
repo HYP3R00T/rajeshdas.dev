@@ -22,6 +22,8 @@ const learnBaseSchema = z.object({
   description: z.string(),
   status: z.enum(["ready", "draft", "planned"]),
   order: z.number(),
+  pubDatetime: z.date().optional(),
+  author: z.string().optional(),
   tags: z.array(z.string()).default([]),
 })
 

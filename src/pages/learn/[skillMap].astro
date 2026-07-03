@@ -39,7 +39,10 @@ const modules = (allEntries as Array<any>)
       </a>
 
       <header class="mt-12 max-w-4xl">
-        <h1 class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl">
+        <h1
+          class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl"
+          transition:name={`skill-map-title-${skillMapSlug}`}
+        >
           {skillMap.data.title}
         </h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1">{skillMap.data.description}</p>

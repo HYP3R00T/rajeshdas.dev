@@ -30,7 +30,12 @@ const cover = map.data.cover;
 
   <div class="flex min-h-full min-w-0 flex-col px-1 pt-4 pb-1 lg:px-4 lg:py-3 xl:px-5">
     <div class="flex min-w-0 items-start justify-between gap-6">
-      <h2 class="min-w-0 flex-1 font-display text-xl leading-tight text-foreground-0 xl:text-2xl">{map.data.title}</h2>
+      <h2
+        class="min-w-0 flex-1 font-display text-xl leading-tight text-foreground-0 xl:text-2xl"
+        transition:name={`skill-map-title-${getSkillMapSlug(map)}`}
+      >
+        {map.data.title}
+      </h2>
       <p class="shrink-0 font-mono text-xs tracking-[0.18em] text-foreground-3 uppercase">{moduleCount} module{moduleCount === 1 ? "" : "s"}</p>
     </div>
     <p class="mt-3 mb-6 text-sm leading-relaxed text-foreground-1 md:text-base">{map.data.description}</p>
