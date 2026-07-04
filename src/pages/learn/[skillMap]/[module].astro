@@ -47,8 +47,8 @@ const progressLabels: Record<string, string> = {
 const showProgressStatus = moduleEntry.data.progressStatus !== "completed";
 const progressLabel = progressLabels[moduleEntry.data.progressStatus] ?? moduleEntry.data.progressStatus;
 const moduleCover = moduleEntry.data.cover;
-const moduleOgImage = skillMap.data.cover ?? moduleCover;
-const moduleOgImageAlt = skillMap.data.coverAlt || moduleEntry.data.coverAlt || moduleEntry.data.title;
+const moduleOgImage = moduleEntry.data.ogImage || skillMap.data.ogImage;
+const moduleOgImageAlt = moduleEntry.data.ogImageAlt || skillMap.data.ogImageAlt || moduleEntry.data.title;
 const moduleReadTime = estimateReadTime(moduleEntry.body);
 const modulePublishedAt = moduleEntry.data.pubDatetime;
 const moduleAuthor = moduleEntry.data.author || SITE.author;

@@ -23,13 +23,15 @@ const allEntries = await getCollection("learn");
 const modules = (allEntries as Array<any>)
   .filter((entry) => isModuleEntry(entry) && getModuleSkillMapSlug(entry) === skillMapSlug && entry.data.status === "ready")
   .sort((a, b) => a.data.order - b.data.order);
+const skillMapOgImage = skillMap.data.ogImage;
+const skillMapOgImageAlt = skillMap.data.ogImageAlt || skillMap.data.title;
 ---
 
 <BaseLayout
   title={`${skillMap.data.title} | Learn | ${SITE.title}`}
   description={skillMap.data.description}
-  image={skillMap.data.cover}
-  imageAlt={skillMap.data.coverAlt || skillMap.data.title}
+  image={skillMapOgImage}
+  imageAlt={skillMapOgImageAlt}
   contentType="Article"
 >
   <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">

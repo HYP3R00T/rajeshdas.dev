@@ -36,14 +36,18 @@ const learn = defineCollection({
       learnBaseSchema.extend({
         kind: z.literal("skill-map"),
         outcome: z.string(),
-        cover: image().optional(),
+        cover: image(),
         coverAlt: z.string().optional(),
+        ogImage: image(),
+        ogImageAlt: z.string().optional(),
       }),
       learnBaseSchema.extend({
         kind: z.literal("module"),
         summary: z.string(),
         cover: image().optional(),
         coverAlt: z.string().optional(),
+        ogImage: image().optional(),
+        ogImageAlt: z.string().optional(),
         progressStatus: z.enum(["completed", "work-in-progress", "updated"]).default("completed"),
         progressNote: z.string().optional(),
         prerequisites: z.array(z.string()).default([]),
@@ -63,6 +67,8 @@ const til = defineCollection({
       draft: z.boolean().optional().default(false),
       cover: image().optional(),
       coverAlt: z.string().optional(),
+      ogImage: image().optional(),
+      ogImageAlt: z.string().optional(),
     }),
 })
 
