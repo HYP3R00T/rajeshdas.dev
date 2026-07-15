@@ -17,7 +17,7 @@ interface CarouselProps {
 export default function Carousel({
   label,
   labelId,
-  intervalMs = 5200,
+  intervalMs = 0,
   itemSelector = "[data-carousel-item]",
   className,
   trackClassName,
@@ -34,6 +34,7 @@ export default function Carousel({
     if (!root || !track) return
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const scrollBehavior: ScrollBehavior = prefersReducedMotion ? "auto" : "smooth"
     const getGap = () => Number.parseFloat(window.getComputedStyle(track).columnGap || "0") || 0
     const getStep = () => track.querySelector<HTMLElement>(itemSelector)?.offsetWidth ?? track.clientWidth
 
@@ -44,16 +45,16 @@ export default function Carousel({
       const atStart = track.scrollLeft <= 4
 
       if (direction === 1 && atEnd) {
-        track.scrollTo({ left: 0, behavior: "smooth" })
+        track.scrollTo({ left: 0, behavior: scrollBehavior })
         return
       }
 
       if (direction === -1 && atStart) {
-        track.scrollTo({ left: track.scrollWidth, behavior: "smooth" })
+        track.scrollTo({ left: track.scrollWidth, behavior: scrollBehavior })
         return
       }
 
-      track.scrollBy({ left: step * direction, behavior: "smooth" })
+      track.scrollBy({ left: step * direction, behavior: scrollBehavior })
     }
 
     const previous = root.querySelector<HTMLButtonElement>("[data-carousel-prev]")
@@ -123,7 +124,7 @@ export default function Carousel({
       <section
         ref={trackRef}
         className={cn(
-          "grid auto-cols-[minmax(17rem,86%)] grid-flow-col gap-4 overflow-x-auto px-1 scroll-px-1 scroll-smooth snap-x snap-mandatory pb-1 scrollbar-none sm:auto-cols-[calc((100%-1rem)/2)] lg:auto-cols-[calc((100%-1.5rem)/2)] lg:gap-6 sm:[&::-webkit-scrollbar]:hidden",
+          "grid auto-cols-[minmax(17rem,86%)] grid-flow-col gap-4 overflow-x-auto px-1 scroll-px-1 snap-x snap-mandatory pb-1 scrollbar-none sm:auto-cols-[calc((100%-1rem)/2)] lg:auto-cols-[calc((100%-1.5rem)/2)] lg:gap-6 sm:[&::-webkit-scrollbar]:hidden",
           trackClassName,
         )}
         aria-labelledby={carouselId}

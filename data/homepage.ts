@@ -66,5 +66,6 @@ export const homepageMetrics = [
 
 export const latestVideo = {
   id: "v_rcTD2O-aU",
+  title: "Latest video from Hyperoot",
   channelUrl: "https://www.youtube.com/@hyperoot",
 } as const

@@ -19,14 +19,14 @@ const supportingMetrics = homepageMetrics
   .map((metric) => ({ ...metric, Icon: metricIcons[metric.icon] }));
 ---
 
-<section id="proof" class="px-4 py-16 md:px-8 md:py-20 lg:min-h-svh lg:pt-32 lg:pb-12" data-home-section>
+<section id="proof" class="px-4 py-20 md:px-8 md:py-24 lg:min-h-svh lg:pt-32 lg:pb-16" data-home-section>
   <div
-    class="mx-auto grid w-full max-w-site gap-8 lg:min-h-[calc(100svh-11rem)] xl:grid-cols-[0.27fr_0.73fr] xl:items-center xl:gap-8"
+    class="mx-auto grid w-full max-w-site gap-12 lg:min-h-[calc(100svh-11rem)] xl:grid-cols-[0.3fr_0.7fr] xl:items-center xl:gap-16"
   >
     <div class="max-w-xl xl:self-start xl:pt-16">
       <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Measured proof</p>
       <h2
-        class="mt-4 max-w-md font-display text-4xl leading-tight tracking-tighter text-foreground-0 md:text-5xl xl:text-6xl"
+        class="mt-4 max-w-md font-display text-3xl leading-tight tracking-tighter text-foreground-0 md:text-4xl xl:text-5xl"
       >
         Numbers should explain the work.
       </h2>
@@ -35,14 +35,14 @@ const supportingMetrics = homepageMetrics
       </p>
     </div>
 
-    <div class="grid gap-4">
-      <div class="grid gap-4 lg:grid-cols-2">
+    <div class="grid gap-5">
+      <div class="grid gap-5 lg:grid-cols-2">
         {
           strongMetrics.map((metric) => {
             const MetricIcon = metric.Icon;
 
             return (
-              <article class="group flex min-h-72 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:p-6 xl:min-h-80">
+              <article class="group flex min-h-72 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-6 transition-colors hover:bg-background-0 md:p-7 xl:min-h-80">
                 <div class="flex items-start justify-between gap-6">
                   <div class="rounded-md border border-border/80 bg-background-2 p-2 text-accent-1 transition-colors group-hover:bg-background-3">
                     <MetricIcon class="size-5" stroke-width="1.8" />
@@ -53,11 +53,11 @@ const supportingMetrics = homepageMetrics
                 </div>
 
                 <div class="mt-auto pt-10">
-                  <p class="font-display text-6xl leading-none font-semibold tracking-tighter text-foreground-0 transition-colors group-hover:text-accent-1 md:text-7xl">
+                  <p class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl">
                     {metric.value}
                   </p>
                   <p class="mt-2 font-mono text-xs tracking-widest text-accent-1 uppercase">{metric.unit}</p>
-                  <h3 class="mt-5 max-w-md font-display text-2xl leading-tight text-foreground-0 md:text-3xl">
+                  <h3 class="mt-5 max-w-md font-display text-2xl leading-tight text-foreground-0">
                     {metric.label}
                   </h3>
                   <p class="mt-3 max-w-lg text-sm leading-relaxed text-foreground-2 md:text-base">{metric.detail}</p>
@@ -68,13 +68,13 @@ const supportingMetrics = homepageMetrics
         }
       </div>
 
-      <div class="grid gap-4 md:grid-cols-3">
+      <div class="grid gap-5 md:grid-cols-3">
         {
           supportingMetrics.map((metric) => {
             const MetricIcon = metric.Icon;
 
             return (
-              <article class="group flex min-h-72 flex-col rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:min-h-48">
+              <article class="group flex min-h-72 flex-col rounded-lg border border-border/80 bg-background-1 p-6 transition-colors hover:bg-background-0 md:min-h-52">
                 <div class="flex items-start justify-between gap-6 md:gap-5">
                   <div class="rounded-md border border-border/80 bg-background-2 p-2 text-accent-1 transition-colors group-hover:bg-background-3">
                     <MetricIcon class="size-5 md:size-4" stroke-width="1.9" />
@@ -84,7 +84,7 @@ const supportingMetrics = homepageMetrics
                   </p>
                 </div>
                 <div class="mt-auto pt-10 md:pt-6">
-                  <p class="font-display text-6xl leading-none font-semibold tracking-tighter text-foreground-0 transition-colors group-hover:text-accent-1 md:text-5xl">
+                  <p class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-4xl">
                     {metric.value}
                   </p>
                   <p class="mt-2 font-mono text-xs tracking-widest text-accent-1 uppercase">{metric.unit}</p>
