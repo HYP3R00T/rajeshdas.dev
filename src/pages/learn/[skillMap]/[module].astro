@@ -8,6 +8,8 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { getModuleSkillMapSlug, getModuleSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn";
 import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
 import { SITE } from "@data/config";
+import MobileContentMeta from "@/components/common/MobileContentMeta.astro";
+import DesktopContentToc from "@/components/common/DesktopContentToc";
 
 export async function getStaticPaths() {
   const entries = (await getCollection("learn")) as Array<any>;
@@ -39,7 +41,7 @@ const currentIndex = modules.findIndex((entry) => entry.id === moduleEntry.id);
 const previousModule = currentIndex > 0 ? modules[currentIndex - 1] : null;
 const nextModule = currentIndex >= 0 && currentIndex < modules.length - 1 ? modules[currentIndex + 1] : null;
 const { Content, headings } = await render(moduleEntry);
-const visibleHeadings = headings.filter((heading: { depth: number }) => heading.depth === 2).slice(0, 12);
+const visibleHeadings = headings.filter((heading: { depth: number }) => heading.depth > 1 && heading.depth < 4);
 const progressLabels: Record<string, string> = {
   "work-in-progress": "Work in progress",
   updated: "Updated",
@@ -53,6 +55,13 @@ const moduleReadTime = estimateReadTime(moduleEntry.body);
 const modulePublishedAt = moduleEntry.data.pubDatetime;
 const moduleAuthor = moduleEntry.data.author || SITE.author;
 const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
+const mobileMetaItems = [
+  ...(modulePublishedAt
+    ? [{ label: "Published", value: formatDateUppercase(modulePublishedAt), datetime: modulePublishedAt.toISOString() }]
+    : []),
+  { label: "Read time", value: `${moduleReadTime} min` },
+  { label: "Author", value: moduleAuthor },
+];
 ---
 
 <BaseLayout
@@ -82,7 +91,7 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
           class="grid gap-10 lg:grid-cols-[16rem_minmax(0,44rem)_minmax(0,8rem)] lg:gap-12 xl:grid-cols-[18rem_minmax(0,46rem)_minmax(0,10rem)] xl:gap-16"
         >
           <aside
-            class="order-2 lg:order-1 lg:sticky lg:top-28 lg:flex lg:max-h-[calc(100vh-14rem)] lg:flex-col lg:self-start"
+            class="hidden lg:order-1 lg:sticky lg:top-28 lg:flex lg:h-[calc(100vh-9rem)] lg:flex-col lg:self-start"
           >
             <div class="shrink-0 rounded-lg border border-border/80 bg-background-1 p-5">
               <div class="space-y-5">
@@ -120,7 +129,7 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
                 )
               }
 
-              <Button id="share-button" variant="outline" size="sm" className="mt-6 w-full justify-between">
+              <Button data-share-button variant="outline" size="sm" className="mt-6 w-full justify-between">
                 Share module
                 <Icon name="arrow-up-right" class="size-4" />
               </Button>
@@ -128,25 +137,7 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
 
             {
               visibleHeadings.length > 0 && (
-                <nav
-                  aria-label="Module sections"
-                  class="mt-5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5"
-                >
-                  <p class="font-mono text-xs text-foreground-3 uppercase">Sections</p>
-                  <ol class="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto pr-2">
-                    {visibleHeadings.map((heading: { slug: string; text: string; depth: number }) => (
-                      <li>
-                        <a
-                          href={`#${heading.slug}`}
-                          data-toc-link={heading.slug}
-                          class="block border-l border-transparent py-1 pl-3 text-sm leading-snug text-foreground-2 transition-all duration-200 hover:text-accent-1"
-                        >
-                          {heading.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ol>
-                </nav>
+                <DesktopContentToc client:load headings={visibleHeadings} label="Module sections" />
               )
             }
 
@@ -155,15 +146,23 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
           <article class="order-1 min-w-0 lg:order-2">
             <header>
               <h1
-                class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl xl:text-7xl"
+                class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 md:text-5xl xl:text-6xl"
                 transition:name={moduleTitleTransitionName}
               >
                 {moduleEntry.data.title}
               </h1>
-              <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1 md:text-xl">
+              <p class="mt-7 max-w-2xl text-lg leading-relaxed text-foreground-2 md:text-xl">
                 {moduleEntry.data.description}
               </p>
             </header>
+
+            <MobileContentMeta
+              items={mobileMetaItems}
+              tags={moduleEntry.data.tags}
+              headings={visibleHeadings}
+              sectionsLabel="Module sections"
+              shareLabel="Share module"
+            />
 
             {
               showProgressStatus && (
@@ -200,7 +199,7 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
               )
             }
 
-            <div class="prose mt-14 min-w-0 max-w-none">
+            <div class="prose mt-16 min-w-0 max-w-none">
               <Content />
             </div>
 
@@ -248,32 +247,31 @@ const moduleTitleTransitionName = `module-title-${skillMapSlug}-${moduleSlug}`;
 
 <script>
   const setupShareButton = () => {
-    const button = document.getElementById("share-button");
-    if (!button) return;
+    document.querySelectorAll<HTMLElement>("[data-share-button]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const url = window.location.href;
+        const title = document.title;
 
-    button.addEventListener("click", async () => {
-      const url = window.location.href;
-      const title = document.title;
-
-      if (navigator.share) {
-        try {
-          await navigator.share({ title, url });
-        } catch {
-          // Sharing was dismissed; no visible recovery is needed.
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, url });
+          } catch {
+            // Sharing was dismissed; no visible recovery is needed.
+          }
+          return;
         }
-        return;
-      }
 
-      try {
-        await navigator.clipboard.writeText(url);
-        const originalText = button.innerHTML;
-        button.innerHTML = "Copied";
-        window.setTimeout(() => {
-          button.innerHTML = originalText;
-        }, 1600);
-      } catch {
-        button.setAttribute("data-copy-failed", "true");
-      }
+        try {
+          await navigator.clipboard.writeText(url);
+          const originalText = button.innerHTML;
+          button.innerHTML = "Copied";
+          window.setTimeout(() => {
+            button.innerHTML = originalText;
+          }, 1600);
+        } catch {
+          button.setAttribute("data-copy-failed", "true");
+        }
+      });
     });
   };
 

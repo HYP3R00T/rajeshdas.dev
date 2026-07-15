@@ -220,7 +220,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 scroll-smooth;
+    @apply border-border outline-ring/50;
   }
 
   body {
@@ -228,7 +228,22 @@
   }
 
   html {
-    @apply font-sans;
+    @apply scroll-smooth font-sans;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   ::selection {
@@ -257,7 +272,7 @@
   }
 
   .prose {
-    @apply text-foreground-1 w-full max-w-none font-sans text-base leading-7;
+    @apply text-foreground-2 w-full max-w-none font-sans text-base leading-7;
   }
 
   .prose a {
@@ -269,15 +284,15 @@
   }
 
   .prose h1 {
-    @apply text-foreground-0 font-display mt-0 mb-6 text-5xl leading-tight font-semibold tracking-tight;
+    @apply text-foreground-0 font-display mt-0 mb-6 text-4xl leading-tight font-semibold tracking-tight md:text-5xl;
   }
 
   .prose h2 {
-    @apply text-foreground-0 font-display mt-18 mb-6 border-l-4 border-accent-1 pl-4 scroll-mt-28 text-4xl leading-tight font-semibold tracking-tight;
+    @apply text-foreground-0 font-display mt-18 mb-6 border-l-4 border-accent-1 pl-4 scroll-mt-28 text-3xl leading-tight font-semibold tracking-tight;
   }
 
   .prose h3 {
-    @apply text-foreground-0 font-display mt-12 mb-4 scroll-mt-28 text-2xl leading-tight font-semibold;
+    @apply text-foreground-1 font-display mt-12 mb-4 scroll-mt-28 text-2xl leading-tight font-semibold;
   }
 
   .prose h4 {
@@ -285,15 +300,31 @@
   }
 
   .prose h5 {
-    @apply text-foreground-0 mt-6 mb-1 text-base font-semibold tracking-wide uppercase;
+    @apply text-foreground-1 mt-6 mb-1 text-base font-semibold tracking-wide uppercase;
   }
 
   .prose h6 {
-    @apply text-foreground-0 mt-6 mb-1 text-sm font-semibold tracking-wide uppercase;
+    @apply text-foreground-1 mt-6 mb-1 text-sm font-semibold tracking-wide uppercase;
+  }
+
+  .prose :is(h2, h3, h4) {
+    @apply relative;
+  }
+
+  .prose .heading-permalink {
+    @apply ml-2 inline-flex text-foreground-3 no-underline opacity-0 transition-opacity hover:text-accent-1 focus-visible:opacity-100;
+  }
+
+  .prose .heading-permalink::before {
+    content: "#";
+  }
+
+  .prose :is(h2, h3, h4):hover .heading-permalink {
+    @apply opacity-100;
   }
 
   .prose p {
-    @apply my-5 font-sans text-foreground-1;
+    @apply my-5 font-sans text-foreground-2;
   }
 
   .prose p:first-child {
@@ -328,7 +359,7 @@
   }
 
   .prose li {
-    @apply font-sans leading-7 text-foreground-1;
+    @apply font-sans leading-7 text-foreground-2;
   }
 
   .prose li::marker {
@@ -345,11 +376,11 @@
   }
 
   .prose blockquote {
-    @apply my-0 rounded-lg border border-border/80 bg-background-1 px-6 py-5 text-foreground-0;
+    @apply my-0 rounded-lg border border-border/80 bg-background-1 px-6 py-5 text-foreground-1;
   }
 
   .prose blockquote p {
-    @apply my-0 text-foreground-0;
+    @apply my-0 text-foreground-1;
   }
 
   .prose blockquote h2,
@@ -357,6 +388,34 @@
   .prose blockquote h4,
   .prose blockquote h5 {
     @apply mt-0;
+  }
+
+  .prose .callout {
+    @apply my-7 grid grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-lg border bg-background-1 px-5 py-4;
+  }
+
+  .prose .callout-title {
+    @apply m-0 font-mono text-sm font-semibold tracking-normal;
+  }
+
+  .prose .callout-icon {
+    @apply mt-0.5 size-5 shrink-0;
+  }
+
+  .prose .callout-content {
+    @apply min-w-0;
+  }
+
+  .prose .callout-body {
+    @apply mt-2 text-foreground-1;
+  }
+
+  .prose .callout-body > :first-child {
+    @apply mt-0;
+  }
+
+  .prose .callout-body > :last-child {
+    @apply mb-0;
   }
 
   .prose code {
@@ -384,7 +443,7 @@
   }
 
   .prose td {
-    @apply border-border/80 border-b px-4 py-3 align-top text-foreground-1;
+    @apply border-border/80 border-b px-4 py-3 align-top text-foreground-2;
   }
 
   .prose tr:last-child td {

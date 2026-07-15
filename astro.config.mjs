@@ -7,13 +7,14 @@ import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "astro/config"
 import AutoImport from "astro-auto-import"
 import icon from "astro-icon"
+import rehypeHeadingLinks from "./src/lib/rehype-heading-links.mjs"
 
 export default defineConfig({
   site: "https://rajeshdas.dev",
   prefetch: true,
 
   markdown: {
-    processor: unified({}),
+    processor: unified({ rehypePlugins: [rehypeHeadingLinks] }),
     shikiConfig: {
       theme: "poimandres",
     },
@@ -34,7 +35,11 @@ export default defineConfig({
       },
     }),
     AutoImport({
-      imports: ["./src/components/core/Video.astro", "./src/components/common/LinkPreview.astro"],
+      imports: [
+        "./src/components/core/Video.astro",
+        "./src/components/common/LinkPreview.astro",
+        "./src/components/common/Callout.tsx",
+      ],
     }),
     mdx(),
     react(),

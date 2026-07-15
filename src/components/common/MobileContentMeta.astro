@@ -1,0 +1,82 @@
+---
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Icon } from "astro-icon/components";
+
+interface MetaItem {
+  label: string;
+  value: string;
+  datetime?: string;
+}
+
+interface Heading {
+  slug: string;
+  text: string;
+  depth: number;
+}
+
+interface Props {
+  items: MetaItem[];
+  tags?: string[];
+  headings?: Heading[];
+  sectionsLabel?: string;
+  shareLabel?: string;
+}
+
+const { items, tags = [], headings = [], sectionsLabel = "On this page", shareLabel } = Astro.props as Props;
+---
+
+<aside class="mt-9 rounded-lg border border-border/80 bg-background-1 p-5 lg:hidden" aria-label="Content information">
+  <dl class="grid grid-cols-2 gap-x-6 gap-y-5">
+    {
+      items.map((item) => (
+        <div>
+          <dt class="font-mono text-xs tracking-widest text-foreground-3 uppercase">{item.label}</dt>
+          <dd class="mt-2 text-sm text-foreground-1">
+            {item.datetime ? <time datetime={item.datetime}>{item.value}</time> : item.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  {
+    tags.length > 0 && (
+      <div class="mt-5 flex flex-wrap gap-2 border-t border-border/80 pt-5">
+        {tags.map((tag) => (
+          <Badge variant="secondary" className="border border-border/80 bg-background-2 text-foreground-1">
+            {tag}
+          </Badge>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    headings.length > 0 && (
+      <details class="mt-5 border-t border-border/80 pt-5">
+        <summary class="cursor-pointer font-mono text-xs tracking-widest text-foreground-2 uppercase marker:text-foreground-3">
+          {sectionsLabel}
+        </summary>
+        <ol class="mt-4 space-y-3">
+          {headings.map((heading) => (
+            <li class={heading.depth === 3 ? "pl-3" : ""}>
+              <a href={`#${heading.slug}`} class="block border-l border-border py-1 pl-3 text-sm leading-snug text-foreground-2 transition-colors hover:text-accent-1">
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    )
+  }
+
+  {
+    shareLabel && (
+      <Button data-share-button variant="outline" size="sm" className="mt-5 w-full justify-between">
+        {shareLabel}
+        <Icon name="arrow-up-right" class="size-4" />
+      </Button>
+    )
+  }
+</aside>
