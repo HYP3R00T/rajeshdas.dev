@@ -31,7 +31,7 @@ const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b)
       />
 
       <section aria-labelledby="all-til" class="mt-14 md:mt-16">
-        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div class="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <h2 id="all-til" class="sr-only">All notes</h2>
           <nav aria-label="TIL topics" class="flex flex-wrap gap-2">
             <TopicPill href="/til/" label="All" count={notes.length} active />
@@ -39,7 +39,7 @@ const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b)
           </nav>
         </div>
 
-        <div class="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3 xl:gap-5">
+        <div class="grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-3">
           {notes.map((entry) => <TilCard entry={entry} />)}
         </div>
       </section>

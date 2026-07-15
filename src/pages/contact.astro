@@ -27,14 +27,14 @@ const contactRoutes = [
 <BaseLayout title={pageTitle} description={pageDescription}>
   <PageHero>
     <Fragment slot="topLeft">
-      <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+      <h1 class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 sm:text-5xl xl:text-6xl">
         Let&apos;s make the next conversation worth having.
       </h1>
     </Fragment>
 
     <Fragment slot="bottomLeft">
       <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Contact</p>
-      <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+      <p class="mt-5 max-w-lg text-base leading-relaxed text-foreground-2 md:text-lg">
         If you&apos;re hiring, exploring a collaboration, or trying to untangle a systems problem, email and LinkedIn are the cleanest ways to reach me.
       </p>
       <div class="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -55,7 +55,7 @@ const contactRoutes = [
     </Fragment>
 
     <Fragment slot="bottomRight">
-      <div class="grid w-full gap-4 sm:grid-cols-2">
+      <div class="grid w-full gap-6 sm:grid-cols-2">
         {
           contactRoutes.map((route) => (
             <a
@@ -70,7 +70,7 @@ const contactRoutes = [
               </div>
 
               <div>
-                <h2 class="font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl">
+                <h2 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-3xl">
                   {route.label}
                 </h2>
                 <p class="mt-4 text-sm leading-relaxed text-foreground-1 md:text-base">{route.note}</p>

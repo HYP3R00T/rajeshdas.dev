@@ -29,14 +29,14 @@ const recoveryLinks = [
 <BaseLayout title={pageTitle} description={pageDescription}>
   <PageHero>
     <Fragment slot="topLeft">
-      <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+      <h1 class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 sm:text-5xl xl:text-6xl">
         This route fell off the map.
       </h1>
     </Fragment>
 
     <Fragment slot="bottomLeft">
       <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">404</p>
-      <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+      <p class="mt-5 max-w-lg text-base leading-relaxed text-foreground-2 md:text-lg">
         The link may be old, renamed, or quietly retired. Head home if you want the clean reset, or send me a note if this looks like something I should fix.
       </p>
       <div class="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -52,7 +52,7 @@ const recoveryLinks = [
     </Fragment>
 
     <Fragment slot="bottomRight">
-      <div class="grid w-full gap-4 sm:grid-cols-2">
+      <div class="grid w-full gap-6 sm:grid-cols-2">
         {
           recoveryLinks.map((link) => (
             <a
@@ -65,7 +65,7 @@ const recoveryLinks = [
               </div>
 
               <div>
-                <h2 class="font-display text-3xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-4xl">
+                <h2 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-3xl">
                   {link.label}
                 </h2>
                 <p class="mt-4 text-sm leading-relaxed text-foreground-1 md:text-base">{link.note}</p>

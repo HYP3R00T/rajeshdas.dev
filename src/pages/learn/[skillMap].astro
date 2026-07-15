@@ -43,20 +43,20 @@ const skillMapOgImageAlt = skillMap.data.ogImageAlt || skillMap.data.title;
             Learn
           </a>
 
-          <header class="mt-12 max-w-4xl">
+          <header class="mt-14 max-w-4xl">
             <h1
-              class="max-w-3xl font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 md:text-6xl"
+              class="max-w-3xl font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 md:text-5xl"
               transition:name={`skill-map-title-${skillMapSlug}`}
             >
               {skillMap.data.title}
             </h1>
-            <p class="mt-6 max-w-2xl text-lg leading-relaxed text-foreground-1">{skillMap.data.description}</p>
+            <p class="mt-7 max-w-2xl text-lg leading-relaxed text-foreground-2">{skillMap.data.description}</p>
           </header>
 
           {
             skillMap.data.cover && (
               <div
-                class="mt-10 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3"
+                class="mt-12 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3"
                 transition:name={`skill-map-cover-${skillMapSlug}`}
               >
                 <div class="aspect-video overflow-hidden rounded-md bg-background-0 lg:min-h-64">

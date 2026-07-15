@@ -20,14 +20,14 @@ const showAllSkillMaps = otherSkillMaps.length > 0;
 <BaseLayout title={`Learn | ${SITE.title}`} description="Curated technical skill maps for learning what matters, why it matters, and where to go next.">
   <PageHero>
     <Fragment slot="topLeft">
-      <h1 class="font-display text-5xl leading-none font-semibold tracking-tighter text-foreground-0 sm:text-6xl lg:text-5xl xl:text-6xl">
+      <h1 class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 sm:text-5xl xl:text-6xl">
         Learn by following a map, not a pile of links.
       </h1>
     </Fragment>
 
     <Fragment slot="bottomLeft">
       <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest skill map</p>
-      <p class="mt-4 max-w-lg text-base leading-relaxed text-foreground-1 md:text-lg">
+      <p class="mt-5 max-w-lg text-base leading-relaxed text-foreground-2 md:text-lg">
         Curated paths for building practical engineering judgment, one focused module at a time.
       </p>
     </Fragment>
@@ -51,8 +51,8 @@ const showAllSkillMaps = otherSkillMaps.length > 0;
     showAllSkillMaps && (
       <section aria-labelledby="all-skill-maps" class="px-4 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28">
         <div class="mx-auto w-full max-w-site">
-          <h2 id="all-skill-maps" class="font-display text-3xl text-foreground-0 md:text-4xl">All skill maps</h2>
-          <div class="mt-8 grid gap-6 md:grid-cols-2">
+          <h2 id="all-skill-maps" class="font-display text-2xl text-foreground-0 md:text-3xl">All skill maps</h2>
+          <div class="mt-10 grid gap-8 md:grid-cols-2">
             {otherSkillMaps.map((map) => <SkillMapCard map={map} moduleCount={getModuleCount(map)} />)}
           </div>
         </div>
