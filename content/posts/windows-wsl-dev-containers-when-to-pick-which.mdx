@@ -1,0 +1,58 @@
+---
+author: Rajesh
+pubDatetime: 2026-07-10
+title: "Windows, WSL, or Dev Containers? When to Pick Which"
+featured: true
+draft: true
+tags:
+  - windows
+  - wsl
+  - dev-containers
+  - docker
+  - developer-environment
+description: "A practical guide to choosing Windows, WSL, or Dev Containers for a clean and reproducible development workflow."
+category: Technology
+cover: "./cover/docker.png"
+coverAlt: Docker logo
+ogImage: "./og/docker.png"
+ogImageAlt: Docker logo
+---
+
+If I had to reduce it to one line, it would be this: stay on **Windows host** when I need Windows itself, use **WSL** for most daily development, and use **Dev Containers** when reproducibility matters more than simplicity.
+
+For me, **WSL** is the sweet spot on a Windows machine. It gives me a real Linux environment, keeps the host cleaner, and works extremely well for backend development, CLI tooling, scripting, web applications, and most Linux-first stacks. If something goes wrong, it is also much easier to reset and rebuild than a Windows setup that has accumulated years of tools, SDKs, and custom configuration.
+
+### Quick decision guide
+
+| Environment        | Pick it when                                                                                                                                                         | Avoid it when                                                                           |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Windows host**   | I need native Windows apps, Windows SDKs, Windows GUI tooling, or direct access to peripherals like camera, microphone, USB devices, smartcards, or vendor drivers   | The stack is primarily Linux-first and I want a cleaner, more disposable setup          |
+| **WSL**            | I want the best general-purpose Linux development experience on Windows for Node.js, Python, Go, Rust, Java, PHP, Docker-based backend work, CLI tools, and web apps | I need strict per-project isolation or exact environment parity across a team           |
+| **Dev Containers** | I want a reproducible project environment with pinned tools, dependencies, and setup steps that every contributor can share                                          | I want the lowest-friction setup and do not really need container-level reproducibility |
+
+### How I think about it
+
+I stay on **Windows host** when the project depends on Windows-native behavior or tight hardware integration. If I am building a Windows application, using Windows-only SDKs, or relying on peripherals that should work with the least possible friction, Windows is the right place to do the work.
+
+I default to **WSL** for most engineering work. Microsoft recommends keeping Linux-worked files inside the WSL filesystem for better performance, and that alone is a big reason WSL feels better than trying to split a Linux workflow across `C:` and `/mnt/c/`. It gives me the Linux tooling I want without turning the Windows host into a dumping ground for every runtime, package manager, and local dependency.
+
+I use **Dev Containers** when the real problem is not "I need Linux" but "I need the same environment every time." That is where Dev Containers shine. They are great for onboarding, CI parity, multi-service setups, and projects where the team wants fewer "works on my machine" issues. On Windows, I see them less as a replacement for WSL and more as a layer on top of a **WSL-first** workflow.
+
+### The peripheral and device caveat
+
+One place where I still prefer **Windows host** is hardware-dependent development. If the workflow depends on camera, microphone, USB devices, smartcards, serial devices, or vendor-specific drivers, the Windows side is usually the safer default.
+
+That does not mean WSL cannot access devices. It can. But Microsoft's own documentation makes it clear that some of these scenarios need extra setup instead of working natively out of the box. For example, USB access in WSL relies on `usbipd-win`, and Microsoft explicitly notes that USB support is not natively available in WSL. So if the project is tightly coupled to peripherals, I would usually avoid introducing that extra layer unless I have a very good reason to do so.
+
+### My default setup
+
+If I were setting up the cleanest development experience on Windows, I would make **WSL** the default, keep **Windows host** for Windows-specific and hardware-dependent work, and bring in **Dev Containers** only for projects that genuinely benefit from reproducibility and isolation.
+
+### References
+
+- WSL overview: https://learn.microsoft.com/en-us/windows/wsl/about
+- WSL documentation hub: https://learn.microsoft.com/en-us/windows/wsl/
+- Set up a WSL development environment: https://learn.microsoft.com/en-us/windows/wsl/setup/environment
+- Working across Windows and Linux file systems: https://learn.microsoft.com/en-us/windows/wsl/filesystems
+- Connect USB devices to WSL: https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+- VS Code Dev Containers: https://code.visualstudio.com/docs/devcontainers/containers
