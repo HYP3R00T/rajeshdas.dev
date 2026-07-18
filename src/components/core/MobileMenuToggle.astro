@@ -1,26 +1,61 @@
----
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
----
-
 <!-- Toggle button -->
 <div class="md:hidden">
-  <Button
+  <button
+    type="button"
     data-mobile-menu-toggle
     aria-label="Toggle menu"
     aria-expanded="false"
-    size="icon"
-    variant="ghost"
-    className="size-16 border-0"
+    class="inline-flex size-16 items-center justify-center bg-transparent text-foreground-1 transition-colors hover:bg-background-1 hover:text-foreground-0 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring"
   >
-    <span aria-hidden="true" data-icon-open>
-      <Menu className="size-5" />
+    <span aria-hidden="true" class="menu-icon">
+      <span></span>
+      <span></span>
     </span>
-    <span aria-hidden="true" data-icon-close class="hidden">
-      <X className="size-5" />
-    </span>
-  </Button>
+  </button>
 </div>
+
+<style>
+  .menu-icon {
+    position: relative;
+    display: block;
+    width: 1.125rem;
+    height: 0.875rem;
+  }
+
+  .menu-icon span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform-origin: center;
+    transition: top 150ms ease, transform 150ms ease;
+  }
+
+  .menu-icon span:first-child {
+    top: 0.1875rem;
+  }
+
+  .menu-icon span:last-child {
+    top: 0.625rem;
+  }
+
+  :global([data-mobile-menu-toggle][aria-expanded="true"]) .menu-icon span:first-child {
+    top: 0.4375rem;
+    transform: rotate(45deg);
+  }
+
+  :global([data-mobile-menu-toggle][aria-expanded="true"]) .menu-icon span:last-child {
+    top: 0.4375rem;
+    transform: rotate(-45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-icon span {
+      transition: none;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener("astro:page-load", () => {
@@ -28,8 +63,6 @@ import { Menu, X } from "lucide-react";
     const menu = document.querySelector("[data-mobile-menu]");
     if (!toggleBtn || !menu) return;
 
-    const iconOpen = toggleBtn.querySelector("[data-icon-open]");
-    const iconClose = toggleBtn.querySelector("[data-icon-close]");
     const headerShell = document.querySelector("[data-header-shell]");
     const headerNav = document.querySelector("[data-header-nav]");
 
@@ -47,8 +80,6 @@ import { Menu, X } from "lucide-react";
       (menu as HTMLElement).setAttribute("data-open", String(open));
       (menu as HTMLElement).setAttribute("aria-hidden", String(!open));
       (toggleBtn as HTMLElement).setAttribute("aria-expanded", String(open));
-      iconOpen && iconOpen.classList.toggle("hidden", open);
-      iconClose && iconClose.classList.toggle("hidden", !open);
       if (headerShell instanceof HTMLElement) headerShell.dataset.menuOpen = String(open);
       if (headerNav instanceof HTMLElement) headerNav.dataset.menuOpen = String(open);
 

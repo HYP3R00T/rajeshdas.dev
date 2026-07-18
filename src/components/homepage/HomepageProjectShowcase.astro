@@ -38,7 +38,7 @@ const projectImages = [placeholder1, placeholder2, placeholder3] as const;
               tabindex={index === 0 ? 0 : -1}
               data-project-slide
               data-active={index === 0 ? "true" : "false"}
-              class="group col-start-1 row-start-1 grid min-w-0 overflow-hidden rounded-lg bg-background-0/96 opacity-0 transition-[opacity,transform] duration-300 data-[active=true]:z-10 data-[active=true]:translate-y-0 data-[active=true]:opacity-100 data-[active=false]:pointer-events-none data-[active=false]:translate-y-2"
+              class="group col-start-1 row-start-1 grid min-w-0 overflow-hidden rounded-lg bg-background-0/96 opacity-0 transition-opacity duration-200 data-[active=true]:z-10 data-[active=true]:opacity-100 data-[active=false]:pointer-events-none motion-reduce:transition-none"
             >
               <div class="aspect-video overflow-hidden bg-background-2">
                 <Image

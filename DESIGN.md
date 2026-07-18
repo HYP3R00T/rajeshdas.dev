@@ -182,6 +182,8 @@ Evidence sections use one quiet, centered introduction followed by equal proof c
 
 Homepage route navigation begins with its own spacious transition header rather than touching the evidence grid directly. Pair a concise choice-oriented introduction with a functional route diagram that distinguishes guided learning, long-form articles, and concise notes. The diagram is explanatory, not decorative: it uses the existing border and accent tokens, remains subordinate to the heading, and precedes the asymmetric destination grid. This pause provides negative space, breaks the repeated-card rhythm, and makes the following navigation feel like a new chapter.
 
+State changes must preserve spatial position. Mobile navigation may fade but must not slide vertically, and project-switching controls crossfade slides within a fixed shared grid cell rather than translating the incoming or outgoing card. Icon buttons opt out of the shared one-pixel active press shift when that movement would make anchored navigation or carousel controls appear to jump.
+
 When a section introduction is visually distinct from the grid below it, its closing horizontal rule spans the full viewport from edge to edge. The content and repeated cells remain constrained to the global rails, and the first row must not redraw the same rule inside the frame.
 
 Shared section headers align their title and supporting description at the same top edge on desktop; the eyebrow sits in its own row above the title. Full-width header rules use the main content container's inline size rather than viewport-width units, preventing the vertical scrollbar width from producing document-level horizontal overflow.
