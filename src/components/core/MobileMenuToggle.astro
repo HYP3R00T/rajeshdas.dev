@@ -5,12 +5,19 @@ import { Menu, X } from "lucide-react";
 
 <!-- Toggle button -->
 <div class="md:hidden">
-  <Button data-mobile-menu-toggle aria-label="Toggle menu" aria-expanded="false" size="icon" variant="outline">
+  <Button
+    data-mobile-menu-toggle
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    size="icon"
+    variant="ghost"
+    className="size-16 border-0"
+  >
     <span aria-hidden="true" data-icon-open>
-      <Menu />
+      <Menu className="size-5" />
     </span>
     <span aria-hidden="true" data-icon-close class="hidden">
-      <X />
+      <X className="size-5" />
     </span>
   </Button>
 </div>
@@ -65,7 +72,7 @@ import { Menu, X } from "lucide-react";
     menu.addEventListener("click", (e) => {
       const target = e.target;
       if (!(target instanceof Element)) return;
-      if (target.closest("a") || target.closest("button")) setOpen(false);
+      if (target.closest("a")) setOpen(false);
     });
 
     document.addEventListener("astro:before-swap", () => {

@@ -1,106 +1,92 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import SectionHeader from "@/components/core/SectionHeader.astro";
 import SiteSection from "@/components/core/SiteSection.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import BackButton from "@/components/ui/BackButton.astro";
-import { Button } from "@/components/ui/button";
-import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
 import MobileContentMeta from "@/components/common/MobileContentMeta.astro";
 import DesktopContentToc from "@/components/common/DesktopContentToc";
+import BackButton from "@/components/ui/BackButton.astro";
+import { Button } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
 import { SITE } from "@data/config";
 
-const {
-  slug,
-  title,
-  description,
-  pubDatetime,
-  modDatetime,
-  tags,
-  category,
-  cover,
-  coverAlt,
-  ogImage,
-  ogImageAlt,
-  headings = [],
-  body,
-} = Astro.props;
-const seoImage = ogImage || cover;
-const seoImageAlt = ogImageAlt || coverAlt || title;
-const readTime = body ? estimateReadTime(body) : 5;
-const categoryLabel = category ? `${category.charAt(0).toUpperCase()}${category.slice(1)} article` : "Article";
-const visibleHeadings = headings
-  .filter((heading: { depth: number }) => heading.depth > 1 && heading.depth < 4);
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  entry: any;
+  headings?: Heading[];
+  body?: string;
+}
+
+const { entry, headings = [], body = "" } = Astro.props as Props;
+const visibleHeadings = headings.filter((heading) => heading.depth > 1 && heading.depth < 4);
+const readTime = estimateReadTime(body || entry.data.description);
+const publishedAt = entry.data.pubDatetime;
 const mobileMetaItems = [
-  { label: "Published", value: formatDateUppercase(pubDatetime), datetime: pubDatetime.toISOString() },
+  { label: "Topic", value: entry.data.topic },
+  { label: "Published", value: formatDateUppercase(publishedAt), datetime: publishedAt.toISOString() },
   { label: "Read time", value: `${readTime} min` },
-  ...(category ? [{ label: "Category", value: categoryLabel.replace(" article", "") }] : []),
-  ...(modDatetime
-    ? [{ label: "Updated", value: formatDateUppercase(modDatetime), datetime: modDatetime.toISOString() }]
-    : []),
   { label: "Author", value: SITE.author },
 ];
 ---
 
-<BaseLayout title={title} description={description} image={seoImage} imageAlt={seoImageAlt} contentType="Article">
-  <section aria-labelledby="article-title">
+<BaseLayout
+  title={`${entry.data.title} | Notes | ${SITE.title}`}
+  description={entry.data.description}
+  contentType="Article"
+>
+  <section aria-labelledby="note-title">
     <div class="site-grid-frame">
       <SectionHeader
-        eyebrow={categoryLabel}
-        title={title}
-        titleId="article-title"
+        eyebrow={`${entry.data.topic} note`}
+        title={entry.data.title}
+        titleId="note-title"
         headingLevel={1}
-        description={description}
-        transitionName={`post-title-${slug}`}
+        description={entry.data.description}
+        transitionName={`til-title-${entry.id}`}
       />
     </div>
   </section>
 
-  <SiteSection
-    aria-label="Article content"
-    frameClass="lg:grid lg:grid-cols-[minmax(14rem,1fr)_minmax(0,3fr)]"
-  >
+  <SiteSection aria-label="Note content" frameClass="lg:grid lg:grid-cols-[minmax(14rem,1fr)_minmax(0,3fr)]">
     <aside
       class="hidden min-w-0 lg:sticky lg:top-16 lg:flex lg:h-[calc(100vh-4rem)] lg:flex-col lg:self-start lg:border-r lg:border-border lg:py-10"
-      aria-label="Article navigation and information"
+      aria-label="Note navigation and information"
     >
       <div class="shrink-0 px-8 xl:px-10">
-        <BackButton href="/post" label="Back to articles" dataArticlesBack />
+        <BackButton href="/til/" label="Back to notes" dataNotesBack />
       </div>
 
       <div class="mt-8 shrink-0 border-t border-border px-8 pt-8 xl:px-10">
-        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Article details</p>
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Note details</p>
         <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
           <div>
-            <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Published</dt>
-            <dd class="mt-1.5 text-sm text-foreground-1">
-              <time datetime={pubDatetime.toISOString()}>{formatDateUppercase(pubDatetime)}</time>
-            </dd>
+            <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Topic</dt>
+            <dd class="mt-1.5 text-sm text-foreground-1">{entry.data.topic}</dd>
           </div>
           <div>
             <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Read time</dt>
             <dd class="mt-1.5 text-sm text-foreground-1">{readTime} min</dd>
           </div>
-          {
-            modDatetime && (
-              <div class="col-span-2">
-                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Updated</dt>
-                <dd class="mt-1.5 text-sm text-foreground-1">
-                  <time datetime={modDatetime.toISOString()}>{formatDateUppercase(modDatetime)}</time>
-                </dd>
-              </div>
-            )
-          }
+          <div class="col-span-2">
+            <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Published</dt>
+            <dd class="mt-1.5 text-sm text-foreground-1">
+              <time datetime={publishedAt.toISOString()}>{formatDateUppercase(publishedAt)}</time>
+            </dd>
+          </div>
           <div>
             <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Author</dt>
             <dd class="mt-1.5 text-sm text-foreground-1">{SITE.author}</dd>
           </div>
           {
-            tags && tags.length > 0 && (
+            entry.data.tags.length > 0 && (
               <div class="col-span-2">
-                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Topics</dt>
-                <dd class="mt-1.5 text-sm leading-6 text-foreground-1">{tags.join(" · ")}</dd>
+                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Tags</dt>
+                <dd class="mt-1.5 text-sm leading-6 text-foreground-1">{entry.data.tags.join(" · ")}</dd>
               </div>
             )
           }
@@ -110,35 +96,28 @@ const mobileMetaItems = [
           data-share-button
           className="relative mt-5 w-full border-0 bg-accent-1 px-10 text-accent-contrast hover:bg-accent-2"
         >
-          <span>Share article</span>
+          <span>Share note</span>
           <Icon name="arrow-up-right" class="absolute right-3 size-4" />
         </Button>
       </div>
 
       {
         visibleHeadings.length > 0 && (
-          <DesktopContentToc client:load headings={visibleHeadings} label="Article sections" variant="sidebar" />
+          <DesktopContentToc client:load headings={visibleHeadings} label="Note sections" variant="sidebar" />
         )
       }
     </aside>
 
     <article class="min-w-0">
       <div class="px-5 pt-12 md:px-10 md:pt-16 lg:hidden">
-        <BackButton href="/post" label="Back to articles" dataArticlesBack />
-
-        <MobileContentMeta items={mobileMetaItems} tags={tags} headings={visibleHeadings} shareLabel="Share article" />
-      </div>
-
-      <div class="mt-10 w-full lg:mt-0">
-        <div class="aspect-og w-full overflow-hidden" transition:name={`post-cover-${slug}`}>
-          <Image
-            src={cover}
-            alt={coverAlt || title}
-            class="h-full w-full object-cover"
-            widths={[720, 960, 1280, 1600]}
-            sizes="(min-width: 1024px) 63rem, 100vw"
-          />
-        </div>
+        <BackButton href="/til/" label="Back to notes" dataNotesBack />
+        <MobileContentMeta
+          items={mobileMetaItems}
+          tags={entry.data.tags}
+          headings={visibleHeadings}
+          sectionsLabel="Note sections"
+          shareLabel="Share note"
+        />
       </div>
 
       <div class="prose max-w-none px-5 pt-12 pb-12 md:px-10 md:pt-16 md:pb-16 lg:px-12 xl:px-16">
@@ -149,22 +128,21 @@ const mobileMetaItems = [
 </BaseLayout>
 
 <script>
-  const setupArticleBackLinks = () => {
-    const links = document.querySelectorAll<HTMLAnchorElement>("[data-articles-back]");
+  const setupNoteBackLinks = () => {
+    const links = document.querySelectorAll<HTMLAnchorElement>("[data-notes-back]");
     if (links.length === 0) return;
 
     try {
-      const storedUrl = window.sessionStorage.getItem("articleArchiveReturnUrl");
+      const storedUrl = window.sessionStorage.getItem("noteArchiveReturnUrl");
       if (!storedUrl) return;
 
       const returnUrl = new URL(storedUrl);
-      if (returnUrl.origin !== window.location.origin || returnUrl.pathname.replace(/\/$/, "") !== "/post") return;
+      const isNotesRoute = returnUrl.pathname.replace(/\/$/, "") === "/til" || returnUrl.pathname.startsWith("/til/topic/");
+      if (returnUrl.origin !== window.location.origin || !isNotesRoute) return;
 
-      for (const link of links) {
-        link.href = returnUrl.toString();
-      }
+      for (const link of links) link.href = returnUrl.toString();
     } catch {
-      // The fallback /post link remains valid when stored navigation state is unavailable.
+      // The fallback /til link remains valid when stored navigation state is unavailable.
     }
   };
 
@@ -219,21 +197,14 @@ const mobileMetaItems = [
     };
 
     setActive(headings[0].id);
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-
-        if (visible?.target instanceof HTMLElement) {
-          setActive(visible.target.id);
-        }
+        if (visible?.target instanceof HTMLElement) setActive(visible.target.id);
       },
-      {
-        rootMargin: "-22% 0px -62% 0px",
-        threshold: [0, 1],
-      },
+      { rootMargin: "-22% 0px -62% 0px", threshold: [0, 1] },
     );
 
     headings.forEach((heading) => observer.observe(heading));
@@ -241,7 +212,7 @@ const mobileMetaItems = [
   };
 
   document.addEventListener("astro:page-load", () => {
-    setupArticleBackLinks();
+    setupNoteBackLinks();
     setupShareButton();
     setupActiveTableOfContents();
   });

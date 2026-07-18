@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import { SITE, navItems, SOCIAL_LINKS } from "@data/config";
 
 const currentYear = new Date().getFullYear();
-const activeSocials = SOCIAL_LINKS.filter((s) => s.active);
+const activeSocials = SOCIAL_LINKS.filter((social) => social.active);
 const utilityLinks = [
   { href: SITE.repo, label: "Source", blank: true },
   { href: "/rss.xml", label: "RSS" },
@@ -11,95 +11,62 @@ const utilityLinks = [
 ];
 ---
 
-<footer class="px-4 py-8 md:px-8 md:py-10">
-  <div class="mx-auto w-full max-w-site overflow-hidden rounded-lg border border-border bg-background-1">
-    <div class="grid gap-10 p-6 md:grid-cols-[1.1fr_0.9fr] md:p-8 lg:p-10">
-      <div class="space-y-8">
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-foreground-2">
-          <p>&copy; {currentYear} {SITE.title}. All rights reserved.</p>
-        </div>
-
-        <div class="max-w-xl space-y-4">
-          <p class="font-mono text-xs tracking-[0.28em] text-accent-1 uppercase">Rajesh Das</p>
-          <p class="font-display text-3xl leading-tight text-foreground-0 md:text-4xl">
-            DevOps engineer, automation builder, and technical writer sharing the work, notes, and learning behind the craft.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-[0.9fr_1fr]">
-        <div>
-          <p class="mb-4 font-mono text-xs tracking-[0.24em] text-foreground-3 uppercase">Routes</p>
-          <nav class="grid gap-3">
-            {
-              navItems.map((item) => (
-                <a
-                  href={item.href}
-                  target={item.blank ? "_blank" : undefined}
-                  rel={item.blank ? "noopener noreferrer" : undefined}
-                  class="group inline-flex w-fit items-center gap-2 text-sm text-foreground-1 transition-colors hover:text-accent-1"
-                >
-                  {item.label}
-                  <Icon name="arrow-up-right" class="size-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-                </a>
-              ))
-            }
-          </nav>
-        </div>
-
-        <div class="space-y-8">
-          <div>
-            <p class="mb-4 font-mono text-xs tracking-[0.24em] text-foreground-3 uppercase">Connect</p>
-            <div class="flex flex-wrap gap-2">
-              {
-                activeSocials.map((social) => (
-                  <a
-                    href={social.href}
-                    target={social.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                    title={social.linkTitle}
-                    class="inline-flex items-center gap-2 rounded-md border border-border bg-background-2 px-3 py-2 text-sm text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1"
-                  >
-                    <Icon name={social.name} class="size-4" />
-                    <span class="capitalize">{social.name}</span>
-                  </a>
-                ))
-              }
-            </div>
-          </div>
-
-          <div>
-            <p class="mb-4 font-mono text-xs tracking-[0.24em] text-foreground-3 uppercase">Elsewhere</p>
-            <div class="flex flex-wrap gap-x-4 gap-y-2">
-              {
-                utilityLinks.map((item) => (
-                  <a
-                    href={item.href}
-                    target={item.blank ? "_blank" : undefined}
-                    rel={item.blank ? "noopener noreferrer" : undefined}
-                    class="text-sm text-foreground-2 transition-colors hover:text-accent-1"
-                  >
-                    {item.label}
-                  </a>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="border-t border-border px-4 pt-8 md:px-8 lg:px-10">
-      <div class="flex flex-wrap items-end justify-between gap-4 pb-5 text-sm text-foreground-2">
-        <p class="font-mono tracking-[0.18em] uppercase">Remote / Kolkata, India</p>
-        <p class="text-right">Available for DevOps, automation, tooling, and technical writing conversations.</p>
-      </div>
-      <p
-        aria-hidden="true"
-        class="-mb-8 text-center select-none overflow-hidden font-display text-[23vw] leading-[0.72] font-semibold tracking-[-0.08em] whitespace-nowrap text-foreground-0/10 sm:text-[18vw] lg:text-[14rem]"
-      >
-        Rajesh Das
+<footer class="site-grid-frame" aria-labelledby="footer-title">
+  <div class="grid gap-16 px-5 py-14 md:px-10 md:py-18 lg:grid-cols-[minmax(0,1.2fr)_minmax(32rem,0.8fr)] lg:gap-24 lg:px-15 lg:py-20">
+    <div>
+      <a href="/" id="footer-title" class="font-display text-2xl font-medium tracking-[-0.025em] text-foreground-0">
+        <span class="text-accent-1">rajeshdas</span><span class="text-foreground-3">.dev</span>
+      </a>
+      <p class="mt-5 max-w-md text-base leading-7 text-foreground-2">
+        DevOps engineering, automation, and technical writing—shared openly and built to stay useful.
       </p>
     </div>
+
+    <div class="grid gap-10 sm:grid-cols-3">
+      <div>
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-3 uppercase">Navigate</p>
+        <nav class="mt-5 grid gap-3" aria-label="Footer navigation">
+          {
+            navItems.map((item) => (
+              <a href={item.href} target={item.blank ? "_blank" : undefined} rel={item.blank ? "noopener noreferrer" : undefined} class="w-fit text-sm text-foreground-1 transition-colors hover:text-accent-1">
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div>
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-3 uppercase">Connect</p>
+        <div class="mt-5 grid gap-3">
+          {
+            activeSocials.map((social) => (
+              <a href={social.href} target={social.href.startsWith("mailto:") ? undefined : "_blank"} rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"} title={social.linkTitle} class="flex w-fit items-center gap-2 text-sm text-foreground-1 transition-colors hover:text-accent-1">
+                <Icon name={social.name} class="size-3.5" />
+                <span class="capitalize">{social.name}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div>
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-3 uppercase">Elsewhere</p>
+        <div class="mt-5 grid gap-3">
+          {
+            utilityLinks.map((item) => (
+              <a href={item.href} target={item.blank ? "_blank" : undefined} rel={item.blank ? "noopener noreferrer" : undefined} class="w-fit text-sm text-foreground-1 transition-colors hover:text-accent-1">
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-3 px-5 pb-10 text-sm text-foreground-3 md:flex-row md:items-center md:justify-between md:px-10 lg:px-15">
+    <p>&copy; {currentYear} {SITE.title}. All rights reserved.</p>
+    <p>Built with ❤️ by Rajesh Das.</p>
   </div>
 </footer>

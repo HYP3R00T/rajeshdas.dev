@@ -112,44 +112,49 @@ const metadata = parsedUrl ? await fetchLinkPreviewMetadata(url) : null;
 const hostname = parsedUrl?.hostname.replace(/^www\./, "") ?? url;
 const pathname = parsedUrl ? `${parsedUrl.pathname}${parsedUrl.search}`.replace(/\/$/, "") || "/" : url;
 const resolvedTitle = title ?? metadata?.title ?? hostname;
-const resolvedDescription = description ?? metadata?.description ?? "Open this external resource.";
+const resolvedDescription = description ?? metadata?.description;
 const resolvedImage = image ?? metadata?.image;
 const resolvedMediaAlt = mediaAlt ?? `${resolvedTitle} preview`;
 const previewPath = pathname === "/" ? hostname : `${hostname}${pathname}`;
 ---
 
-<div class="my-4">
+<div class="not-prose my-6">
   <a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    class="not-prose group mt-0! mb-7! flex w-full min-w-0 flex-col gap-3 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-2 no-underline transition-colors hover:bg-background-0 sm:flex-row sm:items-stretch"
+    class:list={[
+      "group grid w-full min-w-0 overflow-hidden rounded-md border border-border bg-background-1 no-underline transition-colors duration-200 hover:bg-background-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-1 focus-visible:ring-offset-2 focus-visible:ring-offset-background-0",
+      resolvedImage && "sm:grid-cols-[minmax(0,1fr)_11rem] md:grid-cols-[minmax(0,1fr)_13rem]",
+    ]}
     aria-label={`Open ${resolvedTitle}`}
   >
-    <div class="flex min-w-0 flex-1 flex-col gap-2 self-stretch p-1 sm:gap-2.5 sm:pr-2">
-      <h3
-        class="m-0! line-clamp-2 text-balance text-lg leading-tight text-foreground-1 transition-colors group-hover:text-accent-1"
+    <div class="!m-0 flex min-w-0 flex-col p-4 md:p-5">
+      <span
+        class="line-clamp-2 text-balance font-display text-lg leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors group-hover:text-accent-1"
       >
         {resolvedTitle}
-      </h3>
+      </span>
 
-      <p class="m-0! line-clamp-2 text-sm leading-snug text-foreground-3 md:text-sm">
-        {resolvedDescription}
-      </p>
+      {
+        resolvedDescription && (
+          <span class="mt-2 line-clamp-2 text-sm leading-5 text-foreground-2">
+            {resolvedDescription}
+          </span>
+        )
+      }
 
-      <div class="m-0! min-w-0 pt-0.5 text-sm leading-none text-foreground-1">
-        <span class="block min-w-0 truncate">{previewPath}</span>
-      </div>
+      <span class="mt-4 block min-w-0 truncate font-mono text-xs leading-none text-foreground-3">{previewPath}</span>
     </div>
 
     {
       resolvedImage && (
-        <div class="relative hidden shrink-0 overflow-hidden rounded-md mt-0! sm:ml-auto sm:flex sm:w-36 sm:self-stretch md:w-44">
+        <div class="relative !m-0 aspect-video overflow-hidden border-t border-border sm:aspect-auto sm:border-t-0 sm:border-l">
           <img
             src={resolvedImage}
             alt={resolvedMediaAlt}
             loading="lazy"
-            class="absolute inset-0 block h-full w-full rounded-md! border-0! my-0! object-cover"
+            class="absolute inset-0 !m-0 block h-full w-full !rounded-none !border-0 object-cover"
           />
         </div>
       )

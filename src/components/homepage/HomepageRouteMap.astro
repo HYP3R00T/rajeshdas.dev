@@ -1,0 +1,135 @@
+---
+const routes = [
+  { index: "01", mode: "Follow", label: "Learn" },
+  { index: "02", mode: "Read", label: "Articles" },
+  { index: "03", mode: "Keep", label: "Notes" },
+];
+---
+
+<div class="route-map" aria-hidden="true">
+  <div class="route-map__origin">
+    <span class="route-map__pulse"></span>
+    <span>Choose</span>
+  </div>
+
+  <div class="route-map__paths">
+    {
+      routes.map((route) => (
+        <div class="route-map__path">
+          <span class="route-map__line"></span>
+          <div class="route-map__destination">
+            <span class="route-map__index">{route.index}</span>
+            <span class="route-map__label">
+              <small>{route.mode}</small>
+              <strong>{route.label}</strong>
+            </span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .route-map {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    align-items: center;
+    width: 100%;
+    max-width: 30rem;
+    min-height: 14rem;
+  }
+
+  .route-map__origin {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    gap: 0.625rem;
+    width: 5rem;
+    height: 5rem;
+    border: 1px solid var(--border);
+    background: var(--background-1);
+    color: var(--foreground-2);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .route-map__pulse {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: var(--accent-1);
+  }
+
+  .route-map__paths {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .route-map__path {
+    display: grid;
+    grid-template-columns: minmax(2rem, 1fr) minmax(9rem, 12rem);
+    align-items: center;
+  }
+
+  .route-map__line {
+    height: 1px;
+    background: var(--border);
+  }
+
+  .route-map__destination {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.875rem;
+    min-height: 3.75rem;
+    border: 1px solid var(--border);
+    background: var(--background-0);
+    padding: 0.75rem 1rem;
+  }
+
+  .route-map__index {
+    color: var(--accent-1);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
+  }
+
+  .route-map__label {
+    display: grid;
+    gap: 0.125rem;
+  }
+
+  .route-map__label small {
+    color: var(--foreground-3);
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .route-map__label strong {
+    color: var(--foreground-0);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 30rem) {
+    .route-map {
+      grid-template-columns: 4rem minmax(0, 1fr);
+    }
+
+    .route-map__origin {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .route-map__path {
+      grid-template-columns: minmax(1rem, 1fr) minmax(8.5rem, 11rem);
+    }
+  }
+</style>

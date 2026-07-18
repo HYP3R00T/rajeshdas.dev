@@ -135,6 +135,7 @@ Required frontmatter fields:
 - `description`: string - Post description/excerpt
 - `pubDatetime`: date - Publication date (ISO 8601 format)
 - `cover`: image - Cover image (use `image()` helper)
+- `category`: enum - Editorial archive category: `product`, `engineering`, or `guides`
 
 Optional frontmatter fields:
 
@@ -152,6 +153,7 @@ description: "A brief description"
 pubDatetime: 2024-01-15T10:00:00Z
 cover: ./images/my-post.png
 coverAlt: "Cover image description"
+category: engineering
 featured: true
 draft: false
 tags: ["typescript", "astro"]

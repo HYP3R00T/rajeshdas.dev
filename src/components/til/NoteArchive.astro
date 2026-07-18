@@ -1,0 +1,67 @@
+---
+import EditorialGrid from "@/components/core/EditorialGrid.astro";
+import SiteSection from "@/components/core/SiteSection.astro";
+import TilCard from "@/components/til/TilCard.astro";
+import TopicPill from "@/components/til/TopicPill.astro";
+import { slugifyTopic } from "@/lib/slug";
+
+interface Props {
+  notes: Array<any>;
+  allNotes: Array<any>;
+  topics: Array<[string, number]>;
+  activeTopic?: string;
+}
+
+const { notes, allNotes, topics, activeTopic } = Astro.props as Props;
+---
+
+<SiteSection aria-label="Notes archive">
+  <div class="site-section-heading px-5 py-8 md:px-10 md:py-10 lg:px-15">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+      <div>
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Pick a topic</p>
+        <p class="mt-2 text-sm text-foreground-3">Showing {notes.length} of {allNotes.length} notes</p>
+      </div>
+
+      <nav aria-label="Note topics" class="flex flex-wrap gap-2">
+        <TopicPill href="/til/" label="All" count={allNotes.length} active={!activeTopic} />
+        {
+          topics.map(([topic, count]) => (
+            <TopicPill
+              href={`/til/topic/${slugifyTopic(topic)}/`}
+              label={topic}
+              count={count}
+              active={activeTopic ? slugifyTopic(activeTopic) === slugifyTopic(topic) : false}
+            />
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+
+  {
+    notes.length > 0 ? (
+      <EditorialGrid>
+        {notes.map((entry) => <TilCard entry={entry} />)}
+      </EditorialGrid>
+    ) : (
+      <p class="px-5 py-16 text-foreground-2 md:px-10 lg:px-15">No notes are available for this topic yet.</p>
+    )
+  }
+</SiteSection>
+
+<script>
+  const setupNoteArchiveLinks = () => {
+    document.querySelectorAll<HTMLAnchorElement>("[data-note-card]").forEach((card) => {
+      if (card.dataset.noteReturnReady === "true") return;
+
+      card.dataset.noteReturnReady = "true";
+      card.addEventListener("click", () => {
+        window.sessionStorage.setItem("noteArchiveReturnUrl", window.location.href);
+      });
+    });
+  };
+
+  setupNoteArchiveLinks();
+  document.addEventListener("astro:page-load", setupNoteArchiveLinks);
+</script>

@@ -1,0 +1,96 @@
+---
+import { Icon } from "astro-icon/components";
+import HomepageRouteMap from "@/components/homepage/HomepageRouteMap.astro";
+import SiteSection from "@/components/core/SiteSection.astro";
+import { homepageRoutes } from "@data/homepage";
+
+const [primaryRoute, ...secondaryRoutes] = homepageRoutes;
+---
+
+<SiteSection
+  id="explore"
+  data-home-section
+  aria-labelledby="explore-title"
+>
+  <header class="grid min-h-[24rem] items-center gap-12 px-5 py-20 md:px-10 md:py-24 lg:grid-cols-[minmax(0,0.85fr)_minmax(24rem,0.65fr)] lg:gap-20 lg:px-15 lg:py-28">
+    <div>
+      <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Explore</p>
+      <h2
+        id="explore-title"
+        class="mt-5 max-w-xl text-balance font-display text-4xl leading-[1.05] font-medium tracking-[-0.035em] text-foreground-0 md:text-5xl"
+      >
+        Choose the depth you need.
+      </h2>
+      <p class="mt-6 max-w-lg text-base leading-7 text-foreground-2 md:text-lg md:leading-8">
+        Follow a guided map, read a complete explanation, or keep one useful idea close.
+      </p>
+    </div>
+
+    <div class="flex justify-center lg:justify-end">
+      <HomepageRouteMap />
+    </div>
+  </header>
+
+  <div class="grid border-t border-border lg:grid-cols-[minmax(0,1.1fr)_minmax(22rem,0.9fr)]">
+    <a
+      href={primaryRoute.href}
+      class="group flex min-h-[28rem] min-w-0 flex-col justify-between border-b border-border bg-background-1 px-5 py-12 transition-colors hover:bg-background-2 md:px-10 md:py-16 lg:border-r lg:border-b-0 lg:px-15 lg:py-20"
+    >
+      <div>
+        <div class="flex items-center justify-between gap-6">
+          <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Start here</p>
+          <Icon
+            name="arrow-right"
+            class="size-4 text-foreground-3 transition-transform group-hover:translate-x-1 group-hover:text-accent-1 motion-reduce:transition-none"
+          />
+        </div>
+
+        <h3 class="mt-16 max-w-xl text-balance font-display text-4xl leading-[1.05] font-medium tracking-[-0.035em] text-foreground-0 md:text-5xl">
+          Learn through a map, not a pile of links.
+        </h3>
+        <p class="mt-6 max-w-lg text-base leading-7 text-foreground-2 md:text-lg md:leading-8">
+          {primaryRoute.description}
+        </p>
+      </div>
+
+      <p class="mt-12 inline-flex items-center gap-2 text-sm text-foreground-1 transition-colors group-hover:text-accent-1">
+        {primaryRoute.action}
+        <Icon name="arrow-right" class="size-4" />
+      </p>
+    </a>
+
+    <div class="grid min-w-0 grid-rows-2">
+      {
+        secondaryRoutes.map((route, index) => (
+          <a
+            href={route.href}
+            class:list={[
+              "group flex min-h-56 min-w-0 flex-col justify-between px-5 py-9 transition-colors hover:bg-background-1 md:px-10 md:py-10 lg:px-12",
+              index === 0 && "border-b border-border",
+            ]}
+          >
+            <div class="flex items-center justify-between gap-5">
+              <p class="font-mono text-[0.625rem] tracking-[0.14em] text-accent-1 uppercase">{route.eyebrow}</p>
+              <Icon
+                name="arrow-right"
+                class="size-4 text-foreground-3 transition-transform group-hover:translate-x-1 group-hover:text-accent-1 motion-reduce:transition-none"
+              />
+            </div>
+
+            <div class="mt-8 flex items-end justify-between gap-8">
+              <div>
+                <h3 class="font-display text-3xl leading-none font-medium tracking-[-0.03em] text-foreground-0">
+                  {route.title}
+                </h3>
+                <p class="mt-4 max-w-sm text-sm leading-6 text-foreground-2">{route.description}</p>
+              </div>
+              <span class="hidden shrink-0 text-sm text-foreground-1 transition-colors group-hover:text-accent-1 sm:block">
+                {route.action}
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</SiteSection>

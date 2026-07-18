@@ -1,0 +1,245 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import EditorialGrid from "@/components/core/EditorialGrid.astro";
+import SectionHeader from "@/components/core/SectionHeader.astro";
+import SiteSection from "@/components/core/SiteSection.astro";
+import PostCard from "@/components/post/PostCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@data/config";
+
+const posts = await getCollection("posts").then((entries) => entries.filter((entry) => !entry.data.draft));
+posts.sort((a, b) => new Date(b.data.pubDatetime).valueOf() - new Date(a.data.pubDatetime).valueOf());
+
+const featured = posts.find((post) => post.data.featured);
+const orderedPosts = featured ? [featured, ...posts.filter((post) => post.id !== featured.id)] : posts;
+const archivePageSize = SITE.pageSize ?? 12;
+const archiveTotalPages = Math.max(1, Math.ceil(orderedPosts.length / archivePageSize));
+const categoryOrder = ["product", "engineering", "guides"] as const;
+const categoryLabels = {
+  product: "Product",
+  engineering: "Engineering",
+  guides: "Guides",
+} as const;
+const categoryCounts = new Map<string, number>();
+
+for (const post of orderedPosts) {
+  const category = post.data.category;
+  categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1);
+}
+
+const categories = categoryOrder
+  .filter((category) => categoryCounts.has(category))
+  .map((category) => ({ category, count: categoryCounts.get(category) ?? 0, label: categoryLabels[category] }));
+---
+
+<BaseLayout>
+  <section aria-labelledby="articles-title">
+    <div class="site-grid-frame">
+      <SectionHeader
+        eyebrow="Articles"
+        title="Field notes for systems that need to survive reality."
+        titleId="articles-title"
+        headingLevel={1}
+        description="Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work."
+      />
+    </div>
+  </section>
+
+  <SiteSection id="article-archive" aria-label="Article archive" data-articles-list>
+    <div
+      class="site-section-heading px-5 py-8 md:px-10 md:py-10 lg:px-15"
+      data-article-filter
+      data-page-size={archivePageSize}
+    >
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Pick a category</p>
+          <p class="mt-2 text-sm text-foreground-3" aria-live="polite">
+            Showing <span data-visible-count>{Math.min(orderedPosts.length, archivePageSize)}</span> of
+            <span data-article-count>{orderedPosts.length}</span> articles
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2" role="group" aria-label="Filter articles by category">
+          <button
+            type="button"
+            class="category-filter rounded-md border border-border bg-background-0 px-3 py-2 font-mono text-[0.6875rem] tracking-[0.08em] text-foreground-1 uppercase transition-colors hover:border-foreground-3 hover:text-foreground-0"
+            data-category-filter="all"
+            aria-controls="articles-grid"
+            aria-pressed="true"
+          >
+            All <span class="opacity-60">{orderedPosts.length}</span>
+          </button>
+          {
+            categories.map(({ category, count, label }) => (
+              <button
+                type="button"
+                class="category-filter rounded-md border border-border bg-background-0 px-3 py-2 font-mono text-[0.6875rem] tracking-[0.08em] text-foreground-1 uppercase transition-colors hover:border-foreground-3 hover:text-foreground-0"
+                data-category-filter={category}
+                aria-controls="articles-grid"
+                aria-pressed="false"
+              >
+                {label} <span class="opacity-60">{count}</span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <EditorialGrid id="articles-grid">
+      {
+        orderedPosts.map((post, index) => (
+          <PostCard post={post} featured={post.id === featured?.id} initiallyHidden={index >= archivePageSize} />
+        ))
+      }
+    </EditorialGrid>
+
+    <nav
+      aria-label="Articles pagination"
+      class="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-7 md:px-10 lg:px-15"
+      data-article-pagination
+      hidden={archiveTotalPages <= 1}
+    >
+      <button
+        type="button"
+        class="group inline-flex w-fit items-center gap-2 text-sm text-foreground-1 transition-colors hover:text-accent-1 disabled:pointer-events-none disabled:text-foreground-3/45"
+        data-page-previous
+        disabled
+      >
+        <Icon name="arrow-left" class="size-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none" />
+        Previous
+      </button>
+
+      <span
+        class="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-3 uppercase"
+        data-page-status
+        aria-live="polite"
+      >
+        01 / {String(archiveTotalPages).padStart(2, "0")}
+      </span>
+
+      <button
+        type="button"
+        class="group inline-flex w-fit items-center gap-2 justify-self-end text-sm text-foreground-1 transition-colors hover:text-accent-1 disabled:pointer-events-none disabled:text-foreground-3/45"
+        data-page-next
+        disabled={archiveTotalPages <= 1}
+      >
+        Next
+        <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
+      </button>
+    </nav>
+  </SiteSection>
+</BaseLayout>
+
+<style>
+  .category-filter[aria-pressed="true"] {
+    border-color: var(--accent-1);
+    background: var(--accent-1);
+    color: var(--accent-contrast);
+  }
+
+</style>
+
+<script>
+  const setupArticleFilter = () => {
+    const filterRoot = document.querySelector<HTMLElement>("[data-article-filter]");
+    if (!filterRoot || filterRoot.dataset.filterReady === "true") return;
+
+    const buttons = [...filterRoot.querySelectorAll<HTMLButtonElement>("[data-category-filter]")];
+    const cards = [...document.querySelectorAll<HTMLElement>("[data-post-card]")];
+    const grid = document.querySelector<HTMLElement>("#articles-grid");
+    const count = filterRoot.querySelector<HTMLElement>("[data-article-count]");
+    const visibleCount = filterRoot.querySelector<HTMLElement>("[data-visible-count]");
+    const pagination = document.querySelector<HTMLElement>("[data-article-pagination]");
+    const previous = pagination?.querySelector<HTMLButtonElement>("[data-page-previous]");
+    const next = pagination?.querySelector<HTMLButtonElement>("[data-page-next]");
+    const pageStatus = pagination?.querySelector<HTMLElement>("[data-page-status]");
+    const pageSize = Number(filterRoot.dataset.pageSize ?? "12");
+    const availableCategories = new Set(buttons.map((button) => button.dataset.categoryFilter ?? "all"));
+    const categoryFromUrl = new URL(window.location.href).searchParams.get("category");
+    let selectedCategory = categoryFromUrl && availableCategories.has(categoryFromUrl) ? categoryFromUrl : "all";
+    let currentPage = 1;
+
+    for (const card of cards) {
+      card.addEventListener("click", () => {
+        window.sessionStorage.setItem("articleArchiveReturnUrl", window.location.href);
+      });
+    }
+
+    const persistCategory = () => {
+      const url = new URL(window.location.href);
+
+      if (selectedCategory === "all") {
+        url.searchParams.delete("category");
+      } else {
+        url.searchParams.set("category", selectedCategory);
+      }
+
+      window.history.replaceState(window.history.state, "", url);
+    };
+
+    const applyView = () => {
+      const matchingCards = cards.filter((card) => {
+        return selectedCategory === "all" || card.dataset.category === selectedCategory;
+      });
+      const categoryFeatured = matchingCards.find((card) => card.dataset.featuredCandidate === "true");
+      const filteredCards = categoryFeatured
+        ? [categoryFeatured, ...matchingCards.filter((card) => card !== categoryFeatured)]
+        : matchingCards;
+      const totalPages = Math.max(1, Math.ceil(filteredCards.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+      const pageStart = (currentPage - 1) * pageSize;
+      const pageEnd = pageStart + pageSize;
+
+      if (grid) {
+        grid.append(...filteredCards, ...cards.filter((card) => !filteredCards.includes(card)));
+      }
+
+      for (const card of cards) {
+        const filteredIndex = filteredCards.indexOf(card);
+        card.hidden = filteredIndex < pageStart || filteredIndex >= pageEnd;
+        card.classList.toggle("is-featured", card === categoryFeatured);
+      }
+
+      for (const button of buttons) {
+        button.setAttribute("aria-pressed", String(button.dataset.categoryFilter === selectedCategory));
+      }
+
+      if (count) count.textContent = String(filteredCards.length);
+      if (visibleCount) visibleCount.textContent = String(Math.min(pageSize, Math.max(0, filteredCards.length - pageStart)));
+      if (pageStatus) {
+        pageStatus.textContent = `${String(currentPage).padStart(2, "0")} / ${String(totalPages).padStart(2, "0")}`;
+      }
+      if (previous) previous.disabled = currentPage === 1;
+      if (next) next.disabled = currentPage === totalPages;
+      if (pagination) pagination.hidden = filteredCards.length <= pageSize;
+    };
+
+    for (const button of buttons) {
+      button.addEventListener("click", () => {
+        selectedCategory = button.dataset.categoryFilter ?? "all";
+        currentPage = 1;
+        persistCategory();
+        applyView();
+      });
+    }
+
+    previous?.addEventListener("click", () => {
+      currentPage = Math.max(1, currentPage - 1);
+      applyView();
+    });
+
+    next?.addEventListener("click", () => {
+      currentPage += 1;
+      applyView();
+    });
+
+    filterRoot.dataset.filterReady = "true";
+    applyView();
+  };
+
+  setupArticleFilter();
+  document.addEventListener("astro:page-load", setupArticleFilter);
+</script>

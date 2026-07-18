@@ -1,84 +1,39 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/common/PageHero.astro";
-import { Icon } from "astro-icon/components";
+import SiteSection from "@/components/core/SiteSection.astro";
 import { buttonVariants } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SITE } from "@data/config";
 
 const pageTitle = `Not Found | ${SITE.title}`;
 const pageDescription = "The page you're looking for isn't here, but the rest of the site still is.";
-
-const recoveryLinks = [
-  {
-    label: "Open learn map",
-    href: "/learn",
-    eyebrow: "Structured path",
-    note: "Follow a curated route instead of wandering through random links.",
-    action: "Start learning",
-  },
-  {
-    label: "Explore projects",
-    href: "/projects",
-    eyebrow: "Proof trail",
-    note: "See the systems, tools, and experiments that are still on the map.",
-    action: "View work",
-  },
-] as const;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <PageHero>
-    <Fragment slot="topLeft">
-      <h1 class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 sm:text-5xl xl:text-6xl">
-        This route fell off the map.
+  <SiteSection
+    aria-labelledby="not-found-title"
+    frameClass="flex min-h-[34rem] items-center justify-center px-5 py-20 md:min-h-[38rem] md:px-10"
+  >
+    <div class="mx-auto flex max-w-xl flex-col items-center text-center">
+      <h1
+        id="not-found-title"
+        class="font-display text-6xl leading-none font-medium tracking-[-0.04em] text-foreground-0 md:text-7xl"
+      >
+        404
       </h1>
-    </Fragment>
 
-    <Fragment slot="bottomLeft">
-      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">404</p>
-      <p class="mt-5 max-w-lg text-base leading-relaxed text-foreground-2 md:text-lg">
-        The link may be old, renamed, or quietly retired. Head home if you want the clean reset, or send me a note if this looks like something I should fix.
+      <p class="mt-5 text-base leading-7 text-foreground-2">
+        The page you’re looking for doesn’t exist or may have moved.
       </p>
-      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-        <a href="/" class={buttonVariants({ variant: "default", size: "lg" })}>
-          Back to home
-          <Icon name="arrow-right" class="size-4" />
-        </a>
-        <a href="/contact" class={buttonVariants({ variant: "outline", size: "lg" })}>
-          Report the route
-          <Icon name="arrow-up-right" class="size-4" />
-        </a>
+
+      <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+        <a href="/" class={buttonVariants({ variant: "default", size: "lg" })}>Back to home</a>
+        <a href="/post/" class={buttonVariants({ variant: "ghost", size: "lg" })}>Browse articles</a>
       </div>
-    </Fragment>
 
-    <Fragment slot="bottomRight">
-      <div class="grid w-full gap-6 sm:grid-cols-2">
-        {
-          recoveryLinks.map((link) => (
-            <a
-              href={link.href}
-              class="group flex min-h-80 flex-col justify-between overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:p-6"
-            >
-              <div class="flex items-start justify-between gap-6">
-                <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">{link.eyebrow}</p>
-                <Icon name="arrow-up-right" class="size-4 text-foreground-3 transition-colors group-hover:text-accent-1" />
-              </div>
-
-              <div>
-                <h2 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-3xl">
-                  {link.label}
-                </h2>
-                <p class="mt-4 text-sm leading-relaxed text-foreground-1 md:text-base">{link.note}</p>
-              </div>
-
-              <div class="mt-8 flex items-center justify-between gap-4 border-t border-border/80 pt-5">
-                <span class="font-mono text-xs tracking-[0.22em] text-foreground-3 uppercase">{link.action}</span>
-                <span class="font-mono text-xs tracking-[0.22em] text-accent-1 uppercase">Open</span>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </Fragment>
-  </PageHero>
+      <nav aria-label="Other useful destinations" class="mt-8 flex items-center gap-7 text-sm text-foreground-3">
+        <a href="/learn/" class="transition-colors hover:text-accent-1">Learn</a>
+        <a href="/til/" class="transition-colors hover:text-accent-1">Notes</a>
+      </nav>
+    </div>
+  </SiteSection>
 </BaseLayout>
