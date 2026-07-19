@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import type { PostCardProps } from "@/lib/types";
 import { formatDateUppercase } from "@/lib/utils";
@@ -18,33 +19,46 @@ const { post, featured = false, initiallyHidden = false } = Astro.props as Props
   data-category={post.data.category}
   data-featured-candidate={post.data.featured ? "true" : "false"}
   class:list={[
-    "post-card group flex h-80 min-w-0 flex-col bg-background-0 px-5 py-7 transition-colors duration-200 motion-reduce:transition-none hover:bg-background-1 md:px-7 md:py-8 xl:h-88",
+    "post-card group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-background-0",
     featured && "is-featured",
   ]}
 >
-  <div class="flex items-center justify-between gap-4 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
-    <span class="post-card__featured">Featured article</span>
-    <time class="post-card__date ml-auto text-foreground-3" datetime={post.data.pubDatetime.toISOString()}>
-      {formatDateUppercase(post.data.pubDatetime)}
-    </time>
+  <div class="aspect-video overflow-hidden bg-background-2">
+    <Image
+      src={post.data.cover}
+      alt={post.data.coverAlt ?? `${post.data.title} article cover`}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 767px) calc(100vw - 4.5rem), (max-width: 1199px) calc(50vw - 5rem), 25rem"
+    />
   </div>
 
-  <div class="mt-10 flex min-h-0 flex-1 flex-col">
-    <h2
-      class="post-card__title line-clamp-3 font-display text-2xl leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors"
-      transition:name={`post-title-${post.id}`}
-    >
-      {post.data.title}
-    </h2>
-    <p class="post-card__description mt-4 line-clamp-4 text-sm leading-6 text-foreground-2">
-      {post.data.description}
-    </p>
-    <div class="post-card__action mt-auto flex justify-end pt-8 text-sm text-foreground-1">
-      <span class="inline-flex items-center gap-2">
-        Read article
-        <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
-      </span>
+  <div class="post-card__content grid min-w-0 flex-1 grid-cols-[minmax(0,1fr)_auto] items-end gap-4 p-5">
+    <div class="min-w-0 self-stretch">
+      <div class="flex items-center justify-between gap-4 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
+        <span class="post-card__featured text-accent-1">Featured article</span>
+        <time class="post-card__date ml-auto text-foreground-3" datetime={post.data.pubDatetime.toISOString()}>
+          {formatDateUppercase(post.data.pubDatetime)}
+        </time>
+      </div>
+
+      <h2
+        class="post-card__title mt-4 line-clamp-2 font-display text-[1.375rem] leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors"
+        transition:name={`post-title-${post.id}`}
+      >
+        {post.data.title}
+      </h2>
+      <p class="post-card__description mt-3 line-clamp-2 text-sm leading-6 text-foreground-2">
+        {post.data.description}
+      </p>
     </div>
+
+    <span
+      aria-hidden="true"
+      class="post-card__action flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background-1 text-foreground-1 transition-colors duration-150 group-hover:border-accent-1 group-hover:bg-accent-1 group-hover:text-accent-contrast"
+    >
+      <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+    </span>
   </div>
 </a>
 
@@ -53,31 +67,16 @@ const { post, featured = false, initiallyHidden = false } = Astro.props as Props
     display: none;
   }
 
-  .post-card:not(.is-featured):hover .post-card__title {
+  .post-card:hover .post-card__title {
     color: var(--accent-1);
   }
 
-  .post-card.is-featured,
-  .post-card.is-featured:hover {
-    background: var(--accent-1);
-    color: var(--accent-contrast);
+  .post-card.is-featured {
+    background: var(--background-0) !important;
+    border-color: var(--accent-1);
   }
 
   .post-card.is-featured .post-card__featured {
     display: inline;
-    color: var(--accent-contrast);
-  }
-
-  .post-card.is-featured .post-card__date {
-    color: color-mix(in srgb, var(--accent-contrast) 65%, transparent);
-  }
-
-  .post-card.is-featured .post-card__title,
-  .post-card.is-featured .post-card__action {
-    color: var(--accent-contrast);
-  }
-
-  .post-card.is-featured .post-card__description {
-    color: color-mix(in srgb, var(--accent-contrast) 75%, transparent);
   }
 </style>

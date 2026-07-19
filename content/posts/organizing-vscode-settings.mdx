@@ -41,7 +41,7 @@ The core of this extension is a function that reads your `settings.json`, catego
 
 Here’s a snippet of the actual code that handles the categorization and sorting:
 
-```typescript
+```typescript title="src/extension.ts"
 function categorizeSettings(settings: any) {
     const sortedSettings: { [key: string]: any } = {};
     const categoriesOrder = [

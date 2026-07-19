@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
-import EditorialGrid from "@/components/core/EditorialGrid.astro";
 import SectionHeader from "@/components/core/SectionHeader.astro";
 import SiteSection from "@/components/core/SiteSection.astro";
 import PostCard from "@/components/post/PostCard.astro";
@@ -88,13 +87,16 @@ const categories = categoryOrder
       </div>
     </div>
 
-    <EditorialGrid id="articles-grid">
+    <div
+      id="articles-grid"
+      class="grid items-stretch gap-6 bg-background-0 p-5 md:grid-cols-2 md:p-8 xl:grid-cols-3 xl:gap-7 xl:p-12"
+    >
       {
         orderedPosts.map((post, index) => (
           <PostCard post={post} featured={post.id === featured?.id} initiallyHidden={index >= archivePageSize} />
         ))
       }
-    </EditorialGrid>
+    </div>
 
     <nav
       aria-label="Articles pagination"
@@ -158,9 +160,11 @@ const categories = categoryOrder
     const pageStatus = pagination?.querySelector<HTMLElement>("[data-page-status]");
     const pageSize = Number(filterRoot.dataset.pageSize ?? "12");
     const availableCategories = new Set(buttons.map((button) => button.dataset.categoryFilter ?? "all"));
-    const categoryFromUrl = new URL(window.location.href).searchParams.get("category");
+    const initialUrl = new URL(window.location.href);
+    const categoryFromUrl = initialUrl.searchParams.get("category");
+    const pageFromUrl = Number.parseInt(initialUrl.searchParams.get("page") ?? "1", 10);
     let selectedCategory = categoryFromUrl && availableCategories.has(categoryFromUrl) ? categoryFromUrl : "all";
-    let currentPage = 1;
+    let currentPage = Number.isFinite(pageFromUrl) && pageFromUrl > 0 ? pageFromUrl : 1;
 
     for (const card of cards) {
       card.addEventListener("click", () => {
@@ -168,13 +172,19 @@ const categories = categoryOrder
       });
     }
 
-    const persistCategory = () => {
+    const persistView = () => {
       const url = new URL(window.location.href);
 
       if (selectedCategory === "all") {
         url.searchParams.delete("category");
       } else {
         url.searchParams.set("category", selectedCategory);
+      }
+
+      if (currentPage === 1) {
+        url.searchParams.delete("page");
+      } else {
+        url.searchParams.set("page", String(currentPage));
       }
 
       window.history.replaceState(window.history.state, "", url);
@@ -215,13 +225,13 @@ const categories = categoryOrder
       if (previous) previous.disabled = currentPage === 1;
       if (next) next.disabled = currentPage === totalPages;
       if (pagination) pagination.hidden = filteredCards.length <= pageSize;
+      persistView();
     };
 
     for (const button of buttons) {
       button.addEventListener("click", () => {
         selectedCategory = button.dataset.categoryFilter ?? "all";
         currentPage = 1;
-        persistCategory();
         applyView();
       });
     }
