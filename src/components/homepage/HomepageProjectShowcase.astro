@@ -4,28 +4,24 @@ import { Icon } from "astro-icon/components";
 import placeholder1 from "@/assets/placeholder1.png";
 import placeholder2 from "@/assets/placeholder2.png";
 import placeholder3 from "@/assets/placeholder3.png";
-import HeroBlobBackground from "@/components/homepage/HeroBlobBackground.astro";
 import { featuredProjects } from "@data/homepage";
 
 const projectImages = [placeholder1, placeholder2, placeholder3] as const;
 ---
 
 <div
-  class="relative flex min-h-[34rem] overflow-hidden bg-background-1 lg:min-h-[38rem]"
+  class="relative flex min-h-[34rem] overflow-hidden bg-background-0 lg:min-h-[38rem]"
   data-project-showcase
   aria-label="Featured projects"
 >
-  <HeroBlobBackground />
-
   <div class="relative z-10 flex min-w-0 flex-1 flex-col px-5 py-6 md:px-10 md:py-8 lg:p-10">
-    <div class="flex items-center justify-between gap-6 font-mono text-[0.6875rem] tracking-[0.14em] uppercase">
-      <p class="text-accent-contrast">Selected work</p>
-      <p class="text-accent-contrast/70" data-project-counter>
-        01 / {String(featuredProjects.length).padStart(2, "0")}
-      </p>
-    </div>
-
     <div class="my-auto flex min-w-0 flex-col items-center justify-center py-8 md:py-10">
+      <div class="mb-5 w-full max-w-[31rem]">
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-1 uppercase">
+          Selected work
+        </p>
+      </div>
+
       <div class="grid w-full max-w-[31rem]" data-project-slides>
         {
           featuredProjects.map((project, index) => (
@@ -38,7 +34,7 @@ const projectImages = [placeholder1, placeholder2, placeholder3] as const;
               tabindex={index === 0 ? 0 : -1}
               data-project-slide
               data-active={index === 0 ? "true" : "false"}
-              class="group col-start-1 row-start-1 grid min-w-0 overflow-hidden rounded-lg bg-background-0/96 opacity-0 transition-opacity duration-200 data-[active=true]:z-10 data-[active=true]:opacity-100 data-[active=false]:pointer-events-none motion-reduce:transition-none"
+              class="group col-start-1 row-start-1 grid min-w-0 overflow-hidden rounded-lg border border-border bg-background-0/96 opacity-0 transition-opacity duration-200 data-[active=true]:z-10 data-[active=true]:opacity-100 data-[active=false]:pointer-events-none motion-reduce:transition-none"
             >
               <div class="aspect-video overflow-hidden bg-background-2">
                 <Image
@@ -72,23 +68,31 @@ const projectImages = [placeholder1, placeholder2, placeholder3] as const;
         }
       </div>
 
-      <div class="mt-5 flex items-center justify-center gap-2">
-        <button
-          type="button"
-          class="flex size-9 items-center justify-center rounded-md border border-border/80 bg-background-0/90 text-foreground-1 transition-colors duration-150 hover:border-accent-1 hover:bg-accent-1 hover:text-accent-contrast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          aria-label="Previous featured project"
-          data-project-previous
+      <div class="mt-5 flex w-full max-w-[31rem] items-center justify-between gap-5">
+        <p
+          class="font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-3 uppercase"
+          data-project-counter
         >
-          <Icon name="arrow-left" class="size-4" />
-        </button>
-        <button
-          type="button"
-          class="flex size-9 items-center justify-center rounded-md border border-border/80 bg-background-0/90 text-foreground-1 transition-colors duration-150 hover:border-accent-1 hover:bg-accent-1 hover:text-accent-contrast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          aria-label="Next featured project"
-          data-project-next
-        >
-          <Icon name="arrow-right" class="size-4" />
-        </button>
+          01 / {String(featuredProjects.length).padStart(2, "0")}
+        </p>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            class="flex size-9 items-center justify-center rounded-md border border-border/80 bg-background-0/90 text-foreground-1 transition-colors duration-150 hover:border-accent-1 hover:bg-accent-1 hover:text-accent-contrast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            aria-label="Previous featured project"
+            data-project-previous
+          >
+            <Icon name="arrow-left" class="size-4" />
+          </button>
+          <button
+            type="button"
+            class="flex size-9 items-center justify-center rounded-md border border-border/80 bg-background-0/90 text-foreground-1 transition-colors duration-150 hover:border-accent-1 hover:bg-accent-1 hover:text-accent-contrast focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            aria-label="Next featured project"
+            data-project-next
+          >
+            <Icon name="arrow-right" class="size-4" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
