@@ -1,6 +1,8 @@
 ---
 import { getImage } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import SiteSection from "@/components/core/SiteSection.astro";
+import SectionHeader from "@/components/core/SectionHeader.astro";
 import LatestSignalSwitcher from "@/components/homepage/LatestSignalSwitcher";
 import { latestVideo } from "@data/homepage";
 
@@ -18,35 +20,25 @@ const videoThumbnail = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.j
 const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`;
 ---
 
-<section
-  id="writing"
-  class="px-4 py-20 md:px-8 md:py-24 lg:flex lg:min-h-svh lg:items-center lg:pt-32 lg:pb-16"
-  data-home-section
->
-  <div class="mx-auto grid w-full max-w-site gap-12 lg:grid-cols-[0.36fr_0.64fr] lg:items-start xl:gap-16">
-    <div class="max-w-xl">
-      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest signal</p>
-      <h2 class="mt-4 max-w-md font-display text-3xl leading-tight tracking-tighter text-foreground-0 md:text-4xl xl:text-5xl">
-        I make the thinking behind the systems visible.
-      </h2>
-      <p class="mt-5 max-w-md text-base leading-relaxed text-foreground-2">
-        Articles and videos are where I turn hard-won engineering lessons into reusable mental models, patterns, and
-        practical decisions.
-      </p>
-    </div>
+<SiteSection id="writing" data-home-section aria-labelledby="signal-title">
+  <SectionHeader
+    eyebrow="Open notebook"
+    title="The thinking stays visible."
+    titleId="signal-title"
+    description="Articles and videos turn implementation lessons into reusable mental models, practical patterns, and clearer engineering decisions."
+  />
 
-    <LatestSignalSwitcher
-      client:load
-      articleTitle={latestPost.data.title}
-      articleDescription={latestPost.data.description}
-      articleHref={`/post/${latestPost.id}`}
-      articleImageSrc={articleImageLarge.src}
-      articleImageSrcSet={articleImageSrcSet}
-      articleImageAlt={latestPost.data.coverAlt || latestPost.data.title}
-      videoTitle={latestVideo.title}
-      videoThumbnail={videoThumbnail}
-      videoUrl={videoUrl}
-      channelUrl={latestVideo.channelUrl}
-    />
-  </div>
-</section>
+  <LatestSignalSwitcher
+    client:load
+    articleTitle={latestPost.data.title}
+    articleDescription={latestPost.data.description}
+    articleHref={`/post/${latestPost.id}`}
+    articleImageSrc={articleImageLarge.src}
+    articleImageSrcSet={articleImageSrcSet}
+    articleImageAlt={latestPost.data.coverAlt || latestPost.data.title}
+    videoTitle={latestVideo.title}
+    videoThumbnail={videoThumbnail}
+    videoUrl={videoUrl}
+    channelUrl={latestVideo.channelUrl}
+  />
+</SiteSection>

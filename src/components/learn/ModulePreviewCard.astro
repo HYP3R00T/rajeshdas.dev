@@ -10,36 +10,54 @@ const progressLabels: Record<string, string> = {
   "work-in-progress": "Work in progress",
   updated: "Updated",
 };
-const showProgressStatus = progressStatus !== "completed";
 const progressLabel = progressLabels[progressStatus] ?? progressStatus;
+const progressNote = module.data?.progressNote;
+const showProgressStatus = progressStatus !== "completed";
 const transitionName = `module-title-${getModuleSkillMapSlug(module)}-${getModuleSlug(module)}`;
 ---
 
-<a
-  href={href}
-  class:list={["group block rounded-lg border border-border bg-background-1 p-6 transition-colors hover:bg-background-0", active ? "border-accent-1" : ""]}
->
-  <div class="grid gap-4 md:grid-cols-[4rem_1fr_auto] md:items-start">
-    <p class="font-mono text-xs tracking-[0.24em] text-accent-1 uppercase">{String(index + 1).padStart(2, "0")}</p>
-    <div>
-      <div class="flex flex-wrap items-center gap-3">
+<li>
+  <a
+    href={href}
+    aria-current={active ? "page" : undefined}
+    class:list={[
+      "group grid min-w-0 gap-6 px-5 py-8 transition-colors hover:bg-background-1 md:items-center md:px-8 md:py-10 lg:px-10",
+      showProgressStatus
+        ? "md:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.42fr)_auto]"
+        : "md:grid-cols-[3.5rem_minmax(0,1fr)_auto]",
+      active ? "bg-background-1" : "bg-background-0",
+    ]}
+  >
+    <p class="font-mono text-[0.6875rem] tracking-[0.18em] text-accent-1 uppercase">
+      {String(index + 1).padStart(2, "0")}
+    </p>
+
+    <div class="min-w-0">
+      <div>
         <h3
           class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1"
           transition:name={transitionName}
-        >{title}</h3>
-        {
-          showProgressStatus && (
-            <span class="inline-flex rounded-md border border-accent-1/35 bg-accent-1/10 px-2 py-1 text-xs font-medium text-accent-1">
-              {progressLabel}
-            </span>
-          )
-        }
+        >
+          {title}
+        </h3>
       </div>
-      <p class="mt-3 max-w-xl text-sm leading-relaxed text-foreground-1">{summary}</p>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-foreground-2">{summary}</p>
     </div>
-    <span class="inline-flex w-fit items-center gap-2 text-sm text-foreground-2 transition-colors group-hover:text-accent-1">
-      Open
-      <Icon name="arrow-up-right" class="size-4" />
+
+    {
+      showProgressStatus && (
+        <div class="min-w-0">
+          <span class="inline-flex rounded-md border border-accent-1/40 bg-accent-1/10 px-2 py-1 font-mono text-[0.625rem] tracking-[0.1em] text-accent-1 uppercase">
+            {progressLabel}
+          </span>
+          {progressNote && <p class="mt-2 line-clamp-2 text-xs leading-5 text-foreground-3">{progressNote}</p>}
+        </div>
+      )
+    }
+
+    <span class="inline-flex size-9 items-center justify-center justify-self-start text-foreground-2 transition-colors group-hover:text-accent-1 md:justify-self-end">
+      <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
+      <span class="sr-only">Open {title}</span>
     </span>
-  </div>
-</a>
+  </a>
+</li>

@@ -7,7 +7,7 @@ draft: false
 tags:
   - linux
 description: A step-by-step guide to my personal Arch Linux installation process using LUKS encryption, Logical Volume Management (LVM), and systemd-boot. This guide also includes WiFi setup using iwd and aims for a minimal, secure, and functional base system.
-category: Technology
+category: guides
 cover: "./cover/arch_linux.png"
 coverAlt: Neofetch output of Arch Linux
 ogImage: "./og/arch_linux.png"
@@ -79,7 +79,7 @@ For SSD, these are normally formatted as `nvme0nX`.
 
 Our target is to create two partitions. One will be the `/boot` partition and the rest will be used as LVM.
 
-https://wiki.archlinux.org/title/Fdisk
+<LinkPreview url="https://wiki.archlinux.org/title/Fdisk" />
 
 ```bash
 fdisk /dev/the_disk_to_be_partitioned
@@ -171,13 +171,13 @@ nvme0n1     259:0    0 476.9G  0 disk
 └─nvme0n1p2 259:4    0 475.9G  0 part
 ```
 
-https://www.man7.org/linux/man-pages/man8/lsblk.8.html
+<LinkPreview url="https://www.man7.org/linux/man-pages/man8/lsblk.8.html" />
 
 The next step, normally, is to format the partition. But it's highly recommended to encrypt the partitions first. But we can't encrypt the boot partition, otherwise the Arch Linux won't boot up. This is why we create two separate partitions. We can encrypt our LVM partition.
 
 ## Encrypt the Partition
 
-https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system
+<LinkPreview url="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system" />
 
 There are different scenarios of encrypting partitions. For our use case, we will stick with LVM on LUKS (Linux Unified Key Setup).
 
@@ -331,7 +331,7 @@ pacstrap -K /mnt base linux linux-firmware
 
 ### Fstab
 
-https://wiki.archlinux.org/title/Fstab
+<LinkPreview url="https://wiki.archlinux.org/title/Fstab" />
 
 Generate `fstab`
 
@@ -341,7 +341,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 ### Chroot
 
-https://wiki.archlinux.org/title/Chroot
+<LinkPreview url="https://wiki.archlinux.org/title/Chroot" />
 
 Change root into the new system
 
@@ -367,7 +367,7 @@ pacman -Syu nano
 
 ### Time
 
-https://wiki.archlinux.org/title/System_time
+<LinkPreview url="https://wiki.archlinux.org/title/System_time" />
 
 ```bash
 # set the time zone
@@ -399,9 +399,9 @@ vim /etc/hostname
 echo "quasar" > /etc/hostname
 ```
 
-https://wiki.archlinux.org/title/Network_configuration
-https://wiki.archlinux.org/title/Systemd-networkd
-https://wiki.archlinux.org/title/Systemd-resolved
+<LinkPreview url="https://wiki.archlinux.org/title/Network_configuration" />
+<LinkPreview url="https://wiki.archlinux.org/title/Systemd-networkd" />
+<LinkPreview url="https://wiki.archlinux.org/title/Systemd-resolved" />
 
 ```bash
 # enable systemd-networkd
@@ -435,7 +435,7 @@ IgnoreCarrierLoss=3s
 
 Use `iwd` to connect to the internet
 
-https://wiki.archlinux.org/title/Iwd
+<LinkPreview url="https://wiki.archlinux.org/title/Iwd" />
 
 ```shell
 # install iwd
@@ -447,8 +447,8 @@ systemctl enable iwd.service
 
 ### Initramfs
 
-https://en.wikipedia.org/wiki/Initial_ramdisk
-https://wiki.archlinux.org/title/Mkinitcpio
+<LinkPreview url="https://en.wikipedia.org/wiki/Initial_ramdisk" />
+<LinkPreview url="https://wiki.archlinux.org/title/Mkinitcpio" />
 
 For LVM, system encryption or RAID, modify `mkinitcpio.conf` and recreate the `initramfs` image
 
@@ -489,9 +489,9 @@ passwd hyperoot
 
 ## Configure the Boot Loader
 
-https://wiki.archlinux.org/title/Arch_boot_process
-https://wiki.archlinux.org/title/Systemd-boot
-https://man.archlinux.org/man/bootctl.1
+<LinkPreview url="https://wiki.archlinux.org/title/Arch_boot_process" />
+<LinkPreview url="https://wiki.archlinux.org/title/Systemd-boot" />
+<LinkPreview url="https://man.archlinux.org/man/bootctl.1" />
 
 When we change into the root directory, the mount doesn't carry over, even though we mounted the boot partition.
 

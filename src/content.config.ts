@@ -11,6 +11,7 @@ const posts = defineCollection({
       pubDatetime: z.date(),
       featured: z.boolean().optional().default(false),
       draft: z.boolean().optional().default(false),
+      category: z.string(),
       tags: z.array(z.string()).default([]),
       cover: image(),
       coverAlt: z.string().optional(),

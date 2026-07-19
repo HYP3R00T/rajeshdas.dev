@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
+import SectionHeader from "@/components/core/SectionHeader.astro";
+import SiteSection from "@/components/core/SiteSection.astro";
+import BackButton from "@/components/ui/BackButton.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import RoadmapList from "@/components/learn/RoadmapList.astro";
 import { getModuleSkillMapSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn";
@@ -25,6 +27,7 @@ const modules = (allEntries as Array<any>)
   .sort((a, b) => a.data.order - b.data.order);
 const skillMapOgImage = skillMap.data.ogImage;
 const skillMapOgImageAlt = skillMap.data.ogImageAlt || skillMap.data.title;
+const moduleLabel = `${modules.length} module${modules.length === 1 ? "" : "s"}`;
 ---
 
 <BaseLayout
@@ -34,49 +37,72 @@ const skillMapOgImageAlt = skillMap.data.ogImageAlt || skillMap.data.title;
   imageAlt={skillMapOgImageAlt}
   contentType="Article"
 >
-  <section class="px-4 pt-8 pb-20 md:px-8 md:pt-12 md:pb-28">
-    <div class="mx-auto w-full max-w-site">
-      <section class="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] lg:gap-16" aria-label="Skill map modules">
-        <div class="lg:sticky lg:top-36 lg:self-start">
-          <a href="/learn/" class="inline-flex items-center gap-2 rounded-md border border-border bg-background-1 px-3 py-2 text-sm text-foreground-1 transition-colors hover:bg-background-0 hover:text-accent-1">
-            <Icon name="arrow-left" class="size-4" />
-            Learn
-          </a>
-
-          <header class="mt-14 max-w-4xl">
-            <h1
-              class="max-w-3xl font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 md:text-5xl"
-              transition:name={`skill-map-title-${skillMapSlug}`}
-            >
-              {skillMap.data.title}
-            </h1>
-            <p class="mt-7 max-w-2xl text-lg leading-relaxed text-foreground-2">{skillMap.data.description}</p>
-          </header>
-
-          {
-            skillMap.data.cover && (
-              <div
-                class="mt-12 overflow-hidden rounded-lg border border-border/80 bg-background-1 p-3"
-                transition:name={`skill-map-cover-${skillMapSlug}`}
-              >
-                <div class="aspect-video overflow-hidden rounded-md bg-background-0 lg:min-h-64">
-                  <Image
-                    src={skillMap.data.cover}
-                    alt={skillMap.data.coverAlt || skillMap.data.title}
-                    class="h-full w-full object-cover"
-                    widths={[720, 960, 1200]}
-                    sizes="(min-width: 1024px) 40rem, calc(100vw - 2rem)"
-                  />
-                </div>
-              </div>
-            )
-          }
-        </div>
-
-        <div class="lg:pt-28">
-          <RoadmapList skillMap={skillMap} modules={modules} />
-        </div>
-      </section>
+  <section aria-labelledby="skill-map-title">
+    <div class="site-grid-frame">
+      <SectionHeader
+        eyebrow={`Skill map · ${moduleLabel}`}
+        title={skillMap.data.title}
+        titleId="skill-map-title"
+        headingLevel={1}
+        description={skillMap.data.description}
+        transitionName={`skill-map-title-${skillMapSlug}`}
+      />
     </div>
   </section>
+
+  <SiteSection
+    aria-label="Skill map overview and modules"
+    frameClass="grid lg:grid-cols-[minmax(16rem,1fr)_minmax(0,3fr)]"
+  >
+    <aside class="min-w-0 border-b border-border lg:border-r lg:border-b-0">
+      <div class="lg:sticky lg:top-16">
+        <div class="border-b border-border px-5 py-8 md:px-8">
+          <BackButton href="/learn/" label="All skill maps" />
+        </div>
+
+        <div class="border-b border-border px-5 py-8 md:px-8">
+          <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Map details</p>
+          <dl class="mt-6 grid gap-6">
+            <div>
+              <dt class="font-mono text-[0.625rem] tracking-[0.14em] text-foreground-3 uppercase">Modules</dt>
+              <dd class="mt-2 text-sm text-foreground-1">{moduleLabel}</dd>
+            </div>
+            {
+              skillMap.data.tags.length > 0 && (
+                <div>
+                  <dt class="font-mono text-[0.625rem] tracking-[0.14em] text-foreground-3 uppercase">Topics</dt>
+                  <dd class="mt-2 text-sm leading-6 text-foreground-1">{skillMap.data.tags.join(" · ")}</dd>
+                </div>
+              )
+            }
+          </dl>
+        </div>
+
+        <div class="px-5 py-8 md:px-8">
+          <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Outcome</p>
+          <p class="mt-4 text-sm leading-6 text-foreground-2">{skillMap.data.outcome}</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="min-w-0">
+      <div
+        class="aspect-video overflow-hidden bg-background-1 md:aspect-[5/2]"
+        transition:name={`skill-map-cover-${skillMapSlug}`}
+      >
+        <Image
+          src={skillMap.data.cover}
+          alt={skillMap.data.coverAlt || skillMap.data.title}
+          class="h-full w-full object-cover"
+          width={1332}
+          height={533}
+          fit="cover"
+          position="center"
+          quality="high"
+        />
+      </div>
+
+      <RoadmapList skillMap={skillMap} modules={modules} />
+    </div>
+  </SiteSection>
 </BaseLayout>

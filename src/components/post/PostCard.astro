@@ -1,50 +1,82 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import { Badge } from "@/components/ui/badge";
 import type { PostCardProps } from "@/lib/types";
-import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
+import { formatDateUppercase } from "@/lib/utils";
 
-const { post, index } = Astro.props as PostCardProps & { index?: number };
-const readTime = estimateReadTime(post.body || post.data.description);
+interface Props extends PostCardProps {
+  featured?: boolean;
+  initiallyHidden?: boolean;
+}
+
+const { post, featured = false, initiallyHidden = false } = Astro.props as Props;
 ---
 
 <a
   href={`/post/${post.id}/`}
-  class="group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:p-6"
+  hidden={initiallyHidden}
+  data-post-card
+  data-category={post.data.category}
+  data-featured-candidate={post.data.featured ? "true" : "false"}
+  class:list={[
+    "post-card group flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-background-0",
+    featured && "is-featured",
+  ]}
 >
-  <div class="flex items-center justify-between gap-4 font-mono text-xs text-foreground-3 uppercase">
-    {index !== undefined && <span class="text-accent-1">// {String(index + 1).padStart(2, "0")}</span>}
-    <time datetime={post.data.pubDatetime.toISOString()}>{formatDateUppercase(post.data.pubDatetime)}</time>
+  <div class="aspect-video overflow-hidden bg-background-2">
+    <Image
+      src={post.data.cover}
+      alt={post.data.coverAlt ?? `${post.data.title} article cover`}
+      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 767px) calc(100vw - 4.5rem), (max-width: 1199px) calc(50vw - 5rem), 25rem"
+    />
   </div>
 
-  <h3
-    class="mt-5 font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-3xl xl:text-2xl"
-    transition:name={`post-title-${post.id}`}
-  >
-    {post.data.title}
-  </h3>
+  <div class="post-card__content flex min-w-0 flex-1 flex-col p-5">
+    <h2
+      class="post-card__title line-clamp-2 font-display text-[1.375rem] leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors"
+      transition:name={`post-title-${post.id}`}
+    >
+      {post.data.title}
+    </h2>
+    <p class="post-card__description mt-3 line-clamp-3 text-sm leading-6 text-foreground-2">
+      {post.data.description}
+    </p>
 
-  <p class="mt-3 text-sm leading-relaxed text-foreground-1">
-    {post.data.description}
-  </p>
-
-  {
-    post.data.tags && post.data.tags.length > 0 && (
-      <div class="mt-5 flex flex-wrap gap-2">
-        {post.data.tags.slice(0, 3).map((tag: string) => (
-          <Badge variant="secondary" className="border border-border/80 bg-background-2 text-foreground-1">
-            {tag}
-          </Badge>
-        ))}
+    <div class="mt-auto flex items-center justify-between gap-4 pt-5">
+      <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
+        <span class="post-card__featured text-foreground-2">Featured article</span>
+        <time class="post-card__date text-foreground-3" datetime={post.data.pubDatetime.toISOString()}>
+          {formatDateUppercase(post.data.pubDatetime)}
+        </time>
       </div>
-    )
-  }
 
-  <div class="mt-auto flex items-end justify-between gap-4 pt-7 font-display text-sm font-medium text-foreground-1 transition-colors group-hover:text-accent-1">
-    <span class="font-mono text-xs text-foreground-3 uppercase">{readTime} min read</span>
-    <span class="inline-flex items-center gap-2">
-      Read article
-      <Icon name="arrow-up-right" class="size-4" />
-    </span>
+      <span
+        aria-hidden="true"
+        class="post-card__action flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background-1 text-foreground-1 transition-colors duration-150 group-hover:border-accent-1 group-hover:bg-accent-1 group-hover:text-accent-contrast"
+      >
+        <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
+      </span>
+    </div>
   </div>
 </a>
+
+<style>
+  .post-card__featured {
+    display: none;
+  }
+
+  .post-card:hover .post-card__title {
+    color: var(--accent-1);
+  }
+
+  .post-card.is-featured {
+    border-color: var(--border) !important;
+    background: var(--background-0) !important;
+  }
+
+  .post-card.is-featured .post-card__featured {
+    display: inline;
+  }
+</style>

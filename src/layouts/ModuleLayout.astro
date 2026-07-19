@@ -1,0 +1,323 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import SectionHeader from "@/components/core/SectionHeader.astro";
+import SiteSection from "@/components/core/SiteSection.astro";
+import MobileContentMeta from "@/components/common/MobileContentMeta.astro";
+import DesktopContentToc from "@/components/common/DesktopContentToc";
+import FocusModeToggle from "@/components/common/FocusModeToggle.astro";
+import BackButton from "@/components/ui/BackButton.astro";
+import { Button } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getModuleSlug } from "@/lib/learn";
+import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
+import { SITE } from "@data/config";
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  skillMap: any;
+  moduleEntry: any;
+  skillMapSlug: string;
+  moduleSlug: string;
+  moduleIndex: number;
+  moduleCount: number;
+  previousModule: any | null;
+  nextModule: any | null;
+  headings?: Heading[];
+  body?: string;
+}
+
+const {
+  skillMap,
+  moduleEntry,
+  skillMapSlug,
+  moduleSlug,
+  moduleIndex,
+  moduleCount,
+  previousModule,
+  nextModule,
+  headings = [],
+  body = "",
+} = Astro.props as Props;
+
+const visibleHeadings = headings.filter((heading) => heading.depth > 1 && heading.depth < 4);
+const progressLabels: Record<string, string> = {
+  "work-in-progress": "Work in progress",
+  updated: "Updated",
+};
+const progressStatus = moduleEntry.data.progressStatus;
+const showProgressStatus = progressStatus !== "completed";
+const progressLabel = progressLabels[progressStatus] ?? progressStatus;
+const readTime = estimateReadTime(body);
+const publishedAt = moduleEntry.data.pubDatetime;
+const author = moduleEntry.data.author || SITE.author;
+const cover = moduleEntry.data.cover || skillMap.data.cover;
+const coverAlt = moduleEntry.data.coverAlt || skillMap.data.coverAlt || moduleEntry.data.title;
+const seoImage = moduleEntry.data.ogImage || skillMap.data.ogImage || cover;
+const seoImageAlt = moduleEntry.data.ogImageAlt || skillMap.data.ogImageAlt || coverAlt;
+const positionLabel = `${String(moduleIndex + 1).padStart(2, "0")} / ${String(moduleCount).padStart(2, "0")}`;
+const mobileMetaItems = [
+  { label: "Module", value: positionLabel },
+  ...(publishedAt
+    ? [{ label: "Published", value: formatDateUppercase(publishedAt), datetime: publishedAt.toISOString() }]
+    : []),
+  { label: "Read time", value: `${readTime} min` },
+  { label: "Author", value: author },
+];
+---
+
+<BaseLayout
+  title={`${moduleEntry.data.title} | ${skillMap.data.title} | Learn | ${SITE.title}`}
+  description={moduleEntry.data.description}
+  image={seoImage}
+  imageAlt={seoImageAlt}
+  contentType="Article"
+>
+  <section aria-labelledby="module-title" data-focus-introduction>
+    <div class="site-grid-frame">
+      <SectionHeader
+        eyebrow={`${skillMap.data.title} · Module ${moduleIndex + 1} of ${moduleCount}`}
+        title={moduleEntry.data.title}
+        titleId="module-title"
+        headingLevel={1}
+        description={moduleEntry.data.description}
+        transitionName={`module-title-${skillMapSlug}-${moduleSlug}`}
+      >
+        <FocusModeToggle slot="action" />
+      </SectionHeader>
+    </div>
+  </section>
+
+  <SiteSection
+    aria-label="Module content"
+    data-focus-content-section
+    frameClass="focus-reading-frame lg:grid lg:grid-cols-[minmax(14rem,1fr)_minmax(0,3fr)]"
+  >
+    <aside
+      class="hidden min-w-0 lg:sticky lg:top-16 lg:flex lg:h-[calc(100vh-4rem)] lg:flex-col lg:self-start lg:border-r lg:border-border lg:py-10"
+      aria-label="Module navigation and information"
+      data-focus-sidebar
+    >
+      <div class="shrink-0 px-8 xl:px-10">
+        <BackButton href={`/learn/${skillMapSlug}/`} label="Back to skill map" />
+      </div>
+
+      <div class="mt-8 shrink-0 border-t border-border px-8 pt-8 xl:px-10">
+        <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Module details</p>
+        <dl class="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
+          <div>
+            <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Position</dt>
+            <dd class="mt-1.5 text-sm text-foreground-1">{positionLabel}</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Read time</dt>
+            <dd class="mt-1.5 text-sm text-foreground-1">{readTime} min</dd>
+          </div>
+          {
+            publishedAt && (
+              <div class="col-span-2">
+                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Published</dt>
+                <dd class="mt-1.5 text-sm text-foreground-1">
+                  <time datetime={publishedAt.toISOString()}>{formatDateUppercase(publishedAt)}</time>
+                </dd>
+              </div>
+            )
+          }
+          <div>
+            <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Author</dt>
+            <dd class="mt-1.5 text-sm text-foreground-1">{author}</dd>
+          </div>
+          {
+            moduleEntry.data.tags.length > 0 && (
+              <div class="col-span-2">
+                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Topics</dt>
+                <dd class="mt-1.5 text-sm leading-6 text-foreground-1">{moduleEntry.data.tags.join(" · ")}</dd>
+              </div>
+            )
+          }
+        </dl>
+
+        <Button
+          data-share-button
+          className="relative mt-5 w-full border-0 bg-accent-1 px-10 text-accent-contrast hover:bg-accent-2"
+        >
+          <span>Share module</span>
+          <Icon name="arrow-up-right" class="absolute right-3 size-4" />
+        </Button>
+      </div>
+
+      {
+        visibleHeadings.length > 0 && (
+          <DesktopContentToc client:load headings={visibleHeadings} label="Module sections" variant="sidebar" />
+        )
+      }
+    </aside>
+
+    <article class="min-w-0" data-focus-reading-content>
+      <div class="w-full">
+        <div class="aspect-og w-full overflow-hidden" transition:name={`module-cover-${skillMapSlug}-${moduleSlug}`}>
+          <Image
+            src={cover}
+            alt={coverAlt}
+            class="h-full w-full object-cover"
+            widths={[720, 960, 1280, 1600]}
+            sizes="(min-width: 1024px) 63rem, 100vw"
+          />
+        </div>
+      </div>
+
+      <div class="px-5 pt-12 pb-12 md:px-10 md:pt-16 md:pb-16 lg:px-12 xl:px-16">
+        {
+          showProgressStatus && (
+            <aside class="mb-12 rounded-lg border border-accent-1/40 bg-accent-1/5 p-5" aria-label="Module status">
+              <span class="inline-flex rounded-md border border-accent-1/40 bg-accent-1/10 px-2 py-1 font-mono text-[0.625rem] tracking-[0.1em] text-accent-1 uppercase">
+                {progressLabel}
+              </span>
+              <p class="mt-3 text-sm leading-6 text-foreground-2">
+                {moduleEntry.data.progressNote ||
+                  "This module is still being refined. Its structure is useful, but the wording and references may continue to improve."}
+              </p>
+            </aside>
+          )
+        }
+
+        <div class="prose min-w-0 max-w-none">
+          <slot />
+        </div>
+
+        <nav
+          class="mt-16 grid gap-6 border-t border-border pt-8 md:grid-cols-2"
+          aria-label="Module navigation"
+          data-focus-secondary-navigation
+        >
+          {
+            previousModule ? (
+              <a
+                href={`/learn/${skillMapSlug}/${getModuleSlug(previousModule)}/`}
+                class="text-foreground-1 transition-colors hover:text-accent-1"
+              >
+                <span class="font-mono text-[0.625rem] tracking-[0.14em] text-foreground-3 uppercase">Previous</span>
+                <span class="mt-3 block font-display text-xl text-foreground-0">{previousModule.data.title}</span>
+              </a>
+            ) : (
+              <a href={`/learn/${skillMapSlug}/`} class="text-foreground-1 transition-colors hover:text-accent-1">
+                <span class="font-mono text-[0.625rem] tracking-[0.14em] text-foreground-3 uppercase">Back</span>
+                <span class="mt-3 block font-display text-xl text-foreground-0">Return to skill map</span>
+              </a>
+            )
+          }
+
+          {
+            nextModule ? (
+              <a
+                href={`/learn/${skillMapSlug}/${getModuleSlug(nextModule)}/`}
+                class="text-foreground-1 transition-colors hover:text-accent-1 md:text-right"
+              >
+                <span class="font-mono text-[0.625rem] tracking-[0.14em] text-foreground-3 uppercase">Next</span>
+                <span class="mt-3 block font-display text-xl text-foreground-0">{nextModule.data.title}</span>
+              </a>
+            ) : (
+              <a href="/learn/" class="text-foreground-1 transition-colors hover:text-accent-1 md:text-right">
+                <span class="font-mono text-[0.625rem] tracking-[0.14em] text-foreground-3 uppercase">Continue</span>
+                <span class="mt-3 block font-display text-xl text-foreground-0">Explore all maps</span>
+              </a>
+            )
+          }
+        </nav>
+      </div>
+
+      <div class="border-t border-border px-5 py-10 md:px-10 md:py-12 lg:hidden" data-focus-mobile-meta>
+        <BackButton href={`/learn/${skillMapSlug}/`} label="Back to skill map" />
+        <MobileContentMeta
+          label="Module details"
+          items={mobileMetaItems}
+          tags={moduleEntry.data.tags}
+          shareLabel="Share module"
+        />
+      </div>
+
+      <div class="focus-mode-only justify-end border-t border-border px-5 py-6 md:px-10 lg:px-12 xl:px-16">
+        <FocusModeToggle />
+      </div>
+    </article>
+  </SiteSection>
+</BaseLayout>
+
+<script>
+  const setupShareButton = () => {
+    document.querySelectorAll<HTMLElement>("[data-share-button]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const url = window.location.href;
+        const title = document.title;
+
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, url });
+          } catch {
+            // Sharing was dismissed; no visible recovery is needed.
+          }
+          return;
+        }
+
+        try {
+          await navigator.clipboard.writeText(url);
+          const originalText = button.innerHTML;
+          button.innerHTML = "Copied";
+          window.setTimeout(() => {
+            button.innerHTML = originalText;
+          }, 1600);
+        } catch {
+          button.setAttribute("data-copy-failed", "true");
+        }
+      });
+    });
+  };
+
+  const setupActiveTableOfContents = () => {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
+    if (links.length === 0) return;
+
+    const linkById = new Map(links.map((link) => [link.dataset.tocLink, link]));
+    const headings = Array.from(document.querySelectorAll<HTMLElement>(".prose :is(h2, h3)[id]")).filter((heading) =>
+      linkById.has(heading.id),
+    );
+    if (headings.length === 0) return;
+
+    const setActive = (id: string) => {
+      for (const link of links) {
+        const isActive = link.dataset.tocLink === id;
+        link.classList.toggle("border-accent-1", isActive);
+        link.classList.toggle("text-accent-1", isActive);
+        link.classList.toggle("translate-x-1", isActive);
+        link.classList.toggle("text-foreground-2", !isActive);
+        link.setAttribute("aria-current", isActive ? "location" : "false");
+      }
+    };
+
+    setActive(headings[0].id);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+        if (visible?.target instanceof HTMLElement) setActive(visible.target.id);
+      },
+      { rootMargin: "-22% 0px -62% 0px", threshold: [0, 1] },
+    );
+
+    headings.forEach((heading) => observer.observe(heading));
+    document.addEventListener("astro:before-swap", () => observer.disconnect(), { once: true });
+  };
+
+  document.addEventListener("astro:page-load", () => {
+    setupShareButton();
+    setupActiveTableOfContents();
+  });
+</script>

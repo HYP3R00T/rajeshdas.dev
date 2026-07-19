@@ -1,89 +1,90 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/common/PageHero.astro";
 import { Icon } from "astro-icon/components";
+import SiteSection from "@/components/core/SiteSection.astro";
 import { buttonVariants } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { cn } from "@/lib/utils";
 import { SITE } from "@data/config";
 
 const pageTitle = `Contact | ${SITE.title}`;
 const pageDescription = "A direct path for collaboration, hiring, and thoughtful engineering conversations with Rajesh Das.";
 
-const contactRoutes = [
-  {
-    label: "Email",
-    href: "mailto:hello@rajeshdas.dev",
-    note: "Best for collaboration, hiring, and anything that needs clear context.",
-    action: "Write directly",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/in/rajesh-kumar-das",
-    note: "Best for professional context, role-based conversations, and quick introductions.",
-    action: "Reach out",
-  },
+const usefulContext = [
+  "What you are building or trying to improve",
+  "Where the current workflow is creating friction",
+  "What a useful outcome would look like",
+  "Any relevant links, constraints, or timelines",
 ] as const;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <PageHero>
-    <Fragment slot="topLeft">
-      <h1 class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 sm:text-5xl xl:text-6xl">
-        Let&apos;s make the next conversation worth having.
-      </h1>
-    </Fragment>
+  <SiteSection
+    aria-labelledby="contact-title"
+    frameClass="grid min-h-[calc(100svh-4rem)] items-center lg:grid-cols-2"
+  >
+    <div class="min-w-0 px-5 py-16 md:px-10 md:py-20 lg:px-15 lg:py-24">
+      <div class="max-w-xl">
+        <p class="inline-flex items-center gap-2 font-mono text-[0.6875rem] tracking-[0.14em] text-foreground-1 uppercase">
+          <span class="size-1.5 rounded-full bg-accent-1" aria-hidden="true"></span>
+          Contact
+        </p>
 
-    <Fragment slot="bottomLeft">
-      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Contact</p>
-      <p class="mt-5 max-w-lg text-base leading-relaxed text-foreground-2 md:text-lg">
-        If you&apos;re hiring, exploring a collaboration, or trying to untangle a systems problem, email and LinkedIn are the cleanest ways to reach me.
-      </p>
-      <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-        <a href="mailto:hello@rajeshdas.dev" class={buttonVariants({ variant: "default", size: "lg" })}>
-          Email Rajesh
-          <Icon name="arrow-right" class="size-4" />
-        </a>
-        <a
-          href="https://linkedin.com/in/rajesh-kumar-das"
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonVariants({ variant: "outline", size: "lg" })}
+        <h1
+          id="contact-title"
+          class="mt-7 text-balance font-display text-4xl leading-[1.04] font-medium tracking-[-0.035em] text-foreground-0 sm:text-5xl lg:text-[3.5rem]"
         >
-          LinkedIn
-          <Icon name="arrow-up-right" class="size-4" />
-        </a>
+          Tell me what needs to work better.
+        </h1>
+
+        <p class="mt-6 max-w-lg text-base leading-7 text-foreground-2 md:text-lg md:leading-8">
+          Whether you are hiring, exploring a collaboration, or trying to untangle a systems problem, send the context and I will get back to you directly.
+        </p>
+
+        <div class="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+          <a
+            href="mailto:hello@rajeshdas.dev"
+            class={cn(
+              buttonVariants({ variant: "default", size: "lg" }),
+              "border-0 bg-accent-1 text-accent-contrast hover:bg-accent-2",
+            )}
+          >
+            Email Rajesh
+            <Icon name="arrow-up-right" class="size-4" />
+          </a>
+
+          <a
+            href="https://linkedin.com/in/rajesh-kumar-das"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm text-foreground-2 transition-colors hover:text-accent-1"
+          >
+            Prefer LinkedIn?
+            <Icon name="arrow-up-right" class="size-3.5" />
+          </a>
+        </div>
       </div>
-    </Fragment>
+    </div>
 
-    <Fragment slot="bottomRight">
-      <div class="grid w-full gap-6 sm:grid-cols-2">
-        {
-          contactRoutes.map((route) => (
-            <a
-              href={route.href}
-              target={route.href.startsWith("http") ? "_blank" : undefined}
-              rel={route.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              class="group flex min-h-80 flex-col justify-between overflow-hidden rounded-lg border border-border/80 bg-background-1 p-5 transition-colors hover:bg-background-0 md:p-6"
-            >
-              <div class="flex items-start justify-between gap-6">
-                <p class="font-mono text-xs tracking-widest text-foreground-3 uppercase">Contact route</p>
-                <Icon name="arrow-up-right" class="size-4 text-foreground-3 transition-colors group-hover:text-accent-1" />
-              </div>
+    <div class="min-w-0 px-5 pb-16 md:px-10 md:pb-20 lg:px-15 lg:py-24">
+      <aside class="mx-auto max-w-md rounded-md border border-border bg-background-1 px-6 py-7 md:px-8 md:py-8">
+        <h2 class="font-display text-lg font-medium text-foreground-0">What to include</h2>
+        <p class="mt-2 text-sm leading-6 text-foreground-2">
+          A few details help me understand the problem and give you a useful answer faster.
+        </p>
 
-              <div>
-                <h2 class="font-display text-2xl leading-tight text-foreground-0 transition-colors group-hover:text-accent-1 md:text-3xl">
-                  {route.label}
-                </h2>
-                <p class="mt-4 text-sm leading-relaxed text-foreground-1 md:text-base">{route.note}</p>
-              </div>
-
-              <div class="mt-8 flex items-center justify-between gap-4 border-t border-border/80 pt-5">
-                <span class="font-mono text-xs tracking-[0.22em] text-foreground-3 uppercase">{route.action}</span>
-                <span class="font-mono text-xs tracking-[0.22em] text-accent-1 uppercase">Open</span>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </Fragment>
-  </PageHero>
+        <ol class="mt-6">
+          {
+            usefulContext.map((item, index) => (
+              <li class="grid grid-cols-[2rem_minmax(0,1fr)] gap-3 border-t border-border py-4 first:border-t-0 first:pt-0 last:pb-0">
+                <span class="font-mono text-[0.6875rem] tracking-[0.08em] text-accent-1">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span class="text-sm leading-6 text-foreground-1">{item}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </aside>
+    </div>
+  </SiteSection>
 </BaseLayout>

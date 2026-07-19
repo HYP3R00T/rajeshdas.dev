@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/common/PageHero.astro";
+import SectionHeader from "@/components/core/SectionHeader.astro";
+import SiteSection from "@/components/core/SiteSection.astro";
 import SkillMapCard from "@/components/learn/SkillMapCard.astro";
 import { getModuleSkillMapSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn";
 import { SITE } from "@data/config";
@@ -9,54 +10,34 @@ import { SITE } from "@data/config";
 const entries = await getCollection("learn");
 const skillMaps = entries
   .filter((entry) => isSkillMapEntry(entry) && entry.data.status === "ready")
-  .sort((a, b) => b.data.order - a.data.order);
+  .sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
 const modules = entries.filter((entry) => isModuleEntry(entry) && entry.data.status === "ready");
-const getModuleCount = (skillMap: (typeof skillMaps)[number]) => modules.filter((module) => getModuleSkillMapSlug(module) === getSkillMapSlug(skillMap)).length;
-const latestMap = skillMaps[0];
-const otherSkillMaps = latestMap ? skillMaps.filter((map) => map.id !== latestMap.id) : [];
-const showAllSkillMaps = otherSkillMaps.length > 0;
+const getModuleCount = (skillMap: (typeof skillMaps)[number]) =>
+  modules.filter((module) => getModuleSkillMapSlug(module) === getSkillMapSlug(skillMap)).length;
 ---
 
 <BaseLayout title={`Learn | ${SITE.title}`} description="Curated technical skill maps for learning what matters, why it matters, and where to go next.">
-  <PageHero>
-    <Fragment slot="topLeft">
-      <h1 class="font-display text-4xl leading-tight font-semibold tracking-tighter text-foreground-0 sm:text-5xl xl:text-6xl">
-        Learn by following a map, not a pile of links.
-      </h1>
-    </Fragment>
-
-    <Fragment slot="bottomLeft">
-      <p class="font-mono text-xs tracking-widest text-accent-1 uppercase">Latest skill map</p>
-      <p class="mt-5 max-w-lg text-base leading-relaxed text-foreground-2 md:text-lg">
-        Curated paths for building practical engineering judgment, one focused module at a time.
-      </p>
-    </Fragment>
-
-    <Fragment slot="bottomRight">
-      {
-        latestMap ? (
-          <section aria-label="Latest skill map" class="w-full">
-            <SkillMapCard map={latestMap} moduleCount={getModuleCount(latestMap)} />
-          </section>
-        ) : (
-          <p class="w-full rounded-lg border border-border/80 bg-background-1 p-6 text-foreground-1">
-            No skill maps are ready yet.
-          </p>
-        )
-      }
-    </Fragment>
-  </PageHero>
+  <section aria-labelledby="learn-title">
+    <div class="site-grid-frame">
+      <SectionHeader
+        eyebrow="Learn"
+        title="Learn by following a map, not a pile of links."
+        titleId="learn-title"
+        headingLevel={1}
+        description="Curated paths for building practical engineering judgment, one focused module at a time."
+      />
+    </div>
+  </section>
 
   {
-    showAllSkillMaps && (
-      <section aria-labelledby="all-skill-maps" class="px-4 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28">
-        <div class="mx-auto w-full max-w-site">
-          <h2 id="all-skill-maps" class="font-display text-2xl text-foreground-0 md:text-3xl">All skill maps</h2>
-          <div class="mt-10 grid gap-8 md:grid-cols-2">
-            {otherSkillMaps.map((map) => <SkillMapCard map={map} moduleCount={getModuleCount(map)} />)}
-          </div>
-        </div>
-      </section>
+    skillMaps.length > 0 ? (
+      <SiteSection aria-label="Skill maps" frameClass="grid xl:grid-cols-2">
+        {skillMaps.map((map) => <SkillMapCard map={map} moduleCount={getModuleCount(map)} />)}
+      </SiteSection>
+    ) : (
+      <SiteSection aria-label="Skill maps">
+        <p class="px-5 py-16 text-foreground-2 md:px-10 lg:px-15">No skill maps are ready yet.</p>
+      </SiteSection>
     )
   }
 </BaseLayout>

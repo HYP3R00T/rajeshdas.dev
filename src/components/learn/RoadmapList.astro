@@ -6,14 +6,18 @@ const { skillMap, modules } = Astro.props;
 const skillMapSlug = getSkillMapSlug(skillMap);
 ---
 
-<div class="grid gap-4">
-  {
-    modules.map((module: any, index: number) => (
-      <ModulePreviewCard
-        module={module}
-        href={`/learn/${skillMapSlug}/${getModuleSlug(module)}/`}
-        index={index}
-      />
-    ))
-  }
-</div>
+{
+  modules.length > 0 ? (
+    <ol class="divide-y divide-border">
+      {modules.map((module: any, index: number) => (
+        <ModulePreviewCard
+          module={module}
+          href={`/learn/${skillMapSlug}/${getModuleSlug(module)}/`}
+          index={index}
+        />
+      ))}
+    </ol>
+  ) : (
+    <p class="px-5 py-16 text-foreground-2 md:px-10 lg:px-15">No modules are ready yet.</p>
+  )
+}
