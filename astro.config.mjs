@@ -10,6 +10,7 @@ import icon from "astro-icon"
 import rehypeCodeBlocks from "./src/lib/rehype-code-blocks.mjs"
 import rehypeHeadingLinks from "./src/lib/rehype-heading-links.mjs"
 
+/** @type {import("@astrojs/markdown-remark").RehypePlugins} */
 const rehypePlugins = [[rehypeCodeBlocks, { theme: "houston" }], rehypeHeadingLinks]
 
 export default defineConfig({
