@@ -1,6 +1,7 @@
 import rehypePrettyCode from "rehype-pretty-code"
 
 const LANGUAGE_LABELS = {
+  ansi: "ANSI",
   bash: "Bash",
   console: "Console",
   css: "CSS",
@@ -35,6 +36,20 @@ const textContent = (node) => {
 }
 
 const hasProperty = (node, property) => node?.type === "element" && Object.hasOwn(node.properties ?? {}, property)
+
+const normalizeAnsiSource = (node) => {
+  if (node?.type !== "element" || node.tagName !== "code") return
+
+  const classes = node.properties?.className
+  const classNames = Array.isArray(classes) ? classes : typeof classes === "string" ? classes.split(/\s+/) : []
+  const language = node.properties?.["data-language"]
+  if (!classNames.includes("language-ansi") && language !== "ansi") return
+
+  for (const child of node.children ?? []) {
+    if (child.type !== "text") continue
+    child.value = child.value.replace(/\\(?:x1b|u001b)/gi, "\u001b")
+  }
+}
 
 const createHeader = (language, filename) => ({
   type: "element",
@@ -108,10 +123,17 @@ const walk = (node) => {
   for (const child of node.children) walk(child)
 }
 
+const walkAnsiSource = (node) => {
+  normalizeAnsiSource(node)
+  if (!Array.isArray(node.children)) return
+  for (const child of node.children) walkAnsiSource(child)
+}
+
 export default function rehypeCodeBlocks(options = {}) {
   const highlightCode = rehypePrettyCode(options)
 
   return async (tree, file) => {
+    walkAnsiSource(tree)
     await highlightCode(tree, file)
     walk(tree)
   }

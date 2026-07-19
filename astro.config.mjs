@@ -44,7 +44,7 @@ export default defineConfig({
         "./src/components/common/Callout.tsx",
       ],
     }),
-    mdx({ rehypePlugins }),
+    mdx(),
     react(),
   ],
 
