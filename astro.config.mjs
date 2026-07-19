@@ -1,13 +1,13 @@
 // @ts-check
 
-import { unified } from "@astrojs/markdown-remark"
-import mdx from "@astrojs/mdx"
-import react from "@astrojs/react"
-import tailwindcss from "@tailwindcss/vite"
-import { defineConfig } from "astro/config"
-import AutoImport from "astro-auto-import"
-import icon from "astro-icon"
-import rehypeHeadingLinks from "./src/lib/rehype-heading-links.mjs"
+import { unified } from "@astrojs/markdown-remark";
+import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import AutoImport from "astro-auto-import";
+import icon from "astro-icon";
+import rehypeHeadingLinks from "./src/lib/rehype-heading-links.mjs";
 
 export default defineConfig({
   site: "https://rajeshdas.dev",
@@ -16,7 +16,7 @@ export default defineConfig({
   markdown: {
     processor: unified({ rehypePlugins: [rehypeHeadingLinks] }),
     shikiConfig: {
-      theme: "poimandres",
+      theme: "houston",
     },
   },
 
@@ -48,4 +48,4 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-})
+});
