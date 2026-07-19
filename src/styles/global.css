@@ -118,7 +118,7 @@
   --foreground: var(--foreground-0);
   --muted: var(--background-4);
   --muted-foreground: var(--foreground-1);
-  --border: var(--background-2);
+  --border: var(--background-1);
   --input: var(--background-3);
   --card: var(--background-1);
   --card-foreground: var(--foreground-0);
@@ -257,8 +257,40 @@
   }
 }
 
+.focus-mode-only {
+  display: none;
+}
+
+body[data-focus-mode="true"] [data-header-shell],
+body[data-focus-mode="true"] [data-footer-shell],
+body[data-focus-mode="true"] [data-focus-sidebar],
+body[data-focus-mode="true"] [data-focus-mobile-meta],
+body[data-focus-mode="true"] [data-focus-secondary-navigation] {
+  display: none;
+}
+
+body[data-focus-mode="true"] .focus-reading-frame {
+  display: block;
+  max-width: var(--container-site);
+}
+
+body[data-focus-mode="true"] [data-focus-reading-content] {
+  width: 100%;
+  max-width: 63rem;
+  margin-inline: auto;
+}
+
+body[data-focus-mode="true"] .focus-mode-only {
+  display: flex;
+}
+
 #main-content {
   container-type: inline-size;
+}
+
+#main-content:focus,
+#main-content:focus-visible {
+  outline: none;
 }
 
 @layer base {
@@ -536,28 +568,30 @@
 }
 
 .dot-pattern-interactive::before {
-  background-image: radial-gradient(circle,
-      color-mix(in hsl, var(--secondary-foreground) 5%, transparent) var(--dot-size),
-      transparent calc(var(--dot-size) + 0.6px));
+  background-image: radial-gradient(
+    circle,
+    color-mix(in hsl, var(--secondary-foreground) 5%, transparent) var(--dot-size),
+    transparent calc(var(--dot-size) + 0.6px)
+  );
   background-size: var(--dot-grid) var(--dot-grid);
   opacity: 0.3;
   z-index: 0;
 }
 
 .dot-pattern-interactive::after {
-  background-image: radial-gradient(circle,
-      color-mix(in hsl, var(--foreground) 20%, transparent) var(--dot-size),
-      transparent calc(var(--dot-size) + 0.6px));
+  background-image: radial-gradient(
+    circle,
+    color-mix(in hsl, var(--foreground) 20%, transparent) var(--dot-size),
+    transparent calc(var(--dot-size) + 0.6px)
+  );
   background-size: var(--dot-grid) var(--dot-grid);
-  mask-image: radial-gradient(circle var(--dot-spot-size) at var(--dot-mx) var(--dot-my),
-      black 0%,
-      transparent 78%);
+  mask-image: radial-gradient(circle var(--dot-spot-size) at var(--dot-mx) var(--dot-my), black 0%, transparent 78%);
   opacity: calc(0.5 * var(--dot-highlight-opacity));
   transition: opacity 200ms ease;
   z-index: 0;
 }
 
-.dot-pattern-interactive>* {
+.dot-pattern-interactive > * {
   position: relative;
   z-index: 1;
 }
@@ -569,7 +603,7 @@ mjx-container[jax="SVG"] {
   vertical-align: baseline;
 }
 
-mjx-container[jax="SVG"]>svg {
+mjx-container[jax="SVG"] > svg {
   display: inline-block;
   max-width: none !important;
   height: auto;

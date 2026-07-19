@@ -109,19 +109,18 @@ const mobileMetaItems = [
     </aside>
 
     <article class="min-w-0">
-      <div class="px-5 pt-12 md:px-10 md:pt-16 lg:hidden">
-        <BackButton href="/til/" label="Back to notes" dataNotesBack />
-        <MobileContentMeta
-          items={mobileMetaItems}
-          tags={entry.data.tags}
-          headings={visibleHeadings}
-          sectionsLabel="Note sections"
-          shareLabel="Share note"
-        />
-      </div>
-
       <div class="prose max-w-none px-5 pt-12 pb-12 md:px-10 md:pt-16 md:pb-16 lg:px-12 xl:px-16">
         <slot />
+      </div>
+
+      <div class="border-t border-border px-5 py-10 md:px-10 md:py-12 lg:hidden">
+        <BackButton href="/til/" label="Back to notes" dataNotesBack />
+        <MobileContentMeta
+          label="Note details"
+          items={mobileMetaItems}
+          tags={entry.data.tags}
+          shareLabel="Share note"
+        />
       </div>
     </article>
   </SiteSection>

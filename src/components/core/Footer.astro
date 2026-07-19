@@ -11,14 +11,16 @@ const utilityLinks = [
 ];
 ---
 
-<footer class="site-grid-frame" aria-labelledby="footer-title">
-  <div class="grid gap-16 px-5 py-14 md:px-10 md:py-18 lg:grid-cols-[minmax(0,1.2fr)_minmax(32rem,0.8fr)] lg:gap-24 lg:px-15 lg:py-20">
+<footer class="site-grid-frame" aria-labelledby="footer-title" data-footer-shell>
+  <div
+    class="grid gap-16 px-5 py-14 md:px-10 md:py-18 lg:grid-cols-[minmax(0,1.2fr)_minmax(32rem,0.8fr)] lg:gap-24 lg:px-15 lg:py-20"
+  >
     <div>
-      <a href="/" id="footer-title" class="font-display text-2xl font-medium tracking-[-0.025em] text-foreground-0">
+      <a href="/" id="footer-title" class="font-display text-2xl font-medium tracking-tight text-foreground-0">
         <span class="text-accent-1">rajeshdas</span><span class="text-foreground-3">.dev</span>
       </a>
       <p class="mt-5 max-w-md text-base leading-7 text-foreground-2">
-        DevOps engineering, automation, and technical writing—shared openly and built to stay useful.
+        DevOps engineering, automation, and technical writing; shared openly and built to stay useful.
       </p>
     </div>
 
@@ -28,7 +30,12 @@ const utilityLinks = [
         <nav class="mt-5 grid gap-3" aria-label="Footer navigation">
           {
             navItems.map((item) => (
-              <a href={item.href} target={item.blank ? "_blank" : undefined} rel={item.blank ? "noopener noreferrer" : undefined} class="w-fit text-sm text-foreground-1 transition-colors hover:text-accent-1">
+              <a
+                href={item.href}
+                target={item.blank ? "_blank" : undefined}
+                rel={item.blank ? "noopener noreferrer" : undefined}
+                class="w-fit text-sm text-foreground-1 transition-colors hover:text-accent-1"
+              >
                 {item.label}
               </a>
             ))
@@ -41,7 +48,13 @@ const utilityLinks = [
         <div class="mt-5 grid gap-3">
           {
             activeSocials.map((social) => (
-              <a href={social.href} target={social.href.startsWith("mailto:") ? undefined : "_blank"} rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"} title={social.linkTitle} class="flex w-fit items-center gap-2 text-sm text-foreground-1 transition-colors hover:text-accent-1">
+              <a
+                href={social.href}
+                target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={social.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                title={social.linkTitle}
+                class="flex w-fit items-center gap-2 text-sm text-foreground-1 transition-colors hover:text-accent-1"
+              >
                 <Icon name={social.name} class="size-3.5" />
                 <span class="capitalize">{social.name}</span>
               </a>
@@ -55,7 +68,12 @@ const utilityLinks = [
         <div class="mt-5 grid gap-3">
           {
             utilityLinks.map((item) => (
-              <a href={item.href} target={item.blank ? "_blank" : undefined} rel={item.blank ? "noopener noreferrer" : undefined} class="w-fit text-sm text-foreground-1 transition-colors hover:text-accent-1">
+              <a
+                href={item.href}
+                target={item.blank ? "_blank" : undefined}
+                rel={item.blank ? "noopener noreferrer" : undefined}
+                class="w-fit text-sm text-foreground-1 transition-colors hover:text-accent-1"
+              >
                 {item.label}
               </a>
             ))
@@ -65,7 +83,9 @@ const utilityLinks = [
     </div>
   </div>
 
-  <div class="flex flex-col gap-3 px-5 pb-10 text-sm text-foreground-3 md:flex-row md:items-center md:justify-between md:px-10 lg:px-15">
+  <div
+    class="flex flex-col gap-3 px-5 pb-10 text-sm text-foreground-3 md:flex-row md:items-center md:justify-between md:px-10 lg:px-15"
+  >
     <p>&copy; {currentYear} {SITE.title}. All rights reserved.</p>
     <p>Built with ❤️ by Rajesh Das.</p>
   </div>

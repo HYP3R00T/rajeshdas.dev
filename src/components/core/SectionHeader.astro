@@ -21,6 +21,7 @@ const {
   ...attributes
 } = Astro.props as Props;
 const Heading = headingLevel === 1 ? "h1" : "h2";
+const hasAction = Astro.slots.has("action");
 ---
 
 <header
@@ -33,6 +34,13 @@ const Heading = headingLevel === 1 ? "h1" : "h2";
   <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase lg:col-start-1 lg:row-start-1">
     {eyebrow}
   </p>
+  {
+    hasAction && (
+      <div class="justify-self-start lg:col-start-2 lg:row-start-1 lg:justify-self-end">
+        <slot name="action" />
+      </div>
+    )
+  }
   <Heading
     id={titleId}
     transition:name={transitionName}
