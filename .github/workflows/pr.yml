@@ -27,8 +27,13 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      - name: Install dependencies
+      - name: Install dependencies from pull request
+        if: github.event_name == 'pull_request'
         run: pnpm install --frozen-lockfile
+
+      - name: Install dependencies from trusted branch
+        if: github.event_name == 'push'
+        run: pnpm install --frozen-lockfile --trust-lockfile
 
       - name: Run Biome
         run: pnpm exec biome ci .
