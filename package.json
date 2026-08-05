@@ -9,10 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@astrojs/markdown-remark": "^7.2.1",
-    "@astrojs/mdx": "^7.0.3",
-    "@astrojs/react": "^6.0.1",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-remark": "^7.2.2",
+    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/react": "^6.0.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/ts-plugin": "^1.10.10",
     "@fontsource-variable/inter": "^5.3.0",
@@ -22,7 +22,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "astro": "^7.1.1",
+    "astro": "^7.1.5",
     "astro-auto-import": "^0.5.2",
     "astro-icon": "^1.1.5",
     "class-variance-authority": "^0.7.1",
@@ -30,10 +30,10 @@
     "github-slugger": "2.0.0",
     "lucide-react": "^1.25.0",
     "plyr": "^3.8.4",
-    "radix-ui": "^1.6.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "rehype-pretty-code": "^0.14.4",
+    "radix-ui": "^1.6.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "rehype-pretty-code": "^0.14.5",
     "shadcn": "^4.13.1",
     "sharp": "^0.35.3",
     "shiki": "^4.3.1",
@@ -43,7 +43,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.4",
+    "@biomejs/biome": "2.5.6",
     "globals": "^17.7.0"
   }
 }
