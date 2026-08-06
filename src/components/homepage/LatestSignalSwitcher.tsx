@@ -31,7 +31,7 @@ export default function LatestSignalSwitcher({
 }: LatestSignalSwitcherProps) {
   const accentButton = cn(
     buttonVariants({ variant: "default", size: "lg" }),
-    "bg-accent-1 px-5 text-accent-contrast hover:bg-accent-2",
+    "bg-accent-1 px-5 text-background-0 hover:bg-accent-2",
   )
 
   return (
@@ -80,7 +80,7 @@ export default function LatestSignalSwitcher({
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] group-focus-visible:scale-[1.02]"
               />
               <span className="absolute inset-0 grid place-items-center bg-background-0/18">
-                <span className="flex size-12 items-center justify-center rounded-md bg-accent-1 text-accent-contrast transition-transform group-hover:scale-105">
+                <span className="flex size-12 items-center justify-center rounded-md bg-accent-1 text-background-0 transition-transform group-hover:scale-105">
                   <Play className="size-5 fill-current" aria-hidden="true" />
                 </span>
               </span>
@@ -97,7 +97,7 @@ export default function LatestSignalSwitcher({
             </p>
             <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row">
               <DialogTrigger asChild>
-                <Button size="lg" className="bg-accent-1 px-5 text-accent-contrast hover:bg-accent-2">
+                <Button size="lg" className="bg-accent-1 px-5 text-background-0 hover:bg-accent-2">
                   Watch video
                   <Play className="size-4" aria-hidden="true" />
                 </Button>

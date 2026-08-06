@@ -10,8 +10,6 @@
   --background-1: oklch(0.9543 0.006 85);
   --background-2: oklch(0.9126 0.006 85);
   --background-3: oklch(0.8453 0.006 85);
-  --background-4: oklch(0.7363 0.006 85);
-  --background-5: oklch(0.5600 0.006 85);
 
   /* Cool neutral text, ordered from quiet to high emphasis */
   --foreground-3: oklch(0.5300 0.012 250);
@@ -20,14 +18,8 @@
   --foreground-0: oklch(0.2000 0.012 250);
 
   /* Cyan-blue interaction family */
-  --accent-0: oklch(0.9300 0.030 240);
   --accent-1: oklch(0.5400 0.110 245);
-  --accent-2: oklch(0.4700 0.120 250);
-  --accent-contrast: oklch(1 0 0);
-
-  --hero-field-0: oklch(0.9200 0.025 240);
-  --hero-field-1: oklch(0.8600 0.045 225);
-  --hero-field-2: oklch(0.8800 0.035 260);
+  --accent-2: color-mix(in oklch, var(--accent-1), black 12%);
 
   /* Semantic and chart colors balanced for light surfaces */
   --red-0: oklch(0.5500 0.140 25);
@@ -57,7 +49,7 @@
   --accent: var(--background-2);
   --accent-foreground: var(--foreground-0);
   --destructive: var(--red-0);
-  --destructive-foreground: var(--accent-contrast);
+  --destructive-foreground: var(--background-0);
   --ring: var(--accent-1);
   --chart-1: var(--teal-0);
   --chart-2: var(--cyan-0);
@@ -89,8 +81,6 @@
   --background-1: oklch(0.2057 0.009 250);
   --background-2: oklch(0.2474 0.009 250);
   --background-3: oklch(0.3147 0.009 250);
-  --background-4: oklch(0.4237 0.009 250);
-  --background-5: oklch(0.6000 0.009 250);
 
   /* Warm primary text with cool supporting neutrals */
   --foreground-3: oklch(0.6000 0.012 250);
@@ -99,14 +89,8 @@
   --foreground-0: oklch(0.9500 0.008 85);
 
   /* Brighter cyan-blue interaction family for dark surfaces */
-  --accent-0: oklch(0.3000 0.040 240);
   --accent-1: oklch(0.7000 0.110 240);
-  --accent-2: oklch(0.7600 0.120 235);
-  --accent-contrast: oklch(0.1800 0.009 250);
-
-  --hero-field-0: oklch(0.2500 0.025 245);
-  --hero-field-1: oklch(0.3000 0.035 225);
-  --hero-field-2: oklch(0.2800 0.030 270);
+  --accent-2: color-mix(in oklch, var(--accent-1), white 10%);
 
   /* Semantic and chart colors balanced for dark surfaces */
   --red-0: oklch(0.7000 0.120 25);
@@ -137,7 +121,7 @@
   --accent: var(--background-2);
   --accent-foreground: var(--foreground-0);
   --destructive: var(--red-0);
-  --destructive-foreground: var(--accent-contrast);
+  --destructive-foreground: var(--background-0);
   --ring: var(--accent-1);
   --chart-1: var(--teal-0);
   --chart-2: var(--cyan-0);
@@ -169,8 +153,6 @@
   --color-background-1: var(--background-1);
   --color-background-2: var(--background-2);
   --color-background-3: var(--background-3);
-  --color-background-4: var(--background-4);
-  --color-background-5: var(--background-5);
   --color-foreground-3: var(--foreground-3);
   --color-foreground-2: var(--foreground-2);
   --color-foreground-1: var(--foreground-1);
@@ -184,13 +166,8 @@
   --color-blue-0: var(--blue-0);
   --color-purple-0: var(--purple-0);
   --color-pink-0: var(--pink-0);
-  --color-accent-0: var(--accent-0);
   --color-accent-1: var(--accent-1);
   --color-accent-2: var(--accent-2);
-  --color-accent-contrast: var(--accent-contrast);
-  --color-hero-field-0: var(--hero-field-0);
-  --color-hero-field-1: var(--hero-field-1);
-  --color-hero-field-2: var(--hero-field-2);
 
   /* Shadcn */
   --color-background: var(--background);
@@ -333,7 +310,7 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   ::selection {
-    @apply bg-accent-1 text-accent-contrast;
+    @apply bg-accent-1 text-background-0;
   }
 
   ::-webkit-scrollbar {
