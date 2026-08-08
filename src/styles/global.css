@@ -533,6 +533,48 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 }
 
+.dashed-grid-cell {
+  position: relative;
+}
+
+.dashed-grid-cell::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 1px;
+  pointer-events: none;
+  content: "";
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--border) 0,
+    var(--border) 4px,
+    transparent 4px,
+    transparent 12px
+  );
+}
+
+@media (min-width: 48rem) {
+  .dashed-grid-cell::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 1px;
+    pointer-events: none;
+    content: "";
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--border) 0,
+      var(--border) 4px,
+      transparent 4px,
+      transparent 12px
+    );
+  }
+}
+
 /* Interactive Dot Pattern */
 .dot-pattern-interactive {
   --dot-size: 1px;

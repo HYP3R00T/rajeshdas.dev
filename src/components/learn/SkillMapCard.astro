@@ -10,52 +10,54 @@ const cover = map.data.cover;
 
 <a
   href={href}
-  class="group grid min-w-0 border-b border-border bg-background-0 transition-colors duration-200 hover:bg-background-1 motion-reduce:transition-none sm:h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:h-60 xl:grid-cols-[15rem_minmax(0,1fr)] xl:border-r"
+  class="dashed-grid-cell group min-w-0 bg-background-0 p-5 transition-colors duration-200 hover:bg-background-1 motion-reduce:transition-none md:p-8 xl:p-10"
 >
-  <div
-    class="aspect-square overflow-hidden bg-background-1 sm:aspect-auto sm:h-full"
-    transition:name={`skill-map-cover-${getSkillMapSlug(map)}`}
-  >
-    {
-      cover ? (
-        <Image
-          src={cover}
-          alt={map.data.coverAlt || `${map.data.title} preview`}
-          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-          width={480}
-          height={480}
-          densities={[1, 1.5, 2]}
-          fit="cover"
-          position="center"
-          quality="high"
-        />
-      ) : (
-        <div class="h-full w-full bg-background-0" aria-hidden="true"></div>
-      )
-    }
-  </div>
-
-  <div class="flex min-w-0 flex-col px-5 py-5 md:px-7">
-    <div class="flex min-w-0 items-center justify-between gap-6 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
-      <span class="text-accent-1">Skill map</span>
-      <span class="shrink-0 text-foreground-3">{moduleCount} module{moduleCount === 1 ? "" : "s"}</span>
+  <div class="grid min-w-0 sm:min-h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:min-h-60 xl:grid-cols-[15rem_minmax(0,1fr)]">
+    <div
+      class="aspect-square overflow-hidden bg-background-1 sm:aspect-auto sm:h-full"
+      transition:name={`skill-map-cover-${getSkillMapSlug(map)}`}
+    >
+      {
+        cover ? (
+          <Image
+            src={cover}
+            alt={map.data.coverAlt || `${map.data.title} preview`}
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            width={480}
+            height={480}
+            densities={[1, 1.5, 2]}
+            fit="cover"
+            position="center"
+            quality="high"
+          />
+        ) : (
+          <div class="h-full w-full bg-background-0" aria-hidden="true"></div>
+        )
+      }
     </div>
 
-    <div class="mt-4 flex min-h-0 flex-1 flex-col xl:mt-5">
-      <h2
-        class="line-clamp-2 font-display text-2xl leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors group-hover:text-accent-1"
-        transition:name={`skill-map-title-${getSkillMapSlug(map)}`}
-      >
-        {map.data.title}
-      </h2>
-      <p class="mt-3 line-clamp-3 text-sm leading-6 text-foreground-2 sm:line-clamp-1 lg:line-clamp-2">
-        {map.data.description}
-      </p>
-      <div class="mt-auto flex justify-end pt-3 text-sm text-foreground-1">
-        <span class="inline-flex items-center gap-2">
-          Open map
-          <Icon name="arrow-right" class="size-4" />
-        </span>
+    <div class="flex min-w-0 flex-col pt-6 sm:pt-0 sm:pl-7 xl:pl-8">
+      <div class="flex min-w-0 items-center justify-between gap-6 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
+        <span class="text-accent-1">Skill map</span>
+        <span class="shrink-0 text-foreground-3">{moduleCount} module{moduleCount === 1 ? "" : "s"}</span>
+      </div>
+
+      <div class="mt-4 flex min-h-0 flex-1 flex-col xl:mt-5">
+        <h2
+          class="line-clamp-2 font-display text-2xl leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors group-hover:text-accent-1"
+          transition:name={`skill-map-title-${getSkillMapSlug(map)}`}
+        >
+          {map.data.title}
+        </h2>
+        <p class="mt-3 line-clamp-3 text-sm leading-6 text-foreground-2 sm:line-clamp-1 lg:line-clamp-2">
+          {map.data.description}
+        </p>
+        <div class="mt-auto flex justify-end pt-3 text-sm text-foreground-1">
+          <span class="inline-flex items-center gap-2">
+            Open map
+            <Icon name="arrow-right" class="size-4" />
+          </span>
+        </div>
       </div>
     </div>
   </div>
