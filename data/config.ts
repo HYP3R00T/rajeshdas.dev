@@ -6,8 +6,7 @@ export const SITE: SiteConfig = {
   author: "Rajesh",
   repo: "https://github.com/HYP3R00T/rajeshdas.dev",
   title: "Rajesh Das",
-  description:
-    "A personal portfolio and value-first router for self-directed developers who want structure, practical systems, and curated guidance.",
+  description: "Python automation, developer tools, CI/CD workflows, and infrastructure work from Rajesh Kumar Das.",
   image: placeholder1,
   imageAlt: "Check out rajeshdas.dev",
   contentType: "Portfolio",
@@ -19,7 +18,6 @@ export const SITE: SiteConfig = {
 export const navItems: NavItem[] = [
   { href: "/learn", label: "Learn" },
   { href: "/post", label: "Articles" },
-  { href: "/til", label: "Notes" },
   { href: "https://hyperoot.dev", label: "Projects" },
   { href: "/contact", label: "Contact" },
 ]

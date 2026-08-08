@@ -87,13 +87,6 @@ export const homepageRoutes = [
     href: "/post/",
     action: "Browse articles",
   },
-  {
-    eyebrow: "Small discoveries",
-    title: "Notes",
-    description: "Keep concise discoveries and reusable mental models close at hand.",
-    href: "/til/",
-    action: "Open notes",
-  },
 ] as const
 
 export const latestVideo = {
