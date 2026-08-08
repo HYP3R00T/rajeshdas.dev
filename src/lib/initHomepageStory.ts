@@ -166,7 +166,10 @@ const initStory = (story: HTMLElement) => {
   const draw = (progress = 1, time = performance.now()) => {
     context.clearRect(0, 0, width, height)
     const easedProgress = easeInOutCubic(clamp(progress, 0, 1))
-    const scale = Math.min(width, height) * (compactViewport.matches ? 0.42 : 0.4)
+    const visibleDimension = compactViewport.matches
+      ? Math.min(width, height, field.clientHeight)
+      : Math.min(width, height)
+    const scale = visibleDimension * 0.4
 
     const projectedPoints: Array<{ index: number; value: ProjectedPoint }> = []
     for (let index = 0; index < particleCount; index += 1) {
