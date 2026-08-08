@@ -18,28 +18,57 @@ export const featuredProjects = [
 
 export const homepageMetrics = [
   {
-    value: "700+",
-    unit: "hours",
-    label: "setup time reclaimed",
-    source: "dotfiles counter",
+    value: "87.5%",
+    unit: "less time",
+    label: "Regression testing reduced through AWS workflow automation",
+  },
+  {
+    value: "70%",
+    unit: "less manual effort",
+    label: "Heterogeneous database validation made repeatable",
+  },
+  {
+    value: "8",
+    unit: "engineers",
+    label: "Trained in maintainable Python automation practices",
   },
   {
     value: "20k+",
     unit: "downloads",
-    label: "Python package reach",
-    source: "package telemetry",
+    label: "Public adoption of the HyperCLI Python package",
+  },
+] as const
+
+export const homepageStorySteps = [
+  {
+    shape: "sphere",
+    visualLabel: "Sphere",
+    eyebrow: "Understand",
+    title: "I understand the workflow before I automate it.",
+    description:
+      "Repetition is easy to spot. The harder part is finding out why it exists: where information comes from, which checks matter, where people wait, and what still needs human judgment.",
+    supporting:
+      "I map that path before writing the automation. A faster script is not much help if the underlying process is still difficult to understand.",
   },
   {
-    value: "3",
-    unit: "environments",
-    label: "one bootstrap path",
-    source: "dotfiles targets",
+    shape: "cube",
+    visualLabel: "Cube",
+    eyebrow: "Build",
+    title: "The happy path is only the beginning.",
+    description:
+      "Real tools have to deal with changing configuration, unavailable services, partial results, and inputs nobody expected.",
+    supporting:
+      "I build logging, validation, tests, and useful errors into the workflow from the start, so the person running it can see what happened and decide what to do next.",
   },
   {
-    value: "0",
-    unit: "vendor lock-in",
-    label: "source-owned documentation",
-    source: "Celestial Docs",
+    shape: "pyramid",
+    visualLabel: "Pyramid",
+    eyebrow: "Handoff",
+    title: "The system should make sense without me.",
+    description:
+      "Automation becomes useful when another engineer can run it, diagnose it, and change it without relying on the person who wrote the first version.",
+    supporting:
+      "That means reproducible environments, documentation, delivery pipelines, and enough context for the next person to take responsibility for the work.",
   },
 ] as const
 

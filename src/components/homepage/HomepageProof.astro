@@ -1,0 +1,40 @@
+---
+import SiteSection from "@/components/core/SiteSection.astro";
+import { homepageMetrics } from "@data/homepage";
+---
+
+<SiteSection id="proof" data-home-section aria-labelledby="proof-title">
+  <header class="site-section-heading flex min-h-56 flex-col items-center justify-center px-5 py-14 text-center md:min-h-64 md:px-10 md:py-16">
+    <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Measured outcomes</p>
+    <h2
+      id="proof-title"
+      class="mt-5 max-w-2xl text-balance font-display text-4xl leading-[1.05] font-medium tracking-[-0.03em] text-foreground-0 md:text-5xl"
+    >
+      What this work changed.
+    </h2>
+  </header>
+
+  <dl class="grid md:grid-cols-2 xl:grid-cols-4">
+    {
+      homepageMetrics.map((metric, index) => (
+        <div
+          class:list={[
+            "flex min-h-52 flex-col border-border px-5 py-8 md:min-h-56 md:odd:border-r md:px-8 md:py-9 xl:border-t-0 xl:border-r xl:px-9 xl:last:border-r-0",
+            index > 0 && "border-t",
+            index === 1 && "md:border-t-0",
+          ]}
+        >
+          <dt>
+            <span class="block font-display text-5xl leading-none font-medium tracking-[-0.04em] text-foreground-0 lg:text-6xl">
+              {metric.value}
+            </span>
+            <span class="mt-3 block font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">
+              {metric.unit}
+            </span>
+          </dt>
+          <dd class="mt-auto max-w-xs pt-10 text-sm leading-6 text-foreground-2">{metric.label}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</SiteSection>
