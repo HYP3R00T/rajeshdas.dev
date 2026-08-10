@@ -394,13 +394,13 @@ body[data-focus-mode="true"] .focus-mode-only {
     @apply mt-0;
   }
 
-  .prose p + p {
+  .prose p+p {
     @apply mt-5;
   }
 
-  .prose p + :is(ul, ol, blockquote, pre, table, hr, div, a),
-  .prose :is(ul, ol, blockquote, pre, table, hr, div, a) + p,
-  .prose :is(ul, ol, blockquote, pre, table, hr, div, a) + :is(ul, ol, blockquote, pre, table, hr, div, a) {
+  .prose p+ :is(ul, ol, blockquote, pre, table, hr, div, a),
+  .prose :is(ul, ol, blockquote, pre, table, hr, div, a)+p,
+  .prose :is(ul, ol, blockquote, pre, table, hr, div, a)+ :is(ul, ol, blockquote, pre, table, hr, div, a) {
     @apply mt-7;
   }
 
@@ -429,7 +429,7 @@ body[data-focus-mode="true"] .focus-mode-only {
     @apply text-foreground-3;
   }
 
-  .prose li + li {
+  .prose li+li {
     @apply mt-1;
   }
 
@@ -473,11 +473,11 @@ body[data-focus-mode="true"] .focus-mode-only {
     @apply mt-2 text-foreground-1;
   }
 
-  .prose .callout-body > :first-child {
+  .prose .callout-body> :first-child {
     @apply mt-0;
   }
 
-  .prose .callout-body > :last-child {
+  .prose .callout-body> :last-child {
     @apply mb-0;
   }
 
@@ -546,13 +546,11 @@ body[data-focus-mode="true"] .focus-mode-only {
   height: 1px;
   pointer-events: none;
   content: "";
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--border) 0,
-    var(--border) 4px,
-    transparent 4px,
-    transparent 12px
-  );
+  background-image: repeating-linear-gradient(to right,
+      var(--border) 0,
+      var(--border) 4px,
+      transparent 4px,
+      transparent 12px);
 }
 
 @media (min-width: 48rem) {
@@ -565,13 +563,11 @@ body[data-focus-mode="true"] .focus-mode-only {
     width: 1px;
     pointer-events: none;
     content: "";
-    background-image: repeating-linear-gradient(
-      to bottom,
-      var(--border) 0,
-      var(--border) 4px,
-      transparent 4px,
-      transparent 12px
-    );
+    background-image: repeating-linear-gradient(to bottom,
+        var(--border) 0,
+        var(--border) 4px,
+        transparent 4px,
+        transparent 12px);
   }
 }
 
@@ -598,22 +594,18 @@ body[data-focus-mode="true"] .focus-mode-only {
 }
 
 .dot-pattern-interactive::before {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in oklch, var(--secondary-foreground) 5%, transparent) var(--dot-size),
-    transparent calc(var(--dot-size) + 0.6px)
-  );
+  background-image: radial-gradient(circle,
+      color-mix(in oklch, var(--secondary-foreground) 5%, transparent) var(--dot-size),
+      transparent calc(var(--dot-size) + 0.6px));
   background-size: var(--dot-grid) var(--dot-grid);
   opacity: 0.3;
   z-index: 0;
 }
 
 .dot-pattern-interactive::after {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in oklch, var(--foreground) 20%, transparent) var(--dot-size),
-    transparent calc(var(--dot-size) + 0.6px)
-  );
+  background-image: radial-gradient(circle,
+      color-mix(in oklch, var(--foreground) 20%, transparent) var(--dot-size),
+      transparent calc(var(--dot-size) + 0.6px));
   background-size: var(--dot-grid) var(--dot-grid);
   mask-image: radial-gradient(circle var(--dot-spot-size) at var(--dot-mx) var(--dot-my), black 0%, transparent 78%);
   opacity: calc(0.5 * var(--dot-highlight-opacity));
@@ -621,7 +613,7 @@ body[data-focus-mode="true"] .focus-mode-only {
   z-index: 0;
 }
 
-.dot-pattern-interactive > * {
+.dot-pattern-interactive>* {
   position: relative;
   z-index: 1;
 }
@@ -633,7 +625,7 @@ mjx-container[jax="SVG"] {
   vertical-align: baseline;
 }
 
-mjx-container[jax="SVG"] > svg {
+mjx-container[jax="SVG"]>svg {
   display: inline-block;
   max-width: none !important;
   height: auto;
