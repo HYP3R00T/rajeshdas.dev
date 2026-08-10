@@ -11,11 +11,16 @@ interface Props {
 }
 
 const { latestPost } = Astro.props as Props;
-const [articleImageSmall, articleImageLarge] = await Promise.all([
-  getImage({ src: latestPost.data.cover, width: 720, format: "webp" }),
-  getImage({ src: latestPost.data.cover, width: 1080, format: "webp" }),
-]);
-const articleImageSrcSet = `${articleImageSmall.src} 720w, ${articleImageLarge.src} 1080w`;
+const articleImageWidths = [720, 1080, 1440, 1920] as const;
+const articleImages = await Promise.all(
+  articleImageWidths.map((width) =>
+    getImage({ src: latestPost.data.cover, width, format: "webp", quality: "max" }),
+  ),
+);
+const articleImageSrcSet = articleImages
+  .map((image, index) => `${image.src} ${articleImageWidths[index]}w`)
+  .join(", ");
+const articleImageSrc = articleImages.at(-1)?.src ?? articleImages[0].src;
 const videoThumbnail = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.jpg`;
 const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`;
 ---
@@ -33,7 +38,7 @@ const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel
     articleTitle={latestPost.data.title}
     articleDescription={latestPost.data.description}
     articleHref={`/post/${latestPost.id}`}
-    articleImageSrc={articleImageLarge.src}
+    articleImageSrc={articleImageSrc}
     articleImageSrcSet={articleImageSrcSet}
     articleImageAlt={latestPost.data.coverAlt || latestPost.data.title}
     videoTitle={latestVideo.title}
