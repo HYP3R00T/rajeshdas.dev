@@ -174,14 +174,11 @@ Optional frontmatter fields:
 - `order`: number - Display order in listings
 - `startDate`: date - Project start date
 - `endDate`: date - Project end date
-- `featured`: boolean - Show in featured section (default: false)
 - `draft`: boolean - Hide from production (default: false)
 - `images`: image[] - Project screenshots/images
 - `imageAlt`: string - Alt text for images
-- `openSource`: boolean - Is open source (default: true)
 - `sourceRepo`: string - GitHub/GitLab repository URL
 - `website`: string - Live project URL
-- `hasPage`: boolean - Has dedicated project page (default: false)
 
 Example:
 
@@ -192,11 +189,8 @@ description: "A cool project"
 technologies: ["TypeScript", "Astro", "Tailwind"]
 icon: "github"
 order: 1
-featured: true
-openSource: true
 sourceRepo: "https://github.com/user/repo"
 website: "https://example.com"
-hasPage: true
 ---
 ```
 

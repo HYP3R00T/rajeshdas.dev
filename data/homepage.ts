@@ -1,21 +1,3 @@
-export const featuredProjects = [
-  {
-    title: "dotfiles",
-    body: "A one-command machine setup workflow for devcontainers, WSL, and cloud VMs.",
-    href: "https://dotfiles.hyperoot.dev/",
-  },
-  {
-    title: "Celestial Docs",
-    body: "A static docs system built for customization, free hosting, and source-level ownership.",
-    href: "https://celestialdocs.hyperoot.dev/",
-  },
-  {
-    title: "VoicePad",
-    body: "A lightweight voice note workspace focused on capturing ideas quickly and turning them into usable text.",
-    href: "https://voicepad.hyperoot.dev/",
-  },
-] as const
-
 export const homepageMetrics = [
   {
     value: "87.5%",

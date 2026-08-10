@@ -20,6 +20,27 @@ const posts = defineCollection({
     }),
 })
 
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./content/projects" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      technologies: z.array(z.string()).default([]),
+      icon: z.string().optional(),
+      order: z.number().default(0),
+      startDate: z.date().optional(),
+      endDate: z.date().optional(),
+      draft: z.boolean().optional().default(false),
+      images: z.array(image()).default([]),
+      imageAlt: z.string().optional(),
+      homepageImage: image().optional(),
+      homepageImageAlt: z.string().optional(),
+      sourceRepo: z.url().optional(),
+      website: z.url().optional(),
+    }),
+})
+
 const learnBaseSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -73,4 +94,4 @@ const til = defineCollection({
     }),
 })
 
-export const collections = { posts, learn, til }
+export const collections = { posts, projects, learn, til }
