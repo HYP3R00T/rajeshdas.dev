@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.7/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*.{js,jsx,ts,tsx,mjs}", "!src/components/ui"]
+    "includes": ["**/*.{js,jsx,ts,tsx,mjs}"]
   },
   "formatter": {
     "enabled": true,
