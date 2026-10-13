@@ -1,44 +1,38 @@
 ---
-import { getCollection, render } from "astro:content";
-import ModuleLayout from "@/layouts/ModuleLayout.astro";
-import {
-  getModuleSkillMapSlug,
-  getModuleSlug,
-  getSkillMapSlug,
-  isModuleEntry,
-  isSkillMapEntry,
-} from "@/lib/learn";
+import { getCollection, render } from "astro:content"
+import ModuleLayout from "@/layouts/ModuleLayout.astro"
+import { getModuleSkillMapSlug, getModuleSlug, getSkillMapSlug, isModuleEntry, isSkillMapEntry } from "@/lib/learn"
 
 export async function getStaticPaths() {
-  const entries = (await getCollection("learn")) as Array<any>;
-  const skillMaps = entries.filter((entry) => isSkillMapEntry(entry) && entry.data.status === "ready");
-  const modules = entries.filter((entry) => isModuleEntry(entry) && entry.data.status === "ready");
+  const entries = (await getCollection("learn")) as Array<any>
+  const skillMaps = entries.filter((entry) => isSkillMapEntry(entry) && entry.data.status === "ready")
+  const modules = entries.filter((entry) => isModuleEntry(entry) && entry.data.status === "ready")
 
   return modules.flatMap((moduleEntry) => {
-    const skillMapSlug = getModuleSkillMapSlug(moduleEntry);
-    const skillMap = skillMaps.find((map) => getSkillMapSlug(map) === skillMapSlug);
-    if (!skillMap) return [];
+    const skillMapSlug = getModuleSkillMapSlug(moduleEntry)
+    const skillMap = skillMaps.find((map) => getSkillMapSlug(map) === skillMapSlug)
+    if (!skillMap) return []
 
     return {
       params: { skillMap: skillMapSlug, module: getModuleSlug(moduleEntry) },
       props: { skillMap, moduleEntry },
-    };
-  });
+    }
+  })
 }
 
-const { skillMap, moduleEntry } = Astro.props as { skillMap: any; moduleEntry: any };
-const skillMapSlug = getSkillMapSlug(skillMap);
-const moduleSlug = getModuleSlug(moduleEntry);
-const allEntries = (await getCollection("learn")) as Array<any>;
+const { skillMap, moduleEntry } = Astro.props as { skillMap: any; moduleEntry: any }
+const skillMapSlug = getSkillMapSlug(skillMap)
+const moduleSlug = getModuleSlug(moduleEntry)
+const allEntries = (await getCollection("learn")) as Array<any>
 const modules = allEntries
   .filter(
     (entry) => isModuleEntry(entry) && getModuleSkillMapSlug(entry) === skillMapSlug && entry.data.status === "ready",
   )
-  .sort((a, b) => a.data.order - b.data.order);
-const moduleIndex = modules.findIndex((entry) => entry.id === moduleEntry.id);
-const previousModule = moduleIndex > 0 ? modules[moduleIndex - 1] : null;
-const nextModule = moduleIndex >= 0 && moduleIndex < modules.length - 1 ? modules[moduleIndex + 1] : null;
-const { Content, headings } = await render(moduleEntry);
+  .sort((a, b) => a.data.order - b.data.order)
+const moduleIndex = modules.findIndex((entry) => entry.id === moduleEntry.id)
+const previousModule = moduleIndex > 0 ? modules[moduleIndex - 1] : null
+const nextModule = moduleIndex >= 0 && moduleIndex < modules.length - 1 ? modules[moduleIndex + 1] : null
+const { Content, headings } = await render(moduleEntry)
 ---
 
 <ModuleLayout

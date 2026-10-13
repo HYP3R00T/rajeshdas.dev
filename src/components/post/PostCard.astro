@@ -1,15 +1,15 @@
 ---
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-import type { PostCardProps } from "@/lib/types";
-import { formatDateUppercase } from "@/lib/utils";
+import { Image } from "astro:assets"
+import { Icon } from "astro-icon/components"
+import type { PostCardProps } from "@/lib/types"
+import { formatDateUppercase } from "@/lib/utils"
 
 interface Props extends PostCardProps {
-  featured?: boolean;
-  initiallyHidden?: boolean;
+  featured?: boolean
+  initiallyHidden?: boolean
 }
 
-const { post, featured = false, initiallyHidden = false } = Astro.props as Props;
+const { post, featured = false, initiallyHidden = false } = Astro.props as Props
 ---
 
 <a
@@ -23,7 +23,9 @@ const { post, featured = false, initiallyHidden = false } = Astro.props as Props
     featured && "is-featured",
   ]}
 >
-  <div class="grid min-w-0 sm:min-h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:min-h-60 xl:grid-cols-[15rem_minmax(0,1fr)]">
+  <div
+    class="grid min-w-0 sm:min-h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:min-h-60 xl:grid-cols-[15rem_minmax(0,1fr)]"
+  >
     <div class="aspect-square overflow-hidden bg-background-2 sm:aspect-auto sm:h-full">
       <Image
         src={post.data.cover}
@@ -51,7 +53,9 @@ const { post, featured = false, initiallyHidden = false } = Astro.props as Props
       </p>
 
       <div class="mt-auto flex items-center justify-between gap-4 pt-5">
-        <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
+        <div
+          class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.625rem] tracking-[0.14em] uppercase"
+        >
           <span class="post-card__featured text-foreground-2">Featured article</span>
           <time class="post-card__date text-foreground-3" datetime={post.data.pubDatetime.toISOString()}>
             {formatDateUppercase(post.data.pubDatetime)}
@@ -70,15 +74,15 @@ const { post, featured = false, initiallyHidden = false } = Astro.props as Props
 </a>
 
 <style>
-  .post-card__featured {
-    display: none;
-  }
+.post-card__featured {
+  display: none;
+}
 
-  .post-card:hover .post-card__title {
-    color: var(--accent-1);
-  }
+.post-card:hover .post-card__title {
+  color: var(--accent-1);
+}
 
-  .post-card.is-featured .post-card__featured {
-    display: inline;
-  }
+.post-card.is-featured .post-card__featured {
+  display: inline;
+}
 </style>

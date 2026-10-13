@@ -1,11 +1,11 @@
 ---
-import SiteSection from "@/components/core/SiteSection.astro";
-import { buttonVariants } from "@/components/ui/button";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { SITE } from "@data/config";
+import { SITE } from "@data/config"
+import SiteSection from "@/components/core/SiteSection.astro"
+import { buttonVariants } from "@/components/ui/button"
+import BaseLayout from "@/layouts/BaseLayout.astro"
 
-const pageTitle = `Not Found | ${SITE.title}`;
-const pageDescription = "The page you're looking for isn't here, but the rest of the site still is.";
+const pageTitle = `Not Found | ${SITE.title}`
+const pageDescription = "The page you're looking for isn't here, but the rest of the site still is."
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>

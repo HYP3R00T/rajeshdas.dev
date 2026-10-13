@@ -1,19 +1,19 @@
 ---
-import { getCollection } from "astro:content";
-import SectionHeader from "@/components/core/SectionHeader.astro";
-import NoteArchive from "@/components/til/NoteArchive.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { SITE } from "@data/config";
+import { getCollection } from "astro:content"
+import { SITE } from "@data/config"
+import SectionHeader from "@/components/core/SectionHeader.astro"
+import NoteArchive from "@/components/til/NoteArchive.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
 
 const notes = (await getCollection("til"))
   .filter((entry) => !entry.data.draft)
-  .sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf());
+  .sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf())
 
 const topicCounts = notes.reduce<Record<string, number>>((acc, entry) => {
-  acc[entry.data.topic] = (acc[entry.data.topic] ?? 0) + 1;
-  return acc;
-}, {});
-const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b));
+  acc[entry.data.topic] = (acc[entry.data.topic] ?? 0) + 1
+  return acc
+}, {})
+const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b))
 ---
 
 <BaseLayout

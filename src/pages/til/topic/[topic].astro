@@ -1,27 +1,27 @@
 ---
-import { getCollection } from "astro:content";
-import SectionHeader from "@/components/core/SectionHeader.astro";
-import NoteArchive from "@/components/til/NoteArchive.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { slugifyTopic } from "@/lib/slug";
-import { SITE } from "@data/config";
+import { getCollection } from "astro:content"
+import { SITE } from "@data/config"
+import SectionHeader from "@/components/core/SectionHeader.astro"
+import NoteArchive from "@/components/til/NoteArchive.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import { slugifyTopic } from "@/lib/slug"
 
 export async function getStaticPaths() {
-  const notes = (await getCollection("til")).filter((entry) => !entry.data.draft);
-  const topics = [...new Map(notes.map((entry) => [slugifyTopic(entry.data.topic), entry.data.topic])).entries()];
-  return topics.map(([topicSlug, topic]) => ({ params: { topic: topicSlug }, props: { topic } }));
+  const notes = (await getCollection("til")).filter((entry) => !entry.data.draft)
+  const topics = [...new Map(notes.map((entry) => [slugifyTopic(entry.data.topic), entry.data.topic])).entries()]
+  return topics.map(([topicSlug, topic]) => ({ params: { topic: topicSlug }, props: { topic } }))
 }
 
-const { topic } = Astro.props as { topic: string };
+const { topic } = Astro.props as { topic: string }
 const notes = (await getCollection("til"))
   .filter((entry) => !entry.data.draft)
-  .sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf());
-const filtered = notes.filter((entry) => slugifyTopic(entry.data.topic) === slugifyTopic(topic));
+  .sort((a, b) => b.data.pubDatetime.valueOf() - a.data.pubDatetime.valueOf())
+const filtered = notes.filter((entry) => slugifyTopic(entry.data.topic) === slugifyTopic(topic))
 const topicCounts = notes.reduce<Record<string, number>>((acc, entry) => {
-  acc[entry.data.topic] = (acc[entry.data.topic] ?? 0) + 1;
-  return acc;
-}, {});
-const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b));
+  acc[entry.data.topic] = (acc[entry.data.topic] ?? 0) + 1
+  return acc
+}, {})
+const topics = Object.entries(topicCounts).sort(([a], [b]) => a.localeCompare(b))
 ---
 
 <BaseLayout title={`${topic} Notes | ${SITE.title}`} description={`Short notes about ${topic.toLowerCase()}.`}>
