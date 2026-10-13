@@ -79,6 +79,9 @@ The site is public because the work is public. It reflects how I think about sys
 
 ### Quality, Automation, and Repository Operations
 
+- Run `prek run --all-files` for the same repository checks as CI. Regular commits run these hooks on staged files; Commitizen runs separately on commit messages. Type checking and production builds run manually, outside these hooks.
+- Run `mise run typecheck` to check TypeScript and `.astro` files with `astro check`.
+- TypeScript stays within version 6 (`^6.0.3`) for compatibility with Astro's checker. Use `pnpm update` to update within this range; `pnpm update --latest` overrides it. Revisit the checker setup when upgrading to an Astro release that removes `astro check`.
 - [Biome](https://biomejs.dev/) for formatting and linting
 - [GitHub Actions](https://github.com/features/actions) for pull request quality checks
 - [Dependabot](https://github.com/dependabot) for dependency maintenance

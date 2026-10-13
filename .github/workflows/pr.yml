@@ -1,45 +1,30 @@
-name: Quality and build
+name: Quality Gate
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-gate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: read
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v7
         with:
           persist-credentials: false
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - name: Run prek checks
+        uses: j178/prek-action@v2
         with:
-          version: 11.13.0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - name: Install dependencies from pull request
-        if: github.event_name == 'pull_request'
-        run: pnpm install --frozen-lockfile
-
-      - name: Install dependencies from trusted branch
-        if: github.event_name == 'push'
-        run: pnpm install --frozen-lockfile --trust-lockfile
-
-      - name: Run Biome
-        run: pnpm exec biome ci .
-
-      - name: Check Astro and TypeScript
-        run: pnpm run astro check
-
-      - name: Build site
-        run: pnpm run build
+          extra-args: --all-files
