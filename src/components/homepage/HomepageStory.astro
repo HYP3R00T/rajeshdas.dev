@@ -1,35 +1,33 @@
 ---
-import SiteSection from "@/components/core/SiteSection.astro";
-import HomepageStoryVisual from "@/components/homepage/HomepageStoryVisual.astro";
-import { homepageStorySteps } from "@data/homepage";
+import { homepageStorySteps } from "@data/homepage"
+import SiteSection from "@/components/core/SiteSection.astro"
+import HomepageStoryVisual from "@/components/homepage/HomepageStoryVisual.astro"
 ---
 
 <SiteSection id="story" data-home-section aria-label="How I work">
   <div class="grid items-start lg:grid-cols-2" data-homepage-story>
     <div class="min-w-0">
-      {
-        homepageStorySteps.map((step, index) => (
-          <article
-            id={`story-${step.shape}`}
-            class="flex min-h-[62svh] min-w-0 items-center border-b border-border px-5 py-16 opacity-45 transition-opacity duration-300 last:border-b-0 data-active:opacity-100 md:px-10 md:py-20 lg:min-h-[76svh] lg:px-15 lg:py-24 motion-reduce:transition-none"
-            data-story-step
-            data-shape={step.shape}
-            data-visual-label={step.visualLabel}
-            data-active={index === 0 ? "true" : undefined}
-          >
-            <div class="max-w-xl">
-              <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">
-                {String(index + 1).padStart(2, "0")} / {step.eyebrow}
-              </p>
-              <h2 class="mt-5 text-balance font-display text-4xl leading-[1.04] font-medium tracking-[-0.035em] text-foreground-0 md:text-5xl">
-                {step.title}
-              </h2>
-              <p class="mt-6 text-base leading-7 text-foreground-2 md:text-lg md:leading-8">{step.description}</p>
-              <p class="mt-4 text-base leading-7 text-foreground-2 md:text-lg md:leading-8">{step.supporting}</p>
-            </div>
-          </article>
-        ))
-      }
+      {homepageStorySteps.map((step, index) => (
+        <article
+          id={`story-${step.shape}`}
+          class="flex min-h-[62svh] min-w-0 items-center border-b border-border px-5 py-16 opacity-45 transition-opacity duration-300 last:border-b-0 data-active:opacity-100 md:px-10 md:py-20 lg:min-h-[76svh] lg:px-15 lg:py-24 motion-reduce:transition-none"
+          data-story-step
+          data-shape={step.shape}
+          data-visual-label={step.visualLabel}
+          data-active={index === 0 ? "true" : undefined}
+        >
+          <div class="max-w-xl">
+            <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">
+              {String(index + 1).padStart(2, "0")} / {step.eyebrow}
+            </p>
+            <h2 class="mt-5 text-balance font-display text-4xl leading-[1.04] font-medium tracking-[-0.035em] text-foreground-0 md:text-5xl">
+              {step.title}
+            </h2>
+            <p class="mt-6 text-base leading-7 text-foreground-2 md:text-lg md:leading-8">{step.description}</p>
+            <p class="mt-4 text-base leading-7 text-foreground-2 md:text-lg md:leading-8">{step.supporting}</p>
+          </div>
+        </article>
+      ))}
     </div>
 
     <div class="sticky top-16 z-20 order-first h-56 self-start lg:order-last lg:h-[calc(100svh-4rem)]">
@@ -39,7 +37,7 @@ import { homepageStorySteps } from "@data/homepage";
 </SiteSection>
 
 <script>
-  import { initHomepageStory } from "@/lib/initHomepageStory";
+import { initHomepageStory } from "@/lib/initHomepageStory"
 
-  initHomepageStory();
+initHomepageStory()
 </script>

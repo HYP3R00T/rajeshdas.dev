@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*.{js,jsx,ts,tsx,mjs}"]
+    "includes": ["**/*.{js,jsx,ts,tsx,mjs,astro}"]
   },
   "formatter": {
     "enabled": true,
@@ -28,11 +28,29 @@
       "trailingCommas": "all"
     }
   },
+  "html": {
+    "experimentalFullSupportEnabled": true,
+    "formatter": {
+      "enabled": true
+    }
+  },
   "css": {
     "parser": {
       "tailwindDirectives": true
     }
   },
+  "overrides": [
+    {
+      "includes": ["src/components/homepage/HomepageProjectShowcase.astro"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useAnchorContent": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": {

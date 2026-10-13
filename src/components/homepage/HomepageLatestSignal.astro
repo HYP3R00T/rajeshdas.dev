@@ -1,28 +1,24 @@
 ---
-import { getImage } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
-import SiteSection from "@/components/core/SiteSection.astro";
-import SectionHeader from "@/components/core/SectionHeader.astro";
-import LatestSignalSwitcher from "@/components/homepage/LatestSignalSwitcher";
-import { latestVideo } from "@data/homepage";
+import { getImage } from "astro:assets"
+import type { CollectionEntry } from "astro:content"
+import { latestVideo } from "@data/homepage"
+import SectionHeader from "@/components/core/SectionHeader.astro"
+import SiteSection from "@/components/core/SiteSection.astro"
+import LatestSignalSwitcher from "@/components/homepage/LatestSignalSwitcher"
 
 interface Props {
-  latestPost: CollectionEntry<"posts">;
+  latestPost: CollectionEntry<"posts">
 }
 
-const { latestPost } = Astro.props as Props;
-const articleImageWidths = [720, 1080, 1440, 1920] as const;
+const { latestPost } = Astro.props as Props
+const articleImageWidths = [720, 1080, 1440, 1920] as const
 const articleImages = await Promise.all(
-  articleImageWidths.map((width) =>
-    getImage({ src: latestPost.data.cover, width, format: "webp", quality: "max" }),
-  ),
-);
-const articleImageSrcSet = articleImages
-  .map((image, index) => `${image.src} ${articleImageWidths[index]}w`)
-  .join(", ");
-const articleImageSrc = articleImages.at(-1)?.src ?? articleImages[0].src;
-const videoThumbnail = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.jpg`;
-const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`;
+  articleImageWidths.map((width) => getImage({ src: latestPost.data.cover, width, format: "webp", quality: "max" })),
+)
+const articleImageSrcSet = articleImages.map((image, index) => `${image.src} ${articleImageWidths[index]}w`).join(", ")
+const articleImageSrc = articleImages.at(-1)?.src ?? articleImages[0].src
+const videoThumbnail = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.jpg`
+const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`
 ---
 
 <SiteSection id="writing" data-home-section aria-labelledby="signal-title">

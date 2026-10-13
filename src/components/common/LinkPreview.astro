@@ -1,19 +1,19 @@
 ---
 interface Props {
-  url: string;
-  title?: string;
-  description?: string;
-  image?: string;
-  mediaAlt?: string;
+  url: string
+  title?: string
+  description?: string
+  image?: string
+  mediaAlt?: string
 }
 
 type LinkPreviewMetadata = {
-  title?: string;
-  description?: string;
-  image?: string;
-};
+  title?: string
+  description?: string
+  image?: string
+}
 
-const metadataCache = new Map<string, Promise<LinkPreviewMetadata | null>>();
+const metadataCache = new Map<string, Promise<LinkPreviewMetadata | null>>()
 
 function decodeHtmlEntities(value: string) {
   return value
@@ -22,45 +22,45 @@ function decodeHtmlEntities(value: string) {
     .replace(/&#39;/g, "'")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
-    .trim();
+    .trim()
 }
 
 function escapeRegExp(value: string) {
-  return value.replace(/[|{}()[\]^$+*?.]/g, "\\$&");
+  return value.replace(/[|{}()[\]^$+*?.]/g, "\\$&")
 }
 
 function extractMetaContent(html: string, key: string, attribute: "property" | "name") {
-  const attributePattern = `${attribute}=["']${escapeRegExp(key)}["']`;
+  const attributePattern = `${attribute}=["']${escapeRegExp(key)}["']`
   const patterns = [
     new RegExp(`<meta[^>]*${attributePattern}[^>]*content=["']([^"']+)["'][^>]*>`, "i"),
     new RegExp(`<meta[^>]*content=["']([^"']+)["'][^>]*${attributePattern}[^>]*>`, "i"),
-  ];
+  ]
 
   for (const pattern of patterns) {
-    const match = html.match(pattern);
-    if (match?.[1]) return decodeHtmlEntities(match[1]);
+    const match = html.match(pattern)
+    if (match?.[1]) return decodeHtmlEntities(match[1])
   }
 
-  return undefined;
+  return undefined
 }
 
 function extractTitleTag(html: string) {
-  const match = html.match(/<title[^>]*>([^<]+)<\/title>/i);
-  return match?.[1] ? decodeHtmlEntities(match[1]) : undefined;
+  const match = html.match(/<title[^>]*>([^<]+)<\/title>/i)
+  return match?.[1] ? decodeHtmlEntities(match[1]) : undefined
 }
 
 function resolveUrl(baseUrl: string, candidate?: string) {
-  if (!candidate) return undefined;
+  if (!candidate) return undefined
 
   try {
-    return new URL(candidate, baseUrl).toString();
+    return new URL(candidate, baseUrl).toString()
   } catch {
-    return undefined;
+    return undefined
   }
 }
 
 async function fetchLinkPreviewMetadata(url: string): Promise<LinkPreviewMetadata | null> {
-  let metadataPromise = metadataCache.get(url);
+  let metadataPromise = metadataCache.get(url)
 
   if (!metadataPromise) {
     metadataPromise = (async () => {
@@ -69,53 +69,53 @@ async function fetchLinkPreviewMetadata(url: string): Promise<LinkPreviewMetadat
           headers: {
             "user-agent": "Mozilla/5.0 (compatible; rajeshdas.dev link preview bot; +https://rajeshdas.dev)",
           },
-        });
+        })
 
-        if (!response.ok) return null;
+        if (!response.ok) return null
 
-        const html = await response.text();
-        const ogTitle = extractMetaContent(html, "og:title", "property");
-        const twitterTitle = extractMetaContent(html, "twitter:title", "name");
-        const ogDescription = extractMetaContent(html, "og:description", "property");
-        const metaDescription = extractMetaContent(html, "description", "name");
-        const twitterDescription = extractMetaContent(html, "twitter:description", "name");
-        const ogImage = resolveUrl(url, extractMetaContent(html, "og:image", "property"));
-        const twitterImage = resolveUrl(url, extractMetaContent(html, "twitter:image", "name"));
+        const html = await response.text()
+        const ogTitle = extractMetaContent(html, "og:title", "property")
+        const twitterTitle = extractMetaContent(html, "twitter:title", "name")
+        const ogDescription = extractMetaContent(html, "og:description", "property")
+        const metaDescription = extractMetaContent(html, "description", "name")
+        const twitterDescription = extractMetaContent(html, "twitter:description", "name")
+        const ogImage = resolveUrl(url, extractMetaContent(html, "og:image", "property"))
+        const twitterImage = resolveUrl(url, extractMetaContent(html, "twitter:image", "name"))
 
         return {
           title: ogTitle ?? twitterTitle ?? extractTitleTag(html),
           description: ogDescription ?? twitterDescription ?? metaDescription,
           image: ogImage ?? twitterImage,
-        };
+        }
       } catch {
-        return null;
+        return null
       }
-    })();
+    })()
 
-    metadataCache.set(url, metadataPromise);
+    metadataCache.set(url, metadataPromise)
   }
 
-  return metadataPromise;
+  return metadataPromise
 }
 
-const { url, title, description, image, mediaAlt } = Astro.props as Props;
+const { url, title, description, image, mediaAlt } = Astro.props as Props
 
 const parsedUrl = (() => {
   try {
-    return new URL(url);
+    return new URL(url)
   } catch {
-    return null;
+    return null
   }
-})();
+})()
 
-const metadata = parsedUrl ? await fetchLinkPreviewMetadata(url) : null;
-const hostname = parsedUrl?.hostname.replace(/^www\./, "") ?? url;
-const pathname = parsedUrl ? `${parsedUrl.pathname}${parsedUrl.search}`.replace(/\/$/, "") || "/" : url;
-const resolvedTitle = title ?? metadata?.title ?? hostname;
-const resolvedDescription = description ?? metadata?.description;
-const resolvedImage = image ?? metadata?.image;
-const resolvedMediaAlt = mediaAlt ?? `${resolvedTitle} preview`;
-const previewPath = pathname === "/" ? hostname : `${hostname}${pathname}`;
+const metadata = parsedUrl ? await fetchLinkPreviewMetadata(url) : null
+const hostname = parsedUrl?.hostname.replace(/^www\./, "") ?? url
+const pathname = parsedUrl ? `${parsedUrl.pathname}${parsedUrl.search}`.replace(/\/$/, "") || "/" : url
+const resolvedTitle = title ?? metadata?.title ?? hostname
+const resolvedDescription = description ?? metadata?.description
+const resolvedImage = image ?? metadata?.image
+const resolvedMediaAlt = mediaAlt ?? `${resolvedTitle} preview`
+const previewPath = pathname === "/" ? hostname : `${hostname}${pathname}`
 ---
 
 <div class="not-prose my-6">
@@ -136,28 +136,22 @@ const previewPath = pathname === "/" ? hostname : `${hostname}${pathname}`;
         {resolvedTitle}
       </span>
 
-      {
-        resolvedDescription && (
-          <span class="mt-2 line-clamp-2 text-sm leading-5 text-foreground-2">
-            {resolvedDescription}
-          </span>
-        )
-      }
+      {resolvedDescription && (
+        <span class="mt-2 line-clamp-2 text-sm leading-5 text-foreground-2">{resolvedDescription}</span>
+      )}
 
       <span class="mt-4 block min-w-0 truncate font-mono text-xs leading-none text-foreground-3">{previewPath}</span>
     </div>
 
-    {
-      resolvedImage && (
-        <div class="relative !m-0 aspect-video overflow-hidden border-t border-border sm:aspect-auto sm:border-t-0 sm:border-l">
-          <img
-            src={resolvedImage}
-            alt={resolvedMediaAlt}
-            loading="lazy"
-            class="absolute inset-0 !m-0 block h-full w-full !rounded-none !border-0 object-cover"
-          />
-        </div>
-      )
-    }
+    {resolvedImage && (
+      <div class="relative !m-0 aspect-video overflow-hidden border-t border-border sm:aspect-auto sm:border-t-0 sm:border-l">
+        <img
+          src={resolvedImage}
+          alt={resolvedMediaAlt}
+          loading="lazy"
+          class="absolute inset-0 !m-0 block h-full w-full !rounded-none !border-0 object-cover"
+        />
+      </div>
+    )}
   </a>
 </div>

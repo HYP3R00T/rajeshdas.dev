@@ -1,18 +1,18 @@
 ---
-import EditorialGrid from "@/components/core/EditorialGrid.astro";
-import SiteSection from "@/components/core/SiteSection.astro";
-import TilCard from "@/components/til/TilCard.astro";
-import TopicPill from "@/components/til/TopicPill.astro";
-import { slugifyTopic } from "@/lib/slug";
+import EditorialGrid from "@/components/core/EditorialGrid.astro"
+import SiteSection from "@/components/core/SiteSection.astro"
+import TilCard from "@/components/til/TilCard.astro"
+import TopicPill from "@/components/til/TopicPill.astro"
+import { slugifyTopic } from "@/lib/slug"
 
 interface Props {
-  notes: Array<any>;
-  allNotes: Array<any>;
-  topics: Array<[string, number]>;
-  activeTopic?: string;
+  notes: Array<any>
+  allNotes: Array<any>
+  topics: Array<[string, number]>
+  activeTopic?: string
 }
 
-const { notes, allNotes, topics, activeTopic } = Astro.props as Props;
+const { notes, allNotes, topics, activeTopic } = Astro.props as Props
 ---
 
 <SiteSection aria-label="Notes archive">
@@ -25,43 +25,41 @@ const { notes, allNotes, topics, activeTopic } = Astro.props as Props;
 
       <nav aria-label="Note topics" class="flex flex-wrap gap-2">
         <TopicPill href="/til/" label="All" count={allNotes.length} active={!activeTopic} />
-        {
-          topics.map(([topic, count]) => (
-            <TopicPill
-              href={`/til/topic/${slugifyTopic(topic)}/`}
-              label={topic}
-              count={count}
-              active={activeTopic ? slugifyTopic(activeTopic) === slugifyTopic(topic) : false}
-            />
-          ))
-        }
+        {topics.map(([topic, count]) => (
+          <TopicPill
+            href={`/til/topic/${slugifyTopic(topic)}/`}
+            label={topic}
+            count={count}
+            active={activeTopic ? slugifyTopic(activeTopic) === slugifyTopic(topic) : false}
+          />
+        ))}
       </nav>
     </div>
   </div>
 
-  {
-    notes.length > 0 ? (
-      <EditorialGrid>
-        {notes.map((entry) => <TilCard entry={entry} />)}
-      </EditorialGrid>
-    ) : (
-      <p class="px-5 py-16 text-foreground-2 md:px-10 lg:px-15">No notes are available for this topic yet.</p>
-    )
-  }
+  {notes.length > 0 ? (
+    <EditorialGrid>
+      {notes.map((entry) => (
+        <TilCard entry={entry} />
+      ))}
+    </EditorialGrid>
+  ) : (
+    <p class="px-5 py-16 text-foreground-2 md:px-10 lg:px-15">No notes are available for this topic yet.</p>
+  )}
 </SiteSection>
 
 <script>
-  const setupNoteArchiveLinks = () => {
-    document.querySelectorAll<HTMLAnchorElement>("[data-note-card]").forEach((card) => {
-      if (card.dataset.noteReturnReady === "true") return;
+const setupNoteArchiveLinks = () => {
+  document.querySelectorAll<HTMLAnchorElement>("[data-note-card]").forEach((card) => {
+    if (card.dataset.noteReturnReady === "true") return
 
-      card.dataset.noteReturnReady = "true";
-      card.addEventListener("click", () => {
-        window.sessionStorage.setItem("noteArchiveReturnUrl", window.location.href);
-      });
-    });
-  };
+    card.dataset.noteReturnReady = "true"
+    card.addEventListener("click", () => {
+      window.sessionStorage.setItem("noteArchiveReturnUrl", window.location.href)
+    })
+  })
+}
 
-  setupNoteArchiveLinks();
-  document.addEventListener("astro:page-load", setupNoteArchiveLinks);
+setupNoteArchiveLinks()
+document.addEventListener("astro:page-load", setupNoteArchiveLinks)
 </script>

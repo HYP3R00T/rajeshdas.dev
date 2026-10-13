@@ -1,16 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-import SectionHeader from "@/components/core/SectionHeader.astro";
-import SiteSection from "@/components/core/SiteSection.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import BackButton from "@/components/common/BackButton.astro";
-import { Button } from "@/components/ui/button";
-import { estimateReadTime, formatDateUppercase } from "@/lib/utils";
-import MobileContentMeta from "@/components/common/MobileContentMeta.astro";
-import DesktopContentToc from "@/components/common/DesktopContentToc";
-import FocusModeToggle from "@/components/common/FocusModeToggle.astro";
-import { SITE } from "@data/config";
+import { Image } from "astro:assets"
+import { SITE } from "@data/config"
+import { Icon } from "astro-icon/components"
+import BackButton from "@/components/common/BackButton.astro"
+import DesktopContentToc from "@/components/common/DesktopContentToc"
+import FocusModeToggle from "@/components/common/FocusModeToggle.astro"
+import MobileContentMeta from "@/components/common/MobileContentMeta.astro"
+import SectionHeader from "@/components/core/SectionHeader.astro"
+import SiteSection from "@/components/core/SiteSection.astro"
+import { Button } from "@/components/ui/button"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import { estimateReadTime, formatDateUppercase } from "@/lib/utils"
 
 const {
   slug,
@@ -26,13 +26,12 @@ const {
   ogImageAlt,
   headings = [],
   body,
-} = Astro.props;
-const seoImage = ogImage || cover;
-const seoImageAlt = ogImageAlt || coverAlt || title;
-const readTime = body ? estimateReadTime(body) : 5;
-const categoryLabel = category ? `${category.charAt(0).toUpperCase()}${category.slice(1)} article` : "Article";
-const visibleHeadings = headings
-  .filter((heading: { depth: number }) => heading.depth > 1 && heading.depth < 4);
+} = Astro.props
+const seoImage = ogImage || cover
+const seoImageAlt = ogImageAlt || coverAlt || title
+const readTime = body ? estimateReadTime(body) : 5
+const categoryLabel = category ? `${category.charAt(0).toUpperCase()}${category.slice(1)} article` : "Article"
+const visibleHeadings = headings.filter((heading: { depth: number }) => heading.depth > 1 && heading.depth < 4)
 const mobileMetaItems = [
   { label: "Published", value: formatDateUppercase(pubDatetime), datetime: pubDatetime.toISOString() },
   { label: "Read time", value: `${readTime} min` },
@@ -41,7 +40,7 @@ const mobileMetaItems = [
     ? [{ label: "Updated", value: formatDateUppercase(modDatetime), datetime: modDatetime.toISOString() }]
     : []),
   { label: "Author", value: SITE.author },
-];
+]
 ---
 
 <BaseLayout title={title} description={description} image={seoImage} imageAlt={seoImageAlt} contentType="Article">
@@ -87,28 +86,24 @@ const mobileMetaItems = [
             <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Read time</dt>
             <dd class="mt-1.5 text-sm text-foreground-1">{readTime} min</dd>
           </div>
-          {
-            modDatetime && (
-              <div class="col-span-2">
-                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Updated</dt>
-                <dd class="mt-1.5 text-sm text-foreground-1">
-                  <time datetime={modDatetime.toISOString()}>{formatDateUppercase(modDatetime)}</time>
-                </dd>
-              </div>
-            )
-          }
+          {modDatetime && (
+            <div class="col-span-2">
+              <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Updated</dt>
+              <dd class="mt-1.5 text-sm text-foreground-1">
+                <time datetime={modDatetime.toISOString()}>{formatDateUppercase(modDatetime)}</time>
+              </dd>
+            </div>
+          )}
           <div>
             <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Author</dt>
             <dd class="mt-1.5 text-sm text-foreground-1">{SITE.author}</dd>
           </div>
-          {
-            tags && tags.length > 0 && (
-              <div class="col-span-2">
-                <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Topics</dt>
-                <dd class="mt-1.5 text-sm leading-6 text-foreground-1">{tags.join(" · ")}</dd>
-              </div>
-            )
-          }
+          {tags && tags.length > 0 && (
+            <div class="col-span-2">
+              <dt class="font-mono text-[0.625rem] tracking-[0.12em] text-foreground-3 uppercase">Topics</dt>
+              <dd class="mt-1.5 text-sm leading-6 text-foreground-1">{tags.join(" · ")}</dd>
+            </div>
+          )}
         </dl>
 
         <Button
@@ -120,11 +115,9 @@ const mobileMetaItems = [
         </Button>
       </div>
 
-      {
-        visibleHeadings.length > 0 && (
-          <DesktopContentToc client:load headings={visibleHeadings} label="Article sections" variant="sidebar" />
-        )
-      }
+      {visibleHeadings.length > 0 && (
+        <DesktopContentToc client:load headings={visibleHeadings} label="Article sections" variant="sidebar" />
+      )}
     </aside>
 
     <article class="min-w-0" data-focus-reading-content>
@@ -158,100 +151,102 @@ const mobileMetaItems = [
 </BaseLayout>
 
 <script>
-  const setupArticleBackLinks = () => {
-    const links = document.querySelectorAll<HTMLAnchorElement>("[data-articles-back]");
-    if (links.length === 0) return;
+const setupArticleBackLinks = () => {
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-articles-back]")
+  if (links.length === 0) return
 
-    try {
-      const storedUrl = window.sessionStorage.getItem("articleArchiveReturnUrl");
-      if (!storedUrl) return;
+  try {
+    const storedUrl = window.sessionStorage.getItem("articleArchiveReturnUrl")
+    if (!storedUrl) return
 
-      const returnUrl = new URL(storedUrl);
-      if (returnUrl.origin !== window.location.origin || returnUrl.pathname.replace(/\/$/, "") !== "/post") return;
+    const returnUrl = new URL(storedUrl)
+    if (returnUrl.origin !== window.location.origin || returnUrl.pathname.replace(/\/$/, "") !== "/post") return
 
-      for (const link of links) {
-        link.href = returnUrl.toString();
-      }
-    } catch {
-      // The fallback /post link remains valid when stored navigation state is unavailable.
+    for (const link of links) {
+      link.href = returnUrl.toString()
     }
-  };
+  } catch {
+    // The fallback /post link remains valid when stored navigation state is unavailable.
+  }
+}
 
-  const setupShareButton = () => {
-    document.querySelectorAll<HTMLElement>("[data-share-button]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        const url = window.location.href;
-        const title = document.title;
+const setupShareButton = () => {
+  document.querySelectorAll<HTMLElement>("[data-share-button]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const url = window.location.href
+      const title = document.title
 
-        if (navigator.share) {
-          try {
-            await navigator.share({ title, url });
-          } catch {
-            // Sharing was dismissed; no visible recovery is needed.
-          }
-          return;
-        }
-
+      if (navigator.share) {
         try {
-          await navigator.clipboard.writeText(url);
-          const originalText = button.innerHTML;
-          button.innerHTML = "Copied";
-          window.setTimeout(() => {
-            button.innerHTML = originalText;
-          }, 1600);
+          await navigator.share({ title, url })
         } catch {
-          button.setAttribute("data-copy-failed", "true");
+          // Sharing was dismissed; no visible recovery is needed.
         }
-      });
-    });
-  };
-
-  const setupActiveTableOfContents = () => {
-    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"));
-    if (links.length === 0) return;
-
-    const linkById = new Map(links.map((link) => [link.dataset.tocLink, link]));
-    const headings = Array.from(document.querySelectorAll<HTMLElement>(".prose :is(h2, h3)[id]")).filter((heading) =>
-      linkById.has(heading.id),
-    );
-    if (headings.length === 0) return;
-
-    const setActive = (id: string) => {
-      for (const link of links) {
-        const isActive = link.dataset.tocLink === id;
-        link.classList.toggle("border-accent-1", isActive);
-        link.classList.toggle("text-accent-1", isActive);
-        link.classList.toggle("translate-x-1", isActive);
-        link.classList.toggle("text-foreground-2", !isActive);
-        link.setAttribute("aria-current", isActive ? "location" : "false");
+        return
       }
-    };
 
-    setActive(headings[0].id);
+      try {
+        await navigator.clipboard.writeText(url)
+        const originalText = button.innerHTML
+        button.innerHTML = "Copied"
+        window.setTimeout(() => {
+          button.innerHTML = originalText
+        }, 1600)
+      } catch {
+        button.setAttribute("data-copy-failed", "true")
+      }
+    })
+  })
+}
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+const setupActiveTableOfContents = () => {
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]"))
+  if (links.length === 0) return
 
-        if (visible?.target instanceof HTMLElement) {
-          setActive(visible.target.id);
-        }
-      },
-      {
-        rootMargin: "-22% 0px -62% 0px",
-        threshold: [0, 1],
-      },
-    );
+  const linkById = new Map(links.map((link) => [link.dataset.tocLink, link]))
+  const headings = Array.from(document.querySelectorAll<HTMLElement>(".prose :is(h2, h3)[id]")).filter((heading) =>
+    linkById.has(heading.id),
+  )
+  if (headings.length === 0) return
 
-    headings.forEach((heading) => observer.observe(heading));
-    document.addEventListener("astro:before-swap", () => observer.disconnect(), { once: true });
-  };
+  const setActive = (id: string) => {
+    for (const link of links) {
+      const isActive = link.dataset.tocLink === id
+      link.classList.toggle("border-accent-1", isActive)
+      link.classList.toggle("text-accent-1", isActive)
+      link.classList.toggle("translate-x-1", isActive)
+      link.classList.toggle("text-foreground-2", !isActive)
+      link.setAttribute("aria-current", isActive ? "location" : "false")
+    }
+  }
 
-  document.addEventListener("astro:page-load", () => {
-    setupArticleBackLinks();
-    setupShareButton();
-    setupActiveTableOfContents();
-  });
+  setActive(headings[0].id)
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+
+      if (visible?.target instanceof HTMLElement) {
+        setActive(visible.target.id)
+      }
+    },
+    {
+      rootMargin: "-22% 0px -62% 0px",
+      threshold: [0, 1],
+    },
+  )
+
+  headings.forEach((heading) => {
+    observer.observe(heading)
+  })
+  document.addEventListener("astro:before-swap", () => observer.disconnect(), { once: true })
+}
+
+document.addEventListener("astro:page-load", () => {
+  setupArticleBackLinks()
+  setupShareButton()
+  setupActiveTableOfContents()
+})
 </script>

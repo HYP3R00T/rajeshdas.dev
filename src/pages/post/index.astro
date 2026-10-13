@@ -1,35 +1,35 @@
 ---
-import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
-import SectionHeader from "@/components/core/SectionHeader.astro";
-import SiteSection from "@/components/core/SiteSection.astro";
-import PostCard from "@/components/post/PostCard.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { SITE } from "@data/config";
+import { getCollection } from "astro:content"
+import { SITE } from "@data/config"
+import { Icon } from "astro-icon/components"
+import SectionHeader from "@/components/core/SectionHeader.astro"
+import SiteSection from "@/components/core/SiteSection.astro"
+import PostCard from "@/components/post/PostCard.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
 
-const posts = await getCollection("posts").then((entries) => entries.filter((entry) => !entry.data.draft));
-posts.sort((a, b) => new Date(b.data.pubDatetime).valueOf() - new Date(a.data.pubDatetime).valueOf());
+const posts = await getCollection("posts").then((entries) => entries.filter((entry) => !entry.data.draft))
+posts.sort((a, b) => new Date(b.data.pubDatetime).valueOf() - new Date(a.data.pubDatetime).valueOf())
 
-const featured = posts.find((post) => post.data.featured);
-const orderedPosts = featured ? [featured, ...posts.filter((post) => post.id !== featured.id)] : posts;
-const archivePageSize = SITE.pageSize ?? 12;
-const archiveTotalPages = Math.max(1, Math.ceil(orderedPosts.length / archivePageSize));
-const categoryOrder = ["product", "engineering", "guides"] as const;
+const featured = posts.find((post) => post.data.featured)
+const orderedPosts = featured ? [featured, ...posts.filter((post) => post.id !== featured.id)] : posts
+const archivePageSize = SITE.pageSize ?? 12
+const archiveTotalPages = Math.max(1, Math.ceil(orderedPosts.length / archivePageSize))
+const categoryOrder = ["product", "engineering", "guides"] as const
 const categoryLabels = {
   product: "Product",
   engineering: "Engineering",
   guides: "Guides",
-} as const;
-const categoryCounts = new Map<string, number>();
+} as const
+const categoryCounts = new Map<string, number>()
 
 for (const post of orderedPosts) {
-  const category = post.data.category;
-  categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1);
+  const category = post.data.category
+  categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1)
 }
 
 const categories = categoryOrder
   .filter((category) => categoryCounts.has(category))
-  .map((category) => ({ category, count: categoryCounts.get(category) ?? 0, label: categoryLabels[category] }));
+  .map((category) => ({ category, count: categoryCounts.get(category) ?? 0, label: categoryLabels[category] }))
 ---
 
 <BaseLayout>
@@ -56,10 +56,12 @@ const categories = categoryOrder
           <p class="font-mono text-[0.6875rem] tracking-[0.14em] text-accent-1 uppercase">Pick a category</p>
           <p class="mt-2 text-sm text-foreground-3" aria-live="polite">
             Showing <span data-visible-count>{Math.min(orderedPosts.length, archivePageSize)}</span> of
-            <span data-article-count>{orderedPosts.length}</span> articles
+            <span data-article-count>{orderedPosts.length}</span>
+            articles
           </p>
         </div>
 
+        <!-- biome-ignore lint/a11y/useSemanticElements: This group contains standalone category buttons, not form fields. -->
         <div class="flex flex-wrap gap-2" role="group" aria-label="Filter articles by category">
           <button
             type="button"
@@ -70,32 +72,25 @@ const categories = categoryOrder
           >
             All <span class="opacity-60">{orderedPosts.length}</span>
           </button>
-          {
-            categories.map(({ category, count, label }) => (
-              <button
-                type="button"
-                class="category-filter rounded-md border border-border bg-background-0 px-3 py-2 font-mono text-[0.6875rem] tracking-[0.08em] text-foreground-1 uppercase transition-colors hover:border-foreground-3 hover:text-foreground-0"
-                data-category-filter={category}
-                aria-controls="articles-grid"
-                aria-pressed="false"
-              >
-                {label} <span class="opacity-60">{count}</span>
-              </button>
-            ))
-          }
+          {categories.map(({ category, count, label }) => (
+            <button
+              type="button"
+              class="category-filter rounded-md border border-border bg-background-0 px-3 py-2 font-mono text-[0.6875rem] tracking-[0.08em] text-foreground-1 uppercase transition-colors hover:border-foreground-3 hover:text-foreground-0"
+              data-category-filter={category}
+              aria-controls="articles-grid"
+              aria-pressed="false"
+            >
+              {label} <span class="opacity-60">{count}</span>
+            </button>
+          ))}
         </div>
       </div>
     </div>
 
-    <div
-      id="articles-grid"
-      class="grid items-stretch bg-background-0 xl:grid-cols-2"
-    >
-      {
-        orderedPosts.map((post, index) => (
-          <PostCard post={post} featured={post.id === featured?.id} initiallyHidden={index >= archivePageSize} />
-        ))
-      }
+    <div id="articles-grid" class="grid items-stretch bg-background-0 xl:grid-cols-2">
+      {orderedPosts.map((post, index) => (
+        <PostCard post={post} featured={post.id === featured?.id} initiallyHidden={index >= archivePageSize} />
+      ))}
     </div>
 
     <nav
@@ -110,7 +105,10 @@ const categories = categoryOrder
         data-page-previous
         disabled
       >
-        <Icon name="arrow-left" class="size-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none" />
+        <Icon
+          name="arrow-left"
+          class="size-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+        />
         Previous
       </button>
 
@@ -129,127 +127,130 @@ const categories = categoryOrder
         disabled={archiveTotalPages <= 1}
       >
         Next
-        <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none" />
+        <Icon
+          name="arrow-right"
+          class="size-4 transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
+        />
       </button>
     </nav>
   </SiteSection>
 </BaseLayout>
 
 <style>
-  .category-filter[aria-pressed="true"] {
-    border-color: var(--accent-1);
-    background: var(--accent-1);
-    color: var(--background-0);
-  }
-
+.category-filter[aria-pressed="true"] {
+  border-color: var(--accent-1);
+  background: var(--accent-1);
+  color: var(--background-0);
+}
 </style>
 
 <script>
-  const setupArticleFilter = () => {
-    const filterRoot = document.querySelector<HTMLElement>("[data-article-filter]");
-    if (!filterRoot || filterRoot.dataset.filterReady === "true") return;
+const setupArticleFilter = () => {
+  const filterRoot = document.querySelector<HTMLElement>("[data-article-filter]")
+  if (!filterRoot || filterRoot.dataset.filterReady === "true") return
 
-    const buttons = [...filterRoot.querySelectorAll<HTMLButtonElement>("[data-category-filter]")];
-    const cards = [...document.querySelectorAll<HTMLElement>("[data-post-card]")];
-    const grid = document.querySelector<HTMLElement>("#articles-grid");
-    const count = filterRoot.querySelector<HTMLElement>("[data-article-count]");
-    const visibleCount = filterRoot.querySelector<HTMLElement>("[data-visible-count]");
-    const pagination = document.querySelector<HTMLElement>("[data-article-pagination]");
-    const previous = pagination?.querySelector<HTMLButtonElement>("[data-page-previous]");
-    const next = pagination?.querySelector<HTMLButtonElement>("[data-page-next]");
-    const pageStatus = pagination?.querySelector<HTMLElement>("[data-page-status]");
-    const pageSize = Number(filterRoot.dataset.pageSize ?? "12");
-    const availableCategories = new Set(buttons.map((button) => button.dataset.categoryFilter ?? "all"));
-    const initialUrl = new URL(window.location.href);
-    const categoryFromUrl = initialUrl.searchParams.get("category");
-    const pageFromUrl = Number.parseInt(initialUrl.searchParams.get("page") ?? "1", 10);
-    let selectedCategory = categoryFromUrl && availableCategories.has(categoryFromUrl) ? categoryFromUrl : "all";
-    let currentPage = Number.isFinite(pageFromUrl) && pageFromUrl > 0 ? pageFromUrl : 1;
+  const buttons = [...filterRoot.querySelectorAll<HTMLButtonElement>("[data-category-filter]")]
+  const cards = [...document.querySelectorAll<HTMLElement>("[data-post-card]")]
+  const grid = document.querySelector<HTMLElement>("#articles-grid")
+  const count = filterRoot.querySelector<HTMLElement>("[data-article-count]")
+  const visibleCount = filterRoot.querySelector<HTMLElement>("[data-visible-count]")
+  const pagination = document.querySelector<HTMLElement>("[data-article-pagination]")
+  const previous = pagination?.querySelector<HTMLButtonElement>("[data-page-previous]")
+  const next = pagination?.querySelector<HTMLButtonElement>("[data-page-next]")
+  const pageStatus = pagination?.querySelector<HTMLElement>("[data-page-status]")
+  const pageSize = Number(filterRoot.dataset.pageSize ?? "12")
+  const availableCategories = new Set(buttons.map((button) => button.dataset.categoryFilter ?? "all"))
+  const initialUrl = new URL(window.location.href)
+  const categoryFromUrl = initialUrl.searchParams.get("category")
+  const pageFromUrl = Number.parseInt(initialUrl.searchParams.get("page") ?? "1", 10)
+  let selectedCategory = categoryFromUrl && availableCategories.has(categoryFromUrl) ? categoryFromUrl : "all"
+  let currentPage = Number.isFinite(pageFromUrl) && pageFromUrl > 0 ? pageFromUrl : 1
+
+  for (const card of cards) {
+    card.addEventListener("click", () => {
+      window.sessionStorage.setItem("articleArchiveReturnUrl", window.location.href)
+    })
+  }
+
+  const persistView = () => {
+    const url = new URL(window.location.href)
+
+    if (selectedCategory === "all") {
+      url.searchParams.delete("category")
+    } else {
+      url.searchParams.set("category", selectedCategory)
+    }
+
+    if (currentPage === 1) {
+      url.searchParams.delete("page")
+    } else {
+      url.searchParams.set("page", String(currentPage))
+    }
+
+    window.history.replaceState(window.history.state, "", url)
+  }
+
+  const applyView = () => {
+    const matchingCards = cards.filter((card) => {
+      return selectedCategory === "all" || card.dataset.category === selectedCategory
+    })
+    const categoryFeatured = matchingCards.find((card) => card.dataset.featuredCandidate === "true")
+    const filteredCards = categoryFeatured
+      ? [categoryFeatured, ...matchingCards.filter((card) => card !== categoryFeatured)]
+      : matchingCards
+    const totalPages = Math.max(1, Math.ceil(filteredCards.length / pageSize))
+    currentPage = Math.min(currentPage, totalPages)
+    const pageStart = (currentPage - 1) * pageSize
+    const pageEnd = pageStart + pageSize
+
+    if (grid) {
+      grid.append(...filteredCards, ...cards.filter((card) => !filteredCards.includes(card)))
+    }
 
     for (const card of cards) {
-      card.addEventListener("click", () => {
-        window.sessionStorage.setItem("articleArchiveReturnUrl", window.location.href);
-      });
+      const filteredIndex = filteredCards.indexOf(card)
+      card.hidden = filteredIndex < pageStart || filteredIndex >= pageEnd
+      card.classList.toggle("is-featured", card === categoryFeatured)
     }
-
-    const persistView = () => {
-      const url = new URL(window.location.href);
-
-      if (selectedCategory === "all") {
-        url.searchParams.delete("category");
-      } else {
-        url.searchParams.set("category", selectedCategory);
-      }
-
-      if (currentPage === 1) {
-        url.searchParams.delete("page");
-      } else {
-        url.searchParams.set("page", String(currentPage));
-      }
-
-      window.history.replaceState(window.history.state, "", url);
-    };
-
-    const applyView = () => {
-      const matchingCards = cards.filter((card) => {
-        return selectedCategory === "all" || card.dataset.category === selectedCategory;
-      });
-      const categoryFeatured = matchingCards.find((card) => card.dataset.featuredCandidate === "true");
-      const filteredCards = categoryFeatured
-        ? [categoryFeatured, ...matchingCards.filter((card) => card !== categoryFeatured)]
-        : matchingCards;
-      const totalPages = Math.max(1, Math.ceil(filteredCards.length / pageSize));
-      currentPage = Math.min(currentPage, totalPages);
-      const pageStart = (currentPage - 1) * pageSize;
-      const pageEnd = pageStart + pageSize;
-
-      if (grid) {
-        grid.append(...filteredCards, ...cards.filter((card) => !filteredCards.includes(card)));
-      }
-
-      for (const card of cards) {
-        const filteredIndex = filteredCards.indexOf(card);
-        card.hidden = filteredIndex < pageStart || filteredIndex >= pageEnd;
-        card.classList.toggle("is-featured", card === categoryFeatured);
-      }
-
-      for (const button of buttons) {
-        button.setAttribute("aria-pressed", String(button.dataset.categoryFilter === selectedCategory));
-      }
-
-      if (count) count.textContent = String(filteredCards.length);
-      if (visibleCount) visibleCount.textContent = String(Math.min(pageSize, Math.max(0, filteredCards.length - pageStart)));
-      if (pageStatus) {
-        pageStatus.textContent = `${String(currentPage).padStart(2, "0")} / ${String(totalPages).padStart(2, "0")}`;
-      }
-      if (previous) previous.disabled = currentPage === 1;
-      if (next) next.disabled = currentPage === totalPages;
-      if (pagination) pagination.hidden = filteredCards.length <= pageSize;
-      persistView();
-    };
 
     for (const button of buttons) {
-      button.addEventListener("click", () => {
-        selectedCategory = button.dataset.categoryFilter ?? "all";
-        currentPage = 1;
-        applyView();
-      });
+      button.setAttribute("aria-pressed", String(button.dataset.categoryFilter === selectedCategory))
     }
 
-    previous?.addEventListener("click", () => {
-      currentPage = Math.max(1, currentPage - 1);
-      applyView();
-    });
+    if (count) count.textContent = String(filteredCards.length)
+    if (visibleCount)
+      visibleCount.textContent = String(Math.min(pageSize, Math.max(0, filteredCards.length - pageStart)))
+    if (pageStatus) {
+      pageStatus.textContent = `${String(currentPage).padStart(2, "0")} / ${String(totalPages).padStart(2, "0")}`
+    }
+    if (previous) previous.disabled = currentPage === 1
+    if (next) next.disabled = currentPage === totalPages
+    if (pagination) pagination.hidden = filteredCards.length <= pageSize
+    persistView()
+  }
 
-    next?.addEventListener("click", () => {
-      currentPage += 1;
-      applyView();
-    });
+  for (const button of buttons) {
+    button.addEventListener("click", () => {
+      selectedCategory = button.dataset.categoryFilter ?? "all"
+      currentPage = 1
+      applyView()
+    })
+  }
 
-    filterRoot.dataset.filterReady = "true";
-    applyView();
-  };
+  previous?.addEventListener("click", () => {
+    currentPage = Math.max(1, currentPage - 1)
+    applyView()
+  })
 
-  setupArticleFilter();
-  document.addEventListener("astro:page-load", setupArticleFilter);
+  next?.addEventListener("click", () => {
+    currentPage += 1
+    applyView()
+  })
+
+  filterRoot.dataset.filterReady = "true"
+  applyView()
+}
+
+setupArticleFilter()
+document.addEventListener("astro:page-load", setupArticleFilter)
 </script>

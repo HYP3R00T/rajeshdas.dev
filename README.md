@@ -81,6 +81,7 @@ The site is public because the work is public. It reflects how I think about sys
 
 - Run `prek run --all-files` for the same repository checks as CI. Regular commits run these hooks on staged files; Commitizen runs separately on commit messages. Type checking and production builds run manually, outside these hooks.
 - Run `mise run typecheck` to check TypeScript and `.astro` files with `astro check`.
+- Biome checks and formats `.astro` files with its experimental full HTML support. The project carousel alone disables `useAnchorContent` because its inactive links intentionally use dynamic `aria-hidden` and `tabindex`; active links retain accessible labels. Category filter buttons retain their explicit group with a documented local suppression.
 - TypeScript stays within version 6 (`^6.0.3`) for compatibility with Astro's checker. Use `pnpm update` to update within this range; `pnpm update --latest` overrides it. Revisit the checker setup when upgrading to an Astro release that removes `astro check`.
 - [Biome](https://biomejs.dev/) for formatting and linting
 - [GitHub Actions](https://github.com/features/actions) for pull request quality checks

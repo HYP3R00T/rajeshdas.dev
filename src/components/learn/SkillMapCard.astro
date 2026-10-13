@@ -1,44 +1,46 @@
 ---
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-import { getSkillMapSlug } from "@/lib/learn";
+import { Image } from "astro:assets"
+import { Icon } from "astro-icon/components"
+import { getSkillMapSlug } from "@/lib/learn"
 
-const { map, moduleCount = 0 } = Astro.props;
-const href = `/learn/${getSkillMapSlug(map)}/`;
-const cover = map.data.cover;
+const { map, moduleCount = 0 } = Astro.props
+const href = `/learn/${getSkillMapSlug(map)}/`
+const cover = map.data.cover
 ---
 
 <a
   href={href}
   class="dashed-grid-cell group min-w-0 bg-background-0 p-5 transition-colors duration-200 hover:bg-background-1 motion-reduce:transition-none md:p-8 xl:p-10"
 >
-  <div class="grid min-w-0 sm:min-h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:min-h-60 xl:grid-cols-[15rem_minmax(0,1fr)]">
+  <div
+    class="grid min-w-0 sm:min-h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:min-h-60 xl:grid-cols-[15rem_minmax(0,1fr)]"
+  >
     <div
       class="aspect-square overflow-hidden bg-background-1 sm:aspect-auto sm:h-full"
       transition:name={`skill-map-cover-${getSkillMapSlug(map)}`}
     >
-      {
-        cover ? (
-          <Image
-            src={cover}
-            alt={map.data.coverAlt || `${map.data.title} preview`}
-            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-            width={480}
-            height={480}
-            widths={[320, 480, 640, 960, 1280]}
-            sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1279px) 13rem, 15rem"
-            fit="cover"
-            position="center"
-            quality="max"
-          />
-        ) : (
-          <div class="h-full w-full bg-background-0" aria-hidden="true"></div>
-        )
-      }
+      {cover ? (
+        <Image
+          src={cover}
+          alt={map.data.coverAlt || `${map.data.title} preview`}
+          class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          width={480}
+          height={480}
+          widths={[320, 480, 640, 960, 1280]}
+          sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1279px) 13rem, 15rem"
+          fit="cover"
+          position="center"
+          quality="max"
+        />
+      ) : (
+        <div class="h-full w-full bg-background-0" aria-hidden="true"></div>
+      )}
     </div>
 
     <div class="flex min-w-0 flex-col pt-6 sm:pt-0 sm:pl-7 xl:pl-8">
-      <div class="flex min-w-0 items-center justify-between gap-6 font-mono text-[0.625rem] tracking-[0.14em] uppercase">
+      <div
+        class="flex min-w-0 items-center justify-between gap-6 font-mono text-[0.625rem] tracking-[0.14em] uppercase"
+      >
         <span class="text-accent-1">Skill map</span>
         <span class="shrink-0 text-foreground-3">{moduleCount} module{moduleCount === 1 ? "" : "s"}</span>
       </div>

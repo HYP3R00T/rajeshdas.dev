@@ -30,8 +30,5 @@ repos:
     rev: v2.5.15
     hooks:
       - id: biome-check
-        exclude: '\.astro$'
       - id: biome-format
-        exclude: '\.astro$'
       - id: biome-lint
-        exclude: '\.astro$'
