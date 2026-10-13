@@ -7,7 +7,7 @@ Agent operating instructions for this repository. Keep this file minimal and act
 - Package manager: pnpm
 - Runtime manager: mise
 - Lint/format: Biome (no ESLint/Prettier in this repo)
-- Framework: Astro 6 + TypeScript + Tailwind CSS
+- Framework: Astro 7 + TypeScript 6 + Tailwind CSS
 
 ## TypeScript Path Aliases
 
@@ -37,7 +37,8 @@ Key configuration files and their purposes:
 - Dev server: `pnpm run dev --host 0.0.0.0`
 - Build: `pnpm run build`
 - Preview build: `pnpm run preview`
-- Type check: `pnpm run astro check`
+- Type check: `mise run typecheck` (runs `astro check`)
+- Repository checks, matching CI: `prek run --all-files`
 - Lint: `biome check --write .`
 - Lint (dry-run): `biome check .`
 - Format: `biome format --write .`
@@ -49,7 +50,7 @@ Standard workflow for making changes:
 
 1. Read relevant files to understand current implementation
 2. Make changes using appropriate editing tools
-3. Run type check: `pnpm run astro check`
+3. Run type check: `mise run typecheck`
 4. Run lint: `biome check --write .`
 5. Test locally: `pnpm run dev --host 0.0.0.0`
 6. Build to verify: `pnpm run build`
@@ -201,7 +202,7 @@ Avoid these common mistakes:
 1. **Rounded Corners**: Never add `border-radius` unless explicitly requested. This site uses hard edges.
 2. **Relative Imports**: Use path aliases (`@/*`) instead of `../../../` relative paths.
 3. **Hardcoded Colors**: Use CSS variables from `src/styles/global.css`, not hardcoded hex/rgb values.
-4. **Missing Type Checks**: Always run `pnpm run astro check` before completing tasks.
+4. **Missing Type Checks**: Always run `mise run typecheck` before completing tasks.
 5. **Client-Side JS**: Don't add client directives unless interactivity is required. Prefer static rendering.
 6. **Image Tags**: Use `<Image>` from `astro:assets`, not raw `<img>` tags for local images.
 7. **Content Access**: Use `getCollection()`/`getEntry()` from `astro:content`, not file system reads.
@@ -244,7 +245,7 @@ Preserve a strict, intentional visual language.
 
 Before completing any task, verify:
 
-- [ ] TypeScript compiles without errors: `pnpm run astro check`
+- [ ] TypeScript compiles without errors: `mise run typecheck`
 - [ ] Biome linting passes: `biome check .`
 - [ ] Dev server starts successfully: `pnpm run dev`
 - [ ] Production build completes: `pnpm run build`
@@ -255,12 +256,15 @@ Before completing any task, verify:
 - [ ] Images use `<Image>` component with proper optimization
 - [ ] Icons exist in `src/assets/icons/` and use astro-icon
 
+CI runs only the configured prek repository hooks. Type checking and production builds are manual checks; do not add them to commit hooks or CI unless requested.
+
 ## Dependency Management
 
 Rules for managing dependencies:
 
 - **Adding Dependencies**: Use `pnpm add <package>` for runtime deps, `pnpm add -D <package>` for dev deps
-- **Updating Dependencies**: Use `pnpm update` to update all deps, or `pnpm update <package>` for specific ones
+- **Updating Dependencies**: Use `pnpm update` to update all deps within their declared ranges, or `pnpm update <package>` for specific ones
+- **TypeScript Compatibility**: Keep TypeScript on `^6.0.3` while using `astro check`. Do not use `pnpm update --latest` for TypeScript; it overrides the version range. Revisit this when an Astro upgrade removes the checker.
 - **Removing Dependencies**: Use `pnpm remove <package>` and verify no imports remain
 - **Lock File**: Never manually edit `pnpm-lock.yaml`. Let pnpm manage it.
 - **Version Pinning**: Prefer exact versions for critical deps, ranges for dev tools
