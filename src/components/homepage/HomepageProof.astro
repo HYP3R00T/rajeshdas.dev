@@ -1,6 +1,28 @@
 ---
-import { homepageMetrics } from "@data/homepage"
 import SiteSection from "@/components/core/SiteSection.astro"
+
+const homepageMetrics = [
+  {
+    value: "87.5%",
+    unit: "less time",
+    label: "Regression testing reduced through AWS workflow automation",
+  },
+  {
+    value: "70%",
+    unit: "less manual effort",
+    label: "Heterogeneous database validation made repeatable",
+  },
+  {
+    value: "8",
+    unit: "engineers",
+    label: "Trained in maintainable Python automation practices",
+  },
+  {
+    value: "20k+",
+    unit: "downloads",
+    label: "Public adoption of the HyperCLI Python package",
+  },
+] as const
 ---
 
 <SiteSection id="proof" data-home-section aria-labelledby="proof-title">

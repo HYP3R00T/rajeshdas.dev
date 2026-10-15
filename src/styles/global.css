@@ -357,7 +357,7 @@ body[data-focus-mode="true"] .focus-mode-only {
 
   .prose a {
     @apply text-foreground-1 relative font-medium underline underline-offset-4 transition-colors;
-    text-decoration-style: dotted;
+    text-decoration-style: dashed;
     text-decoration-color: var(--foreground-3);
   }
 
@@ -1186,6 +1186,25 @@ body::after {
 .home-panel-caption > a:hover {
   color: var(--foreground-0);
 }
+.archive-grid.home-journal-grid {
+  background: none;
+  border-top: 1px dashed var(--frame-line);
+}
+.archive-grid.home-journal-grid > li {
+  background: none;
+  border-bottom: 1px dashed var(--frame-line);
+}
+.archive-grid.home-journal-grid > li:last-child {
+  border-bottom: 0;
+}
+@container (min-width: 54rem) {
+  .archive-grid.home-journal-grid > li {
+    border-bottom: 0;
+  }
+  .archive-grid.home-journal-grid > li + li {
+    border-left: 1px dashed var(--frame-line);
+  }
+}
 @container (min-width: 44rem) and (max-width: 64.999rem) {
   .home-hero h1 {
     font-size: clamp(2rem, 5.5cqw, 3.5rem);
@@ -1219,9 +1238,6 @@ body::after {
   .home-journal-grid .archive-entry {
     padding: 1.5rem;
   }
-  .archive-grid.home-journal-grid > li + li {
-    border-left: 1px dashed var(--frame-line);
-  }
 }
 @container (min-width: 65rem) {
   .home-hero {
@@ -1239,17 +1255,6 @@ body::after {
   }
   .archive-grid.home-journal-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .archive-grid.home-journal-grid > li {
-    background-image:
-      repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
-      repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
-    background-position: top, right;
-    background-size: 100% 1px, 1px 100%;
-    background-repeat: no-repeat;
-  }
-  .archive-grid.home-journal-grid > li:last-child {
-    background-size: 100% 1px, 0 0;
   }
 }
 /* A continuous text archive shares the shell's dashed grid. */
@@ -1432,6 +1437,7 @@ body::after {
   .reading-outline nav {
     --scrollbar-thumb: transparent;
     width: 100%;
+    padding-right: 1rem;
     max-height: calc(100svh - 12rem);
     overflow-y: auto;
     scrollbar-gutter: stable;
@@ -1569,19 +1575,6 @@ body::after {
 .prose dd {
   margin: 0.5rem 0 1.25rem 1.5rem;
 }
-.reading-end {
-  border-top: 1px solid var(--border);
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  font-size: 0.8rem;
-  color: var(--foreground-2);
-}
-.reading-end p {
-  margin-top: 1rem;
-}
-.reading-tags span {
-  color: var(--foreground-3);
-}
 body[data-focus-mode="true"] .site-shell {
   grid-template-columns: minmax(0, 1fr);
 }
@@ -1625,12 +1618,13 @@ body[data-focus-mode="true"] .site-workspace {
     height: 4rem;
     align-items: center;
     gap: 0.75rem;
-    padding-inline: 1rem;
+    padding-inline: 1.5rem;
     z-index: 90;
     background: var(--background-0);
     border-bottom: 1px dashed var(--frame-line);
   }
   .mobile-directory-brand {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -1645,6 +1639,7 @@ body[data-focus-mode="true"] .site-workspace {
     justify-content: center;
     width: 2.75rem;
     height: 2.75rem;
+    margin-left: auto;
     cursor: pointer;
   }
   .directory-toggle svg {
@@ -1657,13 +1652,14 @@ body[data-focus-mode="true"] .site-workspace {
   }
   .site-directory {
     display: flex;
-    position: relative;
-    top: auto;
+    position: sticky;
+    top: 4rem;
     width: 100%;
     max-width: none;
+    max-height: calc(100svh - 8rem);
     height: 0;
     min-height: 0;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 0 2.25rem;
     overflow: hidden;
     visibility: hidden;
   }
@@ -1672,10 +1668,13 @@ body[data-focus-mode="true"] .site-workspace {
   }
   .navigation-tree {
     max-width: 100%;
+    flex-shrink: 0;
     padding-block: 1rem 1.5rem;
   }
   .navigation-tree::before {
-    display: none;
+    display: block;
+    top: 0;
+    height: 1rem;
   }
   .tree-label {
     max-width: none;
@@ -1691,12 +1690,23 @@ body[data-focus-mode="true"] .site-workspace {
   .workspace-bar {
     display: none;
   }
+  body[data-directory-open="true"] .mobile-directory-brand::after {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    top: 100%;
+    width: 1px;
+    height: 1.25rem;
+    background: repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
+    pointer-events: none;
+  }
   body[data-directory-open="true"] .mobile-directory-bar {
     border-bottom-color: transparent;
   }
   body[data-directory-open="true"] .site-directory {
     height: auto;
     visibility: visible;
+    overflow-y: auto;
     border-bottom: 1px dashed var(--frame-line);
   }
   .reading-page {

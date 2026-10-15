@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content"
-import { homepageIntro } from "@data/homepage"
 import { Icon } from "astro-icon/components"
 import PostCard from "@/components/post/PostCard.astro"
 
@@ -15,9 +14,12 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft)).so
 <div class="home-panels">
   <section class="home-panel home-hero" aria-labelledby="home-title">
     <div class="home-hero-copy">
-      <p class="quiet-label">{homepageIntro.role}</p>
-      <h1 id="home-title">{homepageIntro.headline[0]}<br><span>{homepageIntro.headline[1]}</span></h1>
-      <p class="home-hero-description">{homepageIntro.description}</p>
+      <p class="quiet-label">Python &amp; DevOps Automation Engineer</p>
+      <h1 id="home-title">Less manual work.<br><span>More room to build.</span></h1>
+      <p class="home-hero-description">
+        I’m Rajesh. I build Python automation, developer tools, and infrastructure workflows that turn repetitive work
+        into something you can run, understand, and trust.
+      </p>
       <div class="home-hero-actions">
         <a href="https://hyperoot.dev/" target="_blank" rel="noopener noreferrer" class="home-primary-action"
           >Explore my projects</a
