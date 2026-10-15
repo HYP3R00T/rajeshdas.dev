@@ -1,7 +1,6 @@
 ---
 import type { ImageMetadata, MarkdownHeading } from "astro"
 import BaseLayout from "@/layouts/BaseLayout.astro"
-import { formatDateUppercase } from "@/lib/utils"
 
 interface Props {
   slug?: string
@@ -17,20 +16,7 @@ interface Props {
   ogImageAlt?: string
   headings?: MarkdownHeading[]
 }
-const {
-  slug,
-  title,
-  description,
-  kind,
-  pubDatetime,
-  modDatetime,
-  tags = [],
-  cover,
-  coverAlt,
-  ogImage,
-  ogImageAlt,
-  headings = [],
-} = Astro.props
+const { slug, title, description, kind, pubDatetime, cover, coverAlt, ogImage, ogImageAlt, headings = [] } = Astro.props
 const contents = headings.filter((heading) => heading.depth > 1 && heading.depth < 4)
 const noteFileLabel = `${(slug || title)
   .toLowerCase()
@@ -44,7 +30,6 @@ const fileLabel =
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-|-$/g, "")
     : noteFileLabel
-const archive = kind === "Article" ? "/post/" : "/til/"
 ---
 
 <BaseLayout
@@ -75,19 +60,6 @@ const archive = kind === "Article" ? "/post/" : "/til/"
         </details>
       )}
       <div class="prose reading-prose"><slot /></div>
-      <footer class="reading-end">
-        <a href={archive} data-reading-back class="text-link">← Back to {kind === "Article" ? "articles" : "notes"}</a>
-        {modDatetime && (
-          <p>
-            Updated <time datetime={modDatetime.toISOString()}>{formatDateUppercase(modDatetime)}</time>
-          </p>
-        )}
-        {tags.length > 0 && (
-          <p class="reading-tags">
-            <span>Topics:</span> {tags.join(" · ")}
-          </p>
-        )}
-      </footer>
     </article>
     {contents.length > 0 && (
       <aside class="reading-outline">
@@ -108,24 +80,6 @@ const archive = kind === "Article" ? "/post/" : "/til/"
 </BaseLayout>
 <script>
 const setupReading = () => {
-  const back = document.querySelector<HTMLAnchorElement>("[data-reading-back]")
-  if (back) {
-    try {
-      const archive = back.pathname.replace(/\/$/, "")
-      const saved = sessionStorage.getItem(archive === "/post" ? "articleArchiveReturnUrl" : "noteArchiveReturnUrl")
-      if (saved) {
-        const url = new URL(saved)
-        if (
-          url.origin === location.origin &&
-          (url.pathname.replace(/\/$/, "") === archive ||
-            (archive === "/til" && url.pathname.startsWith("/til/topic/")))
-        )
-          back.href = url.href
-      }
-    } catch {
-      /* Default archive link remains usable. */
-    }
-  }
   const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-reading-toc]"))
   const controller = new AbortController()
   links.forEach((link) => {

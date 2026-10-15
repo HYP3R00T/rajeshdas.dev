@@ -1,8 +1,24 @@
 ---
-import { homepageRoutes } from "@data/homepage"
 import { Icon } from "astro-icon/components"
 import SectionHeader from "@/components/core/SectionHeader.astro"
 import SiteSection from "@/components/core/SiteSection.astro"
+
+const homepageRoutes = [
+  {
+    eyebrow: "Guided learning",
+    title: "Learn",
+    description: "Work through sequential modules built around practical decisions and useful outcomes.",
+    href: "/learn/",
+    action: "Explore skill maps",
+  },
+  {
+    eyebrow: "Long-form thinking",
+    title: "Articles",
+    description: "Read detailed explanations of engineering systems, decisions, implementation, and tradeoffs.",
+    href: "/post/",
+    action: "Browse articles",
+  },
+] as const
 ---
 
 <SiteSection id="explore" data-home-section aria-labelledby="explore-title">

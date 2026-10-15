@@ -5,6 +5,10 @@ import NavigationTree from "@/components/core/NavigationTree.astro"
 ---
 
 <div class="mobile-directory-bar" data-header-shell>
+  <a href="/" class="mobile-directory-brand">
+    <Icon name="site-mark" class="directory-mark" aria-hidden="true" />
+    <span>Rajesh Das</span>
+  </a>
   <button
     type="button"
     class="directory-toggle"
@@ -13,12 +17,9 @@ import NavigationTree from "@/components/core/NavigationTree.astro"
     aria-expanded="false"
     data-directory-toggle
   >
-    <Icon name="menu" class="directory-open-icon" aria-hidden="true" />
-    <Icon name="close" class="directory-close-icon" aria-hidden="true" />
+    <Icon name="unfold-more" class="directory-open-icon" aria-hidden="true" />
+    <Icon name="unfold-less" class="directory-close-icon" aria-hidden="true" />
   </button>
-  <a href="/" class="mobile-directory-brand">
-    <span>Rajesh Das</span>
-  </a>
 </div>
 <aside class="site-directory" id="site-directory" data-header-shell>
   <a href="/" class="directory-brand">
@@ -40,13 +41,10 @@ const setupDirectory = () => {
   const desktop = window.matchMedia("(min-width: 1024px)")
   let panelAnimation: Animation | undefined
   let transitionId = 0
-  let returnScroll: number | undefined
   const setOpen = (open: boolean, restoreFocus = false, animate = true) => {
     const id = ++transitionId
     const startHeight = directory.getBoundingClientRect().height
     panelAnimation?.cancel()
-    if (open && returnScroll === undefined) returnScroll = window.scrollY
-    if (open) window.scrollTo({ top: 0, behavior: "instant" })
     if (open) document.body.dataset.directoryOpen = "true"
     toggle.setAttribute("aria-expanded", String(open))
     toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation")
@@ -55,11 +53,6 @@ const setupDirectory = () => {
     const finish = () => {
       if (id !== transitionId) return
       if (!open) document.body.removeAttribute("data-directory-open")
-      if (!open && returnScroll !== undefined) {
-        const top = returnScroll
-        returnScroll = undefined
-        if (!desktop.matches) window.scrollTo({ top, behavior: "instant" })
-      }
     }
     if (
       animate &&
@@ -94,7 +87,6 @@ const setupDirectory = () => {
   }
   document.addEventListener("keydown", onKey)
   const onResize = () => {
-    returnScroll = undefined
     setOpen(false, false, false)
   }
   desktop.addEventListener("change", onResize)

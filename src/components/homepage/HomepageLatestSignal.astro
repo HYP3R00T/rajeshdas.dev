@@ -1,7 +1,6 @@
 ---
 import { getImage } from "astro:assets"
 import type { CollectionEntry } from "astro:content"
-import { latestVideo } from "@data/homepage"
 import SectionHeader from "@/components/core/SectionHeader.astro"
 import SiteSection from "@/components/core/SiteSection.astro"
 import LatestSignalSwitcher from "@/components/homepage/LatestSignalSwitcher"
@@ -17,6 +16,11 @@ const articleImages = await Promise.all(
 )
 const articleImageSrcSet = articleImages.map((image, index) => `${image.src} ${articleImageWidths[index]}w`).join(", ")
 const articleImageSrc = articleImages.at(-1)?.src ?? articleImages[0].src
+const latestVideo = {
+  id: "v_rcTD2O-aU",
+  title: "Latest video from Hyperoot",
+  channelUrl: "https://www.youtube.com/@hyperoot",
+} as const
 const videoThumbnail = `https://i.ytimg.com/vi/${latestVideo.id}/maxresdefault.jpg`
 const videoUrl = `https://www.youtube.com/embed/${latestVideo.id}?autoplay=1&rel=0&modestbranding=1`
 ---
