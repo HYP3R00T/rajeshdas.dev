@@ -12,7 +12,15 @@ const scopes = [
   [["entity.name.type", "support.type", "support.class", "entity.other.inherited-class"], "type"],
   [["string", "string.quoted", "string.regexp"], "string"],
   [["constant.numeric", "constant.language", "variable.other.constant"], "constant"],
-  [["support.type.property-name.json", "meta.object-literal.key", "entity.other.attribute-name"], "property"],
+  [
+    [
+      "support.type.property-name.json",
+      "meta.object-literal.key",
+      "entity.other.attribute-name",
+      "entity.name.tag.yaml",
+    ],
+    "property",
+  ],
   [["variable.parameter"], "parameter"],
   [["punctuation"], "punctuation"],
   [["comment", "string.quoted.docstring.multi"], "comment"],

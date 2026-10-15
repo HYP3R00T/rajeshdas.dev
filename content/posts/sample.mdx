@@ -15,13 +15,19 @@ ogImage: "./og/arch_linux.png"
 ogImageAlt: Neofetch output of Arch Linux
 ---
 
-This page is a working specimen of the article layout. It brings together the elements that appear in technical writing, from a short `git status` command to wide tables and nested code blocks.
+This page is a working specimen of the article layout. It brings together the elements that appear in technical writing, from a short `git status` command to wide tables, Kubernetes manifests, terminal output, and nested code blocks. Use the contents navigation to compare sections, then check the same examples in both themes and at narrower widths.
 
 ## Typography and inline code
 
 A paragraph should be easy to follow without competing with the navigation. **Strong text** adds emphasis, _italic text_ adds a quieter distinction, and [links remain easy to identify](https://astro.build). A footnote can carry a useful aside without interrupting the sentence.[^layout]
 
 Inline code such as `pnpm run build`, `config.enabled`, and `/etc/loader/loader.conf` should sit comfortably within the line. Longer identifiers such as `a_deliberately_long_configuration_key_that_needs_to_wrap_on_a_small_screen` must stay inside the reading column.
+
+### Links, emphasis, and punctuation
+
+A link inside a sentence should remain identifiable without overpowering the paragraph. Compare an [internal article link](/post/kubernetes-rbac-made-simple/), a [section link](#yaml-and-kubernetes), and a link next to `inline_code`. **Bold with an _italic phrase_**, ~~outdated advice~~, and a keyboard shortcut such as <kbd>Ctrl</kbd> + <kbd>K</kbd> should all have a clear place in the text.
+
+Technical prose also includes symbols and punctuation: “quoted text”, an apostrophe in a developer’s note, an en dash in a range (3–5), arrows →, a percentage (99.9%), and an expression such as <var>n</var><sup>2</sup>. None should change the rhythm of the line.
 
 ### Third-level heading
 
@@ -76,9 +82,20 @@ This table deliberately has more columns. On a narrow screen, scroll the table r
 | Documentation build | CI | Pull request | Source tree and configuration | 2 | 5 minutes |
 | Release preparation | Production | Manual approval | Tagged revision and release notes | 1 | 10 minutes |
 
+### Tables with code and missing values
+
+Headers, links, and inline code often appear together in real documentation. An empty cell should retain its spacing, and a long identifier should stay inside the table’s scrollable area.
+
+| Setting | Example | Default | Notes |
+| :--- | :--- | ---: | :--- |
+| `VALIDATION_ENABLED` | `true` | 1 | Enable validation before writing output. |
+| `CONTENT_DIRECTORY` | `content/posts` | | Relative to the repository root. |
+| `MAX_RETRIES` | `3` | 3 | See [retry behavior](#shell-scripts-and-errors). |
+| `BUILD_ARTIFACT_STORAGE_PREFIX` | `previews/pull-requests/feature-navigation-refresh` | | A deliberately long value for checking overflow. |
+
 ## Code blocks
 
-Code uses a neutral surface, one restrained accent, and the same monospace family as the interface. Language labels and filenames belong in the header. The copy control copies the code, not the header.
+Code uses a neutral surface, distinct syntax colors, and the same monospace family as the interface. Language labels and filenames belong in the header. The copy control copies the code, not the header.
 
 ```python title="automation.py" {4-6}
 from pathlib import Path
@@ -91,6 +108,78 @@ def collect_notes(directory: Path) -> list[Path]:
 
 notes = collect_notes(Path("content/posts"))
 print(f"Found {len(notes)} notes")
+```
+
+### YAML and Kubernetes
+
+YAML is common in infrastructure articles. Keys should be visually distinct from string values; punctuation, comments, numbers, and booleans should remain easy to tell apart. This first example mirrors a practical RBAC manifest, including nested mappings and arrays.
+
+```yaml title="pod-reader.yaml"
+# Allow a reader to inspect pods in one namespace.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+  namespace: default
+  labels:
+    app.kubernetes.io/part-of: documentation
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs:
+      - get
+      - list
+      - watch
+```
+
+The next configuration exercises scalar values, quoted strings, an empty value, a URL, and a multiline string. YAML uses indentation as structure, so preserving spaces matters as much as choosing colors.[^yaml]
+
+```yaml title="validation.yaml"
+project: personal-site
+enabled: true
+retries: 3
+timeoutSeconds: 30
+ratio: 0.75
+optionalOutput: null
+endpoint: https://example.com/api/validate
+message: "Keep punctuation: and # characters inside the string."
+formats: [markdown, mdx]
+paths:
+  include: content/posts
+  exclude:
+    - "**/drafts/**"
+    - "**/images/**"
+summary: |
+  Validate content before publishing.
+  Report the file and line when something fails.
+command: >-
+  pnpm exec biome check .
+  --diagnostic-level=error
+```
+
+### Workflow YAML and expressions
+
+CI configuration adds expressions, environment variables, shell commands, and multiline values. The workflow expression syntax below is literal code, not part of the article renderer.
+
+```yaml title=".github/workflows/validate.yml"
+name: Validate content
+on:
+  pull_request:
+    paths: ["content/**", "src/**"]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      BRANCH: ${{ github.head_ref }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check generated content
+        run: |
+          printf 'Validating branch: %s\n' "$BRANCH"
+          pnpm run build
 ```
 
 ### Configuration and shell commands
@@ -113,6 +202,146 @@ mise run typecheck
 pnpm run build
 ```
 
+### TypeScript and JavaScript
+
+Compare type annotations, property names, function calls, strings, and template substitutions. Comments should stay quieter than executable code.
+
+```typescript title="validate-entry.ts"
+type Entry = {
+  title: string
+  draft?: boolean
+  tags: string[]
+}
+
+export function describeEntry(entry: Entry): string {
+  const visibleTags = entry.tags.filter((tag) => tag.length > 0)
+  // Keep the display label separate from the stored title.
+  return `${entry.title}: ${visibleTags.join(", ") || "untagged"}`
+}
+
+const entry: Entry = { title: "A useful automation", draft: false, tags: ["python"] }
+console.log(describeEntry(entry))
+```
+
+```javascript title="retry.js"
+export async function retry(operation, attempts = 3) {
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await operation()
+    } catch (error) {
+      if (attempt === attempts) throw error
+      await new Promise((resolve) => setTimeout(resolve, 250 * attempt))
+    }
+  }
+}
+```
+
+### Shell scripts and errors
+
+A shell example should distinguish comments, variables, flags, and quoted strings. These are illustrative commands; no script on this page is executed by the browser.
+
+```bash title="scripts/check-content.sh"
+#!/usr/bin/env bash
+set -euo pipefail
+
+content_dir="${1:-content/posts}"
+if [[ ! -d "$content_dir" ]]; then
+  printf 'Missing directory: %s\n' "$content_dir" >&2
+  exit 1
+fi
+
+find "$content_dir" -type f -name '*.mdx' -print |
+  sort |
+  while IFS= read -r file; do
+    printf 'Checking %s\n' "$file"
+  done
+```
+
+### TOML, INI, and Dockerfiles
+
+Configuration is not limited to YAML and JSON. Compare section headers, dotted keys, booleans, arrays, and comments across these formats.
+
+```toml title="project.toml"
+[project]
+name = "content-validator"
+version = "0.1.0"
+
+[validation]
+enabled = true
+retries = 3
+formats = ["markdown", "mdx"]
+
+[validation.paths]
+source = "content/posts"
+output = "dist"
+```
+
+```ini title="loader.conf"
+# Example boot loader configuration
+[loader]
+default = arch.conf
+timeout = 3
+editor = no
+```
+
+```dockerfile title="Dockerfile"
+FROM python:3.13-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+ENV PYTHONUNBUFFERED=1
+CMD ["python", "-m", "content_validator"]
+```
+
+### SQL and patches
+
+A query mixes keywords, identifiers, string literals, and numeric values. A patch should make additions and removals distinguishable.
+
+```sql title="recent-articles.sql"
+SELECT title, published_at, category
+FROM articles
+WHERE draft = FALSE
+  AND category IN ('engineering', 'guides')
+ORDER BY published_at DESC
+LIMIT 5;
+```
+
+```diff title="navigation.patch"
+-const visiblePosts = posts.filter((post) => post.featured).slice(0, 6)
++const featured = posts.find((post) => post.featured)
++const visiblePosts = (featured
++  ? [featured, ...posts.filter((post) => post.id !== featured.id)]
++  : posts).slice(0, 5)
+```
+
+### Highlighted lines and untitled blocks
+
+Highlighted ranges should fill the code area evenly without introducing extra blank lines. This example has two separate ranges, including a nested block.
+
+```python title="validation.py" {2-3,6-7}
+def validate(title: str, retries: int) -> bool:
+    if not title.strip():
+        raise ValueError("A title is required")
+
+    for attempt in range(retries):
+        print(f"Validation attempt {attempt + 1}")
+        return True
+    return False
+```
+
+Some snippets do not need a filename. The language label and copy control should still align correctly:
+
+```bash
+python -m content_validator --dry-run
+```
+
+A single-line block should have the same spacing and border treatment as a longer example:
+
+```python title="one-line.py"
+print("Ready")
+```
+
 ### Long lines and plain text
 
 Long source lines stay on one line and scroll inside their code block. They should not widen the article or push the contents navigation out of place.
@@ -132,6 +361,21 @@ ANSI colors retain their meaning for successes, warnings, and errors while using
 \u001b[33m! Optional preview skipped\u001b[0m
 \u001b[31m✗ Example failure message\u001b[0m
 \u001b[32m✓ Build complete\u001b[0m
+```
+
+### ANSI palette and text attributes
+
+Compare normal and bright colors, dim output, bold text, and a colored background. Reset sequences should keep one line’s styling from leaking into the next.
+
+```ansi title="terminal-palette.log"
+\u001b[31mRed\u001b[0m  \u001b[32mGreen\u001b[0m  \u001b[33mYellow\u001b[0m  \u001b[34mBlue\u001b[0m
+\u001b[35mMagenta\u001b[0m  \u001b[36mCyan\u001b[0m  \u001b[37mWhite\u001b[0m
+\u001b[91mBright red\u001b[0m  \u001b[92mBright green\u001b[0m  \u001b[93mBright yellow\u001b[0m
+\u001b[94mBright blue\u001b[0m  \u001b[95mBright magenta\u001b[0m  \u001b[96mBright cyan\u001b[0m
+\u001b[1mBold status\u001b[0m  \u001b[2mDim diagnostic detail\u001b[0m
+\u001b[2;32mDim success message\u001b[0m
+\u001b[30;43m WARNING \u001b[0m Inspect the output before continuing.
+Normal text after a reset.
 ```
 
 ## Quotes and callouts
@@ -162,6 +406,36 @@ A quotation can also contain a list or a code block:
   This is a demonstration warning. Use stronger semantic colors only when the message needs that distinction.
 </Callout>
 
+### Callout variants
+
+Each supported callout has the same geometry and spacing. Its icon and semantic color distinguish the message, rather than a different card design.
+
+<Callout variant="tip" title="Start with a small input">
+  Try one file before running a workflow across a whole directory. Keep the original output available for comparison.
+</Callout>
+
+<Callout variant="success" title="Validation complete">
+  All published entries passed the example checks. No files were changed.
+</Callout>
+
+<Callout variant="important" title="Keep the original context">
+  A result is easier to review when the input, assumptions, and limitations are recorded alongside it.
+</Callout>
+
+<Callout variant="danger" title="An example of a destructive operation">
+  Reserve this treatment for actions that can remove data or change access. This sample does not execute an operation.
+</Callout>
+
+### Optional details
+
+Native disclosure elements can hold a longer explanation without interrupting the first reading. Check both the closed and expanded states.
+
+<details>
+  <summary>Why keep a small reproduction?</summary>
+  <p>A short example makes it easier to separate a rendering problem from an issue in the source content. It also gives the next person a concrete case to verify.</p>
+  <p>Include the relevant configuration, the expected result, and what actually happened. Keep unrelated details out of the reproduction.</p>
+</details>
+
 ## Images and media
 
 Images supplied within an article remain part of the content. They use the same hard edges as tables and code blocks.
@@ -186,3 +460,5 @@ A separator should divide ideas without adding another surface:
 This is the closing paragraph. It includes **emphasis**, an `inline command`, and a second reference to the same footnote.[^layout]
 
 [^layout]: This sample is for checking presentation. Its code and workflow examples are illustrative rather than instructions for a particular deployment.
+
+[^yaml]: These manifests are rendering examples, not a complete access policy or deployment configuration. Review permissions and environment settings before adapting them.
