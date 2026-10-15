@@ -1,0 +1,129 @@
+---
+import type { CollectionEntry } from "astro:content"
+import PostCard from "@/components/post/PostCard.astro"
+
+interface Props {
+  posts: CollectionEntry<"posts">[]
+}
+const { posts } = Astro.props
+const categories = ["product", "engineering", "guides"]
+  .map((category) => ({ category, count: posts.filter((post) => post.data.category === category).length }))
+  .filter(({ count }) => count > 0)
+---
+
+<section class="article-archive" aria-labelledby="archive-title" data-article-archive>
+  <h1 id="archive-title" class="sr-only">Articles</h1>
+  <div class="archive-toolbar">
+    <label class="archive-search">
+      <span class="sr-only">Search articles</span>
+      <input
+        type="search"
+        placeholder="Search titles, topics, or keywords…"
+        aria-controls="articles-grid"
+        data-archive-search
+      >
+    </label>
+    <!-- biome-ignore lint/a11y/useSemanticElements: These are standalone filter buttons, not form fields. -->
+    <div class="archive-filters" role="group" aria-label="Filter articles by category">
+      <button type="button" data-category-filter="all" aria-controls="articles-grid" aria-pressed="true">
+        All <span>{posts.length}</span>
+      </button>
+      {categories.map(({ category, count }) => (
+        <button type="button" data-category-filter={category} aria-controls="articles-grid" aria-pressed="false">
+          {category} <span>{count}</span>
+        </button>
+      ))}
+    </div>
+    <p class="archive-count" aria-live="polite" aria-atomic="true" data-archive-count>{posts.length} entries</p>
+  </div>
+  <ul id="articles-grid" class="archive-grid">
+    {posts.map((post, index) => (
+      <li
+        class:list={{ "archive-left-cell": index % 2 === 0 }}
+        data-archive-entry
+        data-category={post.data.category}
+        data-search={[post.data.title, post.data.description, ...post.data.tags].join(" ").toLowerCase()}
+      >
+        <PostCard post={post} />
+      </li>
+    ))}
+  </ul>
+  <p class="archive-empty" data-archive-empty hidden>No matching entries. Try another search or category.</p>
+</section>
+
+<script>
+const setupArchive = () => {
+  const root = document.querySelector<HTMLElement>("[data-article-archive]")
+  if (!root || root.dataset.ready) return
+  root.dataset.ready = "true"
+  const search = root.querySelector<HTMLInputElement>("[data-archive-search]")
+  const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-category-filter]"))
+  const entries = Array.from(root.querySelectorAll<HTMLElement>("[data-archive-entry]"))
+  const count = root.querySelector<HTMLElement>("[data-archive-count]")
+  const empty = root.querySelector<HTMLElement>("[data-archive-empty]")
+  const controller = new AbortController()
+  const options = { signal: controller.signal }
+  let category = "all"
+  const apply = () => {
+    const terms = (search?.value || "").trim().toLowerCase().split(/\s+/).filter(Boolean)
+    let visible = 0
+    entries.forEach((entry) => {
+      const matches =
+        (category === "all" || entry.dataset.category === category) &&
+        terms.every((term) => entry.dataset.search?.includes(term))
+      entry.hidden = !matches
+      if (matches) visible++
+      // Pair only visible entries so the dashed columns stay correct after filtering.
+      entry.classList.toggle("archive-left-cell", matches && visible % 2 === 1)
+    })
+    buttons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.categoryFilter === category))
+    })
+    if (count) count.textContent = `${visible} ${visible === 1 ? "entry" : "entries"}`
+    if (empty) empty.hidden = visible > 0
+    const url = new URL(location.href)
+    if (category === "all") url.searchParams.delete("category")
+    else url.searchParams.set("category", category)
+    if (search?.value.trim()) url.searchParams.set("q", search.value.trim())
+    else url.searchParams.delete("q")
+    url.searchParams.delete("page")
+    history.replaceState(history.state, "", url)
+  }
+  const restore = () => {
+    const url = new URL(location.href)
+    const saved = url.searchParams.get("category")
+    category = buttons.some((button) => button.dataset.categoryFilter === saved) ? saved || "all" : "all"
+    if (search) search.value = url.searchParams.get("q") || ""
+    apply()
+  }
+  buttons.forEach((button) => {
+    button.addEventListener(
+      "click",
+      () => {
+        category = button.dataset.categoryFilter || "all"
+        apply()
+      },
+      options,
+    )
+  })
+  search?.addEventListener("input", apply, options)
+  root.querySelectorAll<HTMLAnchorElement>("[data-post-card]").forEach((link) => {
+    link.addEventListener(
+      "click",
+      () => {
+        try {
+          sessionStorage.setItem("articleArchiveReturnUrl", location.href)
+        } catch {
+          /* The archive still works when storage is unavailable. */
+        }
+      },
+      options,
+    )
+  })
+  window.addEventListener("popstate", restore, options)
+  document.addEventListener("astro:before-swap", () => controller.abort(), { once: true })
+  restore()
+}
+setupArchive()
+document.addEventListener("astro:page-load", setupArchive)
+</script>
