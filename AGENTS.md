@@ -65,11 +65,10 @@ Use this section to decide exactly what to create and where.
 - `content/projects/`: project showcase entries (`.md`/`.mdx`) with project frontmatter.
 - `content/**/images/`: content-specific images referenced by markdown/mdx entries.
 - `data/config.ts`: global site identity and cross-site constants.
-- `data/homepage.ts`: homepage section text/order/content configuration.
 - `src/pages/`: route entry files only. Keep pages thin and compose with components.
 - `src/layouts/`: layout shells shared by multiple pages/routes.
 - `src/components/core/`: navigation, SEO, shell, and cross-site structural primitives.
-- `src/components/homepage/`: components used only by the homepage route.
+- `src/components/homepage/`: homepage components and their own copy/content.
 - `src/components/post/`: post list/detail/pagination presentation components.
 - `src/components/project/`: project listing/card/list-item presentation components.
 - `src/components/ui/`: generic reusable UI primitives (button/input/badge/card-style blocks).
@@ -86,7 +85,7 @@ Use this section to decide exactly what to create and where.
 - New generic primitive used across sections: create in `src/components/ui/`.
 - New shared helper function: create or extend module in `src/lib/`.
 - New global site setting: add to `data/config.ts`.
-- New homepage-specific content/config: add to `data/homepage.ts`.
+- New homepage-specific content: keep it in the owning Astro component under `src/components/homepage/`.
 - New post/project entry: add markdown/mdx in `content/posts/` or `content/projects/`.
 - New global style token/rule: add to `src/styles/global.css`.
 - New icon: use `scripts/download-icon.sh <icon-name>` to download from Lucide, then reference via astro-icon.
@@ -234,12 +233,11 @@ Preserve a strict, intentional visual language.
 
 **CRITICAL**: The visual identity of this site is non-negotiable.
 
-- [DESIGN.md](DESIGN.md) is the canonical design-system specification
-- Contains design tokens, component behavior, visual rationale, and do/don't guidance
-- When conflicts arise, [DESIGN.md](DESIGN.md) takes precedence over this file
-- **Zero border radius** is a core design principle - never add rounded corners
-- Review [DESIGN.md](DESIGN.md) before making any visual changes
-- The design system emphasizes brutalist aesthetics: sharp edges, high contrast, minimal ornamentation
+- Follow the UI System and Visual Philosophy section above.
+- Use tokens from `src/styles/global.css` and reuse existing component patterns.
+- **Zero border radius** is a core design principle - never add rounded corners.
+- Review the affected components before making visual changes.
+- Preserve sharp edges, high contrast, and minimal ornamentation.
 
 ## Testing and Validation
 
@@ -251,7 +249,7 @@ Before completing any task, verify:
 - [ ] Production build completes: `pnpm run build`
 - [ ] Preview build works: `pnpm run preview`
 - [ ] No console errors in browser
-- [ ] Visual changes match existing design system (check [DESIGN.md](DESIGN.md))
+- [ ] Visual changes match the UI System and Visual Philosophy guidance above
 - [ ] New content has correct frontmatter schema
 - [ ] Images use `<Image>` component with proper optimization
 - [ ] Icons exist in `src/assets/icons/` and use astro-icon
