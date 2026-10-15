@@ -1,13 +1,15 @@
 ---
 import { SOCIAL_LINKS } from "@data/config"
+import ArticleSourceActions from "@/components/post/ArticleSourceActions.astro"
 
 interface Props {
   pageLabel?: string
   breadcrumbs?: { label: string; href: string }[]
   publishedAt?: Date
   pageAction?: { href: string; label: string }
+  articleMarkdownUrl?: string
 }
-const { pageLabel, breadcrumbs, publishedAt, pageAction } = Astro.props
+const { pageLabel, breadcrumbs, publishedAt, pageAction, articleMarkdownUrl } = Astro.props
 const path = Astro.url.pathname.replace(/\/$/, "") || "/"
 const section = path.startsWith("/post")
   ? { label: "Articles", href: "/post/" }
@@ -46,6 +48,7 @@ const action =
     ))}
     <span aria-current="page" title={currentLabel}>{currentLabel}</span>
   </nav>
+  {articleMarkdownUrl && <ArticleSourceActions href={articleMarkdownUrl} />}
   {publishedAt ? (
     <time class="workspace-date" datetime={publishedAt.toISOString()}>
       <span aria-hidden="true">[</span>
