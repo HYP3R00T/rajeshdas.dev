@@ -6,6 +6,12 @@
 
 :root {
   --frame-line: color-mix(in oklch, var(--foreground-3) 30%, transparent);
+  --dash-length: 3px;
+  --dash-gap: 3px;
+  --dash-period: calc(var(--dash-length) + var(--dash-gap));
+  --dash-thickness: 1px;
+  --dash-horizontal: repeating-linear-gradient(to right, var(--frame-line) 0 var(--dash-length), transparent var(--dash-length) var(--dash-period));
+  --dash-vertical: repeating-linear-gradient(to bottom, var(--frame-line) 0 var(--dash-length), transparent var(--dash-length) var(--dash-period));
 
   /* Warm neutral surfaces with golden-ratio lightness intervals */
   --background-0: oklch(0.9800 0.006 85);
@@ -356,15 +362,22 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose a {
-    @apply text-foreground-1 relative font-medium underline underline-offset-4 transition-colors;
-    text-decoration-style: dashed;
-    text-decoration-color: var(--foreground-3);
+    @apply text-foreground-1 relative font-medium transition-colors;
+    --link-line-color: var(--foreground-3);
+    text-decoration: none;
+    padding-bottom: 0.15em;
+    background-image: repeating-linear-gradient(to right, var(--link-line-color) 0 var(--dash-length), transparent var(--dash-length) var(--dash-period));
+    background-size: var(--dash-period) var(--dash-thickness);
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .prose a:hover,
   .prose a:focus-visible {
-    @apply text-foreground-0 decoration-foreground-0;
-    text-decoration-style: solid;
+    @apply text-foreground-0;
+    --link-line-color: var(--foreground-0);
   }
 
   .prose h1 {
@@ -574,14 +587,10 @@ body[data-focus-mode="true"] .focus-mode-only {
   bottom: 0;
   left: 0;
   z-index: 2;
-  height: 1px;
+  height: var(--dash-thickness);
   pointer-events: none;
   content: "";
-  background-image: repeating-linear-gradient(to right,
-      var(--border) 0,
-      var(--border) 4px,
-      transparent 4px,
-      transparent 12px);
+  background-image: var(--dash-horizontal);
 }
 
 @media (min-width: 48rem) {
@@ -591,14 +600,10 @@ body[data-focus-mode="true"] .focus-mode-only {
     right: 0;
     bottom: 0;
     z-index: 2;
-    width: 1px;
+    width: var(--dash-thickness);
     pointer-events: none;
     content: "";
-    background-image: repeating-linear-gradient(to bottom,
-        var(--border) 0,
-        var(--border) 4px,
-        transparent 4px,
-        transparent 12px);
+    background-image: var(--dash-vertical);
   }
 }
 
@@ -782,7 +787,6 @@ body::after {
   flex-shrink: 0;
 }
 .navigation-tree {
-  --tree-line: var(--frame-line);
   position: relative;
   width: max-content;
   max-width: calc(var(--directory-max-width) - var(--directory-inline-padding));
@@ -795,8 +799,8 @@ body::after {
   left: 0;
   top: -2.5rem;
   height: 2.5rem;
-  width: 1px;
-  background-image: repeating-linear-gradient(to bottom, var(--tree-line) 0 3px, transparent 3px 6px);
+  width: var(--dash-thickness);
+  background-image: var(--dash-vertical);
   pointer-events: none;
 }
 .navigation-tree ul {
@@ -811,8 +815,8 @@ body::after {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 1px;
-  background-image: repeating-linear-gradient(to bottom, var(--tree-line) 0 3px, transparent 3px 6px);
+  width: var(--dash-thickness);
+  background-image: var(--dash-vertical);
   pointer-events: none;
 }
 .tree-node:last-child::before {
@@ -825,8 +829,8 @@ body::after {
   left: 0;
   top: 1.5rem;
   width: 1rem;
-  height: 1px;
-  background-image: repeating-linear-gradient(to right, var(--tree-line) 0 3px, transparent 3px 6px);
+  height: var(--dash-thickness);
+  background-image: var(--dash-horizontal);
   pointer-events: none;
 }
 .tree-row {
@@ -990,15 +994,15 @@ body::after {
   min-height: calc(100svh - 7rem);
   border: 1px solid transparent;
   background-image:
-    repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
-    repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
-    repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px),
-    repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
+    var(--dash-horizontal),
+    var(--dash-horizontal),
+    var(--dash-vertical),
+    var(--dash-vertical);
   background-size:
-    100% 1px,
-    100% 1px,
-    1px 100%,
-    1px 100%;
+    100% var(--dash-thickness),
+    100% var(--dash-thickness),
+    var(--dash-thickness) 100%,
+    var(--dash-thickness) 100%;
   background-position: top, bottom, left, right;
   background-origin: border-box;
   background-repeat: no-repeat;
@@ -1075,11 +1079,11 @@ body::after {
 .home-panel {
   min-width: 0;
   background-image:
-    repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
-    repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
-    repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px),
-    repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
-  background-size: 100% 1px, 100% 1px, 1px 100%, 1px 100%;
+    var(--dash-horizontal),
+    var(--dash-horizontal),
+    var(--dash-vertical),
+    var(--dash-vertical);
+  background-size: 100% var(--dash-thickness), 100% var(--dash-thickness), var(--dash-thickness) 100%, var(--dash-thickness) 100%;
   background-position: top, bottom, left, right;
   background-repeat: no-repeat;
 }
@@ -1126,14 +1130,14 @@ body::after {
 }
 .home-project-index {
   padding: clamp(1.5rem, 4cqw, 4rem);
-  background: repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px) top / 100% 1px no-repeat;
+  background: var(--dash-horizontal) top / 100% var(--dash-thickness) no-repeat;
 }
 .home-project-index ol {
   list-style: none;
   margin-top: 1.5rem;
 }
 .home-project-index li + li {
-  background: repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px) top / 100% 1px no-repeat;
+  background: var(--dash-horizontal) top / 100% var(--dash-thickness) no-repeat;
 }
 .home-project-index a {
   display: grid;
@@ -1187,22 +1191,20 @@ body::after {
   color: var(--foreground-0);
 }
 .archive-grid.home-journal-grid {
-  background: none;
-  border-top: 1px dashed var(--frame-line);
+  background: var(--dash-horizontal) top / 100% var(--dash-thickness) no-repeat;
 }
 .archive-grid.home-journal-grid > li {
-  background: none;
-  border-bottom: 1px dashed var(--frame-line);
+  background: var(--dash-horizontal) bottom / 100% var(--dash-thickness) no-repeat;
 }
 .archive-grid.home-journal-grid > li:last-child {
-  border-bottom: 0;
+  background: none;
 }
 @container (min-width: 54rem) {
   .archive-grid.home-journal-grid > li {
-    border-bottom: 0;
+    background: none;
   }
   .archive-grid.home-journal-grid > li + li {
-    border-left: 1px dashed var(--frame-line);
+    background: var(--dash-vertical) left / var(--dash-thickness) 100% no-repeat;
   }
 }
 @container (min-width: 44rem) and (max-width: 64.999rem) {
@@ -1220,7 +1222,7 @@ body::after {
     padding-inline: 1.25rem;
   }
   .home-project-index li + li {
-    background: repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px) left / 1px 100% no-repeat;
+    background: var(--dash-vertical) left / var(--dash-thickness) 100% no-repeat;
   }
   .home-project-index a {
     grid-template-columns: minmax(0, 1fr) 1rem;
@@ -1251,7 +1253,7 @@ body::after {
     justify-content: center;
   }
   .home-project-index {
-    background: repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px) left / 1px 100% no-repeat;
+    background: var(--dash-vertical) left / var(--dash-thickness) 100% no-repeat;
   }
   .archive-grid.home-journal-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1327,13 +1329,13 @@ body::after {
   list-style: none;
   margin: 0;
   padding: 0;
-  background: repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px) top / 100% 1px no-repeat;
+  background: var(--dash-horizontal) top / 100% var(--dash-thickness) no-repeat;
 }
 .archive-grid > li {
   min-width: 0;
   min-height: 0;
   overflow: clip;
-  background: repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px) bottom / 100% 1px no-repeat;
+  background: var(--dash-horizontal) bottom / 100% var(--dash-thickness) no-repeat;
 }
 .archive-grid > li[hidden] {
   display: none;
@@ -1395,10 +1397,10 @@ body::after {
   }
   .archive-grid > .archive-left-cell {
     background-image:
-      repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
-      repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
+      var(--dash-horizontal),
+      var(--dash-vertical);
     background-position: bottom, right;
-    background-size: 100% 1px, 1px 100%;
+    background-size: 100% var(--dash-thickness), var(--dash-thickness) 100%;
     background-repeat: no-repeat;
   }
 }
@@ -1620,8 +1622,7 @@ body[data-focus-mode="true"] .site-workspace {
     gap: 0.75rem;
     padding-inline: 1.5rem;
     z-index: 90;
-    background: var(--background-0);
-    border-bottom: 1px dashed var(--frame-line);
+    background: var(--dash-horizontal) bottom / 100% var(--dash-thickness) no-repeat var(--background-0);
   }
   .mobile-directory-brand {
     position: relative;
@@ -1695,19 +1696,22 @@ body[data-focus-mode="true"] .site-workspace {
     position: absolute;
     left: 0.75rem;
     top: 100%;
-    width: 1px;
+    width: var(--dash-thickness);
     height: 1.25rem;
-    background: repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
+    background: var(--dash-vertical);
     pointer-events: none;
   }
   body[data-directory-open="true"] .mobile-directory-bar {
-    border-bottom-color: transparent;
+    background-image: none;
   }
   body[data-directory-open="true"] .site-directory {
     height: auto;
     visibility: visible;
     overflow-y: auto;
-    border-bottom: 1px dashed var(--frame-line);
+    background-image: var(--dash-horizontal);
+    background-size: 100% var(--dash-thickness);
+    background-position: bottom;
+    background-repeat: no-repeat;
   }
   .reading-page {
     padding: 1.5rem 1.25rem;
