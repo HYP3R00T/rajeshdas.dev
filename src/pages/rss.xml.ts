@@ -17,7 +17,6 @@ export async function GET(context: { site: string }) {
       description: post.data.description,
       link: `/post/${post.id}`,
     })),
-    stylesheet: "/rss/styles.xsl",
     customData: `<language>en-us</language>`,
   })
 }

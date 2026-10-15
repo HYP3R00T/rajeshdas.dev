@@ -1,5 +1,0 @@
-[mcp_servers.figma]
-url = "https://mcp.figma.com/mcp"
-auth = "oauth"
-enabled = true
-default_tools_approval_mode = "prompt"
