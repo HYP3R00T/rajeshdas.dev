@@ -38,6 +38,22 @@
   --code-ansi-bright-blue: var(--blue-0);
   --code-ansi-bright-magenta: var(--purple-0);
   --code-ansi-bright-cyan: var(--cyan-0);
+  --code-ansi-black-dim: color-mix(in srgb, var(--code-ansi-black) 65%, transparent);
+  --code-ansi-white-dim: color-mix(in srgb, var(--code-ansi-white) 65%, transparent);
+  --code-ansi-red-dim: color-mix(in srgb, var(--code-ansi-red) 65%, transparent);
+  --code-ansi-green-dim: color-mix(in srgb, var(--code-ansi-green) 65%, transparent);
+  --code-ansi-yellow-dim: color-mix(in srgb, var(--code-ansi-yellow) 65%, transparent);
+  --code-ansi-blue-dim: color-mix(in srgb, var(--code-ansi-blue) 65%, transparent);
+  --code-ansi-magenta-dim: color-mix(in srgb, var(--code-ansi-magenta) 65%, transparent);
+  --code-ansi-cyan-dim: color-mix(in srgb, var(--code-ansi-cyan) 65%, transparent);
+  --code-ansi-bright-black-dim: color-mix(in srgb, var(--code-ansi-bright-black) 65%, transparent);
+  --code-ansi-bright-white-dim: color-mix(in srgb, var(--code-ansi-bright-white) 65%, transparent);
+  --code-ansi-bright-red-dim: color-mix(in srgb, var(--code-ansi-bright-red) 65%, transparent);
+  --code-ansi-bright-green-dim: color-mix(in srgb, var(--code-ansi-bright-green) 65%, transparent);
+  --code-ansi-bright-yellow-dim: color-mix(in srgb, var(--code-ansi-bright-yellow) 65%, transparent);
+  --code-ansi-bright-blue-dim: color-mix(in srgb, var(--code-ansi-bright-blue) 65%, transparent);
+  --code-ansi-bright-magenta-dim: color-mix(in srgb, var(--code-ansi-bright-magenta) 65%, transparent);
+  --code-ansi-bright-cyan-dim: color-mix(in srgb, var(--code-ansi-bright-cyan) 65%, transparent);
 }
 
 :global(.code-block__header) {
@@ -47,7 +63,6 @@
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid var(--border);
-  padding-left: 1rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.08em;
@@ -56,26 +71,27 @@
 :global(.code-block__meta) {
   display: flex;
   min-width: 0;
-  align-items: center;
-  gap: 0.625rem;
+  align-self: stretch;
+  align-items: stretch;
 }
 
 :global(.code-block__language) {
   flex: none;
+  display: flex;
+  align-items: center;
+  padding-inline: 1rem;
+  border-right: 1px solid var(--border);
   color: var(--foreground-3);
   text-transform: uppercase;
 }
 
 :global(.code-block__filename) {
+  min-width: 0;
+  padding-inline: 1rem;
+  line-height: 2.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-:global(.code-block__filename::before) {
-  margin-right: 0.625rem;
-  opacity: 0.38;
-  content: "/";
 }
 
 :global(.code-block__copy) {

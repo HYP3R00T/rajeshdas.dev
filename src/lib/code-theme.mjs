@@ -2,6 +2,8 @@ import { createCssVariablesTheme } from "shiki"
 
 // Shiki resolves scopes at build time; CSS supplies the light/dark site palette.
 const theme = createCssVariablesTheme({ name: "rajesh-code", variablePrefix: "--code-", fontStyle: false })
+// ANSI dim sequences need an ANSI variable so Shiki can emit its -dim variant.
+theme.colors["editor.foreground"] = "var(--code-ansi-white)"
 
 const scopes = [
   [["keyword", "storage.type", "storage.modifier"], "keyword"],
