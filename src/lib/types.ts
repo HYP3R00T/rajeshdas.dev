@@ -13,7 +13,13 @@ export interface HeadSEOProps {
 
 // For src/layouts/BaseLayout.astro
 // Accepts any subset of SEO props; HeadSEO provides sensible defaults.
-export interface BaseLayoutProps extends Partial<HeadSEOProps> {}
+export interface BaseLayoutProps extends Partial<HeadSEOProps> {
+  readingPage?: boolean
+  publishedAt?: Date
+  pageAction?: { href: string; label: string }
+  pageLabel?: string
+  breadcrumbs?: { label: string; href: string }[]
+}
 
 // Site-level configuration
 export interface SiteConfig {

@@ -1,0 +1,263 @@
+---
+import { getCollection } from "astro:content"
+import { sidebarGroups } from "@data/config"
+import { Icon } from "astro-icon/components"
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/"
+const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime(),
+)
+const featured = posts.filter((entry) => entry.data.featured).slice(0, 6)
+const current = posts.find((entry) => `/post/${entry.id}` === path)
+if (current && !featured.some((entry) => entry.id === current.id)) featured.push(current)
+const groups = [
+  {
+    id: "articles",
+    label: "Articles",
+    current: path === "/" || path === "/post" || path.startsWith("/post/"),
+    items: [
+      ...featured.map((entry) => ({
+        href: `/post/${entry.id}/`,
+        label: entry.data.title,
+        fullTitle: entry.data.title,
+        icon: "file",
+      })),
+      { href: "/post/", label: "All Articles", fullTitle: "Browse all articles", icon: "arrow-right" },
+    ],
+  },
+]
+const links = sidebarGroups.find((group) => group.label === "Links")
+if (links)
+  groups.push({
+    id: "links",
+    label: links.label,
+    current: false,
+    items: links.items.map((item) => ({ ...item, fullTitle: item.label })),
+  })
+---
+
+<nav aria-label="Main navigation" class="navigation-tree" data-navigation-tree>
+  <ul class="tree-root">
+    {groups.map((group) => (
+      <li class="tree-node tree-folder" data-tree-folder={group.id}>
+        <button
+          type="button"
+          class="tree-row tree-folder-button"
+          aria-expanded={group.current ? "true" : "false"}
+          aria-controls={`tree-${group.id}`}
+          data-tree-control
+          data-current-folder={group.current ? "true" : undefined}
+        >
+          <Icon name="caret-down" is:inline viewBox="4 4 16 16" class="tree-chevron" aria-hidden="true" />
+          <Icon name="folder" is:inline class="tree-icon" aria-hidden="true" />
+          <span class="tree-label">{group.label}</span>
+        </button>
+        <ul id={`tree-${group.id}`} class="tree-children" hidden={!group.current}>
+          {group.items.map((item) => (
+            <li class="tree-node">
+              <a
+                href={item.href}
+                target={group.id === "links" ? "_blank" : undefined}
+                rel={group.id === "links" ? "noopener noreferrer" : undefined}
+                class="tree-row tree-file"
+                aria-current={path === item.href.replace(/\/$/, "") ? "page" : undefined}
+                title={item.fullTitle}
+                data-tree-control
+              >
+                <Icon
+                  name={item.icon}
+                  is:inline
+                  class:list={[
+                    "tree-icon",
+                    {
+                      "tree-archive-icon": item.icon === "arrow-right",
+                      "tree-brand-icon": item.icon === "github" || item.icon === "linkedin",
+                    },
+                  ]}
+                  aria-hidden="true"
+                />
+                <span class="tree-label">{item.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+    <li class="tree-node">
+      <a
+        href="https://hyperoot.dev/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="tree-row tree-file"
+        data-tree-control
+      >
+        <span class="tree-arrow-space"></span><Icon name="layers" is:inline class="tree-icon" aria-hidden="true" />
+        <span class="tree-label">Projects</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+const setupNavigationTree = () => {
+  const tree = document.querySelector<HTMLElement>("[data-navigation-tree]")
+  if (!tree) return
+  const buttons = Array.from(tree.querySelectorAll<HTMLButtonElement>(".tree-folder-button"))
+  const shell = tree.closest<HTMLElement>(".site-shell")
+  const directory = tree.closest<HTMLElement>(".site-directory")
+  let widthAnimation: Animation | undefined
+  const branchAnimations = new Map<HTMLElement, Animation>()
+  let transitionId = 0
+  const stopAnimations = () => {
+    widthAnimation?.cancel()
+    widthAnimation = undefined
+    branchAnimations.forEach((animation) => {
+      animation.cancel()
+    })
+    branchAnimations.clear()
+  }
+  const setExpanded = (button: HTMLButtonElement, expanded: boolean, animate = false) => {
+    const id = ++transitionId
+    const startWidth = directory?.getBoundingClientRect().width
+    const states = buttons.flatMap((item) => {
+      const panel = document.getElementById(item.getAttribute("aria-controls") || "")
+      if (!panel) return []
+      return [
+        {
+          button: item,
+          panel,
+          startHeight: panel.getBoundingClientRect().height,
+          open: item === button ? expanded : expanded ? false : item.getAttribute("aria-expanded") === "true",
+          endHeight: 0,
+        },
+      ]
+    })
+    stopAnimations()
+    states.forEach((state) => {
+      state.button.setAttribute("aria-expanded", String(state.open))
+      state.panel.hidden = !state.open
+      state.panel.inert = !state.open
+    })
+    const endWidth = directory?.getBoundingClientRect().width
+    states.forEach((state) => {
+      state.endHeight = state.panel.getBoundingClientRect().height
+    })
+    const motion = animate && window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    if (motion) {
+      const timing = { duration: 220, easing: "ease-out", fill: "forwards" as FillMode }
+      states.forEach((state) => {
+        if (state.startHeight === state.endHeight) return
+        state.panel.hidden = false
+        const animation = state.panel.animate(
+          [
+            { height: `${state.startHeight}px`, opacity: state.startHeight > 0 ? 1 : 0 },
+            { height: `${state.endHeight}px`, opacity: state.open ? 1 : 0 },
+          ],
+          timing,
+        )
+        branchAnimations.set(state.panel, animation)
+      })
+      if (
+        shell &&
+        startWidth &&
+        endWidth &&
+        startWidth !== endWidth &&
+        window.matchMedia("(min-width: 1024px)").matches
+      ) {
+        widthAnimation = shell.animate(
+          [
+            { gridTemplateColumns: `${startWidth}px minmax(0, 1fr)` },
+            { gridTemplateColumns: `${endWidth}px minmax(0, 1fr)` },
+          ],
+          timing,
+        )
+      }
+      const animations = [...branchAnimations.values(), ...(widthAnimation ? [widthAnimation] : [])]
+      Promise.all(animations.map((animation) => animation.finished))
+        .then(() => {
+          if (id !== transitionId) return
+          states.forEach((state) => {
+            state.panel.hidden = !state.open
+          })
+          stopAnimations()
+        })
+        .catch(() => {
+          /* A subsequent toggle or page navigation took over. */
+        })
+    }
+    try {
+      sessionStorage.setItem("navigation-open-folder", expanded ? button.getAttribute("aria-controls") || "" : "")
+    } catch {
+      /* Navigation still works without storage. */
+    }
+  }
+  let initialFolder = buttons.find((button) => button.dataset.currentFolder === "true")
+  try {
+    const stored = sessionStorage.getItem("navigation-open-folder")
+    // An empty saved value means the reader explicitly closed every folder.
+    if (stored !== null) initialFolder = buttons.find((button) => button.getAttribute("aria-controls") === stored)
+  } catch {
+    /* Use the current route only when no saved preference is available. */
+  }
+  buttons.forEach((button) => {
+    const open = button === initialFolder
+    const panel = document.getElementById(button.getAttribute("aria-controls") || "")
+    button.setAttribute("aria-expanded", String(open))
+    if (panel) {
+      panel.hidden = !open
+      panel.inert = !open
+    }
+    button.addEventListener("click", () => setExpanded(button, button.getAttribute("aria-expanded") !== "true", true))
+  })
+  document.addEventListener(
+    "astro:before-swap",
+    () => {
+      transitionId++
+      stopAnimations()
+    },
+    { once: true },
+  )
+  tree.addEventListener("keydown", (event) => {
+    if (!(event.target instanceof HTMLElement)) return
+    const target = event.target.closest<HTMLElement>("[data-tree-control]")
+    if (!target) return
+    const controls = Array.from(tree.querySelectorAll<HTMLElement>("[data-tree-control]")).filter(
+      (control) => control.getClientRects().length > 0 && !control.closest("[inert]"),
+    )
+    const index = controls.indexOf(target)
+    let next: HTMLElement | undefined
+    switch (event.key) {
+      case "ArrowDown":
+        next = controls[index + 1] || controls[0]
+        break
+      case "ArrowUp":
+        next = controls[index - 1] || controls.at(-1)
+        break
+      case "Home":
+        next = controls[0]
+        break
+      case "End":
+        next = controls.at(-1)
+        break
+      case "ArrowRight":
+        if (!(target instanceof HTMLButtonElement)) return
+        if (target.getAttribute("aria-expanded") === "false") setExpanded(target, true, true)
+        else next = controls[index + 1]
+        break
+      case "ArrowLeft":
+        if (target instanceof HTMLButtonElement && target.getAttribute("aria-expanded") === "true")
+          setExpanded(target, false, true)
+        else
+          next =
+            target.closest(".tree-children")?.parentElement?.querySelector<HTMLButtonElement>(".tree-folder-button") ||
+            undefined
+        break
+      default:
+        return
+    }
+    event.preventDefault()
+    next?.focus()
+  })
+}
+document.addEventListener("astro:page-load", setupNavigationTree)
+</script>

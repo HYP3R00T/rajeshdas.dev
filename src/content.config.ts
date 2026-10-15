@@ -9,6 +9,10 @@ const posts = defineCollection({
       title: z.string(),
       description: z.string(),
       pubDatetime: z.date(),
+      modDatetime: z
+        .date()
+        .nullish()
+        .transform((value) => value ?? undefined),
       featured: z.boolean().optional().default(false),
       draft: z.boolean().optional().default(false),
       category: z.string(),

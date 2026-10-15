@@ -1,0 +1,60 @@
+---
+import { SOCIAL_LINKS } from "@data/config"
+import { Icon } from "astro-icon/components"
+
+interface Props {
+  pageLabel?: string
+  breadcrumbs?: { label: string; href: string }[]
+  publishedAt?: Date
+  pageAction?: { href: string; label: string }
+}
+const { pageLabel, breadcrumbs, publishedAt, pageAction } = Astro.props
+const path = Astro.url.pathname.replace(/\/$/, "") || "/"
+const section = path.startsWith("/post")
+  ? { label: "Articles", href: "/post/" }
+  : path.startsWith("/til")
+    ? { label: "Notes", href: "/til/" }
+    : path.startsWith("/learn")
+      ? { label: "Learn", href: "/learn/" }
+      : undefined
+const currentLabel =
+  path === "/"
+    ? "Home"
+    : path === "/contact"
+      ? "Contact"
+      : path === section?.href.replace(/\/$/, "")
+        ? section.label
+        : pageLabel || "Page"
+const ancestors = breadcrumbs || (section && path !== section.href.replace(/\/$/, "") ? [section] : [])
+const email = SOCIAL_LINKS.find((link) => link.name === "mail")?.href || "/contact/"
+const action =
+  pageAction || (path === "/contact" ? { href: email, label: "Email Rajesh" } : { href: "/contact/", label: "Contact" })
+---
+
+<div class="workspace-bar" data-header-shell>
+  <nav aria-label="Breadcrumb" class="workspace-breadcrumb">
+    {path !== "/" && (
+      <>
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+      </>
+    )}
+    {ancestors.map((crumb) => (
+      <>
+        <a href={crumb.href}>{crumb.label}</a>
+        <span aria-hidden="true">/</span>
+      </>
+    ))}
+    <span aria-current="page" title={currentLabel}>{currentLabel}</span>
+  </nav>
+  {publishedAt ? (
+    <time class="workspace-date" datetime={publishedAt.toISOString()}>
+      {publishedAt.toISOString().slice(0, 10)}
+    </time>
+  ) : (
+    <a href={action.href} class="workspace-action">
+      {action.label}
+      <Icon name="arrow-up-right" class="size-3.5" aria-hidden="true" />
+    </a>
+  )}
+</div>

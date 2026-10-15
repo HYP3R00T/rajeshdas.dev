@@ -1,0 +1,181 @@
+---
+import { Image } from "astro:assets"
+import type { ImageMetadata, MarkdownHeading } from "astro"
+import QuietFooter from "@/components/core/QuietFooter.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import { formatDateUppercase } from "@/lib/utils"
+
+interface Props {
+  slug?: string
+  title: string
+  description: string
+  kind: "Article" | "Note"
+  pubDatetime: Date
+  modDatetime?: Date
+  tags?: string[]
+  cover?: ImageMetadata
+  coverAlt?: string
+  ogImage?: ImageMetadata
+  ogImageAlt?: string
+  headings?: MarkdownHeading[]
+}
+const {
+  slug,
+  title,
+  description,
+  kind,
+  pubDatetime,
+  modDatetime,
+  tags = [],
+  cover,
+  coverAlt,
+  ogImage,
+  ogImageAlt,
+  headings = [],
+} = Astro.props
+const contents = headings.filter((heading) => heading.depth > 1 && heading.depth < 4)
+const fileLabel = `${(slug || title)
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, "_")
+  .replace(/^_|_$/g, "")}.md`
+const archive = kind === "Article" ? "/post/" : "/til/"
+---
+
+<BaseLayout
+  title={title}
+  pageLabel={fileLabel}
+  publishedAt={pubDatetime}
+  description={description}
+  image={ogImage || cover}
+  imageAlt={ogImageAlt || coverAlt || title}
+  contentType="Article"
+  readingPage
+>
+  <div class:list={["reading-page", { "has-contents": contents.length > 0 }]}>
+    <article class="reading-column">
+      <header class="reading-header">
+        <h1>{title}</h1>
+      </header>
+      {contents.length > 0 && (
+        <details class="reading-contents">
+          <summary>Contents</summary>
+          <nav aria-label="Article contents">
+            {contents.map((heading) => (
+              <a href={`#${heading.slug}`} data-reading-toc={heading.slug}>
+                {heading.text}
+              </a>
+            ))}
+          </nav>
+        </details>
+      )}
+      {cover && (
+        <Image
+          src={cover}
+          alt={coverAlt || title}
+          class="reading-cover"
+          widths={[720, 960, 1280]}
+          sizes="(min-width: 1024px) 44rem, 100vw"
+        />
+      )}
+      <div class="prose reading-prose"><slot /></div>
+      <footer class="reading-end">
+        <a href={archive} data-reading-back class="text-link">← Back to {kind === "Article" ? "articles" : "notes"}</a>
+        {modDatetime && (
+          <p>
+            Updated <time datetime={modDatetime.toISOString()}>{formatDateUppercase(modDatetime)}</time>
+          </p>
+        )}
+        {tags.length > 0 && (
+          <p class="reading-tags">
+            <span>Topics:</span> {tags.join(" · ")}
+          </p>
+        )}
+      </footer>
+      <QuietFooter />
+    </article>
+    {contents.length > 0 && (
+      <aside class="reading-outline">
+        <nav aria-label="Article contents">
+          <ol>
+            {contents.map((heading) => (
+              <li class:list={{ "outline-nested": heading.depth === 3 }}>
+                <a href={`#${heading.slug}`} data-reading-toc={heading.slug}>
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+    )}
+  </div>
+</BaseLayout>
+<script>
+const setupReading = () => {
+  const back = document.querySelector<HTMLAnchorElement>("[data-reading-back]")
+  if (back) {
+    try {
+      const archive = back.pathname.replace(/\/$/, "")
+      const saved = sessionStorage.getItem(archive === "/post" ? "articleArchiveReturnUrl" : "noteArchiveReturnUrl")
+      if (saved) {
+        const url = new URL(saved)
+        if (
+          url.origin === location.origin &&
+          (url.pathname.replace(/\/$/, "") === archive ||
+            (archive === "/til" && url.pathname.startsWith("/til/topic/")))
+        )
+          back.href = url.href
+      }
+    } catch {
+      /* Default archive link remains usable. */
+    }
+  }
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-reading-toc]"))
+  const controller = new AbortController()
+  links.forEach((link) => {
+    link.addEventListener(
+      "click",
+      (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+        const heading = document.getElementById(link.dataset.readingToc || "")
+        if (!heading) return
+        event.preventDefault()
+        history.pushState(null, "", link.hash)
+        heading.setAttribute("tabindex", "-1")
+        heading.focus({ preventScroll: true })
+        heading.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+          block: "start",
+        })
+      },
+      { signal: controller.signal },
+    )
+  })
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const heading = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+      if (!heading) return
+      links.forEach((link) => {
+        if (link.dataset.readingToc === heading.target.id) link.setAttribute("aria-current", "location")
+        else link.removeAttribute("aria-current")
+      })
+    },
+    { rootMargin: "-15% 0px -60% 0px" },
+  )
+  const headings = new Set(links.map((link) => document.getElementById(link.dataset.readingToc || "")))
+  headings.forEach((heading) => {
+    if (heading) observer.observe(heading)
+  })
+  document.addEventListener(
+    "astro:before-swap",
+    () => {
+      observer.disconnect()
+      controller.abort()
+    },
+    { once: true },
+  )
+}
+document.addEventListener("astro:page-load", setupReading)
+</script>
