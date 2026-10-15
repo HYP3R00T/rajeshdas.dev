@@ -1628,6 +1628,7 @@ body[data-focus-mode="true"] .site-workspace {
     padding-inline: 1rem;
     z-index: 90;
     background: var(--background-0);
+    border-bottom: 1px dashed var(--frame-line);
   }
   .mobile-directory-brand {
     display: inline-flex;
@@ -1647,8 +1648,12 @@ body[data-focus-mode="true"] .site-workspace {
     cursor: pointer;
   }
   .directory-toggle svg {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .directory-toggle:focus-visible {
+    outline: 1px solid var(--foreground-2);
+    outline-offset: 2px;
   }
   .site-directory {
     display: flex;
@@ -1686,9 +1691,13 @@ body[data-focus-mode="true"] .site-workspace {
   .workspace-bar {
     display: none;
   }
+  body[data-directory-open="true"] .mobile-directory-bar {
+    border-bottom-color: transparent;
+  }
   body[data-directory-open="true"] .site-directory {
     height: auto;
     visibility: visible;
+    border-bottom: 1px dashed var(--frame-line);
   }
   .reading-page {
     padding: 1.5rem 1.25rem;
