@@ -16,7 +16,6 @@ export const SITE: SiteConfig = {
 }
 
 export const navItems: NavItem[] = [
-  { href: "/learn", label: "Learn" },
   { href: "/post", label: "Articles" },
   { href: "https://hyperoot.dev", label: "Projects" },
   { href: "/contact", label: "Contact" },
@@ -42,5 +41,21 @@ export const SOCIAL_LINKS = [
     href: "mailto:hello@rajeshdas.dev",
     active: true,
     linkTitle: "Send me an email",
+  },
+]
+
+// Shared by the desktop directory and mobile navigation panel.
+export const sidebarGroups = [
+  {
+    label: "Links",
+    items: [
+      ...SOCIAL_LINKS.filter((link) => link.active).map((link) => ({
+        href: link.href,
+        icon: link.name,
+        label:
+          ({ github: "GitHub", linkedin: "LinkedIn", mail: "Email" } as Record<string, string>)[link.name] || link.name,
+      })),
+      { href: "/rss.xml", label: "RSS", icon: "rss" },
+    ],
   },
 ]

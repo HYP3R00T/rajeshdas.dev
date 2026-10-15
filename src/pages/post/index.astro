@@ -32,12 +32,12 @@ const categories = categoryOrder
   .map((category) => ({ category, count: categoryCounts.get(category) ?? 0, label: categoryLabels[category] }))
 ---
 
-<BaseLayout>
+<BaseLayout title={`Articles | ${SITE.title}`} pageLabel="Articles">
   <section aria-labelledby="articles-title">
     <div class="site-grid-frame">
       <SectionHeader
         eyebrow="Articles"
-        title="Field notes for systems that need to survive reality."
+        title="Articles"
         titleId="articles-title"
         headingLevel={1}
         description="Longer essays on engineering decisions, systems thinking, automation, and the tradeoffs behind practical work."

@@ -1,0 +1,112 @@
+---
+import { Icon } from "astro-icon/components"
+import { ModeToggle } from "@/components/core/ModeToggle"
+import NavigationTree from "@/components/core/NavigationTree.astro"
+---
+
+<div class="mobile-directory-bar" data-header-shell>
+  <button
+    type="button"
+    class="directory-toggle"
+    aria-label="Open navigation"
+    aria-controls="site-directory"
+    aria-expanded="false"
+    data-directory-toggle
+  >
+    <Icon name="menu" class="directory-open-icon" aria-hidden="true" />
+    <Icon name="close" class="directory-close-icon" aria-hidden="true" />
+  </button>
+  <a href="/" class="mobile-directory-brand">
+    <Icon name="site-mark" class="directory-mark" aria-hidden="true" />
+    <span>Rajesh Das</span>
+  </a>
+</div>
+<aside class="site-directory" id="site-directory" data-header-shell>
+  <a href="/" class="directory-brand">
+    <Icon name="site-mark" class="directory-mark" aria-hidden="true" />
+    <span>Rajesh Das</span>
+  </a>
+  <NavigationTree />
+  <div class="directory-bottom"><ModeToggle client:load className="rounded-none" /></div>
+</aside>
+
+<script>
+const setupDirectory = () => {
+  const toggle = document.querySelector<HTMLButtonElement>("[data-directory-toggle]")
+  const directory = document.querySelector<HTMLElement>("#site-directory")
+  if (!toggle || !directory) return
+  const desktop = window.matchMedia("(min-width: 1024px)")
+  let panelAnimation: Animation | undefined
+  let transitionId = 0
+  let returnScroll: number | undefined
+  const setOpen = (open: boolean, restoreFocus = false, animate = true) => {
+    const id = ++transitionId
+    const startHeight = directory.getBoundingClientRect().height
+    panelAnimation?.cancel()
+    if (open && returnScroll === undefined) returnScroll = window.scrollY
+    if (open) window.scrollTo({ top: 0, behavior: "instant" })
+    if (open) document.body.dataset.directoryOpen = "true"
+    else document.body.removeAttribute("data-directory-open")
+    toggle.setAttribute("aria-expanded", String(open))
+    toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation")
+    directory.inert = !desktop.matches && !open
+    const endHeight = directory.getBoundingClientRect().height
+    const finish = () => {
+      if (id !== transitionId) return
+      directory.style.removeProperty("visibility")
+      if (!open && returnScroll !== undefined) {
+        const top = returnScroll
+        returnScroll = undefined
+        if (!desktop.matches) window.scrollTo({ top, behavior: "instant" })
+      }
+    }
+    if (
+      animate &&
+      !desktop.matches &&
+      startHeight !== endHeight &&
+      window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    ) {
+      directory.style.visibility = "visible"
+      panelAnimation = directory.animate([{ height: `${startHeight}px` }, { height: `${endHeight}px` }], {
+        duration: 220,
+        easing: "ease-out",
+      })
+      panelAnimation.finished
+        .then(() => {
+          finish()
+        })
+        .catch(() => {
+          /* A later toggle took over. */
+        })
+    } else finish()
+    if (restoreFocus) toggle.focus({ preventScroll: true })
+  }
+  setOpen(false, false, false)
+  toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"))
+  directory.addEventListener("click", (event) => {
+    if (event.target instanceof Element && event.target.closest("a")) setOpen(false)
+  })
+  const onKey = (event: KeyboardEvent) => {
+    if (document.body.dataset.directoryOpen === "true" && event.key === "Escape") {
+      event.preventDefault()
+      setOpen(false, true)
+    }
+  }
+  document.addEventListener("keydown", onKey)
+  const onResize = () => {
+    returnScroll = undefined
+    setOpen(false, false, false)
+  }
+  desktop.addEventListener("change", onResize)
+  document.addEventListener(
+    "astro:before-swap",
+    () => {
+      setOpen(false, false, false)
+      document.removeEventListener("keydown", onKey)
+      desktop.removeEventListener("change", onResize)
+    },
+    { once: true },
+  )
+}
+document.addEventListener("astro:page-load", setupDirectory)
+</script>

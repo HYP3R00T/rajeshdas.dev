@@ -76,3 +76,10 @@ export const latestVideo = {
   title: "Latest video from Hyperoot",
   channelUrl: "https://www.youtube.com/@hyperoot",
 } as const
+
+// Existing public factual copy; fuller personal introduction remains for review.
+export const homepageIntro = {
+  role: "Python and DevOps Automation Engineer",
+  description:
+    "Python automation, developer tools, CI/CD workflows, and Kubernetes infrastructure built to reduce manual work and make technical systems easier to develop and operate.",
+} as const
