@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets"
 import type { ImageMetadata, MarkdownHeading } from "astro"
 import QuietFooter from "@/components/core/QuietFooter.astro"
 import BaseLayout from "@/layouts/BaseLayout.astro"
@@ -67,15 +66,6 @@ const archive = kind === "Article" ? "/post/" : "/til/"
             ))}
           </nav>
         </details>
-      )}
-      {cover && (
-        <Image
-          src={cover}
-          alt={coverAlt || title}
-          class="reading-cover"
-          widths={[720, 960, 1280]}
-          sizes="(min-width: 1024px) 44rem, 100vw"
-        />
       )}
       <div class="prose reading-prose"><slot /></div>
       <footer class="reading-end">

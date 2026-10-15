@@ -1,88 +1,21 @@
 ---
-import { Image } from "astro:assets"
 import { Icon } from "astro-icon/components"
 import type { PostCardProps } from "@/lib/types"
 import { formatDateUppercase } from "@/lib/utils"
 
-interface Props extends PostCardProps {
-  featured?: boolean
-  initiallyHidden?: boolean
-}
-
-const { post, featured = false, initiallyHidden = false } = Astro.props as Props
+interface Props extends PostCardProps {}
+const { post } = Astro.props
 ---
 
-<a
-  href={`/post/${post.id}/`}
-  hidden={initiallyHidden}
-  data-post-card
-  data-category={post.data.category}
-  data-featured-candidate={post.data.featured ? "true" : "false"}
-  class:list={[
-    "post-card dashed-grid-cell group h-full min-w-0 overflow-hidden bg-background-0 p-5 transition-colors duration-200 ease-out hover:bg-background-1 motion-reduce:transition-none md:p-8 xl:p-10",
-    featured && "is-featured",
-  ]}
->
-  <div
-    class="grid min-w-0 sm:min-h-52 sm:grid-cols-[13rem_minmax(0,1fr)] xl:min-h-60 xl:grid-cols-[15rem_minmax(0,1fr)]"
-  >
-    <div class="aspect-square overflow-hidden bg-background-2 sm:aspect-auto sm:h-full">
-      <Image
-        src={post.data.cover}
-        alt={post.data.coverAlt ?? `${post.data.title} article cover`}
-        class="h-full w-full object-cover object-center transition-transform duration-200 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-        width={240}
-        height={240}
-        widths={[320, 480, 640, 960, 1280]}
-        sizes="(max-width: 639px) calc(100vw - 2.5rem), (max-width: 1279px) 13rem, 15rem"
-        fit="cover"
-        position="center"
-        quality="max"
-      />
-    </div>
-
-    <div class="post-card__content flex min-w-0 flex-col pt-6 sm:pt-0 sm:pl-7 xl:pl-8">
-      <h2
-        class="post-card__title line-clamp-2 font-display text-[1.375rem] leading-tight font-medium tracking-[-0.02em] text-foreground-0 transition-colors duration-200 ease-out motion-reduce:transition-none"
-        transition:name={`post-title-${post.id}`}
-      >
-        {post.data.title}
-      </h2>
-      <p class="post-card__description mt-3 line-clamp-3 text-sm leading-6 text-foreground-2">
-        {post.data.description}
-      </p>
-
-      <div class="mt-auto flex items-center justify-between gap-4 pt-5">
-        <div
-          class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.625rem] tracking-[0.14em] uppercase"
-        >
-          <span class="post-card__featured text-foreground-2">Featured article</span>
-          <time class="post-card__date text-foreground-3" datetime={post.data.pubDatetime.toISOString()}>
-            {formatDateUppercase(post.data.pubDatetime)}
-          </time>
-        </div>
-
-        <span
-          aria-hidden="true"
-          class="post-card__action flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-background-1 text-foreground-1 transition-colors duration-200 ease-out group-hover:border-accent-1 group-hover:bg-accent-1 group-hover:text-background-0 motion-reduce:transition-none"
-        >
-          <Icon name="arrow-right" class="size-4" />
-        </span>
-      </div>
-    </div>
+<a href={`/post/${post.id}/`} class="archive-entry" data-post-card>
+  <div class="archive-entry-heading">
+    <Icon name="file" is:inline class="archive-entry-icon" aria-hidden="true" />
+    <h2>{post.data.title}</h2>
+    <Icon name="arrow-right" is:inline class="archive-entry-arrow" aria-hidden="true" />
+  </div>
+  <p>{post.data.description}</p>
+  <div class="archive-entry-meta">
+    <time datetime={post.data.pubDatetime.toISOString()}>{formatDateUppercase(post.data.pubDatetime)}</time>
+    <span>{post.data.category}</span>
   </div>
 </a>
-
-<style>
-.post-card__featured {
-  display: none;
-}
-
-.post-card:hover .post-card__title {
-  color: var(--accent-1);
-}
-
-.post-card.is-featured .post-card__featured {
-  display: inline;
-}
-</style>

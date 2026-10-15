@@ -1092,6 +1092,151 @@ body::after {
   line-height: 1.8;
   color: var(--foreground-2);
 }
+/* A continuous text archive shares the shell's dashed grid. */
+.article-archive {
+  min-width: 0;
+}
+.archive-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+.archive-search {
+  flex: 1 1 18rem;
+}
+.archive-search input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground-0);
+  font: 0.8rem var(--font-mono);
+  border-radius: 0;
+}
+.archive-search input::placeholder {
+  color: var(--foreground-3);
+}
+.archive-search input:focus-visible,
+.archive-filters button:focus-visible,
+.archive-entry:focus-visible {
+  outline: 1px solid var(--ring);
+  outline-offset: -1px;
+}
+.archive-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.archive-filters button {
+  min-height: 2.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  color: var(--foreground-2);
+  font: 0.7rem var(--font-mono);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.archive-filters button span {
+  margin-left: 0.35rem;
+  opacity: 0.65;
+}
+.archive-filters button[aria-pressed="true"] {
+  border-color: var(--foreground-2);
+  color: var(--foreground-0);
+  background: var(--background-1);
+}
+.archive-filters button:hover {
+  color: var(--foreground-0);
+}
+.archive-count {
+  flex-basis: 100%;
+  color: var(--foreground-3);
+  font: 0.7rem var(--font-mono);
+  text-transform: uppercase;
+}
+.archive-grid {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px) top / 100% 1px no-repeat;
+}
+.archive-grid > li {
+  min-width: 0;
+  min-height: 0;
+  overflow: clip;
+  background: repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px) bottom / 100% 1px no-repeat;
+}
+.archive-grid > li[hidden] {
+  display: none;
+}
+.archive-entry {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+.archive-entry-heading {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr) 1rem;
+  align-items: start;
+  gap: 0.875rem;
+}
+.archive-entry-heading h2 {
+  color: var(--foreground-0);
+  font: 500 1.15rem / 1.5 var(--font-display);
+  overflow-wrap: anywhere;
+}
+.archive-entry-icon,
+.archive-entry-arrow {
+  width: 100%;
+  height: 1.1rem;
+  margin-top: 0.3rem;
+  color: var(--foreground-2);
+}
+.archive-entry > p {
+  color: var(--foreground-2);
+  font-size: 0.875rem;
+  line-height: 1.8;
+  padding-left: 1.975rem;
+}
+.archive-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding-left: 1.975rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font: 0.65rem var(--font-mono);
+  text-transform: uppercase;
+  color: var(--foreground-3);
+}
+.archive-entry:hover h2,
+.archive-entry:hover .archive-entry-arrow {
+  color: var(--accent-1);
+}
+.archive-empty {
+  padding: 3rem;
+  font-size: 0.875rem;
+  color: var(--foreground-2);
+}
+@container (min-width: 60rem) {
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .archive-grid > .archive-left-cell {
+    background-image:
+      repeating-linear-gradient(to right, var(--frame-line) 0 3px, transparent 3px 6px),
+      repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px);
+    background-position: bottom, right;
+    background-size: 100% 1px, 1px 100%;
+    background-repeat: no-repeat;
+  }
+}
 .site-workspace[data-reading-page] > .workspace-bar {
   padding-left: clamp(2rem, 3vw, 3rem);
 }
@@ -1200,12 +1345,6 @@ body::after {
   display: grid;
   gap: 0.75rem;
   padding: 0.75rem 0 1rem 1rem;
-}
-.reading-cover {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-bottom: 2rem;
 }
 .reading-prose {
   max-width: 100%;

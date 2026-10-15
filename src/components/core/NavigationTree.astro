@@ -107,6 +107,7 @@ const setupNavigationTree = () => {
   const directory = tree.closest<HTMLElement>(".site-directory")
   let widthAnimation: Animation | undefined
   const branchAnimations = new Map<HTMLElement, Animation>()
+  const cardAnimations = new Map<HTMLElement, Animation>()
   let transitionId = 0
   const stopAnimations = () => {
     widthAnimation?.cancel()
@@ -115,10 +116,17 @@ const setupNavigationTree = () => {
       animation.cancel()
     })
     branchAnimations.clear()
+    cardAnimations.forEach((animation) => {
+      animation.cancel()
+    })
+    cardAnimations.clear()
   }
   const setExpanded = (button: HTMLButtonElement, expanded: boolean, animate = false) => {
     const id = ++transitionId
     const startWidth = directory?.getBoundingClientRect().width
+    const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-archive-entry]:not([hidden])")).map(
+      (card) => ({ card, startHeight: card.getBoundingClientRect().height, endHeight: 0 }),
+    )
     const states = buttons.flatMap((item) => {
       const panel = document.getElementById(item.getAttribute("aria-controls") || "")
       if (!panel) return []
@@ -139,6 +147,9 @@ const setupNavigationTree = () => {
       state.panel.inert = !state.open
     })
     const endWidth = directory?.getBoundingClientRect().width
+    cards.forEach((state) => {
+      state.endHeight = state.card.getBoundingClientRect().height
+    })
     states.forEach((state) => {
       state.endHeight = state.panel.getBoundingClientRect().height
     })
@@ -171,8 +182,16 @@ const setupNavigationTree = () => {
           ],
           timing,
         )
+        cards.forEach(({ card, startHeight, endHeight }) => {
+          if (startHeight === endHeight) return
+          cardAnimations.set(card, card.animate([{ height: `${startHeight}px` }, { height: `${endHeight}px` }], timing))
+        })
       }
-      const animations = [...branchAnimations.values(), ...(widthAnimation ? [widthAnimation] : [])]
+      const animations = [
+        ...branchAnimations.values(),
+        ...cardAnimations.values(),
+        ...(widthAnimation ? [widthAnimation] : []),
+      ]
       Promise.all(animations.map((animation) => animation.finished))
         .then(() => {
           if (id !== transitionId) return
