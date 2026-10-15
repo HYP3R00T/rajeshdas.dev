@@ -66,7 +66,7 @@
   --sidebar-accent-foreground: var(--foreground-0);
   --sidebar-border: var(--background-2);
   --sidebar-ring: var(--accent-1);
-  --radius: 0.375rem;
+  --radius: 0rem;
   --shadow-x: 0rem;
   --shadow-y: 0rem;
   --shadow-xs: none;
@@ -138,7 +138,7 @@
   --sidebar-accent-foreground: var(--foreground-0);
   --sidebar-border: var(--background-2);
   --sidebar-ring: var(--accent-1);
-  --radius: 0.375rem;
+  --radius: 0rem;
   --shadow-x: 0rem;
   --shadow-y: 0rem;
   --shadow-xs: none;
@@ -296,6 +296,14 @@ body[data-focus-mode="true"] .focus-mode-only {
     @apply scroll-smooth font-sans;
   }
 
+  @media (min-width: 1024px) {
+    html,
+    body {
+      height: 100svh;
+      overflow: clip;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -317,18 +325,25 @@ body[data-focus-mode="true"] .focus-mode-only {
 
   ::-webkit-scrollbar {
     @apply h-2 w-2;
+    border-radius: 0;
   }
 
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
+    border-radius: 0;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-foreground-2 rounded-full;
+    @apply bg-foreground-3;
+    border-radius: 0;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent-1;
+    @apply bg-foreground-2;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   button:not(:disabled),
@@ -341,11 +356,15 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose a {
-    @apply text-accent-1 decoration-accent-1 relative font-medium underline underline-offset-4 transition-colors;
+    @apply text-foreground-1 relative font-medium underline underline-offset-4 transition-colors;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--foreground-3);
   }
 
-  .prose a:hover {
-    @apply text-accent-2 decoration-accent-2;
+  .prose a:hover,
+  .prose a:focus-visible {
+    @apply text-foreground-0 decoration-foreground-0;
+    text-decoration-style: solid;
   }
 
   .prose h1 {
@@ -353,15 +372,15 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose h2 {
-    @apply text-foreground-0 font-display mt-18 mb-6 border-l-4 border-accent-1 pl-4 scroll-mt-28 text-3xl leading-tight font-semibold tracking-tight;
+    @apply text-foreground-0 font-display mt-16 mb-6 scroll-mt-28 text-2xl leading-tight font-medium tracking-tight;
   }
 
   .prose h3 {
-    @apply text-foreground-1 font-display mt-12 mb-4 scroll-mt-28 text-2xl leading-tight font-semibold;
+    @apply text-foreground-1 font-display mt-10 mb-4 scroll-mt-28 text-xl leading-tight font-medium;
   }
 
   .prose h4 {
-    @apply text-accent-2 font-display mt-8 mb-3 text-xl leading-snug font-semibold;
+    @apply text-foreground-1 font-display mt-8 mb-3 text-lg leading-snug font-medium;
   }
 
   .prose h5 {
@@ -441,7 +460,7 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose blockquote {
-    @apply my-0 rounded-lg border border-border/80 bg-background-1 px-6 py-5 text-foreground-1;
+    @apply my-0 border-l-2 border-border bg-transparent py-1 pl-5 text-foreground-1;
   }
 
   .prose blockquote p {
@@ -456,7 +475,7 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose .callout {
-    @apply my-7 grid grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-lg border bg-background-1 px-5 py-4;
+    @apply my-7 grid grid-cols-[auto_minmax(0,1fr)] gap-3 border bg-background-1 px-5 py-4;
   }
 
   .prose .callout-title {
@@ -484,7 +503,11 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose code {
-    @apply rounded-sm bg-background-2 px-2 py-0.5 font-mono text-[0.92rem] font-medium text-foreground-0;
+    @apply border border-border bg-background-1 px-1 py-0.5 font-mono font-normal text-foreground-1;
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 
   .prose :is(h1, h2, h3, h4, h5, h6) code {
@@ -495,11 +518,13 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose pre code {
-    @apply bg-transparent p-0 text-inherit;
+    @apply border-0 bg-transparent p-0 text-inherit;
+    font-size: inherit;
+    overflow-wrap: normal;
   }
 
   .prose pre {
-    @apply my-0 overflow-x-auto rounded-lg border border-border/80 bg-background-2/70 px-6 py-5 text-[0.98rem] leading-7 text-foreground-0;
+    @apply my-0 overflow-x-auto border border-border bg-background-1 px-6 py-5 font-mono text-sm font-normal leading-6 text-foreground-1;
   }
 
   /* .astro-code {
@@ -507,15 +532,19 @@ body[data-focus-mode="true"] .focus-mode-only {
     } */
 
   .prose table {
-    @apply my-0 w-full overflow-hidden rounded-lg border border-border/80 bg-background-1 font-sans text-base;
+    @apply my-0 w-full border-collapse font-sans text-sm;
+    min-width: 100%;
+    overflow-wrap: normal;
   }
 
   .prose th {
-    @apply border-border/80 border-b bg-background-2 px-4 py-3 text-left font-semibold text-foreground-0;
+    @apply border-border border-b bg-background-1 px-4 py-3 text-left font-mono text-xs font-medium text-foreground-1;
+    min-width: 6rem;
+    white-space: nowrap;
   }
 
   .prose td {
-    @apply border-border/80 border-b px-4 py-3 align-top text-foreground-2;
+    @apply border-border border-b px-4 py-3 align-top text-foreground-2;
   }
 
   .prose tr:last-child td {
@@ -523,11 +552,11 @@ body[data-focus-mode="true"] .focus-mode-only {
   }
 
   .prose img {
-    @apply my-0 rounded-lg border border-border/80;
+    @apply my-0 border border-border;
   }
 
   .prose iframe {
-    @apply my-0 aspect-video w-full rounded-lg border border-border/80;
+    @apply my-0 aspect-video w-full border border-border;
   }
 
   .prose hr {
@@ -1421,13 +1450,61 @@ body::after {
 .reading-prose :is(h2, h3, h4) {
   scroll-margin-top: 1rem;
 }
-.reading-prose pre,
-.reading-prose table {
+.reading-prose pre {
   max-width: 100%;
   overflow-x: auto;
 }
-.reading-prose table {
-  display: block;
+.prose-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  margin-block: 2rem;
+  border: 1px solid var(--border);
+}
+.prose-table-scroll:focus-visible {
+  outline: 1px solid var(--ring);
+  outline-offset: 2px;
+}
+.prose th + th,
+.prose td + td {
+  border-left: 1px solid var(--border);
+}
+.prose :is(th, td)[align="right"] {
+  text-align: right;
+}
+.prose :is(th, td)[align="center"] {
+  text-align: center;
+}
+.prose blockquote > p + p {
+  margin-top: 1rem;
+}
+.prose .contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+.prose input[type="checkbox"] {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-right: 0.5rem;
+  border: 1px solid var(--foreground-3);
+  vertical-align: -0.1em;
+}
+.prose input[type="checkbox"]:checked::before {
+  content: "✓";
+  color: var(--foreground-1);
+  font: 0.75rem var(--font-mono);
+}
+.prose dl {
+  margin-block: 1.5rem;
+}
+.prose dt {
+  color: var(--foreground-1);
+  font-weight: 500;
+}
+.prose dd {
+  margin: 0.5rem 0 1.25rem 1.5rem;
 }
 .reading-end {
   border-top: 1px solid var(--border);

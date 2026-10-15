@@ -1,4 +1,5 @@
 import rehypePrettyCode from "rehype-pretty-code"
+import codeTheme from "./code-theme.mjs"
 
 const LANGUAGE_LABELS = {
   ansi: "ANSI",
@@ -130,7 +131,11 @@ const walkAnsiSource = (node) => {
 }
 
 export default function rehypeCodeBlocks(options = {}) {
-  const highlightCode = rehypePrettyCode(options)
+  const highlightCode = rehypePrettyCode({
+    theme: codeTheme,
+    keepBackground: false,
+    ...options,
+  })
 
   return async (tree, file) => {
     walkAnsiSource(tree)
