@@ -2,11 +2,12 @@
 author: Rajesh
 pubDatetime: 2023-07-21
 title: Sample Markdown
-featured: true
+featured: false
 draft: false
 tags:
-  - linux
-description: A step-by-step guide to my personal Arch Linux installation process using LUKS encryption, Logical Volume Management (LVM), and systemd-boot. This guide also includes WiFi setup using iwd and aims for a minimal, secure, and functional base system.
+  - markdown
+  - design-system
+description: A living Markdown specimen for typography, tables, code, callouts, and media in the personal site.
 category: guides
 cover: "./cover/arch_linux.png"
 coverAlt: Neofetch output of Arch Linux
@@ -14,141 +15,174 @@ ogImage: "./og/arch_linux.png"
 ogImageAlt: Neofetch output of Arch Linux
 ---
 
-<Video id="https://www.youtube.com/embed/zYW3f9kMwbA" />
+This page is a working specimen of the article layout. It brings together the elements that appear in technical writing, from a short `git status` command to wide tables and nested code blocks.
 
-This is a sample paragraph under **Heading 1**. You can include _italic_, **bold**, or `inline code` here. Here's a [link to Astro](https://astro.build).
+## Typography and inline code
 
-## Heading Level 2
+A paragraph should be easy to follow without competing with the navigation. **Strong text** adds emphasis, _italic text_ adds a quieter distinction, and [links remain easy to identify](https://astro.build). A footnote can carry a useful aside without interrupting the sentence.[^layout]
 
-Another paragraph with **more content**. Here's a line with a footnote[^1].
+Inline code such as `pnpm run build`, `config.enabled`, and `/etc/loader/loader.conf` should sit comfortably within the line. Longer identifiers such as `a_deliberately_long_configuration_key_that_needs_to_wrap_on_a_small_screen` must stay inside the reading column.
 
-### Heading Level 3
+### Third-level heading
 
-Nested list example:
+Use this level to break a section into related ideas. The spacing should make the hierarchy clear without adding another box around every paragraph.
 
-- Item 1
-    - Subitem 1a
-    - Subitem 1b
-- Item 2
-  1. Ordered Subitem 2a
-  2. Ordered Subitem 2b
-- Item 3
+#### Fourth-level heading
 
-#### Heading Level 4
+Smaller headings remain neutral rather than introducing another accent color.
 
-> This is a blockquote. It can span multiple lines.
->
-> - It can also contain lists
-> - Nested within the blockquote
+##### Fifth-level heading
 
-##### Heading Level 5
+A compact label for a small subdivision.
 
-1. Ordered list example
-2. Second item
-   - Nested unordered list
-   - Another nested item
-3. Third item
+###### Sixth-level heading
 
-###### Heading Level 6
+The final heading level should still be readable without becoming louder than the paragraph around it.
 
-**Table Example:**
+## Lists and tasks
 
-| Name        | Age | Occupation       |
-| ----------- | --- | ---------------- |
-| Alice       | 30  | Engineer         |
-| Bob         | 25  | Designer         |
-| Charlie     | 35  | Product Manager  |
+- Understand the workflow before changing it.
+  - Identify the repeated steps.
+  - Write down what a successful run looks like.
+- Make the smallest useful automation.
+  1. Validate the inputs.
+  2. Run the operation.
+  3. Report the outcome.
+- Leave enough context for the next person.
 
-**Code Block Example:**
+A checklist is useful when the order matters less than whether each step is complete:
 
-```js
-function greet(name) {
-  console.log(`Hello, ${name}!`);
-}
-greet("Hyperoot");
+- [x] Keep the reading column comfortable.
+- [x] Use the same sharp edges throughout.
+- [ ] Check the examples on a narrow screen.
+
+## Tables
+
+A short table should fill the reading column, with each header aligned to its cells.
+
+| Component | Purpose | Status |
+| :--- | :--- | :--- |
+| Sidebar | Browse articles and project links | Ready |
+| Article | Read the content without distractions | Ready |
+| Contents | Jump between sections | Ready |
+
+### Wide tables
+
+This table deliberately has more columns. On a narrow screen, scroll the table rather than the entire page. Numeric columns align to the right.
+
+| Workflow | Environment | Trigger | Typical input | Retries | Timeout |
+| :--- | :--- | :--- | :--- | ---: | ---: |
+| Content validation | Development | File change | Markdown and MDX | 0 | 30 seconds |
+| Documentation build | CI | Pull request | Source tree and configuration | 2 | 5 minutes |
+| Release preparation | Production | Manual approval | Tagged revision and release notes | 1 | 10 minutes |
+
+## Code blocks
+
+Code uses a neutral surface, one restrained accent, and the same monospace family as the interface. Language labels and filenames belong in the header. The copy control copies the code, not the header.
+
+```python title="automation.py" {4-6}
+from pathlib import Path
+
+
+def collect_notes(directory: Path) -> list[Path]:
+    # Return a predictable order for repeatable builds.
+    return sorted(directory.glob("*.md"))
+
+
+notes = collect_notes(Path("content/posts"))
+print(f"Found {len(notes)} notes")
 ```
 
-**ANSI Terminal Output:**
+### Configuration and shell commands
+
+```json title="settings.json"
+{
+  "project": "personal-site",
+  "validation": {
+    "enabled": true,
+    "retries": 2
+  },
+  "formats": ["markdown", "mdx"]
+}
+```
+
+```bash title="validate.sh"
+# Run checks before generating the site.
+pnpm exec biome check .
+mise run typecheck
+pnpm run build
+```
+
+### Long lines and plain text
+
+Long source lines stay on one line and scroll inside their code block. They should not widen the article or push the contents navigation out of place.
+
+```text title="example.log"
+2026-10-15T09:30:00Z INFO workflow=content-validation environment=development source=content/posts result=success message="All published entries passed validation and are ready for the next build."
+```
+
+### Terminal output
+
+ANSI colors retain their meaning for successes, warnings, and errors while using the site's theme colors.
 
 ```ansi title="build-output.log"
-[1;36m$ pnpm run build[0m
-[2mcollecting content and optimizing assets...[0m
-[32m✓ content synced[0m
-[32m✓ static routes generated[0m
-[33m⚠ one optional integration was skipped[0m
-[1;32m✓ build completed in 1.42s[0m
+\u001b[36m$ pnpm run build\u001b[0m
+\u001b[2mCollecting content and optimizing assets…\u001b[0m
+\u001b[32m✓ Content validated\u001b[0m
+\u001b[33m! Optional preview skipped\u001b[0m
+\u001b[31m✗ Example failure message\u001b[0m
+\u001b[32m✓ Build complete\u001b[0m
 ```
 
-```ansi
-[93mfastfetch[39m [96m-l[39m [37mnone[1m[36m
-hyperoot[22m[39m@[1m[36mhyperspace[22m[39m
--------------------[1m[33m
-OS[22m[39m: Windows 11 Pro (25H2) x86_64[1m[33m
-Host[22m[39m: ASUS TUF Gaming F17 FX706HCB_FX706HCB (1.0)[1m[33m
-Kernel[22m[39m: WIN32_NT 10.0.26200.8875[1m[33m
-Uptime[22m[39m: 1 day, 12 hours, 30 mins[1m[33m
-Shell[22m[39m: PowerShell 7.6.3[1m[33m
-Display (LG ULTRAGEAR)[22m[39m: 1920x1080 in 24", 180 Hz [External][1m[33m
-WM[22m[39m: Desktop Window Manager 10.0.26100.8737[1m[33m
-WM Theme[22m[39m: Custom - #6B8DB0 (System: Dark, Apps: Dark)[1m[33m
-Theme[22m[39m: Fluent[1m[33m
-Icons[22m[39m: Recycle Bin[1m[33m
-Font[22m[39m: Segoe UI (12pt) [Caption / Menu / Message / Status][1m[33m
-Cursor[22m[39m: Windows Default (32px)[1m[33m
-Terminal[22m[39m: Windows Terminal 1.24.11911.0[1m[33m
-Terminal Font[22m[39m: FiraCode Nerd Font (13pt)[1m[33m
-CPU[22m[39m: 11th Gen Intel(R) Core(TM) i5-11400H (12) @ 4.50 GHz[1m[33m
-GPU 1[22m[39m: NVIDIA GeForce RTX 3050 Laptop GPU @ 2.10 GHz (3.87 GiB) [Discrete][1m[33m
-GPU 2[22m[39m: Intel(R) UHD Graphics (128.00 MiB) [Integrated][1m[33m
-Memory[22m[39m: 13.18 GiB / 15.74 GiB ([91m84%[39m)[1m[33m
-Swap[22m[39m: 1.24 GiB / 15.50 GiB ([32m8%[39m)[1m[33m
-Disk (C:\)[22m[39m: 305.00 GiB / 476.04 GiB ([93m64%[39m) - NTFS[1m[33m
-Disk (D:\)[22m[39m: 9.34 GiB / 50.00 GiB ([32m19%[39m) - NTFS[1m[33m
-Local IP (Ethernet)[22m[39m: 192.168.0.100/24[1m[33m
-Battery (A32-K55)[22m[39m: [32m97%[39m [AC Connected][1m[33m
-Locale[22m[39m: en-US
-```
+## Quotes and callouts
 
-Inline code example: `npm install astro`
-
-**Image Example:**
-
-![Placeholder Image](./cover/docker.png)
-
-**Footnote Example:**
-
-This is some text with a footnote.[^1]
-
-[^1]: This is the footnote content. You can include links [like this](https://example.com).
-
-**Horizontal Rule Example:**
-
-**Task List Example:**
-
-- [x] Completed task
-- [ ] Incomplete task
-- [ ] Another task
-
-**Blockquote with nested elements:**
-
-> ### Nested Heading
+> A useful tool removes a repeated decision without hiding the reasoning behind it.
 >
-> Some quote text here with **bold** and _italic_ styles.
+> This second paragraph demonstrates the spacing inside a longer quotation.
+
+A quotation can also contain a list or a code block:
+
+> ### A nested example
 >
-> ```python
-> # Python code block inside blockquote
-> def hello():
->     print("Hello World")
+> Keep the output simple enough to inspect.
+>
+> - Show the result.
+> - Explain what happened.
+>
+> ```python title="result.py"
+> def report(count: int) -> str:
+>     return f"Processed {count} entries"
 > ```
 
-**Definition List Example:**
+<Callout title="Keep the context">
+  A note adds useful context without interrupting the main explanation. Inline code such as `--dry-run` should remain readable here too.
+</Callout>
 
-Term 1
-: Definition of term 1
+<Callout variant="warning" title="Check before running">
+  This is a demonstration warning. Use stronger semantic colors only when the message needs that distinction.
+</Callout>
 
-Term 2
-: Definition of term 2
+## Images and media
 
-**Emoji and Special Characters:**
+Images supplied within an article remain part of the content. They use the same hard edges as tables and code blocks.
 
-I ❤️ Markdown! Check these out: 😎 ✨ ✅ ❌
+![Docker mark used as an example of an inline article image.](./cover/docker.png)
+
+_An inline image with a short caption._
+
+## Definitions and footnotes
+
+<dl>
+  <dt>Repeatability</dt>
+  <dd>The same inputs produce a result that can be checked and understood.</dd>
+  <dt>Handoff</dt>
+  <dd>The next person has enough context to run, inspect, and change the system.</dd>
+</dl>
+
+A separator should divide ideas without adding another surface:
+
+---
+
+This is the closing paragraph. It includes **emphasis**, an `inline command`, and a second reference to the same footnote.[^layout]
+
+[^layout]: This sample is for checking presentation. Its code and workflow examples are illustrative rather than instructions for a particular deployment.

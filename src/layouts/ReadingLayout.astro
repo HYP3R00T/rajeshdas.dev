@@ -131,10 +131,22 @@ const setupReading = () => {
         history.pushState(null, "", link.hash)
         heading.setAttribute("tabindex", "-1")
         heading.focus({ preventScroll: true })
-        heading.scrollIntoView({
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
-          block: "start",
-        })
+        const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"
+        const workspace = heading.closest<HTMLElement>(".site-workspace")
+        if (workspace && window.matchMedia("(min-width: 1024px)").matches) {
+          const headerHeight = workspace.querySelector(".workspace-bar")?.getBoundingClientRect().height || 0
+          workspace.scrollTo({
+            top:
+              workspace.scrollTop +
+              heading.getBoundingClientRect().top -
+              workspace.getBoundingClientRect().top -
+              headerHeight -
+              16,
+            behavior,
+          })
+        } else {
+          window.scrollTo({ top: window.scrollY + heading.getBoundingClientRect().top - 96, behavior })
+        }
       },
       { signal: controller.signal },
     )

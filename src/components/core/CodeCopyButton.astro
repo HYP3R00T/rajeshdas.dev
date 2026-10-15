@@ -3,7 +3,41 @@
   overflow: hidden;
   margin-block: 2rem;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
+  background: var(--background-1);
+  color: var(--foreground-1);
+  --code-foreground: var(--foreground-1);
+  --code-background: var(--background-1);
+  --code-token-keyword: var(--purple-0);
+  --code-token-function: var(--accent-1);
+  --code-token-type: var(--yellow-0);
+  --code-token-property: var(--cyan-0);
+  --code-token-string: var(--green-0);
+  --code-token-string-expression: var(--green-0);
+  --code-token-comment: var(--foreground-3);
+  --code-token-constant: var(--orange-0);
+  --code-token-parameter: var(--foreground-1);
+  --code-token-punctuation: var(--foreground-2);
+  --code-token-link: var(--accent-1);
+  --code-token-inserted: var(--green-0);
+  --code-token-deleted: var(--red-0);
+  --code-token-changed: var(--yellow-0);
+  --code-ansi-black: var(--foreground-3);
+  --code-ansi-white: var(--foreground-1);
+  --code-ansi-red: var(--red-0);
+  --code-ansi-green: var(--green-0);
+  --code-ansi-yellow: var(--yellow-0);
+  --code-ansi-blue: var(--blue-0);
+  --code-ansi-magenta: var(--purple-0);
+  --code-ansi-cyan: var(--cyan-0);
+  --code-ansi-bright-black: var(--foreground-3);
+  --code-ansi-bright-white: var(--foreground-0);
+  --code-ansi-bright-red: var(--red-0);
+  --code-ansi-bright-green: var(--green-0);
+  --code-ansi-bright-yellow: var(--yellow-0);
+  --code-ansi-bright-blue: var(--blue-0);
+  --code-ansi-bright-magenta: var(--purple-0);
+  --code-ansi-bright-cyan: var(--cyan-0);
 }
 
 :global(.code-block__header) {
@@ -12,7 +46,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-bottom: 1px solid var(--border);
   padding-left: 1rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
@@ -28,7 +62,7 @@
 
 :global(.code-block__language) {
   flex: none;
-  opacity: 0.62;
+  color: var(--foreground-3);
   text-transform: uppercase;
 }
 
@@ -48,21 +82,20 @@
   align-self: stretch;
   flex: none;
   border: 0;
-  border-left: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-left: 1px solid var(--border);
   padding-inline: 0.875rem;
   background: transparent;
-  color: inherit;
+  color: var(--foreground-2);
   font: inherit;
   letter-spacing: inherit;
   cursor: pointer;
-  opacity: 0.65;
   transition:
     background-color 150ms ease,
     opacity 150ms ease;
 }
 
 :global(.code-block__copy:hover) {
-  background: color-mix(in srgb, currentColor 7%, transparent);
+  background: var(--background-2);
   opacity: 1;
 }
 
@@ -80,13 +113,42 @@
   margin: 0;
   border: 0;
   border-radius: 0;
-  padding: 1.125rem 1.25rem;
+  padding: 1.125rem 0;
   background: transparent !important;
 }
 
 :global(.prose .code-block pre code) {
   display: grid;
   min-width: max-content;
+}
+:global(.code-block [data-line]) {
+  padding-inline: 1.25rem;
+}
+:global(.code-block [data-highlighted-line]) {
+  background: color-mix(in oklch, var(--accent-1) 7%, transparent);
+  box-shadow: inset 2px 0 color-mix(in oklch, var(--accent-1) 65%, transparent);
+}
+
+/* Keep the scroll gutter reserved so revealing it never shifts the code. */
+:global(.code-block pre::-webkit-scrollbar-thumb) {
+  background: transparent;
+}
+:global(.code-block:hover pre::-webkit-scrollbar-thumb),
+:global(.code-block:focus-within pre::-webkit-scrollbar-thumb) {
+  background: var(--foreground-3);
+}
+:global(.code-block pre::-webkit-scrollbar-thumb:hover) {
+  background: var(--foreground-2);
+}
+@supports not selector(::-webkit-scrollbar) {
+  :global(.code-block pre) {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  :global(.code-block:hover pre),
+  :global(.code-block:focus-within pre) {
+    scrollbar-color: var(--foreground-3) transparent;
+  }
 }
 </style>
 

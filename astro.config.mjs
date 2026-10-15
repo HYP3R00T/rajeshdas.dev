@@ -9,9 +9,10 @@ import AutoImport from "astro-auto-import"
 import icon from "astro-icon"
 import rehypeCodeBlocks from "./src/lib/rehype-code-blocks.mjs"
 import rehypeHeadingLinks from "./src/lib/rehype-heading-links.mjs"
+import rehypeTables from "./src/lib/rehype-tables.mjs"
 
 /** @type {import("@astrojs/markdown-remark").RehypePlugins} */
-const rehypePlugins = [[rehypeCodeBlocks, { theme: "houston" }], rehypeHeadingLinks]
+const rehypePlugins = [rehypeCodeBlocks, rehypeTables, rehypeHeadingLinks]
 
 export default defineConfig({
   site: "https://rajeshdas.dev",
