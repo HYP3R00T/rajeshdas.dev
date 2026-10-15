@@ -4,7 +4,6 @@ import { SITE } from "@data/config"
 import CodeCopyButton from "@/components/core/CodeCopyButton.astro"
 import HeadSEO from "@/components/core/HeadSEO.astro"
 import PageContext from "@/components/core/PageContext.astro"
-import QuietFooter from "@/components/core/QuietFooter.astro"
 import SidebarShell from "@/components/core/SidebarShell.astro"
 import type { BaseLayoutProps } from "@/lib/types"
 
@@ -47,7 +46,6 @@ const {
         <main id="main-content" tabindex="-1">
           <slot />
         </main>
-        {!readingPage && <QuietFooter />}
       </div>
     </div>
     <CodeCopyButton />

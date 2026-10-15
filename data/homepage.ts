@@ -77,9 +77,10 @@ export const latestVideo = {
   channelUrl: "https://www.youtube.com/@hyperoot",
 } as const
 
-// Existing public factual copy; fuller personal introduction remains for review.
+// Opening copy for the personal homepage.
 export const homepageIntro = {
-  role: "Python and DevOps Automation Engineer",
+  role: "Python & DevOps Automation Engineer",
+  headline: ["Less manual work.", "More room to build."],
   description:
-    "Python automation, developer tools, CI/CD workflows, and Kubernetes infrastructure built to reduce manual work and make technical systems easier to develop and operate.",
+    "I’m Rajesh. I build Python automation, developer tools, and infrastructure workflows that turn repetitive work into something you can run, understand, and trust.",
 } as const

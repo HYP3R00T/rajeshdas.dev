@@ -31,10 +31,13 @@ import NavigationTree from "@/components/core/NavigationTree.astro"
 </aside>
 
 <script>
+import initNavigationScramble from "@/lib/initNavigationScramble"
+
 const setupDirectory = () => {
   const toggle = document.querySelector<HTMLButtonElement>("[data-directory-toggle]")
   const directory = document.querySelector<HTMLElement>("#site-directory")
   if (!toggle || !directory) return
+  const cleanupScramble = initNavigationScramble(document.body)
   const desktop = window.matchMedia("(min-width: 1024px)")
   let panelAnimation: Animation | undefined
   let transitionId = 0
@@ -102,6 +105,7 @@ const setupDirectory = () => {
     "astro:before-swap",
     () => {
       setOpen(false, false, false)
+      cleanupScramble()
       document.removeEventListener("keydown", onKey)
       desktop.removeEventListener("change", onResize)
     },
