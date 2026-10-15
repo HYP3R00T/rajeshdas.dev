@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata, MarkdownHeading } from "astro"
+import ArticleSourceActions from "@/components/post/ArticleSourceActions.astro"
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import { formatDateUppercase } from "@/lib/utils"
 
@@ -37,6 +38,7 @@ const fileLabel = `${(slug || title)
   .replace(/[^a-z0-9]+/g, "_")
   .replace(/^_|_$/g, "")}.md`
 const archive = kind === "Article" ? "/post/" : "/til/"
+const articleMarkdownUrl = kind === "Article" && slug ? `/post/${slug}.md` : undefined
 ---
 
 <BaseLayout
@@ -48,11 +50,17 @@ const archive = kind === "Article" ? "/post/" : "/til/"
   imageAlt={ogImageAlt || coverAlt || title}
   contentType="Article"
   readingPage
+  articleMarkdownUrl={articleMarkdownUrl}
 >
   <div class:list={["reading-page", { "has-contents": contents.length > 0 }]}>
     <article class="reading-column">
       <header class="reading-header">
         <h1>{title}</h1>
+        {articleMarkdownUrl && (
+          <div class="reading-source-mobile">
+            <ArticleSourceActions href={articleMarkdownUrl} />
+          </div>
+        )}
       </header>
       {contents.length > 0 && (
         <details class="reading-contents">

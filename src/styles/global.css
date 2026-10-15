@@ -1346,6 +1346,9 @@ body::after {
 .reading-page {
   padding: 2rem 0 3rem clamp(2rem, 3vw, 3rem);
 }
+.reading-source-mobile {
+  display: none;
+}
 .reading-column {
   max-width: 42rem;
 }
@@ -1603,6 +1606,10 @@ body[data-focus-mode="true"] .site-workspace {
   }
   .workspace-bar {
     display: none;
+  }
+  .reading-source-mobile {
+    display: block;
+    margin-top: 1rem;
   }
   body[data-directory-open="true"] .site-directory {
     height: auto;
