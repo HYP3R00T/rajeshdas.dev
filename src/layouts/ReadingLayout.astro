@@ -1,6 +1,5 @@
 ---
 import type { ImageMetadata, MarkdownHeading } from "astro"
-import QuietFooter from "@/components/core/QuietFooter.astro"
 import BaseLayout from "@/layouts/BaseLayout.astro"
 import { formatDateUppercase } from "@/lib/utils"
 
@@ -81,7 +80,6 @@ const archive = kind === "Article" ? "/post/" : "/til/"
           </p>
         )}
       </footer>
-      <QuietFooter />
     </article>
     {contents.length > 0 && (
       <aside class="reading-outline">

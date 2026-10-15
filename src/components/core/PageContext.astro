@@ -1,6 +1,5 @@
 ---
 import { SOCIAL_LINKS } from "@data/config"
-import { Icon } from "astro-icon/components"
 
 interface Props {
   pageLabel?: string
@@ -49,12 +48,15 @@ const action =
   </nav>
   {publishedAt ? (
     <time class="workspace-date" datetime={publishedAt.toISOString()}>
-      {publishedAt.toISOString().slice(0, 10)}
+      <span aria-hidden="true">[</span>
+      <span data-context-label>{publishedAt.toISOString().slice(0, 10)}</span>
+      <span aria-hidden="true">]</span>
     </time>
   ) : (
     <a href={action.href} class="workspace-action">
-      {action.label}
-      <Icon name="arrow-up-right" class="size-3.5" aria-hidden="true" />
+      <span aria-hidden="true">[</span>
+      <span data-context-label>{action.label}</span>
+      <span aria-hidden="true">]</span>
     </a>
   )}
 </div>

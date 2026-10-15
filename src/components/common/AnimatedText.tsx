@@ -1,7 +1,7 @@
 import type { ElementType, Ref } from "react"
 import { useEffect, useRef } from "react"
 
-const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"
+import { scrambleText } from "@/lib/scrambleText"
 
 interface Props {
   text?: string
@@ -23,27 +23,13 @@ export default function AnimatedText({ text = "", auto = false, hover = true, ta
     node.dataset.value = target
     node.textContent = target
 
-    let interval: ReturnType<typeof setInterval> | null = null
-
+    let cancel: (() => void) | undefined
     function playAnimation() {
-      if (interval !== null) {
-        clearInterval(interval)
-      }
-
-      let iteration = 0
-      interval = setInterval(() => {
-        node.textContent = (node.textContent || "")
-          .split("")
-          .map((_, i) => (i < iteration ? target[i] : LETTERS[Math.floor(Math.random() * LETTERS.length)]))
-          .join("")
-
-        if (iteration >= target.length && interval !== null) {
-          clearInterval(interval)
-          interval = null
-        }
-
-        iteration += 1 / 3
-      }, 30)
+      cancel?.()
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+      cancel = scrambleText(target, (value) => {
+        node.textContent = value
+      })
     }
 
     if (auto) playAnimation()
@@ -51,7 +37,7 @@ export default function AnimatedText({ text = "", auto = false, hover = true, ta
     if (hover) node.addEventListener("mouseover", playAnimation)
 
     return () => {
-      if (interval !== null) clearInterval(interval)
+      cancel?.()
       if (hover) node.removeEventListener("mouseover", playAnimation)
     }
   }, [text, auto, hover])

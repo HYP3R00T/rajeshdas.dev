@@ -3,14 +3,17 @@ import { Icon } from "astro-icon/components"
 import type { PostCardProps } from "@/lib/types"
 import { formatDateUppercase } from "@/lib/utils"
 
-interface Props extends PostCardProps {}
-const { post } = Astro.props
+interface Props extends PostCardProps {
+  headingLevel?: 2 | 3
+}
+const { post, headingLevel = 2 } = Astro.props
+const Heading = headingLevel === 3 ? "h3" : "h2"
 ---
 
 <a href={`/post/${post.id}/`} class="archive-entry" data-post-card>
   <div class="archive-entry-heading">
     <Icon name="file" is:inline class="archive-entry-icon" aria-hidden="true" />
-    <h2>{post.data.title}</h2>
+    <Heading>{post.data.title}</Heading>
     <Icon name="arrow-right" is:inline class="archive-entry-arrow" aria-hidden="true" />
   </div>
   <p>{post.data.description}</p>
