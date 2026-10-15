@@ -1,270 +1,29 @@
 # AGENTS.md
 
-Agent operating instructions for this repository. Keep this file minimal and actionable.
+## Stack and checks
 
-## Tooling and Environment
+- Astro, TypeScript, Tailwind CSS; use pnpm and mise.
+- Use Biome for linting/formatting; no ESLint or Prettier.
+- Run `mise run typecheck`, `pnpm exec biome check .`, `prek run --all-files`, and `pnpm run build` for code changes.
+- Check affected UI in the browser, including mobile when relevant.
+- Keep typechecking/builds out of hooks and CI unless requested.
+- Keep TypeScript on `^6.0.3` while required by `astro check`; let pnpm manage the lockfile.
 
-- Package manager: pnpm
-- Runtime manager: mise
-- Lint/format: Biome (no ESLint/Prettier in this repo)
-- Framework: Astro 7 + TypeScript 6 + Tailwind CSS
+## Code and content
 
-## TypeScript Path Aliases
+- Use aliases: `@/*` for `src/`, `@data/*` for `data/`, `@posts/*` for post content.
+- Keep routes thin; put shared shells in `src/layouts/` and components in their domain folders.
+- Keep homepage copy in its owning Astro component; global identity belongs in `data/config.ts`.
+- Put articles/projects in `content/`; consult `src/content.config.ts` for schemas.
+- Use `getCollection()`/`getEntry()` for content and Astro `<Image>` for local images.
+- Prefer static Astro rendering; add client JavaScript only for required interactions.
+- Reuse icons in `src/assets/icons/` through `astro-icon`; icons should inherit `currentColor`.
+- Keep pure shared helpers in `src/lib/` and automation in `scripts/`.
 
-The following path aliases are configured in [tsconfig.json](tsconfig.json):
+## Visual rules
 
-- `@/*` → `./src/*` (source files)
-- `@posts/*` → `./content/posts/*` (post content)
-- `@data/*` → `./data/*` (configuration data)
-
-Use these aliases in imports instead of relative paths for better maintainability.
-
-## Configuration Files Reference
-
-Key configuration files and their purposes:
-
-- [astro.config.mjs](astro.config.mjs): Astro framework configuration, integrations, build settings
-- [tsconfig.json](tsconfig.json): TypeScript compiler options and path aliases
-- [biome.json](biome.json): Biome linter and formatter rules
-- [mise.toml](mise.toml): Runtime version management (Node.js, pnpm)
-- [package.json](package.json): Dependencies and npm scripts
-- [src/content.config.ts](src/content.config.ts): Content collection schemas for posts and projects
-- [data/config.ts](data/config.ts): Global site configuration and identity
-
-## Commands Agents Should Use
-
-- Install deps: `pnpm install`
-- Dev server: `pnpm run dev --host 0.0.0.0`
-- Build: `pnpm run build`
-- Preview build: `pnpm run preview`
-- Type check: `mise run typecheck` (runs `astro check`)
-- Repository checks, matching CI: `prek run --all-files`
-- Lint: `biome check --write .`
-- Lint (dry-run): `biome check .`
-- Format: `biome format --write .`
-- Clean build artifacts: `rm -rf dist .astro`
-
-## Development Workflow
-
-Standard workflow for making changes:
-
-1. Read relevant files to understand current implementation
-2. Make changes using appropriate editing tools
-3. Run type check: `mise run typecheck`
-4. Run lint: `biome check --write .`
-5. Test locally: `pnpm run dev --host 0.0.0.0`
-6. Build to verify: `pnpm run build`
-7. Preview production build: `pnpm run preview`
-
-## Directory Objectives and Placement Rules
-
-Use this section to decide exactly what to create and where.
-
-- Root config files (`astro.config.mjs`, `tsconfig.json`, `biome.json`, `mise.toml`, `package.json`): framework/tooling/runtime configuration only. Do not place feature logic here.
-- `content/posts/`: blog post content files (`.md`/`.mdx`) with post frontmatter.
-- `content/projects/`: project showcase entries (`.md`/`.mdx`) with project frontmatter.
-- `content/**/images/`: content-specific images referenced by markdown/mdx entries.
-- `data/config.ts`: global site identity and cross-site constants.
-- `src/pages/`: route entry files only. Keep pages thin and compose with components.
-- `src/layouts/`: layout shells shared by multiple pages/routes.
-- `src/components/core/`: navigation, SEO, shell, and cross-site structural primitives.
-- `src/components/homepage/`: homepage components and their own copy/content.
-- `src/components/post/`: post list/detail/pagination presentation components.
-- `src/components/project/`: project listing/card/list-item presentation components.
-- `src/components/ui/`: generic reusable UI primitives (button/input/badge/card-style blocks).
-- `src/lib/`: pure utilities, transforms, helpers, and typed shared logic.
-- `src/styles/global.css`: design tokens, global resets, global element defaults.
-- `src/assets/icons/`: source-managed SVG icon assets used by components/pages via astro-icon.
-- `public/`: static passthrough files served as-is (do not put source-only modules here).
-- `scripts/`: repository automation scripts (setup, helper utilities, maintenance). Use `scripts/download-icon.sh` to add new icons.
-
-### File Creation Decisions
-
-- New route: create under `src/pages/` with Astro file-based routing.
-- New reusable page section: create in the relevant `src/components/<domain>/` folder.
-- New generic primitive used across sections: create in `src/components/ui/`.
-- New shared helper function: create or extend module in `src/lib/`.
-- New global site setting: add to `data/config.ts`.
-- New homepage-specific content: keep it in the owning Astro component under `src/components/homepage/`.
-- New post/project entry: add markdown/mdx in `content/posts/` or `content/projects/`.
-- New global style token/rule: add to `src/styles/global.css`.
-- New icon: use `scripts/download-icon.sh <icon-name>` to download from Lucide, then reference via astro-icon.
-
-## Astro-Specific Conventions
-
-Follow these Astro patterns and best practices:
-
-- **Component Props**: Use TypeScript interfaces for component props. Define at top of `.astro` files.
-- **Content Collections**: Always use `getCollection()` and `getEntry()` from `astro:content` for type-safe content access.
-- **Image Optimization**: Use `<Image>` from `astro:assets` for local images, not `<img>` tags.
-- **Client Directives**: Use `client:load`, `client:visible`, `client:idle` sparingly. Default to static rendering.
-- **Layouts**: Use slots for content injection. Keep layout logic minimal.
-- **API Routes**: Place in `src/pages/` with `.ts` extension. Export functions named after HTTP methods.
-- **Frontmatter**: Keep component scripts in frontmatter section (between `---` delimiters).
-- **Imports**: Use path aliases (`@/*`) instead of relative paths for cleaner imports.
-
-## Icon System
-
-Icons are managed via astro-icon integration with local SVG assets:
-
-- **Location**: All icons stored in `src/assets/icons/` as SVG files
-- **Usage**: Import and use via `<Icon name="icon-name" />` component from `astro-icon`
-- **Adding Icons**: Run `scripts/download-icon.sh <icon-name>` to download from Lucide icon set
-- **Naming**: Use kebab-case for icon filenames (e.g., `arrow-right.svg`, `external-link.svg`)
-- **Customization**: Icons inherit color from CSS `currentColor` and can be sized via `width`/`height` props
-- **Available Icons**: Check `src/assets/icons/` directory for existing icons before adding new ones
-
-Example usage:
-
-```astro
----
-import { Icon } from 'astro-icon/components'
----
-<Icon name="github" class="w-5 h-5" />
-```
-
-## Content Schema Documentation
-
-Content collections are defined in [src/content.config.ts](src/content.config.ts).
-
-### Posts Schema (`content/posts/`)
-
-Required frontmatter fields:
-
-- `title`: string - Post title
-- `description`: string - Post description/excerpt
-- `pubDatetime`: date - Publication date (ISO 8601 format)
-- `cover`: image - Cover image (use `image()` helper)
-- `category`: enum - Editorial archive category: `product`, `engineering`, or `guides`
-
-Optional frontmatter fields:
-
-- `coverAlt`: string - Alt text for cover image
-- `featured`: boolean - Show in featured section (default: false)
-- `draft`: boolean - Hide from production (default: false)
-- `tags`: string[] - Post tags/categories (default: [])
-
-Example:
-
-```yaml
----
-title: "My Blog Post"
-description: "A brief description"
-pubDatetime: 2024-01-15T10:00:00Z
-cover: ./images/my-post.png
-coverAlt: "Cover image description"
-category: engineering
-featured: true
-draft: false
-tags: ["typescript", "astro"]
----
-```
-
-### Projects Schema (`content/projects/`)
-
-Required frontmatter fields:
-
-- `title`: string - Project title
-- `description`: string - Project description
-
-Optional frontmatter fields:
-
-- `technologies`: string[] - Tech stack (default: [])
-- `icon`: string - Icon name from `src/assets/icons/`
-- `order`: number - Display order in listings
-- `startDate`: date - Project start date
-- `endDate`: date - Project end date
-- `draft`: boolean - Hide from production (default: false)
-- `images`: image[] - Project screenshots/images
-- `imageAlt`: string - Alt text for images
-- `sourceRepo`: string - GitHub/GitLab repository URL
-- `website`: string - Live project URL
-
-Example:
-
-```yaml
----
-title: "My Project"
-description: "A cool project"
-technologies: ["TypeScript", "Astro", "Tailwind"]
-icon: "github"
-order: 1
-sourceRepo: "https://github.com/user/repo"
-website: "https://example.com"
----
-```
-
-## Common Pitfalls
-
-Avoid these common mistakes:
-
-1. **Rounded Corners**: Never add `border-radius` unless explicitly requested. This site uses hard edges.
-2. **Relative Imports**: Use path aliases (`@/*`) instead of `../../../` relative paths.
-3. **Hardcoded Colors**: Use CSS variables from `src/styles/global.css`, not hardcoded hex/rgb values.
-4. **Missing Type Checks**: Always run `mise run typecheck` before completing tasks.
-5. **Client-Side JS**: Don't add client directives unless interactivity is required. Prefer static rendering.
-6. **Image Tags**: Use `<Image>` from `astro:assets`, not raw `<img>` tags for local images.
-7. **Content Access**: Use `getCollection()`/`getEntry()` from `astro:content`, not file system reads.
-8. **Icon Duplication**: Check `src/assets/icons/` before adding new icons. Reuse existing ones.
-9. **Config Sprawl**: Don't create new config files. Use existing ones in `data/` directory.
-10. **Style Inconsistency**: Match existing component patterns in `src/components/ui/` before creating new styles.
-
-## UI System and Visual Philosophy
-
-Preserve a strict, intentional visual language.
-
-- Geometry: hard edges only. Use zero border radius by default.
-- Corner policy: avoid rounded corners unless explicitly requested.
-- Color direction: mostly monochrome/neutral palette with one restrained accent color.
-- Contrast: keep strong text/background contrast and subtle separators.
-- Ornamentation: minimal effects; avoid heavy shadows, glow, or noisy decoration.
-- Component consistency: reuse existing UI patterns before creating new visual patterns.
-- Density and spacing: use a disciplined spacing scale and align to existing rhythm.
-- Motion: keep animations subtle and purposeful, not decorative.
-
-### UI Implementation Rules
-
-- Prefer tokens/variables from `src/styles/global.css` instead of hardcoded ad-hoc values.
-- If introducing a new component visual, first check `src/components/ui/` for reuse.
-- Keep interaction states clear (hover/focus/active) while maintaining the sharp-edge style.
-- Preserve existing typography and hierarchy unless a specific redesign is requested.
-
-## Design Reference
-
-**CRITICAL**: The visual identity of this site is non-negotiable.
-
-- Follow the UI System and Visual Philosophy section above.
-- Use tokens from `src/styles/global.css` and reuse existing component patterns.
-- **Zero border radius** is a core design principle - never add rounded corners.
-- Review the affected components before making visual changes.
-- Preserve sharp edges, high contrast, and minimal ornamentation.
-
-## Testing and Validation
-
-Before completing any task, verify:
-
-- [ ] TypeScript compiles without errors: `mise run typecheck`
-- [ ] Biome linting passes: `biome check .`
-- [ ] Dev server starts successfully: `pnpm run dev`
-- [ ] Production build completes: `pnpm run build`
-- [ ] Preview build works: `pnpm run preview`
-- [ ] No console errors in browser
-- [ ] Visual changes match the UI System and Visual Philosophy guidance above
-- [ ] New content has correct frontmatter schema
-- [ ] Images use `<Image>` component with proper optimization
-- [ ] Icons exist in `src/assets/icons/` and use astro-icon
-
-CI runs only the configured prek repository hooks. Type checking and production builds are manual checks; do not add them to commit hooks or CI unless requested.
-
-## Dependency Management
-
-Rules for managing dependencies:
-
-- **Adding Dependencies**: Use `pnpm add <package>` for runtime deps, `pnpm add -D <package>` for dev deps
-- **Updating Dependencies**: Use `pnpm update` to update all deps within their declared ranges, or `pnpm update <package>` for specific ones
-- **TypeScript Compatibility**: Keep TypeScript on `^6.0.3` while using `astro check`. Do not use `pnpm update --latest` for TypeScript; it overrides the version range. Revisit this when an Astro upgrade removes the checker.
-- **Removing Dependencies**: Use `pnpm remove <package>` and verify no imports remain
-- **Lock File**: Never manually edit `pnpm-lock.yaml`. Let pnpm manage it.
-- **Version Pinning**: Prefer exact versions for critical deps, ranges for dev tools
-- **Astro Integrations**: Add via `pnpm astro add <integration>` when possible
-- **Verification**: After dependency changes, run full test suite and build to verify compatibility
+- Hard edges only: no rounded corners unless explicitly requested.
+- Use tokens from `src/styles/global.css` and reuse existing components.
+- Keep the neutral palette, restrained accents, spacing, and purposeful motion consistent.
+- All dashed lines use the shared 3px dash / 3px gap, 1px thick patterns, including link underlines. Avoid native dashed borders/underlines.
+- Preserve accessible keyboard/focus behavior and reduced-motion support.
