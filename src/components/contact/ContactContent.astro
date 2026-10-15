@@ -1,0 +1,177 @@
+---
+import { SOCIAL_LINKS } from "@data/config"
+import { Icon } from "astro-icon/components"
+import Tooltip from "@/components/ui/Tooltip.astro"
+
+const email = SOCIAL_LINKS.find((link) => link.name === "mail")?.href
+const emailAddress = email?.replace(/^mailto:/, "").split("?")[0]
+const linkedin = SOCIAL_LINKS.find((link) => link.name === "linkedin")?.href
+const usefulContext = [
+  "A little about you and what brought you here",
+  "The idea, question, or opportunity on your mind",
+  "Any links or details you would like me to see",
+]
+---
+
+<section class="contact-content" aria-labelledby="contact-title">
+  <div class="contact-intro">
+    <h1 id="contact-title">Let’s talk.</h1>
+    <p>
+      Have an idea to share, a question about my work, or something we could build together? I’d love to hear from you.
+      You’re welcome to just say hello, too.
+    </p>
+    <div class="contact-actions">
+      {email && (
+        <a href={email} class="contact-email">
+          <Icon name="mail" is:inline aria-hidden="true" />
+          {emailAddress}
+        </a>
+      )}
+      {linkedin && (
+        <Tooltip label="LinkedIn">
+          <a
+            href={linkedin}
+            class="contact-linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Connect on LinkedIn"
+          >
+            <Icon name="linkedin" is:inline aria-hidden="true" />
+            <span class="sr-only">Connect on LinkedIn</span>
+          </a>
+        </Tooltip>
+      )}
+    </div>
+  </div>
+  <aside class="contact-context" aria-labelledby="contact-context-title">
+    <h2 id="contact-context-title">A little context helps</h2>
+    <p>No formal introduction needed. If you’re not sure where to start, you could share:</p>
+    <ol>
+      {usefulContext.map((item, index) => (
+        <li>
+          <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+          <p>{item}</p>
+        </li>
+      ))}
+    </ol>
+  </aside>
+</section>
+
+<style>
+.contact-content {
+  padding: clamp(1.5rem, 4cqw, 3rem);
+}
+.contact-intro {
+  max-width: 42rem;
+}
+.contact-intro h1 {
+  max-width: 22ch;
+  color: var(--foreground-0);
+  font: 500 clamp(2rem, 4.5cqw, 3.25rem) / 1.12 var(--font-display);
+  letter-spacing: -0.035em;
+}
+.contact-intro > p {
+  max-width: 38rem;
+  margin-top: 1.5rem;
+  color: var(--foreground-2);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2rem;
+}
+.contact-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-block: 0.875rem;
+  font: 0.875rem var(--font-mono);
+  color: var(--foreground-2);
+}
+.contact-actions .contact-linkedin {
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--frame-line);
+}
+.contact-actions a:hover {
+  color: var(--foreground-0);
+}
+.contact-actions .contact-linkedin:hover {
+  border-color: var(--foreground-3);
+}
+.contact-actions a:focus-visible {
+  outline: 1px solid var(--foreground-2);
+  outline-offset: 4px;
+}
+.contact-actions svg {
+  width: 1rem;
+  height: 1rem;
+}
+.contact-context {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px dashed var(--frame-line);
+}
+.contact-context h2 {
+  color: var(--foreground-1);
+  font: 0.75rem var(--font-mono);
+  text-transform: uppercase;
+}
+.contact-context > p {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  color: var(--foreground-3);
+  font-size: 0.875rem;
+  line-height: 1.75;
+}
+.contact-context ol {
+  display: grid;
+  gap: 1.25rem 2rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+.contact-context li {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+}
+.contact-context li > span {
+  color: var(--foreground-3);
+  font: 0.65rem var(--font-mono);
+}
+.contact-context li > p {
+  color: var(--foreground-2);
+  font-size: 0.875rem;
+  line-height: 1.75;
+}
+@container (min-width: 38rem) {
+  .contact-context ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container (min-width: 64rem) {
+  .contact-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.8fr);
+    align-items: start;
+    gap: 3rem;
+  }
+  .contact-context {
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 2rem;
+    border-top: 0;
+    border-left: 1px dashed var(--frame-line);
+  }
+  .contact-context ol {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

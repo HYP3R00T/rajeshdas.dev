@@ -18,16 +18,12 @@ const {
   publishedAt,
   pageAction,
   readingPage = false,
-  articleMarkdownUrl,
 } = Astro.props as BaseLayoutProps
 ---
 
 <html lang={SITE.lang ?? "en"}>
   <head>
     <HeadSEO title={title} description={description} image={image} imageAlt={imageAlt} contentType={contentType} />
-    {articleMarkdownUrl && (
-      <link rel="alternate" type="text/plain" href={articleMarkdownUrl} title="Article Markdown source" />
-    )}
     <ClientRouter />
   </head>
 
@@ -46,7 +42,6 @@ const {
           breadcrumbs={breadcrumbs}
           publishedAt={publishedAt}
           pageAction={pageAction}
-          articleMarkdownUrl={articleMarkdownUrl}
         />
         <main id="main-content" tabindex="-1">
           <slot />
@@ -56,6 +51,10 @@ const {
     <CodeCopyButton />
   </body>
 </html>
+
+<script>
+import "@/lib/tooltips"
+</script>
 
 <script is:inline>
 ;(() => {

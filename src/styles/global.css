@@ -721,8 +721,11 @@ body::after {
   }
 }
 .site-shell {
+  --directory-max-width: clamp(15rem, 24vw, 28rem);
+  --directory-min-width: 15rem;
+  --directory-inline-padding: 4.5rem;
   display: grid;
-  grid-template-columns: fit-content(32vw) minmax(0, 1fr);
+  grid-template-columns: fit-content(var(--directory-max-width)) minmax(0, 1fr);
   column-gap: clamp(2rem, 4vw, 4rem);
   overflow-anchor: none;
   align-items: start;
@@ -730,11 +733,12 @@ body::after {
   overflow: hidden;
 }
 .site-directory {
+  --scrollbar-thumb: transparent;
   position: sticky;
   top: 0;
   width: auto;
-  min-width: 15rem;
-  max-width: 32vw;
+  min-width: var(--directory-min-width);
+  max-width: var(--directory-max-width);
   height: 100svh;
   padding: 1.75rem 2.5rem 1.5rem 2rem;
   background: var(--background-0);
@@ -743,6 +747,23 @@ body::after {
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+}
+.site-directory::-webkit-scrollbar {
+  width: 4px;
+}
+.site-directory::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 0;
+}
+.site-directory:hover,
+.site-directory:has(:focus-visible) {
+  --scrollbar-thumb: var(--foreground-3);
+}
+@supports not selector(::-webkit-scrollbar) {
+  .site-directory {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
 }
 .directory-brand {
   display: flex;
@@ -764,7 +785,7 @@ body::after {
   --tree-line: var(--frame-line);
   position: relative;
   width: max-content;
-  max-width: calc(32vw - 4.5rem);
+  max-width: calc(var(--directory-max-width) - var(--directory-inline-padding));
   font-family: var(--font-mono);
   font-size: 0.8125rem;
 }
@@ -1044,6 +1065,9 @@ body::after {
   border: 0;
   background: none;
 }
+.site-workspace:has(.contact-content) > #main-content {
+  min-height: 0;
+}
 .home-panels {
   display: grid;
   gap: 2rem;
@@ -1161,6 +1185,43 @@ body::after {
 }
 .home-panel-caption > a:hover {
   color: var(--foreground-0);
+}
+@container (min-width: 44rem) and (max-width: 64.999rem) {
+  .home-hero h1 {
+    font-size: clamp(2rem, 5.5cqw, 3.5rem);
+    margin-block: 2rem 1.5rem;
+  }
+  .home-project-index ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-inline: -1.25rem;
+  }
+  .home-project-index li {
+    min-width: 0;
+    padding-inline: 1.25rem;
+  }
+  .home-project-index li + li {
+    background: repeating-linear-gradient(to bottom, var(--frame-line) 0 3px, transparent 3px 6px) left / 1px 100% no-repeat;
+  }
+  .home-project-index a {
+    grid-template-columns: minmax(0, 1fr) 1rem;
+    gap: 0.75rem;
+    padding-block: 0.5rem;
+  }
+  .home-project-number {
+    grid-column: 1 / -1;
+  }
+}
+@container (min-width: 54rem) and (max-width: 64.999rem) {
+  .archive-grid.home-journal-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .home-journal-grid .archive-entry {
+    padding: 1.5rem;
+  }
+  .archive-grid.home-journal-grid > li + li {
+    border-left: 1px dashed var(--frame-line);
+  }
 }
 @container (min-width: 65rem) {
   .home-hero {
@@ -1346,9 +1407,6 @@ body::after {
 .reading-page {
   padding: 2rem 0 3rem clamp(2rem, 3vw, 3rem);
 }
-.reading-source-mobile {
-  display: none;
-}
 .reading-column {
   max-width: 42rem;
 }
@@ -1372,26 +1430,28 @@ body::after {
     color: var(--foreground-2);
   }
   .reading-outline nav {
+    --scrollbar-thumb: transparent;
     width: 100%;
     max-height: calc(100svh - 12rem);
     overflow-y: auto;
     scrollbar-gutter: stable;
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
   }
   .reading-outline nav:hover,
-  .reading-outline nav:focus-within {
-    scrollbar-color: var(--foreground-3) transparent;
+  .reading-outline nav:has(:focus-visible) {
+    --scrollbar-thumb: var(--foreground-3);
   }
   .reading-outline nav::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
   }
   .reading-outline nav::-webkit-scrollbar-thumb {
-    background: transparent;
+    background: var(--scrollbar-thumb);
+    border-radius: 0;
   }
-  .reading-outline nav:hover::-webkit-scrollbar-thumb,
-  .reading-outline nav:focus-within::-webkit-scrollbar-thumb {
-    background: var(--foreground-3);
+  @supports not selector(::-webkit-scrollbar) {
+    .reading-outline nav {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
   }
   .reading-outline ol {
     display: grid;
@@ -1531,6 +1591,25 @@ body[data-focus-mode="true"] .site-workspace {
 .site-section-heading::after {
   width: 100%;
 }
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .site-shell {
+    --directory-min-width: 13.5rem;
+    --directory-inline-padding: 2.5rem;
+    column-gap: clamp(1.5rem, 2.5vw, 2.25rem);
+  }
+  .site-directory {
+    padding-inline: 1.5rem 1rem;
+  }
+  .navigation-tree {
+    font-size: 0.75rem;
+  }
+  .tree-row {
+    gap: 0.625rem;
+  }
+  .site-workspace {
+    padding-right: 1.5rem;
+  }
+}
 @media (max-width: 1023px) {
   .site-shell {
     display: block;
@@ -1607,10 +1686,6 @@ body[data-focus-mode="true"] .site-workspace {
   .workspace-bar {
     display: none;
   }
-  .reading-source-mobile {
-    display: block;
-    margin-top: 1rem;
-  }
   body[data-directory-open="true"] .site-directory {
     height: auto;
     visibility: visible;
@@ -1621,4 +1696,26 @@ body[data-focus-mode="true"] .site-workspace {
   .reading-prose :is(h2, h3, h4) {
     scroll-margin-top: 6rem;
   }
+}
+
+/* Shared tooltip surface for Astro and hydrated controls. */
+.site-tooltip {
+  position: fixed;
+  z-index: 100;
+  width: max-content;
+  max-width: min(18rem, calc(100vw - 1rem));
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--foreground-3);
+  background: var(--background-0);
+  color: var(--foreground-1);
+  font: 0.75rem / 1.5 var(--font-mono);
+  text-align: center;
+  animation: tooltip-appear 120ms ease-out;
+}
+@keyframes tooltip-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-tooltip { animation: none; }
 }

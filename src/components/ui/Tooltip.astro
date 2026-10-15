@@ -1,0 +1,17 @@
+---
+interface Props {
+  label: string
+}
+
+const { label } = Astro.props
+---
+
+<span class="tooltip-trigger" data-tooltip={label}>
+  <slot />
+</span>
+
+<style>
+.tooltip-trigger {
+  display: inline-flex;
+}
+</style>
