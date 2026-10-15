@@ -15,7 +15,6 @@ export interface HeadSEOProps {
 // Accepts any subset of SEO props; HeadSEO provides sensible defaults.
 export interface BaseLayoutProps extends Partial<HeadSEOProps> {
   readingPage?: boolean
-  articleMarkdownUrl?: string
   publishedAt?: Date
   pageAction?: { href: string; label: string }
   pageLabel?: string

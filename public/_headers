@@ -1,5 +1,0 @@
-# Show article source as readable text instead of downloading Markdown files.
-/post/*.md
-  Content-Type: text/plain; charset=utf-8
-  Content-Disposition: inline
-  X-Content-Type-Options: nosniff
