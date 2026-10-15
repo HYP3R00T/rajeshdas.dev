@@ -1,4 +1,5 @@
 import rehypePrettyCode from "rehype-pretty-code"
+import { getSingletonHighlighter } from "shiki"
 import codeTheme from "./code-theme.mjs"
 
 const LANGUAGE_LABELS = {
@@ -132,7 +133,9 @@ const walkAnsiSource = (node) => {
 
 export default function rehypeCodeBlocks(options = {}) {
   const highlightCode = rehypePrettyCode({
-    theme: codeTheme,
+    // Resolve by name so ANSI tokens use Shiki's normalized color replacements.
+    theme: codeTheme.name,
+    getHighlighter: (settings) => getSingletonHighlighter({ ...settings, themes: [codeTheme] }),
     keepBackground: false,
     ...options,
   })
