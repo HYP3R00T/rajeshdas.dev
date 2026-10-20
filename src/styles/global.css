@@ -1203,7 +1203,7 @@ body::after {
   .archive-grid.home-journal-grid > li {
     background: none;
   }
-  .archive-grid.home-journal-grid > li + li {
+  .archive-grid.home-journal-grid > li:not(:first-child) {
     background: var(--dash-vertical) left / var(--dash-thickness) 100% no-repeat;
   }
 }
