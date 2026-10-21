@@ -29,7 +29,7 @@
     "github-slugger": "2.0.0",
     "lucide-react": "^1.56.0",
     "plyr": "^3.8.5",
-    "radix-ui": "^1.8.0",
+    "radix-ui": "^1.8.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "rehype-pretty-code": "^0.14.5",
